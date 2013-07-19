@@ -1,0 +1,10 @@
+obj/
+bin/
+*.suo
+.svn/
+licenses.licx
+*.bak
+*.orig
+*.Publish.xml
+IO/
+LogWeb/
