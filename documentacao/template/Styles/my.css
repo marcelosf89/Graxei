@@ -1,0 +1,80 @@
+#divSearch{
+	 margin-top: 5px;
+	 margin-bottom: 0px;
+	 
+}
+#divSearch input[type="text"]{
+	 margin-bottom: 0px;
+}
+.pesquisa_index{
+	position: relative;
+	left: 38%;
+	top: 186px;
+}
+
+.logo-header{
+	width: 30px;
+	height: 17px;
+}
+.pesquisa_nav {
+
+}
+
+.container-search-index{
+	min-height: 240px;
+	background-color: #fafafa;
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+	border: 1px solid #d4d4d4;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	position: fixed;
+	right: 0;
+	left: 0;
+}
+
+.container-main{
+visibility: hidden;
+}
+
+.container-main-visibility{
+margin-top:46px;
+}
+
+.container-main-visibility2{
+}
+
+.container-main-index{
+visibility: visible;
+position: relative;
+top: 240px;
+}
+
+.content_sidebar{
+	max-height:550px;
+	padding:10px; 
+	overflow:auto;
+}
+.content_main{
+	max-height:550px;
+	padding:10px; 
+	overflow:auto;
+}
+
+
+.txt_nav{
+	margin-top:5px;
+}
+
+
+.second-head{
+	left: 0;
+	right: 0;
+	background-color: #f1f1f1;
+	height: 40px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.165);
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.165);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.165);
+}
+
