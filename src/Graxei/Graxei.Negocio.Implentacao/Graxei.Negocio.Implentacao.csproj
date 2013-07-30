@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Graxei.Negocio.Implentacao</RootNamespace>
+    <AssemblyName>Graxei.Negocio.Implentacao</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FAST\FAST.csproj">
+      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
+      <Name>FAST</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
+      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
+      <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
+      <Project>{98f3b7b4-b5f1-4124-a62f-a0047ab08840}</Project>
+      <Name>Graxei.Negocio.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Nucleo\Graxei.Nucleo.csproj">
+      <Project>{c9175a32-f282-4696-afdd-67a9c273a084}</Project>
+      <Name>Graxei.Nucleo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
+      <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
+      <Name>Graxei.Persistencia.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Fabrica\Graxei.Persistencia.Fabrica.csproj">
+      <Project>{2c1aa775-a94d-496b-937c-fca81a904f55}</Project>
+      <Name>Graxei.Persistencia.Fabrica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
