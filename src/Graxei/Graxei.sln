@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Nucleo", "Graxei.Nuc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST", "FAST\FAST.csproj", "{8C396BBC-F47C-4845-934E-A467302AAA81}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Modelagem", "Modelagem\Modelagem.modelproj", "{F2938C26-CF66-4083-AAD3-EF1837222EBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{8C396BBC-F47C-4845-934E-A467302AAA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C396BBC-F47C-4845-934E-A467302AAA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C396BBC-F47C-4845-934E-A467302AAA81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2938C26-CF66-4083-AAD3-EF1837222EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2938C26-CF66-4083-AAD3-EF1837222EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2938C26-CF66-4083-AAD3-EF1837222EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2938C26-CF66-4083-AAD3-EF1837222EBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
