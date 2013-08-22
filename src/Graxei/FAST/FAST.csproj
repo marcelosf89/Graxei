@@ -91,27 +91,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\PDFConverterException.cs" />
-    <Compile Include="Layers\Negocio\PersistenciaBase.cs" />
-    <Compile Include="Layers\UnitOfWork\Contrato\IUnitOfWork.cs" />
+    <Compile Include="Excecoes\PDFConverterException.cs" />
+    <Compile Include="Camadas\Negocio\PersistenciaBase.cs" />
+    <Compile Include="Camadas\UnitOfWork\Contrato\IUnitOfWork.cs" />
     <Compile Include="Log\InformationLogger.cs" />
-    <Compile Include="Model\DownloadByte.cs" />
-    <Compile Include="Model\DownloadFile.cs" />
-    <Compile Include="Model\DownloadFileInfo.cs" />
+    <Compile Include="Modelo\DownloadByte.cs" />
+    <Compile Include="Modelo\DownloadFile.cs" />
+    <Compile Include="Modelo\DownloadFileInfo.cs" />
+    <Compile Include="Modelo\Entidade.cs" />
     <Compile Include="Thread\Contract\IThread.cs" />
     <Compile Include="Thread\ExceptionDefs\ExceptionCloseThread.cs" />
     <Compile Include="Thread\ExceptionDefs\ExceptionThread.cs" />
     <Compile Include="Thread\List\ThreadList.cs" />
     <Compile Include="Thread\MultiThreadFactory.cs" />
-    <Compile Include="Utils\ADAutenticate.cs" />
-    <Compile Include="Utils\AssemblyResourceProvider.cs" />
-    <Compile Include="Utils\Query.cs" />
-    <Compile Include="Utils\SendEmail.cs" />
-    <Compile Include="Exceptions\SendEmailException.cs" />
-    <Compile Include="Layers\Negocio\NegocioBase.cs" />
-    <Compile Include="Layers\Dado\IData.cs" />
-    <Compile Include="Layers\Modelo\EntidadeBase.cs" />
-    <Compile Include="Layers\Modelo\ICanSetId.cs" />
+    <Compile Include="Util\ADAutenticate.cs" />
+    <Compile Include="Util\AssemblyResourceProvider.cs" />
+    <Compile Include="Util\Query.cs" />
+    <Compile Include="Util\SendEmail.cs" />
+    <Compile Include="Excecoes\SendEmailException.cs" />
+    <Compile Include="Camadas\Negocio\NegocioBase.cs" />
+    <Compile Include="Camadas\Dado\IData.cs" />
+    <Compile Include="Camadas\Modelo\EntidadeBase.cs" />
+    <Compile Include="Camadas\Modelo\ICanSetId.cs" />
     <Compile Include="Web\BaseGridViewPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -120,11 +121,11 @@
     </Compile>
     <Compile Include="Log\ExceptionLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\CollectionHelper.cs" />
-    <Compile Include="Utils\CPFCNJPValidator.cs" />
-    <Compile Include="Security\Cryptography.cs" />
-    <Compile Include="Utils\ListControlBind.cs" />
-    <Compile Include="Utils\GenericComparer.cs" />
+    <Compile Include="Util\CollectionHelper.cs" />
+    <Compile Include="Util\CPFCNJPValidator.cs" />
+    <Compile Include="Seguranca\Cryptography.cs" />
+    <Compile Include="Util\ListControlBind.cs" />
+    <Compile Include="Util\GenericComparer.cs" />
     <Compile Include="Web\Controls\AutoVue.cs" />
     <Compile Include="Web\Controls\ControlUC.cs" />
     <Compile Include="Web\Controls\PaginaInterna.cs" />

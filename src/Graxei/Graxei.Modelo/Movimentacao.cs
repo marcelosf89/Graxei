@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAST.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Graxei.Modelo
 {
-    public class Movimentacao
+    public class Movimentacao : Entidade
     {
         public virtual Produto Produto { get; set; }
         public virtual Endereco Endereco { get; set; }

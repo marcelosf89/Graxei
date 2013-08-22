@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FAST.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Graxei.Modelo
 {
-    public class Loja
+    public class Loja : Entidade
     {
         public virtual string Nome
         {
@@ -17,9 +18,9 @@ namespace Graxei.Modelo
             get; set;
         }
 
-        public virtual IList<Endereco> Endereco
+        public virtual IList<Endereco> Enderecos
         {
-            get; set;
+            get; protected set;
         }
 
         #region Métodos Sobrescritos

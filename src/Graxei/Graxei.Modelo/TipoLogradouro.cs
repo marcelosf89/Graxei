@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FAST.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 namespace Graxei.Modelo
 {
     
-    public class TipoLogradouro
+    public class TipoLogradouro : Entidade
     {
+
+        public virtual string Sigla { get; set; }
         public virtual string Nome { get; set; }
 
         public override bool Equals(object obj)

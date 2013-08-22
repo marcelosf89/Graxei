@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FAST.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Graxei.Modelo
 {
-    public class Endereco
+    public class Endereco : Entidade
     {
         public virtual string Logradouro { get; set; }
 
@@ -13,10 +14,13 @@ namespace Graxei.Modelo
 
         public virtual string Complemento { get; set; }
 
+        public virtual TipoLogradouro TipoLogradouro { get; set; }
+
         public virtual Loja Loja { get;  set; }
 
         public virtual Bairro Bairro { get; set; }
 
+        public virtual IList<Telefone> Telefones { get; protected set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
