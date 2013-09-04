@@ -13,6 +13,7 @@ namespace FluentNHibernate.Configuracao
     {
         public EstadoMap()
         {
+            Table(Constantes.ESTADOS);
             Id(p => p.Id);
             Map(p => p.Nome, Constantes.NOME);
             Map(p => p.Sigla, Constantes.SIGLA);

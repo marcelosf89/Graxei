@@ -8,18 +8,13 @@ namespace Graxei.Modelo
 {
     public class Endereco : Entidade
     {
+
         public virtual string Logradouro { get; set; }
-
         public virtual string Numero { get; set; }
-
         public virtual string Complemento { get; set; }
-
         public virtual TipoLogradouro TipoLogradouro { get; set; }
-
         public virtual Loja Loja { get;  set; }
-
         public virtual Bairro Bairro { get; set; }
-
         public virtual IList<Telefone> Telefones { get; protected set; }
 
         #region Métodos Sobrescritos

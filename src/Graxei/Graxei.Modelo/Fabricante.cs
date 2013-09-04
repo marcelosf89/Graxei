@@ -1,4 +1,5 @@
 ﻿using FAST.Modelo;
+using NHibernate.Search.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace Graxei.Modelo
 {
-
+    [Indexed]
     public class Fabricante : Entidade
     {
+
+        [Field(Index.Tokenized, Store = Store.Yes)]
         public virtual string Nome { get; set; }
 
         #region Métodos Sobrescritos
@@ -33,6 +36,7 @@ namespace Graxei.Modelo
             return retorno + 11;
         }
         #endregion
+
     }
 
 }

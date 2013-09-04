@@ -12,6 +12,7 @@ namespace FluentNHibernate.Configuracao
     {
         public TipoTelefoneMap()
         {
+            Table(Constantes.TIPOS_TELEFONE);
             Id(p => p.Id).Column(Constantes.ID_TIPO_TELEFONE);
             Map(p => p.Abreviacao).Column(Constantes.ABREVIACAO);
             Map(p => p.Nome).Column(Constantes.NOME);

@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Modelo", "Graxei.Mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Contrato", "Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj", "{C69DB223-A47A-4FE4-A2E3-D9EE660662B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.NHibernate", "Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.NHibernate.csproj", "{F1D4000A-3ECD-455F-A882-D64248980F1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL", "Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj", "{F1D4000A-3ECD-455F-A882-D64248980F1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Fabrica", "Graxei.Persistencia.Fabrica\Graxei.Persistencia.Fabrica.csproj", "{2C1AA775-A94D-496B-937C-FCA81A904F55}"
 EndProject
@@ -60,6 +60,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST", "FAST\FAST.csproj", "{8C396BBC-F47C-4845-934E-A467302AAA81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento", "FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento.csproj", "{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Teste", "Teste", "{24C44558-CBEE-423D-B14C-138A3D15549B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Graxei.Console", "Graxei.Console", "{5F4813E0-0AD7-4980-B50E-77E083799F06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteFluentNHibernante", "Graxei.Console\TesteFluentNHibernante\TesteFluentNHibernante.csproj", "{E91ED01D-32A7-4052-AADE-74956F519081}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +129,10 @@ Global
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E91ED01D-32A7-4052-AADE-74956F519081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E91ED01D-32A7-4052-AADE-74956F519081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E91ED01D-32A7-4052-AADE-74956F519081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E91ED01D-32A7-4052-AADE-74956F519081}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,5 +160,7 @@ Global
 		{F1D4000A-3ECD-455F-A882-D64248980F1E} = {DC19629A-1120-44A4-8D4E-774EB71176A6}
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D} = {DC19629A-1120-44A4-8D4E-774EB71176A6}
 		{C9175A32-F282-4696-AFDD-67A9C273A084} = {EFE7C337-15B7-41D3-B62B-81D0140FA158}
+		{5F4813E0-0AD7-4980-B50E-77E083799F06} = {24C44558-CBEE-423D-B14C-138A3D15549B}
+		{E91ED01D-32A7-4052-AADE-74956F519081} = {5F4813E0-0AD7-4980-B50E-77E083799F06}
 	EndGlobalSection
 EndGlobal

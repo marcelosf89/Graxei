@@ -12,6 +12,7 @@ namespace FluentNHibernate.Configuracao
     {
         public EnderecoMap()
         {
+            Table(Constantes.ENDERECOS);
             Id(p => p.Id).Column(Constantes.ID_ENDERECO);
             Map(p => p.Logradouro).Column(Constantes.LOGRADOURO);
             Map(p => p.Numero).Column(Constantes.NUMERO);

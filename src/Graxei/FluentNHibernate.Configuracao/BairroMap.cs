@@ -12,8 +12,9 @@ namespace FluentNHibernate.Configuracao
     {
         public BairroMap()
         {
+            Table(Constantes.BAIRROS);
             Id(p => p.Id).Column(Constantes.ID_BAIRRO);
-            Map(p => p.Nome, Constantes.NOME);
+            Map(p => p.Nome);   
             References(p => p.Cidade);
         }
     }

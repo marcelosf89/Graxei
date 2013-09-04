@@ -12,9 +12,11 @@ namespace FluentNHibernate.Configuracao
     {
         public ProdutoMap()
         {
+            Table(Constantes.PRODUTOS);
             Id(p => p.Id).Column(Constantes.ID_PRODUTO);
             Map(p => p.Codigo).Column(Constantes.CODIGO);
             Map(p => p.Descricao).Column(Constantes.DESCRICAO);
+            Map(p => p.Preco).Column(Constantes.PRECO);
             Map(p => p.FatorConversao).Column(Constantes.FATOR_CONVERSAO);
             References(p => p.Categoria).Column(Constantes.ID_CATEGORIA);
             References(p => p.Fabricante).Column(Constantes.ID_FABRICANTE);

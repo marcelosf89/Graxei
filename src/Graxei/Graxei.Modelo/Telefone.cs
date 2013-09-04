@@ -14,4 +14,5 @@ namespace Graxei.Modelo
         public virtual Endereco Endereco { get; set; }
         public virtual TipoTelefone TipoTelefone { get; set; }
     }
+
 }

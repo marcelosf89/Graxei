@@ -10,6 +10,7 @@ namespace Graxei.Modelo
 
     public class Cidade : Entidade
     {
+
         public virtual string Nome { get; set; }
         public virtual Estado Estado { get; set; }
 

@@ -12,6 +12,7 @@ namespace FluentNHibernate.Configuracao
     {
         public LojaMap()
         {
+            Table(Constantes.LOJAS);
             Id(p => p.Id).Column(Constantes.ID_LOJA);
             Map(p => p.Nome).Column(Constantes.NOME);
             Map(p => p.Logotipo).Column(Constantes.LOGOTIPO);

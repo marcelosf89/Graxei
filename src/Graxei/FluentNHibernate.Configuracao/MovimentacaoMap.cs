@@ -12,6 +12,7 @@ namespace FluentNHibernate.Configuracao
     {
         public MovimentacaoMap()
         {
+            Table(Constantes.MOVIMENTACOES);
             Id(p => p.Id).Column(Constantes.ID_MOVIMENTACAO);
             Map(p => p.Quantidade).Column(Constantes.QUANTIDADE);
             Map(p => p.Data).Column(Constantes.DATA);

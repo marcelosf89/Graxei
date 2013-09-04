@@ -14,6 +14,8 @@ namespace Graxei.Modelo
         public virtual string Sigla { get; set; }
         public virtual string Nome { get; set; }
 
+
+        #region Métodos Sobrescritos
         public override bool Equals(object obj)
         {
             if (!(obj is TipoLogradouro))
@@ -32,6 +34,7 @@ namespace Graxei.Modelo
             }
             return 0;
         }
+        #endregion
 
     }
 

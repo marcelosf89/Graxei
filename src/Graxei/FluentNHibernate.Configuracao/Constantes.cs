@@ -8,6 +8,24 @@ namespace FluentNHibernate.Configuracao
 {
     public sealed class Constantes
     {
+
+        #region Tabelas
+        public const string BAIRROS = "BAIRROS";
+        public const string CATEGORIAS = "CATEGORIAS";
+        public const string CIDADES = "CIDADES";
+        public const string ENDERECOS = "ENDERECOS";
+        public const string ESTADOS = "ESTADOS";
+        public const string FABRICANTES = "FABRICANTES";
+        public const string LOJAS = "LOJAS";
+        public const string MOVIMENTACOES = "MOVIMENTACOES";
+        public const string PRODUTOS = "PRODUTOS";
+        public const string TELEFONES = "TELEFONES";
+        public const string TIPOS_LOGRADOURO = "TIPOS_LOGRADOURO";
+        public const string TIPOS_TELEFONE = "TIPOS_TELEFONE";
+        public const string UNIDADES_MEDIDA = "UNIDADES_MEDIDA";
+        #endregion
+
+        #region Campos
         public const string         ABREVIACAO = "ABREVIACAO";
         public const string             CODIGO = "CODIGO";
         public const string        COMPLEMENTO = "COMPLEMENTO";
@@ -33,8 +51,11 @@ namespace FluentNHibernate.Configuracao
         public const string         LOGRADOURO = "LOGRADOURO";
         public const string               NOME = "NOME";
         public const string             NUMERO = "NUMERO";
+        public const string              PRECO = "PRECO";
         public const string         QUANTIDADE = "QUANTIDADE";
         public const string            SENTIDO = "SENTIDO";
         public const string              SIGLA = "SIGLA";
+        #endregion
+
     }
 }
