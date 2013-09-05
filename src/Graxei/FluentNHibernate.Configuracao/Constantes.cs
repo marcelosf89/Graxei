@@ -47,6 +47,7 @@ namespace FluentNHibernate.Configuracao
         public const string   ID_TIPO_TELEFONE = "ID_TIPO_TELEFONE";
         public const string ID_UNIDADE_ENTRADA = "ID_UNIDADE_ENTRADA";
         public const string   ID_UNIDADE_SAIDA = "ID_UNIDADE_SAIDA";
+        public const string ID_UNIDADE_MEDIDA = "ID_UNIDADE_MEDIDA";
         public const string           LOGOTIPO = "LOGOTIPO";
         public const string         LOGRADOURO = "LOGRADOURO";
         public const string               NOME = "NOME";

@@ -12,6 +12,7 @@ namespace FluentNHibernate.Configuracao
     {
         public FabricanteMap()
         {
+            Table(Constantes.FABRICANTES);
             Id(p => p.Id).Column(Constantes.ID_FABRICANTE);
             Map(p => p.Nome).Column(Constantes.NOME);
         }

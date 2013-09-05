@@ -13,10 +13,10 @@ namespace FluentNHibernate.Configuracao
 
         public CidadeMap()
         {
-            Table(Constantes.CATEGORIAS);
+            Table(Constantes.CIDADES);
             Id(p => p.Id).Column(Constantes.ID_CIDADE);
             Map(p => p.Nome, Constantes.NOME);
-            References(p => p.Estado).Column("ID_ESTADO");
+            References(p => p.Estado).Column(Constantes.ID_ESTADO);
         }
     }
 }
