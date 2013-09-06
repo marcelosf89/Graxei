@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentNHibernate.Configuracao
+namespace Graxei.FluentNHibernate.Mapeamento
 {
     public class BairroMap : ClassMap<Bairro>
     {
         public BairroMap()
         {
-            Table(Constantes.BAIRROS);
-            Id(p => p.Id).Column(Constantes.ID_BAIRRO);
+            Id(p => p.Id);
             Map(p => p.Nome);   
             References(p => p.Cidade);
         }

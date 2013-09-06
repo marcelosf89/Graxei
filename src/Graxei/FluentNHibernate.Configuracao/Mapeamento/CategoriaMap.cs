@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentNHibernate.Configuracao
+namespace Graxei.FluentNHibernate.Mapeamento
 {
     public class CategoriaMap : ClassMap<Categoria>
     {
         public CategoriaMap()
         {
-            Table(Constantes.CATEGORIAS);
-            Id(p => p.Id).Column(Constantes.ID_CATEGORIA);
+            Id(p => p.Id);
             Map(p => p.Nome).Column(Constantes.NOME);
             References(p => p.CategoriaPai).Column(Constantes.ID_CATEGORIA_PAI);
         }

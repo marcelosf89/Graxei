@@ -52,9 +52,9 @@
       <Project>{98f3b7b4-b5f1-4124-a62f-a0047ab08840}</Project>
       <Name>Graxei.Negocio.Contrato</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Implentacao\Graxei.Negocio.Implentacao.csproj">
+    <ProjectReference Include="..\Graxei.Negocio.Implentacao\Graxei.Negocio.Implementacao.csproj">
       <Project>{a8bfa7c6-4675-4997-81df-ae7fe058c1f5}</Project>
-      <Name>Graxei.Negocio.Implentacao</Name>
+      <Name>Graxei.Negocio.Implementacao</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

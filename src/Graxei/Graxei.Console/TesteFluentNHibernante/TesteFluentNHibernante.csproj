@@ -44,15 +44,21 @@
     <Reference Include="Lucene.Net">
       <HintPath>..\..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MySql.Data.6.7.4\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate.Search, Version=2.0.2.4000, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NHibernate.Search, Version=0.0.0.0, Culture=neutral, PublicKeyToken=e05025044aa97d32, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\dll\NHibernate.Search.dll</HintPath>
+      <HintPath>..\..\..\..\..\dll\NHibernate.Search.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,9 +83,9 @@
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento.csproj">
+    <ProjectReference Include="..\..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
       <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento</Name>
+      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>

@@ -1,14 +1,19 @@
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
+using Graxei.FluentNHibernate.Convencoes;
+using Graxei.Modelo;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Context;
 
-namespace Graxei.Nucleo.NHibernate.GerenciarSessao
+namespace Graxei.FluentNHibernate.Configuracao
 {
-
     /// <summary>
     /// Classe para gerência da sessão do NHibernate
     /// </summary>
     public sealed class NHibernateSessionFactory
     {
+
         #region Singleton
         private static readonly NHibernateSessionFactory _instance = new NHibernateSessionFactory();
         private string _user;
@@ -29,11 +34,7 @@ namespace Graxei.Nucleo.NHibernate.GerenciarSessao
 
         #endregion
 
-        #region Fields
-        private ISessionFactory _sessionFactory;
-        #endregion
-
-        #region Private Methods
+        #region Métodos Privados
         /// <summary>
         /// Inicializa o HibernateSessionManager criando um SessionFactory
         /// </summary>
@@ -41,21 +42,35 @@ namespace Graxei.Nucleo.NHibernate.GerenciarSessao
         {
             this._sessionFactory = this.SessionFactory();
         }
+        #endregion
+
+        #region Métodos Públicos
 
         public ISessionFactory SessionFactory()
         {
             if (this._sessionFactory == null)
             {
-                // Aqui o Nhibernate vai procurar as configurações no 
-                // arquivo "NHibernate.config"
-                var config = new Configuration().Configure();
+                Configuration config =
+                Fluently.
+                Configure().CurrentSessionContext<CallSessionContext>().
+                Database(MySQLConfiguration.Standard
+                                           .ConnectionString(c => c.Server("graxei.c6lcvckogtg5.sa-east-1.rds.amazonaws.com").Database("graxei").Username("supergraxei").Password("73#tr071.")
 
+                         )//.ShowSql()   
+                ).
+                Mappings(m =>
+                         m.FluentMappings.AddFromAssemblyOf<Produto>().Conventions.Add<ClasseComumConvencao>()).
+                BuildConfiguration();
                 this._sessionFactory = config.BuildSessionFactory();
             }
 
             return _sessionFactory;
         }
-
         #endregion
+
+        #region Fields
+        private ISessionFactory _sessionFactory;
+        #endregion
+
     }
 }

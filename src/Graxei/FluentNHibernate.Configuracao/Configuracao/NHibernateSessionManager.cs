@@ -4,10 +4,11 @@ using NHibernate;
 using NHibernate.Cfg;
 using System.Reflection;
 using NHibernate.Context;
+using Graxei.FluentNHibernate.Configuracao;
 
 namespace Graxei.Nucleo.NHibernate.GerenciarSessao
 {
-    public static class HibernateSessionManager
+    public static class NHibernateSessionManager
     {
         /// <summary>
         /// Define uma ANNOTATION para o enumerator ContextMode
@@ -80,7 +81,7 @@ namespace Graxei.Nucleo.NHibernate.GerenciarSessao
         /// <summary>
         /// Criar somente uma vez a fábrica de sessões do nhibernate
         /// </summary>
-        static HibernateSessionManager()
+        static NHibernateSessionManager()
         {
 
             //Seta o modo de operação da aplicação
@@ -112,7 +113,10 @@ namespace Graxei.Nucleo.NHibernate.GerenciarSessao
         //Aloca uma sessão do nhibernate no contexto da aplicação
         public static void BindSession()
         {
-            CurrentSessionContext.Bind(_sessionFactory.OpenSession());
+            if (!CurrentSessionContext.HasBind(_sessionFactory))
+            {
+                CurrentSessionContext.Bind(_sessionFactory.OpenSession());
+            }
         }
 
         private static object Configuration()
