@@ -5,8 +5,9 @@ using FAST.Layers.Modelo;
 using FAST.Layers.Negocio;
 using NHibernate;
 using NHibernate.Criterion;
+using Graxei.FluentNHibernate.Configuracao;
 
-namespace Graxei.Nucleo.NHibernate
+namespace Graxei.FluentNHibernate
 {
     /// <summary>
     /// Classe abstrata básica para regra de negócios

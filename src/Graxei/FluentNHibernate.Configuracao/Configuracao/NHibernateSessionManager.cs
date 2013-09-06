@@ -6,7 +6,7 @@ using System.Reflection;
 using NHibernate.Context;
 using Graxei.FluentNHibernate.Configuracao;
 
-namespace Graxei.Nucleo.NHibernate.GerenciarSessao
+namespace Graxei.FluentNHibernate.GerenciarSessao
 {
     public static class NHibernateSessionManager
     {

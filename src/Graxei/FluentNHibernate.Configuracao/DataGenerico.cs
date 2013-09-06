@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using FAST.Layers.Modelo;
-using Graxei.Nucleo.Base;
+using Graxei.FluentNHibernate.Base;
 using NHibernate;
 using NHibernate.Criterion;
+using Graxei.FluentNHibernate.Configuracao;
 
-namespace Graxei.Nucleo
+namespace Graxei.FluentNHibernate
 {
     /// <summary>
     /// Classe genérica para acesso a dados

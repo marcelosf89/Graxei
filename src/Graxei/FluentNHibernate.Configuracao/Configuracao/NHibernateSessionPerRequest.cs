@@ -4,7 +4,7 @@ using System.ServiceModel.Dispatcher;
 using System.Web;
 using NHibernate;
 using NHibernate.Cfg;
-using Graxei.Nucleo.NHibernate.GerenciarSessao;
+using Graxei.FluentNHibernate.GerenciarSessao;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {

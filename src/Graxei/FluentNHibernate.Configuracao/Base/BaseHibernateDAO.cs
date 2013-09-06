@@ -4,8 +4,9 @@ using FAST.Layers.Data;
 using FAST.Layers.Modelo;
 using FAST.Log;
 using NHibernate.Criterion;
+using Graxei.FluentNHibernate.Configuracao;
 
-namespace Graxei.Nucleo.Base
+namespace Graxei.FluentNHibernate.Base
 {
     /// <summary>
     /// Classe abstrata básica para acesso a dados
