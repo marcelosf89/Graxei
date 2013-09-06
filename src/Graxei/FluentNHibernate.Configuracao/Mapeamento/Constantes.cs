@@ -10,51 +10,51 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
 
         #region Tabelas
-        public const string BAIRROS = "BAIRROS";
-        public const string CATEGORIAS = "CATEGORIAS";
-        public const string CIDADES = "CIDADES";
-        public const string ENDERECOS = "ENDERECOS";
-        public const string ESTADOS = "ESTADOS";
-        public const string FABRICANTES = "FABRICANTES";
-        public const string LOJAS = "LOJAS";
-        public const string MOVIMENTACOES = "MOVIMENTACOES";
-        public const string PRODUTOS = "PRODUTOS";
-        public const string TELEFONES = "TELEFONES";
-        public const string TIPOS_LOGRADOURO = "TIPOS_LOGRADOURO";
-        public const string TIPOS_TELEFONE = "TIPOS_TELEFONE";
-        public const string UNIDADES_MEDIDA = "UNIDADES_MEDIDA";
+        public const string BAIRROS = "bairros";
+        public const string CATEGORIAS = "categorias";
+        public const string CIDADES = "cidades";
+        public const string ENDERECOS = "enderecos";
+        public const string ESTADOS = "estados";
+        public const string FABRICANTES = "fabricantes";
+        public const string LOJAS = "lojas";
+        public const string MOVIMENTACOES = "movimentacoes";
+        public const string PRODUTOS = "produtos";
+        public const string TELEFONES = "telefones";
+        public const string TIPOS_LOGRADOURO = "tipos_logradouro";
+        public const string TIPOS_TELEFONE = "tipos_telefone";
+        public const string UNIDADES_MEDIDA = "unidades_medida";
         #endregion
 
         #region Campos
-        public const string         ABREVIACAO = "ABREVIACAO";
-        public const string             CODIGO = "CODIGO";
-        public const string        COMPLEMENTO = "COMPLEMENTO";
-        public const string               DATA = "DATA";
-        public const string          DESCRICAO = "DESCRICAO";
-        public const string    FATOR_CONVERSAO = "FATOR_CONVERSAO";
-        public const string          ID_BAIRRO = "ID_BAIRRO";
-        public const string       ID_CATEGORIA = "ID_CATEGORIA";
-        public const string   ID_CATEGORIA_PAI = "ID_CATEGORIA_PAI";
-        public const string          ID_CIDADE = "ID_CIDADE";
-        public const string        ID_ENDERECO = "ID_ENDERECO";
-        public const string          ID_ESTADO = "ID_ESTADO";
-        public const string      ID_FABRICANTE = "ID_FABRICANTE";
-        public const string            ID_LOJA = "ID_LOJA";
-        public const string    ID_MOVIMENTACAO = "ID_MOVIMENTACAO";
-        public const string         ID_PRODUTO = "ID_PRODUTO";
-        public const string        ID_TELEFONE = "ID_TELEFONE";
-        public const string ID_TIPO_LOGRADOURO = "ID_TIPO_LOGRADOURO";
-        public const string   ID_TIPO_TELEFONE = "ID_TIPO_TELEFONE";
-        public const string ID_UNIDADE_ENTRADA = "ID_UNIDADE_ENTRADA";
-        public const string   ID_UNIDADE_SAIDA = "ID_UNIDADE_SAIDA";
-        public const string           LOGOTIPO = "LOGOTIPO";
-        public const string         LOGRADOURO = "LOGRADOURO";
-        public const string               NOME = "NOME";
-        public const string             NUMERO = "NUMERO";
-        public const string              PRECO = "PRECO";
-        public const string         QUANTIDADE = "QUANTIDADE";
-        public const string            SENTIDO = "SENTIDO";
-        public const string              SIGLA = "SIGLA";
+        public const string         ABREVIACAO = "abreviacao";
+        public const string             CODIGO = "codigo";
+        public const string        COMPLEMENTO = "complemento";
+        public const string               DATA = "data";
+        public const string          DESCRICAO = "descricao";
+        public const string    FATOR_CONVERSAO = "fator_conversao";
+        public const string          ID_BAIRRO = "id_bairro";
+        public const string       ID_CATEGORIA = "id_categoria";
+        public const string   ID_CATEGORIA_PAI = "id_categoria_pai";
+        public const string          ID_CIDADE = "id_cidade";
+        public const string        ID_ENDERECO = "id_endereco";
+        public const string          ID_ESTADO = "id_estado";
+        public const string      ID_FABRICANTE = "id_fabricante";
+        public const string            ID_LOJA = "id_loja";
+        public const string    ID_MOVIMENTACAO = "id_movimentacao";
+        public const string         ID_PRODUTO = "id_produto";
+        public const string        ID_TELEFONE = "id_telefone";
+        public const string ID_TIPO_LOGRADOURO = "id_tipo_logradouro";
+        public const string   ID_TIPO_TELEFONE = "id_tipo_telefone";
+        public const string ID_UNIDADE_ENTRADA = "id_unidade_entrada";
+        public const string   ID_UNIDADE_SAIDA = "id_unidade_saida";
+        public const string           LOGOTIPO = "logotipo";
+        public const string         LOGRADOURO = "logradouro";
+        public const string               NOME = "nome";
+        public const string             NUMERO = "numero";
+        public const string              PRECO = "preco";
+        public const string         QUANTIDADE = "quantidade";
+        public const string            SENTIDO = "sentido";
+        public const string              SIGLA = "sigla";
         #endregion
 
     }

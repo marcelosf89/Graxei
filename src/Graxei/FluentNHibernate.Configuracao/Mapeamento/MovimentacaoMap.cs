@@ -14,11 +14,11 @@ namespace Graxei.FluentNHibernate.Mapeamento
         {
             Table(Constantes.MOVIMENTACOES);
             Id(p => p.Id);
-            Map(p => p.Quantidade);
-            Map(p => p.Data);
-            Map(p => p.Sentido);
-            References(p => p.Produto);
-            References(p => p.Endereco);
+            Map(p => p.Quantidade).Column(Constantes.QUANTIDADE);
+            Map(p => p.Data).Column(Constantes.DATA);
+            Map(p => p.Sentido).Column(Constantes.SENTIDO);
+            References(p => p.Produto).Column(Constantes.ID_PRODUTO);
+            References(p => p.Endereco).Column(Constantes.ID_ENDERECO);
         }
     }
 }

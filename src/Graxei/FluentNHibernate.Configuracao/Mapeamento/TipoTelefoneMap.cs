@@ -13,8 +13,8 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public TipoTelefoneMap()
         {
             Id(p => p.Id);
-            Map(p => p.Abreviacao);
-            Map(p => p.Nome);
+            Map(p => p.Abreviacao).Column(Constantes.ABREVIACAO); 
+            Map(p => p.Nome).Column(Constantes.NOME);
         }
     }
 }

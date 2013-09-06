@@ -15,7 +15,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         {
             Id(p => p.Id);
             Map(p => p.Nome);
-            References(p => p.Estado).Column("ID_ESTADO");
+            References(p => p.Estado).Column(Constantes.ID_ESTADO);
         }
     }
 }
