@@ -6,16 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentNHibernate.Configuracao
+namespace Graxei.FluentNHibernate.Mapeamento
 {
     public class TipoTelefoneMap : ClassMap<TipoTelefone>
     {
         public TipoTelefoneMap()
         {
-            Table(Constantes.TIPOS_TELEFONE);
-            Id(p => p.Id).Column(Constantes.ID_TIPO_TELEFONE);
-            Map(p => p.Abreviacao).Column(Constantes.ABREVIACAO);
-            Map(p => p.Nome).Column(Constantes.NOME);
+            Id(p => p.Id);
+            Map(p => p.Abreviacao);
+            Map(p => p.Nome);
         }
     }
 }

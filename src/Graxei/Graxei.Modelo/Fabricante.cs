@@ -12,6 +12,8 @@ namespace Graxei.Modelo
     public class Fabricante : Entidade
     {
 
+        [DocumentId]
+        public virtual long Id { get; set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
         public virtual string Nome { get; set; }
 

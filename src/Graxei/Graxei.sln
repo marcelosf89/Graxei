@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Contrato", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Fabrica", "Graxei.Negocio.Fabrica\Graxei.Negocio.Fabrica.csproj", "{41883BA3-AE05-4EC9-82BA-B2114FE075D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Implentacao", "Graxei.Negocio.Implentacao\Graxei.Negocio.Implentacao.csproj", "{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Implementacao", "Graxei.Negocio.Implentacao\Graxei.Negocio.Implementacao.csproj", "{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Aplicacao.Contrato", "Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj", "{CBF20A20-BA65-4DBC-A5A6-8F06EB2F4ED5}"
 EndProject
@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Nucleo", "Graxei.Nuc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST", "FAST\FAST.csproj", "{8C396BBC-F47C-4845-934E-A467302AAA81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento", "FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento.csproj", "{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.FluentNHibernate", "FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj", "{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Teste", "Teste", "{24C44558-CBEE-423D-B14C-138A3D15549B}"
 EndProject

@@ -108,10 +108,6 @@
       <Project>{41883ba3-ae05-4ec9-82ba-b2114fe075d4}</Project>
       <Name>Graxei.Negocio.Fabrica</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Nucleo\Graxei.Nucleo.csproj">
-      <Project>{c9175a32-f282-4696-afdd-67a9c273a084}</Project>
-      <Name>Graxei.Nucleo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
       <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
       <Name>Graxei.Persistencia.Contrato</Name>

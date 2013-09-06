@@ -6,17 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluentNHibernate.Configuracao
+namespace Graxei.FluentNHibernate.Mapeamento
 {
     
     public class EstadoMap : ClassMap<Estado>
     {
         public EstadoMap()
         {
-            Table(Constantes.ESTADOS);
             Id(p => p.Id);
-            Map(p => p.Nome, Constantes.NOME);
-            Map(p => p.Sigla, Constantes.SIGLA);
+            Map(p => p.Nome);
+            Map(p => p.Sigla);
         }
     }
 

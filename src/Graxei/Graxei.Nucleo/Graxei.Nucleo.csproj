@@ -50,9 +50,6 @@
     <Compile Include="Base\BaseHibernateDAO.cs" />
     <Compile Include="DataGenerico.cs" />
     <Compile Include="NHibernate\BaseHibernatePersistencia.cs" />
-    <Compile Include="NHibernate\GerenciarSessao\HibernateSessionFactory.cs" />
-    <Compile Include="NHibernate\GerenciarSessao\HibernateSessionManager.cs" />
-    <Compile Include="NHibernate\GerenciarSessao\NHibernateSessionPerRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +60,9 @@
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NHibernate\GerenciarSessao\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
