@@ -13,7 +13,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public FabricanteMap()
         {
             Id(p => p.Id);
-            Map(p => p.Nome);
+            Map(p => p.Nome).Column(Constantes.NOME);
         }
     }
 }

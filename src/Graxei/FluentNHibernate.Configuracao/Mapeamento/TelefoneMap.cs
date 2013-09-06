@@ -13,9 +13,9 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public TelefoneMap()
         {
             Id(p => p.Id);
-            Map(P => P.Numero);
-            References(p => p.Endereco);
-            References(p => p.TipoTelefone);
+            Map(P => P.Numero).Column(Constantes.NUMERO);
+            References(p => p.Endereco).Column(Constantes.ID_ENDERECO);
+            References(p => p.TipoTelefone).Column(Constantes.ID_TIPO_TELEFONE);
         }
     }
 }

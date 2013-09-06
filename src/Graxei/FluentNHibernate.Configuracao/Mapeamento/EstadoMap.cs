@@ -14,8 +14,8 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public EstadoMap()
         {
             Id(p => p.Id);
-            Map(p => p.Nome);
-            Map(p => p.Sigla);
+            Map(p => p.Nome).Column(Constantes.NOME);
+            Map(p => p.Sigla).Column(Constantes.SIGLA);
         }
     }
 
