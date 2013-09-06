@@ -12,7 +12,8 @@ namespace Graxei.Modelo
     public class Produto : Entidade
     {
         [DocumentId]
-        public virtual long Id { get; set; }
+        public override long Id { get; set; }
+        [Field(Index.Tokenized, Store = Store.Yes)]
         public virtual string Codigo { get; set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
         public virtual string Descricao { get; set; }

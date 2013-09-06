@@ -11,7 +11,18 @@ namespace Graxei.Modelo
     [Indexed]
     public class Fabricante : Entidade
     {
-
+           [DocumentId]
+        public override long Id
+        {
+            get
+            {
+                return base.Id;
+            }
+            set
+            {
+                base.Id = value;
+            }
+        }
         [Field(Index.Tokenized, Store = Store.Yes)]
         public virtual string Nome { get; set; }
 
