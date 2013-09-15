@@ -6,7 +6,7 @@ using System.Reflection;
 using NHibernate.Context;
 using Graxei.FluentNHibernate.Configuracao;
 
-namespace Graxei.FluentNHibernate.GerenciarSessao
+namespace Graxei.FluentNHibernate.Configuracao
 {
     public static class NHibernateSessionManager
     {
@@ -84,18 +84,12 @@ namespace Graxei.FluentNHibernate.GerenciarSessao
         static NHibernateSessionManager()
         {
 
-            //Seta o modo de operação da aplicação
-            SetContextMode();
-
             _sessionFactory = CreateSessionFactory();
 
             //Se o modo corrente for CALL, então coloque uma sessão no contexto.
             //Isto significa que cada chamada terá uma unica sessão do nhibernate.
-            if (currentContext == ContextMode.CALL_CONTEXT)
-            {
                 BindSession();
-            }
-
+            
             //Se o modo corrente for WEB, então o binding de sessão será feito
             //No inicio da requisão através de um HTTPModule
 
@@ -121,6 +115,7 @@ namespace Graxei.FluentNHibernate.GerenciarSessao
 
         private static object Configuration()
         {
+            /* TODO: Implementar Configuração */
             throw new NotImplementedException();
         }
 
@@ -173,77 +168,6 @@ namespace Graxei.FluentNHibernate.GerenciarSessao
             get
             {
                 return _sessionFactory;
-            }
-        }
-
-
-
-
-
-        /// <summary>
-        /// Questiona se há uma transação aberta
-        /// </summary>
-        /// <returns>True ou False</returns>
-        public static bool HasOpenTransaction()
-        {
-            return NHibernateSessionPerRequest.GetCurrentSession().Transaction != null &&
-                NHibernateSessionPerRequest.GetCurrentSession().Transaction.IsActive &&
-                !NHibernateSessionPerRequest.GetCurrentSession().Transaction.WasCommitted &&
-                !NHibernateSessionPerRequest.GetCurrentSession().Transaction.WasRolledBack;
-        }
-
-        /// <summary>
-        /// Abre uma transação se já não houver uma já existente
-        /// </summary>
-        /// <exception cref="Exception">Erro ao inicializar uma transação</exception>
-        public static void BeginTransaction()
-        {
-            try
-            {
-
-                if (!HasOpenTransaction())
-                {
-                    NHibernateSessionPerRequest.GetCurrentSession().BeginTransaction();
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionLogger.Instance.LogException(Level.Error, "Begin Exception", exception);
-                throw exception;
-            }
-        }
-
-        /// <summary>
-        /// Executa Commit em uma transação existente, executa RollBack caso haja uma exceção
-        /// </summary>
-        /// <exception cref="Exception">Erro ao comitar uma transação</exception>
-        public static void CommitTransaction()
-        {
-            try
-            {
-
-                if (HasOpenTransaction())
-                {
-                    NHibernateSessionPerRequest.GetCurrentSession().Transaction.Commit();
-                    NHibernateSessionPerRequest.GetCurrentSession().Flush();
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionLogger.Instance.LogException(Level.Error, "Commit Exception", exception);
-                RollbackTransaction();
-                throw exception;
-            }
-        }
-
-        /// <summary>
-        /// Executa o rollback de uma transação
-        /// </summary>
-        public static void RollbackTransaction()
-        {
-            if (HasOpenTransaction())
-            {
-                NHibernateSessionPerRequest.GetCurrentSession().Transaction.Rollback();
             }
         }
 

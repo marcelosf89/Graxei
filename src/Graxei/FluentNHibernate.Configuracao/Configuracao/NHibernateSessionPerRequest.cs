@@ -2,21 +2,15 @@
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using System.Web;
+using Graxei.FluentNHibernate.UnitOfWork;
 using NHibernate;
 using NHibernate.Cfg;
-using Graxei.FluentNHibernate.GerenciarSessao;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {
 
     public class NHibernateSessionPerRequest : IHttpModule, IDispatchMessageInspector, IServiceBehavior
     {
-
-        private static readonly ISessionFactory _sessionFactory;
-        public static ISessionFactory SessionFactory()
-        {
-            return _sessionFactory;
-        }
 
         /// <summary>
         /// Recupera a configuração do NHibernate
@@ -39,19 +33,19 @@ namespace Graxei.FluentNHibernate.Configuracao
 
         public static ISession GetCurrentSession()
         {
-            return NHibernateSessionManager.GetCurrentSession();
+            return UnitOfWorkNHibernate.GetCurrentSession();
         }
 
         public void Dispose() { }
 
         private static void BeginRequest(object sender, EventArgs e)
         {
-            NHibernateSessionManager.BindSession();
+            UnitOfWorkNHibernate.BindSession();
         }
 
         private static void EndRequest(object sender, EventArgs e)
         {
-            NHibernateSessionManager.UnBindSession();
+            UnitOfWorkNHibernate.UnBindSession();
         }
 
         public object AfterReceiveRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel, System.ServiceModel.InstanceContext instanceContext)

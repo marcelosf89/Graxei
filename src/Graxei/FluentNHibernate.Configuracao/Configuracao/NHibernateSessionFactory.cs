@@ -1,6 +1,7 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Graxei.FluentNHibernate.Convencoes;
+using Graxei.FluentNHibernate.Mapeamento;
 using Graxei.Modelo;
 using NHibernate;
 using NHibernate.Cfg;
@@ -52,14 +53,14 @@ namespace Graxei.FluentNHibernate.Configuracao
             {
                 Configuration config =
                 Fluently.
-                Configure().CurrentSessionContext<CallSessionContext>().
+                Configure().CurrentSessionContext<WebSessionContext>().
                 Database(MySQLConfiguration.Standard
                                            .ConnectionString(c => c.Server("graxei.c6lcvckogtg5.sa-east-1.rds.amazonaws.com").Database("graxei").Username("supergraxei").Password("73#tr071.")
 
-                         )//.ShowSql()   
+                         ).ShowSql()
                 ).
                 Mappings(m =>
-                         m.FluentMappings.AddFromAssemblyOf<Produto>().Conventions.Add<ClasseComumConvencao>()).
+                         m.FluentMappings.AddFromAssemblyOf<ProdutoMap>().Conventions.Add<ClasseComumConvencao>()).
                 BuildConfiguration();
                 this._sessionFactory = config.BuildSessionFactory();
             }

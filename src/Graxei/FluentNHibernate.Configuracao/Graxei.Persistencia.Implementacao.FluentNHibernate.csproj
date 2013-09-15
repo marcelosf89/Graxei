@@ -44,6 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.7.4\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
@@ -62,7 +65,6 @@
     <Compile Include="BaseHibernatePersistencia.cs" />
     <Compile Include="Base\BaseHibernateDAO.cs" />
     <Compile Include="Configuracao\NHibernateSessionFactory.cs" />
-    <Compile Include="Configuracao\NHibernateSessionManager.cs" />
     <Compile Include="Configuracao\NHibernateSessionPerRequest.cs" />
     <Compile Include="DataGenerico.cs" />
     <Compile Include="Mapeamento\BairroMap.cs" />

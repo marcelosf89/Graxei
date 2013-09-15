@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServicoEntidade.cs" />
+    <Compile Include="IServicoFabricante.cs" />
     <Compile Include="IServicoProdutos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

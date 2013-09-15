@@ -12,9 +12,10 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public UnidadeMedidaMap()
         {
+            Table(Constantes.UNIDADES_MEDIDA);
             Id(p => p.Id);
-            Map(p => p.Sigla).Column(Constantes.SIGLA);
-            Map(p => p.Descricao).Column(Constantes.DESCRICAO);
+            Map(p => p.Sigla);
+            Map(p => p.Descricao);
         }
     }
 }

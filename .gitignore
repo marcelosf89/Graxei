@@ -8,3 +8,4 @@ licenses.licx
 *.Publish.xml
 IO/
 LogWeb/
+_Resharper*/

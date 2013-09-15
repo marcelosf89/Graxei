@@ -1,16 +1,17 @@
 ﻿using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
+using Graxei.Negocio.Implementacao;
 using Graxei.Persistencia.Contrato;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Graxei.Negocio.Implentacao
+namespace Graxei.Negocio.Implementacao
 {
     public class ServicoProdutos : IServicoProdutos
     {
+        public ServicoProdutos(IRepositorioProdutos reposProdutos)
+        {
+            _reposProdutos = reposProdutos;
+        }
 
         #region Métodos sobrescritos
         public void Salvar(Produto produto)
@@ -28,17 +29,15 @@ namespace Graxei.Negocio.Implentacao
             return _reposProdutos.GetPorId(id);
         }
 
-        #endregion
-
-        #region Injeção de Dependência
-        public IRepositorioProdutos RepositorioProdutos
+        public IList<Produto> Todos()
         {
-            set { _reposProdutos = value; }
+            return _reposProdutos.Todos();
         }
+
         #endregion
 
         #region Atributos privados
-        private IRepositorioProdutos _reposProdutos;
+        private readonly IRepositorioProdutos _reposProdutos;
         #endregion
 
     }

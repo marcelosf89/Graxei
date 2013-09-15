@@ -2,6 +2,7 @@
 using NHibernate.Search.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Graxei.Modelo
             }
         }
         [Field(Index.Tokenized, Store = Store.Yes)]
+        [Display(Name = "Nome")]
         public virtual string Nome { get; set; }
 
         #region Métodos Sobrescritos
