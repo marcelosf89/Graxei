@@ -120,4 +120,7 @@
   <data name="DigitePesquisaProdutos" xml:space="preserve">
     <value />
   </data>
+  <data name="EsqueceuSuaSenha" xml:space="preserve">
+    <value>esqueceu sua senha?</value>
+  </data>
 </root>

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
+namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class ProdutosController : Controller
     {
@@ -37,7 +37,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             IList<Fabricante> fabs = null;
             if (Session[Constantes.Fabricantes] == null)
             {
-                Session[Constantes.Fabricantes] = _servicoFabricantes.TodosNomes(); 
+                Session[Constantes.Fabricantes] = _servicoFabricantes.TodosNomes();
             }
             string[] nomes = ((IList<string>)Session[Constantes.Fabricantes]).ToArray();
             return Json(nomes, JsonRequestBehavior.AllowGet);

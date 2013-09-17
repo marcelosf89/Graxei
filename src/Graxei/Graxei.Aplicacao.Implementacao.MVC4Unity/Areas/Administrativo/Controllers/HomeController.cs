@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
+namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class HomeController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Administrativo/Home/
 
         public ActionResult Index()
         {
