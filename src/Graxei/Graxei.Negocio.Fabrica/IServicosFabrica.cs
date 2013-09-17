@@ -5,6 +5,6 @@ namespace Graxei.Negocio.Fabrica
 {
     public interface IServicosFabrica
     {
-        IServicoProdutos GetServicoProdutos();
+        IServicoUsuarios GetServicoProdutos();
     }
 }

@@ -4,6 +4,6 @@
     {
 
         public const string Fabricantes = "fab";
-
+        public const string UsuarioAtual = "usat";
     }
 }

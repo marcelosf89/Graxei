@@ -4,7 +4,7 @@ using Graxei.Persistencia.Contrato;
 using System.Collections.Generic;
 namespace Graxei.Negocio.Implementacao
 {
-    public class ServicoFabricantes : IServicoFabricantes
+    public class ServicoFabricantes : ServicoPadraoEntidades<Fabricante>, IServicoFabricantes
     {
 
          public ServicoFabricantes(IRepositorioFabricantes reposFabricantes)

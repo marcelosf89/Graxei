@@ -2,7 +2,7 @@
 
 namespace Graxei.Negocio.Contrato
 { 
-    public interface IServicoProdutos : IServicoEntidade<Produto>
+    public interface IServicoProdutos : IServicoEntidades<Produto>
     {
     }
 }

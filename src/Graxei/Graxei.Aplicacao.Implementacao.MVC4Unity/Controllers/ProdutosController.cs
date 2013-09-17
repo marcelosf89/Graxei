@@ -11,7 +11,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
     public class ProdutosController : Controller
     {
 
-        public ProdutosController(IServicoProdutos servicoProdutos, IServicoFabricantes servicoFabricantes)
+        public ProdutosController(IServicoUsuarios servicoProdutos, IServicoFabricantes servicoFabricantes)
         {
             _servicoProdutos = servicoProdutos;
             _servicoFabricantes = servicoFabricantes;
@@ -44,7 +44,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             return Json(nomes, JsonRequestBehavior.AllowGet);
         }
 
-        private readonly IServicoProdutos _servicoProdutos;
+        private readonly IServicoUsuarios _servicoProdutos;
         private readonly IServicoFabricantes _servicoFabricantes;
 
     }

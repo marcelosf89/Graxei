@@ -20,6 +20,9 @@ namespace Graxei.Negocio.Fabrica
             container.RegisterType<IRepositorioFabricantes, FabricantesNHibernateMySQL>()
                      .RegisterType<IServicoFabricantes, ServicoFabricantes>(
                             new InjectionFactory(p => new ServicoFabricantes(container.Resolve<IRepositorioFabricantes>())));
+            container.RegisterType<IRepositorioUsuarios, UsuariosNHibernateMySQL>()
+                     .RegisterType<IServicoUsuarios, ServicoUsuarios>(
+                            new InjectionFactory(p => new ServicoUsuarios(container.Resolve<IRepositorioUsuarios>())));
         }
 
     }

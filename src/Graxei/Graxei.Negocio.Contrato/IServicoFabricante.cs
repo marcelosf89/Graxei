@@ -3,7 +3,7 @@ using Graxei.Modelo;
 
 namespace Graxei.Negocio.Contrato
 {
-    public interface IServicoFabricantes : IServicoEntidade<Fabricante>
+    public interface IServicoFabricantes : IServicoEntidades<Fabricante>
     {
         IList<string> TodosNomes();
     }
