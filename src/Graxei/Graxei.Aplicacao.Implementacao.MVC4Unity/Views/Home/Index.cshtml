@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    </div>
+    <div class="header navbar-top" data-spy="affix affix-top">
+        <div class="pull-left">
+        </div>
+        <div class="pull-right">
+            <div class="btn-group">
+                @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal", OnComplete = "$('#myModal').modal('show')" }, new { @class = "btn btn-small" })
+                <div class="btn-group">
+                    <a class="btn btn-small" data-toggle="dropdown" href="#"><i class=""></i>pt-BR
+                       <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu menu-header-right">
+                        <li><a href="#"><i class="icon-pencil"></i>en-US</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <a class="logo" href="http://www.graxei.com.br">
+                <img src="~/Content/themes/base/images/logo.png" width="250px" alt="The Hotel Search on trivago.com" title="The Hotel Search on trivago.com">
+            </a>
+        </div>
+        <div class="text-center">
+            <!-- dealform header start -->
+            <div class="input-append">
+                <input type="text" class="span5" placeholder="..." />
+                <a class="btn btn-primary btn-search"><i class="icon-search icon-white"></i></a>
+            </div>
+            <!-- dealform header end -->
+        </div>
+    </div>
+    <div class="container">
+    </div>
+
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>

@@ -16,7 +16,8 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[]{"Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers"}
             );
         }
     }

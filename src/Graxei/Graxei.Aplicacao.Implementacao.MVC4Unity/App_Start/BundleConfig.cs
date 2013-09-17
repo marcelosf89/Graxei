@@ -23,7 +23,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/cssBs").Include("~/Content/themes/base/bootstrap.css"));
+            bundles.Add(new StyleBundle("~/Content/cssBs").Include("~/Content/themes/base/bootstrap.css", "~/Content/themes/base/bootstrap-responsive.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css","~/Content/graxei.css"));
 

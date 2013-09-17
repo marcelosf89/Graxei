@@ -120,4 +120,7 @@
   <data name="DigitePesquisa" xml:space="preserve">
     <value>Digite alguma coisa para pesquisa, Dooley</value>
   </data>
+  <data name="EsqueceuSuaSenha" xml:space="preserve">
+    <value>esqueceu sua senha?</value>
+  </data>
 </root>

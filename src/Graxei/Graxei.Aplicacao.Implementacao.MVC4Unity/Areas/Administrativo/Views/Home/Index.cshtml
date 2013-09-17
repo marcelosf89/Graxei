@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+    @Styles.Render("~/Content/cssBs")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+</div>
+<div class="header-admin navbar-top" data-spy="affix affix-top">
+    <div class="pull-left">
+        <a class="logo" href="http://www.graxei.com.br">
+            <img src="~/Content/themes/base/images/logo.png" width="250px" alt="The Hotel Search on trivago.com" title="The Hotel Search on trivago.com">
+        </a>
+    </div>
+    <div class="pull-right">
+        <div class="btn-group">
+            <a class="btn btn-small" data-toggle="dropdown" href="#">
+                <i class="icon-user "></i>login
+            </a>
+            <div class="btn-group">
+                <a class="btn btn-small" data-toggle="dropdown" href="#"><i class=""></i>pt-BR
+                       <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu menu-header-right">
+                    <li><a href="#"><i class="icon-pencil"></i>en-US</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3 bs-docs-sidebar">
+            <ul class="nav nav-list bs-docs-sidenav affix">
+                <li>@Html.ActionLink("Deshbord", "Index", "Home")</li>
+                <li class="nav-header">@Resources.Rotulos.Produtos</li>
+                <li>@Ajax.ActionLink("Novo", "Novo", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
+            </ul>
+        </div>
+        <div class="span9">
+            <div id="main"></div>
+        </div>
+    </div>
+</div>

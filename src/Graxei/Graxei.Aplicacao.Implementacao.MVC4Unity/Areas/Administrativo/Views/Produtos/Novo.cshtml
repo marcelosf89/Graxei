@@ -2,18 +2,11 @@
 
 @{
     ViewBag.Title = "Novo";
-    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
 }
-
-  <div class="modal-header" style="width:56%">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">@ViewBag.Title</h3>
-  </div>
 
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
-    <div class="modal-body" style="width:56%">
         <div class="editor-label">
             @Html.LabelFor(model => model.Descricao)
         </div>
@@ -24,14 +17,12 @@
             @Html.LabelFor(model => model.Fabricante.Nome)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Fabricante.Nome, new { data_autocomplete_url = Url.Action("Autocomplete") }))
+            @Html.EditorFor(model => model.Fabricante.Nome, new { data_autocomplete_url = Url.Action("Autocomplete") })
         </div>
-    
-      </div>
-  <div class="modal-footer" style="width:56%">
-              <a class="btn">"@Resources.Rotulos.CopiarProduto"</a>
+  <footer >
+      <a class="btn">"@Resources.Rotulos.CopiarProduto"</a>
       <input type="submit" class="btn btn-primary" value="@Resources.Rotulos.Criar"/>
-  </div>
+  </footer>
 }
 
     <script type="text/javascript">
