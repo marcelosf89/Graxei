@@ -1,14 +1,12 @@
 ﻿using FAST.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace Graxei.Modelo
 {
     public class Loja : Entidade
     {
-
         public virtual string Nome { get;  set; }
         public virtual byte[] Logotipo { get; set; }
         public virtual IList<Endereco> Enderecos { get; protected set; }

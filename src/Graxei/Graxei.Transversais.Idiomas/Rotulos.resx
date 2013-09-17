@@ -123,4 +123,7 @@
   <data name="Criar" xml:space="preserve">
     <value>Criar</value>
   </data>
+  <data name="Salvar" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
 </root>

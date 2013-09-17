@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Modelo;
+using Graxei.Negocio.Contrato;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +26,11 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Bootstrapper.Initialise();
+            /* TODO: retirar esse trecho de código */
+            IUnityContainer cont = Bootstrapper.Initialise();
+            IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();
+            Usuario usuario = usu.GetPorLogin("graxeiadmin");
+            Session[Constantes.UsuarioAtual] = usuario;
         }
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="Estado.cs" />
     <Compile Include="Fabricante.cs" />
     <Compile Include="Loja.cs" />
+    <Compile Include="LojaUsuario.cs" />
     <Compile Include="Movimentacao.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,11 +72,16 @@
     <Compile Include="TipoLogradouro.cs" />
     <Compile Include="TipoTelefone.cs" />
     <Compile Include="UnidadeMedida.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FAST\FAST.csproj">
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
+      <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>
+      <Name>Graxei.Transversais.Idiomas</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

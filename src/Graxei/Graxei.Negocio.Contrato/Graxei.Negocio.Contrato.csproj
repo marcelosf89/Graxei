@@ -39,8 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IServicoEntidade.cs" />
+    <Compile Include="IServicoUsuarios.cs" />
+    <Compile Include="Excecoes\ObjetoJaExisteException.cs" />
+    <Compile Include="Excecoes\ValidacaoEntidadeException.cs" />
+    <Compile Include="Excecoes\OperacaoEntidadeException.cs" />
+    <Compile Include="IServicoEntidades.cs" />
     <Compile Include="IServicoFabricante.cs" />
+    <Compile Include="IServicoLojas.cs" />
     <Compile Include="IServicoProdutos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +57,10 @@
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
+      <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
+      <Name>Graxei.Persistencia.Contrato</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
