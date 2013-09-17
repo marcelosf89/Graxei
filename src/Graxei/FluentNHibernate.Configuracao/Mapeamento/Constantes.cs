@@ -47,6 +47,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string   ID_TIPO_TELEFONE = "id_tipo_telefone";
         public const string ID_UNIDADE_ENTRADA = "id_unidade_entrada";
         public const string   ID_UNIDADE_SAIDA = "id_unidade_saida";
+        public const string     ID_USUARIO_LOG = "id_usuario_log";
         public const string           LOGOTIPO = "logotipo";
         public const string         LOGRADOURO = "logradouro";
         public const string               NOME = "nome";
@@ -56,6 +57,5 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string            SENTIDO = "sentido";
         public const string              SIGLA = "sigla";
         #endregion
-
     }
 }

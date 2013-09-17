@@ -40,6 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propriedades.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Propriedades.resx</DependentUpon>
+    </Compile>
     <Compile Include="Rotulos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -53,6 +58,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Propriedades.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Propriedades.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rotulos.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Rotulos.Designer.cs</LastGenOutput>

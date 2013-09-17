@@ -1,31 +1,18 @@
 ﻿using FAST.Modelo;
+using Graxei.Transversais.Idiomas;
 using NHibernate.Search.Attributes;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Modelo
 {
     [Indexed]
     public class Fabricante : Entidade
     {
-           [DocumentId]
-        public override long Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
-        }
+        [DocumentId]
+        public new virtual long Id { get; set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
-        [Display(Name = "Nome")]
+        [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
         public virtual string Nome { get; set; }
 
         #region Métodos Sobrescritos

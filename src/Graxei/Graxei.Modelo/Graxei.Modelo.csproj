@@ -67,6 +67,7 @@
     <Compile Include="LojaUsuario.cs" />
     <Compile Include="Movimentacao.cs" />
     <Compile Include="Produto.cs" />
+    <Compile Include="ProdutoVendedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Telefone.cs" />
     <Compile Include="TipoLogradouro.cs" />

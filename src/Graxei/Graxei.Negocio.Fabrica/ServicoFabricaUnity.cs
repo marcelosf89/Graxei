@@ -11,9 +11,9 @@ namespace Graxei.Negocio.Fabrica
             _unityContainer = unity;
         }
 
-        public IServicoUsuarios GetServicoProdutos()
+        public IServicoProdutos GetServicoProdutos()
         {
-            return _unityContainer.Resolve<IServicoUsuarios>();
+            return _unityContainer.Resolve<IServicoProdutos>();
         }
 
         private readonly IUnityContainer _unityContainer;

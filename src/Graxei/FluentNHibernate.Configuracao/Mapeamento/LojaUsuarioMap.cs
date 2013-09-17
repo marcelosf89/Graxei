@@ -10,6 +10,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.DataRegistro);
             References(p => p.Loja);
             References(p => p.Usuario);
+            References(p => p.UsuarioLog).Column(Constantes.ID_USUARIO_LOG);
         }
     }
 }

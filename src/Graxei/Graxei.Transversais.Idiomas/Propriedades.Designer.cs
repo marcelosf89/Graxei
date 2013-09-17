@@ -22,14 +22,14 @@ namespace Graxei.Transversais.Idiomas {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Rotulos {
+    public class Propriedades {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Rotulos() {
+        internal Propriedades() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Graxei.Transversais.Idiomas {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Graxei.Transversais.Idiomas.Rotulos", typeof(Rotulos).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Graxei.Transversais.Idiomas.Propriedades", typeof(Propriedades).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,47 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copiar Produto.
+        ///   Looks up a localized string similar to Código.
         /// </summary>
-        public static string CopiarProduto {
+        public static string Codigo {
             get {
-                return ResourceManager.GetString("CopiarProduto", resourceCulture);
+                return ResourceManager.GetString("Codigo", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Criar.
+        ///   Looks up a localized string similar to Descrição.
         /// </summary>
-        public static string Criar {
+        public static string Descricao {
             get {
-                return ResourceManager.GetString("Criar", resourceCulture);
+                return ResourceManager.GetString("Descricao", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nova Loja.
+        ///   Looks up a localized string similar to Fator de Conversão.
         /// </summary>
-        public static string NovaLoja {
+        public static string FatorConversao {
             get {
-                return ResourceManager.GetString("NovaLoja", resourceCulture);
+                return ResourceManager.GetString("FatorConversao", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salvar.
+        ///   Looks up a localized string similar to Nome.
         /// </summary>
-        public static string Salvar {
+        public static string Nome {
             get {
-                return ResourceManager.GetString("Salvar", resourceCulture);
+                return ResourceManager.GetString("Nome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preço.
+        /// </summary>
+        public static string Preco {
+            get {
+                return ResourceManager.GetString("Preco", resourceCulture);
             }
         }
     }

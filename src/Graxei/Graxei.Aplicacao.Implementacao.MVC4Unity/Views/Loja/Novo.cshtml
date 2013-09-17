@@ -3,8 +3,7 @@
 @{
     ViewBag.Title = "Novo";
 }
-
-<h2>Nova Loja</h2>
+<h2>@Resources.Rotulos.NovaLoja</h2>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
@@ -17,5 +16,6 @@
             @Html.EditorFor(model => model.Nome)
         </div>
     </fieldset>
+    <input type="submit" value="@Resources.Rotulos.AdicionarEnderecos"/>
     <input type="submit" value="@Resources.Rotulos.Salvar"/>
 }

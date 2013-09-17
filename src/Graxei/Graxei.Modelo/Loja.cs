@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {
     public class Loja : Entidade
     {
+        [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
         public virtual string Nome { get;  set; }
         public virtual byte[] Logotipo { get; set; }
         public virtual IList<Endereco> Enderecos { get; protected set; }
