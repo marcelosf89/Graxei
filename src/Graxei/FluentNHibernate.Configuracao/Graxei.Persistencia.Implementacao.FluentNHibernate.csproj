@@ -79,6 +79,7 @@
     <Compile Include="Mapeamento\LojaUsuarioMap.cs" />
     <Compile Include="Mapeamento\MovimentacaoMap.cs" />
     <Compile Include="Mapeamento\ProdutoMap.cs" />
+    <Compile Include="Mapeamento\ProdutoVendedor.cs" />
     <Compile Include="Mapeamento\UsuarioMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mapeamento\TelefoneMap.cs" />

@@ -11,11 +11,6 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             _servicoLojas = servicoLojas;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Novo()
         {
@@ -28,6 +23,12 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             _servicoLojas.Salvar(loja);
             return View();
         }
+
+        public ActionResult GerenciarEndereco()
+        {
+            return PartialView();
+        }
+
 
         private IServicoLojas _servicoLojas;
     }

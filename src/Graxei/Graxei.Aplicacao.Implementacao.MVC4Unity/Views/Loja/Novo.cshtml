@@ -16,6 +16,7 @@
             @Html.EditorFor(model => model.Nome)
         </div>
     </fieldset>
+    @Html.ActionLink("Loja", "GerenciarEndereco")
     <input type="submit" value="@Resources.Rotulos.AdicionarEnderecos"/>
     <input type="submit" value="@Resources.Rotulos.Salvar"/>
 }
