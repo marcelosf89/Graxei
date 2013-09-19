@@ -1,29 +1,43 @@
 ﻿@model Graxei.Modelo.Loja
 
-<div class="modal-header" >
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">@Resources.Rotulos.Login</h3>
-</div>
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true)
-    <div class="modal-body" >
-        <label>
-            @Html.LabelFor(model => model.Nome)
-        </label>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nome)
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @using (Html.BeginForm())
+    {
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">@Resources.Rotulos.Login</h3>
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="modal-body">
+                    <label>
+                        @Html.LabelFor(model => model.Nome)
+                    </label>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Nome)
+                    </div>
+                    <label>
+                        @Html.LabelFor(model => model.Id)
+                    </label>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Id)
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @Ajax.ActionLink(Resources.Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Rotulos.Fechar</button>
+                    <input type="submit" class="btn btn-primary" value="@Resources.Rotulos.Entrar"/>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <label>
-            @Html.LabelFor(model => model.Id)
-        </label>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id)
-        </div>
-    </div>
-    <div class="modal-footer" >
-        @Ajax.ActionLink(Resources.Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal", OnComplete = "$('#myModal').modal('show')" })
-        <input type="submit" class="btn btn-primary" value="@Resources.Rotulos.Entrar"/>
-    </div>
-}
+        <!-- /.modal-dialog -->
+    }
+</div>
+<!-- /.modal -->
+<div id="myModalRemote"></div>
+<script>
+    $('#Modal2').modal('show')
+</script>

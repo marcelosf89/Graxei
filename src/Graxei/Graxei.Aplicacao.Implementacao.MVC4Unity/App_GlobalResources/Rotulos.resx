@@ -126,6 +126,9 @@
   <data name="Entrar" xml:space="preserve">
     <value>Entrar</value>
   </data>
+  <data name="Fechar" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
