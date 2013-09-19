@@ -23,8 +23,6 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/cssBs").Include("~/Content/themes/base/bootstrap.css", "~/Content/themes/base/bootstrap-responsive.css"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css","~/Content/graxei.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
@@ -41,9 +39,6 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"
                         ));
-
-              
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
         }
     }
 }

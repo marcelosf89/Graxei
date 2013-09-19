@@ -1,52 +1,62 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-
-    @Styles.Render("~/Content/cssBs")
+    @Styles.Render("~/Content/bootstrap/base")
     @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/bootstrap")
-
-
-<div class="navbar navbar-inverse navbar-fixed-top">
-</div>
-<div class="header-admin navbar-top" data-spy="affix affix-top">
-    <div class="pull-left">
-        <a class="logo" href="http://www.graxei.com.br">
-            <img src="~/Content/themes/base/images/logo.png" width="250px" alt="The Hotel Search on trivago.com" title="The Hotel Search on trivago.com">
-        </a>
-    </div>
-    <div class="pull-right">
-        <div class="btn-group">
-            <a class="btn btn-small" data-toggle="dropdown" href="#">
-                <i class="icon-user "></i>login
-            </a>
-            <div class="btn-group">
-                <a class="btn btn-small" data-toggle="dropdown" href="#"><i class=""></i>pt-BR
+    @Scripts.Render("~/bundles/modal")
+<header class="navbar navbar-inverse-header navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../">
+                <img src="~/Content/themes/base/images/logo.png" width="200px" alt="............." title="..............."></a>
+        </div>
+        <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+            <div class="navbar-right">
+                <ul class="nav navbar-nav ">
+                    <li>
+                        @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-default " })
+                    </li>
+                    <li>
+                        <a class="btn btn-default" data-toggle="dropdown" href="#">
+                            <i class=""></i>pt-BR
                        <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu menu-header-right">
-                    <li><a href="#"><i class="icon-pencil"></i>en-US</a></li>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="glyphicon glyphicon-pencil"></i>en-US</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
-        </div>
-
+        </nav>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3 bs-docs-sidebar">
-            <ul class="nav nav-list bs-docs-sidenav affix">
-                <li>@Html.ActionLink("Deshbord", "Index", "Home")</li>
-                <li class="nav-header">@Resources.Rotulos.Produtos</li>
-                <li>@Ajax.ActionLink("Novo", "Novo", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
-            </ul>
+</header>
+<div class="bs-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 bs-docs-sidebar">
+                <div class="bs-sidebar hidden-print affix" role="complementary">
+                    <ul class="nav bs-sidenav" role="menu" aria-labelledby="dropdownMenu2">
+                        <li role="presentation" class="divider">@Html.ActionLink("Deshbord", "Index", "Home")</li>
+                       <li role="presentation" class="dropdown-header">@Resources.Rotulos.Produtos</li>
+                        <li role="presentation" class="divider">@Ajax.ActionLink("Novo", "Novo", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="main"></div>
+            </div>
         </div>
-        <div class="span9">
-            <div id="main"></div>
-        </div>
+        <div id="myModal"></div>
     </div>
 </div>
