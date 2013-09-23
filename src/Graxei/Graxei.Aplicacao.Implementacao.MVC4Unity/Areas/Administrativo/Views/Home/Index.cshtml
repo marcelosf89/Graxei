@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modal")
+
 <header class="navbar navbar-inverse-header navbar-fixed-top bs-docs-nav" role="banner">
     <div class="container">
         <div class="navbar-header">
@@ -47,9 +48,11 @@
             <div class="col-md-3 bs-docs-sidebar">
                 <div class="bs-sidebar hidden-print affix" role="complementary">
                     <ul class="nav bs-sidenav" role="menu" aria-labelledby="dropdownMenu2">
-                        <li role="presentation" class="divider">@Html.ActionLink("Deshbord", "Index", "Home")</li>
-                       <li role="presentation" class="dropdown-header">@Resources.Rotulos.Produtos</li>
-                        <li role="presentation" class="divider">@Ajax.ActionLink("Novo", "Novo", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
+                        <li role="presentation" class="divider">@Html.ActionLink("DashBoard", "Index", "Home")</li>
+                        <li role="presentation" class="dropdown-header">@Rotulos.Produtos</li>
+                        <li role="presentation" class="divider">@Ajax.ActionLink(Rotulos.Novo, "Novo", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
+                        <li role="presentation" class="dropdown-header">@Rotulos.Lojas</li>
+                        <li role="presentation" class="divider">@Ajax.ActionLink(Rotulos.Nova, "Novo", "Lojas", new { controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
                     </ul>
                 </div>
             </div>

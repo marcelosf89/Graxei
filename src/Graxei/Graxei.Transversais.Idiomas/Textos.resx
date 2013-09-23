@@ -120,7 +120,13 @@
   <data name="DigitePesquisa" xml:space="preserve">
     <value>Digite alguma coisa para pesquisa, Dooley</value>
   </data>
+  <data name="EnderecosLoja" xml:space="preserve">
+    <value>Endereços da Loja {0}</value>
+  </data>
   <data name="EsqueceuSuaSenha" xml:space="preserve">
     <value>Esqueceu sua senha?</value>
+  </data>
+  <data name="NomeObrigatorio" xml:space="preserve">
+    <value>O nome é obrigatório</value>
   </data>
 </root>

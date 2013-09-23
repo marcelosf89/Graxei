@@ -8,10 +8,12 @@ namespace Graxei.Modelo
 {
     public class Loja : Entidade
     {
+        [Required(ErrorMessageResourceType = typeof(Textos), ErrorMessageResourceName = "NomeObrigatorio")]
+        [StringLength(80)]
         [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
         public virtual string Nome { get;  set; }
         public virtual byte[] Logotipo { get; set; }
-        public virtual IList<Endereco> Enderecos { get; protected set; }
+        public virtual IList<Endereco> Enderecos { get; set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
@@ -34,5 +36,14 @@ namespace Graxei.Modelo
         }
         #endregion
 
+        /*public void AdicionarEndereco(Endereco endereco)
+        {
+            if (Enderecos == null)
+            {
+                Enderecos = new List<Endereco>();
+            }
+            Enderecos.Add(endereco);
+            endereco.Loja = this;
+        }*/
     }
 }

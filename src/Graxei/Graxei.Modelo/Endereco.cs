@@ -1,20 +1,25 @@
-﻿using FAST.Modelo;
+﻿using System.ComponentModel.DataAnnotations;
+using FAST.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {
     public class Endereco : Entidade
     {
-
+        [Display(ResourceType = typeof(Propriedades), Name = "Logradouro")]
         public virtual string Logradouro { get; set; }
+        [Display(ResourceType = typeof(Propriedades), Name = "Numero")]
         public virtual string Numero { get; set; }
+        [Display(ResourceType = typeof(Propriedades), Name = "Complemento")]
         public virtual string Complemento { get; set; }
         public virtual TipoLogradouro TipoLogradouro { get; set; }
         public virtual Loja Loja { get;  set; }
         public virtual Bairro Bairro { get; set; }
+        public virtual Cidade Cidade { get; set; }
         public virtual IList<Telefone> Telefones { get; protected set; }
 
         #region Métodos Sobrescritos

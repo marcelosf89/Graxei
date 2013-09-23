@@ -17,8 +17,8 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.Numero).Column(Constantes.NUMERO);
             Map(p => p.Complemento).Column(Constantes.COMPLEMENTO);
             References(p => p.TipoLogradouro).Column(Constantes.ID_TIPO_LOGRADOURO);
-            References(p => p.Loja).Column(Constantes.ID_LOJA);
-            References(p => p.Bairro).Column(Constantes.ID_BAIRRO);
+            References(p => p.Loja);
+            References(p => p.Bairro);
             HasMany(p => p.Telefones).KeyColumn(Constantes.ID_ENDERECO);
         }
     }

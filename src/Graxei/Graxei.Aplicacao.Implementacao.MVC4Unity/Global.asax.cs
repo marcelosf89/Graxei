@@ -21,16 +21,15 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             /* TODO: retirar esse trecho de código */
             IUnityContainer cont = Bootstrapper.Initialise();
-            IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();
+            /*IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();
             Usuario usuario = usu.GetPorLogin("graxeiadmin");
-            Session[Constantes.UsuarioAtual] = usuario;
+            Session[Constantes.UsuarioAtual] = usuario;*/
         }
     }
 }

@@ -39,6 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\EstadoOrdem.cs" />
+    <Compile Include="Excecoes\EntidadeInvalidaException.cs" />
+    <Compile Include="Excecoes\ObjetoJaExisteException.cs" />
+    <Compile Include="Excecoes\OperacaoEntidadeException.cs" />
+    <Compile Include="Excecoes\ValidacaoEntidadeException.cs" />
+    <Compile Include="NHibernate\ConsultasHql.cs" />
+    <Compile Include="NHibernate\Queries.cs" />
     <Compile Include="NHibernate\UtilidadeEntidades.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

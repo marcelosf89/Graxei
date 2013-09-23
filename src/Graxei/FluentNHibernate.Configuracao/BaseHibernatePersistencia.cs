@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FAST.Layers.Modelo;
 using FAST.Layers.Negocio;
+using Graxei.FluentNHibernate.UnitOfWork;
 using NHibernate;
 using NHibernate.Criterion;
 using Graxei.FluentNHibernate.Configuracao;
@@ -42,7 +43,7 @@ namespace Graxei.FluentNHibernate
         /// <returns></returns>
         public ISession GetSession()
         {
-            return NHibernateSessionPerRequest.GetCurrentSession();
+            return UnitOfWorkNHibernate.GetCurrentSession();
         }
 
 

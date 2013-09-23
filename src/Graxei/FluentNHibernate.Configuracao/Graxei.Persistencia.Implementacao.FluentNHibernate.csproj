@@ -65,7 +65,6 @@
     <Compile Include="BaseHibernatePersistencia.cs" />
     <Compile Include="Base\BaseHibernateDAO.cs" />
     <Compile Include="Configuracao\NHibernateSessionFactory.cs" />
-    <Compile Include="Configuracao\NHibernateSessionPerRequest.cs" />
     <Compile Include="DataGenerico.cs" />
     <Compile Include="Mapeamento\BairroMap.cs" />
     <Compile Include="Mapeamento\CategoriaMap.cs" />

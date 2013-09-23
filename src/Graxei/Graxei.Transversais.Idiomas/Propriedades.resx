@@ -120,14 +120,23 @@
   <data name="Codigo" xml:space="preserve">
     <value>Código</value>
   </data>
+  <data name="Complemento" xml:space="preserve">
+    <value>Complemento</value>
+  </data>
   <data name="Descricao" xml:space="preserve">
     <value>Descrição</value>
   </data>
   <data name="FatorConversao" xml:space="preserve">
     <value>Fator de Conversão</value>
   </data>
+  <data name="Logradouro" xml:space="preserve">
+    <value>Logradouro</value>
+  </data>
   <data name="Nome" xml:space="preserve">
     <value>Nome</value>
+  </data>
+  <data name="Numero" xml:space="preserve">
+    <value>Número</value>
   </data>
   <data name="Preco" xml:space="preserve">
     <value>Preço</value>

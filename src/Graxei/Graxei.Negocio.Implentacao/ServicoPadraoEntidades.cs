@@ -2,7 +2,7 @@
 using FAST.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
-using Graxei.Negocio.Contrato.Excecoes;
+using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao

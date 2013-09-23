@@ -7,6 +7,7 @@ using Graxei.Persistencia.Contrato;
 using Graxei.FluentNHibernate.Configuracao;
 using FAST.Modelo;
 using NHibernate;
+using Graxei.FluentNHibernate.UnitOfWork;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -34,7 +35,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         protected ISession SessaoAtual
         {
-            get { return NHibernateSessionPerRequest.GetCurrentSession(); }
+            get { return UnitOfWorkNHibernate.GetCurrentSession(); }
         }
     }
 }

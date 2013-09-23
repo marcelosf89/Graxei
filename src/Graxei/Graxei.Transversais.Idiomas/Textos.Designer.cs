@@ -70,11 +70,29 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Endereços da Loja {0}.
+        /// </summary>
+        public static string EnderecosLoja {
+            get {
+                return ResourceManager.GetString("EnderecosLoja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esqueceu sua senha?.
         /// </summary>
         public static string EsqueceuSuaSenha {
             get {
                 return ResourceManager.GetString("EsqueceuSuaSenha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome é obrigatório.
+        /// </summary>
+        public static string NomeObrigatorio {
+            get {
+                return ResourceManager.GetString("NomeObrigatorio", resourceCulture);
             }
         }
     }

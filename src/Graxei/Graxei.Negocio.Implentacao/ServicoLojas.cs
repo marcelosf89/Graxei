@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Negocio.Contrato.Excecoes;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Negocio.Implementacao
 {

@@ -83,6 +83,7 @@
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web">
       <Private>True</Private>
     </Reference>

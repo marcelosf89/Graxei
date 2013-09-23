@@ -70,6 +70,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complemento.
+        /// </summary>
+        public static string Complemento {
+            get {
+                return ResourceManager.GetString("Complemento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descrição.
         /// </summary>
         public static string Descricao {
@@ -88,11 +97,29 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logradouro.
+        /// </summary>
+        public static string Logradouro {
+            get {
+                return ResourceManager.GetString("Logradouro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome.
         /// </summary>
         public static string Nome {
             get {
                 return ResourceManager.GetString("Nome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Número.
+        /// </summary>
+        public static string Numero {
+            get {
+                return ResourceManager.GetString("Numero", resourceCulture);
             }
         }
         

@@ -126,7 +126,7 @@
   <data name="NovaLoja" xml:space="preserve">
     <value>Nova Loja</value>
   </data>
-    <data name="Entrar" xml:space="preserve">
+  <data name="Entrar" xml:space="preserve">
     <value>Entrar</value>
   </data>
   <data name="Fechar" xml:space="preserve">
@@ -143,5 +143,44 @@
   </data>
   <data name="RedefinirSenha" xml:space="preserve">
     <value>Redefinir Senha</value>
+  </data>
+  <data name="AdicionarEnderecos" xml:space="preserve">
+    <value>Adicionar Endereços</value>
+  </data>
+  <data name="AdicionarEndereços" xml:space="preserve">
+    <value>Adicionar Endereços</value>
+  </data>
+  <data name="Bairro" xml:space="preserve">
+    <value>Bairro</value>
+  </data>
+  <data name="Cidade" xml:space="preserve">
+    <value>Cidade</value>
+  </data>
+  <data name="Complemento" xml:space="preserve">
+    <value>Complemento</value>
+  </data>
+  <data name="Enderecos" xml:space="preserve">
+    <value>Endereços</value>
+  </data>
+  <data name="Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Logradouro" xml:space="preserve">
+    <value>Logradouro</value>
+  </data>
+  <data name="Numero" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="Lojas" xml:space="preserve">
+    <value>Lojas</value>
+  </data>
+  <data name="Nova" xml:space="preserve">
+    <value>Nova</value>
+  </data>
+  <data name="Novo" xml:space="preserve">
+    <value>Novo</value>
+  </data>
+  <data name="NovoEndereco" xml:space="preserve">
+    <value>Novo Endereço</value>
   </data>
 </root>

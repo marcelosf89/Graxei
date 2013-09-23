@@ -53,7 +53,8 @@ namespace Graxei.FluentNHibernate.Configuracao
             {
                 Configuration config =
                 Fluently.
-                Configure().CurrentSessionContext<WebSessionContext>().
+                //Configure().CurrentSessionContext<WebSessionContext>().
+                Configure().CurrentSessionContext<CallSessionContext>().
                 Database(MySQLConfiguration.Standard
                                            .ConnectionString(c => c.Server("graxei.c6lcvckogtg5.sa-east-1.rds.amazonaws.com").Database("graxei").Username("supergraxei").Password("73#tr071.")
 

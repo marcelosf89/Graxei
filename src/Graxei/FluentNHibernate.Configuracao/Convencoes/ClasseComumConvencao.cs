@@ -19,7 +19,7 @@ namespace Graxei.FluentNHibernate.Convencoes
         public void Apply(IManyToOneInstance instance)
         {
             instance.Column(("id_" + instance.Property.PropertyType.Name).ToLower());
-
+            instance.Cascade.None();
         }
     }
 }

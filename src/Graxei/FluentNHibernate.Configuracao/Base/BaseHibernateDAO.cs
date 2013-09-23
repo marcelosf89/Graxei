@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FAST.Layers.Data;
 using FAST.Layers.Modelo;
 using FAST.Log;
+using Graxei.FluentNHibernate.UnitOfWork;
 using NHibernate.Criterion;
 using Graxei.FluentNHibernate.Configuracao;
 
@@ -25,8 +26,8 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Delete(entity);
-                NHibernateSessionPerRequest.GetCurrentSession().Flush();
+                UnitOfWorkNHibernate.GetCurrentSession().Delete(entity);
+                UnitOfWorkNHibernate.GetCurrentSession().Flush();
                 
             }
             catch (Exception exception)
@@ -42,7 +43,7 @@ namespace Graxei.FluentNHibernate.Base
         /// <returns>Interface de lista com todos as instâncias da entidade</returns>
         public IList<TEntity> GetAll()
         {
-            IList<TEntity> result = NHibernateSessionPerRequest.GetCurrentSession().CreateCriteria(typeof(TEntity)).List<TEntity>();
+            IList<TEntity> result = UnitOfWorkNHibernate.GetCurrentSession().CreateCriteria(typeof(TEntity)).List<TEntity>();
             
             return result;
         }
@@ -57,7 +58,7 @@ namespace Graxei.FluentNHibernate.Base
             //List<ICriterion> criterion = new List<ICriterion>();
             //criterion.Add(Expression.Eq("Id", id));
 
-            TEntity result = NHibernateSessionPerRequest.GetCurrentSession().CreateCriteria(typeof(TEntity))
+            TEntity result = UnitOfWorkNHibernate.GetCurrentSession().CreateCriteria(typeof(TEntity))
                                      .Add(Expression.Eq("Id", id))
                                      .UniqueResult<TEntity>();
             /*foreach (ICriterion criterium in criterion)
@@ -91,8 +92,8 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Save(entity);
-                NHibernateSessionPerRequest.GetCurrentSession().Flush();
+                UnitOfWorkNHibernate.GetCurrentSession().Save(entity);
+                UnitOfWorkNHibernate.GetCurrentSession().Flush();
                 
             }
             catch (Exception exception)
@@ -113,7 +114,7 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Save(entity);
+                UnitOfWorkNHibernate.GetCurrentSession().Save(entity);
                 this.QuerySQLSaveOrUpdate(query);
                 
             }
@@ -134,7 +135,7 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Update(entity);
+                UnitOfWorkNHibernate.GetCurrentSession().Update(entity);
                 this.QuerySQLSaveOrUpdate(query);
             }
             catch (Exception exception)
@@ -154,8 +155,8 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Merge(entity);
-                NHibernateSessionPerRequest.GetCurrentSession().Flush();
+                UnitOfWorkNHibernate.GetCurrentSession().Merge(entity);
+                UnitOfWorkNHibernate.GetCurrentSession().Flush();
                 
             }
             catch (Exception exception)
@@ -174,8 +175,8 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Merge(entity);
-                NHibernateSessionPerRequest.GetCurrentSession().Flush();
+                UnitOfWorkNHibernate.GetCurrentSession().Merge(entity);
+                UnitOfWorkNHibernate.GetCurrentSession().Flush();
                 
             }
             catch (Exception exception)
@@ -194,8 +195,8 @@ namespace Graxei.FluentNHibernate.Base
         {
             try
             {
-                NHibernateSessionPerRequest.GetCurrentSession().CreateSQLQuery(query);
-                NHibernateSessionPerRequest.GetCurrentSession().Flush();
+                UnitOfWorkNHibernate.GetCurrentSession().CreateSQLQuery(query);
+                UnitOfWorkNHibernate.GetCurrentSession().Flush();
                 
             }
             catch (Exception exception)
@@ -215,7 +216,7 @@ namespace Graxei.FluentNHibernate.Base
             
             try
             {
-                global::NHibernate.ISQLQuery retorno = NHibernateSessionPerRequest.GetCurrentSession().CreateSQLQuery(query);
+                global::NHibernate.ISQLQuery retorno = UnitOfWorkNHibernate.GetCurrentSession().CreateSQLQuery(query);
                 return retorno;
             }
             catch (Exception exception)
