@@ -16,14 +16,10 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
 
         public ActionResult Novo(string nomeLoja = "")
         {
-            if (string.IsNullOrEmpty(nomeLoja))
-            {
-                return View();
-            }
             Loja loja = new Loja() {Nome = nomeLoja};
             /* TODO: ver como se faz o tratamento de listas com o NHibernate*/
             loja.Enderecos = Enderecos;
-            return View(new Loja() { Nome = nomeLoja });
+            return View(loja);
         }
 
         [HttpPost]

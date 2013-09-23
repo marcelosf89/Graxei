@@ -23,7 +23,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         public ActionResult Index()
         {
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.IdEstado = new SelectList(estados, "Id", "Sigla");
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Novo");
         }
 
@@ -40,16 +40,20 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         {
             int id = int.Parse(idEstado);
             Cidades = _servicoEnderecos.GetCidades(id);
+            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Novo");
         }
 
         public ActionResult AutoCompleteCidade(string term)
         {
             string[] items = Cidades.Select(p => p.Nome).ToArray();
-            var filteredItems = items.Where(
+            IEnumerable<String> itensFiltrados = items.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
-            return Json(filteredItems, JsonRequestBehavior.AllowGet);
+            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AutoCompleteBairro(string term)
