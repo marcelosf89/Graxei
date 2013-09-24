@@ -18,8 +18,6 @@
             @Html.EditorFor(model => model.Nome)
         </div>
     </fieldset>
-    @Ajax.ActionLink(Rotulos.NovoEndereco, "Index", new { controller = "Enderecos" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-default " })
-
     <p>@Rotulos.Enderecos</p>
     <table>
         <thead>
@@ -50,6 +48,7 @@
             </tbody>
         }
     </table>
-    <input type="submit" value="@Rotulos.Salvar"/>
+    @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
+    @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
 }
 

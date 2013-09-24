@@ -55,6 +55,8 @@
     <Compile Include="BootstrapMethods\Bootstrap.Common.cs" />
     <Compile Include="BootstrapMethods\Bootstrap.cs" />
     <Compile Include="BootstrapHtmlExtension.cs" />
+    <Compile Include="BootstrapMethods\AjaxBootstrap.cs" />
+    <Compile Include="BootstrapMethods\AjaxBootstrap.ActionLinkButton.cs" />
     <Compile Include="ControlInterfaces\IBootstrapListBox.cs" />
     <Compile Include="ControlInterfaces\IBootstrapInputListFromEnum.cs" />
     <Compile Include="ControlInterfaces\IBootstrapButton.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Controls\CarouselBuilder.cs" />
     <Compile Include="Controls\CarouselCaptionPanel.cs" />
     <Compile Include="Controls\CarouselCustomItem.cs" />
+    <Compile Include="Controls\AjaxBootstrapActionLinkButton.cs" />
     <Compile Include="Controls\FormActionsBuilder.cs" />
     <Compile Include="Controls\DropDown.cs" />
     <Compile Include="Controls\DropDownBuilder.cs" />
@@ -152,6 +155,7 @@
     <Compile Include="Controls\TabsPanel.cs" />
     <Compile Include="Controls\ToolBar.cs" />
     <Compile Include="Controls\ToolBarBuilder.cs" />
+    <Compile Include="BootstrapAjaxExtension.cs" />
     <Compile Include="Infrastructure\BootstrapHelper.cs" />
     <Compile Include="Infrastructure\BuilderBase.cs" />
     <Compile Include="Infrastructure\ConfigurationClasses\PopoverConfiguration.cs" />
