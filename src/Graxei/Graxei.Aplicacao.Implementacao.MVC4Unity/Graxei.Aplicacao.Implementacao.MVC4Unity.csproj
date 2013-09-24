@@ -302,6 +302,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TwitterBootstrapMVC\TwitterBootstrapMVC\TwitterBootstrapMVC.csproj">
+      <Project>{b8962907-267a-4010-9606-dd3440055e0a}</Project>
+      <Name>TwitterBootstrapMVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FAST\FAST.csproj">
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>

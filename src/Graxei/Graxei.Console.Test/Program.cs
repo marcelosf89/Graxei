@@ -1,6 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using FluentNHibernate.Configuracao;
+using Graxei.FluentNHibernate.Mapeamento;
 using Graxei.Modelo;
 using NHibernate;
 using NHibernate.Search.Event;
@@ -31,7 +31,7 @@ namespace Graxei.Console.Test
                 )
 
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TipoLogradouroMap>())
-                          .ExposeConfiguration( cfg => new SchemaExport(cfg).Create(true,true))
+                          //.ExposeConfiguration( cfg => new SchemaExport(cfg).Create(true,true))
                 .BuildConfiguration();
 
 
@@ -55,9 +55,9 @@ namespace Graxei.Console.Test
             {
                 using (var transaction = s.BeginTransaction())
                 {
-                    TipoLogradouro pro = new TipoLogradouro();
-                    pro.Nome = "Teste do Goo.Search";
-                    pro.Sigla = "GOO";
+                    Produto pro = new Produto();
+                    pro.Descricao = "Teste do Goo.Search";
+                    pro.Codigo = "GOO";
 
                     s.Save(pro);
                     transaction.Commit();
@@ -69,7 +69,9 @@ namespace Graxei.Console.Test
                     using (var transaction = s.BeginTransaction())
                     {
                         //Lucene.Net.Search.Query query = new 
-                        IList<Produto> carSearchResults = search.CreateFullTextQuery<Produto>("Nome:Teste")
+
+                        IList<Produto> carSearchResults = search.CreateFullTextQuery<Produto>("Descricao:Teste")
+                            //.CreateFullTextQueryAllField<Produto>("Teste")
                             .SetMaxResults(5)
                             .List<Produto>();
 
