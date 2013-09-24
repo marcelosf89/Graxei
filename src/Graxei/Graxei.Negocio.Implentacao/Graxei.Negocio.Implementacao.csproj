@@ -42,8 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ServicoBairros.cs" />
+    <Compile Include="ServicoCidades.cs" />
+    <Compile Include="ServicoEnderecos.cs" />
+    <Compile Include="ServicoEstados.cs" />
+    <Compile Include="ServicoUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoFabricantes.cs" />
+    <Compile Include="ServicoPadraoEntidades.cs" />
+    <Compile Include="ServicoLojas.cs" />
     <Compile Include="ServicoProdutos.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +73,14 @@
     <ProjectReference Include="..\Graxei.Persistencia.Fabrica\Graxei.Persistencia.Fabrica.csproj">
       <Project>{2c1aa775-a94d-496b-937c-fca81a904f55}</Project>
       <Name>Graxei.Persistencia.Fabrica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
+      <Project>{5015A01C-2E90-44CF-A45C-4B121696508C}</Project>
+      <Name>Graxei.Transversais.Idiomas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

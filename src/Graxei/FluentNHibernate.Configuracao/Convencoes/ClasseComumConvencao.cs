@@ -1,10 +1,5 @@
 ﻿using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.FluentNHibernate.Convencoes
 {
@@ -24,7 +19,7 @@ namespace Graxei.FluentNHibernate.Convencoes
         public void Apply(IManyToOneInstance instance)
         {
             instance.Column(("id_" + instance.Property.PropertyType.Name).ToLower());
-
+            instance.Cascade.None();
         }
     }
 }

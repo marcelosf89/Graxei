@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Modelo;
+using Graxei.Negocio.Contrato;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,12 +21,15 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Bootstrapper.Initialise();
+            /* TODO: retirar esse trecho de código */
+            IUnityContainer cont = Bootstrapper.Initialise();
+            /*IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();
+            Usuario usuario = usu.GetPorLogin("graxeiadmin");
+            Session[Constantes.UsuarioAtual] = usuario;*/
         }
     }
 }

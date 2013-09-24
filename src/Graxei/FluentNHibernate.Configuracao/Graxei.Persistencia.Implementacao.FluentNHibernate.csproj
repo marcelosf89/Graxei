@@ -65,7 +65,6 @@
     <Compile Include="BaseHibernatePersistencia.cs" />
     <Compile Include="Base\BaseHibernateDAO.cs" />
     <Compile Include="Configuracao\NHibernateSessionFactory.cs" />
-    <Compile Include="Configuracao\NHibernateSessionPerRequest.cs" />
     <Compile Include="DataGenerico.cs" />
     <Compile Include="Mapeamento\BairroMap.cs" />
     <Compile Include="Mapeamento\CategoriaMap.cs" />
@@ -76,8 +75,11 @@
     <Compile Include="Mapeamento\EstadoMap.cs" />
     <Compile Include="Mapeamento\FabricanteMap.cs" />
     <Compile Include="Mapeamento\LojaMap.cs" />
+    <Compile Include="Mapeamento\LojaUsuarioMap.cs" />
     <Compile Include="Mapeamento\MovimentacaoMap.cs" />
     <Compile Include="Mapeamento\ProdutoMap.cs" />
+    <Compile Include="Mapeamento\ProdutoVendedor.cs" />
+    <Compile Include="Mapeamento\UsuarioMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mapeamento\TelefoneMap.cs" />
     <Compile Include="Mapeamento\TipoLogradouroMap.cs" />

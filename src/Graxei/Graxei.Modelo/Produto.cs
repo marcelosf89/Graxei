@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FAST.Modelo;
 using NHibernate.Search.Attributes;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {
@@ -10,14 +11,12 @@ namespace Graxei.Modelo
         [DocumentId]
         public override long Id { get; set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
-        [Display(Name = "Código")]
+        [Display(ResourceType = typeof(Propriedades), Name = "Codigo")]
         public virtual string Codigo { get; set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
-        [Display(Name = "Descrição")]
+        [Display(ResourceType = typeof(Propriedades), Name = "Descricao")]
         public virtual string Descricao { get; set; }
-        [Display(Name = "Preço")]
-        public virtual double Preco { get; set; }
-        [Display(Name = "Fator de Conversão")]
+        [Display(ResourceType = typeof(Propriedades), Name = "FatorConversao")]
         public virtual double FatorConversao { get; set; }
         [IndexedEmbedded(Depth = 1)]
         public virtual Fabricante Fabricante { get; set; }

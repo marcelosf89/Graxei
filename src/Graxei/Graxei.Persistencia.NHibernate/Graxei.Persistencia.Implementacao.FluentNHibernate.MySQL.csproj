@@ -59,11 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CidadesNHibernateMySQL.cs" />
+    <Compile Include="LojasNHibernateMySQL.cs" />
     <Compile Include="PadraoNHibernateMySQL.cs" />
     <Compile Include="ProdutosNHibernateMySQL.cs" />
     <Compile Include="Lucene.Net\LuceneFonte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FabricantesNHibernateMySQL.cs" />
+    <Compile Include="EnderecosNHibernateMySQL.cs" />
+    <Compile Include="EstadosNHibernateMySQL.cs" />
+    <Compile Include="BairrosNHibernateMySQL.cs" />
+    <Compile Include="UsuariosNHibernateMySQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FAST\FAST.csproj">
@@ -81,6 +87,14 @@
     <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
       <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
       <Name>Graxei.Persistencia.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
+      <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>
+      <Name>Graxei.Transversais.Idiomas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257D309-B6EC-499F-970C-824959D6ADA8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

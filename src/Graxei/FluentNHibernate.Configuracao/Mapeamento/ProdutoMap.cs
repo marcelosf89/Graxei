@@ -15,7 +15,6 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Id(p => p.Id);
             Map(p => p.Codigo);
             Map(p => p.Descricao);
-            Map(p => p.Preco);
             Map(p => p.FatorConversao).Column(Constantes.FATOR_CONVERSAO);
             References(p => p.Categoria).Cascade.All();
             References(p => p.Fabricante).Cascade.All();

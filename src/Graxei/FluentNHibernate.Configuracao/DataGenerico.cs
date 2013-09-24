@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using FAST.Layers.Modelo;
 using Graxei.FluentNHibernate.Base;
+using Graxei.FluentNHibernate.UnitOfWork;
 using NHibernate;
 using NHibernate.Criterion;
 using Graxei.FluentNHibernate.Configuracao;
@@ -159,7 +160,7 @@ namespace Graxei.FluentNHibernate
         /// <returns>Lista com instâncias filtradas ou vazia</returns>
         public IList<TEntity> GetByCriteria(params ICriterion[] criterion)
         {
-            ICriteria criteria = NHibernateSessionPerRequest.GetCurrentSession().CreateCriteria(typeof(TEntity));
+            ICriteria criteria = UnitOfWorkNHibernate.GetCurrentSession().CreateCriteria(typeof(TEntity));
             if (this._order != null)
             {
                 criteria.AddOrder(this._order);
@@ -208,7 +209,7 @@ namespace Graxei.FluentNHibernate
         /// <returns>IList da entidade passada</returns>
         public IList GetByCustomCriteria()
         {
-            ICriteria criteria = NHibernateSessionPerRequest.GetCurrentSession().CreateCriteria(typeof(TEntity));
+            ICriteria criteria = UnitOfWorkNHibernate.GetCurrentSession().CreateCriteria(typeof(TEntity));
             if (this._order != null)
             {
                 criteria.AddOrder(this._order);

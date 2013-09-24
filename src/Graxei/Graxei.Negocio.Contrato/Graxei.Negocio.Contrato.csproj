@@ -39,8 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IServicoEntidade.cs" />
+    <Compile Include="IServicoBairros.cs" />
+    <Compile Include="IServicoCidades.cs" />
+    <Compile Include="IServicoEnderecos.cs" />
+    <Compile Include="IServicoEstados.cs" />
+    <Compile Include="IServicoUsuarios.cs" />
+    <Compile Include="IServicoEntidades.cs" />
     <Compile Include="IServicoFabricante.cs" />
+    <Compile Include="IServicoLojas.cs" />
     <Compile Include="IServicoProdutos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +58,14 @@
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
+      <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
+      <Name>Graxei.Persistencia.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -90,14 +90,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
-      <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
-      <Name>Graxei.Aplicacao.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.Fabrica\Graxei.Aplicacao.Fabrica.csproj">
-      <Project>{08975121-a680-4ac3-a0da-984d4af28156}</Project>
-      <Name>Graxei.Aplicacao.Fabrica</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>

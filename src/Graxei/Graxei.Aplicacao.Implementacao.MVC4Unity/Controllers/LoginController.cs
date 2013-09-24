@@ -19,7 +19,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
 
         public ActionResult Autenticacao()
         {
-            return View(new Modelo.Loja());
+            return View(new Modelo.Usuario());
         }
 
         [HttpPost]

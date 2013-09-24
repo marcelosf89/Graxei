@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Description;
+using System.ServiceModel.Dispatcher;
+using System.Web;
+using FAST.Layers.UnitOfWork.Contrato;
 using FAST.Log;
 using Graxei.FluentNHibernate.Configuracao;
 using NHibernate;
 using NHibernate.Context;
+using ISession = NHibernate.ISession;
 
 namespace Graxei.FluentNHibernate.UnitOfWork
 {
-   public  class UnitOfWorkNHibernate: FAST.Layers.UnitOfWork.Contrato.IUnitOfWork
+   public  class UnitOfWorkNHibernate: IUnitOfWork
     {
 
        /// <summary>
@@ -57,10 +65,11 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         /// <returns>True ou False</returns>
         private bool HasOpenTransaction()
         {
-            return NHibernateSessionPerRequest.GetCurrentSession().Transaction != null &&
-                NHibernateSessionPerRequest.GetCurrentSession().Transaction.IsActive &&
-                !NHibernateSessionPerRequest.GetCurrentSession().Transaction.WasCommitted &&
-                !NHibernateSessionPerRequest.GetCurrentSession().Transaction.WasRolledBack;
+            ISession session = UnitOfWorkNHibernate.GetCurrentSession();
+            return session.Transaction == null ||
+                   !session.Transaction.IsActive ||
+                   session.Transaction.WasCommitted ||
+                   session.Transaction.WasRolledBack;
         }
 
         /// <summary>
@@ -74,7 +83,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
                 if (!HasOpenTransaction())
                 {
-                    NHibernateSessionPerRequest.GetCurrentSession().BeginTransaction();
+                    UnitOfWorkNHibernate.GetCurrentSession().BeginTransaction();
                 }
             }
             catch (Exception exception)
@@ -92,10 +101,11 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             try
             {
+                ISession session = UnitOfWorkNHibernate.GetCurrentSession();
                 if (HasOpenTransaction())
                 {
-                    NHibernateSessionPerRequest.GetCurrentSession().Transaction.Commit();
-                    NHibernateSessionPerRequest.GetCurrentSession().Flush();
+                    session.Transaction.Commit();
+                    session.Flush();
                 }
             }
             catch (Exception exception)
@@ -113,7 +123,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             if (HasOpenTransaction())
             {
-                NHibernateSessionPerRequest.GetCurrentSession().Transaction.Rollback();
+                UnitOfWorkNHibernate.GetCurrentSession().Transaction.Rollback();
             }
         }
 
@@ -156,5 +166,71 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         /// Define a fabrica de sessões do nhibernate
         /// </summary>
         private static readonly ISessionFactory _sessionFactory;
+
+       #region Implementation of IDispatchMessageInspector
+
+
+
+       public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
+       {
+           BeginRequest(null, null);
+           return null;
+
+       }
+
+       public void BeforeSendReply(ref Message reply, object correlationState)
+       {
+           EndRequest(null, null);
+       }
+
+       #endregion
+
+       #region Implementation of IServiceBehavior
+
+       public void ApplyDispatchBehavior(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
+       {
+           foreach (ChannelDispatcher cd in serviceHostBase.ChannelDispatchers)
+           {
+               foreach (EndpointDispatcher ed in cd.Endpoints)
+               {
+                   ed.DispatchRuntime.MessageInspectors.Add(this);
+               }
+           }
+
+       }
+
+       public void Validate(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
+       {
+
+       }
+
+       public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
+       {
+       }
+       #endregion
+
+       #region Implementation of IHttpModule
+
+       public void Init(HttpApplication context)
+       {
+           context.BeginRequest += BeginRequest;
+           context.EndRequest += EndRequest;
+       }
+
+       public void Dispose()
+       {
+       }
+
+       #endregion
+
+       private static void BeginRequest(object sender, EventArgs e)
+       {
+           UnitOfWorkNHibernate.BindSession();
+       }
+
+       private static void EndRequest(object sender, EventArgs e)
+       {
+           UnitOfWorkNHibernate.UnBindSession();
+       }
     }
 }

@@ -1,5 +1,4 @@
-﻿@model Graxei.Modelo.Loja
-
+﻿@model Graxei.Modelo.Usuario
 
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     @using (Html.BeginForm())
@@ -8,27 +7,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">@Resources.Rotulos.Login</h3>
+                    <h3 id="myModalLabel">@Rotulos.Login</h3>
                 </div>
                 @Html.ValidationSummary(true)
                 <div class="modal-body">
                     <label>
-                        @Html.LabelFor(model => model.Nome)
+                        @Html.LabelFor(model => model.Login)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.Nome)
+                        @Html.EditorFor(model => model.Login)
                     </div>
                     <label>
-                        @Html.LabelFor(model => model.Id)
+                        @Html.LabelFor(model => model.Senha)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.Id)
+                        @Html.EditorFor(model => model.Senha)
                     </div>
                 </div>
                 <div class="modal-footer">
-                    @Ajax.ActionLink(Resources.Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
-                    <button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Rotulos.Fechar</button>
-                    <input type="submit" class="btn btn-primary" value="@Resources.Rotulos.Entrar"/>
+                    @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
+                    <input type="submit" class="btn btn-primary" value="@Rotulos.Entrar"/>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -39,5 +38,5 @@
 <!-- /.modal -->
 <div id="myModalRemote"></div>
 <script>
-    $('#Modal2').modal('show')
+    $('#Modal2').modal('show') //ele vai iniciar o popup aqui.. o redefinr senha usa a mesma formula.. só que no final ao completar ele ira fechar esse popup..
 </script>

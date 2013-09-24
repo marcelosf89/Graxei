@@ -1,14 +1,22 @@
-﻿using Graxei.Persistencia.Contrato;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Graxei.Modelo;
+using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Utilidades.NHibernate;
+using NHibernate.Linq;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
-    public class FluentNHMySQLLojas : IRepositorioLoja
+    public class LojasNHibernateMySQL : PadraoNHibernateMySQL<Loja>, IRepositorioLojas
     {
-        
+
+        #region Implementação de IRepositorioLojas
+
+        public Loja Get(string nome)
+        {
+            return SessaoAtual.Query<Loja>()
+                              .SingleOrDefault<Loja>(loja => Queries.StringPadrao(loja.Nome) == Queries.StringPadrao(nome));
+        }
+
+        #endregion
     }
 }

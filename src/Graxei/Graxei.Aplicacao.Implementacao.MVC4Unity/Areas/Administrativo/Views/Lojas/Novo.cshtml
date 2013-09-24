@@ -1,0 +1,55 @@
+﻿@using Graxei.Modelo
+@model Graxei.Modelo.Loja
+
+@{
+    ViewBag.Title = Rotulos.NovaLoja;
+}
+
+<h2>@Rotulos.NovaLoja</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+        </div>
+    </fieldset>
+    @Ajax.ActionLink(Rotulos.NovoEndereco, "Index", new { controller = "Enderecos" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-default " })
+
+    <p>@Rotulos.Enderecos</p>
+    <table>
+        <thead>
+            <tr>
+                <th align="center">@Rotulos.Logradouro</th>
+                <th align="left">@Rotulos.Numero</th>
+                <th align="right">@Rotulos.Complemento</th>
+                <th align="right">@Rotulos.Bairro</th>
+                <th align="right">@Rotulos.Cidade</th>
+                <th align="right">@Rotulos.Estado</th>
+            </tr>
+        </thead>
+        @if(Model != null && Model.Enderecos != null){
+            <tbody>
+            
+                @foreach (Endereco line in Model.Enderecos)
+                {
+                    <tr>
+                        <td>@line.Logradouro</td>
+                        <td>@line.Numero</td>
+                        <td>@line.Complemento</td>
+                        <td>@line.Bairro</td>
+                        <td>@line.Bairro.Cidade</td>
+                        <td>@line.Bairro.Cidade.Estado</td>
+                    </tr>
+                }
+
+            </tbody>
+        }
+    </table>
+    <input type="submit" value="@Rotulos.Salvar"/>
+}
+
