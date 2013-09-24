@@ -228,7 +228,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Areas\Administrativo\Views\Web.config" />
+    <Content Include="Areas\Administrativo\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Administrativo\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administrativo\Views\Home\Index.cshtml" />
