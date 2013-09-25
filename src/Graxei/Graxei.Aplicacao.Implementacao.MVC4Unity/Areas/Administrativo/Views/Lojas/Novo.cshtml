@@ -41,6 +41,7 @@
             </tbody>
         }
     </table>
-    <input type="submit" value="@Rotulos.Salvar"/>
+    @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
+    @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
 }
 

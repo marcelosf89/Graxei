@@ -231,7 +231,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Areas\Administrativo\Views\Web.config" />
+    <Content Include="Areas\Administrativo\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Administrativo\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administrativo\Views\Home\Index.cshtml" />
@@ -241,6 +243,7 @@
     <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\autocomplete.js" />
+    <Content Include="Scripts\bootstrap-typeahead.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\button.js" />
@@ -278,16 +281,22 @@
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\typeahead.js" />
+    <Content Include="Scripts\typeahead.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc4.README.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -304,6 +313,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TwitterBootstrapMVC\TwitterBootstrapMVC\TwitterBootstrapMVC.csproj">
+      <Project>{b8962907-267a-4010-9606-dd3440055e0a}</Project>
+      <Name>TwitterBootstrapMVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FAST\FAST.csproj">
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>

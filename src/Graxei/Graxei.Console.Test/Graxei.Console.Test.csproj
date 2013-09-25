@@ -32,8 +32,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FAST, Version=1.0.5.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\FAST.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Aplicacao.Implementacao.MVC4Unity">
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Aplicacao.Implementacao.MVC4Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.FluentNHibernate">
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Modelo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Modelo.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Negocio.Contrato, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Negocio.Contrato.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Negocio.Fabrica, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Negocio.Fabrica.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Negocio.Implementacao">
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Negocio.Implementacao.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Persistencia.Contrato, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Persistencia.Contrato.dll</HintPath>
+    </Reference>
+    <Reference Include="Graxei.Persistencia.Implementacao.NHibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Graxei.Aplicacao.Implementacao.MVC4Unity\bin\Graxei.Persistencia.Implementacao.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -68,60 +101,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento.csproj">
-      <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.Mapeamento</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
-      <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
-      <Name>Graxei.Aplicacao.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.Fabrica\Graxei.Aplicacao.Fabrica.csproj">
-      <Project>{08975121-a680-4ac3-a0da-984d4af28156}</Project>
-      <Name>Graxei.Aplicacao.Fabrica</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.implementacao.ASPNet\Graxei.Aplicacao.Implementacao.ASPNet.csproj">
-      <Project>{1a142299-2cde-4bff-9206-b60a0e44a7c5}</Project>
-      <Name>Graxei.Aplicacao.Implementacao.ASPNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
-      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
-      <Name>Graxei.Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
-      <Project>{98f3b7b4-b5f1-4124-a62f-a0047ab08840}</Project>
-      <Name>Graxei.Negocio.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Fabrica\Graxei.Negocio.Fabrica.csproj">
-      <Project>{41883ba3-ae05-4ec9-82ba-b2114fe075d4}</Project>
-      <Name>Graxei.Negocio.Fabrica</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Implentacao\Graxei.Negocio.Implentacao.csproj">
-      <Project>{a8bfa7c6-4675-4997-81df-ae7fe058c1f5}</Project>
-      <Name>Graxei.Negocio.Implentacao</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Nucleo\Graxei.Nucleo.csproj">
-      <Project>{c9175a32-f282-4696-afdd-67a9c273a084}</Project>
-      <Name>Graxei.Nucleo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
-      <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
-      <Name>Graxei.Persistencia.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.Fabrica\Graxei.Persistencia.Fabrica.csproj">
-      <Project>{2c1aa775-a94d-496b-937c-fca81a904f55}</Project>
-      <Name>Graxei.Persistencia.Fabrica</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.NHibernate.csproj">
-      <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
-      <Name>Graxei.Persistencia.Implementacao.NHibernate</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

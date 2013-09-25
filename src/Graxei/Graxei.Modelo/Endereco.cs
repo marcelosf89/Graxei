@@ -13,6 +13,7 @@ namespace Graxei.Modelo
         [Display(ResourceType = typeof(Propriedades), Name = "Logradouro")]
         public virtual string Logradouro { get; set; }
         [Display(ResourceType = typeof(Propriedades), Name = "Numero")]
+        [Required(ErrorMessage="teste 12344")]
         public virtual string Numero { get; set; }
         [Display(ResourceType = typeof(Propriedades), Name = "Complemento")]
         public virtual string Complemento { get; set; }
