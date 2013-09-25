@@ -37,9 +37,9 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             return RedirectToAction("Novo", "Lojas", new { item.NomeLoja });
         }
 
-        public RedirectToRouteResult Excluir(int idLista)
+        public RedirectToRouteResult Excluir(int id)
         {
-            Enderecos.RemoveAll(p => p.Id == idLista);
+            Enderecos.RemoveAll(p => p.Id == id);
             return RedirectToAction("Novo", "Lojas" );
         }
 

@@ -3,5 +3,6 @@
 
 <div class="item">
     <h3>@Model.Endereco</h3>
-    <h4>@Ajax.Bootstrap().ActionLinkButton(@Rotulos.Excluir, "Excluir", "Enderecos").HtmlAttributes( new { idLista = Model.Id})</h4>
+    <h4>@Ajax.Bootstrap().ActionLinkButton(@Rotulos.Excluir, "Excluir", "Enderecos" ).RouteValues( new RouteValueDictionary(new {controller = "Enderecos", action = "Excluir", id = Model.Id})))</h4>
+    
 </div>
