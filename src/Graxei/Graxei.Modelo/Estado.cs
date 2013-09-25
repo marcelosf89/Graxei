@@ -1,10 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FAST.Modelo;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
@@ -16,7 +12,7 @@ namespace Graxei.Modelo
         [StringLength(2)]
         public virtual string Sigla { get; set; }
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NomeObrigatorio")]
-        [StringLength(30)]
+        [StringLength(50)]
         public virtual string Nome { get; set; }
 
         #region Métodos Sobrescritos
@@ -37,6 +33,11 @@ namespace Graxei.Modelo
                 return Sigla.GetHashCode() + 11;
             }
             return 0;
+        }
+
+        public override string ToString()
+        {
+            return Sigla;
         }
         #endregion
     }

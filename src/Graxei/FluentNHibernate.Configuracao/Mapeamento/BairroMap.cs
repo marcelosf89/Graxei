@@ -1,10 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
 using Graxei.Modelo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.FluentNHibernate.Mapeamento
 {
@@ -14,7 +9,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         {
             Id(p => p.Id);
             Map(p => p.Nome).Column(Constantes.NOME); ;
-            References(p => p.Cidade).Column(Constantes.ID_CIDADE).Fetch.Join();
+            References(p => p.Cidade).Fetch.Join();
         }
     }
 }

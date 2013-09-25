@@ -1,7 +1,6 @@
-﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Models.LojaEnderecoViewModel
-
+﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models.EnderecoNovoModel
 <div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnSuccess = " $('#ModalNovoEndereco').modal('toggle')",UpdateTargetId = "main" }))
+    @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnSuccess = " $('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }))
     {
         <div class="modal-dialog">
             <div class="modal-content">
@@ -12,34 +11,46 @@
                 <div class="modal-body">
                     @if (Model != null && Model.NomeLoja != null)
                     {
-                        <h2>String.Format(Textos.EnderecosLoja, Model.NomeLoja)</h2>
+                        <h2>@String.Format(Textos.EnderecosLoja, Model.NomeLoja)</h2>
                     }
                     <div>
                         @Html.Label(Rotulos.Estado)
+                    </div>
+                    <div>
                         @Html.DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados, new { id = "IdEstado" })
                     </div>
                     <div>
                         @Html.Label(Rotulos.Cidade)
-                        @Html.TextBoxFor(m => m.Endereco.Bairro.Cidade.Nome, new { data_autocomplete_url = Url.Action("AutocompleteCidade") })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Endereco.Bairro.Cidade.Nome, new { id = "IdCidade", data_autocomplete_url = Url.Action("AutocompleteCidade") })
                     </div>
                     <div>
                         @Html.Label(Rotulos.Bairro)
+                    </div>
+                    <div>
                         @Html.TextBoxFor(m => m.Endereco.Bairro.Nome, new { data_autocomplete_url = Url.Action("AutocompleteBairro") })
                     </div>
                     <div>
                         @Html.LabelFor(m => m.Endereco.Logradouro)
+                    </div>
+                    <div>
                         @Html.TextBoxFor(m => m.Endereco.Logradouro)
                     </div>
                     <div>
                         @Html.LabelFor(m => m.Endereco.Numero)
+                    </div>
+                    <div>
                         @Html.TextBoxFor(m => m.Endereco.Numero)
                     </div>
                     <div>
                         @Html.LabelFor(m => m.Endereco.Complemento)
+                    </div>
+                    <div>
                         @Html.TextBoxFor(m => m.Endereco.Complemento)
                     </div>
                 </div>
-            
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
                     <input type="submit" class="btn btn-primary" value="@Rotulos.Salvar"/>
@@ -52,20 +63,27 @@
 </div>
 <!-- /.modal -->
 <script>
-    $('#ModalNovoEndereco').modal('show') 
+    $('#ModalNovoEndereco').modal('show')
 </script>
 
 <script type="text/javascript">
+    
+
     $(document).ready(function () {
-        $("#IdEstado").change(function () {
+        $(document).on('change','#IdEstado',function () {
+            
             var estadoSel = $("#IdEstado").val();
             if (estadoSel != 0) {
                 var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
-                $.post(url, { idEstado: estadoSel },
-                    function (data) {
-                    });
+                $.post(url, { idEstado: estadoSel }, function (data) {});
             }
         });
+        $(document).on('blur','#IdCidade',function () {
+            var estadoSel = $("#IdEstado").val();
+            var cidadeDig = $("#IdCidade").val();
+            var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+            $.post(url, { idEstado: estadoSel, valCidade: cidadeDig }, function (data) { });
+   });
     });
 </script>
 <script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>

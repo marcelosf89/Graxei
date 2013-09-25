@@ -33,6 +33,11 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.Get(idCidade);
         }
 
+        public IList<Bairro> GetPorCidade(string nomeCidade, int idEstado)
+        {
+            return Repositorio.GetPorCidade(nomeCidade, idEstado);
+        }
+
         public Bairro Get(string nomeBairro, string nomeCidade, int idEstado)
         {
             return Repositorio.Get(nomeBairro, nomeCidade, idEstado);

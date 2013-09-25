@@ -65,6 +65,11 @@ namespace Graxei.Negocio.Implementacao
             return _servBairros.GetPorCidade(idCidade);
         }
 
+        public IList<Bairro> GetBairros(string nomeCidade, int idEstado)
+        {
+            return _servBairros.GetPorCidade(nomeCidade, idEstado);
+        }
+
         public Estado GetEstado(int idEstado)
         {
             return _servEstados.GetPorId(idEstado);

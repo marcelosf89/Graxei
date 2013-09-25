@@ -151,6 +151,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excluir.
+        /// </summary>
+        public static string Excluir {
+            get {
+                return ResourceManager.GetString("Excluir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fechar.
         /// </summary>
         public static string Fechar {

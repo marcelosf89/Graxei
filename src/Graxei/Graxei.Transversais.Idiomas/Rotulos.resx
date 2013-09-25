@@ -183,4 +183,7 @@
   <data name="NovoEndereco" xml:space="preserve">
     <value>Novo Endereço</value>
   </data>
+  <data name="Excluir" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
 </root>

@@ -13,6 +13,7 @@ namespace Graxei.Negocio.Contrato
         IList<Cidade> GetCidades(int idEstado);
         IList<Bairro> GetBairros(Cidade cidade);
         IList<Bairro> GetBairros(int idCidade);
+        IList<Bairro> GetBairros(string nomeCidade, int idEstado);
         Estado GetEstado(int idEstado);
         Estado GetEstadoPorSigla(string sigla);
         Estado GetEstadoPorNome(string nome);

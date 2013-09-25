@@ -19,7 +19,6 @@ namespace Graxei.Modelo
         public virtual TipoLogradouro TipoLogradouro { get; set; }
         public virtual Loja Loja { get;  set; }
         public virtual Bairro Bairro { get; set; }
-        public virtual Cidade Cidade { get; set; }
         public virtual IList<Telefone> Telefones { get; protected set; }
 
         #region Métodos Sobrescritos
@@ -58,6 +57,22 @@ namespace Graxei.Modelo
                 result += Bairro.GetHashCode();
             }
             return result;
+        }
+
+        public override string ToString()
+        {
+            if (this.Bairro == null || this.Bairro.Cidade == null || this.Bairro.Cidade.Estado == null)
+            {
+                return "<Endereço Incompleto>";
+            }
+            string retorno=
+                string.Format(@"{0}, {1} |*COMP*| - {2} - {3} - {4}", this.Logradouro, this.Numero, this.Bairro,
+                              this.Bairro.Cidade, this.Bairro.Cidade.Estado);
+            if (!string.IsNullOrEmpty(this.Complemento))
+            {
+                retorno = retorno.Replace("|*COMP*|", ", " + this.Complemento);
+            }
+            return retorno;
         }
         #endregion
 

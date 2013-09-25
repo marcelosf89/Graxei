@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using System.Web.Mvc;
@@ -17,9 +18,12 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         public ActionResult Novo(string nomeLoja = "")
         {
             Loja loja = new Loja() {Nome = nomeLoja};
-            /* TODO: ver como se faz o tratamento de listas com o NHibernate*/
-            loja.Enderecos = Enderecos;
-            return View(loja);
+            LojaNovosEnderecosModel item = new LojaNovosEnderecosModel()
+                                               {
+                                                   Loja = loja,
+                                                   NovosEnderecoModel = Enderecos
+                                               };
+            return View(item);
         }
 
         [HttpPost]
@@ -40,7 +44,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         private readonly IServicoEnderecos _servicoEnderecos;
         #endregion
 
-        private IList<Endereco> Enderecos
+        private IList<ItemListaNovosEnderecosModel> Enderecos
         {
             get
             {
@@ -49,7 +53,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
                 {
                     enderecos = new List<Endereco>();
                 }
-                return (IList<Endereco>)Session["EnderecosNovaLoja"];
+                return (IList<ItemListaNovosEnderecosModel>)Session["EnderecosNovaLoja"];
             }
             set
             {

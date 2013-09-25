@@ -145,6 +145,9 @@
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
+    <Compile Include="Areas\Administrativo\Models\EnderecoNovoModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\LojaNovosEnderecosModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
     <Compile Include="Binders\EnderecosBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -156,8 +159,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Constantes.cs" />
+    <Compile Include="Areas\Administrativo\Models\ItemListaNovosEnderecosModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
-    <Compile Include="Models\LojaEnderecoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -296,7 +299,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrativo\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
