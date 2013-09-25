@@ -28,8 +28,12 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         }
 
         [HttpPost]
-        public RedirectToRouteResult Novo(LojaEnderecoViewModel item)
+        public ActionResult Novo(LojaEnderecoViewModel item)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Erro");
+            }
             Estado estado = _servicoEnderecos.GetEstado(item.IdEstado);
             item.Endereco.Bairro.Cidade.Estado = estado;
             Enderecos.Add(item.Endereco);
