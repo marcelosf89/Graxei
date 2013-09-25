@@ -18,11 +18,11 @@
                             @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                             @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).HtmlAttributes(new { id = "IdEstado", @class = "form-control" })
                             @Html.Bootstrap().Label(Rotulos.Cidade).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                            @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade","Enderecos").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" })
+                            @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade","Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" })
                       </div>
                     <div class="row form-group">
                             @Html.Bootstrap().Label(Rotulos.Bairro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                            @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteBairro","Enderecos").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
+                            @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteBairro","Enderecos").Id("IdBairro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
                     </div>
                     <div class="row form-group">
                             @Html.Bootstrap().LabelFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
@@ -62,6 +62,12 @@
                     function (data) {
                     });
             }
+        });
+        $(document).on("blur", "#IdCidade", function () {
+            var estadoSel = $("#IdEstado").val();
+            var cidadeDig = $(this).val();
+            var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+			$.post(url, { idEstado: estadoSel, valCidade: cidadeDig }, function (data) { });
         });
     });
 </script>
