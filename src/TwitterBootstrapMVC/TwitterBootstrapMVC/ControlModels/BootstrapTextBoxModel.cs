@@ -14,6 +14,7 @@ namespace TwitterBootstrapMVC.ControlModels
         {
             htmlAttributes = new Dictionary<string, object>();
             size = InputSize._NotSet;
+            width = new Width();
             appendButtons = new List<BootstrapButton>();
             prependButtons = new List<BootstrapButton>();
         }
@@ -27,6 +28,7 @@ namespace TwitterBootstrapMVC.ControlModels
         public string prependString;
         public string appendString;
         public InputSize size;
+        public Width width;
         public List<BootstrapButton> prependButtons;
         public List<BootstrapButton> appendButtons;
         public BootstrapHelpText helpText;

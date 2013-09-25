@@ -12,6 +12,7 @@ namespace TwitterBootstrapMVC.ControlModels
         public BootstrapTextAreaModel()
         {
             htmlAttributes = new Dictionary<string, object>();
+            width = new Width();
         }
 
         public string id;
@@ -24,5 +25,6 @@ namespace TwitterBootstrapMVC.ControlModels
         public HelpTextStyle validationMessageStyle;
         public ModelMetadata metadata;
         public TooltipConfiguration tooltipConfiguration;
+        public Width width;
     }
 }

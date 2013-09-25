@@ -43,6 +43,12 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapLabel Width(InputWidth width)
+        {
+            this._labelModel.inputWidth = width;
+            return this;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual string ToHtmlString()
         {

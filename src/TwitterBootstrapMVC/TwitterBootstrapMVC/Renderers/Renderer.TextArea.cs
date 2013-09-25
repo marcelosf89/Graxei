@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using TwitterBootstrapMVC.ControlModels;
 using TwitterBootstrapMVC.Controls;
+using TwitterBootstrapMVC.Infrastructure;
 using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Renderers
@@ -23,9 +24,18 @@ namespace TwitterBootstrapMVC.Renderers
                 string validation = html.ValidationMessage(model.htmlFieldName).ToHtmlString();
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
-            if(!string.IsNullOrEmpty(model.id)) model.htmlAttributes.AddOrReplace("id", model.id);
+            if (!string.IsNullOrEmpty(model.id)) model.htmlAttributes.AddOrReplace("id", model.id);
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
-            return html.TextArea(model.htmlFieldName, model.value, model.rows, model.columns, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString() + validationMessage;
+
+            TagBuilder containerDiv = new TagBuilder("div");
+            containerDiv.AddOrMergeCssClass(BootstrapHelper.GetClassForInputWidth(model.width.InputWidth));
+            foreach (string key in model.width.HtmlAttributes.Keys)
+            {
+                containerDiv.MergeAttribute(key, (string)model.width.HtmlAttributes[key]);
+            }
+            containerDiv.InnerHtml = html.TextArea(model.htmlFieldName, model.value, model.rows, model.columns, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString() + validationMessage;
+
+            return containerDiv.ToString();
         }
     }
 }

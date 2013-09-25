@@ -225,5 +225,15 @@ namespace TwitterBootstrapMVC.BootstrapMethods
                 ModelMetadata.FromLambdaExpression(expression, Html.ViewData)
                 );
         }
+
+        public BootstrapTypeHead TypeHead(string htmlFieldName, string action, string controller = "")
+        {
+            return new BootstrapTypeHead(Html, htmlFieldName, ModelMetadata.FromStringExpression(htmlFieldName, Html.ViewData), action, controller);
+        }
+
+        public BootstrapTypeHead TypeHeadFor<TValue>(Expression<Func<TModel, TValue>> expression, string action, string controller = "")
+        {
+            return new BootstrapTypeHead(Html, ExpressionHelper.GetExpressionText(expression), ModelMetadata.FromLambdaExpression(expression, Html.ViewData),action, controller);
+        }
     }
 }

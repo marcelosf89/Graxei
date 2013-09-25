@@ -14,6 +14,7 @@ namespace TwitterBootstrapMVC.ControlModels
         {
             htmlAttributes = new Dictionary<string, object>();
             innerInputType = BootstrapInputType._NotSet;
+            this.inputWidth = InputWidth.Default;
         }
 
         public int? index;
@@ -26,5 +27,6 @@ namespace TwitterBootstrapMVC.ControlModels
         public string innerValidationMessage;
         public BootstrapInputType innerInputType;
         public object innerInputModel;
+        public InputWidth inputWidth;
     }
 }

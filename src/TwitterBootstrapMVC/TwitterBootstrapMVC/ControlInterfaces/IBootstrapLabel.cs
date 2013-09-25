@@ -16,6 +16,10 @@ namespace TwitterBootstrapMVC.ControlInterfaces
         IBootstrapLabel ShowRequiredStar(bool showRequiredStar);
         IBootstrapLabel HtmlAttributes(object htmlAttributes);
 
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IBootstrapLabel Width(InputWidth width);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         Type GetType();
 

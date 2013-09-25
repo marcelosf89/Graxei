@@ -96,6 +96,20 @@ namespace TwitterBootstrapMVC.Controls
             return this;
         }
 
+        public IBootstrapDropDownList Width(InputWidth width)
+        {
+            Width wdh = new Width(width);
+            this._model.width = wdh;
+            return this;
+        }
+
+        public IBootstrapDropDownList Width(InputWidth width, object htmlAttributes)
+        {
+            Width wdh = new Width(width, htmlAttributes.ToDictionary());
+            this._model.width = wdh;
+            return this;
+        }
+
         public IBootstrapDropDownList Tooltip(TooltipConfiguration configuration)
         {
             this._model.tooltipConfiguration = configuration;

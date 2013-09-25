@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using TwitterBootstrapMVC.ControlInterfaces;
 using TwitterBootstrapMVC.ControlModels;
+using TwitterBootstrapMVC.Infrastructure;
 using TwitterBootstrapMVC.Infrastructure.Enums;
 using TwitterBootstrapMVC.TypeExtensions;
 
@@ -26,6 +27,7 @@ namespace TwitterBootstrapMVC.Renderers
 
             TagBuilder label = new TagBuilder("label");
             label.Attributes.Add("for", fullHtmlFieldName.FormatForMvcInputId() + (model.index.HasValue ? "_" + model.index.Value.ToString() : string.Empty));
+            label.AddOrMergeCssClass(BootstrapHelper.GetClassForInputWidth(model.inputWidth));
             label.MergeAttributes(model.htmlAttributes.FormatHtmlAttributes());
 
             TagBuilder requiredSpan = new TagBuilder("span");

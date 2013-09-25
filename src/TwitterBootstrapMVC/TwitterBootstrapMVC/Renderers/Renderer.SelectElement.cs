@@ -30,19 +30,19 @@ namespace TwitterBootstrapMVC.Renderers
             }
             if (model.tooltipConfiguration != null) model.htmlAttributes.AddRange(model.tooltipConfiguration.ToDictionary());
             if (!string.IsNullOrEmpty(model.id)) model.htmlAttributes.AddOrReplace("id", model.id);
-            
+
             // assign size class
             model.htmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForInputSize(model.size));
-            
+
             // build html for input
             string input = string.Empty;
 
-            if(inputType == BootstrapInputType.DropDownList)
+            if (inputType == BootstrapInputType.DropDownList)
                 input = html.DropDownList(model.htmlFieldName, model.selectList, model.optionLabel, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
 
-            if(inputType == BootstrapInputType.ListBox)
+            if (inputType == BootstrapInputType.ListBox)
                 input = html.ListBox(model.htmlFieldName, model.selectList, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
-            
+
             // account for appendString, prependString, and AppendButtons
             TagBuilder appendPrependContainer = new TagBuilder("div");
             if (!string.IsNullOrEmpty(model.prependString) | !string.IsNullOrEmpty(model.appendString) | model.appendButtons.Count() > 0)
@@ -89,7 +89,16 @@ namespace TwitterBootstrapMVC.Renderers
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
 
-            return MvcHtmlString.Create(string.Format(combinedHtml, input, validationMessage, helpText)).ToString();
+
+            TagBuilder containerDiv = new TagBuilder("div");
+            containerDiv.AddOrMergeCssClass(BootstrapHelper.GetClassForInputWidth(model.width.InputWidth));
+            foreach (string key in model.width.HtmlAttributes.Keys)
+            {
+                containerDiv.MergeAttribute(key, (string)model.width.HtmlAttributes[key]);
+            }
+            containerDiv.InnerHtml = MvcHtmlString.Create(string.Format(combinedHtml, input, validationMessage, helpText)).ToString();
+
+            return containerDiv.ToString();
         }
     }
 }

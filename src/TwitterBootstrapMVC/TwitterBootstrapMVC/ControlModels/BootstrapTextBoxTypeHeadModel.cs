@@ -8,23 +8,23 @@ using TwitterBootstrapMVC.Controls;
 
 namespace TwitterBootstrapMVC.ControlModels
 {
-    public class BootstrapSelectElementModel
+    public class BootstrapTypeHeadModel
     {
-        public BootstrapSelectElementModel()
+        public BootstrapTypeHeadModel()
         {
             htmlAttributes = new Dictionary<string, object>();
             size = InputSize._NotSet;
-            width = new Width();
+            width = new Width(InputWidth.Default);
             appendButtons = new List<BootstrapButton>();
             prependButtons = new List<BootstrapButton>();
         }
 
-        public string id;
         public string htmlFieldName;
-        public object selectedValue;
-        public IEnumerable<SelectListItem> selectList;
-        public string optionLabel;
+        public string id;
+        public object value;
+        public string format;
         public IDictionary<string, object> htmlAttributes;
+        public string placeholder;
         public string prependString;
         public string appendString;
         public InputSize size;
@@ -36,5 +36,8 @@ namespace TwitterBootstrapMVC.ControlModels
         public HelpTextStyle validationMessageStyle;
         public ModelMetadata metadata;
         public TooltipConfiguration tooltipConfiguration;
+
+        public string actionAutoComplete;
+        public string controllerAutoComplete;
     }
 }

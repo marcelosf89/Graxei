@@ -16,27 +16,29 @@ using TwitterBootstrapMVC.Infrastructure.Enums;
 
 namespace TwitterBootstrapMVC.Controls
 {
-    public class BootstrapTextBox : BootstrapTextBoxBase<BootstrapTextBox>
+    public class BootstrapTypeHead : BootstrapTypeHead<BootstrapTypeHead>
     {
-        public BootstrapTextBox(HtmlHelper html, string htmlFieldName, ModelMetadata metadata)
-            : base(html, htmlFieldName, metadata)
+        public BootstrapTypeHead(HtmlHelper html, string htmlFieldName, ModelMetadata metadata, string action, string controller = "")
+            : base(html, htmlFieldName, metadata, action, controller)
         {
 
         }
     }
 
-    public class BootstrapTextBoxBase<T> : IBootstrapTextBox<T>
-        where T : BootstrapTextBoxBase<T>
+    public class BootstrapTypeHead<T> : IBootstrapTypeHead<T>
+        where T : BootstrapTypeHead<T>
     {
         protected HtmlHelper html;
-        protected BootstrapTextBoxModel _model = new BootstrapTextBoxModel();
+        protected BootstrapTypeHeadModel _model = new BootstrapTypeHeadModel();
 
-        public BootstrapTextBoxBase(HtmlHelper html, string htmlFieldName, ModelMetadata metadata)
+        public BootstrapTypeHead(HtmlHelper html, string htmlFieldName, ModelMetadata metadata, string action, string controller = "")
         {
             this.html = html;
             this._model.htmlFieldName = htmlFieldName;
             this._model.metadata = metadata;
             this._model.value = metadata.Model;
+            this._model.actionAutoComplete =  action;
+            this._model.controllerAutoComplete = controller;
         }
 
         public T Id(string id)
@@ -130,9 +132,9 @@ namespace TwitterBootstrapMVC.Controls
             return (T)this;
         }
 
-        public T Width(InputWidth width,object htmlAttributes)
+        public T Width(InputWidth width, object htmlAttributes)
         {
-            Width wdh = new Width(width,htmlAttributes.ToDictionary());
+            Width wdh = new Width(width, htmlAttributes.ToDictionary());
             this._model.width = wdh;
             return (T)this;
         }
@@ -172,7 +174,7 @@ namespace TwitterBootstrapMVC.Controls
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual string ToHtmlString()
         {
-            return Renderer.RenderTextBox(html, _model);
+            return Renderer.TypeHead(html, _model);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

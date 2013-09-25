@@ -16,7 +16,7 @@ namespace TwitterBootstrapMVC.Renderers
 {
     internal static partial class Renderer
     {
-        public static string RenderTextBox(HtmlHelper html, BootstrapTextBoxModel model)
+        public static string TypeHead(HtmlHelper html, BootstrapTypeHeadModel model)
         {
             if (model == null || string.IsNullOrEmpty(model.htmlFieldName)) return null;
 
@@ -28,6 +28,8 @@ namespace TwitterBootstrapMVC.Renderers
             if (!string.IsNullOrEmpty(model.placeholder)) model.htmlAttributes.Add("placeholder", model.placeholder);
             // assign size class
             model.htmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForInputSize(model.size));
+
+            model.htmlAttributes.Add("data-provide", "typeahead");
             // build html for input
             var input = html.TextBox(model.htmlFieldName, model.value, model.format, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
 
@@ -77,6 +79,29 @@ namespace TwitterBootstrapMVC.Renderers
                 validationMessage = new BootstrapHelpText(validation, model.validationMessageStyle).ToHtmlString();
             }
 
+            String url = new UrlHelper(html.ViewContext.RequestContext).Action(model.actionAutoComplete);
+            if (!String.IsNullOrEmpty(model.controllerAutoComplete))
+            {
+                url = new UrlHelper(html.ViewContext.RequestContext).Action(model.actionAutoComplete, model.controllerAutoComplete);
+            }
+
+            if (String.IsNullOrEmpty(model.id))
+            {
+                model.id = model.htmlFieldName.Replace(".", "_");
+            }
+            String script = @"<script>
+                $(function () {
+                    $('#" + model.id + @"').typeahead({
+                        source: function (term, process) {
+                        var url = '" + url + @"'; 
+                        return $.getJSON(url, { term: term }, function (data) {
+                        return process(data);
+                            });
+                        }
+                    });
+                })
+            </script>";
+
 
             TagBuilder containerDiv = new TagBuilder("div");
             containerDiv.AddOrMergeCssClass(BootstrapHelper.GetClassForInputWidth(model.width.InputWidth));
@@ -84,7 +109,7 @@ namespace TwitterBootstrapMVC.Renderers
             {
                 containerDiv.MergeAttribute(key, (string)model.width.HtmlAttributes[key]);
             }
-            containerDiv.InnerHtml = MvcHtmlString.Create(string.Format(combinedHtml, input, validationMessage, helpText)).ToString();
+            containerDiv.InnerHtml = MvcHtmlString.Create(string.Format(combinedHtml, input, validationMessage, helpText) + script).ToString();
 
             return containerDiv.ToString();
         }
