@@ -15,6 +15,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             _servicoEnderecos = servicoEnderecos;
         }
 
+        #region ActionResults
         public ActionResult Novo(string nomeLoja = "")
         {
             Loja loja = new Loja() {Nome = nomeLoja};
@@ -39,6 +40,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             return View("Salvo");
         }
 
+        #endregion  
         #region Atributos Privados
         private readonly IServicoLojas _servicoLojas;
         private readonly IServicoEnderecos _servicoEnderecos;

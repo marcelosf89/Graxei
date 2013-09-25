@@ -1,4 +1,5 @@
 ﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models.EnderecoNovoModel
+
 <div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure="", OnSuccess = " $('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
     {
@@ -11,7 +12,7 @@
                 <div class="modal-body">
                     @if (Model != null && Model.NomeLoja != null)
                     {
-                        <h2>@String.Format(Textos.EnderecosLoja, Model.NomeLoja)</h2>
+                        <h2>String.Format(Textos.EnderecosLoja, Model.NomeLoja)</h2>
                     }
                     <div class="row form-group">
                             @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
@@ -22,25 +23,17 @@
                     <div class="row form-group">
                             @Html.Bootstrap().Label(Rotulos.Bairro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                             @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteBairro","Enderecos").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
-                    <div>
-                        @Html.TextBoxFor(m => m.Endereco.Bairro.Cidade.Nome, new { id = "IdCidade", data_autocomplete_url = Url.Action("AutocompleteCidade") })
-                    </div>
-                    <div>
                     </div>
                     <div class="row form-group">
                             @Html.Bootstrap().LabelFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                             @Html.Bootstrap().TextBoxFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control"})
-                    <div>
                     </div>
                     <div class="row form-group">
                             @Html.Bootstrap().LabelFor(m => m.Endereco.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                             @Html.Bootstrap().TextBoxFor(m => m.Endereco.Numero).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control"}).ShowValidationMessage(true)
-                    <div>
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Endereco.Complemento).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                    </div>
-                    <div>
                     </div>
                 </div>
 
@@ -60,23 +53,16 @@
 </script>
 
 <script type="text/javascript">
-    
-
     $(document).ready(function () {
-        $(document).on('change','#IdEstado',function () {
-            
+        $("#IdEstado").change(function () {
             var estadoSel = $("#IdEstado").val();
             if (estadoSel != 0) {
                 var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
-                $.post(url, { idEstado: estadoSel }, function (data) {});
+                $.post(url, { idEstado: estadoSel },
+                    function (data) {
+                    });
             }
         });
-        $(document).on('blur','#IdCidade',function () {
-            var estadoSel = $("#IdEstado").val();
-            var cidadeDig = $("#IdCidade").val();
-            var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
-            $.post(url, { idEstado: estadoSel, valCidade: cidadeDig }, function (data) { });
-   });
     });
 </script>
 <script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>
