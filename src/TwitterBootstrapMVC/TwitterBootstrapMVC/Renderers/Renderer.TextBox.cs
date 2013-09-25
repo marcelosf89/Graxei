@@ -28,6 +28,7 @@ namespace TwitterBootstrapMVC.Renderers
             if (!string.IsNullOrEmpty(model.placeholder)) model.htmlAttributes.Add("placeholder", model.placeholder);
             // assign size class
             model.htmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForInputSize(model.size));
+            model.htmlAttributes.AddOrMergeCssClass("class", "form-control");
             // build html for input
             var input = html.TextBox(model.htmlFieldName, model.value, model.format, model.htmlAttributes.FormatHtmlAttributes()).ToHtmlString();
 

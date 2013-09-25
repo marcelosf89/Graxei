@@ -142,6 +142,7 @@
     <Compile Include="Controls\CarouselCustomItem.cs" />
     <Compile Include="Controls\AjaxBootstrapActionLinkButton.cs" />
     <Compile Include="Controls\BootstrapTextBoxTypeHead.cs" />
+    <Compile Include="Controls\AjaxBootstrapActionLink.cs" />
     <Compile Include="Controls\FormActionsBuilder.cs" />
     <Compile Include="Controls\DropDown.cs" />
     <Compile Include="Controls\DropDownBuilder.cs" />

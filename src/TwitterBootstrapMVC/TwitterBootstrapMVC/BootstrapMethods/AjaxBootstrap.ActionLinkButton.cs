@@ -30,5 +30,26 @@ namespace TwitterBootstrapMVC.BootstrapMethods
         {
             return new AjaxBootstrapActionLinkButton(Ajax, linkText, actionName, controllerName, result);
         }
+
+
+        public AjaxBootstrapActionLink ActionLink(string linkText, AjaxOptions result)
+        {
+            return new AjaxBootstrapActionLink(Ajax, linkText, result);
+        }
+
+        public AjaxBootstrapActionLink ActionLink(string linkText, string actionName)
+        {
+            return new AjaxBootstrapActionLink(Ajax, linkText, actionName);
+        }
+
+        public AjaxBootstrapActionLink ActionLink(string linkText, string actionName, string controllerName)
+        {
+            return new AjaxBootstrapActionLink(Ajax, linkText, actionName, controllerName);
+        }
+
+        public AjaxBootstrapActionLink ActionLink(string linkText, string actionName, string controllerName, AjaxOptions result)
+        {
+            return new AjaxBootstrapActionLink(Ajax, linkText, actionName, controllerName, result);
+        }
     }
 }

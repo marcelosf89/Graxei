@@ -16,7 +16,7 @@ using TwitterBootstrapMVC.TypeExtensions;
 
 namespace TwitterBootstrapMVC.Controls
 {
-    public class AjaxBootstrapActionLinkButton : BootstrapButtonBase<AjaxBootstrapActionLinkButton>
+    public class AjaxBootstrapActionLink : BootstrapButtonBase<AjaxBootstrapActionLink>
     {
         private AjaxHelper ajax;
         private AjaxOptions _result;
@@ -28,7 +28,7 @@ namespace TwitterBootstrapMVC.Controls
         private string _fragment;
         private RouteValueDictionary _routeValues;
 
-        public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, AjaxOptions result)
+        public AjaxBootstrapActionLink(AjaxHelper ajax, string linkText, AjaxOptions result)
             : base("")
         {
             this.ajax = ajax;
@@ -38,7 +38,7 @@ namespace TwitterBootstrapMVC.Controls
             this._model.style = ButtonStyle.Default;
         }
 
-        public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, string actionName, AjaxOptions result = null)
+        public AjaxBootstrapActionLink(AjaxHelper ajax, string linkText, string actionName, AjaxOptions result = null)
             : base("")
         {
             this.ajax = ajax;
@@ -49,7 +49,7 @@ namespace TwitterBootstrapMVC.Controls
             this._result = result ?? new AjaxOptions();
         }
 
-        public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, string actionName, string controllerName, AjaxOptions result = null)
+        public AjaxBootstrapActionLink(AjaxHelper ajax, string linkText, string actionName, string controllerName, AjaxOptions result = null)
             : base("")
         {
             this.ajax = ajax;
@@ -61,61 +61,61 @@ namespace TwitterBootstrapMVC.Controls
             this._result = result ?? new AjaxOptions();
         }
 
-        public AjaxBootstrapActionLinkButton Id(string id)
+        public AjaxBootstrapActionLink Id(string id)
         {
             this._model.id = id;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton Protocol(string protocol)
+        public AjaxBootstrapActionLink Protocol(string protocol)
         {
             this._protocol = protocol;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton HtmlAttributes(IDictionary<string, object> htmlAttributes)
+        public AjaxBootstrapActionLink HtmlAttributes(IDictionary<string, object> htmlAttributes)
         {
             this._model.htmlAttributes = htmlAttributes;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton HostName(string hostName)
+        public AjaxBootstrapActionLink HostName(string hostName)
         {
             this._hostName = hostName;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton Fragment(string fragment)
+        public AjaxBootstrapActionLink Fragment(string fragment)
         {
             this._fragment = fragment;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton RouteName(string routeName)
+        public AjaxBootstrapActionLink RouteName(string routeName)
         {
             this._routeName = routeName;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton RouteValues(RouteValueDictionary routeValues)
+        public AjaxBootstrapActionLink RouteValues(RouteValueDictionary routeValues)
         {
             this._routeValues = routeValues;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton RouteValues(object routeValues)
+        public AjaxBootstrapActionLink RouteValues(object routeValues)
         {
             this._routeValues = HtmlHelper.AnonymousObjectToHtmlAttributes(routeValues);
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton Disabled()
+        public AjaxBootstrapActionLink Disabled()
         {
             this._model.disabled = true;
             return this;
         }
 
-        public AjaxBootstrapActionLinkButton DropDownToggle()
+        public AjaxBootstrapActionLink DropDownToggle()
         {
             this._model.isDropDownToggle = true;
             return this;
@@ -125,11 +125,9 @@ namespace TwitterBootstrapMVC.Controls
         public override string ToHtmlString()
         {
             var mergedHtmlAttributes = _model.htmlAttributes;
-            mergedHtmlAttributes.AddOrMergeCssClass("class", "btn");
             if(!string.IsNullOrEmpty(_model.id)) mergedHtmlAttributes.AddIfNotExist("id", _model.id);
 
             mergedHtmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForButtonSize(_model.size));
-            mergedHtmlAttributes.AddOrMergeCssClass("class", BootstrapHelper.GetClassForButtonStyle(_model.style));
 
             if (_model.buttonBlock) mergedHtmlAttributes.AddOrMergeCssClass("class", "btn-block");
             if (_model.isDropDownToggle)
