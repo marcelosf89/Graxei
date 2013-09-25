@@ -187,6 +187,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loja.
+        /// </summary>
+        public static string Loja {
+            get {
+                return ResourceManager.GetString("Loja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lojas.
         /// </summary>
         public static string Lojas {

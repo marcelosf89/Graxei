@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     @if (Model != null && Model.NomeLoja != null)
                     {
-                        <h2>String.Format(Textos.EnderecosLoja, Model.NomeLoja)</h2>
+                        <h2>@Rotulos.Loja: @String.Format(Textos.EnderecosLoja, Model.NomeLoja)</h2>
                     }
                     <div class="row form-group">
                             @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })

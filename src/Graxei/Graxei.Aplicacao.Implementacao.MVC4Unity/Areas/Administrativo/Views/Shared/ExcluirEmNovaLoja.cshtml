@@ -1,0 +1,7 @@
+﻿@using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
+@model ItemListaNovosEnderecosModel
+
+<div class="item">
+    <h3>@Model.Endereco</h3>
+    <h4>@Ajax.Bootstrap().ActionLinkButton(@Rotulos.Excluir, "Excluir", "Enderecos").HtmlAttributes( new { idLista = Model.Id})</h4>
+</div>

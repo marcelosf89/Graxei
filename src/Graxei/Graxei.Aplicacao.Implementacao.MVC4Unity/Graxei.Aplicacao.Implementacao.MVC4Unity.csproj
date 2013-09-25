@@ -259,6 +259,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Administrativo\Views\Lojas\Salvo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\ExcluirEmNovaLoja.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

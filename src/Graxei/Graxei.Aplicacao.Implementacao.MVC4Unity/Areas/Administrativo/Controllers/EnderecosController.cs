@@ -31,20 +31,16 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         [HttpPost]
         public RedirectToRouteResult Novo(EnderecoNovoModel item)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new Exception("Erro");
-            }
             Estado estado = _servicoEnderecos.GetEstado(item.IdEstado);
             item.Endereco.Bairro.Cidade.Estado = estado;
             AdicionarEnderecoModel(item);
             return RedirectToAction("Novo", "Lojas", new { item.NomeLoja });
         }
 
-        public RedirectToRouteResult Excluir(int id, string nomeLoja)
+        public RedirectToRouteResult Excluir(int idLista)
         {
-            Enderecos.RemoveAll(p => p.Id == id);
-            return RedirectToAction("Novo", "Lojas", new { nomeLoja });
+            Enderecos.RemoveAll(p => p.Id == idLista);
+            return RedirectToAction("Novo", "Lojas" );
         }
 
         public ActionResult EstadoSelecionado(string idEstado)
@@ -79,11 +75,12 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         public ActionResult AutoCompleteBairro(string term)
         {
             string[] itens = Bairros.Select(p => p.Nome).ToArray();
-            IEnumerable<string> filteredItems =
-                itens.Where(item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) > 0);
+            IEnumerable<String> itensFiltrados = itens.Where(
+                item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
+                );
             /*IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
-            return Json(filteredItems, JsonRequestBehavior.AllowGet);
+            return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
 
         #region Métodos Privados
@@ -148,7 +145,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             {
                 if (Session[ItensSessao.EnderecosNovaLoja] == null)
                 {
-                    Session[ItensSessao.EnderecosNovaLoja] = new List<Endereco>();
+                    Session[ItensSessao.EnderecosNovaLoja] = new List<ItemListaNovosEnderecosModel>();
                 }
                 return (List<ItemListaNovosEnderecosModel>)Session[ItensSessao.EnderecosNovaLoja];
             }

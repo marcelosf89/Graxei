@@ -186,4 +186,7 @@
   <data name="Excluir" xml:space="preserve">
     <value>Excluir</value>
   </data>
+  <data name="Loja" xml:space="preserve">
+    <value>Loja</value>
+  </data>
 </root>

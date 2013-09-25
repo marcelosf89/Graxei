@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
@@ -46,20 +47,19 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         private readonly IServicoEnderecos _servicoEnderecos;
         #endregion
 
-        private IList<ItemListaNovosEnderecosModel> Enderecos
+        private List<ItemListaNovosEnderecosModel> Enderecos
         {
             get
             {
-                object enderecos = Session["EnderecosNovaLoja"];
-                if (enderecos == null)
+                if (Session[ItensSessao.EnderecosNovaLoja] == null)
                 {
-                    enderecos = new List<Endereco>();
+                    Session[ItensSessao.EnderecosNovaLoja] = new List<ItemListaNovosEnderecosModel>();
                 }
-                return (IList<ItemListaNovosEnderecosModel>)Session["EnderecosNovaLoja"];
+                return (List<ItemListaNovosEnderecosModel>)Session[ItensSessao.EnderecosNovaLoja];
             }
             set
             {
-                Session["EnderecosNovaLoja"] = value;
+                Session[ItensSessao.EnderecosNovaLoja] = value;
             }
         }
         

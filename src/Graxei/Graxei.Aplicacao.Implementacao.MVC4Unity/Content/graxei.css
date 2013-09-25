@@ -120,3 +120,24 @@ border-radius: 5px;
 }
 
 /* Fim Menu Administrador*/
+
+DIV.item {
+    border-top: 1px dotted gray;
+    padding-top: .7em;
+    margin-bottom: .7em;
+}
+
+    DIV.item:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+
+    DIV.item H3 {
+        font-size: 1.3em;
+        margin: 0 0 .25em 0;
+    }
+
+    DIV.item H4 {
+        font-size: 1.1em;
+        margin: .4em 0 0 0;
+    }

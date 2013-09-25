@@ -123,6 +123,9 @@
   <data name="EnderecosLoja" xml:space="preserve">
     <value>Endereços da Loja {0}</value>
   </data>
+  <data name="EnderecosVazio" xml:space="preserve">
+    <value>Nenhum endereço para esta loja</value>
+  </data>
   <data name="EsqueceuSuaSenha" xml:space="preserve">
     <value>Esqueceu sua senha?</value>
   </data>

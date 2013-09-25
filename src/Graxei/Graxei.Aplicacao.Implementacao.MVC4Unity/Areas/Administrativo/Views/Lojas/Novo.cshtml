@@ -18,30 +18,21 @@
             @Html.EditorFor(model => model.Loja.Nome)
         </div>
     </fieldset>
-    @Ajax.ActionLink(Rotulos.NovoEndereco, "Index", new { controller = "Enderecos", nomeLoja = Model.Loja.Nome }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-default " })
-
+}
     <p>@Rotulos.Enderecos</p>
-    <table>
-        <thead>
-            <tr>
-                <th colspan="3"></th>
-            </tr>
-        </thead>
-        @if(Model != null && Model.NovosEnderecoModel != null){
-            <tbody>
-            
-                @foreach (ItemListaNovosEnderecosModel line in Model.NovosEnderecoModel)
-                {
-                    <tr>
-                        <td>@line.Endereco</td>
-                    </tr>
-                    <tr>@Html.ActionLink(@Rotulos.Excluir, "Excluir", "Enderecos", new { line.Id, Model.Loja.Nome })</tr>
-                }
-
-            </tbody>
+    
+    @if (!Model.NovosEnderecoModel.Any())
+    {
+        Html.Bootstrap().Label(Textos.EnderecosVazio);
+    }
+    else
+    {
+        foreach (ItemListaNovosEnderecosModel line in Model.NovosEnderecoModel)
+        {
+            Html.RenderPartial("ExcluirEmNovaLoja", line);
         }
-    </table>
+    }
+ 
+    
     @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
     @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
-}
-

@@ -79,6 +79,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nenhum endereço para esta loja.
+        /// </summary>
+        public static string EnderecosVazio {
+            get {
+                return ResourceManager.GetString("EnderecosVazio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esqueceu sua senha?.
         /// </summary>
         public static string EsqueceuSuaSenha {
