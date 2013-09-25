@@ -49,6 +49,14 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             return View("Novo");
         }
 
+        public ActionResult CidadeSelecionado(string idEstado, string valCidade)
+        {
+            int id = int.Parse(idEstado);
+            Cidades = _servicoEnderecos.GetCidades(id);
+
+            return View("Novo");
+        }
+
         public ActionResult AutoCompleteCidade(string term)
         {
             string[] items = Cidades.Select(p => p.Nome).ToArray();
