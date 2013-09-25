@@ -31,6 +31,7 @@ namespace TwitterBootstrapMVC.Controls
         public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, AjaxOptions result)
             : base("")
         {
+            if (result == null) { result = new AjaxOptions(); }
             this.ajax = ajax;
             this._model.text = linkText;
             this._result = result;
@@ -38,9 +39,10 @@ namespace TwitterBootstrapMVC.Controls
             this._model.style = ButtonStyle.Default;
         }
 
-        public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, string actionName)
+        public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, string actionName, AjaxOptions result = null)
             : base("")
         {
+            if (result == null) { result = new AjaxOptions(); }
             this.ajax = ajax;
             this._model.text = linkText;
             this._actionName = actionName;
@@ -51,6 +53,7 @@ namespace TwitterBootstrapMVC.Controls
         public AjaxBootstrapActionLinkButton(AjaxHelper ajax, string linkText, string actionName, string controllerName, AjaxOptions result = null)
             : base("")
         {
+            if (result == null) { result = new AjaxOptions(); }
             this.ajax = ajax;
             this._model.text = linkText;
             this._actionName = actionName;
