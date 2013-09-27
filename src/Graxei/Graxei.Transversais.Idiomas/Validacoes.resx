@@ -120,7 +120,13 @@
   <data name="NomeObrigatorio" xml:space="preserve">
     <value>O nome é obrigatório</value>
   </data>
+  <data name="SenhaObrigatoria" xml:space="preserve">
+    <value>Por favor, informe a senha</value>
+  </data>
   <data name="SiglaObrigatoria" xml:space="preserve">
     <value>A sigla é obrigatória</value>
+  </data>
+  <data name="UsuarioEmailObrigatorio" xml:space="preserve">
+    <value>Por favor, informe o nome do usuário ou e-mail </value>
   </data>
 </root>

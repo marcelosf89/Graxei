@@ -9,11 +9,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="myModalLabel">@Rotulos.Login</h3>
                 </div>
-                @Html.ValidationSummary(true)
                 <div class="modal-body">
-                    <div id="divErro" class="alert alert-danger" style="display:none;">
+                    @Html.ValidationSummary(true)
+                    <div id="divErro" class="alert alert-danger" style="display: none;">
                         <label id="erro"></label>
-                        </div>
+                    </div>
                     @if (ViewBag.ErroAutenticacao != null)
                     {
                         <div class="auth">@ViewBag.ErroAutenticacao</div>
@@ -52,6 +52,6 @@
         if (error != "") {
             $('#divErro').css('display', 'block');
             $('#erro').text(error);
-        }        
+        }
     }
 </script>

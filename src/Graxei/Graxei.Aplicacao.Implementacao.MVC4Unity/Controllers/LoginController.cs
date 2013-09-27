@@ -31,6 +31,10 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
             /* TODO: ver como será o tratamento de autenticação, que pode (ou poderia) ser login ou e-mail */
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             try
             {
                 Usuario usuarioAutenticado = _servicoUsuarios.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);

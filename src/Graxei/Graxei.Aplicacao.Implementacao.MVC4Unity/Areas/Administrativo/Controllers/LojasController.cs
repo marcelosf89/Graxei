@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Infraestutura;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
+﻿using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using System.Web.Mvc;
@@ -25,6 +23,10 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         [HttpPost]
         public ActionResult Novo(NovaLojaEnderecosModel item)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             _servicoLojas.Salvar(item.Loja);
             foreach (EnderecoIndiceModel end in item.NovosEnderecosModel.Enderecos)
             {
