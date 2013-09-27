@@ -42,9 +42,10 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             }
             catch (AutenticacaoException ae)
             {
-                return Content(ae.Message);
-            }
-            return Redirect("~/Administrativo/Home");
+                Response.StatusCode = 500;
+                return Content(ae.Message, "text/html");
+            }            
+            return Json(new { url = Url.Action("Home","Administrativo") });
         }
 
         public ActionResult RedefinirSenha()

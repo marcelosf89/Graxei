@@ -1,7 +1,7 @@
 ﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Models.AutenticacaoModel
 
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @using (Ajax.BeginForm("Autenticacao", "Login", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "loadMessages" }))
+    @using (Ajax.BeginForm("Autenticacao", "Login", new AjaxOptions() { HttpMethod = "POST", OnFailure = "loadMessages", OnSuccess = "loadPage" }))
     {
         <div class="modal-dialog">
             <div class="modal-content">
@@ -48,10 +48,18 @@
     $('#Modal2').modal('show') //ele vai iniciar o popup aqui.. o redefinr senha usa a mesma formula.. só que no final ao completar ele ira fechar esse popup..
 </script>
 <script>
-    function loadMessages(error) {
-        if (error != "") {
+    function loadPage(result) {
+        if (result.url) {
+            // if the server returned a JSON object containing an url 
+            // property we redirect the browser to that url
+            window.location.href = result.url;
+        }
+    }
+    
+    function loadMessages(result) {
+         if (result != "") {
             $('#divErro').css('display', 'block');
-            $('#erro').text(error);
+            $('#erro').text(result.responseText);
         }
     }
 </script>
