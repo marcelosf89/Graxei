@@ -6,7 +6,7 @@ namespace Graxei.Persistencia.Contrato
     public interface IRepositorioEnderecos : IRepositorioEntidades<Endereco>
     {
         IList<Endereco> Todos(Loja loja);
-        IList<Endereco> Todos(int idLoja);
+        IList<Endereco> Todos(long idLoja);
         /*IList<Estado> GetEstados();
         IList<Cidade> GetCidades(Estado estado);
         IList<Cidade> GetCidades(int idEstado);

@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AutenticacaoEmail" xml:space="preserve">
+    <value>E-mail não existe ou senha é inválida</value>
+  </data>
+  <data name="AutenticacaoLogin" xml:space="preserve">
+    <value>Usuário ou senha inválida</value>
+  </data>
   <data name="BairroNulo" xml:space="preserve">
     <value>Endereço incompleto: bairro faltando</value>
   </data>
   <data name="CidadeNulo" xml:space="preserve">
     <value>Endereço incompleto: cidade faltando</value>
+  </data>
+  <data name="EnderecoLojaNulo" xml:space="preserve">
+    <value>Endereço deve pertencer a uma loja</value>
   </data>
   <data name="EnderecoNumeroNulo" xml:space="preserve">
     <value>Endereço incompleto: preencha o número</value>
@@ -131,5 +140,8 @@
   </data>
   <data name="LogradouroNulo" xml:space="preserve">
     <value>Endereço incompleto: preencha o logradouro</value>
+  </data>
+  <data name="LojaSalvarInvalido" xml:space="preserve">
+    <value>A loja não pode ser salva sem uma associação com algum usuário</value>
   </data>
 </root>

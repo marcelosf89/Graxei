@@ -2,11 +2,10 @@
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
 {
-    public class EnderecoNovoModel
+    public class EnderecoIndiceModel
     {
-        public string NomeLoja { get; set; }
+        public int IdLista { get; set; }
+        public long IdEstado { get; set; }
         public Endereco Endereco { get; set; }
-        public int IdEstado { get; set; }
-
     }
 }

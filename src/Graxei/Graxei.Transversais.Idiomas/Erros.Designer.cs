@@ -61,6 +61,24 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail não existe ou senha é inválida.
+        /// </summary>
+        public static string AutenticacaoEmail {
+            get {
+                return ResourceManager.GetString("AutenticacaoEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário ou senha inválida.
+        /// </summary>
+        public static string AutenticacaoLogin {
+            get {
+                return ResourceManager.GetString("AutenticacaoLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço incompleto: bairro faltando.
         /// </summary>
         public static string BairroNulo {
@@ -75,6 +93,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string CidadeNulo {
             get {
                 return ResourceManager.GetString("CidadeNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Endereço deve pertencer a uma loja.
+        /// </summary>
+        public static string EnderecoLojaNulo {
+            get {
+                return ResourceManager.GetString("EnderecoLojaNulo", resourceCulture);
             }
         }
         
@@ -102,6 +129,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string LogradouroNulo {
             get {
                 return ResourceManager.GetString("LogradouroNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A loja não pode ser salva sem uma associação com algum usuário.
+        /// </summary>
+        public static string LojaSalvarInvalido {
+            get {
+                return ResourceManager.GetString("LojaSalvarInvalido", resourceCulture);
             }
         }
     }

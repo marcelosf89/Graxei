@@ -9,7 +9,7 @@ namespace Graxei.Modelo
     public class Produto : Entidade
     {
         [DocumentId]
-        public override long Id { get; set; }
+        public override long Id { get; protected set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
         [Display(ResourceType = typeof(Propriedades), Name = "Codigo")]
         public virtual string Codigo { get; set; }

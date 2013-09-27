@@ -54,55 +54,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .ToList();
         }
  
-        public IList<Endereco> Todos(int idLoja)
+        public IList<Endereco> Todos(long idLoja)
         {
             return SessaoAtual.Query<Endereco>()
                               .Where(p => p.Loja != null && p.Loja.Id == idLoja)
                               .ToList();
-        }
-
-        public new void Salvar(Endereco endereco)
-        {
-            Bairro bairro = endereco.Bairro;
-            if (bairro == null)
-            {
-                throw new EntidadeInvalidaException(Erros.BairroNulo);
-            }
-            Cidade cidade = bairro.Cidade;
-            if (cidade == null)
-            {
-                throw new EntidadeInvalidaException(Erros.CidadeNulo);
-            }
-            Estado estado = cidade.Estado;
-            if (estado == null)
-            {
-                throw new EntidadeInvalidaException(Erros.EstadoNulo);
-            }
-            if (!UtilidadeEntidades.IsTransiente(estado))
-            {
-                Estado repEstado = _repoEstados.GetPorId(estado.Id);
-                if (!repEstado.Equals(estado))
-                {
-                    estado.Nome = repEstado.Nome;
-                }
-            }
-            if (!UtilidadeEntidades.IsTransiente(cidade))
-            {
-                Cidade repCidade = _repoCidades.GetPorId(cidade.Id);
-                if (!repCidade.Equals(cidade))
-                {
-                    cidade.Nome = repCidade.Nome;
-                }
-            }
-            if (!UtilidadeEntidades.IsTransiente(bairro))
-            {
-                Bairro repBairro = _repoBairros.GetPorId(bairro.Id);
-                if (!repBairro.Equals(bairro))
-                {
-                    bairro.Nome = repBairro.Nome;
-                }
-            }
-            base.Salvar(endereco);
         }
 
         /* public Estado GetEstado(int idEstado)

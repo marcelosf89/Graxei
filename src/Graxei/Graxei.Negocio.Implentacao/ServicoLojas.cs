@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -58,6 +61,15 @@ namespace Graxei.Negocio.Implementacao
             IList<Usuario> us = new List<Usuario>();
             us.Add(usuario);
             Salvar(loja, us);
+        }
+
+        public new void Salvar(Loja loja)
+        {
+            if (UtilidadeEntidades.IsTransiente(loja))
+            {
+                throw new InvalidOperationException(Erros.LojaSalvarInvalido);
+            }
+            base.Salvar(loja);
         }
 
         public void Salvar(Loja loja, IList<Usuario> usuarios)

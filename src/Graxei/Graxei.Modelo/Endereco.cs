@@ -2,8 +2,6 @@
 using FAST.Modelo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
@@ -13,11 +11,10 @@ namespace Graxei.Modelo
         [Display(ResourceType = typeof(Propriedades), Name = "Logradouro")]
         public virtual string Logradouro { get; set; }
         [Display(ResourceType = typeof(Propriedades), Name = "Numero")]
-        [Required(ErrorMessage="teste 12344")]
+        [Required()]
         public virtual string Numero { get; set; }
         [Display(ResourceType = typeof(Propriedades), Name = "Complemento")]
         public virtual string Complemento { get; set; }
-        public virtual TipoLogradouro TipoLogradouro { get; set; }
         public virtual Loja Loja { get;  set; }
         public virtual Bairro Bairro { get; set; }
         public virtual IList<Telefone> Telefones { get; protected set; }
@@ -67,11 +64,14 @@ namespace Graxei.Modelo
                 return "<Endereço Incompleto>";
             }
             string retorno=
-                string.Format(@"{0}, {1} |*COMP*| - {2} - {3} - {4}", this.Logradouro, this.Numero, this.Bairro,
+                string.Format(@"{0}, {1}|*COMP*| - {2} - {3} - {4}", this.Logradouro, this.Numero, this.Bairro,
                               this.Bairro.Cidade, this.Bairro.Cidade.Estado);
             if (!string.IsNullOrEmpty(this.Complemento))
             {
                 retorno = retorno.Replace("|*COMP*|", ", " + this.Complemento);
+            } else
+            {
+                retorno = retorno.Remove(retorno.IndexOf("|*COMP*|"), 8);
             }
             return retorno;
         }

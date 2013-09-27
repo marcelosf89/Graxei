@@ -28,17 +28,17 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.Get(cidade);
         }
 
-        public IList<Bairro> GetPorCidade(int idCidade)
+        public IList<Bairro> GetPorCidade(long idCidade)
         {
             return Repositorio.Get(idCidade);
         }
 
-        public IList<Bairro> GetPorCidade(string nomeCidade, int idEstado)
+        public IList<Bairro> GetPorCidade(string nomeCidade, long idEstado)
         {
             return Repositorio.GetPorCidade(nomeCidade, idEstado);
         }
 
-        public Bairro Get(string nomeBairro, string nomeCidade, int idEstado)
+        public Bairro Get(string nomeBairro, string nomeCidade, long idEstado)
         {
             return Repositorio.Get(nomeBairro, nomeCidade, idEstado);
         }
@@ -48,7 +48,7 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.Get(nomeBairro, nomeCidade, estado);
         }
 
-        public Bairro Get(string nomeBairro, int idCidade)
+        public Bairro Get(string nomeBairro, long idCidade)
         {
             return Repositorio.Get(nomeBairro, idCidade);
         }

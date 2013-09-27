@@ -82,7 +82,6 @@
     <Compile Include="Mapeamento\UsuarioMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mapeamento\TelefoneMap.cs" />
-    <Compile Include="Mapeamento\TipoLogradouroMap.cs" />
     <Compile Include="Mapeamento\TipoTelefoneMap.cs" />
     <Compile Include="Mapeamento\UnidadeMedidaMap.cs" />
     <Compile Include="UnitOfWork\UnitOfWorkNHibernate.cs" />

@@ -7,22 +7,22 @@ namespace Graxei.Negocio.Contrato
     public interface IServicoEnderecos : IServicoEntidades<Endereco>
     {
         IList<Endereco> Todos(Loja loja);
-        IList<Endereco> Todos(int idLoja);
+        IList<Endereco> Todos(long idLoja);
         IList<Estado> GetEstados(EstadoOrdem ordem);
         IList<Cidade> GetCidades(Estado estado);
-        IList<Cidade> GetCidades(int idEstado);
+        IList<Cidade> GetCidades(long idEstado);
         IList<Bairro> GetBairros(Cidade cidade);
-        IList<Bairro> GetBairros(int idCidade);
-        IList<Bairro> GetBairros(string nomeCidade, int idEstado);
-        Estado GetEstado(int idEstado);
+        IList<Bairro> GetBairros(long idCidade);
+        IList<Bairro> GetBairros(string nomeCidade, long idEstado);
+        Estado GetEstado(long idEstado);
         Estado GetEstadoPorSigla(string sigla);
         Estado GetEstadoPorNome(string nome);
-        Cidade GetCidade(int idCidade);
-        Cidade GetCidade(string nome, int idEstado);
+        Cidade GetCidade(long idCidade);
+        Cidade GetCidade(string nome, long idEstado);
         Cidade GetCidade(string nome, Estado estado);
-        Bairro GetBairro(int idBairro);
-        Bairro GetBairro(string nomeBairro, string nomeCidade, int idEstado);
+        Bairro GetBairro(long idBairro);
+        Bairro GetBairro(string nomeBairro, string nomeCidade, long idEstado);
         Bairro GetBairro(string nomeBairro, Cidade cidade);
-        Bairro GetBairro(string nomeBairro, int idCidade);
+        Bairro GetBairro(string nomeBairro, long idCidade);
     }
 }

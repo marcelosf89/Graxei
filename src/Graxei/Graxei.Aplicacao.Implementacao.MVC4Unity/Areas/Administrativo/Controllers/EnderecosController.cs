@@ -20,26 +20,45 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
 
         //
         // GET: /Administrativo/Enderecos/
-        public ActionResult Index(string nomeLoja = "")
+        public ActionResult Index(NovaLojaEnderecosModel item)
         {
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            EnderecoNovoModel model = new EnderecoNovoModel() { Endereco = new Endereco(), IdEstado = 0, NomeLoja = nomeLoja};
+            ViewBag.NomeLoja = item.Loja.Nome;
+            EnderecoIndiceModel model = new EnderecoIndiceModel();
             return View("Novo", model);
         }
 
         [HttpPost]
-        public RedirectToRouteResult Novo(EnderecoNovoModel item)
+        public RedirectToRouteResult Novo(NovaLojaEnderecosModel item, EnderecoIndiceModel endereco)
         {
-            Estado estado = _servicoEnderecos.GetEstado(item.IdEstado);
-            item.Endereco.Bairro.Cidade.Estado = estado;
-            AdicionarEnderecoModel(item);
-            return RedirectToAction("Novo", "Lojas", new { item.NomeLoja });
+            Estado estado = _servicoEnderecos.GetEstado(endereco.IdEstado);
+            endereco.Endereco.Bairro.Cidade.Estado = estado;
+            item.NovosEnderecosModel.AdicionarEndereco(endereco);
+            return RedirectToAction("Novo", "Lojas");
         }
 
-        public RedirectToRouteResult Excluir(int id)
+        public ActionResult Editar(NovaLojaEnderecosModel item, int id)
         {
-            Enderecos.RemoveAll(p => p.Id == id);
+            EnderecoIndiceModel endereco = item.NovosEnderecosModel.Enderecos.SingleOrDefault(p => p.IdLista == id);
+            endereco.IdEstado = endereco.Endereco.Bairro.Cidade.Estado.Id;
+            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.NomeLoja = item.Loja.Nome;
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return View("Editar", endereco);
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult Editar(NovaLojaEnderecosModel item, EnderecoIndiceModel model)
+        {
+            Estado estado = _servicoEnderecos.GetEstado(model.IdEstado);
+            model.Endereco.Bairro.Cidade.Estado = estado;
+            return RedirectToAction("Novo", "Lojas");
+        }
+
+        public RedirectToRouteResult Excluir(NovaLojaEnderecosModel item, int id)
+        {
+            item.NovosEnderecosModel.RemoverEndereco(id);
             return RedirectToAction("Novo", "Lojas" );
         }
 
@@ -49,7 +68,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             Cidades = _servicoEnderecos.GetCidades(id);
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Novo");
+            return View("Formulario");
         }
 
         public ActionResult CidadeSelecionada(string idEstado, string valCidade)
@@ -58,7 +77,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             Bairros = _servicoEnderecos.GetBairros(valCidade, id);
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Novo");
+            return View("Formulario");
         }
 
         public ActionResult AutoCompleteCidade(string term)
@@ -88,17 +107,28 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         /// Adiciona o endereço recém-cadastrado à lista Http Session de endereços
         /// </summary>
         /// <param name="item"></param>
-        private void AdicionarEnderecoModel(EnderecoNovoModel item)
+       /* private void AdicionarEnderecoModel(EnderecosNovaLoja item)
         {
             int i = Enderecos.Count();
-            ItemListaNovosEnderecosModel novo = new ItemListaNovosEnderecosModel {Id = i, Endereco = item.Endereco};
+            EnderecosNovaLoja novo = new EnderecosNovaLoja { IdLista = i, Endereco = item.Endereco };
             Enderecos.Add(novo);
             i = 0;
-            foreach (ItemListaNovosEnderecosModel n in Enderecos.OrderBy(p => p.Id))
+            foreach (EnderecosNovaLoja n in Enderecos.OrderBy(p => p.IdLista))
             {
-                n.Id = i++;
+                n.IdLista = i++;
             }
-        }
+        }*/
+
+        /// <summary>
+        /// Edita o endereço cadastrado na lista Http Session de endereços
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="idLista"> </param>
+        /*private void EditarEnderecoModel(EnderecosNovaLoja item, int idLista)
+        {
+            EnderecosNovaLoja end = Enderecos.SingleOrDefault(p => p.IdLista == idLista);
+            end.Endereco = item.Endereco;
+        }*/
         #endregion
 
         #region Propriedades de Sessão
@@ -139,21 +169,21 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
 
 
         /* TODO: Refazer os mecanismos de acesso a elementos de sessão Http*/
-        private List<ItemListaNovosEnderecosModel> Enderecos
+        /*private List<EnderecosNovaLoja> Enderecos
         {
             get
             {
                 if (Session[ItensSessao.EnderecosNovaLoja] == null)
                 {
-                    Session[ItensSessao.EnderecosNovaLoja] = new List<ItemListaNovosEnderecosModel>();
+                    Session[ItensSessao.EnderecosNovaLoja] = new List<EnderecosNovaLoja>();
                 }
-                return (List<ItemListaNovosEnderecosModel>)Session[ItensSessao.EnderecosNovaLoja];
+                return (List<EnderecosNovaLoja>)Session[ItensSessao.EnderecosNovaLoja];
             }
             set
             {
                 Session[ItensSessao.EnderecosNovaLoja] = value;
             }
-        }
+        }*/
         #endregion
 
         #region Atributos Privados

@@ -18,14 +18,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .ToList();
         }
 
-        public IList<Bairro> Get(int idCidade)
+        public IList<Bairro> Get(long idCidade)
         {
             return SessaoAtual.Query<Bairro>()
                               .Where(p => p.Cidade != null && p.Cidade.Id == idCidade)
                               .ToList();
         }
 
-        public Bairro Get(string nomeBairro, string nomeCidade, int idEstado)
+        public Bairro Get(string nomeBairro, string nomeCidade, long idEstado)
         {
             return SessaoAtual.Query<Bairro>()
                 .SingleOrDefault(p => 
@@ -34,7 +34,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                    && p.Cidade.Estado.Id == idEstado);
         }
 
-        public Bairro Get(string nomeBairro, int idCidade)
+        public Bairro Get(string nomeBairro, long idCidade)
         {
             return SessaoAtual.Query<Bairro>()
                 .SingleOrDefault(p =>
@@ -61,7 +61,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                    && p.Cidade.Id == cidade.Id);
         }
 
-        public IList<Bairro> GetPorCidade(string nomeCidade, int idEstado)
+        public IList<Bairro> GetPorCidade(string nomeCidade, long idEstado)
         {
             return SessaoAtual.Query<Bairro>()
                 .Where(p =>

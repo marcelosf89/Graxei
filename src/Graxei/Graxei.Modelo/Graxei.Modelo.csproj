@@ -70,7 +70,6 @@
     <Compile Include="ProdutoVendedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Telefone.cs" />
-    <Compile Include="TipoLogradouro.cs" />
     <Compile Include="TipoTelefone.cs" />
     <Compile Include="UnidadeMedida.cs" />
     <Compile Include="Usuario.cs" />

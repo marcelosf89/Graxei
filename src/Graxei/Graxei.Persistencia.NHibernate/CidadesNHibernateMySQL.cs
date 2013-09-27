@@ -11,7 +11,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
     {
         #region Implementação de IRepositorioCidades
 
-        public Cidade Get(string nome, int idEstado)
+        public Cidade Get(string nome, long idEstado)
         {
             return SessaoAtual.Query<Cidade>()
                 .SingleOrDefault<Cidade>(p => Queries.CompararStrings(p.Nome, nome) && p.Estado.Id == idEstado);
@@ -32,7 +32,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .ToList();
         }
 
-        public IList<Cidade> GetPorEstado(int idEstado)
+        public IList<Cidade> GetPorEstado(long idEstado)
         {
             return SessaoAtual.Query<Cidade>()
                               .Where(p => p.Estado != null && p.Estado.Id == idEstado)

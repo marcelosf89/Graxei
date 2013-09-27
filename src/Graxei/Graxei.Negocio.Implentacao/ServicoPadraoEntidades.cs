@@ -11,11 +11,13 @@ namespace Graxei.Negocio.Implementacao
     {
 
         #region Implementações Padrão
-        public void PreSalvar(T t) { }
 
-        public void PreAtualizar(T t) { }
+        public void PreSalvar(T t){}
 
-        public void PreExcluir(T t) { }
+        public void PreAtualizar(T t){}
+
+        public void PreExcluir(T t){}
+
         #endregion
 
         #region Implementação de IServicoEntidades<T>

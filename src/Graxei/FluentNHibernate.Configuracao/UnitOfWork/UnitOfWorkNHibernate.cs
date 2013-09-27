@@ -65,7 +65,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         /// <returns>True ou False</returns>
         private bool HasOpenTransaction()
         {
-            ISession session = UnitOfWorkNHibernate.GetCurrentSession();
+            ISession session = GetCurrentSession();
             return session.Transaction == null ||
                    !session.Transaction.IsActive ||
                    session.Transaction.WasCommitted ||
@@ -80,7 +80,6 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             try
             {
-
                 if (!HasOpenTransaction())
                 {
                     UnitOfWorkNHibernate.GetCurrentSession().BeginTransaction();
@@ -101,7 +100,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             try
             {
-                ISession session = UnitOfWorkNHibernate.GetCurrentSession();
+                ISession session = GetCurrentSession();
                 if (HasOpenTransaction())
                 {
                     session.Transaction.Commit();
@@ -123,7 +122,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             if (HasOpenTransaction())
             {
-                UnitOfWorkNHibernate.GetCurrentSession().Transaction.Rollback();
+                GetCurrentSession().Transaction.Rollback();
             }
         }
 
@@ -196,7 +195,6 @@ namespace Graxei.FluentNHibernate.UnitOfWork
                    ed.DispatchRuntime.MessageInspectors.Add(this);
                }
            }
-
        }
 
        public void Validate(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
@@ -215,7 +213,9 @@ namespace Graxei.FluentNHibernate.UnitOfWork
        {
            context.BeginRequest += BeginRequest;
            context.EndRequest += EndRequest;
+           context.Error += Error;
        }
+
 
        public void Dispose()
        {
@@ -223,14 +223,32 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
        #endregion
 
+       #region Extensões dos eventos da sessão
        private static void BeginRequest(object sender, EventArgs e)
        {
-           UnitOfWorkNHibernate.BindSession();
+           BindSession();
+           //GetCurrentSession().Transaction.Begin();
        }
 
        private static void EndRequest(object sender, EventArgs e)
        {
-           UnitOfWorkNHibernate.UnBindSession();
+           //GetCurrentSession().Transaction.Commit();
+           UnBindSession();
        }
+
+       private void Error(object sender, EventArgs e)
+       {
+           ISession session = null;
+           try
+           {
+               GetCurrentSession().Transaction.Rollback();
+           } catch (Exception ex)
+           {
+
+           }
+           UnBindSession();
+       }
+       #endregion
+
     }
 }

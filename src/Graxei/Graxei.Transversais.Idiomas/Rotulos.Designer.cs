@@ -275,5 +275,14 @@ namespace Graxei.Transversais.Idiomas {
                 return ResourceManager.GetString("Salvar", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voltar.
+        /// </summary>
+        public static string Voltar {
+            get {
+                return ResourceManager.GetString("Voltar", resourceCulture);
+            }
+        }
     }
 }

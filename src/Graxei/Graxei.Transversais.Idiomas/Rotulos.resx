@@ -189,4 +189,7 @@
   <data name="Loja" xml:space="preserve">
     <value>Loja</value>
   </data>
+  <data name="Voltar" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
 </root>

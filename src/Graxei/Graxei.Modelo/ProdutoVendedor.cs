@@ -6,7 +6,6 @@ namespace Graxei.Modelo
 {
     public class ProdutoVendedor : Entidade
     {
-        public override long Id { get; set; }
         [Display(ResourceType = typeof(Propriedades), Name="Preco")]
         public virtual double Preco { get; set; }
         public virtual Produto Produto { get; set; }

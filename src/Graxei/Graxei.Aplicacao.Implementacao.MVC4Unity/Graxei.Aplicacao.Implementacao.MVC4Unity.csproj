@@ -143,13 +143,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
+    <Compile Include="Areas\Administrativo\Binders\NovaLojaEnderecosModelBinder.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
-    <Compile Include="Areas\Administrativo\Models\EnderecoNovoModel.cs" />
-    <Compile Include="Areas\Administrativo\Models\LojaNovosEnderecosModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\EnderecoIndiceModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\NovosEnderecosModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\NovaLojaEnderecosModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
-    <Compile Include="Binders\EnderecosBinder.cs" />
+    <Compile Include="Binders\UsuariosBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -158,8 +160,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\Constantes.cs" />
-    <Compile Include="Areas\Administrativo\Models\ItemListaNovosEnderecosModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -257,9 +259,11 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Administrativo\Views\Lojas\Salvo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Shared\ExcluirEmNovaLoja.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\AcoesEmNovaLoja.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Enderecos\Formulario.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Enderecos\Editar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Salvo.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

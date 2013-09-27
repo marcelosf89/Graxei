@@ -5,6 +5,7 @@ using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -26,7 +27,7 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.Todos(loja);
         }
 
-        public IList<Endereco> Todos(int idLoja)
+        public IList<Endereco> Todos(long idLoja)
         {
             return Repositorio.Todos(idLoja);
         }
@@ -50,7 +51,7 @@ namespace Graxei.Negocio.Implementacao
             return _servCidades.Get(estado);
         }
 
-        public IList<Cidade> GetCidades(int idEstado)
+        public IList<Cidade> GetCidades(long idEstado)
         {
             return _servCidades.GetPorEstado(idEstado);
         }
@@ -60,17 +61,17 @@ namespace Graxei.Negocio.Implementacao
             return _servBairros.Get(cidade);
         }
 
-        public IList<Bairro> GetBairros(int idCidade)
+        public IList<Bairro> GetBairros(long idCidade)
         {
             return _servBairros.GetPorCidade(idCidade);
         }
 
-        public IList<Bairro> GetBairros(string nomeCidade, int idEstado)
+        public IList<Bairro> GetBairros(string nomeCidade, long idEstado)
         {
             return _servBairros.GetPorCidade(nomeCidade, idEstado);
         }
 
-        public Estado GetEstado(int idEstado)
+        public Estado GetEstado(long idEstado)
         {
             return _servEstados.GetPorId(idEstado);
         }
@@ -85,12 +86,12 @@ namespace Graxei.Negocio.Implementacao
             return _servEstados.GetPorNome(nome);
         }
 
-        public Cidade GetCidade(int idCidade)
+        public Cidade GetCidade(long idCidade)
         {
             return _servCidades.GetPorId(idCidade);
         }
 
-        public Cidade GetCidade(string nome, int idEstado)
+        public Cidade GetCidade(string nome, long idEstado)
         {
             return _servCidades.Get(nome, idEstado);
         }
@@ -100,12 +101,12 @@ namespace Graxei.Negocio.Implementacao
             return _servCidades.Get(nome, estado);
         }
 
-        public Bairro GetBairro(int idBairro)
+        public Bairro GetBairro(long idBairro)
         {
             return _servBairros.GetPorId(idBairro);
         }
 
-        public Bairro GetBairro(string nomeBairro, string nomeCidade, int idEstado)
+        public Bairro GetBairro(string nomeBairro, string nomeCidade, long idEstado)
         {
             return _servBairros.Get(nomeBairro, nomeCidade, idEstado);
         }
@@ -115,7 +116,7 @@ namespace Graxei.Negocio.Implementacao
             return _servBairros.Get(nomeBairro, cidade);
         }
 
-        public Bairro GetBairro(string nomeBairro, int idCidade)
+        public Bairro GetBairro(string nomeBairro, long idCidade)
         {
             return _servBairros.Get(nomeBairro, idCidade);
         }
@@ -135,18 +136,28 @@ namespace Graxei.Negocio.Implementacao
         #region Métodos Sobrescritos
         public new void PreSalvar(Endereco endereco)
         {
+            Estado estado = null;
+            Cidade cidade = null;
+            Bairro bairro = null;
+            if (endereco.Loja == null)
+            {
+                throw new EntidadeInvalidaException(Erros.EnderecoLojaNulo);
+            }
             if (endereco.Bairro == null)
             {
                 throw new EntidadeInvalidaException(Erros.BairroNulo);
             }
+            bairro = endereco.Bairro;
             if (endereco.Bairro.Cidade == null)
             {
                 throw new EntidadeInvalidaException(Erros.CidadeNulo);
             }
+            cidade = endereco.Bairro.Cidade;
             if (endereco.Bairro.Cidade.Estado == null)
             {
                 throw new EntidadeInvalidaException(Erros.EstadoNulo);
             }
+            estado = endereco.Bairro.Cidade.Estado;
             if (string.IsNullOrEmpty(endereco.Logradouro))
             {
                 throw new EntidadeInvalidaException(Erros.LogradouroNulo);
@@ -155,7 +166,49 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new EntidadeInvalidaException(Erros.EnderecoNumeroNulo);
             }
+            /* TODO: ver como vai ficar a situação de atualização do estado */
+            if (!UtilidadeEntidades.IsTransiente(cidade))
+            {
+                Cidade c = _servCidades.GetPorId(cidade.Id);
+                if (!c.Equals(cidade))
+                {
+                    cidade = c;
+                }
+            } else
+            {
+                Cidade c = _servCidades.Get(cidade.Nome, estado);
+                if (c != null)
+                {
+                    cidade = c;
+                }
+            }
+            _servCidades.Salvar(cidade);
+            if (!UtilidadeEntidades.IsTransiente(bairro))
+            {
+                Bairro b = _servBairros.GetPorId(bairro.Id);
+                if (!b.Equals(bairro))
+                {
+                    bairro = b;
+                    bairro.Cidade = cidade;
+                }
+            }else
+            {
+                Bairro b = _servBairros.Get(bairro.Nome, cidade.Nome, estado);
+                if (b != null)
+                {
+                    bairro = b;
+                }
+            }
+            _servBairros.Salvar(bairro);
+            endereco.Bairro = bairro;
         }
+
+        public new void Salvar(Endereco endereco)
+        {
+            PreSalvar(endereco);
+            base.Salvar(endereco);
+        }
+
         #endregion
 
         public enum AtributosOrdem { Sigla, Nome }

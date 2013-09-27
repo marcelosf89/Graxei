@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\EstadoOrdem.cs" />
+    <Compile Include="Excecoes\AutenticacaoException.cs" />
     <Compile Include="Excecoes\EntidadeInvalidaException.cs" />
     <Compile Include="Excecoes\ObjetoJaExisteException.cs" />
     <Compile Include="Excecoes\OperacaoEntidadeException.cs" />

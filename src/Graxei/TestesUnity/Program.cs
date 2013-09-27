@@ -1,6 +1,7 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
+using Graxei.Negocio.Implementacao;
 using Microsoft.Practices.Unity;
 using System;
 using TestesUnity.ConfiguracoesUnity;
@@ -12,7 +13,37 @@ namespace TestesUnity
         static void Main(string[] args)
         {
             log4net.Config.XmlConfigurator.Configure();
+
             using (IUnityContainer container = new UnityContainer())
+            {
+                try
+                {
+                    ContainerGraxei.RegisterTypes(container);
+                    UnitOfWorkNHibernate.GetCurrentSession().BeginTransaction();
+                    IServicoEnderecos enderecos = container.Resolve<IServicoEnderecos>();
+                    IServicoEstados estados = container.Resolve<IServicoEstados>();
+                    IServicoLojas lojas = container.Resolve<IServicoLojas>();
+                    Estado e = estados.GetPorSigla("RJ");
+                    Cidade c = new Cidade() {Nome = "Janeiro de Rio", Estado = e};
+                    //Cidade c = enderecos.GetCidade("Rio de Janeiro", e);
+                    c.Nome = "Janeiro de Rio";
+                    Bairro b = new Bairro() {Nome = "Centro", Cidade = c};
+                    Endereco end = new Endereco() {Logradouro = "Rua a", Numero = "111", Bairro = b};
+                    Loja loja = new Loja() {Nome = "Loja do Josué"};
+                    end.Loja = loja;
+                    //loja.Enderecos.Add(end);
+                    lojas.Salvar(loja);
+                    enderecos.Salvar(end);
+                    UnitOfWorkNHibernate.GetCurrentSession().Transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    UnitOfWorkNHibernate.GetCurrentSession().Transaction.Rollback();
+                    Console.WriteLine("Rollbackou");
+                }
+            }
+            /*using (IUnityContainer container = new UnityContainer())
             {
                 ContainerGraxei.RegisterTypes(container);
                 UnitOfWorkNHibernate.GetCurrentSession().BeginTransaction();
@@ -49,10 +80,10 @@ namespace TestesUnity
                 produto.UnidadeEntrada = un1; produto.UnidadeSaida = un2;
                 produto.Categoria = ct; produto.Fabricante = f;
                 serv.Salvar(produto);*/
-                UnitOfWorkNHibernate.UnBindSession();
+                /*UnitOfWorkNHibernate.UnBindSession();
 
             }
-            Console.WriteLine("Foi");
+            Console.WriteLine("Foi");*/
             Console.Read();
         }
     }

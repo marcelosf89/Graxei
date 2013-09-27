@@ -17,27 +17,21 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         }
 
         #region ActionResults
-        public ActionResult Novo(string nomeLoja = "")
+        public ActionResult Index(NovaLojaEnderecosModel item)
         {
-            Loja loja = new Loja() {Nome = nomeLoja};
-            LojaNovosEnderecosModel item = new LojaNovosEnderecosModel()
-                                               {
-                                                   Loja = loja,
-                                                   NovosEnderecoModel = Enderecos
-                                               };
-            return View(item);
+            return View("Novo", item);
         }
 
         [HttpPost]
-        public ActionResult Novo(Loja model)
+        public ActionResult Novo(NovaLojaEnderecosModel item)
         {
-            foreach (Endereco endereco in model.Enderecos)
+            _servicoLojas.Salvar(item.Loja);
+            foreach (EnderecoIndiceModel end in item.NovosEnderecosModel.Enderecos)
             {
-                endereco.Loja = model;
-                //model.Loja.AdicionarEndereco(endereco);
+                Endereco endereco = end.Endereco;
+                endereco.Loja = item.Loja;
                 _servicoEnderecos.Salvar(endereco);
             }
-            _servicoLojas.Salvar(model);
             return View("Salvo");
         }
 
@@ -47,21 +41,21 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         private readonly IServicoEnderecos _servicoEnderecos;
         #endregion
 
-        private List<ItemListaNovosEnderecosModel> Enderecos
+        /*private List<Novo> Enderecos
         {
             get
             {
                 if (Session[ItensSessao.EnderecosNovaLoja] == null)
                 {
-                    Session[ItensSessao.EnderecosNovaLoja] = new List<ItemListaNovosEnderecosModel>();
+                    Session[ItensSessao.EnderecosNovaLoja] = new List<EnderecosNovaLoja>();
                 }
-                return (List<ItemListaNovosEnderecosModel>)Session[ItensSessao.EnderecosNovaLoja];
+                return (List<EnderecosNovaLoja>)Session[ItensSessao.EnderecosNovaLoja];
             }
             set
             {
                 Session[ItensSessao.EnderecosNovaLoja] = value;
             }
-        }
+        }*/
         
 
     }

@@ -1,7 +1,7 @@
-﻿@model Graxei.Modelo.Usuario
+﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Models.AutenticacaoModel
 
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @using (Html.BeginForm())
+    @using (Ajax.BeginForm("Autenticacao", "Login", new AjaxOptions() { HttpMethod = "POST", OnFailure = "loadMessages" }))
     {
         <div class="modal-dialog">
             <div class="modal-content">
@@ -11,11 +11,18 @@
                 </div>
                 @Html.ValidationSummary(true)
                 <div class="modal-body">
+                    <div id="divErro" class="row" style="visibility: hidden;">
+                        <div class="error">@ViewBag.ErroAutenticacao</div>
+                        </div>
+                    @if (ViewBag.ErroAutenticacao != null)
+                    {
+                        <div class="auth">@ViewBag.ErroAutenticacao</div>
+                    }
                     <label>
-                        @Html.LabelFor(model => model.Login)
+                        @Html.LabelFor(model => model.LoginOuEmail)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.Login)
+                        @Html.EditorFor(model => model.LoginOuEmail)
                     </div>
                     <label>
                         @Html.LabelFor(model => model.Senha)
@@ -39,4 +46,9 @@
 <div id="myModalRemote"></div>
 <script>
     $('#Modal2').modal('show') //ele vai iniciar o popup aqui.. o redefinr senha usa a mesma formula.. só que no final ao completar ele ira fechar esse popup..
+</script>
+<script>
+    function loadMessages(error) {
+        $('#divErro').css('visibility', 'visible');
+    }
 </script>

@@ -18,7 +18,7 @@ namespace Graxei.Negocio.Implementacao
 
         #region Implementação de IServicoCidades
 
-        public Cidade Get(string nome, int idEstado)
+        public Cidade Get(string nome, long idEstado)
         {
             return Repositorio.Get(nome, idEstado);
         }
@@ -33,7 +33,7 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.Get(estado);
         }
 
-        public IList<Cidade> GetPorEstado(int idEstado)
+        public IList<Cidade> GetPorEstado(long idEstado)
         {
             return Repositorio.GetPorEstado(idEstado);
         }
