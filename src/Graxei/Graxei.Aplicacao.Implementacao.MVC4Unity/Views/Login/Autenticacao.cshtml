@@ -1,7 +1,7 @@
 ﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Models.AutenticacaoModel
 
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @using (Ajax.BeginForm("Autenticacao", "Login", new AjaxOptions() { HttpMethod = "POST", OnFailure = "loadMessages" }))
+    @using (Ajax.BeginForm("Autenticacao", "Login", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "loadMessages" }))
     {
         <div class="modal-dialog">
             <div class="modal-content">
@@ -11,8 +11,8 @@
                 </div>
                 @Html.ValidationSummary(true)
                 <div class="modal-body">
-                    <div id="divErro" class="row" style="visibility: hidden;">
-                        <div class="error">@ViewBag.ErroAutenticacao</div>
+                    <div id="divErro" class="alert alert-danger" style="display:none;">
+                        <label id="erro"></label>
                         </div>
                     @if (ViewBag.ErroAutenticacao != null)
                     {
@@ -49,6 +49,9 @@
 </script>
 <script>
     function loadMessages(error) {
-        $('#divErro').css('visibility', 'visible');
+        if (error != "") {
+            $('#divErro').css('display', 'block');
+            $('#erro').text(error);
+        }        
     }
 </script>

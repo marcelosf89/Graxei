@@ -38,8 +38,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             }
             catch (AutenticacaoException ae)
             {
-                ViewBag.ErroAutenticacao = ae.Message;
-                return base.Content(ae.Message);
+                return Content(ae.Message);
             }
             return Redirect("~/Administrativo/Home");
         }
