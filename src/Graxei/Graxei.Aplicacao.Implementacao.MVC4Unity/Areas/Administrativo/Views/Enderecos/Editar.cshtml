@@ -66,6 +66,12 @@
             var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
             $.post(url, { idEstado: estadoSel, valCidade: cidadeDig }, function (data) { });
         });
+        $(document).on("blur", "#IdBairro", function () {
+            var cidadeSel = $("#IdCidade").val();
+            var bairroDig = $(this).val();
+            var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+            $.post(url, { valCidade: cidadeSel, valBairro: bairroDig }, function (data) { });
+        });
     });
 </script>
 <script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>
