@@ -31,14 +31,14 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
             /* TODO: ver como será o tratamento de autenticação, que pode (ou poderia) ser login ou e-mail */
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    throw new AutenticacaoException("Verifique");
+                }
                 Usuario usuarioAutenticado = _servicoUsuarios.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);
-                Session[Constantes.UsuarioAtual] = usuarioAutenticado;
+                Helper.SetUsuarioLogado(Session, usuarioAutenticado);
             }
             catch (AutenticacaoException ae)
             {

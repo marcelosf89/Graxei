@@ -20,7 +20,7 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Métodos de sobrescrita
-        public new void PreSalvar(Loja loja)
+        private void PreSalvar(Loja loja)
         {
             if (string.IsNullOrEmpty(loja.Nome))
             {
@@ -33,7 +33,7 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        public new void PreAtualizar(Loja loja)
+        private void PreAtualizar(Loja loja)
         {
             if (string.IsNullOrEmpty(loja.Nome))
             {
@@ -47,8 +47,6 @@ namespace Graxei.Negocio.Implementacao
         }
         #endregion
 
-        private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas) _repositorioEntidades; } }
-
         #region Implementation of IServicoLojas
 
         public Loja Get(string nome)
@@ -58,13 +56,19 @@ namespace Graxei.Negocio.Implementacao
 
         public void Salvar(Loja loja, Usuario usuario)
         {
-            IList<Usuario> us = new List<Usuario>();
-            us.Add(usuario);
-            Salvar(loja, us);
+            if (UtilidadeEntidades.IsTransiente(loja))
+            {
+                PreSalvar(loja);
+            } else
+            {
+                PreAtualizar(loja);
+            }
+            RepositorioLojas.Salvar(loja, usuario);
         }
 
         public new void Salvar(Loja loja)
         {
+            // Se é uma nova loja, deve ser associado pelo menos um usuário
             if (UtilidadeEntidades.IsTransiente(loja))
             {
                 throw new InvalidOperationException(Erros.LojaSalvarInvalido);
@@ -74,14 +78,46 @@ namespace Graxei.Negocio.Implementacao
 
         public void Salvar(Loja loja, IList<Usuario> usuarios)
         {
-            foreach (Usuario u in usuarios)
+            if (UtilidadeEntidades.IsTransiente(loja))
             {
-                LojaUsuario lu = new LojaUsuario();
-                lu.Loja = loja;
-                lu.Usuario = u;
+                PreSalvar(loja);
             }
-            Salvar(loja);
+            else
+            {
+                PreAtualizar(loja);
+            }
+            RepositorioLojas.Salvar(loja, usuarios);
         }
+
+        #endregion
+
+        #region Atributos Privados
+        private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas)_repositorioEntidades; } }
+        #endregion
+
+        #region Implementation of IExcluirEntidade<Loja>
+
+        public void Excluir(Loja loja)
+        {
+            /* TODO: verificar as validações de exclusão de loja */
+            RepositorioLojas.Excluir(loja);
+        }
+
+        #endregion
+
+        #region Implementation of IServicoEntidades<Loja>
+
+        public Loja GetPorId(long id)
+        {
+            return RepositorioLojas.GetPorId(id);
+        }
+
+        public IList<Loja> Todos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRepositorioEntidades<Loja> RepositorioEntidades { get; private set; }
 
         #endregion
     }

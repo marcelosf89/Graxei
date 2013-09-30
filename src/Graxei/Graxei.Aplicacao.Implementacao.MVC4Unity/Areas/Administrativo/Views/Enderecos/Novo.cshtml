@@ -1,6 +1,6 @@
 ﻿@model Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel
 
-@using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = " $('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
+@using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = "$('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -16,7 +16,13 @@
                     }
                     <div class="row form-group">
                         @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).HtmlAttributes(new { id = "IdEstado", @class = "form-control" })
+                        @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).HtmlAttributes(new
+                   {
+                       id =
+
+                           "IdEstado",
+                       @class = "form-control"
+                   })
                         @Html.Bootstrap().Label(Rotulos.Cidade).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                         @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade", "Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" })
                     </div>
@@ -30,7 +36,11 @@
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().LabelFor(m => m.Endereco.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TextBoxFor(m => m.Endereco.Numero).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+                        @Html.Bootstrap().TextBoxFor(m => m.Endereco.Numero).Width(InputWidth.Col_10).HtmlAttributes(new
+                   {
+                       @class = "form-control"
+
+                   }).ShowValidationMessage(true)
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Endereco.Complemento).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })

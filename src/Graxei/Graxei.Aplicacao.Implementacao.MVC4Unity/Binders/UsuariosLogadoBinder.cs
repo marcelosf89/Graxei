@@ -5,17 +5,17 @@ using Graxei.Modelo;
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Binders
 {
-    public class UsuariosBinder : IModelBinder
+    public class UsuariosLogadoBinder : IModelBinder
     {
         #region Implementation of IModelBinder
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             /* TODO: Checar se o fato de o usuário não existir na sessão deve ser aceito*/
-            Usuario usuario = (Usuario)controllerContext.HttpContext.Session[Constantes.UsuarioAtual];
+            UsuarioLogado usuario = (UsuarioLogado)controllerContext.HttpContext.Session[Constantes.UsuarioAtual];
             if (usuario == null)
             {
-                usuario = new Usuario();
+                usuario = new UsuarioLogado();
                 controllerContext.HttpContext.Session[Constantes.UsuarioAtual] = usuario;
             }
             return usuario;

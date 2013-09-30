@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿
 using Graxei.Modelo;
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
 {
-    public class NovaLojaEnderecosModel
+    public class NovaLojaModel
     {
-        public NovaLojaEnderecosModel()
+        public NovaLojaModel()
         {
             Loja = new Loja();
             NovosEnderecosModel = new NovosEnderecosModel();

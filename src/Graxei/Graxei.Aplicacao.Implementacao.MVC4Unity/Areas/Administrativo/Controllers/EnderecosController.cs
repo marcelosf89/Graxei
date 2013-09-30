@@ -20,28 +20,33 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
 
         //
         // GET: /Administrativo/Enderecos/
-        public ActionResult Index(NovaLojaEnderecosModel item)
+        public ActionResult Index(NovosEnderecosModel item)
         {
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            ViewBag.NomeLoja = item.Loja.Nome;
-            EnderecoIndiceModel model = new EnderecoIndiceModel();
-            return View("Novo", model);
+            if (item.Loja != null)
+            {
+                ViewBag.NomeLoja = item.Loja.Nome;
+            }
+            //EnderecoIndiceModel model = new EnderecoIndiceModel(){ Endereco = new Endereco()};
+            return View("Novo");
         }
 
+  
+        //public RedirectToRouteResult Novo(NovaLojaEnderecosModel item, EnderecoIndiceModel endereco)
         [HttpPost]
-        public RedirectToRouteResult Novo(NovaLojaEnderecosModel item, EnderecoIndiceModel endereco)
+        public RedirectToRouteResult Novo(NovaLojaModel item, EnderecoIndiceModel model)
         {
-            Estado estado = _servicoEnderecos.GetEstado(endereco.IdEstado);
-            endereco.Endereco.Bairro.Cidade.Estado = estado;
-            item.NovosEnderecosModel.AdicionarEndereco(endereco);
-            return RedirectToAction("Novo", "Lojas");
+            Estado estado = _servicoEnderecos.GetEstado(model.IdEstado);
+            model.Endereco.Bairro.Cidade.Estado = estado;
+            item.NovosEnderecosModel.AdicionarEndereco(model);
+            return RedirectToAction("Index", "Lojas");
         }
 
-        public ActionResult Editar(NovaLojaEnderecosModel item, int id)
+        public ActionResult Editar(NovaLojaModel item, int id)
         {
             EnderecoIndiceModel endereco = item.NovosEnderecosModel.Enderecos.SingleOrDefault(p => p.IdLista == id);
-            endereco.IdEstado = endereco.Endereco.Bairro.Cidade.Estado.Id;
+            endereco.IdEstado = (int)endereco.Endereco.Bairro.Cidade.Estado.Id;
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.NomeLoja = item.Loja.Nome;
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -49,14 +54,14 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         }
 
         [HttpPost]
-        public RedirectToRouteResult Editar(NovaLojaEnderecosModel item, EnderecoIndiceModel model)
+        public RedirectToRouteResult Editar(NovaLojaModel item, EnderecoIndiceModel model)
         {
             Estado estado = _servicoEnderecos.GetEstado(model.IdEstado);
             model.Endereco.Bairro.Cidade.Estado = estado;
             return RedirectToAction("Novo", "Lojas");
         }
 
-        public RedirectToRouteResult Excluir(NovaLojaEnderecosModel item, int id)
+        public RedirectToRouteResult Excluir(NovaLojaModel item, int id)
         {
             item.NovosEnderecosModel.RemoverEndereco(id);
             return RedirectToAction("Novo", "Lojas" );

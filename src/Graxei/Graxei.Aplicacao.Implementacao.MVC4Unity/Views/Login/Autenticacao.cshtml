@@ -22,13 +22,15 @@
                         @Html.LabelFor(model => model.LoginOuEmail)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.LoginOuEmail)
+                        @Html.Bootstrap().TextBoxFor(model => model.LoginOuEmail).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.ValidationMessageFor(model => model.LoginOuEmail)
                     </div>
                     <label>
                         @Html.LabelFor(model => model.Senha)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.Senha)
+                        @Html.Bootstrap().TextBoxFor(model => model.Senha).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.ValidationMessageFor(model => model.LoginOuEmail)
                     </div>
                 </div>
                 <div class="modal-footer">

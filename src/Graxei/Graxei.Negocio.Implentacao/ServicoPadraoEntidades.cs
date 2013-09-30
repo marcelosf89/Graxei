@@ -11,13 +11,6 @@ namespace Graxei.Negocio.Implementacao
     {
 
         #region Implementações Padrão
-
-        public void PreSalvar(T t){}
-
-        public void PreAtualizar(T t){}
-
-        public void PreExcluir(T t){}
-
         #endregion
 
         #region Implementação de IServicoEntidades<T>
@@ -28,19 +21,11 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t));
             }
-            if (UtilidadeEntidades.IsTransiente(t))
-            {
-                PreSalvar(t);
-            } else
-            {
-                PreAtualizar(t);
-            }
             _repositorioEntidades.Salvar(t);    
         }
 
         public void Excluir(T t)
         {
-            PreExcluir(t);
             if (_repositorioEntidades == null)
             {
                 throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t));

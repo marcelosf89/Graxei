@@ -2,13 +2,7 @@
 using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Aplicacao.Implementacao.MVC4Unity.Binders;
 using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
-using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -28,8 +22,8 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders.Add(typeof (NovaLojaEnderecosModel), new NovaLojaEnderecosModelBinder());
-            ModelBinders.Binders.Add(typeof (Usuario), new UsuariosBinder());                    
+            ModelBinders.Binders.Add(typeof(NovosEnderecosModel), new NovosEnderecosModelBinder());
+            ModelBinders.Binders.Add(typeof (UsuarioLogado), new UsuariosLogadoBinder());                    
             /* TODO: retirar esse trecho de código */
             IUnityContainer cont = Bootstrapper.Initialise();
             /*IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();

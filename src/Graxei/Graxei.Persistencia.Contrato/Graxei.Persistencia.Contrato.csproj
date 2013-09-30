@@ -43,6 +43,8 @@
     <Compile Include="IRepositorioCidades.cs" />
     <Compile Include="IRepositorioEndereco.cs" />
     <Compile Include="IRepositorioEstados.cs" />
+    <Compile Include="IRepositorioExcluir.cs" />
+    <Compile Include="IRepositorioSalvar.cs" />
     <Compile Include="IRepositorioUsuarios.cs" />
     <Compile Include="IRepositorioEntidades.cs" />
     <Compile Include="IRepositorioFabricantes.cs" />
