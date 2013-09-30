@@ -6,14 +6,14 @@
 }
 
 <h2>@Rotulos.NovaLoja</h2>
-@using (Html.BeginForm("Novo", "Lojas"))
+@using (Html.BeginForm("Novo", ""))
 {
     @Html.ValidationSummary(true)
     <fieldset>
         <legend></legend>
         <div class="form-group">
             @Html.Bootstrap().LabelFor(model => model.Loja.Nome).Width(InputWidth.Col_2)
-            @Html.TextBoxFor(model => model.Loja.Nome)
+            @Html.Bootstrap().TextBoxFor(model => model.Loja.Nome).Width(InputWidth.Col_4)
         </div>
     </fieldset>
     @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "NovoEndereco", "Lojas", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)

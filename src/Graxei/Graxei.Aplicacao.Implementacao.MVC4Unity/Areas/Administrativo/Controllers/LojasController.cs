@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Infraestutura;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
+﻿using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using System.Web.Mvc;
@@ -17,15 +16,20 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         }
 
         #region ActionResults
-        public ActionResult Index(NovaLojaEnderecosModel item)
+        public ActionResult Index(NovosEnderecosModel item)
         {
-            return View("Novo", item);
+            NovaLojaModel model = new NovaLojaModel() {Loja = new Loja(), NovosEnderecosModel = item};
+            return View("Novo", model);
         }
 
         [HttpPost]
-        public ActionResult Novo(NovaLojaEnderecosModel item)
+        public ActionResult Novo(UsuarioLogado usuario, NovaLojaModel item)
         {
-            _servicoLojas.Salvar(item.Loja);
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _servicoLojas.Salvar(item.Loja, usuario.Usuario);
             foreach (EnderecoIndiceModel end in item.NovosEnderecosModel.Enderecos)
             {
                 Endereco endereco = end.Endereco;
@@ -33,6 +37,11 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
                 _servicoEnderecos.Salvar(endereco);
             }
             return View("Salvo");
+        }
+
+        public RedirectToRouteResult NovoEndereco(NovosEnderecosModel enderecos,  NovaLojaModel model)
+        {
+            return RedirectToAction("Index", "Enderecos");
         }
 
         #endregion  

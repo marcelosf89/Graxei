@@ -216,7 +216,7 @@ namespace Graxei.FluentNHibernate.Base
             
             try
             {
-                global::NHibernate.ISQLQuery retorno = UnitOfWorkNHibernate.GetCurrentSession().CreateSQLQuery(query);
+                global::NHibernate.ISQLQuery retorno = UnitOfWorkNHibernate. GetCurrentSession().CreateSQLQuery(query);
                 return retorno;
             }
             catch (Exception exception)

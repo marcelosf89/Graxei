@@ -9,11 +9,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="myModalLabel">@Rotulos.Login</h3>
                 </div>
-                @Html.ValidationSummary(true)
                 <div class="modal-body">
-                    <div id="divErro" class="alert alert-danger" style="display:none;">
+                    @Html.ValidationSummary(true)
+                    <div id="divErro" class="alert alert-danger" style="display: none;">
                         <label id="erro"></label>
-                        </div>
+                    </div>
                     @if (ViewBag.ErroAutenticacao != null)
                     {
                         <div class="auth">@ViewBag.ErroAutenticacao</div>
@@ -22,13 +22,15 @@
                         @Html.LabelFor(model => model.LoginOuEmail)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.LoginOuEmail)
+                        @Html.Bootstrap().TextBoxFor(model => model.LoginOuEmail).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.ValidationMessageFor(model => model.LoginOuEmail)
                     </div>
                     <label>
                         @Html.LabelFor(model => model.Senha)
                     </label>
                     <div class="editor-field">
-                        @Html.EditorFor(model => model.Senha)
+                        @Html.Bootstrap().TextBoxFor(model => model.Senha).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.ValidationMessageFor(model => model.LoginOuEmail)
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -60,6 +62,6 @@
          if (result != "") {
             $('#divErro').css('display', 'block');
             $('#erro').text(result.responseText);
-        }        
+        }
     }
 </script>

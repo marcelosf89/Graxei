@@ -14,28 +14,33 @@ using ISession = NHibernate.ISession;
 
 namespace Graxei.FluentNHibernate.UnitOfWork
 {
-   public  class UnitOfWorkNHibernate: IUnitOfWork
+    public class UnitOfWorkNHibernate : IHttpModule, IDispatchMessageInspector, IServiceBehavior
     {
 
-       /// <summary>
-        /// Criar somente uma vez a fábrica de sessões do nhibernate
-        /// </summary>
-       static UnitOfWorkNHibernate()
-       {
+        private static UnitOfWorkNHibernate _instance;
 
-           _sessionFactory = CreateSessionFactory();
-
-           //Se o modo corrente for CALL, então coloque uma sessão no contexto.
-           //Isto significa que cada chamada terá uma unica sessão do nhibernate.
-           BindSession();
-
-           //Se o modo corrente for WEB, então o binding de sessão será feito
-           //No inicio da requisão através de um HTTPModule
-       }
-        
-        //Desaloca a sessão do nhibernate no contexto da aplicação
-        public static void UnBindSession()
+        public static UnitOfWorkNHibernate Instance
         {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new UnitOfWorkNHibernate();
+                }
+                return _instance;
+            }
+        }
+
+
+        private UnitOfWorkNHibernate()
+        {
+            _sessionFactory = NHibernateSessionFactory.Instance.SessionFactory();
+        }
+
+        //Desaloca a sessão do nhibernate no contexto da aplicação
+        private void UnBindSession()
+        {
+            //CommitTransaction();
             ISession session = CurrentSessionContext.Unbind(_sessionFactory);
             if (session == null)
             {
@@ -52,12 +57,13 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         }
 
         //Aloca uma sessão do nhibernate no contexto da aplicação
-        public static void BindSession()
+        private void BindSession()
         {
             if (!CurrentSessionContext.HasBind(_sessionFactory))
             {
                 CurrentSessionContext.Bind(_sessionFactory.OpenSession());
             }
+           //BeginTransaction();
         }
         /// <summary>
         /// Questiona se há uma transação aberta
@@ -66,23 +72,22 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         private bool HasOpenTransaction()
         {
             ISession session = GetCurrentSession();
-            return session.Transaction == null ||
-                   !session.Transaction.IsActive ||
-                   session.Transaction.WasCommitted ||
-                   session.Transaction.WasRolledBack;
+            return session.Transaction != null &&
+                   (session.Transaction.IsActive &&
+                    !(session.Transaction.WasCommitted || session.Transaction.WasRolledBack));
         }
 
         /// <summary>
         /// Abre uma transação se já não houver uma já existente
         /// </summary>
         /// <exception cref="Exception">Erro ao inicializar uma transação</exception>
-        public void BeginTransaction()
+        private void BeginTransaction()
         {
             try
             {
                 if (!HasOpenTransaction())
                 {
-                    UnitOfWorkNHibernate.GetCurrentSession().BeginTransaction();
+                    GetCurrentSession().BeginTransaction();
                 }
             }
             catch (Exception exception)
@@ -96,7 +101,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         /// Executa Commit em uma transação existente, executa RollBack caso haja uma exceção
         /// </summary>
         /// <exception cref="Exception">Erro ao comitar uma transação</exception>
-        public void CommitTransaction()
+        private void CommitTransaction()
         {
             try
             {
@@ -126,7 +131,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
             }
         }
 
-        public static ISessionFactory SessionFactory
+        public ISessionFactory SessionFactory
         {
             get
             {
@@ -135,7 +140,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         }
 
         //Obtem a sessão corrente do nhibernate
-        public static ISession GetCurrentSession()
+        public ISession GetCurrentSession()
         {
             ISession session;
 
@@ -153,23 +158,12 @@ namespace Graxei.FluentNHibernate.UnitOfWork
             return session;
         }
 
-        //Criar uma fabrica de sessão do nhibernate
-        private static ISessionFactory CreateSessionFactory()
-        {
-
-            return NHibernateSessionFactory.Instance.SessionFactory();
-
-        }
-
         /// <summary>
         /// Define a fabrica de sessões do nhibernate
         /// </summary>
-        private static readonly ISessionFactory _sessionFactory;
+        private ISessionFactory _sessionFactory;
 
        #region Implementation of IDispatchMessageInspector
-
-
-
        public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
        {
            BeginRequest(null, null);
@@ -202,7 +196,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
        }
 
-       public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
+       public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint>                                               endpoints, BindingParameterCollection bindingParameters)
        {
        }
        #endregion
@@ -224,15 +218,13 @@ namespace Graxei.FluentNHibernate.UnitOfWork
        #endregion
 
        #region Extensões dos eventos da sessão
-       private static void BeginRequest(object sender, EventArgs e)
+       private void BeginRequest(object sender, EventArgs e)
        {
            BindSession();
-           //GetCurrentSession().Transaction.Begin();
        }
 
-       private static void EndRequest(object sender, EventArgs e)
+       private void EndRequest(object sender, EventArgs e)
        {
-           //GetCurrentSession().Transaction.Commit();
            UnBindSession();
        }
 
@@ -241,12 +233,11 @@ namespace Graxei.FluentNHibernate.UnitOfWork
            ISession session = null;
            try
            {
-               GetCurrentSession().Transaction.Rollback();
-           } catch (Exception ex)
+               //RollbackTransaction();
+           } finally
            {
-
+               UnBindSession();    
            }
-           UnBindSession();
        }
        #endregion
 

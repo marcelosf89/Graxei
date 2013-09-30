@@ -35,16 +35,6 @@ namespace Graxei.FluentNHibernate.Configuracao
 
         #endregion
 
-        #region Métodos Privados
-        /// <summary>
-        /// Inicializa o HibernateSessionManager criando um SessionFactory
-        /// </summary>
-        private void initSessionFactory()
-        {
-            this._sessionFactory = this.SessionFactory();
-        }
-        #endregion
-
         #region Métodos Públicos
 
         public ISessionFactory SessionFactory()
@@ -57,7 +47,6 @@ namespace Graxei.FluentNHibernate.Configuracao
                 //Configure().CurrentSessionContext<CallSessionContext>().
                 Database(MySQLConfiguration.Standard
                                            .ConnectionString(c => c.Server("graxei.c6lcvckogtg5.sa-east-1.rds.amazonaws.com").Database("graxei").Username("supergraxei").Password("73#tr071.")
-
                          ).ShowSql()
                 ).
                 Mappings(m =>

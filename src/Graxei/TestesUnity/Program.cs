@@ -19,7 +19,7 @@ namespace TestesUnity
                 try
                 {
                     ContainerGraxei.RegisterTypes(container);
-                    UnitOfWorkNHibernate.GetCurrentSession().BeginTransaction();
+                    UnitOfWorkNHibernate.Instance.GetCurrentSession().BeginTransaction();
                     IServicoEnderecos enderecos = container.Resolve<IServicoEnderecos>();
                     IServicoEstados estados = container.Resolve<IServicoEstados>();
                     IServicoLojas lojas = container.Resolve<IServicoLojas>();
@@ -34,12 +34,12 @@ namespace TestesUnity
                     //loja.Enderecos.Add(end);
                     lojas.Salvar(loja);
                     enderecos.Salvar(end);
-                    UnitOfWorkNHibernate.GetCurrentSession().Transaction.Commit();
+                    UnitOfWorkNHibernate.Instance.GetCurrentSession().Transaction.Commit();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    UnitOfWorkNHibernate.GetCurrentSession().Transaction.Rollback();
+                    UnitOfWorkNHibernate.Instance.GetCurrentSession().Transaction.Rollback();
                     Console.WriteLine("Rollbackou");
                 }
             }

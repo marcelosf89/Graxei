@@ -35,7 +35,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         protected ISession SessaoAtual
         {
-            get { return UnitOfWorkNHibernate.GetCurrentSession(); }
+            get { return UnitOfWorkNHibernate.Instance.GetCurrentSession(); }
         }
     }
 }

@@ -143,15 +143,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
-    <Compile Include="Areas\Administrativo\Binders\NovaLojaEnderecosModelBinder.cs" />
+    <Compile Include="Areas\Administrativo\Binders\NovosEnderecosModelBinder.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Models\EnderecoIndiceModel.cs" />
     <Compile Include="Areas\Administrativo\Models\NovosEnderecosModel.cs" />
-    <Compile Include="Areas\Administrativo\Models\NovaLojaEnderecosModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\NovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
-    <Compile Include="Binders\UsuariosBinder.cs" />
+    <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -160,12 +160,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\Constantes.cs" />
     <Compile Include="Models\IndexModel.cs" />
+    <Compile Include="Models\UsuarioLogado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
@@ -259,7 +264,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\AcoesEmNovaLoja.cshtml" />
     <Content Include="Areas\Administrativo\Views\Enderecos\Formulario.cshtml" />
     <Content Include="Areas\Administrativo\Views\Enderecos\Editar.cshtml" />
