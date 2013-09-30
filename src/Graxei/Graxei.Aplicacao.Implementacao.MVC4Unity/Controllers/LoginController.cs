@@ -31,7 +31,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
             /* TODO: ver como será o tratamento de autenticação, que pode (ou poderia) ser login ou e-mail */
-            try
+            /*try
             {
                 if (!ModelState.IsValid)
                 {
@@ -44,7 +44,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             {
                 Response.StatusCode = 500;
                 return Content(ae.Message, "text/html");
-            }            
+            }            */
             return Json(new { url = Url.Action("Home","Administrativo") });
         }
 

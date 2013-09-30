@@ -16,9 +16,10 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         }
 
         #region ActionResults
-        public ActionResult Index(NovaLojaModel item)
+        public ActionResult Index(NovosEnderecosModel item)
         {
-            return View("Novo", item);
+            NovaLojaModel model = new NovaLojaModel() {Loja = new Loja(), NovosEnderecosModel = item};
+            return View("Novo", model);
         }
 
         [HttpPost]
@@ -40,7 +41,6 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
 
         public RedirectToRouteResult NovoEndereco(NovosEnderecosModel enderecos,  NovaLojaModel model)
         {
-            enderecos.Loja = model.Loja;
             return RedirectToAction("Index", "Enderecos");
         }
 

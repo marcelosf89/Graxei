@@ -6,7 +6,6 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
 {
     public class NovosEnderecosModel
     {
-        public Loja Loja { get; set; }
         public IList<EnderecoIndiceModel> Enderecos
         {
             get

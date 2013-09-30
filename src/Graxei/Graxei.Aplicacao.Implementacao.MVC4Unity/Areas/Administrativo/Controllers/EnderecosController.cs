@@ -24,10 +24,6 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         {
             IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            if (item.Loja != null)
-            {
-                ViewBag.NomeLoja = item.Loja.Nome;
-            }
             //EnderecoIndiceModel model = new EnderecoIndiceModel(){ Endereco = new Endereco()};
             return View("Novo");
         }
@@ -35,11 +31,11 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
   
         //public RedirectToRouteResult Novo(NovaLojaEnderecosModel item, EnderecoIndiceModel endereco)
         [HttpPost]
-        public RedirectToRouteResult Novo(NovaLojaModel item, EnderecoIndiceModel model)
+        public RedirectToRouteResult Novo(NovosEnderecosModel item, EnderecoIndiceModel model)
         {
             Estado estado = _servicoEnderecos.GetEstado(model.IdEstado);
             model.Endereco.Bairro.Cidade.Estado = estado;
-            item.NovosEnderecosModel.AdicionarEndereco(model);
+            item.AdicionarEndereco(model);
             return RedirectToAction("Index", "Lojas");
         }
 
