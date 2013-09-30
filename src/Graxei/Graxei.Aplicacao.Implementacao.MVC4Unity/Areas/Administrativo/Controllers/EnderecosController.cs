@@ -80,6 +80,12 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             return View("Formulario");
         }
 
+        public ActionResult BairroSelecionado(string valCidade, string valBairro)
+        {
+            Logradouros = _servicoEnderecos.GetLogradouros(valBairro, valCidade);
+            return View("Formulario");
+        }
+
         public ActionResult AutoCompleteCidade(string term)
         {
             string[] itens = Cidades.Select(p => p.Nome).ToArray();
@@ -94,6 +100,17 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         public ActionResult AutoCompleteBairro(string term)
         {
             string[] itens = Bairros.Select(p => p.Nome).ToArray();
+            IEnumerable<String> itensFiltrados = itens.Where(
+                item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
+                );
+            /*IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
+            return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AutoCompleteLogradouro(string term)
+        {
+            string[] itens = Logradouros.Select(p => p.Nome).ToArray();
             IEnumerable<String> itensFiltrados = itens.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
@@ -164,6 +181,23 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             set
             {
                 Session[ItensSessao.BairrosAtual] = value;
+            }
+        }
+
+        private IList<Logradouro> Logradouros
+        {
+            get
+            {
+                object logradouro = Session[ItensSessao.LogradourosAtual];
+                if (logradouro == null)
+                {
+                    logradouro = new List<Logradouro>();
+                }
+                return (IList<Logradouro>)logradouro;
+            }
+            set
+            {
+                Session[ItensSessao.LogradourosAtual] = value;
             }
         }
 

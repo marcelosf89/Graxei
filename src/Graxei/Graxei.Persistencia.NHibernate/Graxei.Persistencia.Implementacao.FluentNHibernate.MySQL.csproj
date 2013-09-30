@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CidadesNHibernateMySQL.cs" />
+    <Compile Include="LogradourosNHibernateMySQL.cs" />
     <Compile Include="LojasNHibernateMySQL.cs" />
     <Compile Include="PadraoNHibernateMySQL.cs" />
     <Compile Include="ProdutosNHibernateMySQL.cs" />

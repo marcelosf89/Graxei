@@ -12,9 +12,10 @@ namespace Graxei.Negocio.Implementacao
     public class ServicoEnderecos : ServicoPadraoEntidades<Endereco>, IServicoEnderecos
     {
 
-        public ServicoEnderecos(IRepositorioEnderecos repoEnderecos, IServicoBairros servBairros, IServicoCidades servCidades, IServicoEstados servEstados)
+        public ServicoEnderecos(IRepositorioEnderecos repoEnderecos,IServicoLogradouros servLogradouros,  IServicoBairros servBairros, IServicoCidades servCidades, IServicoEstados servEstados)
         {
             _repositorioEntidades = repoEnderecos;
+            _servLogradouros = servLogradouros;
             _servBairros = servBairros;
             _servCidades = servCidades;
             _servEstados = servEstados;
@@ -71,6 +72,21 @@ namespace Graxei.Negocio.Implementacao
             return _servBairros.GetPorCidade(nomeCidade, idEstado);
         }
 
+        public IList<Logradouro> GetLogradouros(Bairro bairro)
+        {
+            return _servLogradouros.Get(bairro);
+        }
+
+        public IList<Logradouro> GetLogradouros(long idBairro)
+        {
+            return _servLogradouros.GetPorBairro(idBairro);
+        }
+
+        public IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade)
+        {
+            return _servLogradouros.GetPorBairro(nomeBairro, nomeCidade);
+        }
+
         public Estado GetEstado(long idEstado)
         {
             return _servEstados.GetPorId(idEstado);
@@ -121,12 +137,34 @@ namespace Graxei.Negocio.Implementacao
             return _servBairros.Get(nomeBairro, idCidade);
         }
 
+        public Logradouro GetLogradouro(long idLogradouro)
+        {
+            return _servLogradouros.GetPorId(idLogradouro);
+        }
+
+        public Logradouro GetLogradouro(string nomeLogradouro, string nomeBairro, long idCidade)
+        {
+            return _servLogradouros.Get(nomeLogradouro, nomeBairro, idCidade);
+        }
+
+        public Logradouro GetLogradouro(string nomeLogradouro, Bairro bairro)
+        {
+            return _servLogradouros.Get(nomeLogradouro, bairro);
+        }
+
+        public Logradouro GetLogradouro(string nomeLogradouro, long idBairro)
+        {
+            return _servLogradouros.Get(nomeLogradouro, idBairro);
+        }
+
+
         #endregion
 
         #region Atributos Privados
         private readonly IServicoEstados _servEstados;
         private readonly IServicoCidades _servCidades;
         private readonly IServicoBairros _servBairros;
+        private readonly IServicoLogradouros _servLogradouros;
         #endregion
 
         #region Propriedades Privadas

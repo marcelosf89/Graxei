@@ -24,7 +24,7 @@
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().LabelFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TextBoxFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
+                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Logradouro, "AutoCompleteLogradouro", "Enderecos").Id("IdLogradouro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().LabelFor(m => m.Endereco.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })

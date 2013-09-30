@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServicoLogradouros.cs" />
     <Compile Include="IServicoBairros.cs" />
     <Compile Include="IServicoCidades.cs" />
     <Compile Include="IServicoEnderecos.cs" />
