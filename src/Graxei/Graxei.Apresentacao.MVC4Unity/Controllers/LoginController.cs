@@ -45,6 +45,9 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
                 Response.StatusCode = 500;
                 return Content(ae.Message, "text/html");
             }            */
+
+            Usuario usuarioAutenticado = _servicoUsuarios.AutenticarPorLogin("admingraxei", "graxei");
+            Helper.SetUsuarioLogado(Session, usuarioAutenticado);
             return Json(new { url = Url.Action("Home","Administrativo") });
         }
 

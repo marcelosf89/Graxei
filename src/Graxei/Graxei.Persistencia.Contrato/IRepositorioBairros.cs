@@ -3,7 +3,7 @@ using Graxei.Modelo;
 
 namespace Graxei.Persistencia.Contrato
 {
-    public interface IRepositorioBairros : IRepositorioEntidades<Bairro>
+    public interface IRepositorioBairros : IRepositorioIrrestrito<Bairro>
     {
         IList<Bairro> Get(Cidade cidade);
         IList<Bairro> Get(long idCidade);

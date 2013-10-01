@@ -3,6 +3,7 @@ using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using System.Web.Mvc;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controllers
@@ -18,7 +19,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
         #region ActionResults
         public ActionResult Index(NovosEnderecosModel item)
         {
-            NovaLojaModel model = new NovaLojaModel() {Loja = new Loja(), NovosEnderecosModel = item};
+            NovaLojaModel model = new NovaLojaModel() { Loja = new Loja(), NovosEnderecosModel = item };
             return View("Novo", model);
         }
 
@@ -29,22 +30,30 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
             {
                 return View();
             }
-            _servicoLojas.Salvar(item.Loja, usuario.Usuario);
-            foreach (EnderecoIndiceModel end in item.NovosEnderecosModel.Enderecos)
+            try
             {
-                Endereco endereco = end.Endereco;
-                endereco.Loja = item.Loja;
-                _servicoEnderecos.Salvar(endereco);
+                _servicoLojas.Salvar(item.Loja, usuario.Usuario);
+                foreach (EnderecoIndiceModel end in item.NovosEnderecosModel.Enderecos)
+                {
+                    Endereco endereco = end.Endereco;
+                    endereco.Loja = item.Loja;
+                    _servicoEnderecos.Salvar(endereco);
+                }
             }
+            catch (EntidadesException ee)
+            {
+
+            }
+
             return View("Salvo");
         }
 
-        public RedirectToRouteResult NovoEndereco(NovosEnderecosModel enderecos,  NovaLojaModel model)
+        public RedirectToRouteResult NovoEndereco(NovosEnderecosModel enderecos, NovaLojaModel model)
         {
             return RedirectToAction("Index", "Enderecos");
         }
 
-        #endregion  
+        #endregion
         #region Atributos Privados
         private readonly IServicoLojas _servicoLojas;
         private readonly IServicoEnderecos _servicoEnderecos;
@@ -65,7 +74,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
                 Session[ItensSessao.EnderecosNovaLoja] = value;
             }
         }*/
-        
+
 
     }
 }

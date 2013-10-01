@@ -2,7 +2,7 @@
 
 namespace Graxei.Transversais.Utilidades.Excecoes
 {
-    public class AutenticacaoException: Exception
+    public class AutenticacaoException : GraxeiException
     {
         public AutenticacaoException(string mensagem) : base(mensagem)
         {

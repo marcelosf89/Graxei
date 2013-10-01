@@ -42,6 +42,8 @@
     <Compile Include="Entidades\EstadoOrdem.cs" />
     <Compile Include="Excecoes\AutenticacaoException.cs" />
     <Compile Include="Excecoes\EntidadeInvalidaException.cs" />
+    <Compile Include="Excecoes\EntidadesException.cs" />
+    <Compile Include="Excecoes\GraxeiException.cs" />
     <Compile Include="Excecoes\ObjetoJaExisteException.cs" />
     <Compile Include="Excecoes\OperacaoEntidadeException.cs" />
     <Compile Include="Excecoes\ValidacaoEntidadeException.cs" />

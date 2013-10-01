@@ -54,10 +54,6 @@
       <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
       <Name>Graxei.Aplicacao.Contrato</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.implementacao.ASPNet\Graxei.Aplicacao.Implementacao.ASPNet.csproj">
-      <Project>{1a142299-2cde-4bff-9206-b60a0e44a7c5}</Project>
-      <Name>Graxei.Aplicacao.Implementacao.ASPNet</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

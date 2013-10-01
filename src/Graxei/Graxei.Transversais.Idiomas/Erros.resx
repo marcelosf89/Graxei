@@ -141,6 +141,9 @@
   <data name="LogradouroNulo" xml:space="preserve">
     <value>Endereço incompleto: preencha o logradouro</value>
   </data>
+  <data name="LojaJaExiste" xml:space="preserve">
+    <value>Esta loja já existe</value>
+  </data>
   <data name="LojaSalvarInvalido" xml:space="preserve">
     <value>A loja não pode ser salva sem uma associação com algum usuário</value>
   </data>

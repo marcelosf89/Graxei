@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
@@ -134,7 +135,7 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Métodos Sobrescritos
-        public new void PreSalvar(Endereco endereco)
+        public void PreSalvar(Endereco endereco)
         {
             Estado estado = null;
             Cidade cidade = null;
@@ -201,12 +202,6 @@ namespace Graxei.Negocio.Implementacao
             }
             _servBairros.Salvar(bairro);
             endereco.Bairro = bairro;
-        }
-
-        public new void Salvar(Endereco endereco)
-        {
-            PreSalvar(endereco);
-            base.Salvar(endereco);
         }
 
         #endregion

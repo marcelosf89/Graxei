@@ -30,6 +30,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string             CODIGO = "codigo";
         public const string        COMPLEMENTO = "complemento";
         public const string               DATA = "data";
+        public const string      DATA_REGISTRO = "data_registro";
         public const string          DESCRICAO = "descricao";
         public const string    FATOR_CONVERSAO = "fator_conversao";
         public const string          ID_BAIRRO = "id_bairro";
@@ -50,12 +51,16 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string     ID_USUARIO_LOG = "id_usuario_log";
         public const string           LOGOTIPO = "logotipo";
         public const string         LOGRADOURO = "logradouro";
+        public const string     LOJAS_USUARIOS = "lojas_usuarios";
         public const string               NOME = "nome";
         public const string             NUMERO = "numero";
         public const string              PRECO = "preco";
         public const string         QUANTIDADE = "quantidade";
         public const string            SENTIDO = "sentido";
         public const string              SIGLA = "sigla";
+
         #endregion
+
+        
     }
 }

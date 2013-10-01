@@ -28,9 +28,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public Bairro Get(string nomeBairro, string nomeCidade, long idEstado)
         {
             return SessaoAtual.Query<Bairro>()
-                .SingleOrDefault(p => 
-                                      Queries.CompararStrings(p.Nome, nomeBairro)
-                                   && Queries.CompararStrings(p.Cidade.Nome, nomeBairro)
+                .SingleOrDefault(p => p.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
+                                   && p.Cidade.Nome.Trim().ToLower() == nomeCidade.Trim().ToLower()
                                    && p.Cidade.Estado.Id == idEstado);
         }
 
@@ -38,7 +37,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         {
             return SessaoAtual.Query<Bairro>()
                 .SingleOrDefault(p =>
-                                      Queries.CompararStrings(p.Nome, nomeBairro)
+                                      p.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
                                    && p.Cidade.Id == idCidade);
         }
 

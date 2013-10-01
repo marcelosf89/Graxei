@@ -61,6 +61,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nome da loja deve ser preenchido.
+        /// </summary>
+        public static string NomeLojaObrigatório {
+            get {
+                return ResourceManager.GetString("NomeLojaObrigatório", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O nome é obrigatório.
         /// </summary>
         public static string NomeObrigatorio {

@@ -24,12 +24,12 @@ namespace Graxei.Negocio.Implementacao
         {
             if (string.IsNullOrEmpty(loja.Nome))
             {
-                throw new ObjetoJaExisteException("Nome da loja deve ser preenchido");
+                throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatório);
             }
             Loja repetida = Get(loja.Nome);
             if (repetida != null)
             {
-                throw new ValidacaoEntidadeException("Esta loja já existe");
+                throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
         }
 
@@ -37,17 +37,17 @@ namespace Graxei.Negocio.Implementacao
         {
             if (string.IsNullOrEmpty(loja.Nome))
             {
-                throw new ObjetoJaExisteException("Nome da loja deve ser preenchido");
+                throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatório);
             }
             Loja repetida = Get(loja.Nome);
             if (repetida != null && repetida.Id != loja.Id)
             {
-                throw new ValidacaoEntidadeException("Esta loja já existe");
+                throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
         }
         #endregion
 
-        #region Implementation of IServicoLojas
+        #region Implementação de IServicoLojas
 
         public Loja Get(string nome)
         {
@@ -89,6 +89,17 @@ namespace Graxei.Negocio.Implementacao
             RepositorioLojas.Salvar(loja, usuarios);
         }
 
+        public void Salvar(Loja loja, Usuario usuario, IList<Endereco> enderecos)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Salvar(Loja loja, IList<Usuario> usuarios, IList<Endereco> enderecos)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IServicoEnderecos ServicoEnderecos { get { return _servicoEnderecos; } }
         #endregion
 
         #region Atributos Privados
@@ -97,15 +108,15 @@ namespace Graxei.Negocio.Implementacao
 
         #region Implementation of IExcluirEntidade<Loja>
 
-        public void Excluir(Loja loja)
+        public new void Excluir(Loja loja)
         {
-            /* TODO: verificar as validações de exclusão de loja */
+            /* TODO: implementar restrições de exclusão */
             RepositorioLojas.Excluir(loja);
         }
 
         #endregion
 
-        #region Implementation of IServicoEntidades<Loja>
+        #region Implementação de IServicoEntidades<Loja>
 
         public Loja GetPorId(long id)
         {
@@ -118,6 +129,12 @@ namespace Graxei.Negocio.Implementacao
         }
 
         public IRepositorioEntidades<Loja> RepositorioEntidades { get; private set; }
+
+        #endregion
+
+        #region Atributos Privados
+
+        private IServicoEnderecos _servicoEnderecos;
 
         #endregion
     }

@@ -3,7 +3,7 @@ using Graxei.Modelo;
 
 namespace Graxei.Persistencia.Contrato
 {
-    public interface IRepositorioCidades : IRepositorioEntidades<Cidade>
+    public interface IRepositorioCidades : IRepositorioIrrestrito<Cidade>
     {
         Cidade Get(string nome, long idEstado);
         Cidade Get(string nome, Estado estado);

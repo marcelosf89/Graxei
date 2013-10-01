@@ -4,7 +4,7 @@ using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Negocio.Contrato
 {
-    public interface IServicoEnderecos : IServicoEntidades<Endereco>
+    public interface IServicoEnderecos : IExcluirEntidade<Endereco>
     {
         IList<Endereco> Todos(Loja loja);
         IList<Endereco> Todos(long idLoja);

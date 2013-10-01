@@ -133,6 +133,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esta loja já existe.
+        /// </summary>
+        public static string LojaJaExiste {
+            get {
+                return ResourceManager.GetString("LojaJaExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A loja não pode ser salva sem uma associação com algum usuário.
         /// </summary>
         public static string LojaSalvarInvalido {

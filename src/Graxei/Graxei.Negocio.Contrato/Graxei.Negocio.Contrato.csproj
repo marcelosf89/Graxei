@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEntidadesIrrestrito.cs" />
     <Compile Include="IExcluirEntidade.cs" />
     <Compile Include="ISalvarEntidade.cs" />
     <Compile Include="IServicoBairros.cs" />

@@ -15,12 +15,16 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public void Salvar(Loja loja, Usuario usuario)
         {
+            base.Salvar(loja);
             /* TODO: checar se a lógica deve permanecer no DAO */
             LojaUsuario lu = null;
             int count = 0;
             if (!UtilidadeEntidades.IsTransiente(loja))
             {
-                count = SessaoAtual.Query<LojaUsuario>().Count(p => p.Loja.Equals(loja) && p.Usuario.Equals(usuario));
+                count =
+                    SessaoAtual.Query<LojaUsuario>().Count(
+                        p => p.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower()
+                             && p.Usuario.Nome.Trim().ToLower() == usuario.Login.Trim().ToLower());
             }
            if (count == 0)
            {
@@ -33,7 +37,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                         };
                SessaoAtual.Save(lu);
            }
-           base.Salvar(loja);
         }
 
         public void Salvar(Loja loja, IList<Usuario> usuarios)
@@ -47,7 +50,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public Loja Get(string nome)
         {
             return SessaoAtual.Query<Loja>()
-                              .SingleOrDefault<Loja>(loja => Queries.StringPadrao(loja.Nome) == Queries.StringPadrao(nome));
+                              .SingleOrDefault<Loja>(loja => loja.Nome.Trim().ToLower() == nome.Trim().ToLower());
         }
 
         #endregion

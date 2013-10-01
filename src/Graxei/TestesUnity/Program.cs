@@ -13,8 +13,36 @@ namespace TestesUnity
         static void Main(string[] args)
         {
             log4net.Config.XmlConfigurator.Configure();
-
             using (IUnityContainer container = new UnityContainer())
+            {
+                try
+                {
+                    ContainerGraxei.RegisterTypes(container);
+                    UnitOfWorkNHibernate.Instance.GetCurrentSession().BeginTransaction();
+                    IServicoEnderecos servEnderecos = container.Resolve<IServicoEnderecos>();
+                    IServicoLojas servicoLojas = container.Resolve<IServicoLojas>();
+                    IServicoUsuarios servicoUsuarios = container.Resolve<IServicoUsuarios>();
+                    Usuario usuario = servicoUsuarios.GetPorLogin("admingraxei");
+                    Loja loja = new Loja() {Nome = "Loja do Graxei"};
+                    Estado estado = servEnderecos.GetEstadoPorSigla("RJ");
+                    Bairro bairro = servEnderecos.GetBairro("Centro", "Rio de Janeiro", estado.Id);
+                    Endereco endereco = new Endereco()
+                                            {Logradouro = "Rua ABC", Numero = "1010", Bairro = bairro, Loja = loja};
+                    servicoLojas.Salvar(loja, usuario);
+                    servEnderecos.Salvar(endereco);
+                    UnitOfWorkNHibernate.Instance.CommitTransaction();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    UnitOfWorkNHibernate.Instance.RollbackTransaction();
+                    Console.WriteLine("Rollbackou");
+                }
+                Console.ReadKey();
+            }
+        }
+
+        /*using (IUnityContainer container = new UnityContainer())
             {
                 try
                 {
@@ -42,7 +70,8 @@ namespace TestesUnity
                     UnitOfWorkNHibernate.Instance.GetCurrentSession().Transaction.Rollback();
                     Console.WriteLine("Rollbackou");
                 }
-            }
+            }*/
+
             /*using (IUnityContainer container = new UnityContainer())
             {
                 ContainerGraxei.RegisterTypes(container);
@@ -83,8 +112,8 @@ namespace TestesUnity
                 /*UnitOfWorkNHibernate.UnBindSession();
 
             }
-            Console.WriteLine("Foi");*/
+            Console.WriteLine("Foi");
             Console.Read();
-        }
+        }*/
     }
 }

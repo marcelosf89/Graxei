@@ -2,7 +2,7 @@
 using Graxei.Modelo;
 namespace Graxei.Persistencia.Contrato
 {
-    public interface IRepositorioLojas : IRepositorioEntidades<Loja>
+    public interface IRepositorioLojas : IRepositorioIrrestrito<Loja>
     {
         /// <summary>
         /// Salva a loja e a associa com o usuário

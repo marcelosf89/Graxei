@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Graxei.Persistencia.Contrato
 {
-    public interface IRepositorioFabricantes : IRepositorioEntidades<Fabricante>
+    public interface IRepositorioFabricantes : IRepositorioIrrestrito<Fabricante>
     {
         IList<string> TodosNomes();
     }

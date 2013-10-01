@@ -40,7 +40,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         //Desaloca a sessão do nhibernate no contexto da aplicação
         private void UnBindSession()
         {
-            //CommitTransaction();
+            RollbackTransaction();
             ISession session = CurrentSessionContext.Unbind(_sessionFactory);
             if (session == null)
             {
@@ -63,7 +63,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
             {
                 CurrentSessionContext.Bind(_sessionFactory.OpenSession());
             }
-           //BeginTransaction();
+            BeginTransaction();
         }
         /// <summary>
         /// Questiona se há uma transação aberta
@@ -101,7 +101,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         /// Executa Commit em uma transação existente, executa RollBack caso haja uma exceção
         /// </summary>
         /// <exception cref="Exception">Erro ao comitar uma transação</exception>
-        private void CommitTransaction()
+        public void CommitTransaction()
         {
             try
             {
@@ -110,6 +110,10 @@ namespace Graxei.FluentNHibernate.UnitOfWork
                 {
                     session.Transaction.Commit();
                     session.Flush();
+                }
+                else
+                {
+                    throw new Exception("Não há transação aberta");
                 }
             }
             catch (Exception exception)
@@ -230,10 +234,9 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
        private void Error(object sender, EventArgs e)
        {
-           ISession session = null;
            try
            {
-               //RollbackTransaction();
+               RollbackTransaction();
            } finally
            {
                UnBindSession();    

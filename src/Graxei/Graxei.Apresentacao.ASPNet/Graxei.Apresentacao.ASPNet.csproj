@@ -7,8 +7,8 @@
     <ProjectGuid>{1A142299-2CDE-4BFF-9206-B60A0E44A7C5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Graxei.Aplicacao.Implementacao.ASPNet</RootNamespace>
-    <AssemblyName>Graxei.AplicacaoIimplementacao.ASPNet</AssemblyName>
+    <RootNamespace>Graxei.Apresentacao.ASPNet</RootNamespace>
+    <AssemblyName>Graxei.Apresentacao.ASPNet</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
