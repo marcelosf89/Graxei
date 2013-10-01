@@ -29,7 +29,7 @@
                         @Html.LabelFor(model => model.Senha)
                     </label>
                     <div class="editor-field">
-                        @Html.Bootstrap().TextBoxFor(model => model.Senha).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.Bootstrap().PasswordFor(model => model.Senha).Width(InputWidth.Col_4).ShowValidationMessage(true)
                         @Html.ValidationMessageFor(model => model.LoginOuEmail)
                     </div>
                 </div>
