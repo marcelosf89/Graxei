@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="IEntidadesIrrestrito.cs" />
     <Compile Include="IExcluirEntidade.cs" />
+    <Compile Include="IServicoLogradouros.cs" />
     <Compile Include="ISalvarEntidade.cs" />
     <Compile Include="IServicoBairros.cs" />
     <Compile Include="IServicoCidades.cs" />

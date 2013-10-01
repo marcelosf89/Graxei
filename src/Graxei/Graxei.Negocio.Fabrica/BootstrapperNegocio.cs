@@ -48,6 +48,11 @@ namespace Graxei.Negocio.Fabrica
                      .RegisterType<IServicoBairros, ServicoBairros>(
                             new InjectionFactory(p => new ServicoBairros(container.Resolve<IRepositorioBairros>())));
 
+            // Logradouros
+            container.RegisterType<IRepositorioLogradouros, LogradourosNHibernateMySQL>()
+                     .RegisterType<IServicoLogradouros, ServicoLogradouros>(
+                            new InjectionFactory(p => new ServicoLogradouros(container.Resolve<IRepositorioLogradouros>())));
+
 
             // Endereços
             container.RegisterType<IRepositorioEnderecos, EnderecosNHibernateMySQL>()
@@ -55,7 +60,9 @@ namespace Graxei.Negocio.Fabrica
                             new InjectionFactory(p => 
                                 new ServicoEnderecos(
                                        container.Resolve<IRepositorioEnderecos>(),
-                                       container.Resolve<IServicoBairros>(), container.Resolve<IServicoCidades>(),
+                                       container.Resolve<IServicoLogradouros>(), 
+                                       container.Resolve<IServicoBairros>(), 
+                                       container.Resolve<IServicoCidades>(),
                                        container.Resolve<IServicoEstados>())));
         }
 

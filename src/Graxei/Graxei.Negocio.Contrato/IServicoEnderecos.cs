@@ -14,6 +14,9 @@ namespace Graxei.Negocio.Contrato
         IList<Bairro> GetBairros(Cidade cidade);
         IList<Bairro> GetBairros(long idCidade);
         IList<Bairro> GetBairros(string nomeCidade, long idEstado);
+        IList<Logradouro> GetLogradouros(Bairro bairro);
+        IList<Logradouro> GetLogradouros(long idBairro);
+        IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade);
         Estado GetEstado(long idEstado);
         Estado GetEstadoPorSigla(string sigla);
         Estado GetEstadoPorNome(string nome);
@@ -24,5 +27,9 @@ namespace Graxei.Negocio.Contrato
         Bairro GetBairro(string nomeBairro, string nomeCidade, long idEstado);
         Bairro GetBairro(string nomeBairro, Cidade cidade);
         Bairro GetBairro(string nomeBairro, long idCidade);
+        Logradouro GetLogradouro(long idLogradouro);
+        Logradouro GetLogradouro(string nomeLogradouro, string nomeBairro, long idCidade);
+        Logradouro GetLogradouro(string nomeLogradouro, Bairro bairro);
+        Logradouro GetLogradouro(string nomeLogradouro, long idBairro);
     }
 }
