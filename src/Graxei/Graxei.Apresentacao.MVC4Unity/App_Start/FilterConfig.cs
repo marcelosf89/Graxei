@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity
+namespace Graxei.Apresentacao.MVC4Unity
 {
     public class FilterConfig
     {

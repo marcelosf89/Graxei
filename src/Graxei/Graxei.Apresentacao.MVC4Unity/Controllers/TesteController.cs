@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
+namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class TesteController : Controller
     {

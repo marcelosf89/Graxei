@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Graxei.Transversais.Idiomas;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Models
+namespace Graxei.Apresentacao.MVC4Unity.Models
 {
     public class AutenticacaoModel
     {

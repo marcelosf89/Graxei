@@ -269,6 +269,7 @@
     <Content Include="Areas\Administrativo\Views\Enderecos\Editar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Salvo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Novo_2.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

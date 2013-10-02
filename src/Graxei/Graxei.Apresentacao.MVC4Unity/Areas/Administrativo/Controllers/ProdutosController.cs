@@ -4,9 +4,9 @@ using Graxei.Negocio.Contrato;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Apresentacao.MVC4Unity.Models;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controllers
+namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class ProdutosController : Controller
     {

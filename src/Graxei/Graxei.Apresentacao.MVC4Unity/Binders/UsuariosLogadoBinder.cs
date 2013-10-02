@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Binders
+namespace Graxei.Apresentacao.MVC4Unity.Binders
 {
     public class UsuariosLogadoBinder : IModelBinder
     {

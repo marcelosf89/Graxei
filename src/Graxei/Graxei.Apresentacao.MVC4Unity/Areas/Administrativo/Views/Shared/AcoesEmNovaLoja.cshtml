@@ -1,4 +1,4 @@
-﻿@using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 @model EnderecoIndiceModel
 
 <div class="row">
@@ -10,7 +10,7 @@
             <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li class="">@Ajax.Bootstrap().ActionLink("Editar", "Editar", "Enderecos", new AjaxOptions() { UpdateTargetId = "main" }).RouteValues(new { id = Model.IdLista }).IconPrepend(Icons.edit)</li>
+                <li class="">@Ajax.Bootstrap().ActionLink("Editar", "Editar", "Enderecos", new AjaxOptions() { UpdateTargetId = "myModal" }).RouteValues(new { id = Model.IdLista }).IconPrepend(Icons.edit)</li>
                 <li class="btn-warning">@Ajax.Bootstrap().ActionLink("Excluir", "Excluir", "Enderecos", new AjaxOptions() { UpdateTargetId = "main" }).RouteValues(new { id = Model.IdLista }).IconPrepend(Icons.remove)</li>
             </ul>
         </div>

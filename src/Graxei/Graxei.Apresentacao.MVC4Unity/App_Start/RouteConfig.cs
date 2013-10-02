@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity
+namespace Graxei.Apresentacao.MVC4Unity
 {
     public class RouteConfig
     {
@@ -13,7 +13,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional},
-                namespaces: new string[] {"Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers"});
+                namespaces: new string[] {"Graxei.Apresentacao.MVC4Unity.Controllers"});
 
             routes.MapRoute(null,
                             "Administrativo/Enderecos/Excluir/{id}",

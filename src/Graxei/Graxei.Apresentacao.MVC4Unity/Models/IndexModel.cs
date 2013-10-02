@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Models
+namespace Graxei.Apresentacao.MVC4Unity.Models
 {
     public class IndexModel
     {

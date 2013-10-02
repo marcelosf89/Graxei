@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.Utilidades.Excecoes;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
+namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LoginController : Controller
     {

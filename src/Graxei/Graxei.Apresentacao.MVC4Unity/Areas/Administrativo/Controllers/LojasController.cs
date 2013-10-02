@@ -1,12 +1,12 @@
-﻿using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+﻿using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using System.Web.Mvc;
 using Graxei.Transversais.Utilidades.Excecoes;
 
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controllers
+namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class LojasController : Controller
     {
@@ -37,7 +37,8 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controll
                 {
                     Endereco endereco = end.Endereco;
                     endereco.Loja = item.Loja;
-                    _servicoEnderecos.Salvar(endereco);
+                    // TODO: Não existe salvar para enderecos
+                    //_servicoEnderecos.Salvar(endereco);
                 }
             }
             catch (EntidadesException ee)

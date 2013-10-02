@@ -1,4 +1,4 @@
-﻿namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Infraestutura
+﻿namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
 {
 
     public class ItensSessao

@@ -3,7 +3,7 @@ using Microsoft.Practices.Unity;
 using Unity.Mvc4;
 using Graxei.Negocio.Fabrica;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity
+namespace Graxei.Apresentacao.MVC4Unity
 {
   public static class Bootstrapper
   {

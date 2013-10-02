@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Binders
+namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Binders
 {
     public class NovosEnderecosModelBinder : IModelBinder
     {

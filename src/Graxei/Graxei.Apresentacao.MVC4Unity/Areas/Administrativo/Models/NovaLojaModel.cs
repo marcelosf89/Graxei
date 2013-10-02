@@ -1,7 +1,7 @@
 ﻿
 using Graxei.Modelo;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
+namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 {
     public class NovaLojaModel
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity
+namespace Graxei.Apresentacao.MVC4Unity
 {
     public static class WebApiConfig
     {

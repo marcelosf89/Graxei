@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Controllers
+namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class HomeController : Controller
     {

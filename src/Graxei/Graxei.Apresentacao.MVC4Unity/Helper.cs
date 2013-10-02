@@ -1,8 +1,8 @@
 ﻿using System.Web;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity
+namespace Graxei.Apresentacao.MVC4Unity
 {
     public class Helper
     {

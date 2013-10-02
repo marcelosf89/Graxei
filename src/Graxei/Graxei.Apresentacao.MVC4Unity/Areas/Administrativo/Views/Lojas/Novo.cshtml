@@ -1,23 +1,22 @@
-﻿@using Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models
-@model Graxei.Aplicacao.Implementacao.MVC4Unity.Areas.Administrativo.Models.NovaLojaModel
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
+@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.NovaLojaModel
 
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
 
 <h2>@Rotulos.NovaLoja</h2>
-@using (Html.BeginForm("Novo", "Lojas"))
+@using (Ajax.BeginForm("Novo", "Lojas", new { controller = "Lojas" }, new AjaxOptions() { }, null))
 {
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend></legend>
-        <div class="form-group">
-            @Html.Bootstrap().LabelFor(model => model.Loja.Nome).Width(InputWidth.Col_2)
-            @Html.TextBoxFor(model => model.Loja.Nome)
-        </div>
-    </fieldset>
-    @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "NovoEndereco", "Lojas", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
-    @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
+    <div class="row form-group">
+        @Html.Bootstrap().LabelFor(model => model.Loja.Nome).Width(InputWidth.Col_1)
+        @Html.Bootstrap().TextBoxFor(model => model.Loja.Nome).Width(InputWidth.Col_11)
+    </div>
+    <div class="row form-group">
+        @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "NovoEndereco", "Lojas", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
+        @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
+    </div>
 }
 <p>@Rotulos.Enderecos</p>
 

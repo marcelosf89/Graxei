@@ -1,6 +1,6 @@
 ﻿using Graxei.Modelo;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Models
+namespace Graxei.Apresentacao.MVC4Unity.Models
 {
     public class UsuarioLogado
     {

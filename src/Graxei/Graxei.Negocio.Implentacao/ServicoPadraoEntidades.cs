@@ -21,7 +21,8 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t));
             }
-            _repositorioEntidades.Salvar(t);    
+            // TODO: Não existe salvar para Entidades
+            //_repositorioEntidades.Salvar(t);    
         }
 
         public void Excluir(T t)
@@ -30,7 +31,8 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t));
             }
-            _repositorioEntidades.Excluir(t);    
+            // TODO: Não existe exvluir para Entidades
+            //_repositorioEntidades.Excluir(t);    
         }
 
         public T GetPorId(long id)

@@ -1,8 +1,8 @@
 using System.Web.Optimization;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Graxei.Aplicacao.Implementacao.MVC4Unity.App_Start.BootstrapBundleConfig), "RegisterBundles")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Graxei.Apresentacao.MVC4Unity.App_Start.BootstrapBundleConfig), "RegisterBundles")]
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.App_Start
+namespace Graxei.Apresentacao.MVC4Unity.App_Start
 {
 	public class BootstrapBundleConfig
 	{
