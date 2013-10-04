@@ -34,6 +34,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return RedirectToAction("Index", "Lojas");
         }
 
+        public ActionResult Novo(EnderecoIndiceModel model)
+        {
+            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return View();
+        }
+
         public ActionResult Editar(NovosEnderecosModel item, int id)
         {
             EnderecoIndiceModel endereco = item.Enderecos.SingleOrDefault(p => p.IdLista == id);
