@@ -34,9 +34,9 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.Get(idBairro);
         }
 
-        public IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade)
+        public IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return Repositorio.GetPorBairro(nomeBairro, nomeCidade);
+            return Repositorio.GetPorBairro(nomeBairro, nomeCidade, idEstado);
         }
 
         public Logradouro Get(string nomeLogradouro, string nomeBairro, long idCidade)
@@ -72,7 +72,6 @@ namespace Graxei.Negocio.Implementacao
         }
 
         #endregion
-
 
         public IList<Logradouro> GetPorBairro(long idBairro)
         {

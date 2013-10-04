@@ -1,5 +1,4 @@
-﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
-@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.NovaLojaModel
+﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.NovaLoja
 
 @{
     ViewBag.Title = Rotulos.NovaLoja;
@@ -26,7 +25,8 @@
 }
 else
 {
-    foreach (EnderecoIndiceModel line in Model.NovosEnderecosModel.Enderecos)
+
+    foreach (Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel line in Model.NovosEnderecosModel.Enderecos)
     {
         Html.RenderPartial("AcoesEmNovaLoja", line);
     }

@@ -123,8 +123,14 @@
   <data name="AutenticacaoLogin" xml:space="preserve">
     <value>Usuário ou senha inválida</value>
   </data>
+  <data name="BairroNomeNulo" xml:space="preserve">
+    <value>Nome do bairro deve ser informado</value>
+  </data>
   <data name="BairroNulo" xml:space="preserve">
     <value>Endereço incompleto: bairro faltando</value>
+  </data>
+  <data name="CategoriaNomeNulo" xml:space="preserve">
+    <value>Nome da categoria deve ser informado</value>
   </data>
   <data name="CidadeNulo" xml:space="preserve">
     <value>Endereço incompleto: cidade faltando</value>
@@ -144,7 +150,16 @@
   <data name="LojaJaExiste" xml:space="preserve">
     <value>Esta loja já existe</value>
   </data>
+  <data name="LojaNomeNulo" xml:space="preserve">
+    <value>Nome da loja deve ser informado</value>
+  </data>
   <data name="LojaSalvarInvalido" xml:space="preserve">
     <value>A loja não pode ser salva sem uma associação com algum usuário</value>
+  </data>
+  <data name="UsuarioLoginNulo" xml:space="preserve">
+    <value>Login do usuário deve ser informado</value>
+  </data>
+  <data name="UsuarioNaoEncontrado" xml:space="preserve">
+    <value>Usuário {0} não encontrado</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
@@ -13,9 +14,11 @@ namespace Graxei.Negocio.Implementacao
     {
 
         #region Construtor
-        public ServicoLojas(IRepositorioLojas repositorioLojas)
+        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoLojaUsuario servicoLojaUsuario, IServicoUsuarios servicoUsuarios)
         {
             _repositorioEntidades = repositorioLojas;
+            _servicoLojaUsuario = servicoLojaUsuario;
+            _servicoUsuarios = servicoUsuarios;
         }
         #endregion
 
@@ -54,18 +57,6 @@ namespace Graxei.Negocio.Implementacao
             return RepositorioLojas.Get(nome);
         }
 
-        public void Salvar(Loja loja, Usuario usuario)
-        {
-            if (UtilidadeEntidades.IsTransiente(loja))
-            {
-                PreSalvar(loja);
-            } else
-            {
-                PreAtualizar(loja);
-            }
-            RepositorioLojas.Salvar(loja, usuario);
-        }
-
         public new void Salvar(Loja loja)
         {
             // Se é uma nova loja, deve ser associado pelo menos um usuário
@@ -73,31 +64,57 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new InvalidOperationException(Erros.LojaSalvarInvalido);
             }
+            PreAtualizar(loja);
             base.Salvar(loja);
         }
 
-        public void Salvar(Loja loja, IList<Usuario> usuarios)
+        public void Salvar(Loja loja, IList<Usuario> usuarios, Usuario usuarioLog)
         {
             if (UtilidadeEntidades.IsTransiente(loja))
+                {
+                    PreSalvar(loja);
+                }
+                else
+                {
+                    PreAtualizar(loja);
+                }
+            
+            IList<Usuario> usuariosNaoAssociados = new List<Usuario>();
+            foreach (Usuario usuario in usuarios)
             {
-                PreSalvar(loja);
+                Usuario usuarioFor = usuario;
+                // Checa se o usuário é transiente e recupera a entidade do container pelo login, caso esta seja transiente
+                if (UtilidadeEntidades.IsTransiente(usuario))
+                {
+                    usuarioFor = _servicoUsuarios.GetPorLogin(usuario.Login);
+                    if (usuarioFor == null)
+                    {
+                        throw new ObjetoNaoEncontradoException(String.Format(Erros.UsuarioNaoEncontrado, usuario.Login));
+                    }
+                }
+                if (!_servicoLojaUsuario.Existe(loja, usuarioFor))
+                {
+                    usuariosNaoAssociados.Add(usuarioFor);
+                }
             }
-            else
+            RepositorioLojas.Salvar(loja);
             {
-                PreAtualizar(loja);
+                IList<LojaUsuario> lojaUsuarios = new List<LojaUsuario>();
+                foreach (Usuario usuariosNaoAssociado in usuariosNaoAssociados)
+                {
+                    LojaUsuario lojaUsuario = new LojaUsuario()
+                                                  {
+                                                      Loja = loja,
+                                                      Usuario = usuariosNaoAssociado,
+                                                      DataRegistro = DateTime.Now,
+                                                      UsuarioLog = usuarioLog
+                                                  };
+                    lojaUsuarios.Add(lojaUsuario);
+                }
+                RepositorioLojas.Salvar(lojaUsuarios);
             }
-            RepositorioLojas.Salvar(loja, usuarios);
         }
 
-        public void Salvar(Loja loja, Usuario usuario, IList<Endereco> enderecos)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Salvar(Loja loja, IList<Usuario> usuarios, IList<Endereco> enderecos)
-        {
-            throw new NotImplementedException();
-        }
 
         public IServicoEnderecos ServicoEnderecos { get { return _servicoEnderecos; } }
         #endregion
@@ -135,6 +152,8 @@ namespace Graxei.Negocio.Implementacao
         #region Atributos Privados
 
         private IServicoEnderecos _servicoEnderecos;
+        private IServicoUsuarios _servicoUsuarios;
+        private IServicoLojaUsuario _servicoLojaUsuario;
 
         #endregion
     }

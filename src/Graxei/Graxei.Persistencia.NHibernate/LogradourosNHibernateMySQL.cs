@@ -60,12 +60,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                    && p.Bairro.Id == bairro.Id);
         }
 
-        public IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade)
+        public IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade, long idEstado)
         {
             return SessaoAtual.Query<Logradouro>()
                 .Where(p =>
                        p.Bairro.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
-                       && p.Bairro.Cidade.Nome == nomeCidade)
+                       && p.Bairro.Cidade.Nome == nomeCidade
+                       && p.Bairro.Cidade.Estado.Id == idEstado)
                 .ToList<Logradouro>();
         }
 

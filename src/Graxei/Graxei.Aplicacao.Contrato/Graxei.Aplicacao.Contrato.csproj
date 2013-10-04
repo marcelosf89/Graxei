@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,13 +45,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\IConsultasEnderecos.cs" />
+    <Compile Include="Consultas\IConsultasLogin.cs" />
+    <Compile Include="Consultas\IConsultasLojas.cs" />
+    <Compile Include="Consultas\IConsultasUsuarios.cs" />
+    <Compile Include="Transacionais\IGerenciamentoLojas.cs" />
+    <Compile Include="ITransacional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FAST\FAST.csproj">
+      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
+      <Name>FAST</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
+      <Project>{98f3b7b4-b5f1-4124-a62f-a0047ab08840}</Project>
+      <Name>Graxei.Negocio.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Negocio.Fabrica\Graxei.Negocio.Fabrica.csproj">
+      <Project>{41883ba3-ae05-4ec9-82ba-b2114fe075d4}</Project>
+      <Name>Graxei.Negocio.Fabrica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,9 +3,9 @@ using Graxei.Modelo;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 {
-    public class NovaLojaModel
+    public class NovaLoja
     {
-        public NovaLojaModel()
+        public NovaLoja()
         {
             Loja = new Loja();
             NovosEnderecosModel = new NovosEnderecosModel();

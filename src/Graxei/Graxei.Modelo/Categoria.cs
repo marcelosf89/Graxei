@@ -1,9 +1,5 @@
 ﻿using FAST.Modelo;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Modelo
 {
@@ -37,6 +33,19 @@ namespace Graxei.Modelo
             }
             return retorno + 11;
         }
+        #endregion
+
+        #region Overrides of Entidade
+
+        /*
+        public override void Validar()
+        {
+            if (String.IsNullOrEmpty(Nome))
+            {
+                throw new EntidadeInvalidaException(Erros.CategoriaNomeNulo);
+            }
+        }*/
+
         #endregion
     }
 

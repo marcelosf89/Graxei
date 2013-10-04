@@ -79,11 +79,29 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nome do bairro deve ser informado.
+        /// </summary>
+        public static string BairroNomeNulo {
+            get {
+                return ResourceManager.GetString("BairroNomeNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço incompleto: bairro faltando.
         /// </summary>
         public static string BairroNulo {
             get {
                 return ResourceManager.GetString("BairroNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nome da categoria deve ser informado.
+        /// </summary>
+        public static string CategoriaNomeNulo {
+            get {
+                return ResourceManager.GetString("CategoriaNomeNulo", resourceCulture);
             }
         }
         
@@ -142,11 +160,38 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nome da loja deve ser informado.
+        /// </summary>
+        public static string LojaNomeNulo {
+            get {
+                return ResourceManager.GetString("LojaNomeNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A loja não pode ser salva sem uma associação com algum usuário.
         /// </summary>
         public static string LojaSalvarInvalido {
             get {
                 return ResourceManager.GetString("LojaSalvarInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login do usuário deve ser informado.
+        /// </summary>
+        public static string UsuarioLoginNulo {
+            get {
+                return ResourceManager.GetString("UsuarioLoginNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuário {0} não encontrado.
+        /// </summary>
+        public static string UsuarioNaoEncontrado {
+            get {
+                return ResourceManager.GetString("UsuarioNaoEncontrado", resourceCulture);
             }
         }
     }

@@ -148,8 +148,10 @@
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Models\EnderecoIndiceModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\NovaLoja.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Areas\Administrativo\Models\NovosEnderecosModel.cs" />
-    <Compile Include="Areas\Administrativo\Models\NovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
     <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -333,21 +335,17 @@
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
-      <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
+    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
+      <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
+      <Name>Graxei.Aplicacao.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Aplicacao.Fabrica\Graxei.Aplicacao.Fabrica.csproj">
+      <Project>{08975121-a680-4ac3-a0da-984d4af28156}</Project>
+      <Name>Graxei.Aplicacao.Fabrica</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
-      <Project>{98f3b7b4-b5f1-4124-a62f-a0047ab08840}</Project>
-      <Name>Graxei.Negocio.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Fabrica\Graxei.Negocio.Fabrica.csproj">
-      <Project>{41883ba3-ae05-4ec9-82ba-b2114fe075d4}</Project>
-      <Name>Graxei.Negocio.Fabrica</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
       <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>

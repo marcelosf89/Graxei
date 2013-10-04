@@ -67,10 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfiguracoesUnity\ContainerArbitrario.cs" />
     <Compile Include="ConfiguracoesUnity\ContainerGraxei.cs" />
     <Compile Include="Convencoes\ClasseComumConvencao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testes\AgregadorDez.cs" />
+    <Compile Include="Testes\Dependente.cs" />
+    <Compile Include="Testes\IAgregador.cs" />
+    <Compile Include="Testes\IDependente.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -84,6 +89,18 @@
     <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
       <Project>{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
+      <Project>{CBF20A20-BA65-4DBC-A5A6-8F06EB2F4ED5}</Project>
+      <Name>Graxei.Aplicacao.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Aplicacao.Fabrica\Graxei.Aplicacao.Fabrica.csproj">
+      <Project>{08975121-A680-4AC3-A0DA-984D4AF28156}</Project>
+      <Name>Graxei.Aplicacao.Fabrica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Aplicacao.Implementacao\Graxei.Aplicacao.Implementacao.csproj">
+      <Project>{0788D099-D0C1-43D7-B33A-96800274E201}</Project>
+      <Name>Graxei.Aplicacao.Implementacao</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
@@ -105,9 +122,9 @@
       <Project>{2c1aa775-a94d-496b-937c-fca81a904f55}</Project>
       <Name>Graxei.Persistencia.Fabrica</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj">
-      <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL</Name>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257D309-B6EC-499F-970C-824959D6ADA8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

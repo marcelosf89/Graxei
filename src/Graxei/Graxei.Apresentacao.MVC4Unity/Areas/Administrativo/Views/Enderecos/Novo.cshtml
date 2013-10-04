@@ -1,50 +1,61 @@
-﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel
+﻿@using Graxei.Modelo
+@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel
 
 @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = "$('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
 {
-    <div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">@Rotulos.NovoEndereco</h3>
-                </div>
-                <div class="modal-body">
-                    @if (ViewBag.NomeLoja != null)
+<div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">@Rotulos.NovoEndereco</h3>
+            </div>
+            <div class="modal-body">
+                @if (ViewBag.NomeLoja != null)
                     {
-                        <h2>@String.Format(Textos.EnderecosLoja, ViewBag.NomeLoja)</h2>
+                    <h2>@String.Format(Textos.EnderecosLoja, ViewBag.NomeLoja)</h2>
                     }
-                    <div class="row form-group">
-                        @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).HtmlAttributes(new
+                <div class="row form-group">
+                    @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+                    @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).HtmlAttributes(new
                    {
                        id =
 
                            "IdEstado",
                        @class = "form-control"
                    })
-                        @Html.Bootstrap().Label(Rotulos.Cidade).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade", "Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" })
-                    </div>
-                    <div class="row form-group">
-                        @Html.Bootstrap().Label(Rotulos.Bairro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Nome, "AutoCompleteBairro", "Enderecos").Id("IdBairro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
-                    </div>
-                    <div class="row form-group">
-                        @Html.Bootstrap().LabelFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Logradouro, "AutoCompleteLogradouro", "Enderecos").Id("IdLogradouro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
-                    </div>
-                    <div class="row form-group">
-                        @Html.Bootstrap().LabelFor(m => m.Endereco.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TextBoxFor(m => m.Endereco.Numero).Width(InputWidth.Col_10).HtmlAttributes(new
+                    @Html.Bootstrap().Label(Rotulos.Cidade).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+                    @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade", "Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" })
+                </div>
+                <div class="row form-group">
+                    @Html.Bootstrap().Label(Rotulos.Bairro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+                    @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Nome, "AutoCompleteBairro", "Enderecos").Id("IdBairro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
+                </div>
+                <div class="row form-group">
+                    @Html.Bootstrap().LabelFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+                    @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Logradouro, "AutoCompleteLogradouro", "Enderecos").Id("IdLogradouro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
+                </div>
+                <div class="row form-group">
+                    @Html.Bootstrap().LabelFor(m => m.Endereco.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+                    @Html.Bootstrap().TextBoxFor(m => m.Endereco.Numero).Width(InputWidth.Col_10).HtmlAttributes(new
                    {
                        @class = "form-control"
 
                    }).ShowValidationMessage(true)
-                    </div>
-                    <div class="row form-group">
-                        @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Endereco.Complemento).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                    </div>
+                </div>
+                <div class="row form-group">
+                    @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Endereco.Complemento).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+                </div>
+                <h2>@Rotulos.Telefones</h2>
+                <div class="row form-group">
+                    @if (Model.Telefones != null && Model.Telefones.Any())
+                    {
+                        @Html.EditorFor(m => m.Telefones)
+                    } else
+                    {
+                        @Html.EditorFor(m => m.Telefone)
+                    }
+                    @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "NovoEndereco", "Endereco", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
@@ -53,17 +64,17 @@
             </div>
         </div>
     </div>
-}
-<script>
-    $('#ModalNovoEndereco').modal('show')
-</script>
+    }
+    <script>
+        $('#ModalNovoEndereco').modal('show')
+    </script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#IdEstado").change(function () {
-            var estadoSel = $("#IdEstado").val();
-            if (estadoSel != 0) {
-                var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#IdEstado").change(function () {
+                var estadoSel = $("#IdEstado").val();
+                if (estadoSel != 0) {
+                    var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
                 $.post(url, { idEstado: estadoSel },
                     function (data) {
                     });
@@ -76,11 +87,12 @@
             $.post(url, { idEstado: estadoSel, valCidade: cidadeDig }, function (data) { });
         });
         $(document).on("blur", "#IdBairro", function () {
+            var estadoSel = $("#IdEstado").val();
             var cidadeSel = $("#IdCidade").val();
             var bairroDig = $(this).val();
             var url = '@Url.Action("BairroSelecionado", "Enderecos")';
-            $.post(url, { valCidade: cidadeSel, valBairro: bairroDig }, function (data) { });
+            $.post(url, { idEstado: estadoSel, valCidade: cidadeSel, valBairro: bairroDig }, function (data) { });
         });
     });
-</script>
-<script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>
+    </script>
+    <script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>

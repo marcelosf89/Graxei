@@ -1,10 +1,13 @@
-﻿using Graxei.FluentNHibernate.UnitOfWork;
+﻿using System.Collections.Generic;
+using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Negocio.Implementacao;
 using Microsoft.Practices.Unity;
 using System;
 using TestesUnity.ConfiguracoesUnity;
+using TestesUnity.Testes;
 
 namespace TestesUnity
 {
@@ -15,33 +18,80 @@ namespace TestesUnity
             log4net.Config.XmlConfigurator.Configure();
             using (IUnityContainer container = new UnityContainer())
             {
+                ContainerArbitrario.RegisterTypes(container);
+                IDependente dependente = container.Resolve<IDependente>();
+                Console.WriteLine(dependente.ExibirValor());
+                Console.ReadKey();
+            }
+        }
+
+        /*
+        static void Main(string[] args)
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            using (IUnityContainer container = new UnityContainer())
+            {
                 try
                 {
                     ContainerGraxei.RegisterTypes(container);
-                    UnitOfWorkNHibernate.Instance.GetCurrentSession().BeginTransaction();
-                    IServicoEnderecos servEnderecos = container.Resolve<IServicoEnderecos>();
+                    IGerenciamentoLojas gerenciamentoLojas = container.Resolve<IGerenciamentoLojas>();
+                    IConsultasUsuarios consultasUsuarios = container.Resolve<IConsultasUsuarios>();
+                    IConsultasEnderecos consultasEnderecos = container.Resolve<IConsultasEnderecos>();
                     IServicoLojas servicoLojas = container.Resolve<IServicoLojas>();
-                    IServicoUsuarios servicoUsuarios = container.Resolve<IServicoUsuarios>();
-                    Usuario usuario = servicoUsuarios.GetPorLogin("admingraxei");
-                    Loja loja = new Loja() {Nome = "Loja do Graxei"};
-                    Estado estado = servEnderecos.GetEstadoPorSigla("RJ");
-                    Bairro bairro = servEnderecos.GetBairro("Centro", "Rio de Janeiro", estado.Id);
-                    Endereco endereco = new Endereco()
-                                            {Logradouro = "Rua ABC", Numero = "1010", Bairro = bairro, Loja = loja};
-                    servicoLojas.Salvar(loja, usuario);
-                    servEnderecos.Salvar(endereco);
-                    UnitOfWorkNHibernate.Instance.CommitTransaction();
+                    Estado estado = consultasEnderecos.GetEstadoPorSigla("RJ");
+                    Bairro bairro = consultasEnderecos.GetBairro("Centro", "Belford Roxo", estado.Id);
+                    Endereco endereco = new Endereco() { Logradouro = "Rua ABCDEFGHIJ", Numero = "101010101", Bairro = bairro };
+                    UnitOfWorkNHibernate.Instance.BindSession();
+                    Loja loja = servicoLojas.Get("Mais Uma loja do Graxei");
+                    loja.AdicionarEndereco(endereco);
+                    gerenciamentoLojas.SalvarLoja(loja);
+                    UnitOfWorkNHibernate.Instance.UnBindSession();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    UnitOfWorkNHibernate.Instance.RollbackTransaction();
+
+                    Console.WriteLine("Rollbackou");
+                }
+                Console.ReadKey();
+            }
+        }*/
+        /*
+        static void Main(string[] args)
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            using (IUnityContainer container = new UnityContainer())
+            {
+                try
+                {
+                    ContainerGraxei.RegisterTypes(container);
+                    IConsultasUsuarios consultasUsuarios = container.Resolve<IConsultasUsuarios>();
+                    IConsultasEnderecos consultasEnderecos = container.Resolve<IConsultasEnderecos>();
+                    IGerenciamentoLojas gerenciamentoLojas = container.Resolve<IGerenciamentoLojas>();
+                    UnitOfWorkNHibernate.Instance.BindSession();
+                    Usuario usuario = consultasUsuarios.GetPorLogin("admingraxei");
+                    Loja loja = new Loja() {Nome = "Mais Uma loja do Graxei"};
+                    Estado estado = consultasEnderecos.GetEstadoPorSigla("RJ");
+                    Bairro bairro = consultasEnderecos.GetBairro("Centro", "Nova Iguaçu", estado.Id);
+                    Endereco endereco = new Endereco()
+                                            {Logradouro = "Rua NANANAAN", Numero = "989898", Bairro = bairro, Loja = loja};
+                    endereco.Loja = loja;
+                    IList<Endereco> enderecos = new List<Endereco>();
+                    enderecos.Add(endereco);
+                    loja.Enderecos = enderecos;
+                    gerenciamentoLojas.SalvarLoja(loja, usuario);
+                    UnitOfWorkNHibernate.Instance.UnBindSession();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    
                     Console.WriteLine("Rollbackou");
                 }
                 Console.ReadKey();
             }
         }
-
+        */
         /*using (IUnityContainer container = new UnityContainer())
             {
                 try

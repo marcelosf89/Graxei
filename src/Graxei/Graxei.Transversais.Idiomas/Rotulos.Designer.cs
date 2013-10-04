@@ -277,6 +277,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Telefones.
+        /// </summary>
+        public static string Telefones {
+            get {
+                return ResourceManager.GetString("Telefones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Voltar.
         /// </summary>
         public static string Voltar {

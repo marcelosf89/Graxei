@@ -17,7 +17,7 @@ namespace Graxei.Modelo
         public virtual string Complemento { get; set; }
         public virtual Loja Loja { get;  set; }
         public virtual Bairro Bairro { get; set; }
-        public virtual IList<Telefone> Telefones { get; protected set; }
+        public virtual IList<Telefone> Telefones { get; set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
@@ -77,5 +77,10 @@ namespace Graxei.Modelo
         }
         #endregion
 
+        public virtual bool Validar()
+        {
+            return (!String.IsNullOrEmpty(this.Logradouro) && !String.IsNullOrEmpty(this.Numero)
+                    && this.Bairro != null && this.Bairro.Validar());
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Id(p => p.Id);
             Map(p => p.Nome).Column(Constantes.NOME);
             Map(p => p.Logotipo).Column(Constantes.LOGOTIPO);
-            HasMany(p => p.Enderecos).KeyColumn(Constantes.ID_LOJA);
+            HasMany(p => p.Enderecos).KeyColumn(Constantes.ID_LOJA).Cascade.All();
         }
     }
 }

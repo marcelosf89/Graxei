@@ -10,28 +10,27 @@ using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
-    public class ServicoEnderecos : ServicoPadraoEntidades<Endereco>, IServicoEnderecos
+    public class ServicoEnderecos : ServicoPadraoSomenteLeitura<Endereco>, IServicoEnderecos
     {
 
         public ServicoEnderecos(IRepositorioEnderecos repoEnderecos,IServicoLogradouros servLogradouros,  IServicoBairros servBairros, IServicoCidades servCidades, IServicoEstados servEstados)
         {
-            _repositorioEntidades = repoEnderecos;
             _servLogradouros = servLogradouros;
             _servBairros = servBairros;
             _servCidades = servCidades;
             _servEstados = servEstados;
         }
 
-        #region Implementation of IServicoEnderecos
+        #region Implementação de IServicoEnderecos
 
         public IList<Endereco> Todos(Loja loja)
         {
-            return Repositorio.Todos(loja);
+            return RepositorioEnderecos.Todos(loja);
         }
 
         public IList<Endereco> Todos(long idLoja)
         {
-            return Repositorio.Todos(idLoja);
+            return RepositorioEnderecos.Todos(idLoja);
         }
 
         public IList<Estado> GetEstados(EstadoOrdem ordem)
@@ -83,9 +82,9 @@ namespace Graxei.Negocio.Implementacao
             return _servLogradouros.GetPorBairro(idBairro);
         }
 
-        public IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade)
+        public IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return _servLogradouros.GetPorBairro(nomeBairro, nomeCidade);
+            return _servLogradouros.GetPorBairro(nomeBairro, nomeCidade, idEstado);
         }
 
         public Estado GetEstado(long idEstado)
@@ -158,7 +157,19 @@ namespace Graxei.Negocio.Implementacao
             return _servLogradouros.Get(nomeLogradouro, idBairro);
         }
 
+        public bool Existe(Endereco endereco)
+        {
+            if (endereco == null || endereco.Loja == null || !endereco.Validar())
+            {
+                return false;
+            }
+            return true;
+        }
 
+        #endregion
+
+        #region Propriedades Privadas
+        private IRepositorioEnderecos RepositorioEnderecos { get { return (IRepositorioEnderecos)_repositorioEntidades; } }
         #endregion
 
         #region Atributos Privados
@@ -166,10 +177,6 @@ namespace Graxei.Negocio.Implementacao
         private readonly IServicoCidades _servCidades;
         private readonly IServicoBairros _servBairros;
         private readonly IServicoLogradouros _servLogradouros;
-        #endregion
-
-        #region Propriedades Privadas
-        private IRepositorioEnderecos Repositorio { get { return (IRepositorioEnderecos) _repositorioEntidades; } }
         #endregion
 
         #region Métodos Sobrescritos
@@ -245,5 +252,14 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         public enum AtributosOrdem { Sigla, Nome }
+
+        #region Implementation of IEntidadesExcluir<Endereco>
+
+        public void Excluir(Endereco t)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

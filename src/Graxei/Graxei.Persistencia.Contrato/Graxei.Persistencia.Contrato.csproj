@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepositorioLojaUsuario.cs" />
+    <Compile Include="IRepositorioTelefones.cs" />
     <Compile Include="IRepositorioLogradouros.cs" />
     <Compile Include="IRepositorioBairros.cs" />
     <Compile Include="IRepositorioCidades.cs" />
-    <Compile Include="IRepositorioEndereco.cs" />
+    <Compile Include="IRepositorioEnderecos.cs" />
     <Compile Include="IRepositorioEstados.cs" />
     <Compile Include="IRepositorioExcluir.cs" />
     <Compile Include="IRepositorioIrrestrito.cs" />
@@ -64,7 +66,7 @@
       <Name>Graxei.Modelo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
-      <Project>{4257D309-B6EC-499F-970C-824959D6ADA8}</Project>
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
       <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>

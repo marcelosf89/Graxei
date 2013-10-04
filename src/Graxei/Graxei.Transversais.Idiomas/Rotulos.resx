@@ -192,4 +192,7 @@
   <data name="Voltar" xml:space="preserve">
     <value>Voltar</value>
   </data>
+  <data name="Telefones" xml:space="preserve">
+    <value>Telefones</value>
+  </data>
 </root>

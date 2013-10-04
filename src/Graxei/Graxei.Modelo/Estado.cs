@@ -40,5 +40,10 @@ namespace Graxei.Modelo
             return Sigla;
         }
         #endregion
+
+        public virtual bool Validar()
+        {
+            return !(String.IsNullOrEmpty(Sigla) && String.IsNullOrEmpty(Nome));
+        }
     }
 }

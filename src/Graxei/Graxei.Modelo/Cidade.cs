@@ -39,6 +39,19 @@ namespace Graxei.Modelo
         }
         #endregion
 
+        #region Overrides of Entidade
+
+/*        public override void Validar()
+        {
+            if ()
+        }
+        */
+        #endregion
+
+        public virtual bool Validar()
+        {
+            return (!String.IsNullOrEmpty(Nome) && Estado != null && Estado.Validar());
+        }
     }
 
 }

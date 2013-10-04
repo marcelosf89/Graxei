@@ -14,4 +14,5 @@ namespace Graxei.Negocio.Contrato
         IList<T> Todos();
         IRepositorioEntidades<T> RepositorioEntidades { get; }
     }
+
 }

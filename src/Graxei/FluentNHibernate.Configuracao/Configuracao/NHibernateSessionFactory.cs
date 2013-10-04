@@ -2,7 +2,6 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Graxei.FluentNHibernate.Convencoes;
 using Graxei.FluentNHibernate.Mapeamento;
-using Graxei.Modelo;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Context;

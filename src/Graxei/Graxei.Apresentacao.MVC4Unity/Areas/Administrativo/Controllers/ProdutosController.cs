@@ -1,6 +1,4 @@
-﻿using System;
-using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
+﻿using Graxei.Modelo;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,7 +8,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class ProdutosController : Controller
     {
-
+        /*
         public ProdutosController(IServicoProdutos servicoProdutos, IServicoFabricantes servicoFabricantes)
         {
             _servicoProdutos = servicoProdutos;
@@ -45,6 +43,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         private readonly IServicoProdutos _servicoProdutos;
         private readonly IServicoFabricantes _servicoFabricantes;
-
+        */
     }
 }

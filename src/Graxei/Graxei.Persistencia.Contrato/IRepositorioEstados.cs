@@ -4,7 +4,7 @@ using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Persistencia.Contrato
 {
-    public interface IRepositorioEstados : IRepositorioEntidades<Estado>
+    public interface IRepositorioEstados : IRepositorioIrrestrito<Estado>
     {
         Estado GetPorSigla(string sigla);
         Estado GetPorNome(string nome);

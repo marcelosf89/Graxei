@@ -1,7 +1,7 @@
 using System.Web.Mvc;
+using Graxei.Aplicacao.Fabrica;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
-using Graxei.Negocio.Fabrica;
 
 namespace Graxei.Apresentacao.MVC4Unity
 {
@@ -31,7 +31,7 @@ namespace Graxei.Apresentacao.MVC4Unity
 
     public static void RegisterTypes(IUnityContainer container)
     {
-        BootstrapperNegocio.RegisterTypes(container);
+        BootstrapperAplicacao.RegisterTypes(container);
     }
 
   }

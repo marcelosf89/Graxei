@@ -1,7 +1,9 @@
-﻿using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
 using System.Web.Mvc;
 using Graxei.Transversais.Utilidades.Excecoes;
 
@@ -10,21 +12,20 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class LojasController : Controller
     {
-        public LojasController(IServicoLojas servicoLojas, IServicoEnderecos servicoEnderecos)
+        public LojasController(IGerenciamentoLojas gerenciamentoLojas)
         {
-            _servicoLojas = servicoLojas;
-            _servicoEnderecos = servicoEnderecos;
+            _gerenciamentoLojas = gerenciamentoLojas;
         }
 
         #region ActionResults
         public ActionResult Index(NovosEnderecosModel item)
         {
-            NovaLojaModel model = new NovaLojaModel() { Loja = new Loja(), NovosEnderecosModel = item };
+            NovaLoja model = new NovaLoja() { Loja = new Loja(), NovosEnderecosModel = item };
             return View("Novo", model);
         }
 
         [HttpPost]
-        public ActionResult Novo(UsuarioLogado usuario, NovaLojaModel item)
+        public ActionResult Novo(UsuarioLogado usuario, NovaLoja item)
         {
             if (!ModelState.IsValid)
             {
@@ -32,50 +33,29 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             try
             {
-                _servicoLojas.Salvar(item.Loja, usuario.Usuario);
-                foreach (EnderecoIndiceModel end in item.NovosEnderecosModel.Enderecos)
-                {
-                    Endereco endereco = end.Endereco;
-                    endereco.Loja = item.Loja;
-                    // TODO: Não existe salvar para enderecos
-                    //_servicoEnderecos.Salvar(endereco);
-                }
+                // Recuperando os endereços inseridos
+                IList<Endereco> enderecos = (from i in item.NovosEnderecosModel.Enderecos
+                                           select i.Endereco).ToList();
+
+                item.Loja.AdicionarEnderecos(enderecos);
+                _gerenciamentoLojas.SalvarLoja(item.Loja, usuario.Usuario);
             }
-            catch (EntidadesException ee)
+            catch (OperacaoEntidadeException ee)
             {
-
+                return View("Novo", item);
             }
-
             return View("Salvo");
         }
 
-        public RedirectToRouteResult NovoEndereco(NovosEnderecosModel enderecos, NovaLojaModel model)
+        public RedirectToRouteResult NovoEndereco(NovosEnderecosModel enderecos, NovaLoja model)
         {
             return RedirectToAction("Index", "Enderecos");
         }
 
         #endregion
         #region Atributos Privados
-        private readonly IServicoLojas _servicoLojas;
-        private readonly IServicoEnderecos _servicoEnderecos;
+        private readonly IGerenciamentoLojas _gerenciamentoLojas;
         #endregion
-
-        /*private List<Novo> Enderecos
-        {
-            get
-            {
-                if (Session[ItensSessao.EnderecosNovaLoja] == null)
-                {
-                    Session[ItensSessao.EnderecosNovaLoja] = new List<EnderecosNovaLoja>();
-                }
-                return (List<EnderecosNovaLoja>)Session[ItensSessao.EnderecosNovaLoja];
-            }
-            set
-            {
-                Session[ItensSessao.EnderecosNovaLoja] = value;
-            }
-        }*/
-
 
     }
 }

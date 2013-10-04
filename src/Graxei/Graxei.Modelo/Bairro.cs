@@ -39,6 +39,14 @@ namespace Graxei.Modelo
         }
         #endregion
 
+        #region Overrides of Entidade
+
+        public virtual bool Validar()
+        {
+            return (!String.IsNullOrEmpty(this.Nome) && this.Cidade != null && this.Cidade.Validar());
+        }
+
+        #endregion
     }
 
 }

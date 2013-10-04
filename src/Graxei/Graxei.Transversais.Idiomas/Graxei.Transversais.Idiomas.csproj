@@ -71,6 +71,7 @@
     <EmbeddedResource Include="Erros.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Erros.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Propriedades.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

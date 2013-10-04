@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
-using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LoginController : Controller
     {
 
-        public LoginController(IServicoUsuarios servicoUsuarios)
+        public LoginController(IConsultasLogin consultasUsuarios)
         {
-            _servicoUsuarios = servicoUsuarios;
+            _consultasLogin = consultasUsuarios;
         }
 
         //
@@ -46,7 +41,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 return Content(ae.Message, "text/html");
             }            */
 
-            Usuario usuarioAutenticado = _servicoUsuarios.AutenticarPorLogin("admingraxei", "graxei");
+            Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
             return Json(new { url = Url.Action("Home","Administrativo") });
         }
@@ -61,6 +56,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
         }
 
-        private IServicoUsuarios _servicoUsuarios;
+        private IConsultasLogin _consultasLogin;
     }
 }

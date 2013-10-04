@@ -7,7 +7,7 @@ using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
-    public abstract class ServicoPadraoEntidades<T> : IServicoEntidades<T> where T : Entidade
+    public abstract class ServicoPadraoEntidades<T> : ServicoPadraoSomenteLeitura<T>, IEntidadesIrrestrito<T> where T : Entidade
     {
 
         #region Implementações Padrão
@@ -19,10 +19,9 @@ namespace Graxei.Negocio.Implementacao
         {
             if (_repositorioEntidades == null)
             {
-                throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t));
+                throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t.GetType()));
             }
-            // TODO: Não existe salvar para Entidades
-            //_repositorioEntidades.Salvar(t);    
+            _repositorioEntidades.Salvar(t);    
         }
 
         public void Excluir(T t)
@@ -31,32 +30,13 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new OperacaoEntidadeException(string.Format("RepositorioEntidades é nulo. Entidade: {0}", t));
             }
-            // TODO: Não existe exvluir para Entidades
-            //_repositorioEntidades.Excluir(t);    
+            _repositorioEntidades.Excluir(t);    
         }
 
-        public T GetPorId(long id)
-        {
-            if (_repositorioEntidades == null)
-            {
-                throw new OperacaoEntidadeException("RepositorioEntidades é nulo");
-            }
-            return _repositorioEntidades.GetPorId(id);
-        }
-
-        public IList<T> Todos()
-        {
-            if (_repositorioEntidades == null)
-            {
-                throw new OperacaoEntidadeException("RepositorioEntidades é nulo. Entidade: {0}");
-            }
-            return _repositorioEntidades.Todos();
-        }
-
-        public IRepositorioEntidades<T> RepositorioEntidades { get { return _repositorioEntidades;  } }
+        public new IRepositorioIrrestrito<T> RepositorioEntidades { get { return _repositorioEntidades;  } }
 
         #endregion
 
-        protected IRepositorioEntidades<T> _repositorioEntidades;
+        protected new IRepositorioIrrestrito<T> _repositorioEntidades;
     }
 }

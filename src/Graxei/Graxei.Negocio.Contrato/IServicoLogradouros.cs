@@ -7,7 +7,7 @@ namespace Graxei.Negocio.Contrato
     {
         IList<Logradouro> Get(Bairro bairro);
         IList<Logradouro> GetPorBairro(long idBairro);
-        IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade);
+        IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade, long idEstado);
         Logradouro Get(string nomeLogradouro, string nomeBairro, long idCidade);
         Logradouro Get(string nomeLogradouro, string nomeBairro, Cidade cidade);
         Logradouro Get(string nomeLogradouro, long idBairro);

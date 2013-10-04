@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Graxei.Persistencia.Contrato;
-using Graxei.FluentNHibernate.Configuracao;
+﻿using Graxei.Persistencia.Contrato;
 using FAST.Modelo;
-using NHibernate;
-using Graxei.FluentNHibernate.UnitOfWork;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
-    public abstract class PadraoNHibernateMySQL<T> : IRepositorioEntidades<T> where T : Entidade
+    public abstract class PadraoNHibernateMySQL<T> : PadraoNHibernateMySQLLeitura<T>, IRepositorioIrrestrito<T> where T : Entidade
     {
         public void Salvar(T t)
         {
@@ -23,19 +15,5 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             SessaoAtual.Delete(t);
         }
 
-        public T GetPorId(long id)
-        {
-            return SessaoAtual.Get<T>(id);
-        }
-
-        public IList<T> Todos()
-        {
-            return SessaoAtual.CreateCriteria<T>().List<T>();
-        }
-
-        protected ISession SessaoAtual
-        {
-            get { return UnitOfWorkNHibernate.Instance.GetCurrentSession(); }
-        }
     }
 }

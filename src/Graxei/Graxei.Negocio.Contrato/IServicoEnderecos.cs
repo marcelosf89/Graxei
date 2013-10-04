@@ -4,7 +4,7 @@ using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Negocio.Contrato
 {
-    public interface IServicoEnderecos : IExcluirEntidade<Endereco>
+    public interface IServicoEnderecos : IEntidadesExcluir<Endereco>
     {
         IList<Endereco> Todos(Loja loja);
         IList<Endereco> Todos(long idLoja);
@@ -16,7 +16,7 @@ namespace Graxei.Negocio.Contrato
         IList<Bairro> GetBairros(string nomeCidade, long idEstado);
         IList<Logradouro> GetLogradouros(Bairro bairro);
         IList<Logradouro> GetLogradouros(long idBairro);
-        IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade);
+        IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade, long idEstado);
         Estado GetEstado(long idEstado);
         Estado GetEstadoPorSigla(string sigla);
         Estado GetEstadoPorNome(string nome);
@@ -31,5 +31,6 @@ namespace Graxei.Negocio.Contrato
         Logradouro GetLogradouro(string nomeLogradouro, string nomeBairro, long idCidade);
         Logradouro GetLogradouro(string nomeLogradouro, Bairro bairro);
         Logradouro GetLogradouro(string nomeLogradouro, long idBairro);
+        bool Existe(Endereco endereco);
     }
 }

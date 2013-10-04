@@ -82,6 +82,8 @@
     <Compile Include="Mapeamento\TelefoneMap.cs" />
     <Compile Include="Mapeamento\TipoTelefoneMap.cs" />
     <Compile Include="Mapeamento\UnidadeMedidaMap.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWorkNHibernate.cs" />
     <Compile Include="UnitOfWork\UnitOfWorkNHibernate.cs" />
   </ItemGroup>
   <ItemGroup>

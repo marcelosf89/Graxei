@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
 using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
@@ -13,27 +13,22 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IServicoEnderecos servicoEnderecos)
+        public EnderecosController(IConsultasEnderecos consultasEnderecos)
         {
-            _servicoEnderecos = servicoEnderecos;
+            _consultaEnderecos = consultasEnderecos;
         }
 
-        //
-        // GET: /Administrativo/Enderecos/
-        public ActionResult Index(NovosEnderecosModel item, NovaLojaModel model)
+        public ActionResult Index(NovosEnderecosModel item, NovaLoja model)
         {
-            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            //EnderecoIndiceModel model = new EnderecoIndiceModel(){ Endereco = new Endereco()};
             return View("Novo");
         }
 
-  
-        //public RedirectToRouteResult Novo(NovaLojaEnderecosModel item, EnderecoIndiceModel endereco)
         [HttpPost]
         public RedirectToRouteResult Novo(NovosEnderecosModel item, EnderecoIndiceModel model)
         {
-            Estado estado = _servicoEnderecos.GetEstado(model.IdEstado);
+            Estado estado = _consultaEnderecos.GetEstado(model.IdEstado);
             model.Endereco.Bairro.Cidade.Estado = estado;
             item.AdicionarEndereco(model);
             return RedirectToAction("Index", "Lojas");
@@ -43,15 +38,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             EnderecoIndiceModel endereco = item.Enderecos.SingleOrDefault(p => p.IdLista == id);
             endereco.IdEstado = (int)endereco.Endereco.Bairro.Cidade.Estado.Id;
-            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Editar", endereco);
         }
 
         [HttpPost]
-        public RedirectToRouteResult Editar(NovaLojaModel item, EnderecoIndiceModel model)
+        public RedirectToRouteResult Editar(NovaLoja item, EnderecoIndiceModel model)
         {
-            Estado estado = _servicoEnderecos.GetEstado(model.IdEstado);
+            Estado estado = _consultaEnderecos.GetEstado(model.IdEstado);
             model.Endereco.Bairro.Cidade.Estado = estado;
             return RedirectToAction("Index", "Lojas");
         }
@@ -62,11 +57,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return RedirectToAction("Index", "Lojas" );
         }
 
+        public ActionResult NovoTelefone(EnderecoIndiceModel model)
+        {
+            return View("Novo", model);
+        }
+
         public ActionResult EstadoSelecionado(string idEstado)
         {
             int id = int.Parse(idEstado);
-            Cidades = _servicoEnderecos.GetCidades(id);
-            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            Cidades = _consultaEnderecos.GetCidades(id);
+            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Formulario");
         }
@@ -74,15 +74,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult CidadeSelecionada(string idEstado, string valCidade)
         {
             int id = int.Parse(idEstado);
-            Bairros = _servicoEnderecos.GetBairros(valCidade, id);
-            IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            Bairros = _consultaEnderecos.GetBairros(valCidade, id);
+            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Formulario");
         }
 
-        public ActionResult BairroSelecionado(string valCidade, string valBairro)
+        public ActionResult BairroSelecionado(long idEstado, string valCidade, string valBairro)
         {
-            Logradouros = _servicoEnderecos.GetLogradouros(valBairro, valCidade);
+            Logradouros = _consultaEnderecos.GetLogradouros(valBairro, valCidade, idEstado);
             return View("Formulario");
         }
 
@@ -92,7 +92,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             IEnumerable<String> itensFiltrados = itens.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
-            /*IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            /*IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
             return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
@@ -103,7 +103,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             IEnumerable<String> itensFiltrados = itens.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
-            /*IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            /*IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
             return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
@@ -114,42 +114,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             IEnumerable<String> itensFiltrados = itens.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
-            /*IList<Estado> estados = _servicoEnderecos.GetEstados(EstadoOrdem.Sigla);
+            /*IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
             return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
 
-        #region Métodos Privados
-        /// <summary>
-        /// Adiciona o endereço recém-cadastrado à lista Http Session de endereços
-        /// </summary>
-        /// <param name="item"></param>
-       /* private void AdicionarEnderecoModel(EnderecosNovaLoja item)
-        {
-            int i = Enderecos.Count();
-            EnderecosNovaLoja novo = new EnderecosNovaLoja { IdLista = i, Endereco = item.Endereco };
-            Enderecos.Add(novo);
-            i = 0;
-            foreach (EnderecosNovaLoja n in Enderecos.OrderBy(p => p.IdLista))
-            {
-                n.IdLista = i++;
-            }
-        }*/
-
-        /// <summary>
-        /// Edita o endereço cadastrado na lista Http Session de endereços
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="idLista"> </param>
-        /*private void EditarEnderecoModel(EnderecosNovaLoja item, int idLista)
-        {
-            EnderecosNovaLoja end = Enderecos.SingleOrDefault(p => p.IdLista == idLista);
-            end.Endereco = item.Endereco;
-        }*/
-        #endregion
-
         #region Propriedades de Sessão
-
+        /* TODO: Refazer os mecanismos de acesso a elementos de sessão Http*/
         private IList<Cidade> Cidades
         {
             get
@@ -201,27 +172,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
         }
 
-
-        /* TODO: Refazer os mecanismos de acesso a elementos de sessão Http*/
-        /*private List<EnderecosNovaLoja> Enderecos
-        {
-            get
-            {
-                if (Session[ItensSessao.EnderecosNovaLoja] == null)
-                {
-                    Session[ItensSessao.EnderecosNovaLoja] = new List<EnderecosNovaLoja>();
-                }
-                return (List<EnderecosNovaLoja>)Session[ItensSessao.EnderecosNovaLoja];
-            }
-            set
-            {
-                Session[ItensSessao.EnderecosNovaLoja] = value;
-            }
-        }*/
         #endregion
 
         #region Atributos Privados
-        private readonly IServicoEnderecos _servicoEnderecos;
+        private readonly IConsultasEnderecos _consultaEnderecos;
         #endregion
+
     }
 }
