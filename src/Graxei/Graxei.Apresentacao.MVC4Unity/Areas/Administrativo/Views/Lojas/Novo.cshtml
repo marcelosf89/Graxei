@@ -26,7 +26,7 @@
 else
 {
 
-    foreach (Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel line in Model.NovosEnderecosModel.Enderecos)
+    foreach (EnderecoIndiceModel line in Model.NovosEnderecosModel.Enderecos)
     {
         Html.RenderPartial("AcoesEmNovaLoja", line);
     }
