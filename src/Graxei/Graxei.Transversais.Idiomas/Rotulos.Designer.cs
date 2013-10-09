@@ -61,6 +61,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adicionar.
+        /// </summary>
+        public static string Adicionar {
+            get {
+                return ResourceManager.GetString("Adicionar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adicionar Endereços.
         /// </summary>
         public static string AdicionarEnderecos {

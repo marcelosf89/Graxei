@@ -195,4 +195,7 @@
   <data name="Telefones" xml:space="preserve">
     <value>Telefones</value>
   </data>
+  <data name="Adicionar" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
 </root>

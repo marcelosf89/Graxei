@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepositorioAtributos.cs" />
+    <Compile Include="IRepositorioProdutoVendedor.cs" />
     <Compile Include="IRepositorioLojaUsuario.cs" />
     <Compile Include="IRepositorioTelefones.cs" />
     <Compile Include="IRepositorioLogradouros.cs" />

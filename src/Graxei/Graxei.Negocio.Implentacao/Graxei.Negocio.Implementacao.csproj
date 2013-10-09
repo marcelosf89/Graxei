@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ServicoAtributos.cs" />
     <Compile Include="ServicoPadraoSomenteLeitura.cs" />
     <Compile Include="ServicoLogradouros.cs" />
     <Compile Include="ServicoBairros.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="ServicoEnderecos.cs" />
     <Compile Include="ServicoEstados.cs" />
     <Compile Include="ServicoLojaUsuario.cs" />
+    <Compile Include="ServicoProdutoVendedor.cs" />
     <Compile Include="ServicoTelefones.cs" />
     <Compile Include="ServicoUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

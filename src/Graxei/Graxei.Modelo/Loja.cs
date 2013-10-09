@@ -53,5 +53,10 @@ namespace Graxei.Modelo
                 AdicionarEndereco(endereco);
             }
         }
+
+        public virtual bool Validar()
+        {
+            return (!string.IsNullOrEmpty(this.Nome));
+        }
     }
 }

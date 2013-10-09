@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServicoAtributos.cs" />
+    <Compile Include="IServicoProdutoVendedor.cs" />
     <Compile Include="IEntidadesExcluir.cs" />
     <Compile Include="IEntidadesSalvar.cs" />
     <Compile Include="IServicoLojaUsuario.cs" />
@@ -76,9 +78,6 @@
       <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
       <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

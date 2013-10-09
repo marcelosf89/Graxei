@@ -135,6 +135,9 @@
   <data name="CidadeNulo" xml:space="preserve">
     <value>Endereço incompleto: cidade faltando</value>
   </data>
+  <data name="DescricaoNula" xml:space="preserve">
+    <value>A descrição é obrigatória</value>
+  </data>
   <data name="EnderecoLojaNulo" xml:space="preserve">
     <value>Endereço deve pertencer a uma loja</value>
   </data>
@@ -153,13 +156,49 @@
   <data name="LojaNomeNulo" xml:space="preserve">
     <value>Nome da loja deve ser informado</value>
   </data>
+  <data name="LojaNulo" xml:space="preserve">
+    <value>A loja é obrigatória</value>
+  </data>
   <data name="LojaSalvarInvalido" xml:space="preserve">
     <value>A loja não pode ser salva sem uma associação com algum usuário</value>
+  </data>
+  <data name="PrecoNulo" xml:space="preserve">
+    <value>O preço deve ser informado</value>
+  </data>
+  <data name="ProdutoDescricaoNulo" xml:space="preserve">
+    <value>A descrição do produto é obrigatória</value>
+  </data>
+  <data name="ProdutoNulo" xml:space="preserve">
+    <value>O produto é obrigatório</value>
+  </data>
+  <data name="UnidadeEntradaNulo" xml:space="preserve">
+    <value>A unidade de entrada é obrigatória</value>
+  </data>
+  <data name="UnidadeSaidaNulo" xml:space="preserve">
+    <value>A unidade de saída é obrigatória</value>
   </data>
   <data name="UsuarioLoginNulo" xml:space="preserve">
     <value>Login do usuário deve ser informado</value>
   </data>
   <data name="UsuarioNaoEncontrado" xml:space="preserve">
     <value>Usuário {0} não encontrado</value>
+  </data>
+  <data name="ValorMaiorZero" xml:space="preserve">
+    <value>O valor deve ser maior que zero</value>
+  </data>
+  <data name="LojaNula" xml:space="preserve">
+    <value>Loja nula</value>
+  </data>
+  <data name="LojaInvalida" xml:space="preserve">
+    <value>Loja inválida: atributos obrigatórios têm valor nulo</value>
+  </data>
+  <data name="ProdutoMesmaLoja" xml:space="preserve">
+    <value>O produto já pertence a essa loja</value>
+  </data>
+  <data name="ProdutoPaiNulo" xml:space="preserve">
+    <value>O produto é obrigatório em ProdutoVendedor</value>
+  </data>
+  <data name="ProdutoExiste" xml:space="preserve">
+    <value>O produto já existe</value>
   </data>
 </root>

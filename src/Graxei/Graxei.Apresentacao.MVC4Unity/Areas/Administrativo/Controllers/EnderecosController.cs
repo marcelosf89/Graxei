@@ -18,11 +18,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultaEnderecos = consultasEnderecos;
         }
 
-        public ActionResult Index(NovosEnderecosModel item, NovaLoja model)
+        public ActionResult Index(NovosEnderecosModel item)
         {
             IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Novo");
+            return View("Novo", new EnderecoIndiceModel());
         }
 
         [HttpPost]
@@ -69,6 +69,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return View("Novo", model);
         }
 
+        #region AutoComplete
         public ActionResult EstadoSelecionado(string idEstado)
         {
             int id = int.Parse(idEstado);
@@ -125,6 +126,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
             return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
+        #endregion
 
         #region Propriedades de Sessão
         /* TODO: Refazer os mecanismos de acesso a elementos de sessão Http*/

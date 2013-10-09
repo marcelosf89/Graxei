@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Atributo.cs" />
     <Compile Include="Bairro.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="Cidade.cs" />

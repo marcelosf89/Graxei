@@ -115,6 +115,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A descrição é obrigatória.
+        /// </summary>
+        public static string DescricaoNula {
+            get {
+                return ResourceManager.GetString("DescricaoNula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço deve pertencer a uma loja.
         /// </summary>
         public static string EnderecoLojaNulo {
@@ -151,6 +160,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loja inválida: atributos obrigatórios têm valor nulo.
+        /// </summary>
+        public static string LojaInvalida {
+            get {
+                return ResourceManager.GetString("LojaInvalida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esta loja já existe.
         /// </summary>
         public static string LojaJaExiste {
@@ -169,11 +187,101 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loja nula.
+        /// </summary>
+        public static string LojaNula {
+            get {
+                return ResourceManager.GetString("LojaNula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A loja é obrigatória.
+        /// </summary>
+        public static string LojaNulo {
+            get {
+                return ResourceManager.GetString("LojaNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A loja não pode ser salva sem uma associação com algum usuário.
         /// </summary>
         public static string LojaSalvarInvalido {
             get {
                 return ResourceManager.GetString("LojaSalvarInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O preço deve ser informado.
+        /// </summary>
+        public static string PrecoNulo {
+            get {
+                return ResourceManager.GetString("PrecoNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição do produto é obrigatória.
+        /// </summary>
+        public static string ProdutoDescricaoNulo {
+            get {
+                return ResourceManager.GetString("ProdutoDescricaoNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O produto já existe.
+        /// </summary>
+        public static string ProdutoExiste {
+            get {
+                return ResourceManager.GetString("ProdutoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O produto já pertence a essa loja.
+        /// </summary>
+        public static string ProdutoMesmaLoja {
+            get {
+                return ResourceManager.GetString("ProdutoMesmaLoja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O produto é obrigatório.
+        /// </summary>
+        public static string ProdutoNulo {
+            get {
+                return ResourceManager.GetString("ProdutoNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O produto é obrigatório em ProdutoVendedor.
+        /// </summary>
+        public static string ProdutoPaiNulo {
+            get {
+                return ResourceManager.GetString("ProdutoPaiNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A unidade de entrada é obrigatória.
+        /// </summary>
+        public static string UnidadeEntradaNulo {
+            get {
+                return ResourceManager.GetString("UnidadeEntradaNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A unidade de saída é obrigatória.
+        /// </summary>
+        public static string UnidadeSaidaNulo {
+            get {
+                return ResourceManager.GetString("UnidadeSaidaNulo", resourceCulture);
             }
         }
         
@@ -192,6 +300,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string UsuarioNaoEncontrado {
             get {
                 return ResourceManager.GetString("UsuarioNaoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O valor deve ser maior que zero.
+        /// </summary>
+        public static string ValorMaiorZero {
+            get {
+                return ResourceManager.GetString("ValorMaiorZero", resourceCulture);
             }
         }
     }

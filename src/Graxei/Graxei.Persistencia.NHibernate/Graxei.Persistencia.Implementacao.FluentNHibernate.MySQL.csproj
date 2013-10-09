@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtributosNHibernateMySQL.cs" />
     <Compile Include="CidadesNHibernateMySQL.cs" />
+    <Compile Include="ProdutoVendedorNHibernateMySQL.cs" />
     <Compile Include="PadraoNHibernateMySQLLeitura.cs" />
     <Compile Include="LojaUsuarioNHibernateMySQL.cs" />
     <Compile Include="TelefonesNHibernateMySQL.cs" />

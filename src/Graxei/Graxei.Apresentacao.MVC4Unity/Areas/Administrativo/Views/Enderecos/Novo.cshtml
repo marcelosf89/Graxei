@@ -2,7 +2,6 @@
 @using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 @model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel
 
-
 @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = "$('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -48,19 +47,28 @@
                     <div class="row form-group">
                         @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Endereco.Complemento).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                     </div>
+                    @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = "$('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
+                    {
                     <h2>@Rotulos.Telefones</h2>
                     <div class="row form-group">
-                        @*                        @if (Model.Telefones != null && Model.Telefones.Any())
-                        {
-                            @Html.EditorFor(m => m.Telefones)
-                        }
-                        else
-                        {
-                            @Html.EditorFor(m => m.Telefone)
-                        }*@
-                        @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "NovoEndereco", "Endereco", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
+                        @{
+                            int i = 1;
+                            if (!Model.Telefones.Any())
+                            {
+                                <div>@Html.TextBox("fone1")</div>
+                                @Html.ActionLink(Rotulos.Adicionar, "NovoTelefone", new { model = Model })
+                                i++;
+                            }else
+                            {
+                                foreach (string s in Model.Telefones)
+                                {
+                                    <div>@Html.TextBox("fone" + i++, s)</div>
+                                }
+                                @Html.Bootstrap().SubmitButton()
+                            }
+                        } 
                     </div>
-
+                    }
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
