@@ -22,6 +22,9 @@ namespace Graxei.Aplicacao.Fabrica
                                            container.Resolve<IServicoTelefones>(), container.Resolve<IServicoUsuarios>()))*/
                 );
 
+            // Produtos Vendedor - Transacional
+            container.RegisterType<IGerenciamentoProdutos, GerenciamentoProdutos>();
+
             // Lojas - Consultas
             container.RegisterType<IConsultasLojas, ConsultasLojas>(
                /* new InjectionFactory(

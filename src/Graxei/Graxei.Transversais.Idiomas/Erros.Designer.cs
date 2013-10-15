@@ -124,6 +124,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A descrição da unidade de medida é obrigatória.
+        /// </summary>
+        public static string DescricaoUnidadeMedidaNula {
+            get {
+                return ResourceManager.GetString("DescricaoUnidadeMedidaNula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço deve pertencer a uma loja.
         /// </summary>
         public static string EnderecoLojaNulo {
@@ -223,6 +232,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existem atributos repetidos para este produto.
+        /// </summary>
+        public static string ProdutoAtributosRepetidos {
+            get {
+                return ResourceManager.GetString("ProdutoAtributosRepetidos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A descrição do produto é obrigatória.
         /// </summary>
         public static string ProdutoDescricaoNulo {
@@ -237,6 +255,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string ProdutoExiste {
             get {
                 return ResourceManager.GetString("ProdutoExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O fabricante é obrigatório.
+        /// </summary>
+        public static string ProdutoFabricanteNulo {
+            get {
+                return ResourceManager.GetString("ProdutoFabricanteNulo", resourceCulture);
             }
         }
         
@@ -264,6 +291,24 @@ namespace Graxei.Transversais.Idiomas {
         public static string ProdutoPaiNulo {
             get {
                 return ResourceManager.GetString("ProdutoPaiNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O preço deve ser maior que zero.
+        /// </summary>
+        public static string ProdutoPrecoInvalido {
+            get {
+                return ResourceManager.GetString("ProdutoPrecoInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A sigla da unidade de medida é obrigatória.
+        /// </summary>
+        public static string SiglaUnidadeMedidaNula {
+            get {
+                return ResourceManager.GetString("SiglaUnidadeMedidaNula", resourceCulture);
             }
         }
         

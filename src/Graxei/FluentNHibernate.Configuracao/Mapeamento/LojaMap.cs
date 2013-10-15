@@ -8,9 +8,11 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public LojaMap()
         {
             Id(p => p.Id);
-            Map(p => p.Nome).Column(Constantes.NOME);
-            Map(p => p.Logotipo).Column(Constantes.LOGOTIPO);
+            Map(p => p.Nome);
+            Map(p => p.Logotipo);
+            Map(p => p.Excluida);
             HasMany(p => p.Enderecos).KeyColumn(Constantes.ID_LOJA).Cascade.All();
+            Where("excluida = false");
         }
     }
 }

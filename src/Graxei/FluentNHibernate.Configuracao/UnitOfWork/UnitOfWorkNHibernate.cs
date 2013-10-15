@@ -48,7 +48,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
         private UnitOfWorkNHibernate()
         {
-            _sessionFactory = NHibernateSessionFactory.Instance.SessionFactory();
+            _sessionFactory = NHibernateWebSessionFactory.Instance.GetSessionFactory();
         }
 
         private static UnitOfWorkNHibernate _instance;

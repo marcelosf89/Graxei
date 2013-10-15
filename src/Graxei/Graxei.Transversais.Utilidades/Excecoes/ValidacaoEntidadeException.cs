@@ -2,7 +2,7 @@
 
 namespace Graxei.Transversais.Utilidades.Excecoes
 {
-    public class ValidacaoEntidadeException : GraxeiException
+    public class ValidacaoEntidadeException : OperacaoEntidadeException
     {
         public ValidacaoEntidadeException(string mensagem) : base(mensagem)
         {

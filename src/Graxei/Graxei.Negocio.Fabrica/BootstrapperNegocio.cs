@@ -41,11 +41,17 @@ namespace Graxei.Negocio.Fabrica
             container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorNHibernateMySQL>()
                      .RegisterType<IServicoProdutoVendedor, ServicoProdutoVendedor>();
 
+            container.RegisterType<IRepositorioAtributos, AtributosNHibernateMySQL>()
+                     .RegisterType<IServicoAtributos, ServicoAtributos>();
+
             // Fabricantes
             container.RegisterType<IRepositorioFabricantes, FabricantesNHibernateMySQL>()
                      .RegisterType<IServicoFabricantes, ServicoFabricantes>(
                             /*new InjectionFactory(p => new ServicoFabricantes(container.Resolve<IRepositorioFabricantes>()))*/
                             );
+
+            // Unidades de Medida
+            container.RegisterType<IServicoUnidadeMedida, ServicoUnidadeMedida>();
 
             // Estados
             container.RegisterType<IRepositorioEstados, EstadosNHibernateMySQL>()

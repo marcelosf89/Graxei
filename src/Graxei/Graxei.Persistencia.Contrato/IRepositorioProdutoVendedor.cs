@@ -8,6 +8,7 @@ namespace Graxei.Persistencia.Contrato
         IList<ProdutoVendedor> GetPorDescricao(string descricao);
         ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja);
         ProdutoVendedor GetPorDescricaoAndLoja(string descricao, Loja loja);
+        void ExcluirDe(Loja loja);
     }
 
 }

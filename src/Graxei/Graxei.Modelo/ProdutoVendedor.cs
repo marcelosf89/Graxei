@@ -7,15 +7,11 @@ using NHibernate.Search.Attributes;
 namespace Graxei.Modelo
 {
     [Indexed]
-    public class ProdutoVendedor : Entidade
+    public class ProdutoVendedor : ExclusaoLogica
     {
 
         [DocumentId]
         public override long Id { get; protected set; }
-
-        [Display(ResourceType = typeof(Propriedades), Name = "Codigo")]
-        [Field(Index.Tokenized, Store = Store.Yes)]
-        public virtual string Codigo { get; set; }
 
         [Display(ResourceType = typeof(Propriedades), Name = "Descricao")]
         [Required(ErrorMessageResourceName = "DescricaoNula", ErrorMessageResourceType = typeof(Erros))]
@@ -62,7 +58,7 @@ namespace Graxei.Modelo
 
         public virtual bool Validar()
         {
-            return (!string.IsNullOrEmpty(Codigo) && (!string.IsNullOrEmpty(Descricao))) &&
+            return (!string.IsNullOrEmpty(Descricao)) &&
                    (this.Loja != null && this.Loja.Validar()) && (this.Produto != null && this.Produto.Validar());
         }
 

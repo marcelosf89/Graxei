@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="AtributosNHibernateMySQL.cs" />
     <Compile Include="CidadesNHibernateMySQL.cs" />
+    <Compile Include="ConsultasSQL.cs" />
     <Compile Include="ProdutoVendedorNHibernateMySQL.cs" />
     <Compile Include="PadraoNHibernateMySQLLeitura.cs" />
     <Compile Include="LojaUsuarioNHibernateMySQL.cs" />

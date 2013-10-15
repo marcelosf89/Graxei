@@ -7,7 +7,7 @@ using FAST.Modelo;
 
 namespace Graxei.Modelo
 {
-    public class Atributo : Entidade
+    public class Atributo : ExclusaoLogica
     {
         public virtual string Nome { get; set; }
         public virtual string Rotulo { get; set; }

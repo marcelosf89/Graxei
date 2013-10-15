@@ -6,7 +6,7 @@ using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {
-    public class Loja : Entidade
+    public class Loja : ExclusaoLogica
     {
         [Required(ErrorMessageResourceType = typeof(Textos), ErrorMessageResourceName = "NomeObrigatorio")]
         [StringLength(80)]

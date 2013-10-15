@@ -7,20 +7,21 @@ using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
-    public class ServicoProdutoVendedor : ServicoPadraoSomenteLeitura<ProdutoVendedor>, IServicoProdutoVendedor
+    public class ServicoProdutoVendedor : ServicoPadraoEntidades<ProdutoVendedor>, IServicoProdutoVendedor
     {
 
         #region Construtor
-        public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos)
+        public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida)
         {
             _repositorioEntidades = repositorio;
             _repositorioProdutos = repositorioProdutos;
             _servicoProdutos = servicoProdutos;
             _servicoAtributos = servicoAtributos;
+            _servicoUnidadeMedida = servicoUnidadeMedida;
         }
         #endregion
 
-        public void Salvar(ProdutoVendedor produtoVendedor)
+        public new void Salvar(ProdutoVendedor produtoVendedor)
         {
             if (UtilidadeEntidades.IsTransiente(produtoVendedor))
             {
@@ -69,6 +70,10 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ValidacaoEntidadeException(Erros.ProdutoDescricaoNulo);
             }
+            if (produtoVendedor.Preco <= 0)
+            {
+                throw new ValidacaoEntidadeException(Erros.ProdutoPrecoInvalido);
+            }
             if (produtoVendedor.UnidadeEntrada == null)
             {
                 throw new ValidacaoEntidadeException(Erros.UnidadeEntradaNulo);
@@ -77,6 +82,8 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ValidacaoEntidadeException(Erros.UnidadeSaidaNulo);
             }
+            _servicoUnidadeMedida.PreSalvar(produtoVendedor.UnidadeEntrada);
+            _servicoUnidadeMedida.PreSalvar(produtoVendedor.UnidadeSaida);
             if (produtoVendedor.Loja == null)
             {
                 throw new ValidacaoEntidadeException(Erros.LojaNulo);
@@ -96,9 +103,11 @@ namespace Graxei.Negocio.Implementacao
 
         #region Atributos Privados
         private IRepositorioProdutos _repositorioProdutos;
-        private IServicoProdutos _servicoProdutos;
-        private IServicoAtributos _servicoAtributos;
+        private readonly IServicoProdutos _servicoProdutos;
+        private readonly IServicoAtributos _servicoAtributos;
+        private IServicoUnidadeMedida _servicoUnidadeMedida;
 
         #endregion
+
     }
 }

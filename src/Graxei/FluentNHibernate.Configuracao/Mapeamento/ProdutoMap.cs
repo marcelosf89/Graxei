@@ -18,8 +18,6 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.FatorConversao).Column(Constantes.FATOR_CONVERSAO);
             References(p => p.Categoria).Cascade.All();
             References(p => p.Fabricante).Cascade.All();
-            References(p => p.UnidadeEntrada).Column(Constantes.ID_UNIDADE_ENTRADA).Cascade.All();
-            References(p => p.UnidadeSaida).Column(Constantes.ID_UNIDADE_SAIDA).Cascade.All();
         }
     }
 }

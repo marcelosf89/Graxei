@@ -7,13 +7,15 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public EnderecoMap()
         {
-            Id(p => p.Id).Column(Constantes.ID_ENDERECO);
-            Map(p => p.Logradouro).Column(Constantes.LOGRADOURO);
-            Map(p => p.Numero).Column(Constantes.NUMERO);
-            Map(p => p.Complemento).Column(Constantes.COMPLEMENTO);
+            Id(p => p.Id);
+            Map(p => p.Logradouro);
+            Map(p => p.Numero);
+            Map(p => p.Complemento);
+            Map(p => p.Excluida);
             References(p => p.Loja);
             References(p => p.Bairro).Fetch.Join();
             HasMany(p => p.Telefones).KeyColumn(Constantes.ID_ENDERECO);
+            Where("excluida = false");
         }
     }
 }

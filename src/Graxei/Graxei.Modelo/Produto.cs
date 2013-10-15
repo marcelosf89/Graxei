@@ -6,7 +6,7 @@ using Graxei.Transversais.Idiomas;
 namespace Graxei.Modelo
 {
     [Indexed]
-    public class Produto : Entidade
+    public class Produto : ExclusaoLogica
     {
 
         [DocumentId]
@@ -26,8 +26,6 @@ namespace Graxei.Modelo
         [IndexedEmbedded(Depth = 1)]
         public virtual Fabricante Fabricante { get; set; }
         public virtual Categoria Categoria { get; set; }
-        public virtual UnidadeMedida UnidadeEntrada { get; set; }
-        public virtual UnidadeMedida UnidadeSaida { get; set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)

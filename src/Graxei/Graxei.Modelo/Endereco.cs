@@ -6,7 +6,7 @@ using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {
-    public class Endereco : Entidade
+    public class Endereco : ExclusaoLogica
     {
         [Display(ResourceType = typeof(Propriedades), Name = "Logradouro")]
         public virtual string Logradouro { get; set; }

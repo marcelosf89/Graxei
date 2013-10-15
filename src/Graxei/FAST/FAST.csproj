@@ -96,6 +96,7 @@
     <Compile Include="Camadas\Negocio\PersistenciaBase.cs" />
     <Compile Include="Camadas\UnitOfWork\Contrato\IUnitOfWork.cs" />
     <Compile Include="Log\InformationLogger.cs" />
+    <Compile Include="Modelo\ExclusaoLogica.cs" />
     <Compile Include="Modelo\DownloadByte.cs" />
     <Compile Include="Modelo\DownloadFile.cs" />
     <Compile Include="Modelo\DownloadFileInfo.cs" />

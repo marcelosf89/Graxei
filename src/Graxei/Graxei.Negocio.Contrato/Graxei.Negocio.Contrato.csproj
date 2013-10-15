@@ -54,6 +54,7 @@
     <Compile Include="IServicoEnderecos.cs" />
     <Compile Include="IServicoEstados.cs" />
     <Compile Include="IServicoTelefones.cs" />
+    <Compile Include="IServicoUnidadeMedida.cs" />
     <Compile Include="IServicoUsuarios.cs" />
     <Compile Include="IServicoEntidades.cs" />
     <Compile Include="IServicoFabricante.cs" />

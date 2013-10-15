@@ -11,16 +11,16 @@ namespace Graxei.FluentNHibernate.Configuracao
     /// <summary>
     /// Classe para gerência da sessão do NHibernate
     /// </summary>
-    public sealed class NHibernateSessionFactory
+    public sealed class NHibernateCallSessionFactory : INHibernateFactory
     {
 
         #region Singleton
-        private static readonly NHibernateSessionFactory _instance = new NHibernateSessionFactory();
+        private static readonly NHibernateWebSessionFactory _instance = new NHibernateWebSessionFactory();
         private string _user;
         /// <summary>
         /// Instância do objeto singleton
         /// </summary>
-        public static NHibernateSessionFactory Instance
+        public static NHibernateWebSessionFactory Instance
         {
             get
             {
@@ -36,14 +36,13 @@ namespace Graxei.FluentNHibernate.Configuracao
 
         #region Métodos Públicos
 
-        public ISessionFactory SessionFactory()
+        public ISessionFactory GetSessionFactory()
         {
             if (this._sessionFactory == null)
             {
                 Configuration config =
                 Fluently.
-                Configure().CurrentSessionContext<WebSessionContext>().
-                //Configure().CurrentSessionContext<CallSessionContext>().
+                Configure().CurrentSessionContext<CallSessionContext>().
                 Database(MySQLConfiguration.Standard
                                            .ConnectionString(c => c.Server("graxei.c6lcvckogtg5.sa-east-1.rds.amazonaws.com").Database("graxei").Username("supergraxei").Password("73#tr071.")
                          ).ShowSql()

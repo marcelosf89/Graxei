@@ -4,6 +4,8 @@ using System.Linq;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Idiomas;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -23,12 +25,19 @@ namespace Graxei.Negocio.Implementacao
         public void PreSalvar(ProdutoVendedor produtoVendedor)
         {
             IList<Atributo> atributos = Repositorio.Todos(produtoVendedor);
-            ChecarRepeticoesSalvar(produtoVendedor, atributos);
+            if (ChecarRepeticoesSalvar(produtoVendedor, atributos))
+            {
+                throw new OperacaoEntidadeException(Erros.ProdutoAtributosRepetidos);
+            }
         }
 
         private bool ChecarRepeticoesSalvar(ProdutoVendedor produtoVendedor, IList<Atributo> atributos)
         {
             IList<Atributo> atributosPassados = produtoVendedor.Atributos;
+            if (atributosPassados == null || !atributosPassados.Any())
+            {
+                return false;
+            }
             int contador =(from a in atributosPassados
                            join b in atributos on a.Rotulo.Trim().ToLower() equals b.Rotulo.Trim().ToLower()
                          select a).Count();

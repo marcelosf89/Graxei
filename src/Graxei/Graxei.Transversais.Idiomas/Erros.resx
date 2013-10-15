@@ -201,4 +201,19 @@
   <data name="ProdutoExiste" xml:space="preserve">
     <value>O produto já existe</value>
   </data>
+  <data name="ProdutoAtributosRepetidos" xml:space="preserve">
+    <value>Existem atributos repetidos para este produto</value>
+  </data>
+  <data name="ProdutoFabricanteNulo" xml:space="preserve">
+    <value>O fabricante é obrigatório</value>
+  </data>
+  <data name="DescricaoUnidadeMedidaNula" xml:space="preserve">
+    <value>A descrição da unidade de medida é obrigatória</value>
+  </data>
+  <data name="SiglaUnidadeMedidaNula" xml:space="preserve">
+    <value>A sigla da unidade de medida é obrigatória</value>
+  </data>
+  <data name="ProdutoPrecoInvalido" xml:space="preserve">
+    <value>O preço deve ser maior que zero</value>
+  </data>
 </root>

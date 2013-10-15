@@ -20,6 +20,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string LOJAS = "lojas";
         public const string MOVIMENTACOES = "movimentacoes";
         public const string PRODUTOS = "produtos";
+        public const string PRODUTOS_VENDEDORES = "produtos_vendedores";
         public const string TELEFONES = "telefones";
         public const string TIPOS_LOGRADOURO = "tipos_logradouro";
         public const string TIPOS_TELEFONE = "tipos_telefone";

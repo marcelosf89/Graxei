@@ -48,13 +48,9 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ValidacaoEntidadeException(Erros.ProdutoDescricaoNulo);
             }
-            if (produto.UnidadeEntrada == null)
+            if (produto.Fabricante == null)
             {
-                throw new ValidacaoEntidadeException(Erros.UnidadeEntradaNulo);
-            }
-            if (produto.UnidadeSaida == null)
-            {
-                throw new ValidacaoEntidadeException(Erros.UnidadeSaidaNulo);
+                throw new ValidacaoEntidadeException(Erros.ProdutoFabricanteNulo);
             }
         }
     }

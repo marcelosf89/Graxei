@@ -10,7 +10,7 @@ namespace Graxei.Modelo
     public class Fabricante : Entidade
     {
         [DocumentId]
-        public new virtual long Id { get; set; }
+        public new virtual long Id { get; protected internal set; }
         [Field(Index.Tokenized, Store = Store.Yes)]
         [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
         public virtual string Nome { get; set; }

@@ -11,7 +11,9 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.Nome);
             Map(p => p.Rotulo);
             Map(p => p.Tamanho);
+            Map(p => p.Excluida);
             References(p => p.ProdutoVendedor).Column(Constantes.ID_PRODUTO_VENDEDOR);
+            Where("excluida = false");
         }
     }
 }
