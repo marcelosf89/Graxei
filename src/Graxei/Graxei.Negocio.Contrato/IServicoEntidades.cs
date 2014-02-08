@@ -10,6 +10,7 @@ namespace Graxei.Negocio.Contrato
     /// <typeparam name="T"></typeparam>
     public interface IServicoEntidades<T> where T : Entidade
     {
+        void Validar(T t);
         T GetPorId(long id);
         IList<T> Todos();
         IRepositorioEntidades<T> RepositorioEntidades { get; }

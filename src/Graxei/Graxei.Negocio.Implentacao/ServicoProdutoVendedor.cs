@@ -13,7 +13,7 @@ namespace Graxei.Negocio.Implementacao
         #region Construtor
         public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida)
         {
-            _repositorioEntidades = repositorio;
+           RepositorioEntidades = repositorio;
             _repositorioProdutos = repositorioProdutos;
             _servicoProdutos = servicoProdutos;
             _servicoAtributos = servicoAtributos;
@@ -21,22 +21,9 @@ namespace Graxei.Negocio.Implementacao
         }
         #endregion
 
-        public new void Salvar(ProdutoVendedor produtoVendedor)
+        public override void PreSalvar(ProdutoVendedor produtoVendedor)
         {
-            if (UtilidadeEntidades.IsTransiente(produtoVendedor))
-            {
-                PreSalvar(produtoVendedor);
-            }
-            else
-            {
-                PreAtualizar(produtoVendedor);
-            }
-            Repositorio.Salvar(produtoVendedor);
-        }
-
-        private void PreSalvar(ProdutoVendedor produtoVendedor)
-        {
-            ValidarAndCorrigirEntidade(produtoVendedor);
+            Validar(produtoVendedor);
             _servicoProdutos.PreSalvar(produtoVendedor.Produto);
             _servicoAtributos.PreSalvar(produtoVendedor);
             ProdutoVendedor pvExiste = Repositorio.GetPorDescricaoAndLoja(produtoVendedor.Descricao,
@@ -47,9 +34,9 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        private void PreAtualizar(ProdutoVendedor produtoVendedor)
+        public override void PreAtualizar(ProdutoVendedor produtoVendedor)
         {
-            ValidarAndCorrigirEntidade(produtoVendedor);
+            Validar(produtoVendedor);
             _servicoProdutos.PreAtualizar(produtoVendedor.Produto);
             _servicoAtributos.PreAtualizar(produtoVendedor);
             ProdutoVendedor pvExiste = Repositorio.GetPorDescricaoAndLoja(produtoVendedor.Descricao,
@@ -60,7 +47,7 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        private void ValidarAndCorrigirEntidade(ProdutoVendedor produtoVendedor)
+        public void Validar(ProdutoVendedor produtoVendedor)
         {
             if (produtoVendedor.Produto == null)
             {
@@ -97,7 +84,7 @@ namespace Graxei.Negocio.Implementacao
         #region Propriedades Privadas
         public IRepositorioProdutoVendedor Repositorio
         {
-            get { return (IRepositorioProdutoVendedor) _repositorioEntidades; }
+            get { return (IRepositorioProdutoVendedor) RepositorioEntidades; }
         }
         #endregion
 
@@ -105,7 +92,7 @@ namespace Graxei.Negocio.Implementacao
         private IRepositorioProdutos _repositorioProdutos;
         private readonly IServicoProdutos _servicoProdutos;
         private readonly IServicoAtributos _servicoAtributos;
-        private IServicoUnidadeMedida _servicoUnidadeMedida;
+        private readonly IServicoUnidadeMedida _servicoUnidadeMedida;
 
         #endregion
 

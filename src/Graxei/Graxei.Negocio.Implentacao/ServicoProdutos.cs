@@ -1,7 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
-using System.Collections.Generic;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 
@@ -20,9 +19,9 @@ namespace Graxei.Negocio.Implementacao
 
         #region Implementação de IServicoProdutos
 
-        public void PreSalvar(Produto produto)
+        public override void PreSalvar(Produto produto)
         {
-            ValidarProduto(produto);
+            Validar(produto);
             Produto pExiste = _reposProdutos.GetPorDescricao(produto.Descricao);
             if (pExiste != null)
             {
@@ -30,9 +29,9 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        public void PreAtualizar(Produto produto)
+        public override void PreAtualizar(Produto produto)
         {
-            ValidarProduto(produto);
+            Validar(produto);
             Produto pExiste = _reposProdutos.GetPorDescricao(produto.Descricao);
             if (pExiste != null && pExiste.Id != produto.Id)
             {
@@ -42,7 +41,7 @@ namespace Graxei.Negocio.Implementacao
 
         #endregion
 
-        private void ValidarProduto(Produto produto)
+        public void Validar(Produto produto)
         {
             if (produto.Descricao == null)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -6,6 +7,7 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
+using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
@@ -18,20 +20,33 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultaEnderecos = consultasEnderecos;
         }
 
-        public ActionResult Index(NovosEnderecosModel item)
+        public ActionResult Index(EnderecosModel item)
         {
             IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Novo", new EnderecoIndiceModel());
+            EnderecoIndiceModel model = new EnderecoIndiceModel() {IdEstado = estados[0].Id};
+            return PartialView("Novo", model);
         }
 
         [HttpPost]
-        public RedirectToRouteResult Novo(NovosEnderecosModel item, EnderecoIndiceModel model)
+        public ActionResult Novo(EnderecosModel item, EnderecoIndiceModel model)
         {
             Estado estado = _consultaEnderecos.GetEstado(model.IdEstado);
             model.Endereco.Bairro.Cidade.Estado = estado;
+            if (!ModelState.IsValid)
+            {
+                return PartialView(model);
+            }
             item.AdicionarEndereco(model);
-            return RedirectToAction("Index", "Lojas");
+            IList<Endereco> enderecos = item.Enderecos.Select(e => e.Endereco).ToList();
+            if (_consultaEnderecos.EnderecosRepetidos(enderecos).Any())
+            {
+                ModelState.AddModelError(String.Empty, Erros.EnderecoRepetidoLoja);
+                return PartialView(model);
+            }
+            HttpContext.Session[ChavesSessao.EnderecosNovaLoja] = null;
+            HttpContext.Session[ChavesSessao.Logotipo] = null;
+            return PartialView("AcoesEmLoja", item);
         }
 
         public ActionResult Novo(EnderecoIndiceModel model)
@@ -41,7 +56,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return View();
         }
 
-        public ActionResult Editar(NovosEnderecosModel item, int id)
+        public ActionResult Editar(EnderecosModel item, int id)
         {
             EnderecoIndiceModel endereco = item.Enderecos.SingleOrDefault(p => p.IdLista == id);
             endereco.IdEstado = (int)endereco.Endereco.Bairro.Cidade.Estado.Id;
@@ -51,17 +66,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult Editar(NovaLoja item, EnderecoIndiceModel model)
+        public ActionResult Editar(EnderecosModel item, EnderecoIndiceModel model)
         {
+            item.SubstituirEndereco(model);
             Estado estado = _consultaEnderecos.GetEstado(model.IdEstado);
             model.Endereco.Bairro.Cidade.Estado = estado;
-            return RedirectToAction("Index", "Lojas");
+            return PartialView("AcoesEmLoja", item);
         }
 
-        public RedirectToRouteResult Excluir(NovosEnderecosModel item, int id)
+        public ActionResult Excluir(EnderecosModel item, int id)
         {
             item.RemoverEndereco(id);
-            return RedirectToAction("Index", "Lojas" );
+            return PartialView("AcoesEmLoja", item);
         }
 
         public ActionResult NovoTelefone(EnderecoIndiceModel model)
@@ -134,7 +150,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             get
             {
-                object cidade = Session[ItensSessao.CidadesAtual];
+                object cidade = Session[ChavesSessao.CidadesAtual];
                 if (cidade == null)
                 {
                     cidade = new List<Cidade>();
@@ -143,7 +159,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             set
             {
-                Session[ItensSessao.CidadesAtual] = value;
+                Session[ChavesSessao.CidadesAtual] = value;
             }
         }
 
@@ -151,7 +167,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             get
             {
-                object bairro = Session[ItensSessao.BairrosAtual];
+                object bairro = Session[ChavesSessao.BairrosAtual];
                 if (bairro == null)
                 {
                     bairro = new List<Bairro>();
@@ -160,7 +176,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             set
             {
-                Session[ItensSessao.BairrosAtual] = value;
+                Session[ChavesSessao.BairrosAtual] = value;
             }
         }
 
@@ -168,7 +184,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             get
             {
-                object logradouro = Session[ItensSessao.LogradourosAtual];
+                object logradouro = Session[ChavesSessao.LogradourosAtual];
                 if (logradouro == null)
                 {
                     logradouro = new List<Logradouro>();
@@ -177,7 +193,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             set
             {
-                Session[ItensSessao.LogradourosAtual] = value;
+                Session[ChavesSessao.LogradourosAtual] = value;
             }
         }
 

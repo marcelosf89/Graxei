@@ -28,6 +28,11 @@ namespace Graxei.FluentNHibernate.Configuracao
             }
         }
 
+        public ISession GetSession()
+        {
+            return _sessionFactory.GetCurrentSession();
+        }
+
         /// <summary>
         /// Instância do objeto singleton
         /// </summary>
@@ -55,6 +60,8 @@ namespace Graxei.FluentNHibernate.Configuracao
 
             return _sessionFactory;
         }
+
+
         #endregion
 
         #region Fields

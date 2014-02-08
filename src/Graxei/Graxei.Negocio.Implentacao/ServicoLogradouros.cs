@@ -11,7 +11,7 @@ namespace Graxei.Negocio.Implementacao
         #region Construtor
         public ServicoLogradouros(IRepositorioLogradouros repositorio)
         {
-            _repositorioEntidades = repositorio;
+           RepositorioEntidades = repositorio;
         }
 
         #endregion
@@ -67,7 +67,7 @@ namespace Graxei.Negocio.Implementacao
         {
             get
             {
-                return (IRepositorioLogradouros)_repositorioEntidades;
+                return (IRepositorioLogradouros)RepositorioEntidades;
             }
         }
 
@@ -77,5 +77,19 @@ namespace Graxei.Negocio.Implementacao
         {
             throw new System.NotImplementedException();
         }
+
+        #region Overrides of ServicoPadraoEntidades<Logradouro>
+
+        public override void PreSalvar(Logradouro t)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void PreAtualizar(Logradouro t)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
     }
 }

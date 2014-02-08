@@ -20,7 +20,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         //Desaloca a sessão do NHibernate no contexto da aplicação
         public void UnBindSession()
         {
-            ISession session = CurrentSessionContext.Unbind(_sessionFactory);
+            ISession session = CurrentSessionContext.Unbind(_sessionFactory.GetSessionFactory());
             if (session == null)
             {
                 return;
@@ -37,9 +37,9 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         //Aloca uma sessão do NHibernate no contexto da aplicação
         public void BindSession()
         {
-            if (!CurrentSessionContext.HasBind(_sessionFactory))
+            if (!CurrentSessionContext.HasBind(_sessionFactory.GetSessionFactory()))
             {
-                CurrentSessionContext.Bind(_sessionFactory.OpenSession());
+                CurrentSessionContext.Bind(_sessionFactory.GetSession());
             }
         }
         #endregion
@@ -48,22 +48,26 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
         private UnitOfWorkNHibernate()
         {
-            _sessionFactory = NHibernateWebSessionFactory.Instance.GetSessionFactory();
+            _sessionFactory = NHibernateWebSessionFactory.GetInstancia();
         }
 
-        private static UnitOfWorkNHibernate _instance;
-
-        public static UnitOfWorkNHibernate Instance
+        private UnitOfWorkNHibernate(ISessionFactory sessionFactory)
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new UnitOfWorkNHibernate();
-                }
-                return _instance;
-            }
+            _sessionFactory = NHibernateWebSessionFactory.GetInstancia(sessionFactory);
         }
+        public static UnitOfWorkNHibernate GetInstancia()
+        {
+            return _instancia ?? (_instancia = new UnitOfWorkNHibernate());
+        }
+
+        public static UnitOfWorkNHibernate GetInstancia(ISessionFactory sessionFactory)
+        {
+            _instancia = new UnitOfWorkNHibernate(sessionFactory);
+            return _instancia;
+        }
+
+        private static UnitOfWorkNHibernate _instancia;
+
         #endregion
 
         #region Métodos de transação do NHibernate
@@ -137,28 +141,19 @@ namespace Graxei.FluentNHibernate.UnitOfWork
                     !(session.Transaction.WasCommitted || session.Transaction.WasRolledBack));
         }
 
-        
-        public ISessionFactory SessionFactory
-        {
-            get
-            {
-                return _sessionFactory;
-            }
-        }
-
-        //Obtem a sessão corrente do nhibernate
+        /// <summary>
+        /// Obtém a sessão atual do NHibernate
+        /// </summary>
         public ISession SessaoAtual
         {
             get
             {
                 ISession session;
 
-                //captura a sessão corrente do contexto
-                session = _sessionFactory.GetCurrentSession();
+                session = _sessionFactory.GetSessionFactory().GetCurrentSession();
 
-                //se a sessão estiver fechada, então a mesma deve ser aberta
                 if (!session.IsOpen)
-                    session = _sessionFactory.OpenSession();
+                    session = _sessionFactory.GetSessionFactory().OpenSession();
 
                 //se a sessão estiver desconectada, então a mesma deve ser reconectada
                 if (!session.IsConnected)
@@ -170,7 +165,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
         #endregion
 
-        #region Implementação de IDispatchMessageInspector
+       #region Implementação de IDispatchMessageInspector
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
        {
            BeginRequest(null, null);
@@ -185,7 +180,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
         #endregion
 
-        #region Implementação de IServiceBehavior
+       #region Implementação de IServiceBehavior
 
         public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
         {
@@ -209,8 +204,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
        }
        #endregion
 
-        #region Implementação de IHttpModule
-
+       #region Implementação de IHttpModule
        public void Init(HttpApplication context)
        {
            context.BeginRequest += BeginRequest;
@@ -223,7 +217,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
        #endregion
 
-        #region Extensões dos eventos da sessão
+       #region Extensões dos eventos da sessão
        private void BeginRequest(object sender, EventArgs e)
        {
            BindSession();
@@ -236,11 +230,8 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
        #endregion
 
-        #region Atributos Privados
-       /// <summary>
-       /// Define a fabrica de sessões do nhibernate
-       /// </summary>
-       private ISessionFactory _sessionFactory;
+       #region Atributos Privados
+       private INHibernateFactory _sessionFactory;
        #endregion
 
     }

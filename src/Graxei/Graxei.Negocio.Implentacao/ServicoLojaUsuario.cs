@@ -10,7 +10,7 @@ namespace Graxei.Negocio.Implementacao
         #region Construtor
         public ServicoLojaUsuario(IRepositorioLojaUsuario repositorio)
         {
-            _repositorioEntidades = repositorio;
+           RepositorioEntidades = repositorio;
         }
         #endregion
 
@@ -23,7 +23,7 @@ namespace Graxei.Negocio.Implementacao
         }
 
         #region Atributos Privados
-        private IRepositorioLojaUsuario RepositorioLojaUsuario { get { return (IRepositorioLojaUsuario)_repositorioEntidades; } }
+        private IRepositorioLojaUsuario RepositorioLojaUsuario { get { return (IRepositorioLojaUsuario)RepositorioEntidades; } }
         #endregion
 
 

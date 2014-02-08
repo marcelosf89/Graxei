@@ -1,10 +1,13 @@
+using System;
+using System.Configuration;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Graxei.FluentNHibernate.Convencoes;
 using Graxei.FluentNHibernate.Mapeamento;
+using Graxei.Transversais.Idiomas;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Context;
+using Configuration = NHibernate.Cfg.Configuration;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {
@@ -15,37 +18,51 @@ namespace Graxei.FluentNHibernate.Configuracao
     {
 
         #region Singleton
-        private static readonly NHibernateWebSessionFactory _instance = new NHibernateWebSessionFactory();
+        private static NHibernateWebSessionFactory _instance;
         private string _user;
-        /// <summary>
-        /// Instância do objeto singleton
-        /// </summary>
-        public static NHibernateWebSessionFactory Instance
+
+        private NHibernateWebSessionFactory()
         {
-            get
-            {
-                return _instance; 
-            }
         }
 
+        private NHibernateWebSessionFactory(ISessionFactory sessionFactory)
+        {
+            _sessionFactory = sessionFactory;
+        }
         /// <summary>
         /// Instância do objeto singleton
         /// </summary>
+        public static NHibernateWebSessionFactory GetInstancia()
+        {
+            return _instance ?? (_instance = new NHibernateWebSessionFactory());
+        }
+
+        public static NHibernateWebSessionFactory GetInstancia(ISessionFactory sessionFactory)
+        {
+            if (_instance != null)
+            {
+                throw new InvalidOperationException(ErrosEstrutura.CriacaoNHSessionFactory);
+            }
+            _instance = new NHibernateWebSessionFactory(sessionFactory);
+            return _instance;
+        }
 
         #endregion
 
-        #region Métodos Públicos
-
+        #region Métodos Privados
         public ISessionFactory GetSessionFactory()
         {
             if (this._sessionFactory == null)
             {
                 Configuration config =
                 Fluently.
-                //Configure().CurrentSessionContext<WebSessionContext>().
-                Configure().CurrentSessionContext<CallSessionContext>().
-                Database(MySQLConfiguration.Standard
-                                           .ConnectionString(c => c.Server("graxei.c6lcvckogtg5.sa-east-1.rds.amazonaws.com").Database("graxei").Username("supergraxei").Password("73#tr071.")
+                Configure().CurrentSessionContext<WebSessionContext>().
+                Database(MySQLConfiguration
+                        .Standard
+                        .ConnectionString(c => c.Server(_server)
+                                                .Database(_database)
+                                                .Username("root")
+                                                .Password("vascao01")
                          ).ShowSql()
                 ).
                 Mappings(m =>
@@ -58,9 +75,21 @@ namespace Graxei.FluentNHibernate.Configuracao
         }
         #endregion
 
-        #region Fields
-        private ISessionFactory _sessionFactory;
+        #region Implementação de INHibernateFactory
+
+        public ISession GetSession()
+        {
+            return _sessionFactory.GetCurrentSession();
+        }
+
         #endregion
 
+        #region Atributos Privados
+        private ISessionFactory _sessionFactory;
+        private string _server = ConfigurationManager.AppSettings["dbserver"];
+        private string _database = ConfigurationManager.AppSettings["databasename"];
+        private string _username = ConfigurationManager.AppSettings["dbusername"];
+        private string _password = ConfigurationManager.AppSettings["dbpassword"];
+        #endregion
     }
 }

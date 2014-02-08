@@ -10,10 +10,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
             Telefones = new List<string>();
         }
 
-        public int IdLista { get; set; }
-        public int IdEstado { get; set; }
+        public long IdLista { get; set; }
+        public long IdEstado { get; set; }
         public long IdBairro { get; set; }
         public IList<string> Telefones { get; set; }
         public Endereco Endereco { get; set; }
+
     }
 }

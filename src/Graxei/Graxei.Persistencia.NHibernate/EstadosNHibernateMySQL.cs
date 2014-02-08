@@ -25,6 +25,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .SingleOrDefault(e => Queries.CompararStrings(e.Nome, nome));
         }
 
+        public IList<Estado> GetPorSiglaOuNome(string sigla, string nome)
+        {
+            return SessaoAtual.Query<Estado>()
+                              .Where(e => e.Sigla.Trim().ToLower() == sigla.Trim().ToLower() ||
+                                          e.Nome.Trim().ToLower() == nome.Trim().ToLower()).ToList<Estado>();
+        }
+
         public IList<Estado> Todos(EstadoOrdem ordem)
         {
             string hql = string.Format(ConsultasHql.EstadosOrderBy, ordem);

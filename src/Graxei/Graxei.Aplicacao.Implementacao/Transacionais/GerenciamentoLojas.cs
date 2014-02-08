@@ -42,7 +42,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             IniciarTransacao();
             try
             {
-                ServicoLojas.Salvar(loja, usuarios, usuario);
+                _servicoLojas.Salvar(loja, usuarios, usuario);
                 Confirmar();
             }
             catch (OperacaoEntidadeException oe)
@@ -58,7 +58,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             IniciarTransacao();
             try
             {
-                ServicoLojas.Salvar(loja, usuarios, usuario);
+                _servicoLojas.Salvar(loja, usuarios, usuario);
                 Confirmar();
             } catch (OperacaoEntidadeException ex)
             {
@@ -72,7 +72,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             IniciarTransacao();
             try
             {
-                ServicoLojas.Salvar(loja);
+                _servicoLojas.Salvar(loja);
                 Confirmar();
             }catch(OperacaoEntidadeException oe)
             {
@@ -85,11 +85,6 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
         {
             throw new System.NotImplementedException();
         }
-
-        public IServicoLojas ServicoLojas { get { return _servicoLojas; } }
-        public IServicoEnderecos ServicoEnderecos { get { return _servicoEnderecos; } }
-        public IServicoUsuarios ServicoUsuarios { get { return _servicoUsuarios; } }
-        public IServicoTelefones ServicoTelefones { get { return _servicoTelefones; } }
 
         #endregion
 

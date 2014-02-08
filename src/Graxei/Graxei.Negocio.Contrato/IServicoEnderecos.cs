@@ -32,5 +32,8 @@ namespace Graxei.Negocio.Contrato
         Logradouro GetLogradouro(string nomeLogradouro, Bairro bairro);
         Logradouro GetLogradouro(string nomeLogradouro, long idBairro);
         bool Existe(Endereco endereco);
+        void PreSalvar(Endereco endereco);
+        void PreAtualizar(Endereco endereco);
+        IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos);
     }
 }

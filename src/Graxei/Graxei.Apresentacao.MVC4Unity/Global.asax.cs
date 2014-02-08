@@ -22,8 +22,9 @@ namespace Graxei.Apresentacao.MVC4Unity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders.Add(typeof(NovosEnderecosModel), new NovosEnderecosModelBinder());
-            ModelBinders.Binders.Add(typeof (UsuarioLogado), new UsuariosLogadoBinder());                    
+            ModelBinders.Binders.Add(typeof(EnderecosModel), new EnderecosModelBinder());
+            ModelBinders.Binders.Add(typeof (UsuarioLogado), new UsuariosLogadoBinder());
+            ModelBinders.Binders.Add(typeof(LogotipoNovaLojaModel), new LogoNovaLojaBinder());
             /* TODO: retirar esse trecho de código */
             IUnityContainer cont = Bootstrapper.Initialise();
             /*IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();

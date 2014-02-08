@@ -9,20 +9,11 @@ namespace Graxei.Negocio.Implementacao
 
          public ServicoFabricantes(IRepositorioFabricantes reposFabricantes)
         {
+             /*** TODO: iniciar RepositorioEntidades */
             _reposFabricante = reposFabricantes;
         }
 
         #region Métodos sobrescritos
-        public void Salvar(Fabricante fabricante)
-        {
-            _reposFabricante.Salvar(fabricante);
-        }
-
-        public void Excluir(Fabricante fabricante)
-        {
-            _reposFabricante.Excluir(fabricante);
-        }
-
         public Fabricante GetPorId(long id)
         {
             return _reposFabricante.GetPorId(id);
@@ -42,6 +33,20 @@ namespace Graxei.Negocio.Implementacao
 
         #region Atributos privados
         private readonly IRepositorioFabricantes _reposFabricante;
+        #endregion
+
+        #region Overrides of ServicoPadraoEntidades<Fabricante>
+
+        public override void PreSalvar(Fabricante t)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void PreAtualizar(Fabricante t)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
     }
 }

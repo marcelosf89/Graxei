@@ -30,9 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+    <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -52,6 +52,7 @@
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -62,7 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuracao\NHibernateCallSessionFactory.cs" />
     <Compile Include="Configuracao\INHibernateFactory.cs" />
     <Compile Include="Configuracao\NHibernateWebSessionFactory.cs" />
     <Compile Include="Mapeamento\BairroMap.cs" />
@@ -100,6 +100,14 @@
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
+      <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>
+      <Name>Graxei.Transversais.Idiomas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,8 @@
 ﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel
+<script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>
+
 <div class="modal fade" id="ModalEditarEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @using (Ajax.BeginForm("Editar", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "alert(err)", OnSuccess = " $('#ModalEditarEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
+    @using (Ajax.BeginForm("Editar", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = " $('#ModalEditarEndereco').modal(x''toggle')", UpdateTargetId = "listaEnd" }, new { @class = "form-horizontal", role = "form" }))
     {
         <div class="modal-dialog">
             <div class="modal-content">
@@ -74,4 +76,3 @@
         });
     });
 </script>
-<script src="@Url.Content("~/Scripts/autocomplete.js")" type="text/javascript"></script>

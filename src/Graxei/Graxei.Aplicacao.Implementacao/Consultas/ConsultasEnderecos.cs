@@ -12,7 +12,7 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         #region Construtor
         public ConsultasEnderecos(IServicoEnderecos servicoEnderecos)
         {
-            ServicoEnderecos = servicoEnderecos;
+            _servicoEnderecos = servicoEnderecos;
         }
         #endregion
 
@@ -20,40 +20,48 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 
         public IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return ServicoEnderecos.GetLogradouros(nomeBairro, nomeCidade, idEstado);
+            return _servicoEnderecos.GetLogradouros(nomeBairro, nomeCidade, idEstado);
         }
 
         public Bairro GetBairro(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return ServicoEnderecos.GetBairro(nomeBairro, nomeCidade, idEstado);
+            return _servicoEnderecos.GetBairro(nomeBairro, nomeCidade, idEstado);
         }
 
         public IList<Bairro> GetBairros(string nomeCidade, long idEstado)
         {
-            return ServicoEnderecos.GetBairros(nomeCidade, idEstado);
+            return _servicoEnderecos.GetBairros(nomeCidade, idEstado);
         }
 
         public IList<Cidade> GetCidades(long idEstado)
         {
-            return ServicoEnderecos.GetCidades(idEstado);
+            return _servicoEnderecos.GetCidades(idEstado);
         }
 
         public Estado GetEstadoPorSigla(string sigla)
         {
-            return ServicoEnderecos.GetEstadoPorSigla(sigla);
+            return _servicoEnderecos.GetEstadoPorSigla(sigla);
         }
 
         public Estado GetEstado(long idEstado)
         {
-            return ServicoEnderecos.GetEstado(idEstado);
+            return _servicoEnderecos.GetEstado(idEstado);
         }
 
         public IList<Estado> GetEstados(EstadoOrdem ordem)
         {
-            return ServicoEnderecos.GetEstados(ordem);
+            return _servicoEnderecos.GetEstados(ordem);
         }
 
         public IServicoEnderecos ServicoEnderecos { get; private set; }
+
+        public IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos)
+        {
+            return _servicoEnderecos.EnderecosRepetidos(enderecos);
+        }
+
+        private IServicoEnderecos _servicoEnderecos;
+
         #endregion
 
     }

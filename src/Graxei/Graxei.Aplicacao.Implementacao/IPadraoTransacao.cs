@@ -10,17 +10,17 @@ namespace Graxei.Aplicacao.Implementacao
 
         public void IniciarTransacao()
         {
-            UnitOfWorkNHibernate.Instance.IniciarTransacao();
+            UnitOfWorkNHibernate.GetInstancia().IniciarTransacao();
         }
 
         public void Confirmar()
         {
-            UnitOfWorkNHibernate.Instance.ConfirmarTransacao();
+            UnitOfWorkNHibernate.GetInstancia().ConfirmarTransacao();
         }
 
         public void Desfazer()
         {
-            UnitOfWorkNHibernate.Instance.DesfazerTransacao();
+            UnitOfWorkNHibernate.GetInstancia().DesfazerTransacao();
         }
 
         #endregion

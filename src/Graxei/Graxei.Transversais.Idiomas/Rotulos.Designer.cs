@@ -151,6 +151,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Escolher Logotipo.
+        /// </summary>
+        public static string EscolherLogo {
+            get {
+                return ResourceManager.GetString("EscolherLogo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         public static string Estado {
@@ -183,6 +192,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logotipo.
+        /// </summary>
+        public static string Logotipo {
+            get {
+                return ResourceManager.GetString("Logotipo", resourceCulture);
             }
         }
         

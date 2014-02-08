@@ -14,38 +14,72 @@ namespace Graxei.Negocio.Implementacao
     {
 
         #region Construtor
-        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoLojaUsuario servicoLojaUsuario, IServicoUsuarios servicoUsuarios)
+        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoLojaUsuario servicoLojaUsuario, IServicoUsuarios servicoUsuarios, IServicoEnderecos servicoEnderecos)
         {
-            _repositorioEntidades = repositorioLojas;
+            RepositorioEntidades = repositorioLojas;
             _servicoLojaUsuario = servicoLojaUsuario;
             _servicoUsuarios = servicoUsuarios;
+            _servicoEnderecos = servicoEnderecos;
         }
         #endregion
 
         #region Métodos de sobrescrita
-        private void PreSalvar(Loja loja)
+        public void Validar(Loja loja)
         {
             if (string.IsNullOrEmpty(loja.Nome))
             {
                 throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatório);
             }
+        }
+
+        public override void PreSalvar(Loja loja)
+        {
+            Validar(loja);
             Loja repetida = Get(loja.Nome);
             if (repetida != null)
             {
                 throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
+
+            IList<Endereco> endRepetidos = _servicoEnderecos.EnderecosRepetidos(loja.Enderecos);
+            ChecarEnderecos(endRepetidos);
+            if (loja.Enderecos != null)
+            {
+                foreach (Endereco e in loja.Enderecos)
+                {
+                    _servicoEnderecos.PreSalvar(e);
+                }
+            }
         }
 
-        private void PreAtualizar(Loja loja)
+        private void ChecarEnderecos(IList<Endereco> endRepetidos)
         {
-            if (string.IsNullOrEmpty(loja.Nome))
+            if (endRepetidos == null || !endRepetidos.Any())
             {
-                throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatório);
+                return;
             }
+            string mensagem = Erros.HaEnderecosRepetidos;
+            string msgEndRepetidos = string.Empty;
+            foreach (Endereco endRepetido in endRepetidos)
+            {
+                msgEndRepetidos = msgEndRepetidos + endRepetido.ToString() + (char)10;
+            }
+            msgEndRepetidos = msgEndRepetidos.Substring(0, msgEndRepetidos.Length - 1);
+            mensagem = string.Format(mensagem, msgEndRepetidos);
+            throw new RepetidoEmColecaoException(mensagem);
+        }
+        
+        public override void PreAtualizar(Loja loja)
+        {
+            Validar(loja);
             Loja repetida = Get(loja.Nome);
             if (repetida != null && repetida.Id != loja.Id)
             {
                 throw new ObjetoJaExisteException(Erros.LojaJaExiste);
+            }
+            foreach (Endereco e in loja.Enderecos)
+            {
+                _servicoEnderecos.PreAtualizar(e);
             }
         }
         #endregion
@@ -71,15 +105,18 @@ namespace Graxei.Negocio.Implementacao
         public void Salvar(Loja loja, IList<Usuario> usuarios, Usuario usuarioLog)
         {
             if (UtilidadeEntidades.IsTransiente(loja))
-                {
-                    PreSalvar(loja);
-                }
-                else
-                {
-                    PreAtualizar(loja);
-                }
-            
+            {
+                PreSalvar(loja);
+            }
+            else
+            {
+                PreAtualizar(loja);
+            }
+
+            //Associando usuários à loja
             IList<Usuario> usuariosNaoAssociados = new List<Usuario>();
+
+            /*** TODO: Refatorar: IsTransiente não pode ser exposto para fora da implementação NHibernate ***/
             foreach (Usuario usuario in usuarios)
             {
                 Usuario usuarioFor = usuario;
@@ -120,7 +157,7 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Atributos Privados
-        private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas)_repositorioEntidades; } }
+        private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas)RepositorioEntidades; } }
         #endregion
 
         #region Implementation of IExcluirEntidade<Loja>
@@ -156,5 +193,6 @@ namespace Graxei.Negocio.Implementacao
         private IServicoLojaUsuario _servicoLojaUsuario;
 
         #endregion
+
     }
 }

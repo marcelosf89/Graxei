@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CriarNovaLoja" xml:space="preserve">
+    <value>Incluir outra loja</value>
+  </data>
   <data name="DigitePesquisa" xml:space="preserve">
     <value>Digite alguma coisa para pesquisa, Dooley</value>
   </data>
@@ -128,6 +131,12 @@
   </data>
   <data name="EsqueceuSuaSenha" xml:space="preserve">
     <value>Esqueceu sua senha?</value>
+  </data>
+  <data name="LojaIncluida" xml:space="preserve">
+    <value>A loja foi incluída</value>
+  </data>
+  <data name="NenhumLogo" xml:space="preserve">
+    <value>Nenhum logotipo para a loja</value>
   </data>
   <data name="NomeObrigatorio" xml:space="preserve">
     <value>O nome é obrigatório</value>

@@ -2,7 +2,17 @@
 @using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 @model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.EnderecoIndiceModel
 
-@using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = "$('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
+@{
+    string target = "listaEnd";
+    string toggle = "$('#ModalNovoEndereco').modal('toggle')";
+    if (!ViewData.ModelState.IsValid)
+    {
+        target = "ModalNovoEndereco";
+        toggle = string.Empty;
+    }
+    AjaxOptions ajax = new AjaxOptions() { HttpMethod = "POST", OnSuccess = toggle, UpdateTargetId = target };   
+}
+@using (Ajax.BeginForm("Novo", "Enderecos", ajax, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="modal fade" id="ModalNovoEndereco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -12,62 +22,58 @@
                     <h3 id="myModalLabel">@Rotulos.NovoEndereco</h3>
                 </div>
                 <div class="modal-body">
-                    @if (ViewBag.NomeLoja != null)
-                    {
-                        <h2>@String.Format(Textos.EnderecosLoja, ViewBag.NomeLoja)</h2>
-                    }
+                    @Html.ValidationSummary(true)
                     <div class="row form-group">
                         @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                         @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).HtmlAttributes(new
-                   {
-                       id =
-
-                           "IdEstado",
-                       @class = "form-control"
-                   })
+                                                                                                                                                   {
+                                                                                                                                                       id = "IdEstado",
+                                                                                                                                                       @class = "form-control"
+                                                                                                                                                   }).ShowValidationMessage(true)
                         @Html.Bootstrap().Label(Rotulos.Cidade).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade", "Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" })
+                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Cidade.Nome, "AutoCompleteCidade", "Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true).ShowValidationMessage(true)
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().Label(Rotulos.Bairro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Nome, "AutoCompleteBairro", "Enderecos").Id("IdBairro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
+                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Bairro.Nome, "AutoCompleteBairro", "Enderecos").Id("IdBairro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().LabelFor(m => m.Endereco.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
-                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Logradouro, "AutoCompleteLogradouro", "Enderecos").Id("IdLogradouro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" })
+                        @Html.Bootstrap().TypeHeadFor(m => m.Endereco.Logradouro, "AutoCompleteLogradouro", "Enderecos").Id("IdLogradouro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().LabelFor(m => m.Endereco.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                         @Html.Bootstrap().TextBoxFor(m => m.Endereco.Numero).Width(InputWidth.Col_10).HtmlAttributes(new
-                   {
-                       @class = "form-control"
+                                                                                                                         {
+                                                                                                                             @class = "form-control"
 
-                   }).ShowValidationMessage(true)
+                                                                                                                         }).ShowValidationMessage(true)
                     </div>
                     <div class="row form-group">
                         @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Endereco.Complemento).Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
                     </div>
                     @using (Ajax.BeginForm("Novo", "Enderecos", new AjaxOptions() { HttpMethod = "POST", OnFailure = "", OnSuccess = "$('#ModalNovoEndereco').modal('toggle')", UpdateTargetId = "main" }, new { @class = "form-horizontal", role = "form" }))
                     {
-                    <h2>@Rotulos.Telefones</h2>
-                    <div class="row form-group">
-                        @{
-                            int i = 1;
-                            if (!Model.Telefones.Any())
-                            {
+                        <h2>@Rotulos.Telefones</h2>
+                        <div class="row form-group">
+                            @{
+                        int i = 1;
+                        if (!Model.Telefones.Any())
+                        {
                                 <div>@Html.TextBox("fone1")</div>
                                 @Html.ActionLink(Rotulos.Adicionar, "NovoTelefone", new { model = Model })
-                                i++;
-                            }else
+                            i++;
+                        }
+                        else
+                        {
+                            foreach (string s in Model.Telefones)
                             {
-                                foreach (string s in Model.Telefones)
-                                {
-                                    <div>@Html.TextBox("fone" + i++, s)</div>
-                                }
-                                @Html.Bootstrap().SubmitButton()
+                                <div>@Html.TextBox("fone" + i++, s)</div>
                             }
-                        } 
-                    </div>
+                                @Html.Bootstrap().SubmitButton()
+                        }
+                            }
+                        </div>
                     }
                 </div>
                 <div class="modal-footer">
@@ -78,11 +84,18 @@
         </div>
     </div>
 }
-<script>
-    $('#ModalNovoEndereco').modal('show')
-</script>
-
 <script type="text/javascript">
+    $('#ModalNovoEndereco').modal('show');
+
+    function loadPage(result) {
+        debugger;
+        if (result.url) {
+            // if the server returned a JSON object containing an url 
+            // property we redirect the browser to that url
+            window.location.href = result.url;
+        }
+    }
+
     $(document).ready(function () {
         $("#IdEstado").change(function () {
             var estadoSel = $("#IdEstado").val();

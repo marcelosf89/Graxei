@@ -2,18 +2,15 @@
     ViewBag.Title = "Index";
 }
 
-    @Styles.Render("~/Content/bootstrap/base")
-    @Styles.Render("~/Content/themes/base/css")
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modal")
-
-
-<script>
-</script>
+@Styles.Render("~/Content/bootstrap/base")
+@Styles.Render("~/Content/themes/base/css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/modal")
+@Scripts.Render("~/bundles/modernizr")
 <header class="navbar navbar-inverse-header navbar-fixed-top bs-docs-nav" role="banner">
     <div class="container">
         <div class="navbar-header">
@@ -54,9 +51,7 @@
 </header>
 <div class="bs-header">
     <div class="container">
-        <div id="myModal"></div>
+        <div id="myModal">
+        </div>
     </div>
-
 </div>
-
-

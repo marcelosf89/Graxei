@@ -8,6 +8,7 @@ namespace Graxei.FluentNHibernate.Configuracao
 {
     public interface INHibernateFactory
     {
+        ISession GetSession();
         ISessionFactory GetSessionFactory();
     }
 }

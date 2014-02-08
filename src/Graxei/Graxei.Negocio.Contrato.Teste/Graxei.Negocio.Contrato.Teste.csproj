@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A62F26DC-4184-46E7-85A7-19DEE6023040}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Graxei.Negocio.Contrato.Teste</RootNamespace>
+    <AssemblyName>Graxei.Negocio.Contrato.Teste</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Graxei.Transversais.Idiomas">
+      <HintPath>..\Graxei.Apresentacao.MVC4Unity\bin\Graxei.Transversais.Idiomas.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lojas.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FAST\FAST.csproj">
+      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
+      <Name>FAST</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
+      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
+      <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
+      <Project>{98f3b7b4-b5f1-4124-a62f-a0047ab08840}</Project>
+      <Name>Graxei.Negocio.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Negocio.Implentacao\Graxei.Negocio.Implementacao.csproj">
+      <Project>{a8bfa7c6-4675-4997-81df-ae7fe058c1f5}</Project>
+      <Name>Graxei.Negocio.Implementacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
+      <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
+      <Name>Graxei.Persistencia.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

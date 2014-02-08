@@ -143,15 +143,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
-    <Compile Include="Areas\Administrativo\Binders\NovosEnderecosModelBinder.cs" />
+    <Compile Include="Areas\Administrativo\Binders\LogoNovaLojaBinder.cs" />
+    <Compile Include="Areas\Administrativo\Binders\EnderecosModelBinder.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Models\EnderecoIndiceModel.cs" />
-    <Compile Include="Areas\Administrativo\Models\NovaLoja.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Areas\Administrativo\Models\NovosEnderecosModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
+    <Compile Include="Areas\Administrativo\Models\EnderecosModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
     <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\autocomplete.js" />
     <Content Include="Scripts\bootstrap-typeahead.js" />
+    <Content Include="Scripts\bootstrap-validation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\button.js" />
@@ -266,12 +268,13 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Administrativo\Views\Shared\AcoesEmNovaLoja.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\AcoesEmLoja.cshtml" />
     <Content Include="Areas\Administrativo\Views\Enderecos\Formulario.cshtml" />
     <Content Include="Areas\Administrativo\Views\Enderecos\Editar.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Lojas\Salvo.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Lojas\Novo_2.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Cadastro.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Editar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Incluida.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -300,6 +303,7 @@
     <Content Include="Scripts\typeahead.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc4.README.txt" />
+    <Content Include="Views\Login\Autenticacao_cshtml_Modificada.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -318,10 +322,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Autenticacao.cshtml" />
     <Content Include="Views\Login\RedefinirSenha.cshtml" />
-    <Content Include="Views\Teste\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administrativo\Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

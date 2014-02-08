@@ -16,7 +16,7 @@ namespace Graxei.Negocio.Implementacao
 
         public ServicoAtributos(IRepositorioAtributos repositorioAtributos)
         {
-            _repositorioEntidades = repositorioAtributos;
+            RepositorioEntidades = repositorioAtributos;
         }
         #endregion  
 
@@ -62,7 +62,7 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Propriedades Privadas
-        private IRepositorioAtributos Repositorio { get { return (IRepositorioAtributos) _repositorioEntidades;  } }
+        private IRepositorioAtributos Repositorio { get { return (IRepositorioAtributos) RepositorioEntidades;  } }
         #endregion
     }
 }

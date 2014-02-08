@@ -15,7 +15,7 @@ namespace Graxei.Modelo
         public virtual string Numero { get; set; }
         [Display(ResourceType = typeof(Propriedades), Name = "Complemento")]
         public virtual string Complemento { get; set; }
-        public virtual Loja Loja { get;  set; }
+        public virtual Loja Loja { get;  protected internal set; }
         public virtual Bairro Bairro { get; set; }
         public virtual IList<Telefone> Telefones { get; set; }
 

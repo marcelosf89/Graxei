@@ -33,12 +33,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .ToList();
         }
 
-        public bool Existe(Endereco endereco)
+        public bool ExisteNaLoja(Endereco endereco)
         {
             return SessaoAtual.Query<Endereco>().Count(
-                p => p.Loja.Nome.Trim().ToLower() == endereco.Loja.Nome.Trim().ToLower()
+                p => p.Id != endereco.Id 
+                     && p.Loja.Nome.Trim().ToLower() == endereco.Loja.Nome.Trim().ToLower()
                      && p.Logradouro.Trim().ToLower() == endereco.Logradouro.Trim().ToLower()
                      && p.Numero.Trim().ToLower() == endereco.Numero.Trim().ToLower()
+                     && endereco.Complemento != null && p.Complemento != null && p.Complemento.Trim().ToLower() == endereco.Complemento.Trim().ToLower()
                      && p.Bairro.Nome.Trim().ToLower() == endereco.Bairro.Nome.Trim().ToLower()
                      && p.Bairro.Cidade.Nome.Trim().ToLower() == endereco.Bairro.Cidade.Nome.Trim().ToLower()
                      && p.Bairro.Cidade.Estado.Sigla.Trim().ToLower() == endereco.Bairro.Cidade.Estado.Sigla.Trim().ToLower()) > 0;

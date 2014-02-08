@@ -44,6 +44,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Erros.resx</DependentUpon>
     </Compile>
+    <Compile Include="ErrosEstrutura.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrosEstrutura.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrosInternos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrosInternos.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propriedades.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -72,6 +82,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Erros.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrosEstrutura.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrosEstrutura.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrosInternos.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrosInternos.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Propriedades.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

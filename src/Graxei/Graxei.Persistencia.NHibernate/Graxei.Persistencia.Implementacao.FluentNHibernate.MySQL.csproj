@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -62,6 +63,7 @@
     <Compile Include="AtributosNHibernateMySQL.cs" />
     <Compile Include="CidadesNHibernateMySQL.cs" />
     <Compile Include="ConsultasSQL.cs" />
+    <Compile Include="Interfaces\INHiberateMySQL.cs" />
     <Compile Include="ProdutoVendedorNHibernateMySQL.cs" />
     <Compile Include="PadraoNHibernateMySQLLeitura.cs" />
     <Compile Include="LojaUsuarioNHibernateMySQL.cs" />

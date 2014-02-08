@@ -1,55 +1,62 @@
 ﻿@model Graxei.Apresentacao.MVC4Unity.Models.AutenticacaoModel
+<script src="~/Scripts/bootstrap-validation.js"></script>
 
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @using (Ajax.BeginForm("Autenticacao", "Login", new AjaxOptions() { HttpMethod = "POST", OnFailure = "loadMessages", OnSuccess = "loadPage" }))
-    {
-        <div class="modal-dialog">
+    <div id="dialogo" class="modal-dialog">
+
+        @{ AjaxOptions ajaxOptions = new AjaxOptions
+           {
+               InsertionMode = InsertionMode.Replace,
+               HttpMethod = "POST",
+               OnSuccess =  "loadPage",
+               UpdateTargetId = "myError"
+           }; 
+        }
+        @using (Ajax.BeginForm("Autenticacao", "Login", ajaxOptions))
+        {
+            
+            @Html.ValidationSummary(true);
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="myModalLabel">@Rotulos.Login</h3>
                 </div>
                 <div class="modal-body">
-                    @Html.ValidationSummary(true)
-                    <div id="divErro" class="alert alert-danger" style="display: none;">
-                        <label id="erro"></label>
-                    </div>
-                    @if (ViewBag.ErroAutenticacao != null)
+                    <div id="myError">@ViewBag.Mensagem</div>
+                    @if (ViewBag.Mensagem != null)
                     {
-                        <div class="auth">@ViewBag.ErroAutenticacao</div>
+                        <div id="divErro" class="alert alert-danger">
+                            <label id="erro">
+                                <div>@ViewBag.Mensagem</div>
+                            </label>
+                        </div>
                     }
                     <label>
                         @Html.LabelFor(model => model.LoginOuEmail)
                     </label>
-                    <div class="editor-field">
+                    <div class="row form-group">
                         @Html.Bootstrap().TextBoxFor(model => model.LoginOuEmail).Width(InputWidth.Col_4).ShowValidationMessage(true)
-                        @Html.ValidationMessageFor(model => model.LoginOuEmail)
                     </div>
                     <label>
                         @Html.LabelFor(model => model.Senha)
                     </label>
-                    <div class="editor-field">
+                    <div class="row form-group">
                         @Html.Bootstrap().PasswordFor(model => model.Senha).Width(InputWidth.Col_4).ShowValidationMessage(true)
-                        @Html.ValidationMessageFor(model => model.LoginOuEmail)
+                    </div>
+                    <div class="modal-footer">
+                        @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
+                        <input type="submit" class="btn btn-primary" value="@Rotulos.Entrar"/>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
-                    <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
-                    <input type="submit" class="btn btn-primary" value="@Rotulos.Entrar"/>
-                </div>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    }
+        }
+    </div>
 </div>
-<!-- /.modal -->
 <div id="myModalRemote"></div>
 <script>
-    $('#Modal2').modal('show') //ele vai iniciar o popup aqui.. o redefinr senha usa a mesma formula.. só que no final ao completar ele ira fechar esse popup..
-</script>
-<script>
+    $('#Modal2').modal('show');
+
     function loadPage(result) {
         if (result.url) {
             // if the server returned a JSON object containing an url 
@@ -57,11 +64,5 @@
             window.location.href = result.url;
         }
     }
-    
-    function loadMessages(result) {
-         if (result != "") {
-            $('#divErro').css('display', 'block');
-            $('#erro').text(result.responseText);
-        }
-    }
+
 </script>

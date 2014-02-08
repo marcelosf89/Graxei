@@ -61,6 +61,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incluir outra loja.
+        /// </summary>
+        public static string CriarNovaLoja {
+            get {
+                return ResourceManager.GetString("CriarNovaLoja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digite alguma coisa para pesquisa, Dooley.
         /// </summary>
         public static string DigitePesquisa {
@@ -93,6 +102,24 @@ namespace Graxei.Transversais.Idiomas {
         public static string EsqueceuSuaSenha {
             get {
                 return ResourceManager.GetString("EsqueceuSuaSenha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A loja foi incluída.
+        /// </summary>
+        public static string LojaIncluida {
+            get {
+                return ResourceManager.GetString("LojaIncluida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nenhum logotipo para a loja.
+        /// </summary>
+        public static string NenhumLogo {
+            get {
+                return ResourceManager.GetString("NenhumLogo", resourceCulture);
             }
         }
         

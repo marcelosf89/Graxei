@@ -2,6 +2,7 @@
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
@@ -18,7 +19,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         public ActionResult Index()
         {
-            return View("Autenticacao");
+            return PartialView("Autenticacao");
         }
 
 
@@ -26,24 +27,25 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
             /* TODO: ver como será o tratamento de autenticação, que pode (ou poderia) ser login ou e-mail */
-            /*try
+            try
             {
                 if (!ModelState.IsValid)
                 {
-                    throw new AutenticacaoException("Verifique");
+                    return PartialView(autenticacao);
                 }
-                Usuario usuarioAutenticado = _servicoUsuarios.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);
+                Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);
                 Helper.SetUsuarioLogado(Session, usuarioAutenticado);
             }
             catch (AutenticacaoException ae)
             {
-                Response.StatusCode = 500;
-                return Content(ae.Message, "text/html");
-            }            */
+                ViewBag.Mensagem = ae.Message;
+                return PartialView(autenticacao);
+            }
+            return Json(new {url = Url.Action("Home", "Administrativo")});
 
-            Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
+            /*Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
-            return Json(new { url = Url.Action("Home","Administrativo") });
+            return Json(new { url = Url.Action("Home","Administrativo") });*/
         }
 
         public ActionResult RedefinirSenha()

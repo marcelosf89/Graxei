@@ -97,6 +97,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login ou E-mail.
+        /// </summary>
+        public static string LoginOuEmail {
+            get {
+                return ResourceManager.GetString("LoginOuEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logradouro.
         /// </summary>
         public static string Logradouro {
@@ -129,6 +138,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string Preco {
             get {
                 return ResourceManager.GetString("Preco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senha.
+        /// </summary>
+        public static string Senha {
+            get {
+                return ResourceManager.GetString("Senha", resourceCulture);
             }
         }
     }

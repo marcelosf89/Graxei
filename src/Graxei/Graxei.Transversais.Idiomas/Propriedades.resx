@@ -129,6 +129,9 @@
   <data name="FatorConversao" xml:space="preserve">
     <value>Fator de Conversão</value>
   </data>
+  <data name="LoginOuEmail" xml:space="preserve">
+    <value>Login ou E-mail</value>
+  </data>
   <data name="Logradouro" xml:space="preserve">
     <value>Logradouro</value>
   </data>
@@ -140,5 +143,8 @@
   </data>
   <data name="Preco" xml:space="preserve">
     <value>Preço</value>
+  </data>
+  <data name="Senha" xml:space="preserve">
+    <value>Senha</value>
   </data>
 </root>

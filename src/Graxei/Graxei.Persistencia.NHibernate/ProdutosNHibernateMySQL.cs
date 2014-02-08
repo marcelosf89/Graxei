@@ -16,11 +16,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Produto GetPorDescricao(string descricao)
         {
-            if (descricao == null)
+            if (string.IsNullOrEmpty(descricao))
             {
                 throw new ArgumentNullException("descricao");
             }
-            return SessaoAtual.Query<Produto>().SingleOrDefault<Produto>(p => p.Descricao.Trim().ToLower() == descricao);
+            return SessaoAtual.Query<Produto>()
+                              .SingleOrDefault<Produto>(p => p.Descricao.Trim().ToLower() == descricao);
         }
 
         #endregion

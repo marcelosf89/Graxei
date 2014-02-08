@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
@@ -15,6 +16,7 @@ namespace Graxei.Negocio.Implementacao
 
         public ServicoEnderecos(IRepositorioEnderecos repoEnderecos,IServicoLogradouros servLogradouros,  IServicoBairros servBairros, IServicoCidades servCidades, IServicoEstados servEstados)
         {
+            RepositorioEntidades = repoEnderecos;
             _servLogradouros = servLogradouros;
             _servBairros = servBairros;
             _servCidades = servCidades;
@@ -168,8 +170,114 @@ namespace Graxei.Negocio.Implementacao
 
         #endregion
 
+        #region Métodos Sobrescritos
+        public void PreSalvar(Endereco endereco)
+        {
+            ValidarEndereco(endereco);
+            VerificarElementosEndereco(endereco);
+        }
+
+        public void PreAtualizar(Endereco endereco)
+        {
+            ValidarEndereco(endereco);
+            VerificarElementosEndereco(endereco);
+            if (Repositorio.ExisteNaLoja(endereco))
+            {
+                throw new ObjetoJaExisteException(Erros.EnderecoJaExiste);
+            }
+        }
+
+        public IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos)
+        {
+            if (enderecos == null)
+            {
+                return null;
+            }
+            IList<ContadorEnderecos> grupoRepetidos =
+                (from e in enderecos
+                 group e by e.ToString()
+                     into g
+                     select new ContadorEnderecos() { Endereco = g.Key, Contador = g.Count() }).Where(q => q.Contador > 1).ToList();
+            List<Endereco> resultado = new List<Endereco>();
+            foreach (ContadorEnderecos c in grupoRepetidos)
+            {
+                resultado.AddRange(enderecos.Where(p => p.ToString() == c.Endereco).ToList());
+            }
+            return resultado;
+        }
+
+        #endregion
+
+        #region Implementação de IEntidadesExcluir<Endereco>
+
+        //*TODO: implementar
+        public void PreExcluir(Endereco t)
+        {
+        }
+
+        public void Excluir(Endereco t)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Métodos Privados
+        private void ValidarEndereco(Endereco endereco)
+        {
+            if (endereco.Loja == null)
+            {
+                throw new EntidadeInvalidaException(ErrosInternos.EnderecoLojaNulo);
+            }
+            if (string.IsNullOrEmpty(endereco.Logradouro))
+            {
+                throw new EntidadeInvalidaException(Erros.LogradouroNulo);
+            }
+            if (string.IsNullOrEmpty(endereco.Numero))
+            {
+                throw new EntidadeInvalidaException(Erros.EnderecoNumeroNulo);
+            }
+        }
+
+        private void VerificarElementosEndereco(Endereco endereco)
+        {
+            Bairro bairro = endereco.Bairro;
+            Estado estado = _servEstados.GetPorSigla(bairro.Cidade.Estado.Sigla);
+            if (estado == null)
+            {
+                _servEstados.Salvar(bairro.Cidade.Estado);
+            }else
+            {
+                bairro.Cidade.Estado = estado;
+            }
+
+            Cidade cidade = bairro.Cidade;
+            try
+            {
+                _servCidades.Salvar(cidade);
+            }
+            catch (ObjetoJaExisteException oe)
+            {
+                cidade = _servCidades.Get(cidade.Nome, cidade.Estado.Id);
+                bairro.Cidade = cidade;
+            }
+
+            try
+            {
+                _servBairros.Salvar(bairro);
+            }
+            catch (ObjetoJaExisteException oe)
+            {
+                bairro = _servBairros.Get(bairro.Nome, cidade.Nome, cidade.Estado.Id);
+            }
+            endereco.Bairro = bairro;
+        }
+
+        #endregion
+
         #region Propriedades Privadas
-        private IRepositorioEnderecos RepositorioEnderecos { get { return (IRepositorioEnderecos)_repositorioEntidades; } }
+        private IRepositorioEnderecos RepositorioEnderecos { get { return (IRepositorioEnderecos)RepositorioEntidades; } }
+        private IRepositorioEnderecos Repositorio { get { return (IRepositorioEnderecos)RepositorioEntidades; } }
         #endregion
 
         #region Atributos Privados
@@ -179,87 +287,14 @@ namespace Graxei.Negocio.Implementacao
         private readonly IServicoLogradouros _servLogradouros;
         #endregion
 
-        #region Métodos Sobrescritos
-        public void PreSalvar(Endereco endereco)
+        private class ContadorEnderecos
         {
-            Estado estado = null;
-            Cidade cidade = null;
-            Bairro bairro = null;
-            if (endereco.Loja == null)
-            {
-                throw new EntidadeInvalidaException(Erros.EnderecoLojaNulo);
-            }
-            if (endereco.Bairro == null)
-            {
-                throw new EntidadeInvalidaException(Erros.BairroNulo);
-            }
-            bairro = endereco.Bairro;
-            if (endereco.Bairro.Cidade == null)
-            {
-                throw new EntidadeInvalidaException(Erros.CidadeNulo);
-            }
-            cidade = endereco.Bairro.Cidade;
-            if (endereco.Bairro.Cidade.Estado == null)
-            {
-                throw new EntidadeInvalidaException(Erros.EstadoNulo);
-            }
-            estado = endereco.Bairro.Cidade.Estado;
-            if (string.IsNullOrEmpty(endereco.Logradouro))
-            {
-                throw new EntidadeInvalidaException(Erros.LogradouroNulo);
-            }
-            if (string.IsNullOrEmpty(endereco.Numero))
-            {
-                throw new EntidadeInvalidaException(Erros.EnderecoNumeroNulo);
-            }
-            /* TODO: ver como vai ficar a situação de atualização do estado */
-            if (!UtilidadeEntidades.IsTransiente(cidade))
-            {
-                Cidade c = _servCidades.GetPorId(cidade.Id);
-                if (!c.Equals(cidade))
-                {
-                    cidade = c;
-                }
-            } else
-            {
-                Cidade c = _servCidades.Get(cidade.Nome, estado);
-                if (c != null)
-                {
-                    cidade = c;
-                }
-            }
-            _servCidades.Salvar(cidade);
-            if (!UtilidadeEntidades.IsTransiente(bairro))
-            {
-                Bairro b = _servBairros.GetPorId(bairro.Id);
-                if (!b.Equals(bairro))
-                {
-                    bairro = b;
-                    bairro.Cidade = cidade;
-                }
-            }else
-            {
-                Bairro b = _servBairros.Get(bairro.Nome, cidade.Nome, estado);
-                if (b != null)
-                {
-                    bairro = b;
-                }
-            }
-            _servBairros.Salvar(bairro);
-            endereco.Bairro = bairro;
+            public string Endereco { get; set; }
+            public int Contador { get; set; }
         }
-
-        #endregion
 
         public enum AtributosOrdem { Sigla, Nome }
 
-        #region Implementation of IEntidadesExcluir<Endereco>
 
-        public void Excluir(Endereco t)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }

@@ -79,6 +79,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bairro já existe.
+        /// </summary>
+        public static string BairroJaExiste {
+            get {
+                return ResourceManager.GetString("BairroJaExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nome do bairro deve ser informado.
         /// </summary>
         public static string BairroNomeNulo {
@@ -102,6 +111,24 @@ namespace Graxei.Transversais.Idiomas {
         public static string CategoriaNomeNulo {
             get {
                 return ResourceManager.GetString("CategoriaNomeNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cidade já existe.
+        /// </summary>
+        public static string CidadeJaExiste {
+            get {
+                return ResourceManager.GetString("CidadeJaExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nome da cidade deve ser informado.
+        /// </summary>
+        public static string CidadeNomeNulo {
+            get {
+                return ResourceManager.GetString("CidadeNomeNulo", resourceCulture);
             }
         }
         
@@ -133,11 +160,11 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endereço deve pertencer a uma loja.
+        ///   Looks up a localized string similar to O endereço já existe.
         /// </summary>
-        public static string EnderecoLojaNulo {
+        public static string EnderecoJaExiste {
             get {
-                return ResourceManager.GetString("EnderecoLojaNulo", resourceCulture);
+                return ResourceManager.GetString("EnderecoJaExiste", resourceCulture);
             }
         }
         
@@ -151,11 +178,56 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A loja já possui este endereço.
+        /// </summary>
+        public static string EnderecoRepetidoLoja {
+            get {
+                return ResourceManager.GetString("EnderecoRepetidoLoja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estado já existe.
+        /// </summary>
+        public static string EstadoJaExiste {
+            get {
+                return ResourceManager.GetString("EstadoJaExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O Estado deve ter um nome.
+        /// </summary>
+        public static string EstadoNomeNulo {
+            get {
+                return ResourceManager.GetString("EstadoNomeNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço incompleto: estado faltando.
         /// </summary>
         public static string EstadoNulo {
             get {
                 return ResourceManager.GetString("EstadoNulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O Estado deve ter uma sigla.
+        /// </summary>
+        public static string EstadoSiglaNula {
+            get {
+                return ResourceManager.GetString("EstadoSiglaNula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Há endereços repetidos: {0}.
+        /// </summary>
+        public static string HaEnderecosRepetidos {
+            get {
+                return ResourceManager.GetString("HaEnderecosRepetidos", resourceCulture);
             }
         }
         

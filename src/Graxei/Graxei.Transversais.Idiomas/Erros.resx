@@ -138,9 +138,6 @@
   <data name="DescricaoNula" xml:space="preserve">
     <value>A descrição é obrigatória</value>
   </data>
-  <data name="EnderecoLojaNulo" xml:space="preserve">
-    <value>Endereço deve pertencer a uma loja</value>
-  </data>
   <data name="EnderecoNumeroNulo" xml:space="preserve">
     <value>Endereço incompleto: preencha o número</value>
   </data>
@@ -215,5 +212,32 @@
   </data>
   <data name="ProdutoPrecoInvalido" xml:space="preserve">
     <value>O preço deve ser maior que zero</value>
+  </data>
+  <data name="BairroJaExiste" xml:space="preserve">
+    <value>Bairro já existe</value>
+  </data>
+  <data name="CidadeJaExiste" xml:space="preserve">
+    <value>Cidade já existe</value>
+  </data>
+  <data name="CidadeNomeNulo" xml:space="preserve">
+    <value>Nome da cidade deve ser informado</value>
+  </data>
+  <data name="EstadoJaExiste" xml:space="preserve">
+    <value>Estado já existe</value>
+  </data>
+  <data name="EstadoNomeNulo" xml:space="preserve">
+    <value>O Estado deve ter um nome</value>
+  </data>
+  <data name="EstadoSiglaNula" xml:space="preserve">
+    <value>O Estado deve ter uma sigla</value>
+  </data>
+  <data name="EnderecoJaExiste" xml:space="preserve">
+    <value>O endereço já existe</value>
+  </data>
+  <data name="HaEnderecosRepetidos" xml:space="preserve">
+    <value>Há endereços repetidos: {0}</value>
+  </data>
+  <data name="EnderecoRepetidoLoja" xml:space="preserve">
+    <value>A loja já possui este endereço</value>
   </data>
 </root>

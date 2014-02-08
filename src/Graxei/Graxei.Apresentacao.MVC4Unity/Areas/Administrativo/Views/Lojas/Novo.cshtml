@@ -1,36 +1,13 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
-@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.NovaLoja
+@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
 
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
-
+@{AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "main", HttpMethod = "POST" };}
 <h2>@Rotulos.NovaLoja</h2>
-@using (Ajax.BeginForm("Novo", "Lojas", new { controller = "Lojas" }, new AjaxOptions() { }, null))
+
+@using (Ajax.BeginForm("Novo", "Lojas", ajax, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary(true)
-    <div class="row form-group">
-        @Html.Bootstrap().LabelFor(model => model.Loja.Nome).Width(InputWidth.Col_1)
-        @Html.Bootstrap().TextBoxFor(model => model.Loja.Nome).Width(InputWidth.Col_11)
-    </div>
-    <div class="row form-group">
-        @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "NovoEndereco", "Lojas", new AjaxOptions() { UpdateTargetId = "myModal" }).Style(ButtonStyle.Default)
-        @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
-    </div>
+    Html.RenderPartial("Cadastro", Model);
 }
-<p>@Rotulos.Enderecos</p>
-
-@if (!Model.NovosEnderecosModel.Enderecos.Any())
-{
-    Html.Bootstrap().Label(Textos.EnderecosVazio);
-}
-else
-{
-
-    foreach (EnderecoIndiceModel line in Model.NovosEnderecosModel.Enderecos)
-    {
-        Html.RenderPartial("AcoesEmNovaLoja", line);
-    }
-}
-
-

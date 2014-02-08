@@ -10,29 +10,29 @@ namespace Graxei.Negocio.Implementacao
     {
         public ServicoUsuarios(IRepositorioUsuarios reposUsuarios)
         {
-            _reposUsuarios = reposUsuarios;
+            RepositorioEntidades = reposUsuarios;
         }
 
         #region Implementação de IServicoUsuarios
 
         public Usuario GetPorLogin(string login)
         {
-            return _reposUsuarios.GetPorLogin(login);
+            return RepositorioUsuarios.GetPorLogin(login);
         }
 
         public Usuario GetPorNome(string nome)
         {
-            return _reposUsuarios.GetPorNome(nome);
+            return RepositorioUsuarios.GetPorNome(nome);
         }
 
         public Usuario GetPorEmail(string email)
         {
-            return _reposUsuarios.GetPorEmail(email);
+            return RepositorioUsuarios.GetPorEmail(email);
         }
 
         public Usuario AutenticarPorLogin(string login, string senha)
         {
-            Usuario usuario = _reposUsuarios.GetPorLogin(login);
+            Usuario usuario = RepositorioUsuarios.GetPorLogin(login);
             if (usuario == null)
             {
                 throw new AutenticacaoException(Erros.AutenticacaoLogin);
@@ -46,7 +46,7 @@ namespace Graxei.Negocio.Implementacao
 
         public Usuario AutenticarPorEmail(string email, string senha)
         {
-            Usuario usuario = _reposUsuarios.GetPorEmail(email);
+            Usuario usuario = RepositorioUsuarios.GetPorEmail(email);
             if (usuario == null)
             {
                 throw new AutenticacaoException(Erros.AutenticacaoEmail);
@@ -60,10 +60,22 @@ namespace Graxei.Negocio.Implementacao
 
         #endregion
 
-
-        #region Atributos privados
-        private readonly IRepositorioUsuarios _reposUsuarios;
+        #region Propriedades Privadas
+        private IRepositorioUsuarios RepositorioUsuarios{ get { return (IRepositorioUsuarios)RepositorioEntidades; } }
         #endregion
 
+        #region Overrides of ServicoPadraoEntidades<Usuario>
+
+        public override void PreSalvar(Usuario t)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void PreAtualizar(Usuario t)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
     }
 }

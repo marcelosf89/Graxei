@@ -2,12 +2,14 @@
 using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Persistencia.Contrato;
 using FAST.Modelo;
+using Graxei.Persistencia.Implementacao.NHibernate.Interfaces;
 using NHibernate;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
-    public abstract class PadraoNHibernateMySQLLeitura<T> : IRepositorioEntidades<T> where T : Entidade
+    public abstract class PadraoNHibernateMySQLLeitura<T> : INHiberateMySQL<T> where T : Entidade
     {
+
         public T GetPorId(long id)
         {
             return SessaoAtual.Get<T>(id);
@@ -18,9 +20,9 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             return SessaoAtual.CreateCriteria<T>().List<T>();
         }
 
-        protected ISession SessaoAtual
+        public ISession SessaoAtual
         {
-            get { return UnitOfWorkNHibernate.Instance.SessaoAtual; }
+            get { return UnitOfWorkNHibernate.GetInstancia().SessaoAtual; }
         }
     }
 }

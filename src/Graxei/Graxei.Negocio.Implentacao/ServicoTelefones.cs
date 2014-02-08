@@ -9,11 +9,11 @@ namespace Graxei.Negocio.Implementacao
     {
         public ServicoTelefones(IRepositorioTelefones repositorioTelefones)
         {
-            _repositorioEntidades = repositorioTelefones;
+            RepositorioEntidades = repositorioTelefones;
         }
 
         #region Propriedades Privadas
-        private IRepositorioTelefones Repositorio { get { return (IRepositorioTelefones)_repositorioEntidades; } }
+        private IRepositorioTelefones Repositorio { get { return (IRepositorioTelefones)RepositorioEntidades; } }
         #endregion
 
         #region Implementação de IServicoTelefones
@@ -26,6 +26,11 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Implementation of IEntidadesExcluir<Telefone>
+
+        public void PreExcluir(Telefone t)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void Excluir(Telefone t)
         {

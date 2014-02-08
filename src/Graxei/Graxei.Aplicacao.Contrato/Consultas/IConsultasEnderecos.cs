@@ -15,6 +15,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
         Estado GetEstado(long idEstado);
         IList<Estado> GetEstados(EstadoOrdem ordem);
         IServicoEnderecos ServicoEnderecos { get; }
-
+        IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos);
     }
 }

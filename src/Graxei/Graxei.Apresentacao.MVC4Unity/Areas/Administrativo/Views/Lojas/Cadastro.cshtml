@@ -1,0 +1,31 @@
+﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
+
+@Html.ValidationSummary(true)
+<div class="row form-group">
+    @Html.Bootstrap().LabelFor(model => model.Loja.Nome).Width(InputWidth.Col_1)
+    @Html.Bootstrap().TextBoxFor(model => model.Loja.Nome).Width(InputWidth.Col_11).ShowValidationMessage(true, HelpTextStyle.Inline)
+</div>
+<div class="row form-group">
+    @{
+        AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
+    }
+    @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", ajaxOptions).Style(ButtonStyle.Default)
+    @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
+
+    <div>@Rotulos.Logotipo</div>
+    <div>
+        @if (Model.Loja.Logotipo == null)
+        {
+            @Textos.NenhumLogo
+        }
+        else
+        {
+            <img width="150" height="150" src="@Url.Action("GetImagem", "Lojas", new { Model.Loja.Id })" />
+        }
+        <div>@Rotulos.EscolherLogo<input type="file" name="Imagem" /></div>
+
+    </div>
+</div>
+<p>@Rotulos.Enderecos</p>
+
+@{Html.RenderPartial("AcoesEmLoja", Model.EnderecosModel);}

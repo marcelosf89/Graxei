@@ -1,6 +1,0 @@
-﻿@{
-    ViewBag.Title = "Salvo";
-}
-
-<h2>Salvo</h2>
-@Ajax.Bootstrap().ActionLink("Editar", "Editar", "Enderecos", new AjaxOptions() { UpdateTargetId = "main" }).RouteValues(new { id = Model.IdLista }).IconPrepend(Icons.edit)

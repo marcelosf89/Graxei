@@ -13,7 +13,7 @@ namespace Graxei.Modelo
         [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
         public virtual string Nome { get;  set; }
         public virtual byte[] Logotipo { get; set; }
-        public virtual IList<Endereco> Enderecos { get; protected set; }
+        public virtual IList<Endereco> Enderecos { get; protected internal set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)

@@ -1,0 +1,30 @@
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
+@model EnderecosModel
+<div id="listaEnd">
+    @if (!Model.Enderecos.Any())
+    {
+        Html.Bootstrap().Label(Textos.EnderecosVazio);
+    }
+    else
+    {
+        foreach (EnderecoIndiceModel line in Model.Enderecos)
+        {
+        <div class="row">
+            <div class="col-md-10">@line.Endereco</div>
+            <div class="col-md-2">
+                <div class="form-group col-md-2">
+                    <a class="btn btn-default " data-toggle="dropdown" href="#">
+                        <i class=""></i>Ação
+            <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="">@Ajax.Bootstrap().ActionLink("Editar", "Editar", "Enderecos", new AjaxOptions() { UpdateTargetId = "myModal" }).RouteValues(new { id = line.IdLista }).IconPrepend(Icons.edit)</li>
+                        <li class="btn-warning">@Ajax.Bootstrap().ActionLink("Excluir", "Excluir", "Enderecos", new AjaxOptions() { UpdateTargetId = "listaEnd" }).RouteValues(new { id = line.IdLista }).IconPrepend(Icons.remove)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        }
+    }
+</div>

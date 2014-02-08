@@ -13,8 +13,9 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Cidade Get(string nome, long idEstado)
         {
+            nome = nome.Trim().ToLower();
             return SessaoAtual.Query<Cidade>()
-                .SingleOrDefault<Cidade>(p => Queries.CompararStrings(p.Nome, nome) && p.Estado.Id == idEstado);
+                .SingleOrDefault<Cidade>(p => p.Nome.Trim().ToLower() == nome && p.Estado.Id == idEstado);
         }
 
         public Cidade Get(string nome, Estado estado)

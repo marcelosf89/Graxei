@@ -11,10 +11,6 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
         void SalvarLoja(Loja loja, IList<Usuario> usuarios, Usuario usuario);
         void SalvarLoja(Loja loja);
         void ExcluirLoja(Loja loja);
-        IServicoLojas ServicoLojas { get; }
-        IServicoEnderecos ServicoEnderecos { get; }
-        IServicoUsuarios ServicoUsuarios { get; }
-        IServicoTelefones ServicoTelefones { get; }
     }
 
 }

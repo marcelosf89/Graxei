@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Entidades;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -11,7 +15,53 @@ namespace Graxei.Negocio.Implementacao
         #region Construtor
         public ServicoEstados(IRepositorioEstados repositorio)
         {
-            _repositorioEntidades = repositorio;
+            RepositorioEntidades = repositorio;
+        }
+        #endregion
+
+        #region Métodos Privados
+        private void ValidarEntidade(Estado estado)
+        {
+            if (estado == null)
+            {
+                throw new ArgumentException(ErrosInternos.ArgumentoEstadoNulo);
+            }
+            if (string.IsNullOrEmpty(estado.Nome))
+            {
+                throw new EntidadeInvalidaException(Erros.EstadoNomeNulo);
+            }
+            if (string.IsNullOrEmpty(estado.Sigla))
+            {
+                throw new EntidadeInvalidaException(Erros.EstadoSiglaNula);
+            }
+            if (!estado.Validar())
+            {
+                throw new EntidadeInvalidaException(ErrosInternos.EstadoInvalido);
+            }
+        }
+        #endregion
+
+        #region Métodos Sobrescritos
+        public override void PreSalvar(Estado estado)
+        {
+            ValidarEntidade(estado);
+            IList<Estado> e = Repositorio.GetPorSiglaOuNome(estado.Sigla, estado.Nome);
+            if (e.Any())
+            {
+                throw new ObjetoJaExisteException(Erros.EstadoJaExiste);
+            }
+        }
+
+        public override void PreAtualizar(Estado estado)
+        {
+            ValidarEntidade(estado);
+            IList<Estado> estados = Repositorio.GetPorSiglaOuNome(estado.Sigla, estado.Nome);
+            int contador =
+                estados.Count(p => p.Id != estado.Id);
+            if (contador > 0)
+            {
+                throw new ObjetoJaExisteException(Erros.EstadoJaExiste);
+            }
         }
         #endregion
 
@@ -35,7 +85,7 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Propriedades Privadas
-        private IRepositorioEstados Repositorio { get { return (IRepositorioEstados) _repositorioEntidades;  } }
+        private IRepositorioEstados Repositorio { get { return (IRepositorioEstados) RepositorioEntidades;  } }
         #endregion
 
     }

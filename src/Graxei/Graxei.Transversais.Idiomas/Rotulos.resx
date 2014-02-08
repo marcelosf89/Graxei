@@ -198,4 +198,10 @@
   <data name="Adicionar" xml:space="preserve">
     <value>Adicionar</value>
   </data>
+  <data name="EscolherLogo" xml:space="preserve">
+    <value>Escolher Logotipo</value>
+  </data>
+  <data name="Logotipo" xml:space="preserve">
+    <value>Logotipo</value>
+  </data>
 </root>

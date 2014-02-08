@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Idiomas;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -11,9 +14,49 @@ namespace Graxei.Negocio.Implementacao
         #region Construtor
         public ServicoBairros(IRepositorioBairros repositorio)
         {
-            _repositorioEntidades = repositorio;
+           RepositorioEntidades = repositorio;
         }
 
+        #endregion
+        #region Métodos Privados
+        private void ValidarEntidade(Bairro bairro)
+        {
+            if (bairro == null)
+            {
+                throw new ArgumentException(ErrosInternos.ArgumentoBairroNulo);
+            }
+
+            if (string.IsNullOrEmpty(bairro.Nome))
+            {
+                throw new EntidadeInvalidaException(Erros.BairroNomeNulo);
+            }
+            if (!bairro.Validar())
+            {
+                throw new EntidadeInvalidaException(ErrosInternos.BairroInvalido);
+            }
+        }
+        #endregion
+        
+        #region Métodos Sobrescritos
+        public override void PreSalvar(Bairro bairro)
+        {
+            ValidarEntidade(bairro);
+            Bairro b = Repositorio.Get(bairro.Nome, bairro.Cidade.Nome, bairro.Cidade.Estado.Id);
+            if (b != null)
+            {
+                throw new ObjetoJaExisteException(Erros.BairroJaExiste);
+            }
+        }
+
+        public override void PreAtualizar(Bairro bairro)
+        {
+           ValidarEntidade(bairro);
+           Bairro b = Repositorio.Get(bairro.Nome, bairro.Cidade.Nome, bairro.Cidade.Estado.Id);
+           if (b != null && b.Id != bairro.Id)
+           {
+               throw new ObjetoJaExisteException(Erros.BairroJaExiste);
+           }
+        }
         #endregion
 
         #region Implementação de IServicoBairros
@@ -66,10 +109,11 @@ namespace Graxei.Negocio.Implementacao
         {
             get
             {
-                return (IRepositorioBairros)_repositorioEntidades;
+                return (IRepositorioBairros)RepositorioEntidades;
             }
         }
 
         #endregion
+
     }
 }

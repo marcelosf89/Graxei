@@ -10,28 +10,31 @@ namespace Graxei.Negocio.Implementacao
     {
 
         #region Implementação de IServicoEntidades<T>
+
+        public void Validar(T t)
+        {
+        }
+
         public T GetPorId(long id)
         {
-            if (_repositorioEntidades == null)
+            if (RepositorioEntidades == null)
             {
                 throw new OperacaoEntidadeException("RepositorioEntidades é nulo");
             }
-            return _repositorioEntidades.GetPorId(id);
+            return RepositorioEntidades.GetPorId(id);
         }
 
         public IList<T> Todos()
         {
-            if (_repositorioEntidades == null)
+            if (RepositorioEntidades == null)
             {
                 throw new OperacaoEntidadeException("RepositorioEntidades é nulo. Entidade: {0}");
             }
-            return _repositorioEntidades.Todos();
+            return RepositorioEntidades.Todos();
         }
 
-        public IRepositorioEntidades<T> RepositorioEntidades { get { return _repositorioEntidades;  } }
+        public IRepositorioEntidades<T> RepositorioEntidades { get; protected set; }
 
         #endregion
-
-        protected IRepositorioEntidades<T> _repositorioEntidades;
     }
 }

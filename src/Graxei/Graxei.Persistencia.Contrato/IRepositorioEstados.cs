@@ -8,6 +8,7 @@ namespace Graxei.Persistencia.Contrato
     {
         Estado GetPorSigla(string sigla);
         Estado GetPorNome(string nome);
+        IList<Estado> GetPorSiglaOuNome(string sigla, string nome);
         IList<Estado> Todos(EstadoOrdem ordem);
     }
 }
