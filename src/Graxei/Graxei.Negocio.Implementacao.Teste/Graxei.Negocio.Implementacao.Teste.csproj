@@ -39,6 +39,9 @@
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.6.8.3\lib\net45\MySql.Data.dll</HintPath>
@@ -59,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enderecos.cs" />
     <Compile Include="Integracao\ImplementacaoLojas.cs" />
     <Compile Include="Lojas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +99,14 @@
     <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj">
       <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
+      <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>
+      <Name>Graxei.Transversais.Idiomas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

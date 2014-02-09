@@ -153,9 +153,6 @@
   <data name="LojaNomeNulo" xml:space="preserve">
     <value>Nome da loja deve ser informado</value>
   </data>
-  <data name="LojaNulo" xml:space="preserve">
-    <value>A loja é obrigatória</value>
-  </data>
   <data name="LojaSalvarInvalido" xml:space="preserve">
     <value>A loja não pode ser salva sem uma associação com algum usuário</value>
   </data>
@@ -184,7 +181,7 @@
     <value>O valor deve ser maior que zero</value>
   </data>
   <data name="LojaNula" xml:space="preserve">
-    <value>Loja nula</value>
+    <value>A Loja não pode ser nula</value>
   </data>
   <data name="LojaInvalida" xml:space="preserve">
     <value>Loja inválida: atributos obrigatórios têm valor nulo</value>
@@ -239,5 +236,17 @@
   </data>
   <data name="EnderecoRepetidoLoja" xml:space="preserve">
     <value>A loja já possui este endereço</value>
+  </data>
+  <data name="LojasListaUsuariosVazia" xml:space="preserve">
+    <value>A lista de usuários não pode ser nula ou vazia</value>
+  </data>
+  <data name="UsuarioLogNulo" xml:space="preserve">
+    <value>Usuário de Log não pode ser nulo </value>
+  </data>
+  <data name="EnderecoAtualizarNaoTransiente" xml:space="preserve">
+    <value>O endereço não pode ser transiente na atualização</value>
+  </data>
+  <data name="EnderecoSalvarTransiente" xml:space="preserve">
+    <value>O endereço deve ser transiente na inclusão</value>
   </data>
 </root>

@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Graxei.Transversais.Idiomas">
-      <HintPath>..\Graxei.Apresentacao.MVC4Unity\bin\Graxei.Transversais.Idiomas.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
@@ -46,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lojas.cs" />
+    <Compile Include="Enderecos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +66,10 @@
     <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
       <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
       <Name>Graxei.Persistencia.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
+      <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>
+      <Name>Graxei.Transversais.Idiomas</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
       <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>

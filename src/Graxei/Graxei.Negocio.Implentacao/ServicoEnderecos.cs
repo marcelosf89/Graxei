@@ -173,12 +173,20 @@ namespace Graxei.Negocio.Implementacao
         #region Métodos Sobrescritos
         public void PreSalvar(Endereco endereco)
         {
+            if (!UtilidadeEntidades.IsTransiente(endereco))
+            {
+                throw new InvalidOperationException(Erros.EnderecoSalvarTransiente);
+            }
             ValidarEndereco(endereco);
             VerificarElementosEndereco(endereco);
         }
 
         public void PreAtualizar(Endereco endereco)
         {
+            if (UtilidadeEntidades.IsTransiente(endereco))
+            {
+                throw new InvalidOperationException(Erros.EnderecoAtualizarNaoTransiente);
+            }
             ValidarEndereco(endereco);
             VerificarElementosEndereco(endereco);
             if (Repositorio.ExisteNaLoja(endereco))
@@ -241,6 +249,7 @@ namespace Graxei.Negocio.Implementacao
 
         private void VerificarElementosEndereco(Endereco endereco)
         {
+            /// TODO: Considerar criar uma só consulta de endereços
             Bairro bairro = endereco.Bairro;
             Estado estado = _servEstados.GetPorSigla(bairro.Cidade.Estado.Sigla);
             if (estado == null)
@@ -256,17 +265,18 @@ namespace Graxei.Negocio.Implementacao
             {
                 _servCidades.Salvar(cidade);
             }
-            catch (ObjetoJaExisteException oe)
+            catch (ObjetoJaExisteException)
             {
                 cidade = _servCidades.Get(cidade.Nome, cidade.Estado.Id);
                 bairro.Cidade = cidade;
             }
 
+            /// TODO: Poderia checar se é transiente
             try
             {
                 _servBairros.Salvar(bairro);
             }
-            catch (ObjetoJaExisteException oe)
+            catch (ObjetoJaExisteException)
             {
                 bairro = _servBairros.Get(bairro.Nome, cidade.Nome, cidade.Estado.Id);
             }

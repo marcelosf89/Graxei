@@ -9,3 +9,5 @@ licenses.licx
 IO/
 LogWeb/
 _Resharper*/
+src/Graxei/TestResults
+src/Graxei/TestResults/*

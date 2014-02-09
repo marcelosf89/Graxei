@@ -32,6 +32,31 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
+        public void ValidarSeNulo(Loja loja)
+        {
+            if (loja == null)
+            {
+                throw new ArgumentException(Erros.LojaNula);
+            }
+        }
+
+        public void ValidarSeNulo(Loja loja, IList<Usuario> usuarios, Usuario usuarioLog)
+        {
+            ValidarSeNulo(loja);
+            if (loja == null)
+            {
+                throw new ArgumentException(Erros.LojaNula);
+            }
+            if (usuarios == null || !usuarios.Any())
+            {
+                throw new ArgumentNullException(Erros.LojasListaUsuariosVazia);
+            }
+            if (usuarioLog == null)
+            {
+                throw new ArgumentNullException(Erros.UsuarioLogNulo);
+            }
+        }
+
         public override void PreSalvar(Loja loja)
         {
             Validar(loja);
@@ -41,15 +66,17 @@ namespace Graxei.Negocio.Implementacao
                 throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
 
-            IList<Endereco> endRepetidos = _servicoEnderecos.EnderecosRepetidos(loja.Enderecos);
-            ChecarEnderecos(endRepetidos);
-            if (loja.Enderecos != null)
+            if (loja.Enderecos == null || !loja.Enderecos.Any())
             {
-                foreach (Endereco e in loja.Enderecos)
-                {
-                    _servicoEnderecos.PreSalvar(e);
-                }
+                return;
             }
+            IList<Endereco> enderecosRepetidos = _servicoEnderecos.EnderecosRepetidos(loja.Enderecos);
+            ChecarEnderecos(enderecosRepetidos);
+            foreach (Endereco e in loja.Enderecos)
+            {
+                _servicoEnderecos.PreSalvar(e);
+            }
+
         }
 
         private void ChecarEnderecos(IList<Endereco> endRepetidos)
@@ -68,7 +95,7 @@ namespace Graxei.Negocio.Implementacao
             mensagem = string.Format(mensagem, msgEndRepetidos);
             throw new RepetidoEmColecaoException(mensagem);
         }
-        
+
         public override void PreAtualizar(Loja loja)
         {
             Validar(loja);
@@ -77,9 +104,12 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
-            foreach (Endereco e in loja.Enderecos)
+            if (loja.Enderecos != null && loja.Enderecos.Any())
             {
-                _servicoEnderecos.PreAtualizar(e);
+                foreach (Endereco e in loja.Enderecos)
+                {
+                    _servicoEnderecos.PreAtualizar(e);
+                }
             }
         }
         #endregion
@@ -104,6 +134,7 @@ namespace Graxei.Negocio.Implementacao
 
         public void Salvar(Loja loja, IList<Usuario> usuarios, Usuario usuarioLog)
         {
+            ValidarSeNulo(loja, usuarios, usuarioLog);
             if (UtilidadeEntidades.IsTransiente(loja))
             {
                 PreSalvar(loja);
@@ -116,11 +147,10 @@ namespace Graxei.Negocio.Implementacao
             //Associando usuários à loja
             IList<Usuario> usuariosNaoAssociados = new List<Usuario>();
 
-            /*** TODO: Refatorar: IsTransiente não pode ser exposto para fora da implementação NHibernate ***/
+            /*** TODO: Refatorar - Método muito grande *///
             foreach (Usuario usuario in usuarios)
             {
                 Usuario usuarioFor = usuario;
-                // Checa se o usuário é transiente e recupera a entidade do container pelo login, caso esta seja transiente
                 if (UtilidadeEntidades.IsTransiente(usuario))
                 {
                     usuarioFor = _servicoUsuarios.GetPorLogin(usuario.Login);
@@ -135,21 +165,19 @@ namespace Graxei.Negocio.Implementacao
                 }
             }
             RepositorioLojas.Salvar(loja);
+
+            IList<LojaUsuario> lojaUsuarios = new List<LojaUsuario>();
+            foreach (Usuario usuariosNaoAssociado in usuariosNaoAssociados)
             {
-                IList<LojaUsuario> lojaUsuarios = new List<LojaUsuario>();
-                foreach (Usuario usuariosNaoAssociado in usuariosNaoAssociados)
-                {
-                    LojaUsuario lojaUsuario = new LojaUsuario()
-                                                  {
-                                                      Loja = loja,
-                                                      Usuario = usuariosNaoAssociado,
-                                                      DataRegistro = DateTime.Now,
-                                                      UsuarioLog = usuarioLog
-                                                  };
-                    lojaUsuarios.Add(lojaUsuario);
-                }
-                RepositorioLojas.Salvar(lojaUsuarios);
+                LojaUsuario lojaUsuario = new LojaUsuario();
+                lojaUsuario.Loja = loja;
+                lojaUsuario.Usuario = usuariosNaoAssociado;
+                lojaUsuario.DataRegistro = DateTime.Now;
+                lojaUsuario.UsuarioLog = usuarioLog;
+                lojaUsuarios.Add(lojaUsuario);
             }
+            RepositorioLojas.Salvar(lojaUsuarios);
+
         }
 
 

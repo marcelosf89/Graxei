@@ -73,7 +73,7 @@ namespace Graxei.Negocio.Implementacao
             _servicoUnidadeMedida.PreSalvar(produtoVendedor.UnidadeSaida);
             if (produtoVendedor.Loja == null)
             {
-                throw new ValidacaoEntidadeException(Erros.LojaNulo);
+                throw new ValidacaoEntidadeException(Erros.LojaNula);
             }
             if (produtoVendedor.FatorConversao <= 0)
             {
