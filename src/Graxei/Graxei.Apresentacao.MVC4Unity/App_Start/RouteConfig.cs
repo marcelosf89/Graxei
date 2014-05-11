@@ -11,9 +11,14 @@ namespace Graxei.Apresentacao.MVC4Unity
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional},
-                namespaces: new string[] {"Graxei.Apresentacao.MVC4Unity.Controllers"});
+                url: "Administrativo/{controller}/{action}/{id}",
+                defaults: new
+                          {
+                              controller = "Home",
+                              action = "Index",
+                              id = UrlParameter.Optional
+                          });
+        //namespaces: new string[] {"Graxei.Apresentacao.MVC4Unity.Controllers"});
 
             routes.MapRoute(null,
                             "Administrativo/Enderecos/Excluir/{id}",

@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    @RenderSection("Styles", false)
 </head>
-<body>
+    <body>
+        <a href="Lojas">Nova Loja</a>
         @RenderBody()
-</body>
+        @RenderSection("Scripts", false)
+    </body>
 </html>

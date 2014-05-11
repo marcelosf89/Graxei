@@ -1,6 +1,10 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 @model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
-
+@section Styles{
+    @Styles.Render("~/Content/bootstrap/base")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+}
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
@@ -14,4 +18,15 @@
 @if (Model.HaEnderecos())
 {
     Html.RenderPartial("FormularioEndereco", Model.EnderecoContratoForm);
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modal")
+    @Scripts.Render("~/bundles/typeahead")
+    @Scripts.Render("~/bundles/modernizr")
+
 }

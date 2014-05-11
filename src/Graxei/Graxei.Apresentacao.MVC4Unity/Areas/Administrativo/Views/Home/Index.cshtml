@@ -1,63 +1,16 @@
-﻿@Styles.Render("~/Content/bootstrap/base")
-@Styles.Render("~/Content/themes/base/css")
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/jqueryui")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/modal")
-@Scripts.Render("~/bundles/typeahead")
-@Scripts.Render("~/bundles/modernizr")
+﻿@section Styles{
+    @Styles.Render("~/Content/bootstrap/base")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+}
 
-<header class="navbar navbar-inverse-header navbar-fixed-top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="../">
-                <img src="~/Content/themes/base/images/logo.png" width="200px" alt="............." title="..............."></a>
-        </div>
-        <nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
-            <div class="navbar-right">
-                <ul class="nav navbar-nav ">
-                    <li>
-                        @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-default " })
-                    </li>
-                    <li>
-                        <a class="btn btn-default" data-toggle="dropdown" href="#">
-                            <i class=""></i>pt-BR
-                       <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="glyphicon glyphicon-pencil"></i>en-US</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
-<div class="bs-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 bs-docs-sidebar">
-                <div class="bs-sidebar hidden-print affix" role="complementary">
-                    <ul class="nav bs-sidenav" role="menu" aria-labelledby="dropdownMenu2">
-                        <li role="presentation" class="divider">@Html.ActionLink("DashBoard", "Index", "Home")</li>
-                        <li role="presentation" class="dropdown-header">@Rotulos.Produtos</li>
-                        <li role="presentation" class="divider">@Ajax.ActionLink(Rotulos.Novo, "Novo", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
-                        <li role="presentation" class="dropdown-header">@Rotulos.Lojas</li>
-                        <li role="presentation" class="divider">@Ajax.ActionLink(Rotulos.Nova, "Index", "Lojas", new { controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "main" })</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div id="main"></div>
-            </div>
-        </div>
-    </div>
-</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modal")
+    @Scripts.Render("~/bundles/typeahead")
+    @Scripts.Render("~/bundles/modernizr")
+
+}

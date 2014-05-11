@@ -1,12 +1,11 @@
 ﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
-@Html.ValidationSummary(true)
 <div class="row form-group">
     <div>
         @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
     </div>
     <div>
         @Html.LabelFor(m => m.LojaContrato.Nome)
-        @Html.Bootstrap().TextBoxFor(model => model.LojaContrato.Nome).Width(InputWidth.Col_11).ShowValidationMessage(true, HelpTextStyle.Inline)
+        @Html.TextBoxFor(m => m.LojaContrato.Nome)
     </div>
 </div>
 <div class="row form-group">
