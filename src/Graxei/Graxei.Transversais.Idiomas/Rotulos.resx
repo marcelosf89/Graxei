@@ -204,4 +204,7 @@
   <data name="Logotipo" xml:space="preserve">
     <value>Logotipo</value>
   </data>
+  <data name="Editar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
 </root>

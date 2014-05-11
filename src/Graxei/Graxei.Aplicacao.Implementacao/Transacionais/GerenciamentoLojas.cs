@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Graxei.Aplicacao.Contrato;
+﻿using System;
+using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
-using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {
@@ -13,62 +13,64 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
     {
 
         #region Construtor
-        public GerenciamentoLojas(IServicoLojas servicoLojas, IServicoEnderecos servicoEnderecos, IServicoTelefones servicoTelefones, IServicoUsuarios servicoUsuarios)
+        public GerenciamentoLojas(IServicoLojas servicoLojas, IServicoEnderecos servicoEnderecos, IServicoTelefones servicoTelefones, IServicoUsuarios servicoUsuarios, ITransformacaoMutua<Loja, LojaContrato> transformacao)
         {
             _servicoLojas = servicoLojas;
             _servicoEnderecos = servicoEnderecos;
             _servicoUsuarios = servicoUsuarios;
             _servicoTelefones = servicoTelefones;
+            _transformacao = transformacao;
         }
         #endregion
 
         #region Implementação de IGerenciamentoLojas
 
-        public void SalvarLoja(string nomeLoja, string loginUsuario)
+        /// <summary>
+        /// Cria uma nova loja e a associa ao usuário
+        /// </summary>
+        /// <param name="nomeLoja">O nome da nova loja</param>
+        /// <param name="usuario">O usuário a ser associado à loja</param>
+        /// <returns></returns>
+        public LojaContrato SalvarLoja(string nomeLoja, Usuario usuario)
         {
-            Loja loja = new Loja() {Nome = nomeLoja };
-            Usuario usuario = _servicoUsuarios.GetPorLogin(loginUsuario);
-            if (usuario == null)
-            {
-                throw new OperacaoEntidadeException(string.Format(Erros.UsuarioNaoEncontrado, loginUsuario));
-            }
-            SalvarLoja(loja, usuario);
+            LojaContrato lojaContrato = new LojaContrato();
+            lojaContrato.Nome = nomeLoja;
+            return SalvarLoja(lojaContrato, usuario);
         }
 
-        public void SalvarLoja(Loja loja, Usuario usuario)
+        /// <summary>
+        /// Cria uma nova loja e a associa ao usuário
+        /// </summary>
+        /// <param name="lojaContrato">O nome da nova loja</param>
+        /// <param name="usuario">O usuário a ser associado à loja</param>
+        /// <returns></returns>
+        public LojaContrato SalvarLoja(LojaContrato lojaContrato, Usuario usuario)
         {
             IList<Usuario> usuarios = new List<Usuario>();
             usuarios.Add(usuario);
+            Loja loja = _transformacao.Transformar(lojaContrato);
             IniciarTransacao();
             try
             {
                 _servicoLojas.Salvar(loja, usuarios, usuario);
                 Confirmar();
             }
-            catch (OperacaoEntidadeException oe)
+            catch (OperacaoEntidadeException)
             {
                 Desfazer();
-                throw oe;
+                throw;
             }
+            return _transformacao.Transformar(loja);
         }
 
-
-        public void SalvarLoja(Loja loja, IList<Usuario> usuarios, Usuario usuario)
+        /// <summary>
+        /// Atualiza a loja. Se esta for transiente, será disparada exceção
+        /// </summary>
+        /// <param name="lojaContrato">A loja a ser salva</param>
+        /// <returns></returns>
+        public LojaContrato SalvarLoja(LojaContrato lojaContrato)
         {
-            IniciarTransacao();
-            try
-            {
-                _servicoLojas.Salvar(loja, usuarios, usuario);
-                Confirmar();
-            } catch (OperacaoEntidadeException ex)
-            {
-                Desfazer();
-                throw ex;
-            }
-        }
-
-        public void SalvarLoja(Loja loja)
-        {
+            Loja loja = _transformacao.Transformar(lojaContrato);
             IniciarTransacao();
             try
             {
@@ -77,13 +79,14 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             }catch(OperacaoEntidadeException oe)
             {
                 Desfazer();
-                throw oe;
+                throw;
             }
+            return _transformacao.Transformar(loja);
         }
 
-        public void ExcluirLoja(Loja loja)
+        public void ExcluirLoja(LojaContrato loja)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -93,6 +96,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
         private IServicoEnderecos _servicoEnderecos;
         private IServicoUsuarios _servicoUsuarios;
         private IServicoTelefones _servicoTelefones;
+        private ITransformacaoMutua<Loja, LojaContrato> _transformacao;
         #endregion
 
     }

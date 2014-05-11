@@ -24,11 +24,11 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Métodos de sobrescrita
-        public void Validar(Loja loja)
+        public new void Validar(Loja loja)
         {
             if (string.IsNullOrEmpty(loja.Nome))
             {
-                throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatório);
+                throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatorio);
             }
         }
 
@@ -177,10 +177,8 @@ namespace Graxei.Negocio.Implementacao
                 lojaUsuarios.Add(lojaUsuario);
             }
             RepositorioLojas.Salvar(lojaUsuarios);
-
         }
-
-
+        
         public IServicoEnderecos ServicoEnderecos { get { return _servicoEnderecos; } }
         #endregion
 

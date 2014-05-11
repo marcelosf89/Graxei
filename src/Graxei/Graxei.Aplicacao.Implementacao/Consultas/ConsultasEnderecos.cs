@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
@@ -58,6 +59,16 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         public IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos)
         {
             return _servicoEnderecos.EnderecosRepetidos(enderecos);
+        }
+
+        public bool EnderecoRepetidoParaLoja(EnderecoContrato enderecocontrato, long idLoja)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IList<Endereco> EnderecosRepetidosParaLoja(IList<Endereco> enderecos, long idLoja)
+        {
+            return _servicoEnderecos.EnderecosRepetidosParaLoja(enderecos, idLoja);
         }
 
         private IServicoEnderecos _servicoEnderecos;

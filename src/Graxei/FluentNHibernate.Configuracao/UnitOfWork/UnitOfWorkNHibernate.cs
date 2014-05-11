@@ -39,7 +39,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             if (!CurrentSessionContext.HasBind(_sessionFactory.GetSessionFactory()))
             {
-                CurrentSessionContext.Bind(_sessionFactory.GetSession());
+                CurrentSessionContext.Bind(_sessionFactory.OpenSession());
             }
         }
         #endregion
@@ -165,13 +165,13 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
         #endregion
 
-       #region Implementação de IDispatchMessageInspector
+        #region Implementação de IDispatchMessageInspector
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
-       {
-           BeginRequest(null, null);
-           return null;
+        {
+            BeginRequest(null, null);
+            return null;
 
-       }
+        }
 
         public void BeforeSendReply(ref Message reply, object correlationState)
         {
@@ -180,7 +180,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
 
         #endregion
 
-       #region Implementação de IServiceBehavior
+        #region Implementação de IServiceBehavior
 
         public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
         {
@@ -188,51 +188,51 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         }
 
         public void ApplyDispatchBehavior(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
-       {
-           foreach (ChannelDispatcher cd in serviceHostBase.ChannelDispatchers)
-           {
-               foreach (EndpointDispatcher ed in cd.Endpoints)
-               {
-                   ed.DispatchRuntime.MessageInspectors.Add(this);
-               }
-           }
-       }
+        {
+            foreach (ChannelDispatcher cd in serviceHostBase.ChannelDispatchers)
+            {
+                foreach (EndpointDispatcher ed in cd.Endpoints)
+                {
+                    ed.DispatchRuntime.MessageInspectors.Add(this);
+                }
+            }
+        }
 
-       public void Validate(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
-       {
+        public void Validate(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
+        {
 
-       }
-       #endregion
+        }
+        #endregion
 
-       #region Implementação de IHttpModule
-       public void Init(HttpApplication context)
-       {
-           context.BeginRequest += BeginRequest;
-           context.EndRequest += EndRequest;
-       }
+        #region Implementação de IHttpModule
+        public void Init(HttpApplication context)
+        {
+            context.BeginRequest += BeginRequest;
+            context.EndRequest += EndRequest;
+        }
 
-       public void Dispose()
-       {
-       }
+        public void Dispose()
+        {
+        }
 
-       #endregion
+        #endregion
 
-       #region Extensões dos eventos da sessão
-       private void BeginRequest(object sender, EventArgs e)
-       {
-           BindSession();
-       }
+        #region Extensões dos eventos da sessão
+        private void BeginRequest(object sender, EventArgs e)
+        {
+            BindSession();
+        }
 
-       private void EndRequest(object sender, EventArgs e)
-       {
-           UnBindSession();
-       }
+        private void EndRequest(object sender, EventArgs e)
+        {
+            UnBindSession();
+        }
 
-       #endregion
+        #endregion
 
-       #region Atributos Privados
-       private INHibernateFactory _sessionFactory;
-       #endregion
+        #region Atributos Privados
+        private INHibernateFactory _sessionFactory;
+        #endregion
 
     }
 }

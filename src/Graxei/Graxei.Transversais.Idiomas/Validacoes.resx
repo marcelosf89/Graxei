@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NomeLojaObrigatório" xml:space="preserve">
+  <data name="BairroObrigatorio" xml:space="preserve">
+    <value>Bairro é obrigatório</value>
+  </data>
+  <data name="CidadeObrigatoria" xml:space="preserve">
+    <value>Cidade é obrigatória</value>
+  </data>
+  <data name="EstadoObrigatorio" xml:space="preserve">
+    <value>Estado é obrigatório</value>
+  </data>
+  <data name="LogradouroObrigatorio" xml:space="preserve">
+    <value>Logradouro é obrigatório</value>
+  </data>
+  <data name="NomeLojaObrigatorio" xml:space="preserve">
     <value>Nome da loja deve ser preenchido</value>
   </data>
   <data name="NomeObrigatorio" xml:space="preserve">
     <value>O nome é obrigatório</value>
+  </data>
+  <data name="NumeroObrigatorio" xml:space="preserve">
+    <value>Número é obrigatório</value>
   </data>
   <data name="SenhaObrigatoria" xml:space="preserve">
     <value>Por favor, informe a senha</value>

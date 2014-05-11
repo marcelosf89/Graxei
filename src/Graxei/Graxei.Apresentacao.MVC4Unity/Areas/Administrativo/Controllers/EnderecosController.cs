@@ -9,6 +9,7 @@ using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Entidades;
+using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -20,70 +21,31 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultaEnderecos = consultasEnderecos;
         }
 
-        public ActionResult Index(EnderecosModel item)
+        public ActionResult Index()
         {
             IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            EnderecoIndiceModel model = new EnderecoIndiceModel() {IdEstado = estados[0].Id};
-            return PartialView("Novo", model);
+            EnderecoContrato model = new EnderecoContrato();
+            return PartialView("NovoEndereco", model);
         }
 
         [HttpPost]
-        public ActionResult Novo(EnderecosModel item, EnderecoIndiceModel model)
+        public ActionResult Novo(EnderecoContrato enderecoContrato, long idLoja)
         {
-            Estado estado = _consultaEnderecos.GetEstado(model.IdEstado);
-            model.Endereco.Bairro.Cidade.Estado = estado;
+            Estado estado = _consultaEnderecos.GetEstado(enderecoContrato.IdEstado);
             if (!ModelState.IsValid)
             {
-                return PartialView(model);
+                return PartialView("NovoEndereco", enderecoContrato);
             }
-            item.AdicionarEndereco(model);
-            IList<Endereco> enderecos = item.Enderecos.Select(e => e.Endereco).ToList();
-            if (_consultaEnderecos.EnderecosRepetidos(enderecos).Any())
+            if (_consultaEnderecos.EnderecoRepetidoParaLoja(enderecoContrato, idLoja))
             {
                 ModelState.AddModelError(String.Empty, Erros.EnderecoRepetidoLoja);
-                return PartialView(model);
+                return PartialView("NovoEndereco", enderecoContrato);
             }
-            HttpContext.Session[ChavesSessao.EnderecosNovaLoja] = null;
-            HttpContext.Session[ChavesSessao.Logotipo] = null;
-            return PartialView("AcoesEmLoja", item);
+
+            return PartialView("AcoesEmLoja", enderecoContrato);
         }
 
-        public ActionResult Novo(EnderecoIndiceModel model)
-        {
-            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View();
-        }
-
-        public ActionResult Editar(EnderecosModel item, int id)
-        {
-            EnderecoIndiceModel endereco = item.Enderecos.SingleOrDefault(p => p.IdLista == id);
-            endereco.IdEstado = (int)endereco.Endereco.Bairro.Cidade.Estado.Id;
-            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Editar", endereco);
-        }
-
-        [HttpPost]
-        public ActionResult Editar(EnderecosModel item, EnderecoIndiceModel model)
-        {
-            item.SubstituirEndereco(model);
-            Estado estado = _consultaEnderecos.GetEstado(model.IdEstado);
-            model.Endereco.Bairro.Cidade.Estado = estado;
-            return PartialView("AcoesEmLoja", item);
-        }
-
-        public ActionResult Excluir(EnderecosModel item, int id)
-        {
-            item.RemoverEndereco(id);
-            return PartialView("AcoesEmLoja", item);
-        }
-
-        public ActionResult NovoTelefone(EnderecoIndiceModel model)
-        {
-            return View("Novo", model);
-        }
 
         #region AutoComplete
         public ActionResult EstadoSelecionado(string idEstado)

@@ -1,8 +1,12 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Aplicacao.Contrato.TransformacaoDados;
 using Graxei.Aplicacao.Implementacao.Consultas;
 using Graxei.Aplicacao.Implementacao.Transacionais;
+using Graxei.Modelo;
 using Graxei.Negocio.Fabrica;
+using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
 using Microsoft.Practices.Unity;
 
 namespace Graxei.Aplicacao.Fabrica
@@ -15,36 +19,25 @@ namespace Graxei.Aplicacao.Fabrica
             BootstrapperNegocio.RegisterTypes(container);
 
             // Lojas - Transacional
-            container.RegisterType<IGerenciamentoLojas, GerenciamentoLojas>(
-                /*new InjectionFactory(
-                    p =>
-                    new GerenciamentoLojas(container.Resolve<IServicoLojas>(), container.Resolve<IServicoEnderecos>(),
-                                           container.Resolve<IServicoTelefones>(), container.Resolve<IServicoUsuarios>()))*/
-                );
+            container.RegisterType<IGerenciamentoLojas, GerenciamentoLojas>();
 
             // Produtos Vendedor - Transacional
             container.RegisterType<IGerenciamentoProdutos, GerenciamentoProdutos>();
 
             // Lojas - Consultas
-            container.RegisterType<IConsultasLojas, ConsultasLojas>(
-               /* new InjectionFactory(
-                    p =>
-                    new GerenciamentoLojas(container.Resolve<IServicoLojas>(), container.Resolve<IServicoEnderecos>(),
-                                           container.Resolve<IServicoTelefones>(), container.Resolve<IServicoUsuarios>()))*/
-               );
+            container.RegisterType<IConsultasLojas, ConsultasLojas>();
             
             // Usuários - Consultas
-            container.RegisterType<IConsultasUsuarios, ConsultasUsuarios>(
-                /*new InjectionFactory(p => new ConsultasUsuarios(container.Resolve<IServicoUsuarios>()))*/
-                );
+            container.RegisterType<IConsultasUsuarios, ConsultasUsuarios>();
 
             // Endereços - Consultas
-            container.RegisterType<IConsultasEnderecos, ConsultasEnderecos>(
-                /*new InjectionFactory(p => new ConsultasEnderecos(container.Resolve<IServicoEnderecos>()))*/
-                );
+            container.RegisterType<IConsultasEnderecos, ConsultasEnderecos>();
 
             // Login - Consultas
             container.RegisterType<IConsultasLogin, ConsultasLogin>();
+
+            container.RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>();
+
         }
     }
 }

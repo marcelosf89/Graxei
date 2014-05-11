@@ -10,6 +10,7 @@ using Graxei.Modelo;
 using System.Web.Mvc;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -22,17 +23,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         #region ActionResults
-        public ActionResult Index(EnderecosModel item)
+        public ActionResult Index(EnderecoContrato item)
         {
-            LojaModel model = new LojaModel() { Loja = new Loja(), EnderecosModel = item };
+            LojaModel model = new LojaModel() { LojaContrato = new LojaContrato(), EnderecoContratoForm = item };
             return View("Novo", model);
         }
 
         [HttpPost]
         [LimpezaSessaoNovaLoja]
-        public ActionResult Novo(UsuarioLogado usuario, EnderecosModel enderecosModel, LojaModel item, HttpPostedFileBase imagem)
+        public ActionResult Novo(UsuarioLogado usuario, LojaModel item)
         {
-            item.EnderecosModel = enderecosModel;
             if (!ModelState.IsValid)
             {
                 return PartialView(item);
@@ -40,11 +40,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
             try
             {
-                // Recuperando os endereços inseridos
-                IList<Endereco> enderecos = (from i in enderecosModel.Enderecos
-                                             select i.Endereco).ToList();
-                item.Loja.AdicionarEnderecos(enderecos);
-                _gerenciamentoLojas.SalvarLoja(item.Loja, usuario.Usuario);
+                _gerenciamentoLojas.SalvarLoja(item.LojaContrato, usuario.Usuario);
             }
             catch (OperacaoEntidadeException ee)
             {
@@ -55,7 +51,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(UsuarioLogado usuario, EnderecosModel enderecosModel, LojaModel item)
+        public ActionResult Editar(UsuarioLogado usuario, LojaModel item)
         {
             if (!ModelState.IsValid)
             {
@@ -63,11 +59,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             try
             {
-                // Recuperando os endereços inseridos
-                IList<Endereco> enderecos = (from i in enderecosModel.Enderecos
-                                             select i.Endereco).ToList();
-                item.Loja.AdicionarEnderecos(enderecos);
-                _gerenciamentoLojas.SalvarLoja(item.Loja, usuario.Usuario);
+                _gerenciamentoLojas.SalvarLoja(item.LojaContrato, usuario.Usuario);
             }
             catch (OperacaoEntidadeException ee)
             {

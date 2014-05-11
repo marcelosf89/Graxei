@@ -61,8 +61,8 @@ namespace Graxei.FluentNHibernate.Configuracao
                         .Standard
                         .ConnectionString(c => c.Server(_server)
                                                 .Database(_database)
-                                                .Username("root")
-                                                .Password("vascao01")
+                                                .Username(_username)
+                                                .Password(_password)
                          ).ShowSql()
                 ).
                 Mappings(m =>
@@ -77,6 +77,11 @@ namespace Graxei.FluentNHibernate.Configuracao
 
         #region Implementação de INHibernateFactory
 
+        public ISession OpenSession()
+        {
+            return _sessionFactory.OpenSession();
+        }
+
         public ISession GetSession()
         {
             return _sessionFactory.GetCurrentSession();
@@ -87,7 +92,7 @@ namespace Graxei.FluentNHibernate.Configuracao
         #region Atributos Privados
         private ISessionFactory _sessionFactory;
         private string _server = ConfigurationManager.AppSettings["dbserver"];
-        private string _database = ConfigurationManager.AppSettings["databasename"];
+        private string _database = ConfigurationManager.AppSettings["dbdatabase"];
         private string _username = ConfigurationManager.AppSettings["dbusername"];
         private string _password = ConfigurationManager.AppSettings["dbpassword"];
         #endregion

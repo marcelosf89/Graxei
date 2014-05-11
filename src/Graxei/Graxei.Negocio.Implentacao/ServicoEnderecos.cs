@@ -11,7 +11,7 @@ using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
-    public class ServicoEnderecos : ServicoPadraoSomenteLeitura<Endereco>, IServicoEnderecos
+    public class ServicoEnderecos : ServicoPadraoEntidades<Endereco>, IServicoEnderecos
     {
 
         public ServicoEnderecos(IRepositorioEnderecos repoEnderecos,IServicoLogradouros servLogradouros,  IServicoBairros servBairros, IServicoCidades servCidades, IServicoEstados servEstados)
@@ -171,7 +171,7 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
         #region Métodos Sobrescritos
-        public void PreSalvar(Endereco endereco)
+        public override void PreSalvar(Endereco endereco)
         {
             if (!UtilidadeEntidades.IsTransiente(endereco))
             {
@@ -181,7 +181,7 @@ namespace Graxei.Negocio.Implementacao
             VerificarElementosEndereco(endereco);
         }
 
-        public void PreAtualizar(Endereco endereco)
+        public override void PreAtualizar(Endereco endereco)
         {
             if (UtilidadeEntidades.IsTransiente(endereco))
             {
@@ -212,6 +212,11 @@ namespace Graxei.Negocio.Implementacao
                 resultado.AddRange(enderecos.Where(p => p.ToString() == c.Endereco).ToList());
             }
             return resultado;
+        }
+
+        public IList<Endereco> EnderecosRepetidosParaLoja(IList<Endereco> enderecos, long idLoja)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

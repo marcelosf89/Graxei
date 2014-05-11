@@ -1,30 +1,50 @@
-﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
-@model EnderecosModel
+﻿@using Graxei.Transversais.ContratosDeDados
+@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
+
 <div id="listaEnd">
-    @if (!Model.Enderecos.Any())
+    @if (!Model.EnderecosContrato.Any())
     {
         Html.Bootstrap().Label(Textos.EnderecosVazio);
     }
     else
     {
-        foreach (EnderecoIndiceModel line in Model.Enderecos)
+        foreach (EnderecoContrato line in Model.EnderecosContrato)
         {
-        <div class="row">
-            <div class="col-md-10">@line.Endereco</div>
+            string cidade = line.Cidade;
+            string bairro = line.Bairro;
+            string logradouro = line.Logradouro;
+            string numero = line.Numero;
+            string complemento = line.Complemento;
+        <div class="row data-enderecos">
+            <div class="col-md-10">@line</div>
             <div class="col-md-2">
                 <div class="form-group col-md-2">
                     <a class="btn btn-default " data-toggle="dropdown" href="#">
                         <i class=""></i>Ação
-            <span class="caret"></span>
+                    <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="">@Ajax.Bootstrap().ActionLink("Editar", "Editar", "Enderecos", new AjaxOptions() { UpdateTargetId = "myModal" }).RouteValues(new { id = line.IdLista }).IconPrepend(Icons.edit)</li>
-                        <li class="btn-warning">@Ajax.Bootstrap().ActionLink("Excluir", "Excluir", "Enderecos", new AjaxOptions() { UpdateTargetId = "listaEnd" }).RouteValues(new { id = line.IdLista }).IconPrepend(Icons.remove)</li>
+                        <li class="">
+                            <a id="@line.Id" data-id-estado ="@line.IdEstado" data-nome-cidade="@cidade" data-nome-bairro="@bairro" data-logradouro="@logradouro" data-numero="@numero" data-complemento="@complemento" href="#formEndereco" onclick="javascript:void(); C('@line.Id')">@Rotulos.Editar</a></li>
+                        <li class="btn-warning">@Ajax.Bootstrap().ActionLink("Excluir", "Excluir", "Enderecos", new AjaxOptions() { UpdateTargetId = "listaEnd" }).RouteValues(new { id = line.Id }).IconPrepend(Icons.remove)</li>
                     </ul>
                 </div>
             </div>
         </div>
-
         }
     }
 </div>
+
+<script type="text/javascript">
+    function preencherFormEndereco(idA) {
+        var id = $("#" + idA.id);
+        $("#idEstado").val(id.attr('data-id-estado'));
+        $("#nomeCidade").val(id.attr('data-nome-cidade'));
+        $("#nomeBairro").val(id.attr('data-nome-bairro'));
+        $("#logradouro").val(id.attr('data-logradouro'));
+        $("#numero").val(id.attr('data-numero'));
+        $("#complemento").val(id.attr('data-complemento'));
+        $("#idEstado").focus();
+    }
+
+</script>

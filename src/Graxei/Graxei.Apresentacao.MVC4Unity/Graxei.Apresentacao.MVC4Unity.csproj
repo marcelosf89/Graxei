@@ -144,22 +144,18 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
     <Compile Include="Areas\Administrativo\Binders\LogoNovaLojaBinder.cs" />
-    <Compile Include="Areas\Administrativo\Binders\EnderecosModelBinder.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
-    <Compile Include="Areas\Administrativo\Models\EnderecoIndiceModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
-    <Compile Include="Areas\Administrativo\Models\EnderecosModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
     <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\LojasController.cs" />
-    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,7 +167,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml">
+    <Content Include="Areas\Administrativo\Views\Shared\NovoEndereco.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
@@ -269,8 +265,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Administrativo\Views\Shared\AcoesEmLoja.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Enderecos\Formulario.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Enderecos\Editar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\FormularioEndereco.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\EditarEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Cadastro.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Editar.cshtml" />
@@ -326,6 +322,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrativo\Filters\" />
+    <Folder Include="Areas\Administrativo\Views\Enderecos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -354,6 +351,10 @@
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
+      <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>
+      <Name>Graxei.Transversais.ContratosDeDados</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
       <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>

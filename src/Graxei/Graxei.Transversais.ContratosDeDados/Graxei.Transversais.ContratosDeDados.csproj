@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0788D099-D0C1-43D7-B33A-96800274E201}</ProjectGuid>
+    <ProjectGuid>{2B3F16A3-F753-4431-AC97-3CCA9070B3DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Graxei.Aplicacao.Implementacao</RootNamespace>
-    <AssemblyName>Graxei.Aplicacao.Implementacao</AssemblyName>
+    <RootNamespace>Graxei.Transversais.ContratosDeDados</RootNamespace>
+    <AssemblyName>Graxei.Transversais.ContratosDeDados</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,47 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consultas\ConsultasEnderecos.cs" />
-    <Compile Include="Consultas\ConsultasLogin.cs" />
-    <Compile Include="Consultas\ConsultasLojas.cs" />
-    <Compile Include="Consultas\ConsultasUsuarios.cs" />
-    <Compile Include="Transacionais\GerenciamentoLojas.cs" />
-    <Compile Include="IPadraoTransacao.cs" />
+    <Compile Include="Copy of LojaContrato.cs" />
+    <Compile Include="EnderecoContrato.cs" />
+    <Compile Include="LojaContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transacionais\GerenciamentoProdutos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
-      <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
-      <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
-      <Name>Graxei.Aplicacao.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
-      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
-      <Name>Graxei.Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
-      <Project>{98F3B7B4-B5F1-4124-A62F-A0047AB08840}</Project>
-      <Name>Graxei.Negocio.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
-      <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>
-      <Name>Graxei.Transversais.ContratosDeDados</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">
       <Project>{5015a01c-2e90-44cf-a45c-4b121696508c}</Project>
       <Name>Graxei.Transversais.Idiomas</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
-      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
-      <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

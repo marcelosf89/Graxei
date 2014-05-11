@@ -1,5 +1,6 @@
-﻿
-using Graxei.Modelo;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 {
@@ -7,11 +8,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
     {
         public LojaModel()
         {
-            Loja = new Loja();
-            EnderecosModel = new EnderecosModel();
+            LojaContrato = new LojaContrato();
+            EnderecoContratoForm = new EnderecoContrato();
+            EnderecosContrato = new List<EnderecoContrato>();
         }
-        public Loja Loja { get; set; }
-        public EnderecosModel EnderecosModel { get; set; }
+        public LojaContrato LojaContrato { get; set; }
+        public EnderecoContrato EnderecoContratoForm { get; set; }
+        public List<EnderecoContrato> EnderecosContrato { get; set; }
 
+        public bool HaEnderecos()
+        {
+            return (EnderecosContrato != null && EnderecosContrato.Any());
+        }
     }
 }

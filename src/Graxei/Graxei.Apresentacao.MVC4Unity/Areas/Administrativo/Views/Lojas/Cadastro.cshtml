@@ -1,9 +1,13 @@
 ﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
-
 @Html.ValidationSummary(true)
 <div class="row form-group">
-    @Html.Bootstrap().LabelFor(model => model.Loja.Nome).Width(InputWidth.Col_1)
-    @Html.Bootstrap().TextBoxFor(model => model.Loja.Nome).Width(InputWidth.Col_11).ShowValidationMessage(true, HelpTextStyle.Inline)
+    <div>
+        @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.LojaContrato.Nome)
+        @Html.Bootstrap().TextBoxFor(model => model.LojaContrato.Nome).Width(InputWidth.Col_11).ShowValidationMessage(true, HelpTextStyle.Inline)
+    </div>
 </div>
 <div class="row form-group">
     @{
@@ -11,16 +15,15 @@
     }
     @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", ajaxOptions).Style(ButtonStyle.Default)
     @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
-
     <div>@Rotulos.Logotipo</div>
     <div>
-        @if (Model.Loja.Logotipo == null)
+        @if (Model.LojaContrato.Logotipo == null)
         {
             @Textos.NenhumLogo
         }
         else
         {
-            <img width="150" height="150" src="@Url.Action("GetImagem", "Lojas", new { Model.Loja.Id })" />
+            <img width="150" height="150" src="@Url.Action("GetImagem", "Lojas", new { Model.LojaContrato.Id })" />
         }
         <div>@Rotulos.EscolherLogo<input type="file" name="Imagem" /></div>
 
@@ -28,4 +31,4 @@
 </div>
 <p>@Rotulos.Enderecos</p>
 
-@{Html.RenderPartial("AcoesEmLoja", Model.EnderecosModel);}
+@{Html.RenderPartial("AcoesEmLoja", Model);}

@@ -1,9 +1,10 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
 @model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
 
-@{AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "main", HttpMethod = "POST" };}
-
-@using (Ajax.BeginForm("Editar", "Lojas", ajax))
-{
-    Html.RenderPartial("Cadastro", Model);
-}
+@{AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "formLojas"};}
+<div id="formLojas">
+    @using (Ajax.BeginForm("Editar", "Lojas", ajax))
+    {
+        Html.RenderPartial("Cadastro", Model);
+    }
+</div>

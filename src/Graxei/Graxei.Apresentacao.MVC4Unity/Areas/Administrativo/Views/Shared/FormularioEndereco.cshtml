@@ -1,0 +1,35 @@
+﻿@model Graxei.Transversais.ContratosDeDados.EnderecoContrato
+@{
+    string target = "formEndereco";
+    AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = target };   
+}
+<div id="formEndereco">
+    @using (Ajax.BeginForm("Novo", "Enderecos", ajax))
+    {
+        @Html.ValidationSummary(true)
+        <div class="row form-group">
+            @Html.Bootstrap().Label(Rotulos.Estado).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+            @Html.Bootstrap().DropDownListFor(m => m.IdEstado, (SelectList)ViewBag.Estados).Width(InputWidth.Col_3).Id("IdEstado").HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        </div>
+        <div class="row form-group">
+            @Html.Bootstrap().Label(Rotulos.Cidade).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+            @Html.Bootstrap().TypeHeadFor(m => m.Cidade, "AutoCompleteCidade", "Enderecos").Id("IdCidade").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        </div>
+        <div class="row form-group">
+            @Html.Bootstrap().Label(Rotulos.Bairro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+            @Html.Bootstrap().TypeHeadFor(m => m.Bairro, "AutoCompleteBairro", "Enderecos").Id("IdBairro").Width(InputWidth.Col_5).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        </div>
+        <div class="row form-group">
+            @Html.Bootstrap().LabelFor(m => m.Logradouro).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+            @Html.Bootstrap().TypeHeadFor(m => m.Logradouro, "AutoCompleteLogradouro", "Enderecos").Id("Logradouro").Width(InputWidth.Col_10).HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        </div>
+        <div class="row form-group">
+            @Html.Bootstrap().LabelFor(m => m.Numero).Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+            @Html.Bootstrap().TextBoxFor(m => m.Numero).Width(InputWidth.Col_2).Id("Numero").HtmlAttributes(new { @class = "form-control" }).ShowValidationMessage(true)
+        </div>
+        <div class="row form-group">
+            @Html.Bootstrap().ControlGroup().TextAreaFor(m => m.Complemento).Width(InputWidth.Col_10).Id("Complemento").HtmlAttributes(new { @class = "form-control" }).Rows(3).Label().Width(InputWidth.Col_2).HtmlAttributes(new { @class = "control-label" })
+        </div>
+        <input type="submit" class="btn btn-primary" value="@Rotulos.Salvar"/>
+    }
+</div>

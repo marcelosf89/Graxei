@@ -35,5 +35,6 @@ namespace Graxei.Negocio.Contrato
         void PreSalvar(Endereco endereco);
         void PreAtualizar(Endereco endereco);
         IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos);
+        IList<Endereco> EnderecosRepetidosParaLoja(IList<Endereco> enderecos, long idLoja);
     }
 }
