@@ -1,7 +1,5 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Graxei.Apresentacao.MVC4Unity.Models;
-using Graxei.Modelo;
 
 namespace Graxei.Apresentacao.MVC4Unity.Binders
 {

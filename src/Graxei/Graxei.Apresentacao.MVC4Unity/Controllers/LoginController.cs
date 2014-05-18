@@ -19,7 +19,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         public ActionResult Index()
         {
-            return PartialView("Autenticacao");
+            Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
+            Helper.SetUsuarioLogado(Session, usuarioAutenticado);
+            return RedirectToRoute("Administrativo_default");
         }
 
 

@@ -31,6 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +45,37 @@
   <ItemGroup>
     <Compile Include="NegocioProdutos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transformacao\LojaTransformacaoTeste.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FAST\FAST.csproj">
+      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
+      <Name>FAST</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
+      <Project>{CBF20A20-BA65-4DBC-A5A6-8F06EB2F4ED5}</Project>
+      <Name>Graxei.Aplicacao.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
+      <Project>{FE888923-D56D-403A-B51F-0549C4E12919}</Project>
+      <Name>Graxei.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
+      <Project>{98F3B7B4-B5F1-4124-A62F-A0047AB08840}</Project>
+      <Name>Graxei.Negocio.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
+      <Project>{2B3F16A3-F753-4431-AC97-3CCA9070B3DB}</Project>
+      <Name>Graxei.Transversais.ContratosDeDados</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+      <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
+      <Name>Graxei.Transversais.Utilidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

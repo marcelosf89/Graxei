@@ -1,5 +1,5 @@
 ﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
-<div class="row form-group">
+<div class="form-group">
     <div>
         @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
     </div>
@@ -8,13 +8,13 @@
         @Html.TextBoxFor(m => m.LojaContrato.Nome)
     </div>
 </div>
-<div class="row form-group">
+<div class="form-group">
     @{
         AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
     }
     @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", ajaxOptions).Style(ButtonStyle.Default)
     @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
-    <div>@Rotulos.Logotipo</div>
+    @*<div>@Rotulos.Logotipo</div>
     <div>
         @if (Model.LojaContrato.Logotipo == null)
         {
@@ -26,7 +26,7 @@
         }
         <div>@Rotulos.EscolherLogo<input type="file" name="Imagem" /></div>
 
-    </div>
+    </div>*@
 </div>
 <p>@Rotulos.Enderecos</p>
 

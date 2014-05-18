@@ -11,10 +11,10 @@ namespace Graxei.Apresentacao.MVC4Unity
 
             routes.MapRoute(
                 name: "Default",
-                url: "Administrativo/{controller}/{action}/{id}",
+                url: "{controller}/{action}",
                 defaults: new
                           {
-                              controller = "Home",
+                              controller = "Login",
                               action = "Index",
                               id = UrlParameter.Optional
                           });

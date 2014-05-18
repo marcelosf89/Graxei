@@ -27,9 +27,9 @@ namespace Graxei.Aplicacao.Contrato.TransformacaoDados
             if (contrato.Id > 0)
             {
                 retorno = _servicoLojas.GetPorId(contrato.Id);
-                retorno.Nome = contrato.Nome;
-                retorno.Logotipo = contrato.Logotipo;
             }
+            retorno.Nome = contrato.Nome;
+            retorno.Logotipo = contrato.Logotipo;
             return retorno;
         }
 
