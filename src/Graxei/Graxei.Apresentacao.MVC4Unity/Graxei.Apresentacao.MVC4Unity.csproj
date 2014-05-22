@@ -55,6 +55,9 @@
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.7.4\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Portable.Licensing">
+      <HintPath>..\packages\Portable.Licensing.1.1.0\lib\portable-net40+sl4+wp7+win8\Portable.Licensing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -124,6 +127,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\T4MVCExtensions.3.6.5\lib\net40\T4MVCExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mvc4">
       <HintPath>..\packages\Unity.Mvc4.1.2.0.0\lib\net40\Unity.Mvc4.dll</HintPath>
     </Reference>
@@ -146,6 +153,7 @@
     <Compile Include="Areas\Administrativo\Binders\LogoNovaLojaBinder.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrativo\HtmlHelpers\Mensagens.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
@@ -270,7 +278,6 @@
     <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Cadastro.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Editar.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Lojas\Incluida.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -328,10 +335,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TwitterBootstrapMVC\TwitterBootstrapMVC\TwitterBootstrapMVC.csproj">
-      <Project>{b8962907-267a-4010-9606-dd3440055e0a}</Project>
-      <Name>TwitterBootstrapMVC</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FAST\FAST.csproj">
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>

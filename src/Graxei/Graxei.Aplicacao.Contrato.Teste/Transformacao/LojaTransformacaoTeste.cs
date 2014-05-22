@@ -10,6 +10,12 @@ namespace Graxei.Aplicacao.Contrato.Teste.Transformacao
     [TestClass]
     public class LojaTransformacaoTeste
     {
+        [TestInitialize]
+        public void IniciarTeste()
+        {
+            _mockServicoLojas = new Mock<IServicoLojas>();
+        }
+
         [TestMethod]
         public void QuandoLojaContratoTemIdIgualAZero_DeveTransformarLojaContratoEmLojaModelo()
         {
@@ -17,10 +23,9 @@ namespace Graxei.Aplicacao.Contrato.Teste.Transformacao
             LojaContrato lojaContrato = new LojaContrato();
             string nomeEsperado = "Loja 1";
             lojaContrato.Nome = nomeEsperado;
-            Mock<IServicoLojas> mockServicoLojas = new Mock<IServicoLojas>();
 
             // Act
-            LojasTransformacao lojasTransformacao = new LojasTransformacao(mockServicoLojas.Object);
+            LojasTransformacao lojasTransformacao = new LojasTransformacao(_mockServicoLojas.Object);
             Loja loja = lojasTransformacao.Transformar(lojaContrato);
 
             // Assert
@@ -41,11 +46,10 @@ namespace Graxei.Aplicacao.Contrato.Teste.Transformacao
             Mock<Loja> mockLoja = new Mock<Loja>();
             mockLoja.SetupProperty(p => p.Id, idEsperado);
             mockLoja.SetupProperty(p => p.Nome, nomeEsperado);
-            Mock<IServicoLojas> mockServicoLojas = new Mock<IServicoLojas>();
-            mockServicoLojas.Setup(p => p.GetPorId(It.IsAny<long>())).Returns(mockLoja.Object);
+            _mockServicoLojas.Setup(p => p.GetPorId(It.IsAny<long>())).Returns(mockLoja.Object);
 
             // Act
-            LojasTransformacao lojasTransformacao = new LojasTransformacao(mockServicoLojas.Object);
+            LojasTransformacao lojasTransformacao = new LojasTransformacao(_mockServicoLojas.Object);
             Loja loja = lojasTransformacao.Transformar(lojaContrato);
 
             // Assert
@@ -53,5 +57,7 @@ namespace Graxei.Aplicacao.Contrato.Teste.Transformacao
             Assert.AreEqual(idEsperado, loja.Id, string.Format("Loja deveria ter o Id {0}", idEsperado));
             Assert.AreEqual(nomeEsperado, loja.Nome, string.Format("Loja deveria ter o nome {0}", nomeEsperado));
         }
+
+        private Mock<IServicoLojas> _mockServicoLojas;
     }
 }

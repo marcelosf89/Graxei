@@ -65,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Rotulos.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sucesso.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sucesso.resx</DependentUpon>
+    </Compile>
     <Compile Include="Textos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,9 +104,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Rotulos.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sucesso.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sucesso.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Textos.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Textos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Validacoes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

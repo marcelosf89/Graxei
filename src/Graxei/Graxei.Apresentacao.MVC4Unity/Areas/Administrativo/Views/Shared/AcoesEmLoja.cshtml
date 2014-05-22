@@ -4,7 +4,7 @@
 <div id="listaEnd">
     @if (!Model.EnderecosContrato.Any())
     {
-        Html.Bootstrap().Label(Textos.EnderecosVazio);
+        Html.Label(Textos.EnderecosVazio);
     }
     else
     {
@@ -26,7 +26,7 @@
                     <ul class="dropdown-menu">
                         <li class="">
                             <a id="@line.Id" data-id-estado ="@line.IdEstado" data-nome-cidade="@cidade" data-nome-bairro="@bairro" data-logradouro="@logradouro" data-numero="@numero" data-complemento="@complemento" href="#formEndereco" onclick="javascript:void(); C('@line.Id')">@Rotulos.Editar</a></li>
-                        <li class="btn-warning">@Ajax.Bootstrap().ActionLink("Excluir", "Excluir", "Enderecos", new AjaxOptions() { UpdateTargetId = "listaEnd" }).RouteValues(new { id = line.Id }).IconPrepend(Icons.remove)</li>
+                        @*<li class="btn-warning">@Ajax.ActionLink("Excluir", "Excluir", "Enderecos", new AjaxOptions() { UpdateTargetId = "listaEnd" }).RouteValues(new { id = line.Id }).IconPrepend(Icons.remove)</li>*@
                     </ul>
                 </div>
             </div>

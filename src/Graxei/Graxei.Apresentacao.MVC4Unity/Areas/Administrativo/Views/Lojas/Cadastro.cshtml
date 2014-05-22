@@ -1,20 +1,29 @@
-﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
-<div class="form-group">
-    <div>
-        @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.LojaContrato.Nome)
-        @Html.TextBoxFor(m => m.LojaContrato.Nome)
-    </div>
-</div>
-<div class="form-group">
-    @{
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
+@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
+@{AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST" };}
+
+<div id="nova-loja">
+    @using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new { @class = "form-horizontal" }))
+    {
+        Html.Sucesso();
+        <div class="form-group">
+            @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
+            @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
+            <div class="col-xs-5">
+                @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
+            </div>
+            @{
         AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-1 col-xs-1">
+                <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
+            </div>
+        </div>
     }
-    @Ajax.Bootstrap().ActionLinkButton(Rotulos.NovoEndereco, "Index", "Enderecos", ajaxOptions).Style(ButtonStyle.Default)
-    @Html.Bootstrap().SubmitButton().Text(@Rotulos.Salvar).Style(ButtonStyle.Primary)
-    @*<div>@Rotulos.Logotipo</div>
+</div>
+@*<div>@Rotulos.Logotipo</div>
     <div>
         @if (Model.LojaContrato.Logotipo == null)
         {
@@ -27,7 +36,5 @@
         <div>@Rotulos.EscolherLogo<input type="file" name="Imagem" /></div>
 
     </div>*@
-</div>
 <p>@Rotulos.Enderecos</p>
-
 @{Html.RenderPartial("AcoesEmLoja", Model);}

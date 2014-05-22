@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Graxei.Aplicacao.Contrato.Consultas;
+﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
@@ -47,7 +44,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 ModelState.AddModelError("", ee.Message);
                 return PartialView(item);
             }
-            return PartialView("Incluida", item);
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
+            return PartialView(item);
         }
 
         [HttpPost]
@@ -66,8 +65,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 ModelState.AddModelError("", ee.Message);
                 return PartialView(item);
             }
-            ViewBag.Sucesso = Textos.LojaIncluida;
-            return PartialView();
+           return PartialView();
         }
 
         public FileContentResult GetImagem(int idLoja = 0)

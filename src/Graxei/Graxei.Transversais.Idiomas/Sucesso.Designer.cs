@@ -22,14 +22,14 @@ namespace Graxei.Transversais.Idiomas {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Textos {
+    public class Sucesso {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Textos() {
+        internal Sucesso() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Graxei.Transversais.Idiomas {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Graxei.Transversais.Idiomas.Textos", typeof(Textos).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Graxei.Transversais.Idiomas.Sucesso", typeof(Sucesso).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,11 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incluir outra loja.
+        ///   Looks up a localized string similar to Loja incluída.
         /// </summary>
-        public static string CriarNovaLoja {
+        public static string LojaIncluida {
             get {
-                return ResourceManager.GetString("CriarNovaLoja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Digite alguma coisa para pesquisa, Dooley.
-        /// </summary>
-        public static string DigitePesquisa {
-            get {
-                return ResourceManager.GetString("DigitePesquisa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Endereços da Loja {0}.
-        /// </summary>
-        public static string EnderecosLoja {
-            get {
-                return ResourceManager.GetString("EnderecosLoja", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nenhum endereço para esta loja.
-        /// </summary>
-        public static string EnderecosVazio {
-            get {
-                return ResourceManager.GetString("EnderecosVazio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Esqueceu sua senha?.
-        /// </summary>
-        public static string EsqueceuSuaSenha {
-            get {
-                return ResourceManager.GetString("EsqueceuSuaSenha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nenhum logotipo para a loja.
-        /// </summary>
-        public static string NenhumLogo {
-            get {
-                return ResourceManager.GetString("NenhumLogo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to O nome é obrigatório.
-        /// </summary>
-        public static string NomeObrigatorio {
-            get {
-                return ResourceManager.GetString("NomeObrigatorio", resourceCulture);
+                return ResourceManager.GetString("LojaIncluida", resourceCulture);
             }
         }
     }

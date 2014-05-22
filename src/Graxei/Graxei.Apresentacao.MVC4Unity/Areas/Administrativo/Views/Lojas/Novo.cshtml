@@ -1,5 +1,6 @@
-﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
-@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
+@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
+@model LojaModel
 @section Styles{
     @Styles.Render("~/Content/bootstrap/base")
     @Styles.Render("~/Content/themes/base/css")
@@ -8,18 +9,14 @@
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
-@{AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "main", HttpMethod = "POST" };}
 <h2>@Rotulos.NovaLoja</h2>
-
-@using (Ajax.BeginForm("Novo", "Lojas", ajax))
-{
+@{
     Html.RenderPartial("Cadastro", Model);
+    if (Model.HaEnderecos())
+    {
+        Html.RenderPartial("FormularioEndereco", Model.EnderecoContratoForm);
+    }
 }
-@if (Model.HaEnderecos())
-{
-    Html.RenderPartial("FormularioEndereco", Model.EnderecoContratoForm);
-}
-
 @section Scripts{
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
