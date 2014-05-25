@@ -42,11 +42,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             catch (OperacaoEntidadeException ee)
             {
                 ModelState.AddModelError("", ee.Message);
-                return PartialView(item);
+                return PartialView("Cadastro", item);
             }
             ModelState.Clear();
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
-            return PartialView(item);
+            return PartialView("Cadastro", item);
         }
 
         [HttpPost]

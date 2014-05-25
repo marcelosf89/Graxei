@@ -1,19 +1,30 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
 @model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
-@{AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST" };}
 
-<div id="nova-loja">
-    @using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new { @class = "form-horizontal" }))
+
+@*//if (ViewBag.OperacaoSucesso != null)
+    //{
+    //<div class="alert alert-success alert-dismissable">
+        //  
+        <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>Loja incluída
+    </div>
+//}*@
+
+@{Html.Sucesso();}
+@{
+    AjaxOptions ajax = new AjaxOptions() {InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST"};
+    using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new {@class = "form-horizontal"}))
     {
-        Html.Sucesso();
+
+
         <div class="form-group">
             @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
-            @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
+            @Html.LabelFor(m => m.LojaContrato.Nome, new {@class = "control-label col-xs-1"})
             <div class="col-xs-5">
-                @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.LojaContrato.Nome, new {@class = "form-control"})
             </div>
             @{
-        AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
+                AjaxOptions ajaxOptions = new AjaxOptions() {UpdateTargetId = "listaEnd"};
             }
         </div>
         <div class="form-group">
@@ -22,7 +33,7 @@
             </div>
         </div>
     }
-</div>
+}
 @*<div>@Rotulos.Logotipo</div>
     <div>
         @if (Model.LojaContrato.Logotipo == null)
@@ -35,6 +46,7 @@
         }
         <div>@Rotulos.EscolherLogo<input type="file" name="Imagem" /></div>
 
-    </div>*@
-<p>@Rotulos.Enderecos</p>
-@{Html.RenderPartial("AcoesEmLoja", Model);}
+    </div>
+        <p>@Rotulos.Enderecos</p>
+        @{Html.RenderPartial("AcoesEmLoja", Model);}
+    *@

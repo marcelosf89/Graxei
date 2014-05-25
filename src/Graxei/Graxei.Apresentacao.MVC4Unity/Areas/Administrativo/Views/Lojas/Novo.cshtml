@@ -10,13 +10,14 @@
     ViewBag.Title = Rotulos.NovaLoja;
 }
 <h2>@Rotulos.NovaLoja</h2>
-@{
-    Html.RenderPartial("Cadastro", Model);
-    if (Model.HaEnderecos())
-    {
-        Html.RenderPartial("FormularioEndereco", Model.EnderecoContratoForm);
-    }
-}
+<div id="nova-loja">
+    @{ Html.RenderPartial("Cadastro", Model);}
+</div>
+@*@{if (Model.HaEnderecos())
+  {
+      Html.RenderPartial("FormularioEndereco", Model.EnderecoContratoForm);
+  }
+}*@
 @section Scripts{
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
