@@ -41,7 +41,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             catch (OperacaoEntidadeException ee)
             {
-                ModelState.AddModelError("", ee.Message);
+                ModelState.AddModelError(string.Empty, ee.Message);
                 return PartialView("Cadastro", item);
             }
             ModelState.Clear();

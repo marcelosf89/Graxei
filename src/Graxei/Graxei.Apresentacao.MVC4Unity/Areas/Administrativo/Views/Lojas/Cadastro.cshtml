@@ -10,28 +10,27 @@
     </div>
 //}*@
 
-@{Html.Sucesso();}
 @{
-    AjaxOptions ajax = new AjaxOptions() {InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST"};
-    using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new {@class = "form-horizontal"}))
+    AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST" };
+    using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new { @class = "form-horizontal" }))
     {
-
-
-        <div class="form-group">
-            @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
-            @Html.LabelFor(m => m.LojaContrato.Nome, new {@class = "control-label col-xs-1"})
-            <div class="col-xs-5">
-                @Html.TextBoxFor(m => m.LojaContrato.Nome, new {@class = "form-control"})
-            </div>
-            @{
-                AjaxOptions ajaxOptions = new AjaxOptions() {UpdateTargetId = "listaEnd"};
-            }
+    @Html.Erro()
+    @Html.Sucesso()
+    <div class="form-group">
+        @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
+        @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
+        <div class="col-xs-5">
+            @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            <div class="col-xs-offset-1 col-xs-1">
-                <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
-            </div>
+        @{
+        AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
+        }
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-1 col-xs-1">
+            <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
         </div>
+    </div>
     }
 }
 @*<div>@Rotulos.Logotipo</div>
