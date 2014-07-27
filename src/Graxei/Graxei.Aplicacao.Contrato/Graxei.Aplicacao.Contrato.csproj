@@ -45,10 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\IConsultaCidades.cs" />
+    <Compile Include="Consultas\IConsultasBairros.cs" />
     <Compile Include="Consultas\IConsultasEnderecos.cs" />
+    <Compile Include="Consultas\IConsultasEstados.cs" />
     <Compile Include="Consultas\IConsultasLogin.cs" />
     <Compile Include="Consultas\IConsultasLojas.cs" />
     <Compile Include="Consultas\IConsultasUsuarios.cs" />
+    <Compile Include="Consultas\IConsultaLogradouros.cs" />
     <Compile Include="Transacionais\IGerenciamentoLojas.cs" />
     <Compile Include="ITransacional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

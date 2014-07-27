@@ -1,0 +1,12 @@
+﻿@model List<EnderecoModel>
+@{
+    ViewBag.Title = "Lista";
+}
+@{
+    Html.RenderPartial("FormularioEndereco");
+}
+@foreach (EnderecoModel enderecoModel in Model)
+{
+    <div class="form-group">
+    </div>
+}

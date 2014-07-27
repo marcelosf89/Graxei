@@ -102,32 +102,6 @@ namespace Graxei.Negocio.Contrato.Teste
         }
 
         [TestMethod]
-        [ExpectedException(typeof(RepetidoEmColecaoException))]
-        public void HaEnderecosRepetidos_DeveDispararExcecao()
-        {
-            // Arrange
-            string lojaExistente = "Loja";
-            IList<Usuario> usuarios = new List<Usuario>();
-            usuarios.Add(new Usuario());
-            Usuario usuarioLog = new Usuario();
-            _repositorioLojas.Setup(p => p.Get(It.IsAny<string>())).Returns(It.Is<Loja>(null));
-            _servicoUsuario.Setup(p => p.GetPorLogin(It.IsAny<string>())).Returns(usuarioLog);
-            Mock<Endereco> endereco = new Mock<Endereco>();
-            endereco.Setup(p => p.ToString()).Returns("Endereço");
-            IList<Endereco> enderecos = new List<Endereco>();
-            enderecos.Add(endereco.Object);
-            Mock<Loja> loja = new Mock<Loja>();
-            loja.SetupProperty(p => p.Nome, lojaExistente);
-            loja.SetupProperty(p => p.Enderecos, enderecos);
-
-            _servicoEndereco.Setup(p => p.EnderecosRepetidos(It.IsAny<IList<Endereco>>())).Returns(enderecos);
-
-            // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja.Object, usuarios, usuarioLog);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(ObjetoJaExisteException))]
         public void Criar_LojaJaExiste_DeveDispararExcecao()
         {
@@ -139,30 +113,6 @@ namespace Graxei.Negocio.Contrato.Teste
             usuarios.Add(new Usuario());
             Usuario usuarioLog = new Usuario();
             _repositorioLojas.Setup(p => p.Get(It.IsAny<string>())).Returns(loja.Object);
-
-            // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja.Object, usuarios, usuarioLog);
-        }
-
-        [TestMethod]
-        public void Criar_LojaCriada()
-        {
-            // Arrange
-            string lojaExistente = "Loja";
-            IList<Usuario> usuarios = new List<Usuario>();
-            usuarios.Add(new Usuario());
-            Usuario usuarioLog = new Usuario();
-            _repositorioLojas.Setup(p => p.Get(It.IsAny<string>())).Returns(It.Is<Loja>(null));
-            _servicoUsuario.Setup(p => p.GetPorLogin(It.IsAny<string>())).Returns(usuarioLog);
-            Mock<Endereco> endereco = new Mock<Endereco>();
-            endereco.Setup(p => p.ToString()).Returns("Endereço");
-            IList<Endereco> enderecos = new List<Endereco>();
-            enderecos.Add(endereco.Object);
-            Mock<Loja> loja = new Mock<Loja>();
-            loja.SetupProperty(p => p.Nome, lojaExistente);
-            loja.SetupProperty(p => p.Enderecos, enderecos);
-            _servicoEndereco.Setup(p => p.EnderecosRepetidos(It.IsAny<IList<Endereco>>())).Returns(It.Is<IList<Endereco>>(null));
 
             // Act
             IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);

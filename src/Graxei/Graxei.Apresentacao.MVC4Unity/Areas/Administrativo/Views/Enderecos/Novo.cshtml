@@ -1,12 +1,9 @@
 ﻿@model EnderecoModel
 <div id="formEndereco">
-    @{ AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "formEndereco" }; }
-
-    @{using (Ajax.BeginForm("Novo", "Enderecos", null, ajax, new { @class = "form-horizontal" }))
-      {
-          Html.RenderPartial("FormularioEndereco", Model);
-      }
+    @{ 
+        Html.RenderPartial("FormularioEndereco", Model);
     }
+
 </div>
 @*<script type="text/javascript">
 

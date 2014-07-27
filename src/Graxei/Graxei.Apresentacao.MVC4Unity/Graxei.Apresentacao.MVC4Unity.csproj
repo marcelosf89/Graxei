@@ -156,6 +156,7 @@
     <Compile Include="Areas\Administrativo\HtmlHelpers\Mensagens.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
+    <Compile Include="Areas\Administrativo\Models\EnderecoModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
@@ -168,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\Constantes.cs" />
     <Compile Include="Models\IndexModel.cs" />
@@ -175,7 +177,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administrativo\Views\Shared\NovoEndereco.cshtml">
+    <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
@@ -278,6 +280,8 @@
     <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Cadastro.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Editar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\ListaEnderecos.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\NovoEndereco.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -329,7 +333,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrativo\Filters\" />
-    <Folder Include="Areas\Administrativo\Views\Enderecos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -88,55 +88,11 @@ namespace Graxei.Negocio.Contrato.Teste
         }
 
         [TestMethod]
-        public void Enderecos_EnderecosRepetidos_Verdade()
-        {
-            // Arrange
-            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoLogradouros.Object, _mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
-
-            string enderecoToString = "Endereço 1";
-            Mock<Endereco> endereco1 = new Mock<Endereco>();
-            endereco1.Setup(c => c.ToString()).Returns(enderecoToString);
-            Mock<Endereco> endereco2 = new Mock<Endereco>();
-            endereco2.Setup(c => c.ToString()).Returns(enderecoToString);
-            IList<Endereco> enderecos = new List<Endereco>();
-            enderecos.Add(endereco1.Object); enderecos.Add(endereco2.Object);
-
-            // Act
-            bool esperado = servicoEnderecos.EnderecosRepetidos(enderecos).Any();
-
-            // Assert
-            Assert.IsTrue(esperado, "Existem enderecos repetidos na lista");
-        }
-
-        [TestMethod]
-        public void Enderecos_EnderecosRepetidos_Falso()
-        {
-            // Arrange
-            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoLogradouros.Object, _mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
-            int id = 0;
-            string enderecoToString1 = "Endereço 1";
-            string enderecoToString2 = "Endereço 2";
-
-            Mock<Endereco> endereco1 = new Mock<Endereco>();
-            endereco1.Setup(c => c.ToString()).Returns(enderecoToString1);
-            Mock<Endereco> endereco2 = new Mock<Endereco>();
-            endereco2.Setup(c => c.ToString()).Returns(enderecoToString2);
-            IList<Endereco> enderecos = new List<Endereco>();
-            enderecos.Add(endereco1.Object); enderecos.Add(endereco2.Object);
-
-            // Act
-            bool esperado = servicoEnderecos.EnderecosRepetidos(enderecos).Any();
-
-            // Assert
-            Assert.IsFalse(esperado, "Não existem enderecos repetidos na lista");
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(EntidadeInvalidaException))]
         public void PreSalvar_EnderecosLojaNula_DeveDispararExcecao()
         {
             // Arrange
-            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoLogradouros.Object, _mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
+            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoBairros.Object, _mockServicoCidades.Object);
             Endereco endereco = new Endereco();
 
             // Act
@@ -151,7 +107,7 @@ namespace Graxei.Negocio.Contrato.Teste
         public void PreSalvar_EnderecosLogradouroNaoInformado_DeveDispararExcecao()
         {
             // Arrange
-            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoLogradouros.Object, _mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
+            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoBairros.Object, _mockServicoCidades.Object);
             Endereco endereco = new Endereco();
             Loja loja = new Loja();
             loja.AdicionarEndereco(endereco);
@@ -168,7 +124,7 @@ namespace Graxei.Negocio.Contrato.Teste
         public void PreSalvar_EnderecosNumeroNaoInformado_DeveDispararExcecao()
         {
             // Arrange
-            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoLogradouros.Object, _mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
+            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoBairros.Object, _mockServicoCidades.Object);
             Endereco endereco = new Endereco();
             endereco.Logradouro = "Rua A";
             Loja loja = new Loja();
@@ -206,7 +162,7 @@ namespace Graxei.Negocio.Contrato.Teste
             _mockServicoCidades.Setup(p => p.Salvar(It.IsAny<Cidade>()));
             _mockServicoBairros.Setup(p => p.Salvar(It.IsAny<Bairro>()));
             loja.AdicionarEndereco(endereco.Object);
-            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoLogradouros.Object, _mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
+            IServicoEnderecos servicoEnderecos = new ServicoEnderecos(_mockRepositorioEnderecos.Object, _mockServicoBairros.Object, _mockServicoCidades.Object);
             
             // Act
             servicoEnderecos.PreAtualizar(endereco.Object);

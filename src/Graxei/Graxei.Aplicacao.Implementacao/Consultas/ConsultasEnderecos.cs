@@ -19,57 +19,7 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 
         #region Implementação de IConsultasEnderecos
 
-        public IList<Logradouro> GetLogradouros(string nomeBairro, string nomeCidade, long idEstado)
-        {
-            return _servicoEnderecos.GetLogradouros(nomeBairro, nomeCidade, idEstado);
-        }
-
-        public Bairro GetBairro(string nomeBairro, string nomeCidade, long idEstado)
-        {
-            return _servicoEnderecos.GetBairro(nomeBairro, nomeCidade, idEstado);
-        }
-
-        public IList<Bairro> GetBairros(string nomeCidade, long idEstado)
-        {
-            return _servicoEnderecos.GetBairros(nomeCidade, idEstado);
-        }
-
-        public IList<Cidade> GetCidades(long idEstado)
-        {
-            return _servicoEnderecos.GetCidades(idEstado);
-        }
-
-        public Estado GetEstadoPorSigla(string sigla)
-        {
-            return _servicoEnderecos.GetEstadoPorSigla(sigla);
-        }
-
-        public Estado GetEstado(long idEstado)
-        {
-            return _servicoEnderecos.GetEstado(idEstado);
-        }
-
-        public IList<Estado> GetEstados(EstadoOrdem ordem)
-        {
-            return _servicoEnderecos.GetEstados(ordem);
-        }
-
         public IServicoEnderecos ServicoEnderecos { get; private set; }
-
-        public IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos)
-        {
-            return _servicoEnderecos.EnderecosRepetidos(enderecos);
-        }
-
-        public bool EnderecoRepetidoParaLoja(EnderecoContrato enderecocontrato, long idLoja)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IList<Endereco> EnderecosRepetidosParaLoja(IList<Endereco> enderecos, long idLoja)
-        {
-            return _servicoEnderecos.EnderecosRepetidosParaLoja(enderecos, idLoja);
-        }
 
         private IServicoEnderecos _servicoEnderecos;
 

@@ -142,6 +142,24 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O número máximo de caracteres é de 150.
+        /// </summary>
+        public static string TamanhoMaximo150 {
+            get {
+                return ResourceManager.GetString("TamanhoMaximo150", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O número máximo de caracteres é de 250.
+        /// </summary>
+        public static string TamanhoMaximo250 {
+            get {
+                return ResourceManager.GetString("TamanhoMaximo250", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Por favor, informe o nome do usuário ou e-mail .
         /// </summary>
         public static string UsuarioEmailObrigatorio {

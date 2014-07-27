@@ -40,8 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Copy of LojaContrato.cs" />
-    <Compile Include="EnderecoContrato.cs" />
     <Compile Include="LojaContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

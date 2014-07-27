@@ -2,11 +2,6 @@
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Aplicacao.Contrato.TransformacaoDados
 {

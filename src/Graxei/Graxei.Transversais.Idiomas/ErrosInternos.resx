@@ -132,6 +132,9 @@
   <data name="CidadeInvalida" xml:space="preserve">
     <value>A Cidade é inválida</value>
   </data>
+  <data name="EnderecoBairroNulo" xml:space="preserve">
+    <value>O bairro é nulo</value>
+  </data>
   <data name="EnderecoLojaNulo" xml:space="preserve">
     <value>A loja é nula</value>
   </data>

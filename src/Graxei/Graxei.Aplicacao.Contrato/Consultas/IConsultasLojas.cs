@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
+﻿using Graxei.Modelo;
 
 namespace Graxei.Aplicacao.Contrato.Consultas
 {
     public interface IConsultasLojas
     {
-        Loja Get(int id);
-        IList<Endereco> EnderecosRepetidos(Loja loja);
+        Loja Get(long id);
+        Loja GetPorNome(string nome);
     }
 }

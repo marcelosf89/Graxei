@@ -1,5 +1,5 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
-@model Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models.LojaModel
+@model LojaModel
 
 
 @*//if (ViewBag.OperacaoSucesso != null)
@@ -33,6 +33,9 @@
     </div>
     }
 }
+
+    <button id="novoEndereco" class="btn btn-primary">@Rotulos.NovoEndereco</button>
+    <div id="divDoEndereco" class="alert-dismissable"></div>
 @*<div>@Rotulos.Logotipo</div>
     <div>
         @if (Model.LojaContrato.Logotipo == null)

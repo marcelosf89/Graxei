@@ -18,26 +18,17 @@ namespace Graxei.Aplicacao.Fabrica
         {
             BootstrapperNegocio.RegisterTypes(container);
 
-            // Lojas - Transacional
-            container.RegisterType<IGerenciamentoLojas, GerenciamentoLojas>();
-
-            // Produtos Vendedor - Transacional
-            container.RegisterType<IGerenciamentoProdutos, GerenciamentoProdutos>();
-
-            // Lojas - Consultas
-            container.RegisterType<IConsultasLojas, ConsultasLojas>();
-            
-            // Usuários - Consultas
-            container.RegisterType<IConsultasUsuarios, ConsultasUsuarios>();
-
-            // Endereços - Consultas
-            container.RegisterType<IConsultasEnderecos, ConsultasEnderecos>();
-
-            // Login - Consultas
-            container.RegisterType<IConsultasLogin, ConsultasLogin>();
-
-            container.RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>();
-
+            container.RegisterType<IGerenciamentoLojas, GerenciamentoLojas>()
+                .RegisterType<IGerenciamentoProdutos, GerenciamentoProdutos>()
+                .RegisterType<IConsultasBairros, ConsultasBairros>()
+                .RegisterType<IConsultasCidades, ConsultasCidades>()
+                .RegisterType<IConsultasEstados, ConsultasEstados>()
+                .RegisterType<IConsultasLogradouros, IConsultasLogradouros>()
+                .RegisterType<IConsultasLojas, ConsultasLojas>()
+                .RegisterType<IConsultasUsuarios, ConsultasUsuarios>()
+                .RegisterType<IConsultasEnderecos, ConsultasEnderecos>()
+                .RegisterType<IConsultasLogin, ConsultasLogin>()
+                .RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>();
         }
     }
 }

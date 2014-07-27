@@ -19,14 +19,14 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         private IServicoLojas _servicoLojas;
         private IServicoEnderecos _servicoEnderecos;
 
-        public Loja Get(int id)
+        public Loja Get(long id)
         {
             return _servicoLojas.GetPorId(id);
         }
 
-        public IList<Endereco> EnderecosRepetidos(Loja loja)
+        public Loja GetPorNome(string nome)
         {
-            return _servicoEnderecos.EnderecosRepetidos(loja.Enderecos);
+            return _servicoLojas.Get(nome);
         }
 
         #endregion

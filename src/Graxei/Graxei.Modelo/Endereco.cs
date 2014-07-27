@@ -1,22 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Runtime.CompilerServices;
 using FAST.Modelo;
 using System;
 using System.Collections.Generic;
-using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {
     public class Endereco : ExclusaoLogica
     {
-        [Display(ResourceType = typeof(Propriedades), Name = "Logradouro")]
+        public Endereco()
+        {
+
+        }
+
         public virtual string Logradouro { get; set; }
-        [Display(ResourceType = typeof(Propriedades), Name = "Numero")]
-        [Required()]
+
         public virtual string Numero { get; set; }
-        [Display(ResourceType = typeof(Propriedades), Name = "Complemento")]
+        
         public virtual string Complemento { get; set; }
-        public virtual Loja Loja { get;  protected internal set; }
+        
+        public virtual Loja Loja { get;  set; }
+        
         public virtual Bairro Bairro { get; set; }
+        
         public virtual IList<Telefone> Telefones { get; set; }
 
         #region Métodos Sobrescritos
@@ -59,7 +64,7 @@ namespace Graxei.Modelo
 
         public override string ToString()
         {
-            if (this.Bairro == null || this.Bairro.Cidade == null || this.Bairro.Cidade.Estado == null)
+            if (Bairro == null || this.Bairro.Cidade == null || this.Bairro.Cidade.Estado == null)
             {
                 return "<Endereço Incompleto>";
             }
@@ -71,7 +76,7 @@ namespace Graxei.Modelo
                 retorno = retorno.Replace("|*COMP*|", ", " + this.Complemento);
             } else
             {
-                retorno = retorno.Remove(retorno.IndexOf("|*COMP*|"), 8);
+                retorno = retorno.Remove(retorno.IndexOf("|*COMP*|", System.StringComparison.Ordinal), 8);
             }
             return retorno;
         }

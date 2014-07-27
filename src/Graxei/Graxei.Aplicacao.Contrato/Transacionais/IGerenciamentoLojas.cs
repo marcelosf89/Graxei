@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
+﻿using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Aplicacao.Contrato.Transacionais

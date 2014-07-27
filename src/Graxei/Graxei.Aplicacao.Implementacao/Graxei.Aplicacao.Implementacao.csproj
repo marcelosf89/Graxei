@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\ConsultaCidades.cs" />
+    <Compile Include="Consultas\ConsultaLogradouros.cs" />
+    <Compile Include="Consultas\ConsultasBairros.cs" />
     <Compile Include="Consultas\ConsultasEnderecos.cs" />
+    <Compile Include="Consultas\ConsultasEstados.cs" />
     <Compile Include="Consultas\ConsultasLogin.cs" />
     <Compile Include="Consultas\ConsultasLojas.cs" />
     <Compile Include="Consultas\ConsultasUsuarios.cs" />

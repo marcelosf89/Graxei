@@ -97,6 +97,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        public static string Cancelar {
+            get {
+                return ResourceManager.GetString("Cancelar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cidade.
         /// </summary>
         public static string Cidade {

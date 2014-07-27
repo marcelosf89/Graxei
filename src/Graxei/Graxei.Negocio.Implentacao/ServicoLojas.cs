@@ -65,18 +65,6 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
-
-            if (loja.Enderecos == null || !loja.Enderecos.Any())
-            {
-                return;
-            }
-            IList<Endereco> enderecosRepetidos = _servicoEnderecos.EnderecosRepetidos(loja.Enderecos);
-            ChecarEnderecos(enderecosRepetidos);
-            foreach (Endereco e in loja.Enderecos)
-            {
-                _servicoEnderecos.PreSalvar(e);
-            }
-
         }
 
         private void ChecarEnderecos(IList<Endereco> endRepetidos)
@@ -123,7 +111,6 @@ namespace Graxei.Negocio.Implementacao
 
         public new void Salvar(Loja loja)
         {
-            // Se é uma nova loja, deve ser associado pelo menos um usuário
             if (UtilidadeEntidades.IsTransiente(loja))
             {
                 throw new InvalidOperationException(Erros.LojaSalvarInvalido);
@@ -147,7 +134,8 @@ namespace Graxei.Negocio.Implementacao
             //Associando usuários à loja
             IList<Usuario> usuariosNaoAssociados = new List<Usuario>();
 
-            /*** TODO: Refatorar - Método muito grande *///
+            /*** TODO: Refatorar - Método muito grande */
+            //
             foreach (Usuario usuario in usuarios)
             {
                 Usuario usuarioFor = usuario;
@@ -178,7 +166,7 @@ namespace Graxei.Negocio.Implementacao
             }
             RepositorioLojas.Salvar(lojaUsuarios);
         }
-        
+
         public IServicoEnderecos ServicoEnderecos { get { return _servicoEnderecos; } }
         #endregion
 

@@ -207,4 +207,7 @@
   <data name="Editar" xml:space="preserve">
     <value>Editar</value>
   </data>
+  <data name="Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
 </root>

@@ -41,8 +41,7 @@ namespace Graxei.Negocio.Implementacao.Teste.Integracao
             IServicoCidades servicoCidades = new ServicoCidades(repositorioCidades);
             IServicoEstados servicoEstados = new ServicoEstados(repositorioEstados);
             IServicoEnderecos servicoEnderecos =
-                new ServicoEnderecos(repositorioEnderecos, servicoLogradouros, servicoBairros, servicoCidades,
-                                     servicoEstados);
+                new ServicoEnderecos(repositorioEnderecos, servicoBairros, servicoCidades);
             IServicoLojas servicoLojas = new ServicoLojas(repositorioLojas, servicoLojaUsuario, servicoUsuarios, servicoEnderecos);
             Usuario usuario = servicoUsuarios.GetPorId(1);
             IList<Usuario> usuarios = new List<Usuario>();

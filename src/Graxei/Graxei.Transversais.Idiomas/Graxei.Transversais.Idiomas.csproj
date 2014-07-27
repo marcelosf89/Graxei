@@ -95,6 +95,7 @@
     <EmbeddedResource Include="ErrosInternos.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrosInternos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Propriedades.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

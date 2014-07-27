@@ -1,6 +1,4 @@
-﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
-@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
-@model LojaModel
+﻿@model LojaModel
 @section Styles{
     @Styles.Render("~/Content/bootstrap/base")
     @Styles.Render("~/Content/themes/base/css")
@@ -11,13 +9,20 @@
 }
 <h2>@Rotulos.NovaLoja</h2>
 <div id="nova-loja">
-    @{ Html.RenderPartial("Cadastro", Model);}
+    @{
+        Html.RenderPartial("Cadastro", Model);
+    }
 </div>
-@*@{if (Model.HaEnderecos())
-  {
-      Html.RenderPartial("FormularioEndereco", Model.EnderecoContratoForm);
-  }
+@*@{
+    Html.RenderAction("Novo", "Enderecos");
 }*@
+
+@*  @{if (Model.HaEnderecos())
+      {
+          Html.RenderPartial("ListaEnderecos", Model.ListEnderecosModel);
+      }
+    }
+@{Html.RenderPartial("NovoEndereco", Model.EnderecoModel);}*@
 @section Scripts{
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
@@ -26,5 +31,26 @@
     @Scripts.Render("~/bundles/modal")
     @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/bundles/modernizr")
+    <script>
+        $("#novoEndereco").click(function () {
+            @*$.ajax({
+                type: "GET",
+                url: "@Url.Action("Novo", "Enderecos")",
+                success: function (data) {
+                    alert(data);
+                    $("#divDoEndereco").html(data);
+                }
+            });*@
+
+            $.get("@Url.Action("Novo", "Enderecos")", function (data) {
+                $("#divDoEndereco").html(data);
+                $("form").removeData("validator");
+                $("form").removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse("form");
+            });
+        });
+    </script>
 
 }
+
+

@@ -144,6 +144,12 @@
   <data name="SiglaObrigatoria" xml:space="preserve">
     <value>A sigla é obrigatória</value>
   </data>
+  <data name="TamanhoMaximo150" xml:space="preserve">
+    <value>O número máximo de caracteres é de 150</value>
+  </data>
+  <data name="TamanhoMaximo250" xml:space="preserve">
+    <value>O número máximo de caracteres é de 250</value>
+  </data>
   <data name="UsuarioEmailObrigatorio" xml:space="preserve">
     <value>Por favor, informe o nome do usuário ou e-mail </value>
   </data>

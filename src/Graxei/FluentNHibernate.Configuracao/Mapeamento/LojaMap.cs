@@ -11,7 +11,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.Nome);
             Map(p => p.Logotipo);
             Map(p => p.Excluida);
-            HasMany(p => p.Enderecos).KeyColumn(Constantes.ID_LOJA).Cascade.All();
+            HasMany(p => p.Enderecos).KeyColumn(Constantes.ID_LOJA).Cascade.None();
             Where("excluida = false");
         }
     }

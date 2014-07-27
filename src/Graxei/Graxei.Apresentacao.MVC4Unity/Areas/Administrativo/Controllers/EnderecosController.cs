@@ -1,58 +1,66 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
-using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Entidades;
-using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultasEnderecos consultasEnderecos)
+        public EnderecosController(IConsultasEnderecos consultasEnderecos, EnderecosViewModelEntidade enderecosViewModelEntidade, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros)
         {
             _consultaEnderecos = consultasEnderecos;
+            _consultasBairros = consultasBairros;
+            _consultasLojas = consultasLojas;
+            _consultasEstados = consultasEstados;
+            _consultasCidades = consultasCidades;
+            _consultasLogradouros = consultasLogradouros;
         }
 
         public ActionResult Index()
         {
-            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            EnderecoContrato model = new EnderecoContrato();
+            EnderecoModel model = new EnderecoModel();
             return PartialView("NovoEndereco", model);
         }
 
-        [HttpPost]
-        public ActionResult Novo(EnderecoContrato enderecoContrato, long idLoja)
+        public ActionResult Novo()
         {
-            Estado estado = _consultaEnderecos.GetEstado(enderecoContrato.IdEstado);
-            if (!ModelState.IsValid)
-            {
-                return PartialView("NovoEndereco", enderecoContrato);
-            }
-            if (_consultaEnderecos.EnderecoRepetidoParaLoja(enderecoContrato, idLoja))
-            {
-                ModelState.AddModelError(String.Empty, Erros.EnderecoRepetidoLoja);
-                return PartialView("NovoEndereco", enderecoContrato);
-            }
-
-            return PartialView("AcoesEmLoja", enderecoContrato);
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return PartialView();
         }
 
+        [HttpPost]
+        public ActionResult Novo(EnderecoModel enderecoModel)
+        {
+            Bairro bairro = _consultasBairros.Get(enderecoModel.Bairro, enderecoModel.Cidade, enderecoModel.IdEstado);
+            Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
+            Endereco endereco = new EnderecosBuilder()
+                .SetLogradouro(enderecoModel.Logradouro)
+                .SetNumero(enderecoModel.Numero)
+                .SetComplemento(enderecoModel.Complemento)
+                .SetLoja(loja)
+                .SetBairro(bairro)
+                .Build();
+            return null;
+        }
 
         #region AutoComplete
         public ActionResult EstadoSelecionado(string idEstado)
         {
             int id = int.Parse(idEstado);
-            Cidades = _consultaEnderecos.GetCidades(id);
-            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
+            Cidades = _consultasCidades.GetPorEstado(id);
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Formulario");
         }
@@ -60,15 +68,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult CidadeSelecionada(string idEstado, string valCidade)
         {
             int id = int.Parse(idEstado);
-            Bairros = _consultaEnderecos.GetBairros(valCidade, id);
-            IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
+            Bairros = _consultasBairros.GetPorCidade(valCidade, id);
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return View("Formulario");
         }
 
         public ActionResult BairroSelecionado(long idEstado, string valCidade, string valBairro)
         {
-            Logradouros = _consultaEnderecos.GetLogradouros(valBairro, valCidade, idEstado);
+            Logradouros = _consultasLogradouros.Get(valBairro, valCidade, idEstado);
             return View("Formulario");
         }
 
@@ -78,8 +86,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             IEnumerable<String> itensFiltrados = itens.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
-            /*IList<Estado> estados = _consultaEnderecos.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");*/
             return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
 
@@ -163,6 +169,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         #region Atributos Privados
         private readonly IConsultasEnderecos _consultaEnderecos;
+        private readonly IConsultasLogradouros _consultasLogradouros;
+        private readonly IConsultasBairros _consultasBairros;
+        private readonly IConsultasEstados _consultasEstados;
+        private readonly IConsultasLojas _consultasLojas;
+        private readonly IConsultasCidades _consultasCidades;
+
         #endregion
 
     }
