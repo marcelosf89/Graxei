@@ -47,7 +47,6 @@
     <Compile Include="IServicoProdutoVendedor.cs" />
     <Compile Include="IEntidadesExcluir.cs" />
     <Compile Include="IEntidadesSalvar.cs" />
-    <Compile Include="IServicoLojaUsuario.cs" />
     <Compile Include="IEntidadesIrrestrito.cs" />
     <Compile Include="IServicoLogradouros.cs" />
     <Compile Include="IServicoBairros.cs" />

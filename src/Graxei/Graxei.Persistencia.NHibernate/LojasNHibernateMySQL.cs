@@ -15,18 +15,26 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         #region Implementação de IRepositorioLojas
 
-        public void Salvar(IList<LojaUsuario> lojasUsuarios)
-        {
-            foreach (LojaUsuario lojaUsuario in lojasUsuarios)
-            {
-                SessaoAtual.SaveOrUpdate(lojaUsuario);
-            }
-        }
-
         public Loja Get(string nome)
         {
             return SessaoAtual.Query<Loja>()
                               .SingleOrDefault<Loja>(loja => loja.Nome.Trim().ToLower() == nome.Trim().ToLower());
+        }
+
+        public List<Usuario> GetUsuarios(Loja loja)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            Loja lojaSelecionada = SessaoAtual.Query<Loja>().Fetch(l => l.Usuarios).FirstOrDefault(p => p.Id == loja.Id);
+            if (lojaSelecionada != null)
+            {
+                usuarios = lojaSelecionada.Usuarios;    
+            }
+            return usuarios;
+        }
+
+        public List<Usuario> GetUsuarios(long idLoja)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

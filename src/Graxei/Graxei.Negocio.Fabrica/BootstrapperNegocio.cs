@@ -19,11 +19,6 @@ namespace Graxei.Negocio.Fabrica
                             /*new InjectionFactory(p => new ServicoUsuarios(container.Resolve<IRepositorioUsuarios>()))*/
                             );
 
-            //LojaUsuario
-            container.RegisterType<IRepositorioLojaUsuario, LojaUsuarioNHibernateMySQL>()
-                     .RegisterType<IServicoLojaUsuario, ServicoLojaUsuario>(
-                         /*new InjectionFactory(p => new ServicoLojaUsuario(container.Resolve<IRepositorioLojaUsuario>()))*/
-                         );
             // Lojas
             container.RegisterType<IRepositorioLojas, LojasNHibernateMySQL>()
                      .RegisterType<IServicoLojas, ServicoLojas>(

@@ -20,38 +20,6 @@ namespace Graxei.Negocio.Implementacao.Teste.Integracao
     [TestClass]
     public class ImplementacaoLojas
     {
-        [TestMethod]
-        public void IntegracaoSalvar_LojaSalva()
-        {
-            Loja loja = new Loja();
-            loja.Nome = "Loja do Graxei 2.0";
-            IRepositorioProdutoVendedor repositorioProdutoVendedor = new ProdutoVendedorNHibernateMySQL();
-            IRepositorioUsuarios repositorioUsuario = new UsuariosNHibernateMySQL();
-            IRepositorioLojaUsuario repositorioLojaUsuario = new LojaUsuarioNHibernateMySQL();
-            IRepositorioLojas repositorioLojas = new LojasNHibernateMySQL(repositorioProdutoVendedor);
-            IRepositorioLogradouros repositorioLogradouros = new LogradourosNHibernateMySQL();
-            IRepositorioBairros repositorioBairros = new BairrosNHibernateMySQL();
-            IRepositorioCidades repositorioCidades = new CidadesNHibernateMySQL();
-            IRepositorioEstados repositorioEstados = new EstadosNHibernateMySQL();
-            IRepositorioEnderecos repositorioEnderecos = new EnderecosNHibernateMySQL(repositorioEstados, repositorioCidades, repositorioBairros);
-            IServicoLojaUsuario servicoLojaUsuario = new ServicoLojaUsuario(repositorioLojaUsuario);
-            IServicoUsuarios servicoUsuarios = new ServicoUsuarios(repositorioUsuario);
-            IServicoLogradouros servicoLogradouros = new ServicoLogradouros(repositorioLogradouros);
-            IServicoBairros servicoBairros = new ServicoBairros(repositorioBairros);
-            IServicoCidades servicoCidades = new ServicoCidades(repositorioCidades);
-            IServicoEstados servicoEstados = new ServicoEstados(repositorioEstados);
-            IServicoEnderecos servicoEnderecos =
-                new ServicoEnderecos(repositorioEnderecos, servicoBairros, servicoCidades);
-            IServicoLojas servicoLojas = new ServicoLojas(repositorioLojas, servicoLojaUsuario, servicoUsuarios, servicoEnderecos);
-            Usuario usuario = servicoUsuarios.GetPorId(1);
-            IList<Usuario> usuarios = new List<Usuario>();
-            usuarios.Add(usuario);
-            UnitOfWorkNHibernate.GetInstancia().IniciarTransacao();
-            servicoLojas.Salvar(loja, usuarios, usuario);
-            UnitOfWorkNHibernate.GetInstancia().ConfirmarTransacao();
-            
-        }
-
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {

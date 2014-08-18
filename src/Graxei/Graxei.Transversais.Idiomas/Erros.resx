@@ -249,4 +249,7 @@
   <data name="EnderecoSalvarTransiente" xml:space="preserve">
     <value>O endereço deve ser transiente na inclusão</value>
   </data>
+  <data name="UmUsuarioAoMenos" xml:space="preserve">
+    <value>Deve haver ao menos um usuário associado a uma nova loja</value>
+  </data>
 </root>

@@ -34,10 +34,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             {
                 return PartialView(item);
             }
-
+            LojaContrato lojaSalva = null;
             try
             {
-                _gerenciamentoLojas.SalvarLoja(item.LojaContrato, usuario.Usuario);
+                lojaSalva = _gerenciamentoLojas.SalvarLoja(item.LojaContrato, usuario.Usuario);
             }
             catch (OperacaoEntidadeException ee)
             {
@@ -45,25 +45,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 return PartialView("Cadastro", item);
             }
             ModelState.Clear();
-            Loja loja = _consultasLojas.GetPorNome(item.LojaContrato.Nome);
-            item.LojaContrato.Id = loja.Id;
-            item.LojaContrato.Nome = loja.Nome;
-            item.ListEnderecosModel.Clear();
-            if (loja.Enderecos != null)
-            {
-                foreach (Endereco endereco in loja.Enderecos)
-                {
-                    EnderecoModel enderecoModel = new EnderecoModel();
-                    enderecoModel.Id = endereco.Id;
-                    enderecoModel.Logradouro = endereco.Logradouro;
-                    enderecoModel.IdLoja = loja.Id;
-                    enderecoModel.Complemento = endereco.Complemento;
-                    enderecoModel.Bairro = endereco.Bairro.Nome;
-                    enderecoModel.Cidade = endereco.Bairro.Cidade.Nome;
-                    enderecoModel.IdEstado = endereco.Bairro.Cidade.Estado.Id;
-                    item.ListEnderecosModel.Add(enderecoModel);
-                }
-            }
+            item.LojaContrato = lojaSalva;
+
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
             return PartialView("Cadastro", item);
         }

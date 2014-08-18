@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
@@ -21,9 +22,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
             Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
-            return RedirectToRoute("Administrativo_default");
+            return RedirectToAction("Index", "Lojas", new {Area = "Administrativo"});
         }
 
+        public string UsuarioLogado(UsuarioLogado usuarioLogado)
+        {
+            if (usuarioLogado == null || usuarioLogado.Usuario == null)
+            {
+                return "Nenhum usuário logado";
+            }
+            return usuarioLogado.Usuario.Nome;
+        }
 
         [HttpPost]
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)

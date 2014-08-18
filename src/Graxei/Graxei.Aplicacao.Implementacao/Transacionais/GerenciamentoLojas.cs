@@ -52,7 +52,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             IniciarTransacao();
             try
             {
-                _servicoLojas.Salvar(loja, usuarios, usuario);
+                _servicoLojas.Salvar(loja);
                 Confirmar();
             }
             catch (OperacaoEntidadeException)
@@ -76,7 +76,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             {
                 _servicoLojas.Salvar(loja);
                 Confirmar();
-            }catch(OperacaoEntidadeException oe)
+            }catch(OperacaoEntidadeException)
             {
                 Desfazer();
                 throw;

@@ -68,10 +68,10 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        public override void Salvar(Endereco endereco)
+        public override Endereco Salvar(Endereco endereco)
         {
             PreGravar(endereco);
-            _repositorioEnderecos.Salvar(endereco);
+            return _repositorioEnderecos.Salvar(endereco);
         }
 
         public override Endereco GetPorId(long id)

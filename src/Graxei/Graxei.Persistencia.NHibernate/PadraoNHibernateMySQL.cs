@@ -5,9 +5,10 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 {
     public abstract class PadraoNHibernateMySQL<T> : PadraoNHibernateMySQLLeitura<T>, IRepositorioIrrestrito<T> where T : Entidade
     {
-        public void Salvar(T t)
+        public T Salvar(T t)
         {
             SessaoAtual.SaveOrUpdate(t);
+            return t;
         }
 
         public void Excluir(T t)

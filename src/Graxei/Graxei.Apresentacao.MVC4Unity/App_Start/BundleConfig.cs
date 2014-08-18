@@ -19,7 +19,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
-                        "~/Scripts/bootstrap-typeahead.js"));
+                        "~/Scripts/typeahead.jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             "~/Scripts/jquery-{version}.js",

@@ -22,7 +22,7 @@ namespace Graxei.Negocio.Implementacao
 
         public void PreExcluir(T t) {}
 
-        public void Salvar(T t)
+        public T Salvar(T t)
         {
             if (RepositorioEntidades == null)
             {
@@ -35,7 +35,7 @@ namespace Graxei.Negocio.Implementacao
             {
                 PreAtualizar(t);
             }
-            RepositorioIrrestrito.Salvar(t);    
+            return RepositorioIrrestrito.Salvar(t);    
         }
 
         public void Excluir(T t)

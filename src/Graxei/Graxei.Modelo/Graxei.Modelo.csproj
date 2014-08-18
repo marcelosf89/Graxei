@@ -66,7 +66,6 @@
     <Compile Include="Estado.cs" />
     <Compile Include="Fabricante.cs" />
     <Compile Include="Loja.cs" />
-    <Compile Include="LojaUsuario.cs" />
     <Compile Include="Movimentacao.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="ProdutoVendedor.cs" />

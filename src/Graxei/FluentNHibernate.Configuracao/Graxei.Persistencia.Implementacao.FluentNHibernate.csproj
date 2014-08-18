@@ -76,7 +76,6 @@
     <Compile Include="Mapeamento\EstadoMap.cs" />
     <Compile Include="Mapeamento\FabricanteMap.cs" />
     <Compile Include="Mapeamento\LojaMap.cs" />
-    <Compile Include="Mapeamento\LojaUsuarioMap.cs" />
     <Compile Include="Mapeamento\MovimentacaoMap.cs" />
     <Compile Include="Mapeamento\ProdutoMap.cs" />
     <Compile Include="Mapeamento\ProdutoVendedorMap.cs" />

@@ -25,15 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasLogradouros = consultasLogradouros;
         }
 
-        public ActionResult Index()
-        {
-            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            EnderecoModel model = new EnderecoModel();
-            return PartialView("NovoEndereco", model);
-        }
-
-        public ActionResult Novo()
+        public PartialViewResult Novo()
         {
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -62,7 +54,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             Cidades = _consultasCidades.GetPorEstado(id);
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Formulario");
+            return PartialView("FormularioEndereco");
         }
 
         public ActionResult CidadeSelecionada(string idEstado, string valCidade)
@@ -71,13 +63,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             Bairros = _consultasBairros.GetPorCidade(valCidade, id);
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return View("Formulario");
+            return PartialView("FormularioEndereco");
         }
 
         public ActionResult BairroSelecionado(long idEstado, string valCidade, string valBairro)
         {
             Logradouros = _consultasLogradouros.Get(valBairro, valCidade, idEstado);
-            return View("Formulario");
+            return View("FormularioEndereco");
         }
 
         public ActionResult AutoCompleteCidade(string term)

@@ -23,11 +23,11 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasBairros, ConsultasBairros>()
                 .RegisterType<IConsultasCidades, ConsultasCidades>()
                 .RegisterType<IConsultasEstados, ConsultasEstados>()
-                .RegisterType<IConsultasLogradouros, IConsultasLogradouros>()
+                .RegisterType<IConsultasLogradouros, ConsultasLogradouros>()
+                .RegisterType<IConsultasLogin, ConsultasLogin>()
                 .RegisterType<IConsultasLojas, ConsultasLojas>()
                 .RegisterType<IConsultasUsuarios, ConsultasUsuarios>()
                 .RegisterType<IConsultasEnderecos, ConsultasEnderecos>()
-                .RegisterType<IConsultasLogin, ConsultasLogin>()
                 .RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>();
         }
     }

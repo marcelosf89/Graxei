@@ -18,7 +18,6 @@ namespace Graxei.Negocio.Contrato.Teste
         public void Iniciar()
         {
             _repositorioLojas = new Mock<IRepositorioLojas>();
-            _servicoLojasUsuario = new Mock<IServicoLojaUsuario>();
             _servicoUsuario = new Mock<IServicoUsuarios>();
             _servicoEndereco = new Mock<IServicoEnderecos>();
         }
@@ -28,8 +27,8 @@ namespace Graxei.Negocio.Contrato.Teste
         public void Criar_LojaNula_DeveDispararExcecao()
         {
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(null, null, null);   
+            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object);
+            servicoLojas.Salvar(null);   
         }
 
         [TestMethod]
@@ -40,8 +39,8 @@ namespace Graxei.Negocio.Contrato.Teste
             Loja loja = new Loja();
 
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja, null, null);
+            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object);
+            servicoLojas.Salvar(loja);
 
         }
 
@@ -54,40 +53,11 @@ namespace Graxei.Negocio.Contrato.Teste
             IList<Usuario> usuarios = new List<Usuario>();
             
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja, usuarios, null);
+            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object);
+            servicoLojas.Salvar(loja);
 
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Criar_UsuariosLogNulo_DeveDispararExcecao()
-        {
-            // Arrange
-            Loja loja = new Loja();
-            IList<Usuario> usuarios = new List<Usuario>();
-            usuarios.Add(new Usuario());
-            
-            // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja, usuarios, null);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ValidacaoEntidadeException))]
-        public void Criar_LojaSemNome_DeveDispararExcecao()
-        {
-            // Arrange
-            Loja loja = new Loja();
-            IList<Usuario> usuarios = new List<Usuario>();
-            usuarios.Add(new Usuario());
-            Usuario usuarioLog = new Usuario();
-            // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja, usuarios, usuarioLog);
-            
-        }
-
+      
         [TestMethod]
         public void Criar_SemAssociacaoComUsuario_DeveDispararExcecao()
         {
@@ -97,7 +67,7 @@ namespace Graxei.Negocio.Contrato.Teste
             loja.SetupProperty(p => p.Nome, "Loja");
 
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
+            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object);
             servicoLojas.Salvar(loja.Object);
         }
 
@@ -115,8 +85,8 @@ namespace Graxei.Negocio.Contrato.Teste
             _repositorioLojas.Setup(p => p.Get(It.IsAny<string>())).Returns(loja.Object);
 
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja.Object, usuarios, usuarioLog);
+            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object);
+            servicoLojas.Salvar(loja.Object);
         }
 
         [TestMethod]
@@ -127,12 +97,11 @@ namespace Graxei.Negocio.Contrato.Teste
             Mock<Loja> loja = new Mock<Loja>();
             loja.SetupProperty(p => p.Id, 1);
             Mock<IRepositorioLojas> repositorioLojas = new Mock<IRepositorioLojas>();
-            Mock<IServicoLojaUsuario> servicoLojasUsuario = new Mock<IServicoLojaUsuario>();
             Mock<IServicoUsuarios> servicoUsuario = new Mock<IServicoUsuarios>();
             Mock<IServicoEnderecos> servicoEndereco = new Mock<IServicoEnderecos>();            
 
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(repositorioLojas.Object, servicoLojasUsuario.Object, servicoUsuario.Object, servicoEndereco.Object);
+            IServicoLojas servicoLojas = new ServicoLojas(repositorioLojas.Object);
             servicoLojas.Salvar(loja.Object);
 
         }
@@ -157,14 +126,13 @@ namespace Graxei.Negocio.Contrato.Teste
             _repositorioLojas.Setup(p => p.Get(It.IsAny<string>())).Returns(lojaRepetida.Object);
 
             // Act
-            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object, _servicoLojasUsuario.Object, _servicoUsuario.Object, _servicoEndereco.Object);
-            servicoLojas.Salvar(loja.Object, usuarios, usuarioLog);
+            IServicoLojas servicoLojas = new ServicoLojas(_repositorioLojas.Object);
+            servicoLojas.Salvar(loja.Object);
         }
 
 
 
         private Mock<IRepositorioLojas> _repositorioLojas = new Mock<IRepositorioLojas>();
-        private Mock<IServicoLojaUsuario> _servicoLojasUsuario = new Mock<IServicoLojaUsuario>();
         private Mock<IServicoUsuarios> _servicoUsuario = new Mock<IServicoUsuarios>();
         private Mock<IServicoEnderecos> _servicoEndereco = new Mock<IServicoEnderecos>();
 

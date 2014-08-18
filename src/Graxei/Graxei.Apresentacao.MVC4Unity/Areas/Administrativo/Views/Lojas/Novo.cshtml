@@ -1,4 +1,5 @@
-﻿@model LojaModel
+﻿@using Graxei.Transversais.Utilidades.NHibernate
+@model LojaModel
 @section Styles{
     @Styles.Render("~/Content/bootstrap/base")
     @Styles.Render("~/Content/themes/base/css")
@@ -10,19 +11,21 @@
 <h2>@Rotulos.NovaLoja</h2>
 <div id="nova-loja">
     @{
-        Html.RenderPartial("Cadastro", Model);
+        AjaxOptions ajax = new AjaxOptions() {InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST"};
+        using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new {@class = "form-horizontal"}))
+        {
+            Html.RenderPartial("Cadastro", Model);
+        }
+        if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
+        {
+            <button type="button" data-toggle="modal" data-target="#modalEnderecos">@Rotulos.NovoEndereco</button>
+            {
+                Html.RenderAction("Novo", "Enderecos");
+            }
+        }
     }
 </div>
-@*@{
-    Html.RenderAction("Novo", "Enderecos");
-}*@
 
-@*  @{if (Model.HaEnderecos())
-      {
-          Html.RenderPartial("ListaEnderecos", Model.ListEnderecosModel);
-      }
-    }
-@{Html.RenderPartial("NovoEndereco", Model.EnderecoModel);}*@
 @section Scripts{
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
@@ -49,6 +52,10 @@
                 $.validator.unobtrusive.parse("form");
             });
         });
+
+
+
+
     </script>
 
 }

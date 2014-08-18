@@ -6,6 +6,6 @@ namespace Graxei.Negocio.Contrato
     {
         void PreSalvar(T t);
         void PreAtualizar(T t);
-        void Salvar(T t);
+        T Salvar(T t);
     }
 }

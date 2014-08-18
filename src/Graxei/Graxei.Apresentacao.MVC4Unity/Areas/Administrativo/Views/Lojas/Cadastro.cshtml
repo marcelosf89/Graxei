@@ -11,11 +11,12 @@
 //}*@
 
 @{
-    AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST" };
-    using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new { @class = "form-horizontal" }))
-    {
-    @Html.Erro()
-    @Html.Sucesso()
+    <div class="form-group">
+        Html.Erro();
+    </div>
+    <div class="form-group">
+        @Html.Sucesso();
+    </div>
     <div class="form-group">
         @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
         @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
@@ -23,7 +24,7 @@
             @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
         </div>
         @{
-        AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
+            AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
         }
     </div>
     <div class="form-group">
@@ -31,11 +32,8 @@
             <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
         </div>
     </div>
-    }
 }
 
-    <button id="novoEndereco" class="btn btn-primary">@Rotulos.NovoEndereco</button>
-    <div id="divDoEndereco" class="alert-dismissable"></div>
 @*<div>@Rotulos.Logotipo</div>
     <div>
         @if (Model.LojaContrato.Logotipo == null)

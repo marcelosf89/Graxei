@@ -23,7 +23,7 @@ namespace Graxei.Negocio.Contrato.Comportamento
 
         public abstract void PreAtualizar(T t);
 
-        public abstract void Salvar(T t);
+        public abstract T Salvar(T t);
 
         public abstract T GetPorId(long id);
 

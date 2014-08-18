@@ -49,7 +49,6 @@
     <Compile Include="ServicoCidades.cs" />
     <Compile Include="ServicoEnderecos.cs" />
     <Compile Include="ServicoEstados.cs" />
-    <Compile Include="ServicoLojaUsuario.cs" />
     <Compile Include="ServicoProdutoVendedor.cs" />
     <Compile Include="ServicoTelefones.cs" />
     <Compile Include="ServicoUnidadeMedida.cs" />

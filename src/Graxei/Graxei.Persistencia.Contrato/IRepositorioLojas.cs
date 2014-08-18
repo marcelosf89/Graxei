@@ -4,7 +4,8 @@ namespace Graxei.Persistencia.Contrato
 {
     public interface IRepositorioLojas : IRepositorioIrrestrito<Loja>
     {
-        void Salvar(IList<LojaUsuario> lojasUsuarios);
         Loja Get(string nome);
+        List<Usuario> GetUsuarios(Loja loja);
+        List<Usuario> GetUsuarios(long idLoja);
     }
 }
