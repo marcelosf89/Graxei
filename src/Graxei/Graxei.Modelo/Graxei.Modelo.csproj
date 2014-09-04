@@ -76,6 +76,10 @@
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Graxei.Search\Graxei.Search\Graxei.Search.csproj">
+      <Project>{cc25d767-990d-4ce0-9f64-3426e244403b}</Project>
+      <Name>Graxei.Search</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FAST\FAST.csproj">
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>

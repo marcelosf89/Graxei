@@ -35,7 +35,7 @@ namespace Graxei.Negocio.Implementacao
             Usuario usuario = RepositorioUsuarios.GetPorLogin(login);
             if (usuario == null)
             {
-                throw new AutenticacaoException(Erros.AutenticacaoLogin);
+                return null;// throw new AutenticacaoException(Erros.AutenticacaoLogin);
             }
             if (usuario.Senha != senha)
             {

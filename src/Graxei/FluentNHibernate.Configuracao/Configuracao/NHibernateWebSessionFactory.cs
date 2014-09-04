@@ -8,6 +8,7 @@ using Graxei.Transversais.Idiomas;
 using NHibernate;
 using NHibernate.Context;
 using Configuration = NHibernate.Cfg.Configuration;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {
@@ -54,9 +55,9 @@ namespace Graxei.FluentNHibernate.Configuracao
         {
             if (this._sessionFactory == null)
             {
-                Configuration config =
-                Fluently.
-                Configure().CurrentSessionContext<WebSessionContext>().
+                FluentConfiguration config =                Fluently.                Configure();
+                
+                config.CurrentSessionContext<WebSessionContext>().
                 Database(MySQLConfiguration
                         .Standard
                         .ConnectionString(c => c.Server(_server)
@@ -68,6 +69,10 @@ namespace Graxei.FluentNHibernate.Configuracao
                 Mappings(m =>
                          m.FluentMappings.AddFromAssemblyOf<ProdutoMap>().Conventions.Add<ClasseComumConvencao>()).
                 BuildConfiguration();
+                config.ExposeConfiguration(cfg =>
+                {
+                    new SchemaExport(cfg).Execute(true, true, false);
+                });
                 this._sessionFactory = config.BuildSessionFactory();
             }
 

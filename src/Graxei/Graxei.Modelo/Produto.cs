@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FAST.Modelo;
-using NHibernate.Search.Attributes;
+using Graxei.Search.Attributes;
 using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
