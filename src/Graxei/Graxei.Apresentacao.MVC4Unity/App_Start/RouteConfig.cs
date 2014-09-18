@@ -14,10 +14,11 @@ namespace Graxei.Apresentacao.MVC4Unity
                 url: "{controller}/{action}",
                 defaults: new
                           {
-                              controller = "Login",
+                              controller = "Home",//"Login",
                               action = "Index",
                               id = UrlParameter.Optional
-                          });
+                          },
+                          namespaces: new string[] { "Graxei.Apresentacao.MVC4Unity.Controllers" });
         //namespaces: new string[] {"Graxei.Apresentacao.MVC4Unity.Controllers"});
 
             routes.MapRoute(null,

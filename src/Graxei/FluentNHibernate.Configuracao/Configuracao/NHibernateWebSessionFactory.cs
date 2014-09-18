@@ -71,7 +71,8 @@ namespace Graxei.FluentNHibernate.Configuracao
                 BuildConfiguration();
                 config.ExposeConfiguration(cfg =>
                 {
-                    new SchemaExport(cfg).Execute(true, true, false);
+                    //new SchemaExport(cfg).Execute(true, true, false);
+
                 });
                 this._sessionFactory = config.BuildSessionFactory();
             }
