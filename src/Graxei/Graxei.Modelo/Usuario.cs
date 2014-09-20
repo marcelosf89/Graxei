@@ -1,14 +1,14 @@
 ﻿using FAST.Modelo;
 namespace Graxei.Modelo
 {
-    public sealed class Usuario : Entidade
+    public class Usuario : Entidade
     {
-        public string Login { get; set; }
+        public virtual string Login { get; set; }
 
-        public string Email { get; set; }
+        public virtual string Email { get; set; }
 
-        public string Nome { get; set; }
+        public virtual string Nome { get; set; }
 
-        public string Senha { get; set; }
+        public virtual string Senha { get; set; }
     }
 }
