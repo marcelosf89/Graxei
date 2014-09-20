@@ -1,4 +1,24 @@
-﻿.header {
+﻿
+.container-body{
+	margin-top:51px;
+}
+
+@media (min-width: 991px){
+	.nav-search{
+		width: 430px;
+	}
+
+}
+
+@media (min-width: 768px) and (max-width 991px){
+	.nav-search{
+		width: 330px;
+	}
+
+}
+
+
+/*.header {
     background-color: #eee;
     height: 100px;
     border-bottom: 1px solid #ccc;
@@ -91,7 +111,7 @@ img.logo {
 }
 
 
-/*Menu Administrador*/
+
 
 @media screen and (min-width: 1200px) {
     .bs-sidebar.affix-bottom, .bs-sidebar.affix {
@@ -119,7 +139,7 @@ background-color: #f7f5fa;
 border-radius: 5px;
 }
 
-/* Fim Menu Administrador*/
+
 
 DIV.auth {
     border-top: 1px solid gray;
@@ -134,4 +154,4 @@ DIV.auth {
     DIV.item:first-child {
         border-top: none;
         padding-top: 0;
-    }
+    }*/

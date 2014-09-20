@@ -2,7 +2,7 @@
 using FAST.Modelo;
 using Graxei.Transversais.Idiomas;
 using System.ComponentModel.DataAnnotations;
-using NHibernate.Search.Attributes;
+using Graxei.Search.Attributes;
 
 namespace Graxei.Modelo
 {
