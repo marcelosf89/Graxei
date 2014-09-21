@@ -12,7 +12,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.Logotipo);
             Map(p => p.Excluida);
             HasMany(p => p.Enderecos).KeyColumn(Constantes.ID_LOJA).Cascade.None();
-            HasManyToMany(p => p.Usuarios).Cascade.All().Table(Constantes.LOJAS_USUARIOS);
+            HasManyToMany(p => p.Usuarios).ParentKeyColumn(Constantes.ID_LOJA).ChildKeyColumn(Constantes.ID_USUARIO).Cascade.All().Table(Constantes.LOJAS_USUARIOS).
             Where("excluida = false");
         }
     }

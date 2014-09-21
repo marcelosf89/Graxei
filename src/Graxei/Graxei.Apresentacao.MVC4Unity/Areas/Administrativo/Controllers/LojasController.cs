@@ -37,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             LojaContrato lojaSalva = null;
             try
             {
-                lojaSalva = _gerenciamentoLojas.SalvarLoja(item.LojaContrato, usuario.Usuario);
+                lojaSalva = _gerenciamentoLojas.Salvar(item.LojaContrato, usuario.Usuario);
             }
             catch (OperacaoEntidadeException ee)
             {
@@ -48,7 +48,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             item.LojaContrato = lojaSalva;
 
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
-            return PartialView("Cadastro", item);
+            return PartialView("NovaLojaAjax", item);
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             try
             {
-                _gerenciamentoLojas.SalvarLoja(item.LojaContrato, usuario.Usuario);
+                _gerenciamentoLojas.Salvar(item.LojaContrato, usuario.Usuario);
             }
             catch (OperacaoEntidadeException ee)
             {

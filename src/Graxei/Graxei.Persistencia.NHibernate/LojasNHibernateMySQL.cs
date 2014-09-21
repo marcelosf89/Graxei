@@ -27,7 +27,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             Loja lojaSelecionada = SessaoAtual.Query<Loja>().Fetch(l => l.Usuarios).FirstOrDefault(p => p.Id == loja.Id);
             if (lojaSelecionada != null)
             {
-                usuarios = lojaSelecionada.Usuarios;    
+                usuarios = lojaSelecionada.Usuarios.ToList();
             }
             return usuarios;
         }

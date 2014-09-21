@@ -31,28 +31,26 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
         /// <param name="nomeLoja">O nome da nova loja</param>
         /// <param name="usuario">O usuário a ser associado à loja</param>
         /// <returns></returns>
-        public LojaContrato SalvarLoja(string nomeLoja, Usuario usuario)
+        public LojaContrato Salvar(string nomeLoja, Usuario usuario)
         {
             LojaContrato lojaContrato = new LojaContrato();
             lojaContrato.Nome = nomeLoja;
-            return SalvarLoja(lojaContrato, usuario);
+            return this.Salvar(lojaContrato, usuario);
         }
 
         /// <summary>
         /// Cria uma nova loja e a associa ao usuário
         /// </summary>
         /// <param name="lojaContrato">O nome da nova loja</param>
-        /// <param name="usuario">O usuário a ser associado à loja</param>
+        /// <param name="usuario"></param>
         /// <returns></returns>
-        public LojaContrato SalvarLoja(LojaContrato lojaContrato, Usuario usuario)
+        public LojaContrato Salvar(LojaContrato lojaContrato, Usuario usuario)
         {
-            IList<Usuario> usuarios = new List<Usuario>();
-            usuarios.Add(usuario);
             Loja loja = _transformacao.Transformar(lojaContrato);
             IniciarTransacao();
             try
             {
-                _servicoLojas.Salvar(loja);
+                loja = _servicoLojas.Salvar(loja, usuario);
                 Confirmar();
             }
             catch (OperacaoEntidadeException)
@@ -68,13 +66,13 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
         /// </summary>
         /// <param name="lojaContrato">A loja a ser salva</param>
         /// <returns></returns>
-        public LojaContrato SalvarLoja(LojaContrato lojaContrato)
+        public LojaContrato Salvar(LojaContrato lojaContrato)
         {
             Loja loja = _transformacao.Transformar(lojaContrato);
             IniciarTransacao();
             try
             {
-                _servicoLojas.Salvar(loja);
+                loja = _servicoLojas.Salvar(loja);
                 Confirmar();
             }catch(OperacaoEntidadeException)
             {

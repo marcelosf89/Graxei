@@ -181,9 +181,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Administrativo\Views\Enderecos\Novo.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -276,6 +273,7 @@
     <Content Include="Scripts\carousel.js" />
     <Content Include="Scripts\collapse.js" />
     <Content Include="Scripts\dropdown.js" />
+    <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\google-code-prettify\prettify.css" />
     <Content Include="Scripts\google-code-prettify\prettify.js" />
     <Content Include="Scripts\holder\holder.js" />
@@ -294,6 +292,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Administrativo\Views\Lojas\NovaLojaAjax.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -345,6 +344,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrativo\Filters\" />
+    <Folder Include="Areas\Administrativo\Views\Enderecos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

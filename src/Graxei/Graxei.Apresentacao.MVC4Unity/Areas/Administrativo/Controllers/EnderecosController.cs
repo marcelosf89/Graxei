@@ -25,7 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasLogradouros = consultasLogradouros;
         }
 
-        public PartialViewResult Novo()
+        public ActionResult NovoEndereco()
         {
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");

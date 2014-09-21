@@ -60,9 +60,37 @@
     </div>
     }
 }
-<script>
-    function ActAfterPosting(data) {
-
-    }
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.20.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+        $("#idLogradouro").autocomplete({
+            source: availableTags
+        });
+    });
 
 </script>

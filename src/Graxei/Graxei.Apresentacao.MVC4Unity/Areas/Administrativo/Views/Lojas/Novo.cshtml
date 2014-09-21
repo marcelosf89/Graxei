@@ -5,35 +5,17 @@
     @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/css")
 }
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
 <h2>@Rotulos.NovaLoja</h2>
 <div id="nova-loja">
-    @{
-        AjaxOptions ajax = new AjaxOptions() {InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST"};
-        using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new {@class = "form-horizontal"}))
-        {
-            Html.RenderPartial("Cadastro", Model);
-        }
-        if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-        {
-            <button type="button" data-toggle="modal" data-target="#modalEnderecos">@Rotulos.NovoEndereco</button>
-            {
-                Html.RenderAction("Novo", "Enderecos");
-            }
-        }
-    }
+    @{ Html.RenderPartial("NovaLojaAjax", Model); }
 </div>
 
 @section Scripts{
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modal")
-    @Scripts.Render("~/bundles/typeahead")
-    @Scripts.Render("~/bundles/modernizr")
+
     <script>
         $("#novoEndereco").click(function () {
             @*$.ajax({
@@ -52,12 +34,40 @@
                 $.validator.unobtrusive.parse("form");
             });
         });
-
-
-
-
     </script>
 
 }
 
+<script type="text/javascript">
+    $(function () {
+        var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+        ];
+        $("#idLogradouro").autocomplete({
+            source: availableTags
+        });
+    });
+
+</script>
 
