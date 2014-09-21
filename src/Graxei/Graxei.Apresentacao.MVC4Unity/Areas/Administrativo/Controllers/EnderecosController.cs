@@ -15,7 +15,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultasEnderecos consultasEnderecos, EnderecosViewModelEntidade enderecosViewModelEntidade, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros)
+        public EnderecosController(IConsultasEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros)
         {
             _consultaEnderecos = consultasEnderecos;
             _consultasBairros = consultasBairros;

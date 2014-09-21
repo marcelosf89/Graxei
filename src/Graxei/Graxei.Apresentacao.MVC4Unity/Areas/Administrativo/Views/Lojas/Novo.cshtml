@@ -10,64 +10,56 @@
     ViewBag.Title = Rotulos.NovaLoja;
 }
 <h2>@Rotulos.NovaLoja</h2>
-<div id="nova-loja">
-    @{ Html.RenderPartial("NovaLojaAjax", Model); }
-</div>
-
 @section Scripts{
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modal")
+    @Scripts.Render("~/bundles/typeahead")
+    @Scripts.Render("~/bundles/modernizr")
     <script>
-        $("#novoEndereco").click(function () {
-            @*$.ajax({
-                type: "GET",
-                url: "@Url.Action("Novo", "Enderecos")",
-                success: function (data) {
-                    alert(data);
-                    $("#divDoEndereco").html(data);
-                }
-            });*@
-
-            $.get("@Url.Action("Novo", "Enderecos")", function (data) {
-                $("#divDoEndereco").html(data);
-                $("form").removeData("validator");
-                $("form").removeData("unobtrusiveValidation");
-                $.validator.unobtrusive.parse("form");
+        $(function () {
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme",
+                "South",
+                "Maria Filó",
+                "Farm"
+            ];
+            $("#idAuto").autocomplete({
+                source: availableTags
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#IdEstado").change(function () {
+            alert($('option:selected', $(this)).text());
         });
     </script>
 
 }
 
-<script type="text/javascript">
-    $(function () {
-        var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-        ];
-        $("#idLogradouro").autocomplete({
-            source: availableTags
-        });
-    });
-
-</script>
-
+<div id="nova-loja">
+    @{ Html.RenderPartial("NovaLojaAjax", Model); }
+</div>
