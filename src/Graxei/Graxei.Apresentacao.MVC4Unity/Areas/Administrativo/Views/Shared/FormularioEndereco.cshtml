@@ -21,7 +21,7 @@
             @Html.ValidationMessageFor(m => m.Cidade)
             @Html.LabelFor(m => m.Cidade, new { @class = "control-label col-xs-1" })
             <div id="the-basics" class="col-xs-5">
-                @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control typeahead" })
+                @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control typeahead", id = "IdCidade" })
             </div>
         </div>
         <div class="form-group">
@@ -31,34 +31,34 @@
                 @Html.TextBoxFor(m => m.Bairro, new { @class = "form-control", id = "IdBairro" })
             </div>
         </div>
-
-        <div class="col-xs-3">
+        <div class="form-group">
             @Html.LabelFor(m => m.Logradouro, new { @class = "control-label col-xs-1" })
+            <div class="col-xs-9">
+                @Html.TextBoxFor(m => m.Logradouro, new { @class = "form-control", id = "IdLogradouro" })
+            </div>
         </div>
-        <div class="col-xs-9">
-            @Html.TextBoxFor(m => m.Logradouro, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.ValidationMessageFor(m => m.Numero)
+            @Html.LabelFor(m => m.Numero, new { @class = "control-label col-xs-1" })
+            <div class="col-xs-5">
+                @Html.TextBoxFor(m => m.Numero, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ValidationMessageFor(m => m.Complemento)
+            @Html.LabelFor(m => m.Complemento, new { @class = "control-label col-xs-1" })
+            <div class="col-xs-5">
+                @Html.TextBoxFor(m => m.Complemento, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-1 col-xs-2">
+                <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
+                <button class="btn btn-danger">@Rotulos.Cancelar</button>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.ValidationMessageFor(m => m.Numero)
-        @Html.LabelFor(m => m.Numero, new { @class = "control-label col-xs-1" })
-        <div class="col-xs-5">
-            @Html.TextBoxFor(m => m.Numero, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.ValidationMessageFor(m => m.Complemento)
-        @Html.LabelFor(m => m.Complemento, new { @class = "control-label col-xs-1" })
-        <div class="col-xs-5">
-            @Html.TextBoxFor(m => m.Complemento, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-xs-offset-1 col-xs-2">
-            <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
-            <button class="btn btn-danger">@Rotulos.Cancelar</button>
-        </div>
-    </div>
+    
     }
 }
 
