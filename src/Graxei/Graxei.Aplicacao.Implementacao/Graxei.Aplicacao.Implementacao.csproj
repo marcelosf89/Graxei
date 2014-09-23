@@ -49,6 +49,7 @@
     <Compile Include="Consultas\ConsultasLogin.cs" />
     <Compile Include="Consultas\ConsultasLojas.cs" />
     <Compile Include="Consultas\ConsultasUsuarios.cs" />
+    <Compile Include="Transacionais\GerenciamentoEnderecos.cs" />
     <Compile Include="Transacionais\GerenciamentoLojas.cs" />
     <Compile Include="IPadraoTransacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

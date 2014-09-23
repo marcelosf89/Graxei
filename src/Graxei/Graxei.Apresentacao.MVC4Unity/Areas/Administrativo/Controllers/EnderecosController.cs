@@ -6,7 +6,6 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
-using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Entidades;
 
@@ -44,7 +43,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 .SetLoja(loja)
                 .SetBairro(bairro)
                 .Build();
-            return null;
+            return 
         }
 
         #region AutoComplete

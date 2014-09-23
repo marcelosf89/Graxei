@@ -4,10 +4,11 @@
     {
         Html.ViewContext.FormContext = new FormContext();
     }
-    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "ActAfterPosting" };
+    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "SuccessEndereco" };
 
     using (Ajax.BeginForm("Novo", "Enderecos", null, ajax, new { @class = "form-horizontal", id = "formEndereco" }))
     {
+        Html.HiddenFor(m => m.IdLoja);
     <div class="form-group">
         @Html.ValidationMessageFor(m => m.Logradouro)
         <div class="form-group">
@@ -60,5 +61,11 @@
     </div>
     
     }
+    <script type="text/javascript">
+        function SuccessEndereco(result) {
+            
+        }
+    </script>
+    
 }
 
