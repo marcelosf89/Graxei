@@ -130,8 +130,6 @@ namespace Graxei.Negocio.Contrato.Teste
             servicoLojas.Salvar(loja.Object);
         }
 
-
-
         private Mock<IRepositorioLojas> _repositorioLojas = new Mock<IRepositorioLojas>();
         private Mock<IServicoUsuarios> _servicoUsuario = new Mock<IServicoUsuarios>();
         private Mock<IServicoEnderecos> _servicoEndereco = new Mock<IServicoEnderecos>();

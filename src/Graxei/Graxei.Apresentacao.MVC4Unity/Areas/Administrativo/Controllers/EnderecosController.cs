@@ -43,7 +43,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 .SetLoja(loja)
                 .SetBairro(bairro)
                 .Build();
-            return 
+            return null;
         }
 
         #region AutoComplete

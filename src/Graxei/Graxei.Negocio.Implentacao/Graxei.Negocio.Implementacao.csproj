@@ -58,6 +58,7 @@
     <Compile Include="ServicoPadraoEntidades.cs" />
     <Compile Include="ServicoLojas.cs" />
     <Compile Include="ServicoProdutos.cs" />
+    <Compile Include="ValidadorEspecificacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FAST\FAST.csproj">

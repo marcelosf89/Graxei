@@ -1,6 +1,34 @@
-﻿namespace Graxei.Aplicacao.Implementacao.Transacionais
+﻿using System;
+using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Modelo;
+using Graxei.Negocio.Contrato;
+using Graxei.Transversais.Utilidades.Excecoes;
+
+namespace Graxei.Aplicacao.Implementacao.Transacionais
 {
-    public class GerenciamentoEnderecos : IGE
+    public class GerenciamentoEnderecos : PadraoTransacao, IGerenciamentoEnderecos
     {
+        public GerenciamentoEnderecos(IServicoEnderecos servicoEnderecos)
+        {
+            _servicoEnderecos = servicoEnderecos;
+        }
+
+        public Endereco Salvar(Endereco endereco)
+        {
+            IniciarTransacao();
+            try
+            {
+                endereco = _servicoEnderecos.Salvar(endereco);
+                Confirmar();
+                return endereco;
+            }
+            catch (Exception)
+            {
+                Desfazer();
+                throw;
+            }
+        }
+
+        private IServicoEnderecos _servicoEnderecos;
     }
 }

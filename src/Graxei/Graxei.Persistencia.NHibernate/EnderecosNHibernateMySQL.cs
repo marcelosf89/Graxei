@@ -8,7 +8,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 {
     public class EnderecosNHibernateMySQL : PadraoNHibernateMySQL<Endereco>, IRepositorioEnderecos
     {
-  
+
         #region Construtor
         public EnderecosNHibernateMySQL(IRepositorioEstados repoEstados, IRepositorioCidades repoCidades, IRepositorioBairros repoBairros)
         {
@@ -25,7 +25,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .Where(p => p.Loja.Equals(loja))
                               .ToList();
         }
- 
+
         public IList<Endereco> Todos(long idLoja)
         {
             return SessaoAtual.Query<Endereco>()
@@ -33,18 +33,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                               .ToList();
         }
 
-        public bool ExisteNaLoja(Endereco endereco)
+        public Endereco Get(long idLoja, string logradouro, string numero, string complemento, long idBairro)
         {
-            return SessaoAtual.Query<Endereco>().Count(
-                p => p.Id != endereco.Id 
-                     && p.Loja.Nome.Trim().ToLower() == endereco.Loja.Nome.Trim().ToLower()
-                     && p.Logradouro.Trim().ToLower() == endereco.Logradouro.Trim().ToLower()
-                     && p.Numero.Trim().ToLower() == endereco.Numero.Trim().ToLower()
-                     && endereco.Complemento != null && p.Complemento != null && p.Complemento.Trim().ToLower() == endereco.Complemento.Trim().ToLower()
-                     && p.Bairro.Nome.Trim().ToLower() == endereco.Bairro.Nome.Trim().ToLower()
-                     && p.Bairro.Cidade.Nome.Trim().ToLower() == endereco.Bairro.Cidade.Nome.Trim().ToLower()
-                     && p.Bairro.Cidade.Estado.Sigla.Trim().ToLower() == endereco.Bairro.Cidade.Estado.Sigla.Trim().ToLower()) > 0;
+            return
+                SessaoAtual.Query<Endereco>().SingleOrDefault(p => p.Loja.Id == idLoja && p.Logradouro == logradouro && p.Numero == numero &&
+                                                                   p.Complemento == complemento && p.Bairro.Id == idBairro);
         }
+
         #endregion
 
         #region Atributos Privados

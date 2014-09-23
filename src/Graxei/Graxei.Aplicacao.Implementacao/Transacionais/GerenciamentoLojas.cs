@@ -53,7 +53,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
                 loja = _servicoLojas.Salvar(loja, usuario);
                 Confirmar();
             }
-            catch (OperacaoEntidadeException)
+            catch (Exception)
             {
                 Desfazer();
                 throw;
