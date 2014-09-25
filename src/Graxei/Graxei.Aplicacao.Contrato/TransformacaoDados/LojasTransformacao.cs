@@ -35,6 +35,7 @@ namespace Graxei.Aplicacao.Contrato.TransformacaoDados
             {
                 return retorno;
             }
+            retorno.Id = entidade.Id;
             retorno.Nome = entidade.Nome;
             retorno.Logotipo = entidade.Logotipo;
             /*foreach (Endereco endereco in entidade.Enderecos)

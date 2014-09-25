@@ -1,75 +1,50 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Comportamento;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Implementacao
 {
     public class ServicoEnderecos : GravacaoTemplateMethod<Endereco>, IServicoEnderecos
     {
 
-        public ServicoEnderecos(IRepositorioEnderecos repositorioEnderecos, IServicoBairros servBairros, IServicoCidades servCidades)
+        public ServicoEnderecos(IRepositorioEnderecos repositorioEnderecos)
         {
-            _servBairros = servBairros;
-            _servCidades = servCidades;
             _repositorioEnderecos = repositorioEnderecos;
         }
-
-        #region Implementação de IServicoEnderecos
-
-        public IList<Endereco> Todos(Loja loja)
-        {
-            return _repositorioEnderecos.Todos(loja);
-        }
-
-        public IList<Endereco> Todos(long idLoja)
-        {
-            return _repositorioEnderecos.Todos(idLoja);
-        }
-
-        #endregion
-
-        #region Métodos Sobrescritos
+        
+        public enum AtributosOrdem { Sigla, Nome }
+        
         public override void PreSalvar(Endereco endereco)
         {
-            ValidarEndereco(endereco);
-            VerificarElementosEndereco(endereco);
-            ChecarRepetidosAoSalvar(endereco);
-        }
-
-        public override void PreAtualizar(Endereco endereco)
-        {
-            ValidarEndereco(endereco);
-            VerificarElementosEndereco(endereco);
-            ChecarRepetidosAoAtualizar(endereco);
-        }
-
-        public void ChecarRepetidosAoSalvar(Endereco endereco)
-        {
-            IList<Endereco> enderecos = _repositorioEnderecos.Todos(endereco.Loja.Id);
-            if (enderecos.Contains(endereco))
-            {
-                throw new RepetidoEmColecaoException(Erros.EnderecoJaExiste);
-            }
-        }
-
-        public void ChecarRepetidosAoAtualizar(Endereco endereco)
-        {
-            IList<Endereco> enderecos = _repositorioEnderecos.Todos(endereco.Loja.Id);
-            Endereco enderecoRepetido = enderecos.FirstOrDefault(p => p.Equals(endereco) && p.Id != endereco.Id);
+            ValidarEspecificacao(endereco);
+            Endereco enderecoRepetido = _repositorioEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);
             if (enderecoRepetido != null)
             {
-                throw new RepetidoEmColecaoException(Erros.EnderecoJaExiste);
+                throw new OperacaoEntidadeException("Já existe um endereço para esta loja");
+            }
+        }
+        
+        public override void PreAtualizar(Endereco endereco)
+        {
+            ValidarEspecificacao(endereco);
+            Endereco enderecoRepetido = _repositorioEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);
+            if (enderecoRepetido != null && enderecoRepetido.Id != endereco.Id)
+            {
+                throw new OperacaoEntidadeException("Já existe um endereço para esta loja");
             }
         }
 
         public override Endereco Salvar(Endereco endereco)
         {
+            if (endereco == null)
+            {
+                throw new NullReferenceException("Endereço não pode ser nulo");
+            }
+
             PreGravar(endereco);
             return _repositorioEnderecos.Salvar(endereco);
         }
@@ -79,32 +54,9 @@ namespace Graxei.Negocio.Implementacao
             return _repositorioEnderecos.GetPorId(id);
         }
 
-        public IList<Endereco> EnderecosRepetidos(IList<Endereco> enderecos)
-        {
-            if (enderecos == null)
-            {
-                return null;
-            }
-            IList<ContadorEnderecos> grupoRepetidos =
-                (from e in enderecos
-                 group e by e.ToString()
-                     into g
-                     select new ContadorEnderecos { Endereco = g.Key, Contador = g.Count() }).Where(q => q.Contador > 1).ToList();
-            List<Endereco> resultado = new List<Endereco>();
-            foreach (ContadorEnderecos c in grupoRepetidos)
-            {
-                resultado.AddRange(enderecos.Where(p => p.ToString() == c.Endereco).ToList());
-            }
-            return resultado;
-        }
-
-        #endregion
-
-        #region Implementação de IEntidadesExcluir<Endereco>
-
-        //*TODO: implementar
         public void PreExcluir(Endereco t)
         {
+            throw new NotImplementedException();
         }
 
         public void Excluir(Endereco t)
@@ -112,59 +64,30 @@ namespace Graxei.Negocio.Implementacao
             throw new NotImplementedException();
         }
 
-        #endregion
-
-        #region Métodos Privados
-        private void ValidarEndereco(Endereco endereco)
+        private void ValidarEspecificacao(Endereco endereco)
         {
-            if (endereco.Loja == null)
+            if (endereco == null)
             {
-                throw new EntidadeInvalidaException(ErrosInternos.EnderecoLojaNulo);
+                throw new ArgumentNullException("endereco", "Endereço não pode ser nulo");
+            }
+            if (endereco.Loja == null || UtilidadeEntidades.IsTransiente(endereco.Loja))
+            {
+                throw new OperacaoEntidadeException("O endereço deve estar associado a uma loja");
             }
             if (string.IsNullOrEmpty(endereco.Logradouro))
             {
-                throw new EntidadeInvalidaException(Erros.LogradouroNulo);
+                throw new OperacaoEntidadeException("O endereço deve ter um logradouro");
             }
             if (string.IsNullOrEmpty(endereco.Numero))
             {
-                throw new EntidadeInvalidaException(Erros.EnderecoNumeroNulo);
+                throw new OperacaoEntidadeException("O endereço deve ter um número");
             }
-            if (endereco.Bairro == null)
+            if (endereco.Bairro == null || UtilidadeEntidades.IsTransiente(endereco.Bairro))
             {
-                throw new EntidadeInvalidaException(ErrosInternos.EnderecoBairroNulo);
+                throw new OperacaoEntidadeException("O endereço deve possuir um bairro");
             }
         }
 
-        private void VerificarElementosEndereco(Endereco endereco)
-        {
-            Bairro bairro = endereco.Bairro;
-            if (_servBairros.Get(bairro.Nome, bairro.Cidade.Nome, bairro.Cidade.Estado.Id) == null)
-            {
-                Cidade cidade = _servCidades.Get(bairro.Cidade.Nome, bairro.Cidade.Estado.Id);
-                if (cidade == null)
-                {
-                    _servCidades.Salvar(bairro.Cidade);
-                }
-                _servBairros.Salvar(bairro);
-            }
-        }
-
-        #endregion
-
-        #region Atributos Privados
-        private readonly IServicoCidades _servCidades;
-        private readonly IServicoBairros _servBairros;
         private IRepositorioEnderecos _repositorioEnderecos;
-        #endregion
-
-        private class ContadorEnderecos
-        {
-            public string Endereco { get; set; }
-            public int Contador { get; set; }
-        }
-
-        public enum AtributosOrdem { Sigla, Nome }
-
-
     }
 }

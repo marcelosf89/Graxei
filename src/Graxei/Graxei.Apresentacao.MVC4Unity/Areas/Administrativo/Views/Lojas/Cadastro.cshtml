@@ -1,31 +1,19 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
 @model LojaModel
 
-
-@*//if (ViewBag.OperacaoSucesso != null)
-    //{
-    //<div class="alert alert-success alert-dismissable">
-        //  
-        <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>Loja incluída
-    </div>
-//}*@
-
 @{
     <div class="form-group">
-        Html.Erro();
+        @Html.Erro()
     </div>
     <div class="form-group">
-        @Html.Sucesso();
+        @Html.Sucesso()
     </div>
     <div class="form-group">
         @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
         @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
         <div class="col-xs-5">
-            @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control", id = "idAuto", placeholder = "large-12.columns" })
         </div>
-        @{
-            AjaxOptions ajaxOptions = new AjaxOptions() { UpdateTargetId = "listaEnd" };
-        }
     </div>
     <div class="form-group">
         <div class="col-xs-offset-1 col-xs-1">
@@ -33,20 +21,3 @@
         </div>
     </div>
 }
-
-@*<div>@Rotulos.Logotipo</div>
-    <div>
-        @if (Model.LojaContrato.Logotipo == null)
-        {
-            @Textos.NenhumLogo
-        }
-        else
-        {
-            <img width="150" height="150" src="@Url.Action("GetImagem", "Lojas", new { Model.LojaContrato.Id })" />
-        }
-        <div>@Rotulos.EscolherLogo<input type="file" name="Imagem" /></div>
-
-    </div>
-        <p>@Rotulos.Enderecos</p>
-        @{Html.RenderPartial("AcoesEmLoja", Model);}
-    *@

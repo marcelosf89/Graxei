@@ -5,27 +5,11 @@
     @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/css")
 }
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
 <h2>@Rotulos.NovaLoja</h2>
-<div id="nova-loja">
-    @{
-        AjaxOptions ajax = new AjaxOptions() {InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST"};
-        using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new {@class = "form-horizontal"}))
-        {
-            Html.RenderPartial("Cadastro", Model);
-        }
-        if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-        {
-            <button type="button" data-toggle="modal" data-target="#modalEnderecos">@Rotulos.NovoEndereco</button>
-            {
-                Html.RenderAction("Novo", "Enderecos");
-            }
-        }
-    }
-</div>
-
 @section Scripts{
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
@@ -34,30 +18,102 @@
     @Scripts.Render("~/bundles/modal")
     @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/bundles/modernizr")
-    <script>
-        $("#novoEndereco").click(function () {
-            @*$.ajax({
-                type: "GET",
-                url: "@Url.Action("Novo", "Enderecos")",
-                success: function (data) {
-                    alert(data);
-                    $("#divDoEndereco").html(data);
-                }
-            });*@
 
-            $.get("@Url.Action("Novo", "Enderecos")", function (data) {
-                $("#divDoEndereco").html(data);
-                $("form").removeData("validator");
-                $("form").removeData("unobtrusiveValidation");
-                $.validator.unobtrusive.parse("form");
-            });
+    <script>
+        $("#IdEstado").change(function () {
+            var estado = $("#IdEstado").val();
+            if (estado != 0) {
+                var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+                $.post(url, { idEstado: estado },
+                    function () {
+                    });
+            }
         });
 
+        $("#IdCidade").blur(function () {
+            var estado = $("#IdEstado").val();
+            var nomeCidade = $("#IdCidade").val();
+            if (estado > 0 && nomeCidade.length > 0) {
+                var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+                $.post(url, { idEstado: estado, cidade: nomeCidade },
+                    function () {
+                    });
+            }
+        });
 
+        $("#IdBairro").blur(function () {
+            var idEstado = $("#IdEstado").val();
+            var nomeCidade = $("#IdCidade").val();
+            var nomeBairro = $("#IdBairro").val();
+            if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+                var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+                $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
+                    function () {
+                    });
+            }
+        });
 
+        $("#IdEstado").change(function () {
+            var estadoSel = $("#IdEstado").val();
+            if (estadoSel != 0) {
+                var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+                $.post(url, { idEstado: estadoSel },
+                    function () {
+                    });
+            }
+        });
 
+        $("#IdCidade").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { value: item };
+                            }));
+                        }
+                    });
+                },
+        });
+
+        $("#IdBairro").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { value: item };
+                        }));
+                    }
+                });
+            },
+        });
+
+        $("#IdLogradouro").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { value: item };
+                        }));
+                    }
+                });
+            },
+        });
     </script>
 
 }
 
-
+<div id="nova-loja">
+    @{ Html.RenderPartial("NovaLojaAjax", Model); }
+</div>

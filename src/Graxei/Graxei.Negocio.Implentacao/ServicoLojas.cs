@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Comportamento;
@@ -38,6 +37,7 @@ namespace Graxei.Negocio.Implementacao
                 throw new ValidacaoEntidadeException(Erros.UmUsuarioAoMenos);
             }
             Validar(loja);
+            loja.AdicionarUsuario(_usuario);
             Loja repetida = Get(loja.Nome);
             if (repetida != null)
             {
@@ -53,15 +53,12 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ObjetoJaExisteException(Erros.LojaJaExiste);
             }
-            if (_usuario == null)
-            {
-
-            }
         }
 
         public override Loja Salvar(Loja loja)
         {
             PreGravar(loja);
+            loja = this.RepositorioLojas.Salvar(loja);
             return loja;
         }
 

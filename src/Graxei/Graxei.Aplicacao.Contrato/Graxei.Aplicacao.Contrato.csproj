@@ -53,6 +53,8 @@
     <Compile Include="Consultas\IConsultasLojas.cs" />
     <Compile Include="Consultas\IConsultasUsuarios.cs" />
     <Compile Include="Consultas\IConsultaLogradouros.cs" />
+    <Compile Include="Transacionais\GerenciamentoEnderecos.cs" />
+    <Compile Include="Transacionais\IGerenciamentoEnderecos.cs" />
     <Compile Include="Transacionais\IGerenciamentoLojas.cs" />
     <Compile Include="ITransacional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,7 +17,7 @@ namespace Graxei.Modelo
 
         public virtual IList<Endereco> Enderecos { get; protected internal set; }
 
-        public virtual List<Usuario> Usuarios { get; protected internal set; }
+        public virtual IList<Usuario> Usuarios { get; protected internal set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
@@ -55,6 +55,23 @@ namespace Graxei.Modelo
             foreach (Endereco endereco in enderecos)
             {
                 AdicionarEndereco(endereco);
+            }
+        }
+
+        public virtual void AdicionarUsuario(Usuario usuario)
+        {
+            if (Usuarios == null)
+            {
+                Usuarios = new List<Usuario>();
+            }
+            Usuarios.Add(usuario);
+        }
+
+        public virtual void AdicionarUsuarios(IList<Usuario> usuarios)
+        {
+            foreach (Usuario usuario in usuarios)
+            {
+                AdicionarUsuario(usuario);
             }
         }
 

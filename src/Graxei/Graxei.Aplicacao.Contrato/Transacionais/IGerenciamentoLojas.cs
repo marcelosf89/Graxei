@@ -5,8 +5,8 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
 {
     public interface IGerenciamentoLojas : ITransacional
     {
-        LojaContrato SalvarLoja(LojaContrato loja, Usuario usuario);
-        LojaContrato SalvarLoja(LojaContrato loja);
+        LojaContrato Salvar(LojaContrato loja, Usuario usuario);
+        LojaContrato Salvar(LojaContrato loja);
         void ExcluirLoja(LojaContrato loja);
     }
 

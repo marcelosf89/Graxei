@@ -55,6 +55,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string ID_UNIDADE_ENTRADA = "id_unidade_entrada";
         public const string ID_UNIDADE_SAIDA = "id_unidade_saida";
         public const string ID_USUARIO_LOG = "id_usuario_log";
+        public const string ID_USUARIO = "id_usuario";
         public const string LOGOTIPO = "logotipo";
         public const string LOGRADOURO = "logradouro";
         public const string LOJAS_USUARIOS = "lojas_usuarios";

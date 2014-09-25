@@ -7,6 +7,6 @@ namespace Graxei.Persistencia.Contrato
     {
         IList<Endereco> Todos(Loja loja);
         IList<Endereco> Todos(long idLoja);
-        bool ExisteNaLoja(Endereco endereco);
+        Endereco Get(long idLoja, string logradouro, string numero, string complemento, long idBairro);
     }
 }

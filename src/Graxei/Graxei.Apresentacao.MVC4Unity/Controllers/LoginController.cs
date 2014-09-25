@@ -23,7 +23,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return RedirectToAction("Autenticacao");
             Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
-            return RedirectToAction("Index", "Lojas", new {Area = "Administrativo"});
+            return RedirectToAction("Index", "Home");
         }
 
         public string UsuarioLogado(UsuarioLogado usuarioLogado)
