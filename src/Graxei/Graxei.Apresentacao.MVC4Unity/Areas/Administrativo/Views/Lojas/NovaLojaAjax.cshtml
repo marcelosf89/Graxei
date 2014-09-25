@@ -5,11 +5,12 @@
     {
         Html.RenderPartial("Cadastro", Model);
     }
-    //if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-    //{
+    if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
+    {
         <button type="button" data-toggle="modal" data-target="#modalEnderecos">@Rotulos.NovoEndereco</button>
         {
+            <div id="listaEnderecos"></div>
             Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel);
         }
-    //}
+    }
 }

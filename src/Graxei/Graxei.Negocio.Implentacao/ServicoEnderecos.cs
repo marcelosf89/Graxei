@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Comportamento;
@@ -62,6 +63,11 @@ namespace Graxei.Negocio.Implementacao
         public void Excluir(Endereco t)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Endereco> Get(long idLoja)
+        {
+            return _repositorioEnderecos.Get(idLoja);
         }
 
         private void ValidarEspecificacao(Endereco endereco)
