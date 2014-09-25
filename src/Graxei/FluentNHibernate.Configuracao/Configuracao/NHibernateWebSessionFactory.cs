@@ -55,8 +55,8 @@ namespace Graxei.FluentNHibernate.Configuracao
         {
             if (this._sessionFactory == null)
             {
-                FluentConfiguration config =                Fluently.                Configure();
-                
+                FluentConfiguration config = Fluently.Configure();
+
                 config.CurrentSessionContext<WebSessionContext>().
                 Database(MySQLConfiguration
                         .Standard

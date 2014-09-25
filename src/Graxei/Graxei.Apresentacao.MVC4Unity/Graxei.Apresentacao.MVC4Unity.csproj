@@ -169,6 +169,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\LojasController.cs" />
+    <Compile Include="Controllers\LojaController.cs" />
+    <Compile Include="Extension\MVCExtensionComponent.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -336,6 +338,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Autenticacao.cshtml" />
     <Content Include="Views\Login\RedefinirSenha.cshtml" />
+    <Content Include="Views\Home\Pesquisar.cshtml" />
+    <Content Include="Views\Loja\VerLoja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

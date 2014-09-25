@@ -12,96 +12,98 @@
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/modernizr")
 
-  <div class="navbar-wrapper">
-      <div class="container">
+<div class="navbar-wrapper">
+    <div class="container">
         <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Graaaxei</a>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Graaaxei</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-form navbar-left", role = "search" }))
+                    {	  
+                        <div class="input-group nav-search">
+                            @Html.TextBox("txtSearch", null, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar })
+                            <span class="input-group-btn">
+                                <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </div>
+                    }
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li>
+                            <form class="navbar-form navbar-left" role="search">
+                                @Ajax.ActionLink("login", "Index", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success" })
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">			  
-			  <form class="navbar-form navbar-left" role="search">
-				<div class="input-group nav-search">
-				  <input type="text" class="form-control" placeholder="Search">
-				   <span class="input-group-btn">
-					   <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-				   </span>
-				</div>
-			  </form>
-			  <ul class="nav navbar-nav navbar-right">
-				<li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-				  <li>
-				  <form class="navbar-form navbar-left" role="search">
-                      @Ajax.ActionLink("login", "Index", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success" })
-				  </form>
-				</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing container-body" id="myContent">
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
     </div>
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <hr class="featurette-divider">
 
-    <div class="container marketing container-body">
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
+    <div class="row featurette">
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
         <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
-      </div>
+    </div>
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-      <div class="row featurette">
+    <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
         </div>
-      </div>
+    </div>
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-      <!-- /END THE FEATURETTES -->
+    <!-- /END THE FEATURETTES -->
 
 
-      <!-- FOOTER -->
-      <footer>
+    <!-- FOOTER -->
+    <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-                <div id="myModal">
-        </div>
-    </div><!-- /.container -->
+    </footer>
+    <div id="myModal">
+    </div>
+</div>
+<!-- /.container -->

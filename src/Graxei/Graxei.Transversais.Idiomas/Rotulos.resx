@@ -210,4 +210,7 @@
   <data name="Cancelar" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="Pesquisar" xml:space="preserve">
+    <value>Pesquisar...</value>
+  </data>
 </root>

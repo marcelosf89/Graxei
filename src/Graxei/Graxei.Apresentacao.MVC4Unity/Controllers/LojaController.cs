@@ -6,24 +6,20 @@ using System.Web.Mvc;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
-    public class HomeController : Controller
+    public class LojaController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Loja/
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Pesquisar(string txtSearch)
+        public ActionResult VerLoja(int IdTeste)
         {
             return View();
         }
 
-        public ActionResult VerLoja()
-        {
-            return RedirectToAction("VerLoja", "Loja", new { id = 0 });
-        }
     }
 }
