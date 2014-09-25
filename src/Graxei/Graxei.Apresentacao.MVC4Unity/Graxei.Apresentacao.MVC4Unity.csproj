@@ -171,6 +171,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\LojasController.cs" />
     <Compile Include="Controllers\LojaController.cs" />
+    <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Extension\MVCExtensionComponent.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -280,7 +281,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Administrativo\Views\Shared\AcoesEmLoja.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\FormularioEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\EditarEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
