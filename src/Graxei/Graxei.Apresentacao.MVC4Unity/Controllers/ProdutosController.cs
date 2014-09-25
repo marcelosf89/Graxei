@@ -1,20 +1,20 @@
 ﻿using System;
 using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Graxei.Aplicacao.Implementacao.MVC4Unity.Models;
+using Graxei.Apresentacao.MVC4Unity.Models;
+using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Aplicacao.Contrato.Consultas;
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
 {
     public class ProdutosController : Controller
     {
 
-        public ProdutosController(IServicoUsuarios servicoProdutos, IServicoFabricantes servicoFabricantes)
+        public ProdutosController(IConsultasFabricantes appConsultasFabricantes)
         {
-            _servicoProdutos = servicoProdutos;
-            _servicoFabricantes = servicoFabricantes;
+            _appConsultasFabricantes = appConsultasFabricantes;
         }
 
         public ActionResult Index()
@@ -37,14 +37,13 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             IList<Fabricante> fabs = null;
             if (Session[Constantes.Fabricantes] == null)
             {
-                Session[Constantes.Fabricantes] = _servicoFabricantes.TodosNomes(); 
+                Session[Constantes.Fabricantes] = _appConsultasFabricantes.TodosNomes(); 
             }
             string[] nomes = ((IList<string>)Session[Constantes.Fabricantes]).ToArray();
             return Json(nomes, JsonRequestBehavior.AllowGet);
         }
 
-        private readonly IServicoUsuarios _servicoProdutos;
-        private readonly IServicoFabricantes _servicoFabricantes;
+        private readonly IConsultasFabricantes _appConsultasFabricantes;
 
     }
 }

@@ -29,7 +29,8 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasLojas, ConsultasLojas>()
                 .RegisterType<IConsultasUsuarios, ConsultasUsuarios>()
                 .RegisterType<IConsultasEnderecos, ConsultasEnderecos>()
-                .RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>();
+                .RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>()
+                .RegisterType < IConsultasFabricantes,ConsultasFabricantes>();
         }
     }
 }
