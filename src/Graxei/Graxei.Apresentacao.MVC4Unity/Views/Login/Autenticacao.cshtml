@@ -35,13 +35,13 @@
                         @Html.LabelFor(model => model.LoginOuEmail)
                     </label>
                     <div class="row form-group">
-                        @Html.Bootstrap().TextBoxFor(model => model.LoginOuEmail).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.TextBoxFor(model => model.LoginOuEmail)
                     </div>
                     <label>
                         @Html.LabelFor(model => model.Senha)
                     </label>
                     <div class="row form-group">
-                        @Html.Bootstrap().PasswordFor(model => model.Senha).Width(InputWidth.Col_4).ShowValidationMessage(true)
+                        @Html.PasswordFor(model => model.Senha)
                     </div>
                     <div class="modal-footer">
                         @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
