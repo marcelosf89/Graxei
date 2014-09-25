@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
@@ -14,7 +15,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultasEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros)
+        public EnderecosController(IConsultasEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos)
         {
             _consultaEnderecos = consultasEnderecos;
             _consultasBairros = consultasBairros;
@@ -22,6 +23,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasEstados = consultasEstados;
             _consultasCidades = consultasCidades;
             _consultasLogradouros = consultasLogradouros;
+            _gerenciamentoEnderecos = gerenciamentoEnderecos;
         }
 
         public ActionResult NovoEndereco()
@@ -34,16 +36,31 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         [HttpPost]
         public ActionResult Novo(EnderecoModel enderecoModel)
         {
-            Bairro bairro = _consultasBairros.Get(enderecoModel.Bairro, enderecoModel.Cidade, enderecoModel.IdEstado);
-            Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
-            Endereco endereco = new EnderecosBuilder()
-                .SetLogradouro(enderecoModel.Logradouro)
-                .SetNumero(enderecoModel.Numero)
-                .SetComplemento(enderecoModel.Complemento)
-                .SetLoja(loja)
-                .SetBairro(bairro)
-                .Build();
-            return null;
+            try
+            {
+                Bairro bairro = _consultasBairros.Get(enderecoModel.Bairro, enderecoModel.Cidade, enderecoModel.IdEstado);
+                Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
+                Endereco endereco = new EnderecosBuilder()
+                    .SetLogradouro(enderecoModel.Logradouro)
+                    .SetNumero(enderecoModel.Numero)
+                    .SetComplemento(enderecoModel.Complemento)
+                    .SetLoja(loja)
+                    .SetBairro(bairro)
+                    .Build();
+                _gerenciamentoEnderecos.Salvar(endereco);
+                List<Endereco> enderecos = _consultaEnderecos.Get(loja.Id);
+                List<EnderecoListaModel> listaEnderecos = new List<EnderecoListaModel>();
+                foreach (Endereco end in enderecos)
+                {
+                    listaEnderecos.Add(new EnderecoListaModel(end.Id, end.ToString()));
+                }
+                return PartialView("ListaEnderecos", listaEnderecos);
+            }
+            catch (Exception exception)
+            {
+                string mensagem = string.Format("{{ Mensagem: {0} }}", exception.Message);
+                return Json(mensagem);
+            }
         }
 
         #region AutoComplete
@@ -162,6 +179,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private readonly IConsultasEstados _consultasEstados;
         private readonly IConsultasLojas _consultasLojas;
         private readonly IConsultasCidades _consultasCidades;
+        private readonly IGerenciamentoEnderecos _gerenciamentoEnderecos;
 
         #endregion
 

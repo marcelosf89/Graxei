@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Entidades;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
@@ -19,11 +17,17 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 
         #region Implementação de IConsultasEnderecos
 
+        public List<Endereco> Get(long idLoja)
+        {
+            return _servicoEnderecos.Get(idLoja);
+        }
+
         public IServicoEnderecos ServicoEnderecos { get; private set; }
 
         private IServicoEnderecos _servicoEnderecos;
 
         #endregion
 
+        
     }
 }

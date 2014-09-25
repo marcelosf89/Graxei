@@ -40,6 +40,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                    p.Complemento == complemento && p.Bairro.Id == idBairro);
         }
 
+        public List<Endereco> Get(long idLoja)
+        {
+            return SessaoAtual.Query<Endereco>().Where(p => p.Loja.Id == idLoja).ToList();
+        }
+
         #endregion
 
         #region Atributos Privados

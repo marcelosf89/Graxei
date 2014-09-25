@@ -2,7 +2,6 @@
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {

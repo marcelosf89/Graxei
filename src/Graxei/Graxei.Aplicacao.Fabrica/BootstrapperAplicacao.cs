@@ -20,6 +20,7 @@ namespace Graxei.Aplicacao.Fabrica
 
             container.RegisterType<IGerenciamentoLojas, GerenciamentoLojas>()
                 .RegisterType<IGerenciamentoProdutos, GerenciamentoProdutos>()
+                .RegisterType<IGerenciamentoEnderecos, GerenciamentoEnderecos>()
                 .RegisterType<IConsultasBairros, ConsultasBairros>()
                 .RegisterType<IConsultasCidades, ConsultasCidades>()
                 .RegisterType<IConsultasEstados, ConsultasEstados>()
