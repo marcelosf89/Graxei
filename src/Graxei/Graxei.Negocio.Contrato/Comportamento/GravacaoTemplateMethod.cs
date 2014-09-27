@@ -16,7 +16,10 @@ namespace Graxei.Negocio.Contrato.Comportamento
             {
                 PreSalvar(entidade);
             }
-            PreAtualizar(entidade);
+            else
+            {
+                PreAtualizar(entidade);    
+            }
         }
 
         public abstract void PreSalvar(T t);

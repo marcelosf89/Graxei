@@ -1,16 +1,12 @@
 ﻿@model LojaModel
 @{
-    AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "nova-loja", HttpMethod = "POST" };
-    using (Ajax.BeginForm("Novo", "Lojas", null, ajax, new { @class = "form-horizontal" }))
+
+    AjaxOptions ajax = new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST" };
+    using (Ajax.BeginForm("Nova", "Lojas", null, ajax, new { @class = "form-horizontal" }))
     {
-        Html.RenderPartial("Cadastro", Model);
-    }
-    if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-    {
-        <button type="button" data-toggle="modal" data-target="#modalEnderecos">@Rotulos.NovoEndereco</button>
-        {
-            <div id="listaEnderecos"></div>
-            Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel);
-        }
+    <div id="novaloja">
+        @{ Html.RenderPartial("Cadastro", Model); }
+
+    </div>
     }
 }

@@ -26,11 +26,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _gerenciamentoEnderecos = gerenciamentoEnderecos;
         }
 
-        public ActionResult NovoEndereco()
+        public ActionResult NovoEndereco(EnderecoModel enderecoModel)
         {
+            ModelState.Clear();
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView();
+            return PartialView(enderecoModel);
         }
 
         [HttpPost]

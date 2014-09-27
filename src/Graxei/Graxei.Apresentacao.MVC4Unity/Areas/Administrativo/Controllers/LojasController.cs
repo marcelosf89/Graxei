@@ -1,4 +1,5 @@
-﻿using Graxei.Aplicacao.Contrato.Consultas;
+﻿using System.Collections.Generic;
+using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
@@ -6,6 +7,7 @@ using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using System.Web.Mvc;
 using Graxei.Transversais.Idiomas;
+using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.ContratosDeDados;
 
@@ -28,7 +30,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         [HttpPost]
         [LimpezaSessaoNovaLoja]
-        public ActionResult Novo(UsuarioLogado usuario, LojaModel item)
+        public ActionResult Nova(UsuarioLogado usuario, LojaModel item)
         {
             if (!ModelState.IsValid)
             {
@@ -42,12 +44,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             catch (OperacaoEntidadeException ee)
             {
                 ModelState.AddModelError(string.Empty, ee.Message);
-                return PartialView("Cadastro", item);
+                return PartialView("NovaLojaAjax", item);
             }
             ModelState.Clear();
             item.LojaContrato = lojaSalva;
 
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
+            item.EnderecoModel.IdLoja = item.LojaContrato.Id;
             return PartialView("NovaLojaAjax", item);
         }
 

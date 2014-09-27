@@ -15,7 +15,7 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         }
         public Bairro Get(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return _servicoBairros.Get(nomeBairro, nomeBairro, idEstado);
+            return _servicoBairros.Get(nomeBairro, nomeCidade, idEstado);
         }
 
         public IList<Bairro> GetPorCidade(string nomeCidade, long idEstado)

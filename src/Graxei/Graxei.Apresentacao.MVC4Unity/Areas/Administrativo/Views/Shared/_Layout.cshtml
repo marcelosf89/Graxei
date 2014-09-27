@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @RenderSection("Styles", false)
+    @*@RenderSection("Styles", false)*@
 </head>
-    <body>
-        @*<div style="float: right">@{ Html.RenderAction("UsuarioLogado", "Login");}</div>*@
-        <a href="Lojas">Nova Loja</a>
+<body>
+    @*<div style="float: right">@{ Html.RenderAction("UsuarioLogado", "Login");}</div>*@
+    <a href="Lojas">Nova Loja</a>
+    <div id="nova-loja">
         @RenderBody()
-        @RenderSection("Scripts", false)
-    </body>
+    </div>
+    @*@RenderSection("Scripts", false)*@
+</body>
 </html>
