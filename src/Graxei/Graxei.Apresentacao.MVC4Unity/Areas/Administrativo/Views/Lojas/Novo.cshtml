@@ -6,37 +6,25 @@
 <h2>@Rotulos.NovaLoja</h2>
 @{ Html.RenderPartial("NovaLojaAjax", Model); }
 
-@{if (this.Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-  {
-    <button type="button" data-toggle="modal" data-target="#modalEnderecos">@Rotulos.NovoEndereco</button>
-  }
-}
+@{ Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel); }
+
+<div id="listaEnderecos"></div>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/jqueryui")
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/typeahead")
-@{ Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel); }
-
-<div id="listaEnderecos"></div>
 
 @Styles.Render("~/Content/bootstrap/base")
 @Styles.Render("~/Content/themes/base/css")
 @Styles.Render("~/Content/css")
 
-
-@Scripts.Render("~/bundles/modernizr")
-
 <script type="text/javascript">
 
-    $("#idAuto").change(function () {
-        alert('aaa');
-    });
-
-    $("#IdEstado").change(function () {
+   $("#IdEstado").change(function () {
         var estado = $("#IdEstado").val();
-        alert('aaa');
+        ////alert('aaa');
         if (estado != 0) {
             var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
             $.post(url, { idEstado: estado },
