@@ -104,17 +104,14 @@
             },
         });
 
-        function SuccessEndereco(result) {
-            alert(result.Mensagem);
-            alert(document.getElementById("validationEndereco"));
-
-            if (typeof result.Mensagem === 'undefined') {
+    function SuccessEndereco(result) {
+            if (result.Mensagem === undefined) {
                 var divLista = document.getElementById("listaEnderecos");
                 divLista.innerHTML = result;
                 $("#modalEnderecos").modal('hide');
             } else {
                 var divErro = document.getElementById("validationEndereco");
-                divErro.innerHTML = "span class='field-validation-error'><ul style='margin: 0;'>" + result.Mensagem + "</ul></span>";
+                divErro.innerHTML = "<span class='field-validation-error'><ul style='margin: 0;'>" + result.Mensagem + "</ul></span>";
             }
         }
 </script>

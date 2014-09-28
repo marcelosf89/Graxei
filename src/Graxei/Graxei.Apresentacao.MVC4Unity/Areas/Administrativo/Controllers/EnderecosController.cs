@@ -59,8 +59,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             catch (Exception exception)
             {
-                string mensagem = string.Format("{{ Mensagem: {0} }}", exception.Message);
-                return Json(mensagem);
+                return Json(new { Mensagem = exception.Message });
             }
         }
 
