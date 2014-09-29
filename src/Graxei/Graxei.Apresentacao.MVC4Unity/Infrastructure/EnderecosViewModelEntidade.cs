@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.ModelConfiguration.Configuration;
-using Graxei.Aplicacao.Contrato.Consultas;
+﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
@@ -29,7 +28,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
 
         public EnderecoModel Transformar(Endereco entidade)
         {
-            throw new System.NotImplementedException();
+            EnderecoModel enderecoModel = new EnderecoModel();
+            enderecoModel.Id = entidade.Id;
+            enderecoModel.IdLoja = entidade.Loja.Id;
+            enderecoModel.Bairro = entidade.Bairro.Nome;
+            enderecoModel.Cidade = entidade.Bairro.Cidade.Nome;
+            enderecoModel.IdEstado = entidade.Bairro.Cidade.Estado.Id;
+            return enderecoModel;
         }
     }
 }

@@ -40,9 +40,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                    p.Complemento == complemento && p.Bairro.Id == idBairro);
         }
 
-        public List<Endereco> Get(long idLoja)
+        public List<Endereco> GetPorLoja(long idLoja)
         {
             return SessaoAtual.Query<Endereco>().Where(p => p.Loja.Id == idLoja).ToList();
+        }
+
+        public Endereco Get(long idEndereco)
+        {
+            return SessaoAtual.Query<Endereco>().FirstOrDefault(p => p.Id == idEndereco);
         }
 
         #endregion

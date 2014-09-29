@@ -17,12 +17,15 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 
         #region Implementação de IConsultasEnderecos
 
-        public List<Endereco> Get(long idLoja)
+        public List<Endereco> GetPorLoja(long idLoja)
         {
-            return _servicoEnderecos.Get(idLoja);
+            return _servicoEnderecos.GetPorLoja(idLoja);
         }
 
-        public IServicoEnderecos ServicoEnderecos { get; private set; }
+        public Endereco Get(long id)
+        {
+            return _servicoEnderecos.Get(id);
+        }
 
         private IServicoEnderecos _servicoEnderecos;
 

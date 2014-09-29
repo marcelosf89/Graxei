@@ -3,9 +3,9 @@
     
     AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "SuccessEndereco" };
 
-    using (Ajax.BeginForm("Novo", "Enderecos", null, ajax, new { @class = "form-horizontal" }))
+    using (Ajax.BeginForm("Novo", "Enderecos", null, ajax, new { id="form-enderecos", @class = "form-horizontal" }))
     {
-    @Html.HiddenFor(m => m.IdLoja)
+    @Html.HiddenFor(m => m.IdLoja, new { id = "idlojaendereco"})
     <div class="form-group">
         <div id="validationEndereco"></div>
         <div class="form-group">

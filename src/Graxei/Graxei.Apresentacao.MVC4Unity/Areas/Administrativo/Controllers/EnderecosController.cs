@@ -7,6 +7,7 @@ using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Entidades;
 
@@ -31,7 +32,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             ModelState.Clear();
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView(enderecoModel);
+            return PartialView("ModalEndereco", enderecoModel);
+        }
+        
+        [HttpGet]
+        public ActionResult Get(long idEndereco)
+        {
+            Endereco endereco = _consultaEnderecos.Get(idEndereco);
+            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros);
+            EnderecoModel item = transformacao.Transformar(endereco);
+            return PartialView("ModalEndereco", item);
         }
 
         [HttpPost]
@@ -49,7 +59,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                     .SetBairro(bairro)
                     .Build();
                 _gerenciamentoEnderecos.Salvar(endereco);
-                List<Endereco> enderecos = _consultaEnderecos.Get(loja.Id);
+                List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
                 List<EnderecoListaModel> listaEnderecos = new List<EnderecoListaModel>();
                 foreach (Endereco end in enderecos)
                 {

@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @*@RenderSection("Styles", false)*@
+    @RenderSection("Styles", false)
 </head>
 <body>
     @*<div style="float: right">@{ Html.RenderAction("UsuarioLogado", "Login");}</div>*@
@@ -12,6 +13,6 @@
     <div id="nova-loja">
         @RenderBody()
     </div>
-    @*@RenderSection("Scripts", false)*@
+    @RenderSection("Scripts", false)
 </body>
 </html>

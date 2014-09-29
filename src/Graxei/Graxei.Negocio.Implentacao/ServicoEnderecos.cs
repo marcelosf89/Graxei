@@ -65,9 +65,14 @@ namespace Graxei.Negocio.Implementacao
             throw new NotImplementedException();
         }
 
-        public List<Endereco> Get(long idLoja)
+        public Endereco Get(long id)
         {
-            return _repositorioEnderecos.Get(idLoja);
+            return _repositorioEnderecos.Get(id);
+        }
+
+        public List<Endereco> GetPorLoja(long idLoja)
+        {
+            return _repositorioEnderecos.GetPorLoja(idLoja);
         }
 
         private void ValidarEspecificacao(Endereco endereco)

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Graxei.Aplicacao.Contrato.Consultas;
+﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
@@ -7,7 +6,6 @@ using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using System.Web.Mvc;
 using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.ContratosDeDados;
 

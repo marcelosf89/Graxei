@@ -2,7 +2,8 @@
 @model LojaModel
 
 @{
-    <div class="form-group">
+    @Html.HiddenFor(p => p.LojaContrato.Id, new { id = "idnovaloja" });
+    <div class= "form-group">
         @Html.Erro()
     </div>
     <div class="form-group">

@@ -1,0 +1,15 @@
+﻿@model EnderecoModel
+<div id="enderecoAtualizar">
+    <div id="modalEnderecos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    @{ Html.RenderPartial("FormularioEndereco", Model);}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
