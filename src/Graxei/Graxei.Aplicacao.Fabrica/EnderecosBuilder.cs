@@ -5,6 +5,8 @@ namespace Graxei.Aplicacao.Fabrica
 {
     public class EnderecosBuilder
     {
+        private long _id;
+
         private string _logradouro;
 
         private string _numero;

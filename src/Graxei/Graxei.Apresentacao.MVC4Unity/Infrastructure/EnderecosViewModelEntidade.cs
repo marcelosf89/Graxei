@@ -33,6 +33,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
             enderecoModel.IdLoja = entidade.Loja.Id;
             enderecoModel.Bairro = entidade.Bairro.Nome;
             enderecoModel.Cidade = entidade.Bairro.Cidade.Nome;
+            enderecoModel.Logradouro = entidade.Logradouro;
+            enderecoModel.Numero = entidade.Numero;
+            enderecoModel.Complemento = entidade.Complemento;
             enderecoModel.IdEstado = entidade.Bairro.Cidade.Estado.Id;
             return enderecoModel;
         }

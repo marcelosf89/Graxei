@@ -116,15 +116,15 @@
             idLojaEndereco.value = idLoja;
         }
 
-        function editarEndereco(idEndereco)
+        function editarEndereco(id)
         {
             $.ajax({
                 url: "@Url.Action("Get", "Enderecos")",
-                type: "POST",
-                data: { idEndereco: idEndereco },
+                type: "GET",
+                data: { idEndereco: id },
                 success: function(data) {
-                    $('#enderecoAtualizar').innerHTML = data;
-                    $('#Modal').modal('show');
+                    $('#enderecoAtualizar').html(data);
+                    $('#modalEnderecos').modal('show');
                 }
             });
         }

@@ -41,23 +41,36 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
             EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros);
             EnderecoModel item = transformacao.Transformar(endereco);
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return PartialView("ModalEndereco", item);
         }
 
         [HttpPost]
-        public ActionResult Novo(EnderecoModel enderecoModel)
+        public ActionResult Salvar(EnderecoModel enderecoModel)
         {
             try
             {
                 Bairro bairro = _consultasBairros.Get(enderecoModel.Bairro, enderecoModel.Cidade, enderecoModel.IdEstado);
                 Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
-                Endereco endereco = new EnderecosBuilder()
-                    .SetLogradouro(enderecoModel.Logradouro)
-                    .SetNumero(enderecoModel.Numero)
-                    .SetComplemento(enderecoModel.Complemento)
-                    .SetLoja(loja)
-                    .SetBairro(bairro)
-                    .Build();
+                Endereco endereco;
+                if (enderecoModel.Id > 0)
+                {
+                    endereco = _consultaEnderecos.Get(enderecoModel.Id);
+                    EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros);
+                    endereco = transformacao.Transformar(enderecoModel);
+                }
+                else
+                {
+                    endereco = new EnderecosBuilder()
+                        .SetLogradouro(enderecoModel.Logradouro)
+                        .SetNumero(enderecoModel.Numero)
+                        .SetComplemento(enderecoModel.Complemento)
+                        .SetLoja(loja)
+                        .SetBairro(bairro)
+                        .Build();
+                }
+                
                 _gerenciamentoEnderecos.Salvar(endereco);
                 List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
                 List<EnderecoListaModel> listaEnderecos = new List<EnderecoListaModel>();
