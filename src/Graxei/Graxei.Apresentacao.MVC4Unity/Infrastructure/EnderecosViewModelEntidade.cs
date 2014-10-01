@@ -10,15 +10,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
     {
         private readonly IConsultasBairros _consultasBairros;
 
-        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros)
+        private readonly IConsultasEnderecos _consultasEnderecos;
+
+        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros, IConsultasEnderecos consultasEnderecos)
         {
             _consultasBairros = consultasBairros;
+            _consultasEnderecos = consultasEnderecos;
         }
 
         public Endereco Transformar(EnderecoModel contrato)
         {
             Bairro bairro = _consultasBairros.Get(contrato.Bairro, contrato.Cidade, contrato.IdEstado);
-            EnderecosBuilder enderecosBuilder = new EnderecosBuilder();
+            EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultasEnderecos);
             Endereco endereco = enderecosBuilder.SetLogradouro(contrato.Logradouro)
                                                 .SetComplemento(contrato.Complemento)
                                                 .SetNumero(contrato.Numero)
