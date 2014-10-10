@@ -24,7 +24,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         public string Logradouro { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NumeroObrigatorio")]
-
         [StringLength(150, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo250")]
         public string Numero { get; set; }
 

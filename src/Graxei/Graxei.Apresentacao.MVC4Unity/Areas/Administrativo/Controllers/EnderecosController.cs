@@ -43,7 +43,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             EnderecoModel item = transformacao.Transformar(endereco);
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView("ModalEndereco", item);
+            return Json(item, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

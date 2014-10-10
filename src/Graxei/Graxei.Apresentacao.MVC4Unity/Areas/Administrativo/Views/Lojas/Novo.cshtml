@@ -16,44 +16,45 @@
     @Scripts.Render("~/bundles/typeahead")
     <script type="text/javascript">
 
-        $("#IdEstado").change(function () {
-            var estado = $("#IdEstado").val();
-            ////alert('aaa');
-            if (estado != 0) {
-                var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+            $("#IdEstado").live("change",(function () {
+                var estado = $("#IdEstado").val();
+                ////alert('aaa');
+                if (estado != 0) {
+                    var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
                 $.post(url, { idEstado: estado },
                     function () {
                     });
             }
-        });
+            })
+        );
 
-        $("#IdCidade").blur(function () {
-            var estado = $("#IdEstado").val();
-            var nomeCidade = $("#IdCidade").val();
-            if (estado > 0 && nomeCidade.length > 0) {
-                var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+        $("#IdCidade").live("blur", function () {
+                var estado = $("#IdEstado").val();
+                var nomeCidade = $("#IdCidade").val();
+                if (estado > 0 && nomeCidade.length > 0) {
+                    var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
                 $.post(url, { idEstado: estado, cidade: nomeCidade },
                     function () {
                     });
             }
         });
 
-        $("#IdBairro").blur(function () {
-            var idEstado = $("#IdEstado").val();
-            var nomeCidade = $("#IdCidade").val();
-            var nomeBairro = $("#IdBairro").val();
-            if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
-                var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+            $("#IdBairro").live("blur", function () {
+                var idEstado = $("#IdEstado").val();
+                var nomeCidade = $("#IdCidade").val();
+                var nomeBairro = $("#IdBairro").val();
+                if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+                    var url = '@Url.Action("BairroSelecionado", "Enderecos")';
                 $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
                     function () {
                     });
             }
         });
 
-        $("#IdCidade").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
+            $("#IdCidade").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
@@ -66,10 +67,10 @@
             },
         });
 
-        $("#IdBairro").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
+            $("#IdBairro").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
@@ -82,10 +83,10 @@
             },
         });
 
-        $("#IdLogradouro").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
+            $("#IdLogradouro").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
@@ -98,48 +99,55 @@
             },
         });
 
-        function SuccessEndereco(result) {
-            if (result.Mensagem === undefined) {
-                var divLista = document.getElementById("listaEnderecos");
-                divLista.innerHTML = result;
-                $("#modalEnderecos").modal('hide');
-            } else {
-                var divErro = document.getElementById("validationEndereco");
-                divErro.innerHTML = "<span class='field-validation-error'><ul style='margin: 0;'>" + result.Mensagem + "</ul></span>";
+            function SuccessEndereco(result) {
+                if (result.Mensagem === undefined) {
+                    var divLista = document.getElementById("listaEnderecos");
+                    divLista.innerHTML = result;
+                    $("#modalEnderecos").modal('hide');
+                } else {
+                    var divErro = document.getElementById("validationEndereco");
+                    divErro.innerHTML = "<span class='field-validation-error'><ul style='margin: 0;'>" + result.Mensagem + "</ul></span>";
+                }
             }
-        }
 
-        function setupModal() {
-            document.getElementById("form-enderecos").reset();
-            var idLoja = document.getElementById("idnovaloja").value;
-            var idLojaEndereco = document.getElementById("idlojaendereco");
-            idLojaEndereco.value = idLoja;
-            var idCidade = document.getElementById("IdCidade");
-            idCidade.value = null;
-            var idBairro = document.getElementById("IdBairro");
-            idBairro.value = null;
-            var idLogradouro = document.getElementById("IdLogradouro");
-            idLogradouro.value = null;
-            var idNumero = document.getElementById("IdNumero");
-            idNumero.value = null;
-            var idComplemento = document.getElementById("IdComplemento");
-            idComplemento.value = null;
-            var idEndereco = document.getElementById("idHiddenEndereco");
-            idEndereco.value = null;
-        }
+            function setupModal() {
+                document.getElementById("form-enderecos").reset();
+                var idLoja = document.getElementById("idnovaloja").value;
+                var idLojaEndereco = document.getElementById("idlojaendereco");
+                idLojaEndereco.value = idLoja;
+                //var idCidade = document.getElementById("IdCidade");
+                //idCidade.value = null;
+                //var idBairro = document.getElementById("IdBairro");
+                //idBairro.value = null;
+                //var idLogradouro = document.getElementById("IdLogradouro");
+                //idLogradouro.value = null;
+                //var idNumero = document.getElementById("IdNumero");
+                //idNumero.value = null;
+                //var idComplemento = document.getElementById("IdComplemento");
+                //idComplemento.value = null;
+                //var idEndereco = document.getElementById("idHiddenEndereco");
+                //idEndereco.value = null;
+            }
 
-        function editarEndereco(id) {
-            $.ajax({
-                url: "@Url.Action("Get", "Enderecos")",
+            function editarEndereco(id) {
+                $.ajax({
+                    url: "@Url.Action("Get", "Enderecos")",
                 type: "GET",
                 data: { idEndereco: id },
                 success: function (data) {
-                    var divEnderecoAtualizar = document.getElementById("enderecoAtualizar");
-                    divEnderecoAtualizar.innerHTML = data;
+                    document.getElementById("idlojaendereco").value = data.IdLoja;
+                    document.getElementById("IdCidade").value = data.Cidade;
+                    document.getElementById("IdBairro").value = data.Bairro;
+                    document.getElementById("IdLogradouro").value = data.Logradouro;
+                    document.getElementById("IdNumero").value = data.Numero;
+                    document.getElementById("IdComplemento").value = data.Complemento;
+                    document.getElementById("idHiddenEndereco").value = data.Id;
+                    document.getElementById("IdEstado").value = data.idEstado;
                     $('#modalEnderecos').modal('show');
                 }
             });
         }
+
     </script>
 }
 
