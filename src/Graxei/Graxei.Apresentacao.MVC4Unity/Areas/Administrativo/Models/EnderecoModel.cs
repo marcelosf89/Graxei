@@ -11,6 +11,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         public long Id { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "EstadoObrigatorio")]
+        [Display(ResourceType = typeof(Rotulos), Name = "Estado")]
         public long IdEstado { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "CidadeObrigatoria")]
