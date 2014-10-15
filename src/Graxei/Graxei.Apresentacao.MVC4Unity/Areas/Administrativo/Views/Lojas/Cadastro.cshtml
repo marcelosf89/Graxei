@@ -3,14 +3,18 @@
 
 @{
     @Html.HiddenFor(p => p.LojaContrato.Id, new { id = "idnovaloja" });
-    <div class= "form-group">
+    <div class="form-group">
         @Html.Erro()
     </div>
     <div class="form-group">
         @Html.Sucesso()
     </div>
     <div class="form-group">
-        @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
+        <div class="col-xs-offset-1 col-xs-5">
+            @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
         <div class="col-xs-5">
             @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control", placeholder = "large-12.columns" })
