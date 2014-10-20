@@ -8,7 +8,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
     /// </summary>
     public class EnderecoModel
     {
-        public long Id { get; set; }
+        private long _id;
+
+        public string HashId { get; set; }
+
+        public long Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+            }
+        }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "EstadoObrigatorio")]
         [Display(ResourceType = typeof(Rotulos), Name = "Estado")]

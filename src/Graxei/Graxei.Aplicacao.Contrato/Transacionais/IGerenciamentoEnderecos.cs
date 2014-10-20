@@ -4,6 +4,6 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
 {
     public interface IGerenciamentoEnderecos : ITransacional
     {
-        Endereco Salvar(Endereco endereco);
+        Endereco Salvar(Endereco endereco, Usuario usuario);
     }
 }

@@ -8,12 +8,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
+        private DateTime date;
+
+        public HomeController()
+        {
+            date = DateTime.Now;
+        }
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
-            return View();
+            return View(date);
         }
 
         public ActionResult Pesquisar(string txtSearch)

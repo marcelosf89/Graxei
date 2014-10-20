@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Graxei.Apresentacao.MVC4Unity.Models;
+using Graxei.Modelo;
 
 namespace Graxei.Apresentacao.MVC4Unity.Binders
 {
@@ -10,10 +11,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Binders
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             /* TODO: Checar se o fato de o usuário não existir na sessão deve ser aceito*/
-            UsuarioLogado usuario = (UsuarioLogado)controllerContext.HttpContext.Session[Constantes.UsuarioAtual];
+            Usuario usuario = (Usuario)controllerContext.HttpContext.Session[Constantes.UsuarioAtual];
             if (usuario == null)
             {
-                usuario = new UsuarioLogado();
+                usuario = new Usuario();
                 controllerContext.HttpContext.Session[Constantes.UsuarioAtual] = usuario;
             }
             return usuario;

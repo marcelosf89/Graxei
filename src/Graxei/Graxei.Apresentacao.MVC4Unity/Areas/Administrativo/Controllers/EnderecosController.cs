@@ -10,6 +10,7 @@ using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Entidades;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -51,8 +52,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             try
             {
-                Bairro bairro = _consultasBairros.Get(enderecoModel.Bairro, enderecoModel.Cidade, enderecoModel.IdEstado);
+                Bairro bairro = new BairrosBuilder(_consultasBairros, _consultasCidades, _consultasEstados)
+                    .SetBairro(enderecoModel.Bairro)
+                    .SetCidade(enderecoModel.Cidade)
+                    .SetEstado(enderecoModel.IdEstado)
+                    .Build();
                 Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
+                if (loja == null)
+                {
+                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada", enderecoModel.IdLoja));
+                }
                 EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultaEnderecos);
                 Endereco endereco = enderecosBuilder
                         .SetId(enderecoModel.Id)
@@ -62,7 +71,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                         .SetLoja(loja)
                         .SetBairro(bairro)
                         .Build();
-                _gerenciamentoEnderecos.Salvar(endereco);
+                _gerenciamentoEnderecos.Salvar(endereco, null);
                 List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
                 List<EnderecoListaModel> listaEnderecos = new List<EnderecoListaModel>();
                 foreach (Endereco end in enderecos)

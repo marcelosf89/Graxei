@@ -1,6 +1,8 @@
 using System.Web.Mvc;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure;
+using Graxei.Transversais.Utilidades.Autenticacao;
+using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
 
@@ -20,7 +22,8 @@ namespace Graxei.Apresentacao.MVC4Unity
     private static IUnityContainer BuildUnityContainer()
     {
       IUnityContainer container = new UnityContainer();
-      container.RegisterType<EnderecosViewModelEntidade>();      
+      container.RegisterType<EnderecosViewModelEntidade>();
+        container.RegisterType<IGerenciadorAutenticacao, GerenciadorAutenticacaoSessaoHttp>();
       RegisterTypes(container);
 
       return container;

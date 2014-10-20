@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FAST.Utils;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;
@@ -48,6 +49,15 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public Endereco Get(long idEndereco)
         {
             return SessaoAtual.Query<Endereco>().FirstOrDefault(p => p.Id == idEndereco);
+        }
+
+        public bool UsuarioAssociado(Endereco endereco, Usuario usuario)
+        {
+            Usuario usuarioResult = null;
+            return SessaoAtual.QueryOver<Endereco>().Where(p => p.Id == endereco.Id)
+                              .JoinQueryOver(p => p.Loja)
+                              .JoinQueryOver(q => q.Usuarios, () => usuarioResult)
+                              .Where(() => usuarioResult.Id == usuario.Id).RowCount() > 0;
         }
 
         #endregion

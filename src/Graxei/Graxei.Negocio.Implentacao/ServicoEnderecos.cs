@@ -4,6 +4,7 @@ using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Comportamento;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 
@@ -12,9 +13,10 @@ namespace Graxei.Negocio.Implementacao
     public class ServicoEnderecos : GravacaoTemplateMethod<Endereco>, IServicoEnderecos
     {
 
-        public ServicoEnderecos(IRepositorioEnderecos repositorioEnderecos)
+        public ServicoEnderecos(IRepositorioEnderecos repositorioEnderecos, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             _repositorioEnderecos = repositorioEnderecos;
+            _gerenciadorAutenticacao = gerenciadorAutenticacao;
         }
         
         public enum AtributosOrdem { Sigla, Nome }
@@ -93,12 +95,13 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new OperacaoEntidadeException("O endereço deve ter um número");
             }
-            if (endereco.Bairro == null || UtilidadeEntidades.IsTransiente(endereco.Bairro))
+            if (endereco.Bairro == null)//// || UtilidadeEntidades.IsTransiente(endereco.Bairro))
             {
                 throw new OperacaoEntidadeException("O endereço deve possuir um bairro");
             }
         }
 
         private IRepositorioEnderecos _repositorioEnderecos;
+        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
     }
 }

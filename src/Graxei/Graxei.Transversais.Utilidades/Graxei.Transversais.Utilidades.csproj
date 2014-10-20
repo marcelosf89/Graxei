@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autenticacao\GerenciadorAutenticacao.cs" />
+    <Compile Include="Autenticacao\Interfaces\IGerenciadorAutenticacao.cs" />
     <Compile Include="Entidades\EstadoOrdem.cs" />
     <Compile Include="Excecoes\AutenticacaoException.cs" />
     <Compile Include="Excecoes\RepetidoEmColecaoException.cs" />
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\FAST\FAST.csproj">
       <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
       <Name>FAST</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
+      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
+      <Name>Graxei.Modelo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

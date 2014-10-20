@@ -28,7 +28,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         [HttpPost]
         [LimpezaSessaoNovaLoja]
-        public ActionResult Nova(UsuarioLogado usuario, LojaModel item)
+        public ActionResult Nova(Usuario usuario, LojaModel item)
         {
             if (!ModelState.IsValid)
             {
@@ -37,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             LojaContrato lojaSalva = null;
             try
             {
-                lojaSalva = _gerenciamentoLojas.Salvar(item.LojaContrato, usuario.Usuario);
+                lojaSalva = _gerenciamentoLojas.Salvar(item.LojaContrato, usuario);
             }
             catch (OperacaoEntidadeException ee)
             {
@@ -53,7 +53,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(UsuarioLogado usuario, LojaModel item)
+        public ActionResult Editar(Usuario usuario, LojaModel item)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             try
             {
-                _gerenciamentoLojas.Salvar(item.LojaContrato, usuario.Usuario);
+                _gerenciamentoLojas.Salvar(item.LojaContrato, usuario);
             }
             catch (OperacaoEntidadeException ee)
             {
