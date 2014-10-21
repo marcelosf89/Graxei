@@ -55,6 +55,7 @@
     <Compile Include="Autenticacao\Interfaces\IGerenciadorAutenticacao.cs" />
     <Compile Include="Entidades\EstadoOrdem.cs" />
     <Compile Include="Excecoes\AutenticacaoException.cs" />
+    <Compile Include="Excecoes\SegurancaEntidadeException.cs" />
     <Compile Include="Excecoes\RepetidoEmColecaoException.cs" />
     <Compile Include="Excecoes\ObjetoNaoEncontradoException.cs" />
     <Compile Include="Excecoes\EntidadeInvalidaException.cs" />

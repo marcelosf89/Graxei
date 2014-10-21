@@ -24,16 +24,29 @@ namespace Graxei.Negocio.Implementacao
         public override void PreSalvar(Endereco endereco)
         {
             ValidarEspecificacao(endereco);
+            ChecarSeguranca(endereco);
             Endereco enderecoRepetido = _repositorioEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);
             if (enderecoRepetido != null)
             {
                 throw new OperacaoEntidadeException("Já existe um endereço para esta loja");
             }
         }
-        
+
+        private void ChecarSeguranca(Endereco endereco)
+        {
+            Usuario usuarioLogado = _gerenciadorAutenticacao.Get();
+            bool associado = _repositorioEnderecos.UsuarioAssociado(endereco, usuarioLogado);
+            if (!associado)
+            {
+                throw new SegurancaEntidadeException(string.Format("Usuário {0} não tem acesso à loja {1}", usuarioLogado.Nome,
+                    endereco.Loja.Nome));
+            }
+        }
+
         public override void PreAtualizar(Endereco endereco)
         {
             ValidarEspecificacao(endereco);
+            ChecarSeguranca(endereco);
             Endereco enderecoRepetido = _repositorioEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);
             if (enderecoRepetido != null && enderecoRepetido.Id != endereco.Id)
             {

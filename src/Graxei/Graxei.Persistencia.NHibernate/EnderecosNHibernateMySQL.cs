@@ -54,8 +54,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public bool UsuarioAssociado(Endereco endereco, Usuario usuario)
         {
             Usuario usuarioResult = null;
-            return SessaoAtual.QueryOver<Endereco>().Where(p => p.Id == endereco.Id)
-                              .JoinQueryOver(p => p.Loja)
+            return SessaoAtual.QueryOver<Loja>().Where(p => p.Id == endereco.Loja.Id)
                               .JoinQueryOver(q => q.Usuarios, () => usuarioResult)
                               .Where(() => usuarioResult.Id == usuario.Id).RowCount() > 0;
         }
