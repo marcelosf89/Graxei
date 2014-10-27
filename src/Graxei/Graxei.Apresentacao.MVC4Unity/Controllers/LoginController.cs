@@ -3,6 +3,7 @@ using System.Web.Routing;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
+using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
@@ -10,9 +11,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
     public class LoginController : Controller
     {
 
-        public LoginController(IConsultasLogin consultasUsuarios)
+        public LoginController(IConsultasLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             _consultasLogin = consultasUsuarios;
+            _gerenciadorAutenticacao = gerenciadorAutenticacao;
         }
 
         //
@@ -20,19 +22,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("Autenticacao");
+            //return RedirectToAction("Autenticacao");
             Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
-            Helper.SetUsuarioLogado(Session, usuarioAutenticado);
+            _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             return RedirectToAction("Index", "Home");
-        }
-
-        public string UsuarioLogado(UsuarioLogado usuarioLogado)
-        {
-            if (usuarioLogado == null || usuarioLogado.Usuario == null)
-            {
-                return "Nenhum usuário logado";
-            }
-            return usuarioLogado.Usuario.Nome;
         }
 
         public ActionResult Autenticacao()
@@ -50,7 +43,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                     return PartialView(autenticacao);
                 }
                 Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);
-                Helper.SetUsuarioLogado(Session, usuarioAutenticado);
+                _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             }
             catch (AutenticacaoException ae)
             {
@@ -75,5 +68,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         private IConsultasLogin _consultasLogin;
+        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
     }
 }

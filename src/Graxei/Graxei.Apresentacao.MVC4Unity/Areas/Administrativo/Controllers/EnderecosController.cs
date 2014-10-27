@@ -7,8 +7,10 @@ using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Entidades;
+using Graxei.Transversais.Utilidades.Excecoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -26,29 +28,51 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _gerenciamentoEnderecos = gerenciamentoEnderecos;
         }
 
-        public ActionResult NovoEndereco()
+        public ActionResult NovoEndereco(EnderecoModel enderecoModel)
         {
+            ModelState.Clear();
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView();
+            return PartialView("ModalEndereco", enderecoModel);
+        }
+
+        [HttpGet]
+        public ActionResult Get(long idEndereco)
+        {
+            Endereco endereco = _consultaEnderecos.Get(idEndereco);
+            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos);
+            EnderecoModel item = transformacao.Transformar(endereco);
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return Json(item, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public ActionResult Novo(EnderecoModel enderecoModel)
+        public ActionResult Salvar(EnderecoModel enderecoModel)
         {
             try
             {
-                Bairro bairro = _consultasBairros.Get(enderecoModel.Bairro, enderecoModel.Cidade, enderecoModel.IdEstado);
-                Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
-                Endereco endereco = new EnderecosBuilder()
-                    .SetLogradouro(enderecoModel.Logradouro)
-                    .SetNumero(enderecoModel.Numero)
-                    .SetComplemento(enderecoModel.Complemento)
-                    .SetLoja(loja)
-                    .SetBairro(bairro)
+                Bairro bairro = new BairrosBuilder(_consultasBairros, _consultasCidades, _consultasEstados)
+                    .SetBairro(enderecoModel.Bairro)
+                    .SetCidade(enderecoModel.Cidade)
+                    .SetEstado(enderecoModel.IdEstado)
                     .Build();
-                _gerenciamentoEnderecos.Salvar(endereco);
-                List<Endereco> enderecos = _consultaEnderecos.Get(loja.Id);
+                Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
+                if (loja == null)
+                {
+                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada", enderecoModel.IdLoja));
+                }
+                EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultaEnderecos);
+                Endereco endereco = enderecosBuilder
+                        .SetId(enderecoModel.Id)
+                        .SetLogradouro(enderecoModel.Logradouro)
+                        .SetNumero(enderecoModel.Numero)
+                        .SetComplemento(enderecoModel.Complemento)
+                        .SetLoja(loja)
+                        .SetBairro(bairro)
+                        .Build();
+                _gerenciamentoEnderecos.Salvar(endereco, null);
+                List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
                 List<EnderecoListaModel> listaEnderecos = new List<EnderecoListaModel>();
                 foreach (Endereco end in enderecos)
                 {
@@ -58,8 +82,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             catch (Exception exception)
             {
-                string mensagem = string.Format("{{ Mensagem: {0} }}", exception.Message);
-                return Json(mensagem);
+                return Json(new { Mensagem = exception.Message });
             }
         }
 

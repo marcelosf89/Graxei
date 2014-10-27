@@ -5,6 +5,7 @@ namespace Graxei.Aplicacao.Contrato.Consultas
 {
     public interface IConsultasEnderecos
     {
-        List<Endereco> Get(long idLoja);
+        List<Endereco> GetPorLoja(long idLoja);
+        Endereco Get(long id);
     }
 }

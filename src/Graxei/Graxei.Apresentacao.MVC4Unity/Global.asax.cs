@@ -2,6 +2,7 @@
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Apresentacao.MVC4Unity.Binders;
 using Graxei.Apresentacao.MVC4Unity.Models;
+using Graxei.Modelo;
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -17,12 +18,13 @@ namespace Graxei.Apresentacao.MVC4Unity
     {
         protected void Application_Start()
         {
+            log4net.Config.XmlConfigurator.Configure();
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders.Add(typeof (UsuarioLogado), new UsuariosLogadoBinder());
+            ModelBinders.Binders.Add(typeof (Usuario), new UsuariosLogadoBinder());
             ModelBinders.Binders.Add(typeof(LogotipoNovaLojaModel), new LogoNovaLojaBinder());
             /* TODO: retirar esse trecho de código */
             IUnityContainer cont = Bootstrapper.Initialise();

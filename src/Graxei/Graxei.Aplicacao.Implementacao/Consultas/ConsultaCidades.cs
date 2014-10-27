@@ -17,6 +17,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return _servicoCidades.GetPorEstado(idEstado);
         }
 
+        public Cidade Get(string nome, long idEstado)
+        {
+            return _servicoCidades.Get(nome, idEstado);
+        }
+
         private IServicoCidades _servicoCidades;
     }
 }

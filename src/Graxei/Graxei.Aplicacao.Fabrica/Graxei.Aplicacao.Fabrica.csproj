@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BairrosBuilder.cs" />
     <Compile Include="BootstrapperAplicacao.cs" />
     <Compile Include="EnderecosBuilder.cs" />
     <Compile Include="Excecoes\ModeloDominioConstrucaoException.cs" />

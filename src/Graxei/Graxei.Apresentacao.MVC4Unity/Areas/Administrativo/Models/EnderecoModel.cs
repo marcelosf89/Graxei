@@ -8,11 +8,21 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
     /// </summary>
     public class EnderecoModel
     {
-        public int Indice { get; set; }
+        private long _id;
 
-        public long Id { get; set; }
+        public string HashId { get; set; }
+
+        public long Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+            }
+        }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "EstadoObrigatorio")]
+        [Display(ResourceType = typeof(Rotulos), Name = "Estado")]
         public long IdEstado { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "CidadeObrigatoria")]
@@ -26,7 +36,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         public string Logradouro { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NumeroObrigatorio")]
-
         [StringLength(150, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo250")]
         public string Numero { get; set; }
 

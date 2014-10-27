@@ -8,6 +8,8 @@ namespace Graxei.Persistencia.Contrato
         IList<Endereco> Todos(Loja loja);
         IList<Endereco> Todos(long idLoja);
         Endereco Get(long idLoja, string logradouro, string numero, string complemento, long idBairro);
-        List<Endereco> Get(long idLoja);
+        List<Endereco> GetPorLoja(long idLoja);
+        Endereco Get(long idEndereco);
+        bool UsuarioAssociado(Endereco endereco, Usuario usuario);
     }
 }

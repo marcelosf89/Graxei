@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnderecosTeste.cs" />
     <Compile Include="Integracao\ImplementacaoLojas.cs" />
     <Compile Include="Lojas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

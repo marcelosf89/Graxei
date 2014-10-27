@@ -12,7 +12,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             _servicoEnderecos = servicoEnderecos;
         }
 
-        public Endereco Salvar(Endereco endereco)
+        public Endereco Salvar(Endereco endereco, Usuario usuario)
         {
             IniciarTransacao();
             try

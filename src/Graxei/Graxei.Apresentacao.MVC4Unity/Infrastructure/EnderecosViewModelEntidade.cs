@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.ModelConfiguration.Configuration;
-using Graxei.Aplicacao.Contrato.Consultas;
+﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
@@ -11,15 +10,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
     {
         private readonly IConsultasBairros _consultasBairros;
 
-        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros)
+        private readonly IConsultasEnderecos _consultasEnderecos;
+
+        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros, IConsultasEnderecos consultasEnderecos)
         {
             _consultasBairros = consultasBairros;
+            _consultasEnderecos = consultasEnderecos;
         }
 
         public Endereco Transformar(EnderecoModel contrato)
         {
             Bairro bairro = _consultasBairros.Get(contrato.Bairro, contrato.Cidade, contrato.IdEstado);
-            EnderecosBuilder enderecosBuilder = new EnderecosBuilder();
+            EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultasEnderecos);
             Endereco endereco = enderecosBuilder.SetLogradouro(contrato.Logradouro)
                                                 .SetComplemento(contrato.Complemento)
                                                 .SetNumero(contrato.Numero)
@@ -29,7 +31,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
 
         public EnderecoModel Transformar(Endereco entidade)
         {
-            throw new System.NotImplementedException();
+            EnderecoModel enderecoModel = new EnderecoModel();
+            enderecoModel.Id = entidade.Id;
+            enderecoModel.IdLoja = entidade.Loja.Id;
+            enderecoModel.Bairro = entidade.Bairro.Nome;
+            enderecoModel.Cidade = entidade.Bairro.Cidade.Nome;
+            enderecoModel.Logradouro = entidade.Logradouro;
+            enderecoModel.Numero = entidade.Numero;
+            enderecoModel.Complemento = entidade.Complemento;
+            enderecoModel.IdEstado = entidade.Bairro.Cidade.Estado.Id;
+            return enderecoModel;
         }
     }
 }

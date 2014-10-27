@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comportamento\GravacaoTemplateMethod.cs" />
+    <Compile Include="ISegurancaEndereco.cs" />
     <Compile Include="IServicoAtributos.cs" />
     <Compile Include="IServicoProdutoVendedor.cs" />
     <Compile Include="IEntidadesExcluir.cs" />
