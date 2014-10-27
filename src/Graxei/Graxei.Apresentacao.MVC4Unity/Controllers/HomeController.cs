@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,8 +12,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
     {
         private DateTime date;
 
-        public HomeController()
+        public HomeController(IConsultasProdutoVendedor consultaVendedor)
         {
+            _iConsultasProdutoVendedor = consultaVendedor;
             date = DateTime.Now;
         }
         //
@@ -24,12 +27,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         public ActionResult Pesquisar(string txtSearch)
         {
-            return View();
+            IList<ProdutoVendedor> list = _iConsultasProdutoVendedor.Get(txtSearch);
+            return View(list);
         }
 
         public ActionResult VerLoja()
         {
             return RedirectToAction("VerLoja", "Loja", new { id = 0 });
         }
+
+        IConsultasProdutoVendedor _iConsultasProdutoVendedor;
     }
 }
