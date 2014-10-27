@@ -50,6 +50,7 @@
     <Compile Include="Consultas\ConsultasLojas.cs" />
     <Compile Include="Consultas\ConsultasUsuarios.cs" />
     <Compile Include="Consultas\ConsultasFabricantes.cs" />
+    <Compile Include="Consultas\ConsultasProdutoVendedor.cs" />
     <Compile Include="Transacionais\GerenciamentoEnderecos.cs" />
     <Compile Include="Transacionais\GerenciamentoLojas.cs" />
     <Compile Include="IPadraoTransacao.cs" />

@@ -282,7 +282,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Administrativo\Views\Shared\FormularioEndereco.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Shared\EditarEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Cadastro.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Editar.cshtml" />

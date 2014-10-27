@@ -96,5 +96,10 @@ namespace Graxei.Negocio.Implementacao
 
         #endregion
 
+
+        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto)
+        {
+            return RepositorioEntidades.Todos();
+        }
     }
 }
