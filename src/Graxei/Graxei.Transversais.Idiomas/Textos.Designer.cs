@@ -106,7 +106,7 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Acesso com a Conta do Google.
+        ///   Looks up a localized string similar to Conta do Google.
         /// </summary>
         public static string GoogleAccount {
             get {

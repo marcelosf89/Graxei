@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            @Html.ActionLink(Textos.GoogleAccount, "ContaGoogle", "Login", new { controller = "Login" }, new {@class="btn btn-success"})
+                            @Ajax.IconActionLink("fa fa-google-plus",Textos.GoogleAccount, "ContaGoogle", "Login", new { controller = "Login" },new AjaxOptions(), new {@class="btn btn-block btn-social btn-google-plus"}  )
                         </div>
                     </div>
                     <div class="modal-footer">
