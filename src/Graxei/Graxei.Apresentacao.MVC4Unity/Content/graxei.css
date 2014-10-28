@@ -102,6 +102,10 @@
     border-color: rgba(0,0,0,0.2);
 }
 
+.btn {
+    border-radius: 3px;
+}
+
 .btn-social :first-child {
     position: absolute;
     left: 18px;
