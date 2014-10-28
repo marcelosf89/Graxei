@@ -6,6 +6,8 @@ using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Microsoft.Web.WebPages.OAuth;
+using DotNetOpenAuth.AspNet;
+using System.Web.Security;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
@@ -35,19 +37,24 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
         public ActionResult ContaGoogle()
         {
-                    
+
             return new ExternalLoginResult("Google", Url.Action("ExternalLoginCallback", new { ReturnUrl = "Home" }));
-            //OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false);
         }
 
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
-            var result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
             if (!result.IsSuccessful)
             {
                 return RedirectToAction("ExternalLoginFailure");
             }
+
+            Usuario usuarioAutenticado = _consultasLogin.ServicoUsuarios.GetPorEmail(result.UserName);
+            if (usuarioAutenticado == null)
+                throw new System.Exception("O Usuario não existe");
+
+            FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
 
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
@@ -85,14 +92,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                     return PartialView(autenticacao);
                 }
                 Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);
+                FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
+
                 _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
+
             }
             catch (AutenticacaoException ae)
             {
                 ViewBag.Mensagem = ae.Message;
                 return PartialView(autenticacao);
             }
-            return Json(new {url = Url.Action("Home", "Administrativo")});
+            return Json(new { url = Url.Action("Home", "Administrativo") });
 
             /*Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
