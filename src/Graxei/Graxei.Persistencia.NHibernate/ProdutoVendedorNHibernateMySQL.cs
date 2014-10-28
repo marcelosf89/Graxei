@@ -26,7 +26,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
         }
 
-        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao)
+        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade)
         {
             String sql = @"
                 select pv.* from produtos p 

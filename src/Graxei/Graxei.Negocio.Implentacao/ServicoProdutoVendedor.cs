@@ -99,7 +99,12 @@ namespace Graxei.Negocio.Implementacao
 
         public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto)
         {
-            return Repositorio.GetPorDescricaoPesquisa(texto);
+            return Repositorio.GetPorDescricaoPesquisa(texto, "", "");
+        }
+
+        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade)
+        {
+            return Repositorio.GetPorDescricaoPesquisa(texto, pais, cidade);
         }
     }
 }

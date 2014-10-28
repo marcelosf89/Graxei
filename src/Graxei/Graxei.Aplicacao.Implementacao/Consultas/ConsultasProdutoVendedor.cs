@@ -22,6 +22,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         {
             return ServicoProdutoVendedor.Get(texto);
         }
+
+        public IList<ProdutoVendedor> Get(string texto, string pais, string cidade)
+        {
+            return ServicoProdutoVendedor.Get(texto, pais, cidade);
+        }
         #endregion
 
 

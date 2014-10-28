@@ -12,6 +12,19 @@
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/modernizr")
 
+<script>
+    $(document).ready(function () {
+        $.getJSON("http://www.telize.com/geoip?callback=?",
+            function (json) {
+                $.ajax({
+                    type: "POST",
+                    url: "Home/SetRegionIP",
+                    data: { pais: json.country, cidade: json.city, regiao: json.region_code }
+                });
+            }
+        );
+    });
+</script>
 <div class="navbar-wrapper">
     <div class="container">
         <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">

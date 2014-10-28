@@ -182,6 +182,7 @@
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\Constantes.cs" />
+    <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
