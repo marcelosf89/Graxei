@@ -1,34 +1,105 @@
-﻿<div class="row">
-    <div class="col-md-12">
-        <div class="thumbnail thumbnail-search">
+﻿@model IList<Graxei.Modelo.ProdutoVendedor>
+
+<script>
+
+    function filtroSelecionado(tipofiltro , e) {
+        $.ajax({
+            type: "POST",
+            url: "Home/SetFiltro",
+            data: { filtro: tipofiltro, valor: $(e).val() }
+        });
+    }
+</script>
+@if (!Model.Any())
+{
+    <div class="alert alert-danger" role="alert">
+        <div class="row">
+            <div class="col-md-12">
+                <strong>Não existem resultados para essa pesquisa :c </strong>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-default" data-spy="affix" data-offset-top="60">
+        <div class="panel-body">
             <div class="row">
-                <div class="col-md-2">
-                    @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 60, Height = 71 },
-                         "", "VerLoja", "Loja", new { Controller = "Loja", IdTeste=1 }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
+                <div class="col-md-1">
+                    @Html.DropDownList("estado",
+                    (from mm in Model
+                     from z in mm.Loja.Enderecos
+                     select new SelectListItem()
+                     {
+                         Value = z.Bairro.Cidade.Estado.Id.ToString(),
+                         Text = z.Bairro.Cidade.Estado.Sigla
+                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "estado", onchange="filtroSelecionado('estado',this);" })
                 </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h4>Produto Nome</h4>
+
+                <div class="col-md-2">
+                    @Html.DropDownList("cidade",
+                    (from mm in Model
+                     from z in mm.Loja.Enderecos
+                     select new SelectListItem()
+                     {
+                         Value = z.Bairro.Cidade.Id.ToString(),
+                         Text = z.Bairro.Cidade.Nome
+                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "cidade" , onchange="filtroSelecionado('cidade',this);" })
+                </div>
+                <div class="col-md-2">
+                    @Html.DropDownList("bairro",
+                    (from mm in Model
+                     from z in mm.Loja.Enderecos
+                     select new SelectListItem()
+                     {
+                         Value = z.Bairro.Id.ToString(),
+                         Text = z.Bairro.Nome
+                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "Bairro", onchange="filtroSelecionado('bairro',this);" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@foreach (Graxei.Modelo.ProdutoVendedor pv in Model)
+{    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="thumbnail thumbnail-search">
+                <div class="row">
+                    <div class="col-md-2">
+                        @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 60, Height = 71 },
+                         "", "VerLoja", "Loja", new { Controller = "Loja", IdTeste = pv.Loja.Id }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>@pv.Produto.Codigo</h4>
+                            </div>
+                            <div class="col-md-4">
+                                @foreach (Graxei.Modelo.Telefone tel in @pv.Loja.Enderecos.Where(p => p.Telefones.Any()).Select(p => p.Telefones.FirstOrDefault()))
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @tel.Numero
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            Telefone
+                        <div class="row">
+                            <div class="col-md-12">
+                                @pv.Produto.Descricao
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            Produto Descricao
+                    <div class="col-md-2">
+                        <div class="bs-callout bs-callout-info">
+                            <h4>R$@pv.Preco</h4>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="bs-callout bs-callout-info">
-                        <h4>R$0000,000</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+}
 <div id="myModal"></div>

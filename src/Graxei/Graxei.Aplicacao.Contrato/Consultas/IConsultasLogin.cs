@@ -8,5 +8,7 @@ namespace Graxei.Aplicacao.Contrato.Consultas
         Usuario AutenticarPorLogin(string login, string senha);
         Usuario AutenticarPorEmail(string email, string senha);
         IServicoUsuarios ServicoUsuarios { get;  }
+
+        Usuario GetPorEmail(string email);
     }
 }

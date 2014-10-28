@@ -26,6 +26,19 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
         }
 
+        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade)
+        {
+            String sql = @"
+                select pv.* from produtos p 
+                join produtos_vendedores pv on p.id_produto = pv.id_produto
+                where match(p.descricao, p.codigo) against(:descricao)
+                ";
+            return SessaoAtual.CreateSQLQuery(sql)
+                .AddEntity(typeof(ProdutoVendedor))
+                .SetParameter<String>("descricao",descricao)
+                .List<ProdutoVendedor>();
+        }
+
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
         {
             ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()

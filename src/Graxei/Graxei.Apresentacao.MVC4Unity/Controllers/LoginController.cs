@@ -5,6 +5,9 @@ using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Microsoft.Web.WebPages.OAuth;
+using DotNetOpenAuth.AspNet;
+using System.Web.Security;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
@@ -23,8 +26,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult Index()
         {
             //return RedirectToAction("Autenticacao");
-            Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
-            _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
+            //Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
+            //_gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             return RedirectToAction("Index", "Home");
         }
 
@@ -32,6 +35,54 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
             return View();
         }
+        public ActionResult ContaGoogle()
+        {
+
+            return new ExternalLoginResult("Google", Url.Action("ExternalLoginCallback", new { ReturnUrl = "Home" }));
+        }
+
+        [AllowAnonymous]
+        public ActionResult ExternalLoginCallback(string returnUrl)
+        {
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            if (!result.IsSuccessful)
+            {
+                return RedirectToAction("ExternalLoginFailure");
+            }
+
+            Usuario usuarioAutenticado = _consultasLogin.GetPorEmail(result.UserName);
+            if (usuarioAutenticado == null)
+                throw new System.Exception("O Usuario não existe");
+
+            FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
+
+            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (User.Identity.IsAuthenticated)
+            {
+                // If the current user is logged in add the new account
+                OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                // User is new, ask for their desired membership name
+                string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
+                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+                ViewBag.ReturnUrl = returnUrl;
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult Sair()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
@@ -43,14 +94,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                     return PartialView(autenticacao);
                 }
                 Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin(autenticacao.LoginOuEmail, autenticacao.Senha);
+                FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
+
                 _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
+
             }
             catch (AutenticacaoException ae)
             {
                 ViewBag.Mensagem = ae.Message;
                 return PartialView(autenticacao);
             }
-            return Json(new {url = Url.Action("Home", "Administrativo")});
+            return Json(new { url = Url.Action("Index", "Home") });
 
             /*Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
@@ -69,5 +123,22 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         private IConsultasLogin _consultasLogin;
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
+
+        internal class ExternalLoginResult : ActionResult
+        {
+            public ExternalLoginResult(string provider, string returnUrl)
+            {
+                Provider = provider;
+                ReturnUrl = returnUrl;
+            }
+
+            public string Provider { get; private set; }
+            public string ReturnUrl { get; private set; }
+
+            public override void ExecuteResult(ControllerContext context)
+            {
+                OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
+            }
+        }
     }
 }

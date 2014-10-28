@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LojaController : Controller
     {
+        public LojaController(IConsultasLojas consultasLojas)
+        {
+            _consultasLojas = consultasLojas;
+        }
         //
         // GET: /Loja/
 
@@ -16,10 +22,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View();
         }
 
-        public ActionResult VerLoja(int IdTeste)
+        public ActionResult VerLoja(long IdTeste)
         {
-            return View();
+            Loja loja = _consultasLojas.Get(IdTeste);
+            return View(loja);
         }
 
+
+        private IConsultasLojas _consultasLojas;
     }
 }

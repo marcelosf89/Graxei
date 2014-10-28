@@ -96,5 +96,15 @@ namespace Graxei.Negocio.Implementacao
 
         #endregion
 
+
+        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto)
+        {
+            return Repositorio.GetPorDescricaoPesquisa(texto, "", "");
+        }
+
+        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade)
+        {
+            return Repositorio.GetPorDescricaoPesquisa(texto, pais, cidade);
+        }
     }
 }

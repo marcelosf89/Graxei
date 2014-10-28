@@ -8,7 +8,7 @@
            {
                InsertionMode = InsertionMode.Replace,
                HttpMethod = "POST",
-               OnSuccess =  "loadPage",
+               OnSuccess = "loadPage",
                UpdateTargetId = "myError"
            }; 
         }
@@ -31,17 +31,32 @@
                             </label>
                         </div>
                     }
-                    <label>
-                        @Html.LabelFor(model => model.LoginOuEmail)
-                    </label>
-                    <div class="row form-group">
-                        @Html.TextBoxFor(model => model.LoginOuEmail)
-                    </div>
-                    <label>
-                        @Html.LabelFor(model => model.Senha)
-                    </label>
-                    <div class="row form-group">
-                        @Html.PasswordFor(model => model.Senha)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>
+                                        @Html.LabelFor(model => model.LoginOuEmail)
+                                    </label>
+                                    <div class="row form-group">
+                                        @Html.TextBoxFor(model => model.LoginOuEmail, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>
+                                        @Html.LabelFor(model => model.Senha)
+                                    </label>
+                                    <div class="row form-group">
+                                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.ActionLink(Textos.GoogleAccount, "ContaGoogle", "Login", new { controller = "Login" }, new {@class="btn btn-success"})
+                        </div>
                     </div>
                     <div class="modal-footer">
                         @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
