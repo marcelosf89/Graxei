@@ -31,6 +31,64 @@
     border-left-color: #5bc0de;
 }
 
+.menu-body {
+    width: 15em;
+    top: 3.6em;
+    min-height: 40%;
+    z-index: 800;
+    position: fixed;
+    border: 1px solid rgb(236, 128, 51);
+    background-color: rgb(249, 249, 249);
+    border-radius: 0px 0px 5px 0px;
+    display: none;
+}
+
+.menu-button-open {
+    top: 3.6em;
+    position: fixed;
+    background-color: #ed9c28;
+    z-index: 800;
+    padding: 5px;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+}
+
+.menu-body > ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+    .menu-body > ul > li {
+        width: 100%;
+        background-color: rgb(244, 242, 242);
+        height: 34px;
+        /* padding: 7px; */
+        text-align: justify;
+        vertical-align: middle;
+        color: white;
+        border-bottom: rgb(182, 181, 181) 1px solid;
+    }
+
+.menu-body a {
+    color: black;
+    display: block;
+    height: 33px;
+    text-align: justify;
+    padding: 7px;
+    background-image: linear-gradient(to bottom, #EFEFEF, #EAEAEA);
+}
+
+    .menu-body a:hover, .menu-body a:focus {
+        color: black;
+        text-decoration: none;
+        background-color: rgb(240, 240, 240);
+        background-image: linear-gradient(to bottom, #F4F1F1, #F0F0F0);
+    }
+
+    .menu-body a:active, .menu-body a:hover {
+        outline: 0;
+    }
+
 /*.header {
     background-color: #eee;
     height: 100px;

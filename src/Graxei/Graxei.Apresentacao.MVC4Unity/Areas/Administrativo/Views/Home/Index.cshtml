@@ -1,16 +1,201 @@
-﻿@section Styles{
-    @Styles.Render("~/Content/bootstrap/base")
-    @Styles.Render("~/Content/themes/base/css")
-    @Styles.Render("~/Content/css")
+﻿@{
+    ViewBag.Title = "Index";
 }
+@Styles.Render("~/Content/bootstrap/base")
+@Styles.Render("~/Content/themes/base/css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/modal")
+@Scripts.Render("~/bundles/modernizr")
 
-@section Scripts{
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modal")
-    @Scripts.Render("~/bundles/typeahead")
-    @Scripts.Render("~/bundles/modernizr")
+<script>
+    $(document).ready(function () {
+        $("#openMenu").on("click", function () {
+            $("#menuAdmin").toggle();
 
+            if ($("#openMenu").attr("estaAberto") === "true") {
+                $("#openMenu").css("left", "0em");
+            } else {
+                $("#openMenu").css("left", "15em");
+            }
+
+            $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
+        });
+    });
+</script>
+<div class="navbar-wrapper">
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Graaaxei</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <form class="navbar-form navbar-left" role="search">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning">@User.Identity.Name</button>
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Graxeeei", "Index", "Home", new { controller = "Home", area=""}, new AjaxOptions())
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login", area="" }, new AjaxOptions())</li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="openMenu" class="menu-button-open" estaaberto="false">
+        <i class="glyphicon glyphicon-th-large"></i>
+    </div>
+    <div id="menuAdmin" class="menu-body">
+        <ul>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+        </ul>
+    </div>
 }
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing container-body" id="myContent">
+    <p></p>
+    <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">0</div>
+                                        <div>Comentarios</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Ver Detalhe</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">0</div>
+                                        <div>Produtos sem atualização</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Ver Detalhe</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">124</div>
+                                        <div>Produtos Ativos</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Ver Detalhe</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-support fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">13</div>
+                                        <div>Produtos com o maior preço</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Ver Detalhe</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    <hr class="featurette-divider">
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+    <div id="myModal">
+    </div>
+</div>
+<!-- /.container -->

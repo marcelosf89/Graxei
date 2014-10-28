@@ -23,6 +23,18 @@
                 });
             }
         );
+
+        $("#openMenu").on("click", function () {
+            $("#menuAdmin").toggle();
+
+            if ($("#openMenu").attr("estaAberto") === "true") {
+                $("#openMenu").css("left", "0em");
+            } else {
+                $("#openMenu").css("left", "15em");
+            }
+
+            $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
+        });
     });
 </script>
 <div class="navbar-wrapper">
@@ -62,7 +74,7 @@
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>@Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area="Administrativo" }, new AjaxOptions())
+                                            <li>@Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area = "Administrativo" }, new AjaxOptions())
                                             </li>
                                             <li class="divider"></li>
                                             <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login" }, new AjaxOptions())</li>
@@ -85,7 +97,28 @@
         </div>
     </div>
 </div>
-
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="openMenu" class="menu-button-open" estaaberto="false">
+        <i class="glyphicon glyphicon-th-large"></i>
+    </div>
+    <div id="menuAdmin" class="menu-body">
+        <ul>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+            <li><a href="#cadastroLoja">Loja </a></li>
+        </ul>
+    </div>
+}
 <!-- Marketing messaging and featurettes
     ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
