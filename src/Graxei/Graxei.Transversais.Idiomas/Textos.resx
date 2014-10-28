@@ -132,6 +132,9 @@
   <data name="EsqueceuSuaSenha" xml:space="preserve">
     <value>Esqueceu sua senha?</value>
   </data>
+  <data name="GoogleAccount" xml:space="preserve">
+    <value>Acesso com a Conta do Google</value>
+  </data>
   <data name="NenhumLogo" xml:space="preserve">
     <value>Nenhum logotipo para a loja</value>
   </data>

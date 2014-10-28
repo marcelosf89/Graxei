@@ -5,6 +5,7 @@ using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Microsoft.Web.WebPages.OAuth;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
@@ -32,6 +33,47 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
             return View();
         }
+        public ActionResult ContaGoogle()
+        {
+                    
+            return new ExternalLoginResult("Google", Url.Action("ExternalLoginCallback", new { ReturnUrl = "Home" }));
+            //OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ExternalLoginCallback(string returnUrl)
+        {
+            var result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            if (!result.IsSuccessful)
+            {
+                return RedirectToAction("ExternalLoginFailure");
+            }
+
+            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
+            {
+                return Json(new { url = Url.Action("Home", "Administrativo") });
+                //return RedirectToLocal(returnUrl);
+            }
+
+            if (User.Identity.IsAuthenticated)
+            {
+                // If the current user is logged in add the new account
+                OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
+                //return RedirectToLocal(returnUrl);
+                return Json(new { url = Url.Action("Home", "Administrativo") });
+            }
+            else
+            {
+                // User is new, ask for their desired membership name
+                string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
+                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+                ViewBag.ReturnUrl = returnUrl;
+                //return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
+                return Json(new { url = Url.Action("Home", "Administrativo") });
+            }
+        }
+
+
         [HttpPost]
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
@@ -69,5 +111,22 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         private IConsultasLogin _consultasLogin;
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
+
+        internal class ExternalLoginResult : ActionResult
+        {
+            public ExternalLoginResult(string provider, string returnUrl)
+            {
+                Provider = provider;
+                ReturnUrl = returnUrl;
+            }
+
+            public string Provider { get; private set; }
+            public string ReturnUrl { get; private set; }
+
+            public override void ExecuteResult(ControllerContext context)
+            {
+                OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
+            }
+        }
     }
 }

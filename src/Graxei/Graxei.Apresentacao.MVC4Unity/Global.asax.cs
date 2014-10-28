@@ -24,6 +24,7 @@ namespace Graxei.Apresentacao.MVC4Unity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AuthConfig.RegisterAuth();
             ModelBinders.Binders.Add(typeof (Usuario), new UsuariosLogadoBinder());
             ModelBinders.Binders.Add(typeof(LogotipoNovaLojaModel), new LogoNovaLojaBinder());
             /* TODO: retirar esse trecho de código */
