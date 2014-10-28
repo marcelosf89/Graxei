@@ -22,12 +22,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
         //
         // GET: /Home/
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(date);
         }
 
+        [AllowAnonymous]
         public ActionResult Pesquisar(string txtSearch)
         {
             IList<ProdutoVendedor> list;
@@ -41,6 +42,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public void SetRegionIP(string pais, string cidade, string regiao)
         {
             IpRegiaoModel ir = new IpRegiaoModel()
@@ -53,12 +55,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return;
         }
 
+        [AllowAnonymous]
         public ActionResult VerLoja()
         {
             return RedirectToAction("VerLoja", "Loja", new { id = 0 });
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public void SetFiltro(string filtro, string valor)
         {
 

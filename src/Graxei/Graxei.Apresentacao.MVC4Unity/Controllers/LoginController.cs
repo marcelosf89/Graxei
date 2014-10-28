@@ -13,7 +13,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LoginController : Controller
     {
-
         public LoginController(IConsultasLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             _consultasLogin = consultasUsuarios;
@@ -22,7 +21,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         //
         // GET: /Login/
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             //return RedirectToAction("Autenticacao");
@@ -30,11 +29,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             return RedirectToAction("Index", "Home");
         }
-
+        [AllowAnonymous]
         public ActionResult Autenticacao()
         {
             return View();
         }
+        [AllowAnonymous]
         public ActionResult ContaGoogle()
         {
 
@@ -76,7 +76,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        [AllowAnonymous]
         public ActionResult Sair()
         {
             FormsAuthentication.SignOut();
@@ -84,6 +84,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
         {
             /* TODO: ver como será o tratamento de autenticação, que pode (ou poderia) ser login ou e-mail */
@@ -111,12 +112,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return Json(new { url = Url.Action("Home","Administrativo") });*/
         }
 
+        [AllowAnonymous]
         public ActionResult RedefinirSenha()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public void RedefinirSenha(object obj)
         {
         }
