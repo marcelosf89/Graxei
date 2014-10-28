@@ -54,10 +54,10 @@
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>@Html.ActionLink("Graxeeei", "Index", "Home", new { controller = "Home", area=""}, new AjaxOptions())
+                                            <li>@Html.ActionLink("Graxeeei", "Index", "Home", new { controller = "Home", area = "" }, new AjaxOptions())
                                             </li>
                                             <li class="divider"></li>
-                                            <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login", area="" }, new AjaxOptions())</li>
+                                            <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login", area = "" }, new AjaxOptions())</li>
                                         </ul>
                                     </div>
                                 </form>
@@ -76,18 +76,8 @@
     </div>
     <div id="menuAdmin" class="menu-body">
         <ul>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
-            <li><a href="#cadastroLoja">Loja </a></li>
+            <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Lojas", "Index", "Lojas", new { controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "" })</li>
+
         </ul>
     </div>
 }
@@ -98,95 +88,95 @@
 <div class="container marketing container-body" id="myContent">
     <p></p>
     <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-comments fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">0</div>
-                                        <div>Comentarios</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Ver Detalhe</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-tasks fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">0</div>
-                                        <div>Produtos (atualização)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Ver Detalhe</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-shopping-cart fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
-                                        <div>Produtos (ativos)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Ver Detalhe</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Produtos (maior preço)</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Ver Detalhe</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">0</div>
+                            <div>Comentarios</div>
                         </div>
                     </div>
                 </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Ver Detalhe</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">0</div>
+                            <div>Produtos (atualização)</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Ver Detalhe</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>Produtos (ativos)</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Ver Detalhe</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Produtos (maior preço)</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">Ver Detalhe</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
     <hr class="featurette-divider">
 
 
