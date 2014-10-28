@@ -12,3 +12,4 @@ _Resharper*/
 src/Graxei/TestResults
 src/Graxei/TestResults/*
 src/Graxei/Graxei.Apresentacao.MVC4Unity/log.txt
+packages/
