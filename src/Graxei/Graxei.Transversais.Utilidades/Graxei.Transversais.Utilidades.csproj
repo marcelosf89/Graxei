@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Autenticacao\GerenciadorAutenticacao.cs" />
     <Compile Include="Autenticacao\Interfaces\IGerenciadorAutenticacao.cs" />
+    <Compile Include="Constantes.cs" />
     <Compile Include="Entidades\EstadoOrdem.cs" />
     <Compile Include="Excecoes\AutenticacaoException.cs" />
     <Compile Include="Excecoes\SegurancaEntidadeException.cs" />

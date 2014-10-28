@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Graxei.Aplicacao.Contrato;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
@@ -22,6 +20,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         public Loja Get(long id)
         {
             return _servicoLojas.GetPorId(id);
+        }
+
+        public Loja GetComEnderecos(long id)
+        {
+            return _servicoLojas.GetComEnderecos(id);
         }
 
         public Loja GetPorNome(string nome)

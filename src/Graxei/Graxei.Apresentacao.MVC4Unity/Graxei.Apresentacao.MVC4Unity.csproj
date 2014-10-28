@@ -201,7 +201,6 @@
     </Compile>
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
-    <Compile Include="Models\Constantes.cs" />
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -304,7 +303,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Administrativo\Views\Shared\FormularioEndereco.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Lojas\Novo.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Loja.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Cadastro.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Editar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\ListaEnderecos.cshtml" />
@@ -312,7 +311,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Administrativo\Views\Lojas\NovaLojaAjax.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\LojaAjax.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

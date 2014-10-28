@@ -37,6 +37,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             throw new System.NotImplementedException();
         }
 
+        public Loja GetComEnderecos(long id)
+        {
+            return SessaoAtual.QueryOver<Loja>().Where(p => p.Id == id).Fetch(p => p.Enderecos).Eager.SingleOrDefault();
+        }
+
         #endregion
 
         public new void Excluir(Loja loja)

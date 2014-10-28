@@ -26,8 +26,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult Index()
         {
             //return RedirectToAction("Autenticacao");
-            //Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
-            //_gerenciadorAutenticacao.Registrar(usuarioAutenticado);
+            Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
+            _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             return RedirectToAction("Index", "Home");
         }
 

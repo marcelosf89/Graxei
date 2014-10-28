@@ -6,5 +6,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
     {
         Loja Get(long id);
         Loja GetPorNome(string nome);
+        Loja GetComEnderecos(long id);
     }
 }

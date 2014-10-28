@@ -77,6 +77,11 @@ namespace Graxei.Negocio.Implementacao
             return Salvar(loja);
         }
 
+        public Loja GetComEnderecos(long id)
+        {
+            return RepositorioLojas.GetComEnderecos(id);
+        }
+
         #endregion
 
         #region Atributos Privados
