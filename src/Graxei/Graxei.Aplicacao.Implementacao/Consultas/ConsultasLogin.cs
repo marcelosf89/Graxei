@@ -26,8 +26,16 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return ServicoUsuarios.AutenticarPorEmail(email, senha);
         }
 
+        public Usuario GetPorEmail(string email)
+        {
+            return ServicoUsuarios.GetPorEmail(email);
+        }
+
         public IServicoUsuarios ServicoUsuarios { get; private set; }
 
         #endregion
+
+
+
     }
 }

@@ -49,13 +49,36 @@
                         </div>
                     }
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li>
-                            <form class="navbar-form navbar-left" role="search">
-                                @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success" })
-                            </form>
-                        </li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <form class="navbar-form navbar-left" role="search">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning">@User.Identity.Name</button>
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>@Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area="Administrativo" }, new AjaxOptions())
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login" }, new AjaxOptions())</li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <form class="navbar-form navbar-left" role="search">
+                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success" })
+                                </form>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

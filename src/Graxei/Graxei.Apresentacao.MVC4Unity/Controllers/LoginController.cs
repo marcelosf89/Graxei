@@ -26,8 +26,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult Index()
         {
             //return RedirectToAction("Autenticacao");
-            Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
-            _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
+            //Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
+            //_gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             return RedirectToAction("Index", "Home");
         }
 
@@ -50,7 +50,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 return RedirectToAction("ExternalLoginFailure");
             }
 
-            Usuario usuarioAutenticado = _consultasLogin.ServicoUsuarios.GetPorEmail(result.UserName);
+            Usuario usuarioAutenticado = _consultasLogin.GetPorEmail(result.UserName);
             if (usuarioAutenticado == null)
                 throw new System.Exception("O Usuario não existe");
 
@@ -58,7 +58,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {
-                return Json(new { url = Url.Action("Home", "Administrativo") });
+                return Json(new { url = Url.Action("Index", "Home") });
                 //return RedirectToLocal(returnUrl);
             }
 
@@ -67,7 +67,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 // If the current user is logged in add the new account
                 OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
                 //return RedirectToLocal(returnUrl);
-                return Json(new { url = Url.Action("Home", "Administrativo") });
+                return Json(new { url = Url.Action("Index", "Home") });
             }
             else
             {
@@ -76,10 +76,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
                 ViewBag.ReturnUrl = returnUrl;
                 //return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
-                return Json(new { url = Url.Action("Home", "Administrativo") });
+                return Json(new { url = Url.Action("Index", "Home") });
             }
         }
 
+        public ActionResult Sair()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpPost]
         public ActionResult Autenticacao(AutenticacaoModel autenticacao)
@@ -102,7 +107,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 ViewBag.Mensagem = ae.Message;
                 return PartialView(autenticacao);
             }
-            return Json(new { url = Url.Action("Home", "Administrativo") });
+            return Json(new { url = Url.Action("Index", "Home") });
 
             /*Usuario usuarioAutenticado = _consultasLogin.AutenticarPorLogin("admingraxei", "graxei");
             Helper.SetUsuarioLogado(Session, usuarioAutenticado);
