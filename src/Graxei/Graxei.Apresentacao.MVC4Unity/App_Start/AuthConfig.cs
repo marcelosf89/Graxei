@@ -25,7 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity
             //    appId: "",
             //    appSecret: "");
 
-            OAuthWebSecurity.RegisterGoogleClient();
+            OAuthWebSecurity.RegisterGoogleClient("Graxei");
         }
     }
 }
