@@ -1,4 +1,4 @@
-﻿    @model LojaModel
+﻿@model LojaModel
 @{
     AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST" };
     using (Ajax.BeginForm("Nova", "Lojas", null, ajax, new { @class = "form-horizontal" }))

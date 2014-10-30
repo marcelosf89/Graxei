@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Transversais.Utilidades;
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
 {
