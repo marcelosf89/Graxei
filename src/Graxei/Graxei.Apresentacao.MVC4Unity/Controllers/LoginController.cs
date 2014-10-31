@@ -8,6 +8,7 @@ using Graxei.Transversais.Utilidades.Excecoes;
 using Microsoft.Web.WebPages.OAuth;
 using DotNetOpenAuth.AspNet;
 using System.Web.Security;
+using DotNetOpenAuth.GoogleOAuth2;
 
 namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
@@ -44,22 +45,23 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
+            GoogleOAuth2Client.RewriteRequest();
             AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
             if (!result.IsSuccessful)
             {
                 return RedirectToAction("ExternalLoginFailure");
             }
 
-            Usuario usuarioAutenticado = _consultasLogin.GetPorEmail(result.UserName);
+            Usuario usuarioAutenticado = _consultasLogin.GetPorEmail(result.ExtraData["email"]);
             if (usuarioAutenticado == null)
                 throw new System.Exception("O Usuario não existe");
 
             FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
 
-            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            //if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
 
             if (User.Identity.IsAuthenticated)
             {

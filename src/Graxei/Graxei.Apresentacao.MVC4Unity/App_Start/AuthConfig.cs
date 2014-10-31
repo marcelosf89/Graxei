@@ -1,4 +1,5 @@
-﻿using Microsoft.Web.WebPages.OAuth;
+﻿using DotNetOpenAuth.GoogleOAuth2;
+using Microsoft.Web.WebPages.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,13 @@ namespace Graxei.Apresentacao.MVC4Unity
             //    appId: "",
             //    appSecret: "");
 
-            OAuthWebSecurity.RegisterGoogleClient("Graxei");
+            GoogleOAuth2Client client = new GoogleOAuth2Client(
+                "1062710923467-mmgn82tvr3vras1kqtgueuv67r0amol7.apps.googleusercontent.com", 
+                "T8VxdJKc-_zRj0OrivO8C5pR");
+            Dictionary<string, object> extraData = new Dictionary<string, object>();
+            OAuthWebSecurity.RegisterClient(client, "Google", extraData);
+
+            //OAuthWebSecurity.RegisterGoogleClient("Graxei");
         }
     }
 }
