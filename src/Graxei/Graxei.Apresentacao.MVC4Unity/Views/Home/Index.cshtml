@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-@model DateTime
+@model String
 @Styles.Render("~/Content/bootstrap/base")
 @Styles.Render("~/Content/themes/base/css")
 @Styles.Render("~/Content/css")
@@ -51,10 +51,10 @@
                     <a class="navbar-brand" href="#">Graaaxei</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-form navbar-left", role = "search" }))
+                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod= "GET" }, new { @class = "navbar-form navbar-left", role = "search" }))
                     {	  
                         <div class="input-group nav-search">
-                            @Html.TextBox("txtSearch", null, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar })
+                            @Html.TextBox("txtSearch", Model, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar })
                             <span class="input-group-btn">
                                 <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                             </span>
@@ -68,8 +68,8 @@
                             <li>
                                 <form class="navbar-form navbar-left" role="search">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-warning">@User.Identity.Name</button>
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                            @User.Identity.Name                                        
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>

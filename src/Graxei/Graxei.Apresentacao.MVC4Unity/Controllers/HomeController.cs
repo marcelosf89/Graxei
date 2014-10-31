@@ -13,19 +13,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
-        private DateTime date;
-
         public HomeController(IConsultasProdutoVendedor consultaVendedor)
         {
             _iConsultasProdutoVendedor = consultaVendedor;
-            date = DateTime.Now;
         }
         //
         // GET: /Home/
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(string txtSearch)
         {
-            return View(date);
+            return View(txtSearch);
         }
 
         [AllowAnonymous]
