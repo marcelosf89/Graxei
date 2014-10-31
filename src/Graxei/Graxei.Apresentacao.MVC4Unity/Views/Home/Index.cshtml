@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Graxei";
 }
 @model String
 @Styles.Render("~/Content/bootstrap/base")
@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Graaaxei</a>
+                    <a class="navbar-brand" href="#"><img src="/Content/imagens/graxei_logo.png" width="32px" height="32px"> raxei</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod= "GET" }, new { @class = "navbar-form navbar-left", role = "search" }))
