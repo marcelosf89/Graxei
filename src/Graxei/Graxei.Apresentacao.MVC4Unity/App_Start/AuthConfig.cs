@@ -27,8 +27,8 @@ namespace Graxei.Apresentacao.MVC4Unity
             //    appSecret: "");
 
             GoogleOAuth2Client client = new GoogleOAuth2Client(
-                "1062710923467-mmgn82tvr3vras1kqtgueuv67r0amol7.apps.googleusercontent.com", 
-                "T8VxdJKc-_zRj0OrivO8C5pR");
+                "329386834568-nfgtohevn3maqca3at0gvqqd17plipvt.apps.googleusercontent.com",
+                "FsKU-7qwbJC1XTwsTG54xuym");
             Dictionary<string, object> extraData = new Dictionary<string, object>();
             OAuthWebSecurity.RegisterClient(client, "Google", extraData);
 
