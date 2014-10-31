@@ -1,27 +1,27 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
 @model LojaModel
-
 @{
-    @Html.HiddenFor(p => p.LojaContrato.Id, new { id = "idnovaloja" });
+    @Html.HiddenFor(p => p.LojaContrato.Id, new { id = "idnovaloja" })
     <div class="form-group">
-        <div class="col-xs-offset-5">
+        <div class="col-xs-5 col-md-offset-5">
+            <div>wow</div>
             @Html.Erro()
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-offset-5">
-                    @Html.Sucesso()
+        <div class="col-xs-5">
+            @Html.Sucesso()
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1" })
-        <div class="col-xs-5">
-            @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control", placeholder = "large-12.columns" })
+        @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1 col-md-1" })
+        <div class="col-xs-5 col-md-11">
+            @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-offset-1 col-xs-1">
+        <div class="col-xs-offset-1 col-md-offset-5">
             <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
         </div>
     </div>
