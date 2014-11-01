@@ -30,6 +30,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
             return RedirectToAction("Index", "Home");
         }
+
         [AllowAnonymous]
         public ActionResult Autenticacao()
         {

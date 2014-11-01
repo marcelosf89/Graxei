@@ -61,6 +61,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loja atualizada.
+        /// </summary>
+        public static string LojaAtualizada {
+            get {
+                return ResourceManager.GetString("LojaAtualizada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loja incluída.
         /// </summary>
         public static string LojaIncluida {

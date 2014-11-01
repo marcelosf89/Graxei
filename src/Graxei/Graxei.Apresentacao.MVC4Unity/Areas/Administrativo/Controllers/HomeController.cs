@@ -8,7 +8,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class HomeController : Controller
     {
-        private DateTime date;
         //
         // GET: /Administrativo/Home/
         

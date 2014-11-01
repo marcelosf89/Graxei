@@ -1,4 +1,6 @@
-﻿using Graxei.Aplicacao.Contrato.Consultas;
+﻿using System.Collections.Generic;
+using System.Web.Routing;
+using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
@@ -14,11 +16,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class LojasController : Controller
     {
-        public LojasController(IGerenciamentoLojas gerenciamentoLojas, IConsultasLojas consultasLojas, ITransformacaoMutua<Loja, LojaContrato> transformacaoMutuaLojas)
+        public LojasController(IConsultasEnderecos consultasEnderecos, IGerenciamentoLojas gerenciamentoLojas, IConsultasLojas consultasLojas, ITransformacaoMutua<Loja, LojaContrato> transformacaoMutuaLojas, IConsultasEstados consultasEstados)
         {
             _gerenciamentoLojas = gerenciamentoLojas;
             _consultasLojas = consultasLojas;
             _transformacaoMutuaLojas = transformacaoMutuaLojas;
+            _consultasEstados = consultasEstados;
+            _consultasEnderecos = consultasEnderecos;
         }
 
         #region ActionResults
@@ -43,13 +47,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         [HttpPost]
         [LimpezaSessaoNovaLoja]
-        public ActionResult Nova(Usuario usuario, LojaModel item)
+        public ActionResult Salvar(Usuario usuario, LojaModel item)
         {
+            if (item != null && item.LojaContrato != null && item.LojaContrato.Id > 0)
+            {
+                return this.EditarNova(usuario, item);
+            }
             if (!ModelState.IsValid)
             {
-                return PartialView("LojaAjax", item);
+                return PartialView("NovaLojaAjax", item);
             }
-            LojaContrato lojaSalva = null;
+            LojaContrato lojaSalva;
             try
             {
                 lojaSalva = _gerenciamentoLojas.Salvar(item.LojaContrato, usuario);
@@ -57,14 +65,39 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             catch (OperacaoEntidadeException ee)
             {
                 ModelState.AddModelError(string.Empty, ee.Message);
-                return PartialView("LojaAjax", item);
+                return PartialView("NovaLojaAjax", item);
             }
             ModelState.Clear();
             item.LojaContrato = lojaSalva;
 
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
-            item.EnderecoModel.IdLoja = item.LojaContrato.Id;
-            return PartialView("LojaAjax", item);
+            return PartialView("NovaLojaAjax", item);
+        }
+
+        [HttpPost]
+        [LimpezaSessaoNovaLoja]
+        public ActionResult EditarNova(Usuario usuario, LojaModel item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("NovaLojaAjax", item);
+            }
+            LojaContrato lojaSalva;
+            try
+            {
+                lojaSalva = _gerenciamentoLojas.Salvar(item.LojaContrato, usuario);
+                lojaSalva = _consultasLojas.GetComEnderecos(lojaSalva.Id);
+            }
+            catch (OperacaoEntidadeException ee)
+            {
+                ModelState.AddModelError(string.Empty, ee.Message);
+                return PartialView("NovaLojaAjax", item);
+            }
+            ModelState.Clear();
+            item.LojaContrato = lojaSalva;
+
+            ViewBag.OperacaoSucesso = Sucesso.LojaAtualizada;
+            return PartialView("NovaLojaAjax", item);
         }
 
         public FileContentResult GetImagem(int idLoja = 0)
@@ -90,7 +123,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private IConsultasLojas _consultasLojas;
         private ITransformacaoMutua<Loja, LojaContrato> _transformacaoMutuaLojas;
         private ITransformacaoMutua<Endereco, EnderecosViewModelEntidade> _transformacaoMutuaEnderecos;
-        
+        private IConsultasEstados _consultasEstados;
+        private IConsultasEnderecos _consultasEnderecos;
+
         #endregion
     }
 }

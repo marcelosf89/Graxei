@@ -1,4 +1,5 @@
 ﻿using Graxei.Modelo;
+using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Aplicacao.Contrato.Consultas
 {
@@ -6,6 +7,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
     {
         Loja Get(long id);
         Loja GetPorNome(string nome);
-        Loja GetComEnderecos(long id);
+        LojaContrato GetComEnderecos(long id);
     }
 }

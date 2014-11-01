@@ -38,18 +38,15 @@ namespace Graxei.Aplicacao.Contrato.TransformacaoDados
             retorno.Id = entidade.Id;
             retorno.Nome = entidade.Nome;
             retorno.Logotipo = entidade.Logotipo;
-            /*foreach (Endereco endereco in entidade.Enderecos)
+            if (entidade.Enderecos != null)
             {
-                EnderecoContrato enderecoContrato = new EnderecoContrato();
-                enderecoContrato.Logradouro = endereco.Logradouro;
-                enderecoContrato.Numero = endereco.Numero;
-                enderecoContrato.Complemento = endereco.Complemento;
-                enderecoContrato.Bairro = endereco.Bairro.Nome;
-                enderecoContrato.Cidade = endereco.Bairro.Cidade.Nome;
-                enderecoContrato.IdEstado = endereco.Bairro.Cidade.Estado.Id;
-                retorno.AdicionarEnderecoContrato(enderecoContrato);
-            }*/
-            return retorno;
+                foreach (Endereco endereco in entidade.Enderecos)
+                {
+                    EnderecoListaContrato enderecoListaContrato = new EnderecoListaContrato(endereco.Id, endereco.ToString());
+                    retorno.AdicionarEndereco(enderecoListaContrato);
+                }
+            }
+            return retorno;    
         }
 
         private IServicoLojas _servicoLojas;

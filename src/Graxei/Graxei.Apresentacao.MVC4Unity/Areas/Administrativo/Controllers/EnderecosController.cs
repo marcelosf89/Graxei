@@ -9,6 +9,7 @@ using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.Excecoes;
 
@@ -73,10 +74,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                         .Build();
                 _gerenciamentoEnderecos.Salvar(endereco, null);
                 List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
-                List<EnderecoListaModel> listaEnderecos = new List<EnderecoListaModel>();
+                List<EnderecoListaContrato> listaEnderecos = new List<EnderecoListaContrato>();
                 foreach (Endereco end in enderecos)
                 {
-                    listaEnderecos.Add(new EnderecoListaModel(end.Id, end.ToString()));
+                    listaEnderecos.Add(new EnderecoListaContrato(end.Id, end.ToString()));
                 }
                 return PartialView("ListaEnderecos", listaEnderecos);
             }

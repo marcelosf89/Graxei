@@ -1,8 +1,9 @@
-﻿@model List<EnderecoListaModel>
+﻿@using Graxei.Transversais.ContratosDeDados
+@model List<Graxei.Transversais.ContratosDeDados.EnderecoListaContrato>
 @{
     ViewBag.Title = "Lista";
 }
-@foreach (EnderecoListaModel enderecoListaModel in Model)
+@foreach (EnderecoListaContrato enderecoListaModel in Model)
 {
     <div class="form-group">
         <div class="col-xs-8">

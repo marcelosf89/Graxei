@@ -1,8 +1,8 @@
-﻿namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
+﻿namespace Graxei.Transversais.ContratosDeDados
 {
-    public class EnderecoListaModel
+    public class EnderecoListaContrato
     {
-        public EnderecoListaModel(long idEndereco, string descricaoEndereco)
+        public EnderecoListaContrato(long idEndereco, string descricaoEndereco)
         {
             IdEndereco = idEndereco;
             DescricaoEndereco = descricaoEndereco;
