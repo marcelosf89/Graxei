@@ -8,6 +8,7 @@
     {
     @Html.HiddenFor(m => m.IdLoja, new { id = "idlojaendereco" })
     @Html.HiddenFor(m => m.Id, new { id = "idHiddenEndereco" })
+    @Html.HiddenFor(m => m.Telefones, new { id = "idTelefones" })
     <div class="form-group">
         <div id="validationEndereco"></div>
         <div class="form-group">
@@ -51,6 +52,14 @@
                 @Html.TextBoxFor(m => m.Complemento, new { @class = "form-control", id = "IdComplemento" })
                 @Html.ValidationMessageFor(m => m.Complemento)
             </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Telefones, new { @class = "control-label col-xs-1" })
+            <div class="col-xs-5">
+                @Html.TextBoxFor(m => m.Telefones, new { @class = "form-control", id = "IdComplemento" })
+                @Html.ValidationMessageFor(m => m.Telefones)
+            </div>
+            <span class="label label-info">@Textos.SepareTelefonesVirgula</span>
         </div>
         <div class="form-group">
             <div class="col-xs-offset-1 col-xs-2">

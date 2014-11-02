@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Routing;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
@@ -69,7 +68,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             ModelState.Clear();
             item.LojaContrato = lojaSalva;
-
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
             return PartialView("NovaLojaAjax", item);
         }

@@ -87,6 +87,9 @@ namespace Graxei.Negocio.Fabrica
                                        container.Resolve<IServicoCidades>(),
                                        container.Resolve<IServicoEstados>()))*/
                             );
+
+            container.RegisterType<IRepositorioTiposTelefone, TiposTelefoneNHibernateMySQL>()
+                     .RegisterType<IServicoTiposTelefone, ServicoTiposTelefone>();
         }
 
     }

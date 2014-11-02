@@ -14,7 +14,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.Excluida);
             References(p => p.Loja);
             References(p => p.Bairro).Cascade.SaveUpdate().Fetch.Join();
-            HasMany(p => p.Telefones).KeyColumn(Constantes.ID_ENDERECO);
+            HasMany(p => p.Telefones).KeyColumn(Constantes.ID_ENDERECO).Cascade.SaveUpdate().Fetch.Join();
             Where("excluida = false");
         }
     }

@@ -50,6 +50,7 @@
     <Compile Include="IRepositorioExcluir.cs" />
     <Compile Include="IRepositorioIrrestrito.cs" />
     <Compile Include="IRepositorioSalvar.cs" />
+    <Compile Include="IRepositorioTiposTelefone.cs" />
     <Compile Include="IRepositorioUsuarios.cs" />
     <Compile Include="IRepositorioEntidades.cs" />
     <Compile Include="IRepositorioFabricantes.cs" />

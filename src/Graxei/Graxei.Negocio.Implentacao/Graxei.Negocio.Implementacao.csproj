@@ -52,6 +52,7 @@
     <Compile Include="ServicoEstados.cs" />
     <Compile Include="ServicoProdutoVendedor.cs" />
     <Compile Include="ServicoTelefones.cs" />
+    <Compile Include="ServicoTiposTelefone.cs" />
     <Compile Include="ServicoUnidadeMedida.cs" />
     <Compile Include="ServicoUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

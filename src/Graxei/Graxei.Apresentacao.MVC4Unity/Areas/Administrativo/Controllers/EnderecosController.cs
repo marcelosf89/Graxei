@@ -18,7 +18,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultasEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos)
+        public EnderecosController(IConsultasEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
         {
             _consultaEnderecos = consultasEnderecos;
             _consultasBairros = consultasBairros;
@@ -27,6 +27,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasCidades = consultasCidades;
             _consultasLogradouros = consultasLogradouros;
             _gerenciamentoEnderecos = gerenciamentoEnderecos;
+            _consultasTiposTelefone = consultasTiposTelefone;
         }
 
         public ActionResult NovoEndereco(EnderecoModel enderecoModel)
@@ -41,7 +42,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult Get(long idEndereco)
         {
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
-            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos);
+            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
             EnderecoModel item = transformacao.Transformar(endereco);
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -61,17 +62,19 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
                 if (loja == null)
                 {
-                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada", enderecoModel.IdLoja));
+                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada",
+                        enderecoModel.IdLoja));
                 }
-                EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultaEnderecos);
+                EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultaEnderecos, _consultasTiposTelefone);
                 Endereco endereco = enderecosBuilder
-                        .SetId(enderecoModel.Id)
-                        .SetLogradouro(enderecoModel.Logradouro)
-                        .SetNumero(enderecoModel.Numero)
-                        .SetComplemento(enderecoModel.Complemento)
-                        .SetLoja(loja)
-                        .SetBairro(bairro)
-                        .Build();
+                    .SetId(enderecoModel.Id)
+                    .SetLogradouro(enderecoModel.Logradouro)
+                    .SetNumero(enderecoModel.Numero)
+                    .SetComplemento(enderecoModel.Complemento)
+                    .SetLoja(loja)
+                    .SetBairro(bairro)
+                    .SetTelefones(enderecoModel.Telefones)
+                    .Build();
                 _gerenciamentoEnderecos.Salvar(endereco, null);
                 List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
                 List<EnderecoListaContrato> listaEnderecos = new List<EnderecoListaContrato>();
@@ -81,9 +84,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 }
                 return PartialView("ListaEnderecos", listaEnderecos);
             }
-            catch (Exception exception)
+            catch (GraxeiException graxeiException)
             {
-                return Json(new { Mensagem = exception.Message });
+                return Json(new {Mensagem = graxeiException.Message});
+            }
+            catch (Exception)
+            {
+                return Json(new { Mensagem = "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos" });
             }
         }
 
@@ -203,6 +210,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private readonly IConsultasEstados _consultasEstados;
         private readonly IConsultasLojas _consultasLojas;
         private readonly IConsultasCidades _consultasCidades;
+        private readonly IConsultasTiposTelefone _consultasTiposTelefone;
         private readonly IGerenciamentoEnderecos _gerenciamentoEnderecos;
 
         #endregion

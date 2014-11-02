@@ -160,6 +160,24 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O número máximo de telefones para esta loja foi atingido.
+        /// </summary>
+        public static string TamanhoMaximoTelefones {
+            get {
+                return ResourceManager.GetString("TamanhoMaximoTelefones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O telefone é obrigatório.
+        /// </summary>
+        public static string TelefoneObrigatorio {
+            get {
+                return ResourceManager.GetString("TelefoneObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Por favor, informe o nome do usuário ou e-mail .
         /// </summary>
         public static string UsuarioEmailObrigatorio {

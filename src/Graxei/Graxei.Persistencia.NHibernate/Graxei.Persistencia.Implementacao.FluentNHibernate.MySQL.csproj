@@ -66,6 +66,7 @@
     <Compile Include="Interfaces\INHiberateMySQL.cs" />
     <Compile Include="ProdutoVendedorNHibernateMySQL.cs" />
     <Compile Include="PadraoNHibernateMySQLLeitura.cs" />
+    <Compile Include="TiposTelefoneNHibernateMySQL.cs" />
     <Compile Include="TelefonesNHibernateMySQL.cs" />
     <Compile Include="LogradourosNHibernateMySQL.cs" />
     <Compile Include="LojasNHibernateMySQL.cs" />

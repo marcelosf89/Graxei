@@ -26,7 +26,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                 url: "{controller}/{action}",
                 defaults: new
                           {
-                              controller = "Home",
+                              controller = "Login",
                               action = "Index",
                               txtSearch = UrlParameter.Optional
                           },

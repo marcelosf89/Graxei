@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
@@ -43,5 +44,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         public string Complemento { get; set; }
 
         public long IdLoja { get; set; }
+        
+        [StringLength(100, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximoTelefones")]
+        public string Telefones { get; set; }
     }
 }

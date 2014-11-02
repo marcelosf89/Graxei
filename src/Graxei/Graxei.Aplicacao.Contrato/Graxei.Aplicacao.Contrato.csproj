@@ -53,6 +53,7 @@
     <Compile Include="Consultas\IConsultasEstados.cs" />
     <Compile Include="Consultas\IConsultasLogin.cs" />
     <Compile Include="Consultas\IConsultasLojas.cs" />
+    <Compile Include="Consultas\IConsultasTiposTelefone.cs" />
     <Compile Include="Consultas\IConsultasUsuarios.cs" />
     <Compile Include="Consultas\IConsultaLogradouros.cs" />
     <Compile Include="Transacionais\IGerenciamentoEnderecos.cs" />

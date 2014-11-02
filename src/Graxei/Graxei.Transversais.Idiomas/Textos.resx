@@ -141,4 +141,7 @@
   <data name="NomeObrigatorio" xml:space="preserve">
     <value>O nome é obrigatório</value>
   </data>
+  <data name="SepareTelefonesVirgula" xml:space="preserve">
+    <value>Separe os telefones por vígula</value>
+  </data>
 </root>

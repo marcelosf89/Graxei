@@ -30,8 +30,9 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasUsuarios, ConsultasUsuarios>()
                 .RegisterType<IConsultasEnderecos, ConsultasEnderecos>()
                 .RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>()
-                .RegisterType < IConsultasFabricantes,ConsultasFabricantes>()
-                .RegisterType<IConsultasProdutoVendedor, ConsultasProdutoVendedor>();
+                .RegisterType<IConsultasFabricantes,ConsultasFabricantes>()
+                .RegisterType<IConsultasProdutoVendedor, ConsultasProdutoVendedor>()
+                .RegisterType<IConsultasTiposTelefone, ConsultasTiposTelefone>();
         }
     }
 }
