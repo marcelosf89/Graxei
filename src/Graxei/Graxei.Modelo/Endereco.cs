@@ -62,6 +62,53 @@ namespace Graxei.Modelo
             return result;
         }
 
+        public virtual void AdicionarTelefone(Telefone telefone)
+        {
+            if (Telefones == null)
+            {
+                Telefones = new List<Telefone>();
+            }
+            Telefones.Add(telefone);
+            telefone.Endereco = this;
+        }
+
+        public virtual void AdicionarTelefones(List<Telefone> telefones)
+        {
+            if (telefones == null)
+            {
+                return;
+            }
+            if (Telefones == null)
+            {
+                Telefones = new List<Telefone>();
+            }
+            else
+            {
+                List<Telefone> novaLista = new List<Telefone>();
+                novaLista.AddRange(telefones);
+                Telefones = novaLista;
+            }
+            ((List<Telefone>)Telefones).AddRange(telefones);
+            foreach (Telefone telefone in telefones)
+            {
+                telefone.Endereco = this;
+            }
+        }
+
+        public virtual void SubstituirTelefones(List<Telefone> telefones)
+        {
+            if (telefones == null)
+            {
+                return;
+            }
+            Telefones = new List<Telefone>();
+            ((List<Telefone>)Telefones).AddRange(telefones);
+            foreach (Telefone telefone in telefones)
+            {
+                telefone.Endereco = this;
+            }
+        }
+
         public override string ToString()
         {
             if (Bairro == null || this.Bairro.Cidade == null || this.Bairro.Cidade.Estado == null)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Fabrica.Excecoes;
@@ -90,7 +91,10 @@ namespace Graxei.Aplicacao.Fabrica
             endereco.Complemento = _complemento;
             endereco.Bairro = _bairro;
             endereco.Loja = _loja;
-            endereco.Telefones = telefones;
+            if (telefones.Any())
+            {
+                endereco.SubstituirTelefones(telefones);    
+            }
             return endereco;
         }
 
@@ -145,8 +149,17 @@ namespace Graxei.Aplicacao.Fabrica
             for (int i = 0; i < listaTelefones.Length; i++)
             {
                 Telefone telefone = new Telefone();
-                telefone.Numero = listaTelefones[i];
+                if (string.IsNullOrEmpty(listaTelefones[i].Trim()))
+                {
+                    throw new GraxeiException("O telefone não pode ser vazio");
+                }
+                if (listaTelefones[i].Length > 15)
+                {
+                    throw new GraxeiException(String.Format("O telefone {0} não pode ser vazio", listaTelefones[i]));
+                }
+                telefone.Numero = listaTelefones[i].Trim();
                 telefone.TipoTelefone = tipoTelefone;
+                retorno.Add(telefone);
             }
             return retorno;
         }

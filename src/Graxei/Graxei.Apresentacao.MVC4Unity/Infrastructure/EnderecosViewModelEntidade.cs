@@ -1,4 +1,5 @@
-﻿using Graxei.Aplicacao.Contrato.Consultas;
+﻿using System.Linq;
+using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
@@ -43,6 +44,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
             enderecoModel.Numero = entidade.Numero;
             enderecoModel.Complemento = entidade.Complemento;
             enderecoModel.IdEstado = entidade.Bairro.Cidade.Estado.Id;
+            if (entidade.Telefones != null && entidade.Telefones.Any())
+            {
+                foreach (Telefone telefone in entidade.Telefones)
+                {
+                    enderecoModel.Telefones += telefone.Numero + ", ";
+                }
+                enderecoModel.Telefones = enderecoModel.Telefones.Substring(0, enderecoModel.Telefones.Length - 2);
+            }
             return enderecoModel;
         }
     }
