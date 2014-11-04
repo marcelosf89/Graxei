@@ -33,7 +33,7 @@
             border-radius: 3px;
         }
 
-        
+
         /* line 515, ../../Scss/Components/_forms.scss */
         .field-validation-error span.error-message {
             display: block;
@@ -67,50 +67,50 @@
     @Scripts.Render("~/bundles/typeahead")
     <script type="text/javascript">
 
-        $("#IdEstado").live("change", (function() {
-                var estado = $("#IdEstado").val();
-                ////alert('aaa');
-                if (estado != 0) {
-                    var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+        $("#IdEstado").live("change", (function () {
+            var estado = $("#IdEstado").val();
+            ////alert('aaa');
+            if (estado != 0) {
+                var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
                     $.post(url, { idEstado: estado },
-                        function() {
+                        function () {
                         });
                 }
-            })
+        })
         );
 
-        $("#IdCidade").live("blur", function() {
-            var estado = $("#IdEstado").val();
-            var nomeCidade = $("#IdCidade").val();
-            if (estado > 0 && nomeCidade.length > 0) {
-                var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+            $("#IdCidade").live("blur", function () {
+                var estado = $("#IdEstado").val();
+                var nomeCidade = $("#IdCidade").val();
+                if (estado > 0 && nomeCidade.length > 0) {
+                    var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
                 $.post(url, { idEstado: estado, cidade: nomeCidade },
-                    function() {
+                    function () {
                     });
             }
         });
 
-        $("#IdBairro").live("blur", function() {
+        $("#IdBairro").live("blur", function () {
             var idEstado = $("#IdEstado").val();
             var nomeCidade = $("#IdCidade").val();
             var nomeBairro = $("#IdBairro").val();
             if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
                 var url = '@Url.Action("BairroSelecionado", "Enderecos")';
                 $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
-                    function() {
+                    function () {
                     });
             }
         });
 
         $("#IdCidade").autocomplete({
-            source: function(request, response) {
+            source: function (request, response) {
                 $.ajax({
                     url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
-                    success: function(data) {
-                        response($.map(data, function(item) {
+                    success: function (data) {
+                        response($.map(data, function (item) {
                             return { value: item };
                         }));
                     }
@@ -119,14 +119,14 @@
         });
 
         $("#IdBairro").autocomplete({
-            source: function(request, response) {
+            source: function (request, response) {
                 $.ajax({
                     url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
-                    success: function(data) {
-                        response($.map(data, function(item) {
+                    success: function (data) {
+                        response($.map(data, function (item) {
                             return { value: item };
                         }));
                     }
@@ -135,14 +135,14 @@
         });
 
         $("#IdLogradouro").autocomplete({
-            source: function(request, response) {
+            source: function (request, response) {
                 $.ajax({
                     url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
-                    success: function(data) {
-                        response($.map(data, function(item) {
+                    success: function (data) {
+                        response($.map(data, function (item) {
                             return { value: item };
                         }));
                     }
@@ -174,7 +174,7 @@
                 url: "@Url.Action("Get", "Enderecos")",
                 type: "GET",
                 data: { idEndereco: id },
-                success: function(data) {
+                success: function (data) {
                     document.getElementById("idlojaendereco").value = data.IdLoja;
                     document.getElementById("IdCidade").value = data.Cidade;
                     document.getElementById("IdBairro").value = data.Bairro;
@@ -211,7 +211,9 @@
 
 <h2>@Rotulos.NovaLoja</h2>
 @{
-    Html.RenderPartial("NovaLojaAjax", Model);
+    <div id="novaloja">
+        @{Html.RenderPartial("NovaLojaAjax", Model);}
+    </div>
     <div id="enderecoAtualizar">
         @{ Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel); }
     </div>

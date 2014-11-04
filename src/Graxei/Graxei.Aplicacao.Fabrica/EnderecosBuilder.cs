@@ -153,9 +153,9 @@ namespace Graxei.Aplicacao.Fabrica
                 {
                     throw new GraxeiException("O telefone não pode ser vazio");
                 }
-                if (listaTelefones[i].Length > 15)
+                if (listaTelefones[i].Length > 20)
                 {
-                    throw new GraxeiException(String.Format("O telefone {0} não pode ser vazio", listaTelefones[i]));
+                    throw new GraxeiException(String.Format("O telefone {0} é muito grande", listaTelefones[i]));
                 }
                 telefone.Numero = listaTelefones[i].Trim();
                 telefone.TipoTelefone = tipoTelefone;

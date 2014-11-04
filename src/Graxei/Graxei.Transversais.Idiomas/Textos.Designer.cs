@@ -133,7 +133,7 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Separe os telefones por vígula.
+        ///   Looks up a localized string similar to Separe os telefones por vírgula.
         /// </summary>
         public static string SepareTelefonesVirgula {
             get {
