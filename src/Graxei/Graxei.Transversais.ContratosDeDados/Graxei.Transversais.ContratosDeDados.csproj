@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnderecoListaContrato.cs" />
+    <Compile Include="Interfaces\IItemLista.cs" />
+    <Compile Include="Interfaces\ILista.cs" />
+    <Compile Include="ListaLojas.cs" />
+    <Compile Include="ListaLojasContrato.cs" />
     <Compile Include="LojaContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

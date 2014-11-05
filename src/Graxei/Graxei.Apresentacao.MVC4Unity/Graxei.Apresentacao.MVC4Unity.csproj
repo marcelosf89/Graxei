@@ -315,7 +315,6 @@
     <Content Include="Areas\Administrativo\Views\Shared\FormularioEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Loja.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Formulario.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Lojas\EditarNova.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\ListaEnderecos.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\ModalEndereco.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -327,8 +326,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\Administrativo\Views\Lojas\Nova.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Lojas\EditarNovaLojaAjax.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\Telefones.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Listar.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

@@ -1,33 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System.Web.Mvc;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
-using System.Web.Mvc;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
-using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class LojasController : Controller
     {
-        public LojasController(IConsultasEnderecos consultasEnderecos, IGerenciamentoLojas gerenciamentoLojas, IConsultasLojas consultasLojas, ITransformacaoMutua<Loja, LojaContrato> transformacaoMutuaLojas, IConsultasEstados consultasEstados)
+        public LojasController(IConsultasEnderecos consultasEnderecos, IGerenciamentoLojas gerenciamentoLojas,
+            IConsultasLojas consultasLojas, ITransformacaoMutua<Loja, LojaContrato> transformacaoMutuaLojas,
+            IConsultasEstados consultasEstados, IConsultasListaLojas consultasListaLojas)
         {
             _gerenciamentoLojas = gerenciamentoLojas;
             _consultasLojas = consultasLojas;
             _transformacaoMutuaLojas = transformacaoMutuaLojas;
             _consultasEstados = consultasEstados;
             _consultasEnderecos = consultasEnderecos;
+            _consultasListaLojas = consultasListaLojas;
         }
 
         #region ActionResults
+
         public ActionResult Index(EnderecoModel item)
         {
-            LojaModel model = new LojaModel { LojaContrato = new LojaContrato(), EnderecoModel = item };
+            var model = new LojaModel {LojaContrato = new LojaContrato(), EnderecoModel = item};
             return View("Loja", model);
         }
 
@@ -36,12 +39,22 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             Loja loja = _consultasLojas.Get(idLoja);
             if (loja != null)
             {
-                LojaContrato lojaContrato =  _transformacaoMutuaLojas.Transformar(loja);
+                LojaContrato lojaContrato = _transformacaoMutuaLojas.Transformar(loja);
 
-                LojaModel model = new LojaModel { LojaContrato = lojaContrato, EnderecoModel = null };
+                var model = new LojaModel {LojaContrato = lojaContrato, EnderecoModel = null};
                 return View("Loja", model);
             }
             return null;
+        }
+
+        public ActionResult Listar(int numeroPagina, int tamanho)
+        {
+            if (numeroPagina <= 0)
+            {
+                numeroPagina = 1;
+            }
+            ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
+            return View("Listar", listaLojas);
         }
 
         [HttpPost]
@@ -50,7 +63,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             if (item != null && item.LojaContrato != null && item.LojaContrato.Id > 0)
             {
-                return this.EditarNova(usuario, item);
+                return EditarNova(usuario, item);
             }
             if (!ModelState.IsValid)
             {
@@ -110,19 +123,19 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
 
             return null;
-
         }
 
         #endregion
-        
+
         #region Atributos Privados
-        
+
+        private readonly IConsultasLojas _consultasLojas;
         private readonly IGerenciamentoLojas _gerenciamentoLojas;
-        private IConsultasLojas _consultasLojas;
-        private ITransformacaoMutua<Loja, LojaContrato> _transformacaoMutuaLojas;
-        private ITransformacaoMutua<Endereco, EnderecosViewModelEntidade> _transformacaoMutuaEnderecos;
-        private IConsultasEstados _consultasEstados;
+        private readonly ITransformacaoMutua<Loja, LojaContrato> _transformacaoMutuaLojas;
         private IConsultasEnderecos _consultasEnderecos;
+        private IConsultasEstados _consultasEstados;
+        private IConsultasListaLojas _consultasListaLojas;
+        private ITransformacaoMutua<Endereco, EnderecosViewModelEntidade> _transformacaoMutuaEnderecos;
 
         #endregion
     }

@@ -140,6 +140,11 @@ namespace Graxei.Aplicacao.Fabrica
         private List<Telefone> GetTelefones(string telefones)
         {
             List<Telefone> retorno = new List<Telefone>();
+            if (string.IsNullOrEmpty(telefones))
+            {
+                return retorno; 
+            }
+            
             TipoTelefone tipoTelefone = _consultasTiposTelefone.Get("Comercial");
             if (tipoTelefone == null)
             {

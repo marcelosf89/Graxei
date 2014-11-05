@@ -90,6 +90,9 @@ namespace Graxei.Negocio.Fabrica
 
             container.RegisterType<IRepositorioTiposTelefone, TiposTelefoneNHibernateMySQL>()
                      .RegisterType<IServicoTiposTelefone, ServicoTiposTelefone>();
+
+            container.RegisterType<IRepositorioListaLojas, ListaLojasNHibernateMySQL>()
+                .RegisterType<IServicoListaLojas, ServicoListaLojas>();
         }
 
     }
