@@ -21,9 +21,9 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 SessaoAtual.QueryOver<Loja>()
                     .JoinQueryOver<Usuario>(p => p.Usuarios)
                     .Where(q => q.Id == usuario.Id)
-                    .Select(
-                        Projections.Property(() => listaLojasContrato.Id),
-                        Projections.Property(() => listaLojasContrato.Nome))
+                    .Select(Projections.ProjectionList()
+                            .Add(Projections.Property("Id"), "Id")
+                            .Add(Projections.Property("Nome"), "Nome"))
                     .TransformUsing(Transformers.AliasToBean<ListaLojasContrato>())
                     .Skip(pagina)
                     .Take(tamanhoPagina)
