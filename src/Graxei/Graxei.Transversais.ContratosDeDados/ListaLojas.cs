@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Graxei.Transversais.ContratosDeDados.Interfaces;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Transversais.ContratosDeDados
 {
@@ -17,7 +18,7 @@ namespace Graxei.Transversais.ContratosDeDados
         {
             if (atual.Atual > total.Total)
             {
-                throw new ArgumentOutOfRangeException("O total da lista não pode ser menor que o item atual");
+                throw new ArgumentOutOfRangeException(ErrosInternos.TotalMenorQueAtual);
             }
             _lista = lista;
             _total = total;

@@ -17,7 +17,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         {
             int total = SessaoAtual
                 .QueryOver<Loja>().JoinQueryOver<Usuario>(p => p.Usuarios).Where(q => q.Id == usuario.Id).RowCount();
-            ListaLojasContrato listaLojasContrato = null;
             IList<ListaLojasContrato> lista =
                 SessaoAtual.QueryOver<Loja>()
                     .JoinQueryOver<Usuario>(p => p.Usuarios)

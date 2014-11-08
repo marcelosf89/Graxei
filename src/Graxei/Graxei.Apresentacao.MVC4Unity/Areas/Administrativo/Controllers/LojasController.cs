@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using DotNetOpenAuth.Messaging;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
@@ -6,6 +8,7 @@ using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
@@ -54,6 +57,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 numeroPagina = 1;
             }
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
+            List<ListaLojasContrato> listaLojasContrato = new List<ListaLojasContrato>();
+            listaLojasContrato.AddRange(listaLojas.Lista);
+            listaLojas = new ListaLojas(listaLojasContrato, new ListaTotalElementos(130), new ListaElementoAtual(numeroPagina));
             return View("Listar", listaLojas);
         }
 

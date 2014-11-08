@@ -1,4 +1,5 @@
-﻿@using Graxei.Transversais.ContratosDeDados
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
+@using Graxei.Transversais.ContratosDeDados
 @model ListaLojas
 
 @{
@@ -8,32 +9,30 @@
     @Styles.Render("~/Content/bootstrap/base")
     @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/css")
-
-    <h2>Listar</h2>
-    <table class="table-hover">
-        <thead>
-            @{
-                foreach (ListaLojasContrato listaLojasContrato in Model.Lista)
-                {
-                <tr>
-                    <th class="col-md-6 col-lg-6">
-                        @listaLojasContrato.Nome
-                    </th>
-                    <th class="col-md-3 col-lg-3">@Html.ActionLink(Rotulos.Editar, "Editar", "Loja", new { idLoja = listaLojasContrato.Id })
-                    </th>
-                </tr>
-                }
+}
+<h2>Listar</h2>
+<table class="table-hover">
+    <thead>
+        @{
+            foreach (ListaLojasContrato listaLojasContrato in Model.Lista)
+            {
+            <tr>
+                <th class="col-md-6 col-lg-6">
+                    @listaLojasContrato.Nome
+                </th>
+                <th class="col-md-3 col-lg-3">@Html.ActionLink(Rotulos.Editar, "Editar", "Loja", new { idLoja = listaLojasContrato.Id })
+                </th>
+            </tr>
             }
-            @Html.LinkPaginacao(Model)
-        </thead>
-    </table>
+        }
+    </thead>
+</table>
 
+@Html.LinkPaginacao(Model)
 
 @section Scripts{
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modal")
-    @Scripts.Render("~/bundles/typeahead")
 }

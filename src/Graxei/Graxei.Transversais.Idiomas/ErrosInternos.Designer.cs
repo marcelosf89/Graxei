@@ -133,11 +133,29 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ListaLojas não pode ser nulo ao criar links de paginação.
+        /// </summary>
+        public static string ListasLojasNula {
+            get {
+                return ResourceManager.GetString("ListasLojasNula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O nome ou estado da cidade não pode ser alterado.
         /// </summary>
         public static string ProibidoAlterarCidade {
             get {
                 return ResourceManager.GetString("ProibidoAlterarCidade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O total da lista não pode ser menor que o item atual.
+        /// </summary>
+        public static string TotalMenorQueAtual {
+            get {
+                return ResourceManager.GetString("TotalMenorQueAtual", resourceCulture);
             }
         }
     }
