@@ -4,6 +4,7 @@ using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Transform;
@@ -28,12 +29,9 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                     .Skip(pagina)
                     .Take(tamanhoPagina)
                     .List<ListaLojasContrato>();
-                    ////.Skip(pagina)
-                    ////.Take(tamanhoPagina).List<Loja>()
-                    
-                    
-                    
-            return new ListaLojas(lista, total);
+            ListaTotalElementos totalElementos = new ListaTotalElementos(total);
+            ListaElementoAtual elementoAtual = new ListaElementoAtual(pagina);
+            return new ListaLojas(lista, totalElementos, elementoAtual);
         }
         
         public ISession SessaoAtual

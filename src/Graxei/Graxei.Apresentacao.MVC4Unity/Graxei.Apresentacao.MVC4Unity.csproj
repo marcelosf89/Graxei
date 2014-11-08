@@ -187,6 +187,7 @@
     <Compile Include="Areas\Administrativo\HtmlHelpers\Mensagens.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoHelper.cs" />
     <Compile Include="Areas\Administrativo\Models\EnderecoModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
