@@ -119,6 +119,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         }
 
+        [AllowAnonymous]
+        public ActionResult _Index()
+        {
+            return PartialView("_Index");
+        }
 
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
     }

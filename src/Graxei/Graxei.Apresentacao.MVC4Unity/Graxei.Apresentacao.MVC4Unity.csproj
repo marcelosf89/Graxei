@@ -384,6 +384,7 @@
     <Content Include="Views\Login\RedefinirSenha.cshtml" />
     <Content Include="Views\Home\Pesquisar.cshtml" />
     <Content Include="Views\Loja\VerLoja.cshtml" />
+    <Content Include="Views\Home\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
