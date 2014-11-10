@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Graxei.Transversais.ContratosDeDados.Interfaces;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Transversais.ContratosDeDados
 {
@@ -7,12 +10,19 @@ namespace Graxei.Transversais.ContratosDeDados
     {
         private IList<ListaLojasContrato> _lista;
 
-        private int _total;
+        private ListaTotalElementos _total;
 
-        public ListaLojas(IList<ListaLojasContrato> lista, int total)
+        private ListaElementoAtual _atual;
+
+        public ListaLojas(IList<ListaLojasContrato> lista, ListaTotalElementos total, ListaElementoAtual atual)
         {
+            if (atual.Atual > total.Total)
+            {
+                throw new ArgumentOutOfRangeException(ErrosInternos.TotalMenorQueAtual);
+            }
             _lista = lista;
             _total = total;
+            _atual = atual;
         }
 
         public IList<ListaLojasContrato> Lista
@@ -20,7 +30,11 @@ namespace Graxei.Transversais.ContratosDeDados
             get { return _lista; }
         }
 
-        public int Total { get { return _total; } 
+        public ListaTotalElementos Total
+        {
+            get { return _total; }
         }
+
+        public ListaElementoAtual Atual { get { return _atual; } }
     }
 }

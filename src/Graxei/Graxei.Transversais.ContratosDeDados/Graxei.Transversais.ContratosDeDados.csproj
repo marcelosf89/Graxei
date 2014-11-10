@@ -47,6 +47,8 @@
     <Compile Include="ListaLojasContrato.cs" />
     <Compile Include="LojaContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinyTypes\ListaElementoAtual.cs" />
+    <Compile Include="TinyTypes\ListaTotalElementos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj">

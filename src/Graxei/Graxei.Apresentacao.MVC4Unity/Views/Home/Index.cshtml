@@ -6,6 +6,7 @@
 @Styles.Render("~/Content/themes/base/css")
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/sc")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/jqueryui")
 @Scripts.Render("~/bundles/bootstrap")
@@ -51,7 +52,7 @@
                     <a class="navbar-brand" href="#"><img src="/Content/imagens/graxei_logo.png" width="32px" height="32px"> raxei</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod= "GET" }, new { @class = "navbar-form navbar-left", role = "search" }))
+                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod= "GET", OnBegin="openL();", OnComplete="closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
                     {	  
                         <div class="input-group nav-search">
                             @Html.TextBox("txtSearch", Model, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar })
@@ -175,4 +176,5 @@
     <div id="myModal">
     </div>
 </div>
+ <div id="msg-display"></div>
 <!-- /.container -->

@@ -2,7 +2,7 @@
 
 <script>
 
-    function filtroSelecionado(tipofiltro , e) {
+    function filtroSelecionado(tipofiltro, e) {
         $.ajax({
             type: "POST",
             url: "Home/SetFiltro",
@@ -22,7 +22,10 @@
 }
 else
 {
-    <div class="panel panel-default" data-spy="affix" data-offset-top="60">
+    <div>
+        <div id="clock1"></div>
+    </div>
+    <div class="panel panel-default hidden-xs  hidden-sm hidden-md hidden-lg" data-spy="affix" data-offset-top="60">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-1">
@@ -33,7 +36,7 @@ else
                      {
                          Value = z.Bairro.Cidade.Estado.Id.ToString(),
                          Text = z.Bairro.Cidade.Estado.Sigla
-                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "estado", onchange="filtroSelecionado('estado',this);" })
+                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "estado", onchange = "filtroSelecionado('estado',this);" })
                 </div>
 
                 <div class="col-md-2">
@@ -44,7 +47,7 @@ else
                      {
                          Value = z.Bairro.Cidade.Id.ToString(),
                          Text = z.Bairro.Cidade.Nome
-                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "cidade" , onchange="filtroSelecionado('cidade',this);" })
+                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "cidade", onchange = "filtroSelecionado('cidade',this);" })
                 </div>
                 <div class="col-md-2">
                     @Html.DropDownList("bairro",
@@ -54,7 +57,7 @@ else
                      {
                          Value = z.Bairro.Id.ToString(),
                          Text = z.Bairro.Nome
-                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "Bairro", onchange="filtroSelecionado('bairro',this);" })
+                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "Bairro", onchange = "filtroSelecionado('bairro',this);" })
                 </div>
             </div>
         </div>
@@ -102,4 +105,48 @@ else
         </div>
     </div>
 }
+<div class="row">
+    <div class="span12">
+        @using (Ajax.BeginForm("PesquisarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
+        {
+            if (ViewBag.PesquisarModel.PaginaSelecionada > 0)
+            {
+            <button class="btn btn-default" name="page" id="btn-a" value="a" tooltip="Anterior">
+                <i class="glyphicon glyphicon-chevron-left"></i> Anterior
+            </button>
+            }
+
+            long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 5) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 4);
+
+            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 5);
+            if ((mIdx - idx) < 10)
+            {
+                mIdx = mIdx + (mIdx - idx);
+            }            
+            
+            for (long i = idx; i < mIdx; i++)
+            {
+
+                if (i == ViewBag.PesquisarModel.PaginaSelecionada)
+                {  
+            <button class="btn btn-default btn-warning" name="page" value="@i" disabled="disabled">
+                <strong>@(i + 1)</strong>
+            </button>
+                }
+                else
+                {
+            <button class="btn btn-default" name="page" value="@i">
+                @(i + 1)
+            </button>
+                }
+            }
+            if (ViewBag.PesquisarModel.PaginaSelecionada != (ViewBag.PesquisarModel.NumeroMaximoPagina - 1))
+            {
+            <button class="btn btn-default" name="page"  id="btn-p" value="p" tooltip="Proximo">
+                <i class="glyphicon glyphicon-chevron-right"></i> Proximo
+            </button>
+            }
+        }
+    </div>
+</div>
 <div id="myModal"></div>

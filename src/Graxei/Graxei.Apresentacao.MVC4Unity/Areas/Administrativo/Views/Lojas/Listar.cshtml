@@ -1,10 +1,15 @@
-﻿@using Graxei.Transversais.ContratosDeDados
-@model Graxei.Transversais.ContratosDeDados.ListaLojas
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
+@using Graxei.Transversais.ContratosDeDados
+@model ListaLojas
 
 @{
     ViewBag.Title = "Listar";
 }
-
+@section Styles{
+    @Styles.Render("~/Content/bootstrap/base")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+}
 <h2>Listar</h2>
 <table class="table-hover">
     <thead>
@@ -20,6 +25,14 @@
             </tr>
             }
         }
-
     </thead>
 </table>
+
+@Html.LinkPaginacao(Model)
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+}

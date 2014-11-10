@@ -141,7 +141,13 @@
   <data name="EstadoInvalido" xml:space="preserve">
     <value>O Estado é inválido</value>
   </data>
+  <data name="ListasLojasNula" xml:space="preserve">
+    <value>ListaLojas não pode ser nulo ao criar links de paginação</value>
+  </data>
   <data name="ProibidoAlterarCidade" xml:space="preserve">
     <value>O nome ou estado da cidade não pode ser alterado</value>
+  </data>
+  <data name="TotalMenorQueAtual" xml:space="preserve">
+    <value>O total da lista não pode ser menor que o item atual</value>
   </data>
 </root>

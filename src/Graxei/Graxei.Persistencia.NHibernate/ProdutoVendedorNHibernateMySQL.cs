@@ -26,7 +26,20 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
         }
 
-        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade)
+        public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
+        {
+            
+            String sql = @"
+                select count(p.id_produto) from produtos p 
+                join produtos_vendedores pv on p.id_produto = pv.id_produto
+                where match(p.descricao, p.codigo) against(:descricao)
+                ";
+            return SessaoAtual.CreateSQLQuery(sql)
+                .SetParameter<String>("descricao", descricao)
+                .UniqueResult<long>();
+        }
+
+        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
             String sql = @"
                 select pv.* from produtos p 
@@ -36,6 +49,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             return SessaoAtual.CreateSQLQuery(sql)
                 .AddEntity(typeof(ProdutoVendedor))
                 .SetParameter<String>("descricao",descricao)
+                .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
+                .SetMaxResults(10)
                 .List<ProdutoVendedor>();
         }
 
