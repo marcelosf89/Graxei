@@ -118,8 +118,8 @@ else
 
             long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 5) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 4);
 
-            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 5);
-            if ((mIdx - idx) < 10)
+            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? (ViewBag.PesquisarModel.NumeroMaximoPagina + 1) : (idx + 5);
+            if ((mIdx - idx) < 10 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
             {
                 mIdx = mIdx + (mIdx - idx);
             }            
