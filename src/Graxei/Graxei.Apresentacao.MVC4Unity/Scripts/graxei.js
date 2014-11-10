@@ -19,6 +19,7 @@ function closeL() {
 }
 
 function initTimer() {
+    return;
     sms++;
     if (sms == 1000) {
         sms = 0; sSecs++;
