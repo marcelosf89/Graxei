@@ -16,5 +16,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return View();
         }
 
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
+        public ActionResult _Index()
+        {
+            return PartialView();
+        }
     }
 }
