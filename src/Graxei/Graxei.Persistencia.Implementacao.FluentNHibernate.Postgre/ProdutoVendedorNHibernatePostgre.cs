@@ -26,16 +26,19 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
         }
 
-        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade)
+        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int pagina)
         {
             String sql = @"
-                select pv.* from produtos p 
+                                select pv.* from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
-                where match(p.descricao, p.codigo) against(:descricao)
+                where similarity(p.descricao,:descricao)  > 0.04
+                order by similarity(p.descricao,:descricao) desc
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
                 .AddEntity(typeof(ProdutoVendedor))
-                .SetParameter<String>("descricao",descricao)
+                .SetParameter<String>("descricao", descricao)
+                .SetFirstResult((pagina * 10) < 0 ? 1 : (pagina * 10))
+                .SetMaxResults(10)
                 .List<ProdutoVendedor>();
         }
 
@@ -82,6 +85,20 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         }
 
         #endregion
+
+
+        public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
+        {
+
+            String sql = @"
+                select count(p.id_produto) from produtos p 
+                join produtos_vendedores pv on p.id_produto = pv.id_produto
+                where similarity(p.descricao,:descricao)  > 0.04
+                ";
+            return SessaoAtual.CreateSQLQuery(sql)
+                .SetParameter<String>("descricao", descricao)
+                .UniqueResult<long>();
+        }
     }
 
 }

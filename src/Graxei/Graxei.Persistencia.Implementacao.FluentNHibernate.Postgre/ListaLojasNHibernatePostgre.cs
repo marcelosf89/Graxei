@@ -7,6 +7,7 @@ using Graxei.Transversais.ContratosDeDados;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Transform;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -16,7 +17,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         {
             int total = SessaoAtual
                 .QueryOver<Loja>().JoinQueryOver<Usuario>(p => p.Usuarios).Where(q => q.Id == usuario.Id).RowCount();
-            ListaLojasContrato listaLojasContrato = null;
             IList<ListaLojasContrato> lista =
                 SessaoAtual.QueryOver<Loja>()
                     .JoinQueryOver<Usuario>(p => p.Usuarios)
@@ -28,12 +28,9 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                     .Skip(pagina)
                     .Take(tamanhoPagina)
                     .List<ListaLojasContrato>();
-                    ////.Skip(pagina)
-                    ////.Take(tamanhoPagina).List<Loja>()
-                    
-                    
-                    
-            return new ListaLojas(lista, total);
+            ListaTotalElementos totalElementos = new ListaTotalElementos(total);
+            ListaElementoAtual elementoAtual = new ListaElementoAtual(pagina);
+            return new ListaLojas(lista, totalElementos, elementoAtual);
         }
         
         public ISession SessaoAtual
