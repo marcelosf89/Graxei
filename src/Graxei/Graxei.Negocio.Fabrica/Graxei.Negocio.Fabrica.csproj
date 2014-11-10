@@ -69,12 +69,17 @@
       <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
       <Name>Graxei.Persistencia.Contrato</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre\Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.csproj">
+      <Project>{30ce3e7b-b1b7-4231-96db-619f72ffd9f4}</Project>
+      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj">
       <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

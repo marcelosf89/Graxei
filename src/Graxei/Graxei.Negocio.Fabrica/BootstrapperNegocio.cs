@@ -14,33 +14,39 @@ namespace Graxei.Negocio.Fabrica
             container.RegisterType<IServicosFabrica, ServicoFabricaUnity>(new ContainerControlledLifetimeManager());
             
             // Usuários
-            container.RegisterType<IRepositorioUsuarios, UsuariosNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioUsuarios, UsuariosNHibernateMySQL>()
+            container.RegisterType<IRepositorioUsuarios, UsuariosNHibernatePostgre>()
                      .RegisterType<IServicoUsuarios, ServicoUsuarios>(
                             /*new InjectionFactory(p => new ServicoUsuarios(container.Resolve<IRepositorioUsuarios>()))*/
                             );
 
             // Lojas
-            container.RegisterType<IRepositorioLojas, LojasNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioLojas, LojasNHibernateMySQL>()
+            container.RegisterType<IRepositorioLojas, LojasNHibernatePostgre>()
                      .RegisterType<IServicoLojas, ServicoLojas>(
                             /*new InjectionFactory(p => new ServicoLojas(container.Resolve<IRepositorioLojas>(),
                                 container.Resolve<IServicoLojaUsuario>(), container.Resolve<IServicoUsuarios>()))*/
                             );
 
             // Produtos
-            container.RegisterType<IRepositorioProdutos, ProdutosNHibernateMySQL>()
+//Mysql              container.RegisterType<IRepositorioProdutos, ProdutosNHibernateMySQL>()
+            container.RegisterType<IRepositorioProdutos, ProdutosNHibernatePostgre>()
                      .RegisterType<IServicoProdutos, ServicoProdutos>(
                             /*new InjectionFactory(p => new ServicoProdutos(container.Resolve<IRepositorioProdutos>()))*/
                             );
 
             // ProdutosVendedores
-            container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorNHibernateMySQL>()
+  //Mysql             container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorNHibernateMySQL>()
+            container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorNHibernatePostgre>()
                      .RegisterType<IServicoProdutoVendedor, ServicoProdutoVendedor>();
 
-            container.RegisterType<IRepositorioAtributos, AtributosNHibernateMySQL>()
+            //Mysql container.RegisterType<IRepositorioAtributos, AtributosNHibernateMySQL>()
+            container.RegisterType<IRepositorioAtributos, AtributosNHibernatePostgre>()
                      .RegisterType<IServicoAtributos, ServicoAtributos>();
 
             // Fabricantes
-            container.RegisterType<IRepositorioFabricantes, FabricantesNHibernateMySQL>()
+          //Mysql  container.RegisterType<IRepositorioFabricantes, FabricantesNHibernateMySQL>()
+            container.RegisterType<IRepositorioFabricantes, FabricantesNHibernatePostgre>()
                      .RegisterType<IServicoFabricantes, ServicoFabricantes>(
                             /*new InjectionFactory(p => new ServicoFabricantes(container.Resolve<IRepositorioFabricantes>()))*/
                             );
@@ -49,35 +55,41 @@ namespace Graxei.Negocio.Fabrica
             container.RegisterType<IServicoUnidadeMedida, ServicoUnidadeMedida>();
 
             // Estados
-            container.RegisterType<IRepositorioEstados, EstadosNHibernateMySQL>()
+//mysql            container.RegisterType<IRepositorioEstados, EstadosNHibernateMySQL>()
+            container.RegisterType<IRepositorioEstados, EstadosNHibernatePostgre>()
                      .RegisterType<IServicoEstados, ServicoEstados>(
                             /*new InjectionFactory(p => new ServicoEstados(container.Resolve<IRepositorioEstados>()))*/
                             );
 
             // Cidades
-            container.RegisterType<IRepositorioCidades, CidadesNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioCidades, CidadesNHibernateMySQL>()
+            container.RegisterType<IRepositorioCidades, CidadesNHibernatePostgre>()
                      .RegisterType<IServicoCidades, ServicoCidades>(
                             /*new InjectionFactory(p => new ServicoCidades(container.Resolve<IRepositorioCidades>()))*/
                             );
 
             // Bairros
-            container.RegisterType<IRepositorioBairros, BairrosNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioBairros, BairrosNHibernateMySQL>()
+            container.RegisterType<IRepositorioBairros, BairrosNHibernatePostgre>()
                      .RegisterType<IServicoBairros, ServicoBairros>(
                             /*new InjectionFactory(p => new ServicoBairros(container.Resolve<IRepositorioBairros>()))*/
                             );
 
             // Logradouros
-            container.RegisterType<IRepositorioLogradouros, LogradourosNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioLogradouros, LogradourosNHibernateMySQL>()
+            container.RegisterType<IRepositorioLogradouros, LogradourosNHibernatePostgre>()
                      .RegisterType<IServicoLogradouros, ServicoLogradouros>(
                             /*new InjectionFactory(p => new ServicoLogradouros(container.Resolve<IRepositorioLogradouros>()))*/);
 
             // Telefones
-            container.RegisterType<IRepositorioTelefones, TelefonesNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioTelefones, TelefonesNHibernateMySQL>()
+            container.RegisterType<IRepositorioTelefones, TelefonesNHibernatePostgre>()
                 .RegisterType<IServicoTelefones, ServicoTelefones>(
                             /*new InjectionFactory(p => new ServicoTelefones(container.Resolve<IRepositorioTelefones>()))*/);
 
             // Endereços
-            container.RegisterType<IRepositorioEnderecos, EnderecosNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioEnderecos, EnderecosNHibernateMySQL>()
+            container.RegisterType<IRepositorioEnderecos, EnderecosNHibernatePostgre>()
                      .RegisterType<IServicoEnderecos, ServicoEnderecos>(
                             /*new InjectionFactory(p => 
                                 new ServicoEnderecos(
@@ -88,10 +100,12 @@ namespace Graxei.Negocio.Fabrica
                                        container.Resolve<IServicoEstados>()))*/
                             );
 
-            container.RegisterType<IRepositorioTiposTelefone, TiposTelefoneNHibernateMySQL>()
+//Mysql            container.RegisterType<IRepositorioTiposTelefone, TiposTelefoneNHibernateMySQL>()
+            container.RegisterType<IRepositorioTiposTelefone, TiposTelefoneNHibernatePostgre>()
                      .RegisterType<IServicoTiposTelefone, ServicoTiposTelefone>();
 
-            container.RegisterType<IRepositorioListaLojas, ListaLojasNHibernateMySQL>()
+//            container.RegisterType<IRepositorioListaLojas, ListaLojasNHibernateMySQL>()
+            container.RegisterType<IRepositorioListaLojas, ListaLojasNHibernatePostgre>()
                 .RegisterType<IServicoListaLojas, ServicoListaLojas>();
         }
 

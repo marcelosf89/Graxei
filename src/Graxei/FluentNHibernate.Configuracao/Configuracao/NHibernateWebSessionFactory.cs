@@ -56,15 +56,11 @@ namespace Graxei.FluentNHibernate.Configuracao
             if (this._sessionFactory == null)
             {
                 FluentConfiguration config = Fluently.Configure();
-
-                config.CurrentSessionContext<WebSessionContext>().
-                Database(MySQLConfiguration
-                        .Standard
-                        .ConnectionString(c => c.Server(_server)
-                                                .Database(_database)
-                                                .Username(_username)
-                                                .Password(_password)
-                         ).ShowSql()
+                
+                config.CurrentSessionContext<WebSessionContext>()
+                    .Database(PostgreSQLConfiguration.Standard.ConnectionString(c => c.Host(_server).Database(_database).Username(_username).Password(_password).Port(_port))
+                    /*Database(MySQLConfiguration.Standard.ConnectionString(c => c.Server(_server).Database(_database).Username(_username).Password(_password)) */
+                         .ShowSql()
                 ).
                 Mappings(m =>
                          m.FluentMappings.AddFromAssemblyOf<ProdutoMap>().Conventions.Add<ClasseComumConvencao>()).
@@ -101,6 +97,7 @@ namespace Graxei.FluentNHibernate.Configuracao
         private string _database = ConfigurationManager.AppSettings["dbdatabase"];
         private string _username = ConfigurationManager.AppSettings["dbusername"];
         private string _password = ConfigurationManager.AppSettings["dbpassword"];
+        private int _port = int.Parse(ConfigurationManager.AppSettings["dbport"]);
         #endregion
     }
 }
