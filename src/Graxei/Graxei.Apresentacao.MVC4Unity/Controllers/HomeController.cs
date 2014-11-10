@@ -29,6 +29,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         [AllowAnonymous]
         public ActionResult Pesquisar(string txtSearch)
         {
+            DateTime dtIni = DateTime.Now;
             IList<ProdutoVendedor> list;
             IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];
             if (ir == null)
@@ -47,11 +48,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
             TempData["txtSearch"] =ViewBag.PesquisarModel = pm;
 
+            TimeSpan tf = DateTime.Now - dtIni;
+            ViewBag.TempoBusca = tf.Seconds + ","+ tf.Milliseconds;
             return View(list);
         }
 
         public ActionResult PesquisarPagina(string page)
         {
+            DateTime dtIni = DateTime.Now;
+
             PesquisarModel pm = (PesquisarModel)TempData["txtSearch"];
 
             if (page.Equals("p"))
@@ -80,6 +85,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             }
 
             TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
+
+
+            TimeSpan tf = DateTime.Now - dtIni;
+            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
             return View("Pesquisar", list);
         }
 
