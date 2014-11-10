@@ -38,9 +38,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
             PesquisarModel pm = new PesquisarModel();
             pm.Texto = txtSearch;
-            ViewBag.Page = pm.PaginaSelecionada = 0;
-            ViewBag.MaxPage = pm.NumeroMaximoPagina = list.Count < 10 ? 0 : 10;
-            TempData["txtSearch"] = pm;
+            pm.PaginaSelecionada = 0;
+
+            if (list.Count < 10)
+                pm.NumeroMaximoPagina = 0;
+            else
+                pm.NumeroMaximoPagina = null;
+
+            TempData["txtSearch"] =ViewBag.PesquisarModel = pm;
 
             return View(list);
         }
@@ -56,12 +61,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             else
                 pm.PaginaSelecionada = Convert.ToInt32(page);
 
-            long maxView = ViewBag.MaxPage = pm.PaginaSelecionada + 5;
-            if (pm.NumeroMaximoPagina.HasValue)
-                maxView = pm.NumeroMaximoPagina.Value;
-            else if (pm.PaginaSelecionada < 5)
-                maxView = maxView + (5 - pm.PaginaSelecionada);
-
             IList<ProdutoVendedor> list;
             try
             {
@@ -72,18 +71,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                     list = _iConsultasProdutoVendedor.Get(pm.Texto, ir.Pais, ir.Cidade, Convert.ToInt32(pm.PaginaSelecionada));
 
                 if (list.Count < 10)
-                    pm.NumeroMaximoPagina = maxView = pm.PaginaSelecionada;
+                    pm.NumeroMaximoPagina = pm.PaginaSelecionada;
             }
             catch (ForaDoLimiteException fl)
             {
                 list = fl.List;
-                pm.NumeroMaximoPagina = pm.PaginaSelecionada = maxView = fl.Max;
+                pm.NumeroMaximoPagina = pm.PaginaSelecionada = fl.Max;
             }
 
-            ViewBag.MaxPage = maxView + 1;
-            ViewBag.Page = pm.PaginaSelecionada;
-            TempData["txtSearch"] = pm;
-
+            TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
             return View("Pesquisar", list);
         }
 
