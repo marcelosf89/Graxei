@@ -207,6 +207,7 @@
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
+    <Compile Include="Models\PesquisarModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +308,7 @@
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\google-code-prettify\prettify.css" />
     <Content Include="Scripts\google-code-prettify\prettify.js" />
+    <Content Include="Scripts\graxei.js" />
     <Content Include="Scripts\holder\holder.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

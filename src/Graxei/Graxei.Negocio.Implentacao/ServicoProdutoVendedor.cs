@@ -99,12 +99,18 @@ namespace Graxei.Negocio.Implementacao
 
         public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto)
         {
-            return Repositorio.GetPorDescricaoPesquisa(texto, "", "");
+            return Repositorio.GetPorDescricaoPesquisa(texto, "", "", 0);
         }
 
-        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade)
+        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade, int page)
         {
-            return Repositorio.GetPorDescricaoPesquisa(texto, pais, cidade);
+            return Repositorio.GetPorDescricaoPesquisa(texto, pais, cidade, page);
+        }
+
+
+        public long GetMax(string texto, string pais, string cidade, int page)
+        {
+            return Repositorio.GetMaxPorDescricaoPesquisa(texto, pais, cidade, page);
         }
     }
 }

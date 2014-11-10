@@ -6,6 +6,8 @@ namespace Graxei.Negocio.Contrato
     {
         System.Collections.Generic.IList<ProdutoVendedor> Get(string texto);
 
-        System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade);
+        System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade, int page);
+
+        long GetMax(string texto, string pais, string cidade, int page);
     }
 }
