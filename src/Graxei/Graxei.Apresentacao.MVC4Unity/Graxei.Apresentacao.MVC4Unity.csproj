@@ -341,6 +341,7 @@
     <Content Include="Areas\Administrativo\Views\Lojas\Nova.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\Telefones.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Listar.cshtml" />
+    <None Include="Properties\PublishProfiles\graxei.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

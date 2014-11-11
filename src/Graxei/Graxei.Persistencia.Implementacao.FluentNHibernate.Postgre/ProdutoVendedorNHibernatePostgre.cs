@@ -31,8 +31,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             String sql = @"
                                 select pv.* from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
-                where similarity(p.descricao,:descricao)  > 0.04
-                order by similarity(p.descricao,:descricao) desc
+                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
+                order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
                 .AddEntity(typeof(ProdutoVendedor))
@@ -93,7 +93,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             String sql = @"
                 select count(p.id_produto) from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
-                where similarity(p.descricao,:descricao)  > 0.04
+                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
                 .SetParameter<String>("descricao", descricao)

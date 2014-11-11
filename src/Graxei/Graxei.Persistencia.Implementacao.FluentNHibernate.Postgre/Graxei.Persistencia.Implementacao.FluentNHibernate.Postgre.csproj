@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FAST">
-      <HintPath>..\Graxei.Persistencia.NHibernate\bin\Debug\FAST.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
@@ -97,6 +94,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FAST\FAST.csproj">
+      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
+      <Name>FAST</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
       <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
