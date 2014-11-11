@@ -341,7 +341,8 @@
     <Content Include="Areas\Administrativo\Views\Lojas\Nova.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\Telefones.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Listar.cshtml" />
-    <None Include="Properties\PublishProfiles\graxei.pubxml" />
+    <Content Include="Areas\Administrativo\Views\Home\_Index.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Home\Dashboard.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -391,6 +392,7 @@
     <Content Include="Views\Login\RedefinirSenha.cshtml" />
     <Content Include="Views\Home\Pesquisar.cshtml" />
     <Content Include="Views\Loja\VerLoja.cshtml" />
+    <Content Include="Views\Home\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

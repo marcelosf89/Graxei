@@ -9,7 +9,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
     .nav-search {
         width: 330px;
     }
@@ -128,11 +128,29 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height:100%;
+    height: 100%;
     background-color: rgba(152, 152, 152, 0.45);
     z-index: 999;
 }
 
+.logo {
+    background-image: url('/Content/imagens/graxei_logo.png');
+    background-size: 32px 32px;
+    padding-top: 15px;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    background-position: left center;
+}
+
+@media (max-width: 767px) {
+    a.btn.btn-success {
+        width: 100%;
+        margin-left: 7px;
+    }
+    .navbar-right .navbar-form {
+        margin-right: 0px;
+    }
+}
 /*.header {
     background-color: #eee;
     height: 100px;
