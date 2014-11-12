@@ -28,7 +28,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
                 for (int i = 1; i <= 5; i++)
                 {
                     TagBuilder tagBuilder = new TagBuilder("button");
-                    tagBuilder.AddCssClass("btn btn-link");
+                    tagBuilder.AddCssClass("btn btn-default");
                     tagBuilder.InnerHtml = i.ToString();
                     itens.Add(tagBuilder.ToString());
                 }
@@ -40,7 +40,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
                 for (int i = _listaLojas.Atual.Atual; i <= _listaLojas.Total.Total; i++)
                 {
                     TagBuilder tagBuilder = new TagBuilder("button");
-                    tagBuilder.AddCssClass("btn btn-link");
+                    tagBuilder.AddCssClass("btn btn-default");
                     tagBuilder.InnerHtml = i.ToString();
                     itens.Add(tagBuilder.ToString());
                 }
@@ -54,7 +54,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
                 for (int i = indiceDe; i <= indiceAte; i++)
                 {
                     TagBuilder tagBuilder = new TagBuilder("button");
-                    tagBuilder.AddCssClass("btn btn-link");
+                    tagBuilder.AddCssClass("btn btn-default");
                     tagBuilder.InnerHtml = i.ToString();
                     itens.Add(tagBuilder.ToString());
                 }

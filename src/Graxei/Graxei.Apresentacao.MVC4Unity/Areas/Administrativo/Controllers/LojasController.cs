@@ -37,6 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return View("Loja", model);
         }
 
+        [HttpGet]
         public ActionResult Editar(long idLoja)
         {
             Loja loja = _consultasLojas.Get(idLoja);
@@ -52,14 +53,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         public ActionResult Listar(int numeroPagina, int tamanho)
         {
-            if (numeroPagina <= 0)
+            if (numeroPagina < 0)
             {
-                numeroPagina = 1;
+                numeroPagina = 0;
             }
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
             List<ListaLojasContrato> listaLojasContrato = new List<ListaLojasContrato>();
             listaLojasContrato.AddRange(listaLojas.Lista);
-            listaLojas = new ListaLojas(listaLojasContrato, new ListaTotalElementos(130), new ListaElementoAtual(numeroPagina));
+            //listaLojas = new ListaLojas(listaLojasContrato, new ListaTotalElementos(130), new ListaElementoAtual(numeroPagina));
+
+            ViewBag.Page = numeroPagina;
             return View("Listar", listaLojas);
         }
 

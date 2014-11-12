@@ -142,11 +142,33 @@
     background-position: left center;
 }
 
+.modal-body > .form-horizontal > .rodape {
+    padding: 19px 20px 20px;
+    margin-top: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+
+
+.alert-danger {
+color: #FFFFFF;
+background-color: #DA0606;
+border-color: #ebccd1;
+}
+
+.alert {
+padding: 10px;
+margin-bottom: 20px;
+border: 1px solid transparent;
+border-radius: 4px;
+}
+
 @media (max-width: 767px) {
     a.btn.btn-success {
         width: 100%;
         margin-left: 7px;
     }
+
     .navbar-right .navbar-form {
         margin-right: 0px;
     }

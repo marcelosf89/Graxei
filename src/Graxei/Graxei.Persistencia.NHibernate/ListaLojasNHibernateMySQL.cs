@@ -25,7 +25,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                             .Add(Projections.Property("Id"), "Id")
                             .Add(Projections.Property("Nome"), "Nome"))
                     .TransformUsing(Transformers.AliasToBean<ListaLojasContrato>())
-                    .Skip(pagina)
+                    .Skip(pagina * tamanhoPagina)
                     .Take(tamanhoPagina)
                     .List<ListaLojasContrato>();
             ListaTotalElementos totalElementos = new ListaTotalElementos(total);
