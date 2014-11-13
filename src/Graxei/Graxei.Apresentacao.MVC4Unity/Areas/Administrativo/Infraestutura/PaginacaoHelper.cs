@@ -62,7 +62,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
                                 <i class=""glyphicon glyphicon-chevron-left""></i>Anterior
                             </button>");
             }
-            int count = valorTotal / 10;
+            int count = valorTotal / quantidadeApresentacao;
             for (int i = 0; i <= count; i++)
             {
                 if (paginaSelecionada == i)

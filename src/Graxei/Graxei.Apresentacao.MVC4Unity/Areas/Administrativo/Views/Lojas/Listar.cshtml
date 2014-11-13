@@ -41,9 +41,9 @@
             <tfoot>
                 <tr>
                     <th colspan="2">
-                        @using (Ajax.BeginForm("Listar", "Lojas", new { Controller = "Lojas", tamanho = 10 }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
+                        @using (Ajax.BeginForm("Listar", "Lojas", new { Controller = "Lojas", tamanho = 5 }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
                         {
-                            @Html.LinkPaginacao2("numeroPagina", (int)ViewBag.Page, Model.Total.Total, 10);
+                            @Html.LinkPaginacao2("numeroPagina", (int)ViewBag.Page, Model.Total.Total, 5);
                         }
                     </th>
                 </tr>

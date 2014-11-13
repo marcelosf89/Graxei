@@ -108,17 +108,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             {
                 lojaSalva = _gerenciamentoLojas.Salvar(item.LojaContrato, usuario);
                 lojaSalva = _consultasLojas.GetComEnderecos(lojaSalva.Id);
+
+                ModelState.Clear();
+                item.LojaContrato = lojaSalva;
+
+                ViewBag.OperacaoSucesso = Sucesso.LojaAtualizada;
+                return PartialView("NovaLojaAjax", item);
             }
             catch (OperacaoEntidadeException ee)
             {
                 ModelState.AddModelError(string.Empty, ee.Message);
                 return PartialView("NovaLojaAjax", item);
             }
-            ModelState.Clear();
-            item.LojaContrato = lojaSalva;
-
-            ViewBag.OperacaoSucesso = Sucesso.LojaAtualizada;
-            return PartialView("NovaLojaAjax", item);
         }
 
         public FileContentResult GetImagem(int idLoja = 0)
