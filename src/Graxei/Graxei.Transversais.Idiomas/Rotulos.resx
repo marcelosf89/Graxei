@@ -213,4 +213,16 @@
   <data name="Pesquisar" xml:space="preserve">
     <value>Pesquisar...</value>
   </data>
+  <data name="Nome" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Mensagem" xml:space="preserve">
+    <value>Mensagem</value>
+  </data>
+  <data name="Enviar" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
 </root>

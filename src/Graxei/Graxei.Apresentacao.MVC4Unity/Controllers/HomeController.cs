@@ -46,10 +46,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             else
                 pm.NumeroMaximoPagina = null;
 
-            TempData["txtSearch"] =ViewBag.PesquisarModel = pm;
+            TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
 
             TimeSpan tf = DateTime.Now - dtIni;
-            ViewBag.TempoBusca = tf.Seconds + ","+ tf.Milliseconds;
+            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
             return View(list);
         }
 
@@ -123,6 +123,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult _Index()
         {
             return PartialView("_Index");
+        }
+
+        [AllowAnonymous]
+        public ActionResult _Sobre()
+        {
+            return PartialView("_Sobre");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Contato()
+        {
+            return View("Contato");
         }
 
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;

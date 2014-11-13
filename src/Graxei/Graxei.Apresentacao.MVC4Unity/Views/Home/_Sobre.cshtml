@@ -1,0 +1,29 @@
+﻿<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="dialogo" class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            </div>
+            <div class="modal-body">
+                <p>Graxei. Todos os direitos reservados.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModalRemote"></div>
+<script>
+    $('#Modal2').modal('show');
+
+    function loadPage(result) {
+        if (result.url) {
+            // if the server returned a JSON object containing an url 
+            // property we redirect the browser to that url
+            window.location.href = result.url;
+        }
+    }
+
+</script>

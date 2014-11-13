@@ -62,8 +62,8 @@
                         </div>
                     }
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#contact">Contato</a></li>
+                        <li>@Ajax.ActionLink("Sobre", "_Sobre", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { })</li>
+                        <li>@Ajax.ActionLink("Contato", "Contato", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>

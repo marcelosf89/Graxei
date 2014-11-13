@@ -393,6 +393,8 @@
     <Content Include="Views\Home\Pesquisar.cshtml" />
     <Content Include="Views\Loja\VerLoja.cshtml" />
     <Content Include="Views\Home\_Index.cshtml" />
+    <Content Include="Views\Home\_Sobre.cshtml" />
+    <Content Include="Views\Home\Contato.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
