@@ -57,23 +57,23 @@ namespace Graxei.FluentNHibernate.Configuracao
             {
                 FluentConfiguration config = Fluently.Configure();
 
-                config.CurrentSessionContext<WebSessionContext>().
-                Database(MySQLConfiguration
-                        .Standard
-                        .ConnectionString(c => c.Server(_server)
-                                                .Database(_database)
-                                                .Username(_username)
-                                                .Password(_password)
-                         ).ShowSql()
-                ).
-                Mappings(m =>
-                         m.FluentMappings.AddFromAssemblyOf<ProdutoMap>().Conventions.Add<ClasseComumConvencao>()).
-                BuildConfiguration();
-                config.ExposeConfiguration(cfg =>
+                switch (_type)
                 {
-                    //new SchemaExport(cfg).Execute(true, true, false);
-
-                });
+                    case "MYSQL":
+                        config.CurrentSessionContext<WebSessionContext>()
+                            .Database(MySQLConfiguration.Standard.ConnectionString(c => c.Server(_server).Database(_database).Username(_username).Password(_password))
+                         .ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>().Conventions.Add<ClasseComumConvencao>()).BuildConfiguration();
+                        break;
+                    case "POSTGRESQL":
+                    default:
+                        config.CurrentSessionContext<WebSessionContext>()
+                              .Database(PostgreSQLConfiguration.Standard.ConnectionString(c => c.Host(_server).Database(_database).Username(_username).Password(_password).Port(_port))
+                                  .ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>().Conventions.Add<ClasseComumConvencao>()).BuildConfiguration();
+                        break;
+                }
+                     
+                config.ExposeConfiguration(cfg => { //new SchemaExport(cfg).Execute(true, true, false);
+                     });
                 this._sessionFactory = config.BuildSessionFactory();
             }
 
@@ -97,10 +97,12 @@ namespace Graxei.FluentNHibernate.Configuracao
 
         #region Atributos Privados
         private ISessionFactory _sessionFactory;
+        private string _type = ConfigurationManager.AppSettings["dbtype"];
         private string _server = ConfigurationManager.AppSettings["dbserver"];
         private string _database = ConfigurationManager.AppSettings["dbdatabase"];
         private string _username = ConfigurationManager.AppSettings["dbusername"];
         private string _password = ConfigurationManager.AppSettings["dbpassword"];
+        private int _port = int.Parse(ConfigurationManager.AppSettings["dbport"]);
         #endregion
     }
 }

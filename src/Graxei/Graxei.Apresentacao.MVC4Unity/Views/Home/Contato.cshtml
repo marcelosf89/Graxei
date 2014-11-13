@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Contato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contato</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div>
+            @Rotulos.Nome
+            @Html.TextBox("Nome")
+        </div>
+        <div>
+            @Rotulos.Email
+            @Html.TextBox("Email")
+        </div>
+        <div>
+            @Rotulos.Mensagem
+            @Html.TextArea("Mensagem")
+        </div>
+    </div>
+    
+    <input type="submit" class="btn btn-primary" value="@Rotulos.Enviar"/>
+}

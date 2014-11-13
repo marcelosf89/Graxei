@@ -121,6 +121,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return PartialView("_Index");
         }
 
+        [AllowAnonymous]
+        public ActionResult _Sobre()
+        {
+            return PartialView("_Sobre");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Contato()
+        {
+            return View("Contato");
+        }
+
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
     }
 }
