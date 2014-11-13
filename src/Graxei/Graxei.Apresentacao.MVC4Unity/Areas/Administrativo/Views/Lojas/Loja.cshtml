@@ -3,9 +3,6 @@
     ViewBag.Title = Rotulos.NovaLoja;
 }
 @section Styles{
-    @Styles.Render("~/Content/bootstrap/base")
-    @Styles.Render("~/Content/themes/base/css")
-    @Styles.Render("~/Content/css")
     <style>
         .modal-dialog {
             width: 90%;
@@ -59,13 +56,6 @@
     </style>
 }
 @section Scripts{
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/sc")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modal")
-    @Scripts.Render("~/bundles/typeahead")
     <script type="text/javascript">
 
         $("#IdEstado").live("change", (function () {
@@ -73,30 +63,30 @@
             ////alert('aaa');
             if (estado != 0) {
                 var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
-                    $.post(url, { idEstado: estado },
-                        function () {
-                        });
-                }
-        })
-        );
-
-            $("#IdCidade").live("blur", function () {
-                var estado = $("#IdEstado").val();
-                var nomeCidade = $("#IdCidade").val();
-                if (estado > 0 && nomeCidade.length > 0) {
-                    var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
-                $.post(url, { idEstado: estado, cidade: nomeCidade },
+                $.post(url, { idEstado: estado },
                     function () {
                     });
             }
-        });
+        })
+        );
 
-        $("#IdBairro").live("blur", function () {
-            var idEstado = $("#IdEstado").val();
+        $("#IdCidade").live("blur", function () {
+            var estado = $("#IdEstado").val();
             var nomeCidade = $("#IdCidade").val();
-            var nomeBairro = $("#IdBairro").val();
-            if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
-                var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+            if (estado > 0 && nomeCidade.length > 0) {
+                var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+                    $.post(url, { idEstado: estado, cidade: nomeCidade },
+                        function () {
+                        });
+                }
+            });
+
+            $("#IdBairro").live("blur", function () {
+                var idEstado = $("#IdEstado").val();
+                var nomeCidade = $("#IdCidade").val();
+                var nomeBairro = $("#IdBairro").val();
+                if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+                    var url = '@Url.Action("BairroSelecionado", "Enderecos")';
                 $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
                     function () {
                     });
@@ -158,7 +148,7 @@
                 $("#modalEnderecos").modal('hide');
             } else {
                 var divErro = document.getElementById("validationEndereco");
-                divErro.innerHTML = "<span class='field-validation-error'><ul style='margin: 0;'>" + result.Mensagem + "</ul></span>";
+                divErro.innerHTML = "<div class='alert alert-danger'><div class='row'><div class='col-md-1'><i class='glyphicon glyphicon-remove'></i></div><div class='col-md-11'><ul style='margin: 0;'>" + result.Mensagem + "</ul></div></div>";
             }
         }
 
@@ -210,13 +200,13 @@
     </script>
 }
 
-<h2>@Rotulos.NovaLoja</h2>
-@{
-    <div id="novaloja">
-        @{Html.RenderPartial("NovaLojaAjax", Model);}
-    </div>
-    <div id="enderecoAtualizar">
-        @{ Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel); }
-    </div>
-}
+<h4>@Rotulos.NovaLoja</h4>
+<div id="novaloja">
+    @{Html.RenderPartial("NovaLojaAjax", Model);}
+</div>
+
+<h5>@Rotulos.Enderecos</h5>
 <div id="listaEnderecos"></div>
+<div id="enderecoAtualizar">
+    @{ Html.RenderAction("NovoEndereco", "Enderecos", Model.EnderecoModel); }
+</div>

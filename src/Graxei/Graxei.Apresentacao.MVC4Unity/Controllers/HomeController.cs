@@ -53,18 +53,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View(list);
         }
 
-        public ActionResult PesquisarPagina(string page)
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult PesquisarPagina(string paginaSelecionada)
         {
             DateTime dtIni = DateTime.Now;
 
             PesquisarModel pm = (PesquisarModel)TempData["txtSearch"];
-
-            if (page.Equals("p"))
-                pm.PaginaSelecionada++;
-            else if (page.Equals("a") && pm.PaginaSelecionada > 0)
-                pm.PaginaSelecionada--;
-            else
-                pm.PaginaSelecionada = Convert.ToInt32(page);
+            pm.PaginaSelecionada = Convert.ToInt32(paginaSelecionada);
 
             IList<ProdutoVendedor> list;
             try

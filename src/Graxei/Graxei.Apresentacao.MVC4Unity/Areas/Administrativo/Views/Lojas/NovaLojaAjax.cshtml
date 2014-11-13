@@ -1,15 +1,16 @@
 ﻿@model LojaModel
 
-    @{AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST" };
-      using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { @class = "form-horizontal" }))
-      {
+@{
+    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST" };
+    using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { @class = "form-horizontal" }))
+    {
 
-          Html.RenderPartial("Formulario", Model);
-          if (Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-          {
-        <button id="btn-novo-endereco" type="button" class="col-lg-offset-1 btn btn-default" data-toggle="modal" data-target="#modalEnderecos" onclick="resetModal();">@Rotulos.NovoEndereco</button>
-            {Html.RenderPartial("ListaEnderecos", Model.ListaEnderecos);}
-          }
-      }
+        Html.RenderPartial("Formulario", Model);
+        if (Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
+        {
+    <button id="btn-novo-endereco" type="button" class="col-lg-offset-1 btn btn-default" data-toggle="modal" data-target="#modalEnderecos" onclick="resetModal();">@Rotulos.NovoEndereco</button>
+            { Html.RenderPartial("ListaEnderecos", Model.ListaEnderecos); }
+        }
     }
+}
 
