@@ -98,6 +98,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         [LimpezaSessaoNovaLoja]
         public ActionResult EditarNova(Usuario usuario, LojaModel item)
         {
+            if (item == null) { item = new LojaModel(); }
             if (!ModelState.IsValid)
             {
                 return PartialView("NovaLojaAjax", item);

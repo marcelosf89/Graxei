@@ -9,6 +9,11 @@
 <h4>Listar</h4>
 <div class="row">
     <div class="col-md-12">
+           @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovaLoja, "EditarNova", "Lojas", new { Controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" }, new {  @class = "btn btn-default" })
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
         <table class=" table table-hover table-bordered ">
             <thead>
                 <tr>
