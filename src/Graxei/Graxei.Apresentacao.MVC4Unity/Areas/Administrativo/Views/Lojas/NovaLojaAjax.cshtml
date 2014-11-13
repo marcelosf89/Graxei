@@ -1,7 +1,7 @@
 ﻿@model LojaModel
 
     @{
-        AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST" };
+        AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
       using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { @class = "form-horizontal" }))
       {
 

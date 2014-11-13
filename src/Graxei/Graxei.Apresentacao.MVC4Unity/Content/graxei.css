@@ -151,16 +151,24 @@
 
 
 .alert-danger {
-color: #FFFFFF;
-background-color: #DA0606;
-border-color: #ebccd1;
+    color: #FFFFFF;
+    background-color: #DA0606;
+    border-color: #ebccd1;
 }
 
 .alert {
-padding: 10px;
-margin-bottom: 20px;
-border: 1px solid transparent;
-border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-load {
+    top: 30%;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    font-weight: bold;
 }
 
 @media (max-width: 767px) {

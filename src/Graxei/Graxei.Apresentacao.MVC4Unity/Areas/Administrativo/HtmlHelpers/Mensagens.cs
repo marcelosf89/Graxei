@@ -19,15 +19,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
                 div2.AddCssClass("col-md-1");
 
                 TagBuilder img = new TagBuilder("i");
-                img.AddCssClass("glyphicon glyphicon-exclamation-sign");
+                img.AddCssClass("glyphicon glyphicon-ok");
                 div2.InnerHtml = img.ToString();
 
                 TagBuilder div3 = new TagBuilder("div");
-                div3.AddCssClass("col-md-11");
+                div3.AddCssClass("col-md-10");
 
-                div3.InnerHtml = string.Concat(button.ToString(), html.ViewBag.OperacaoSucesso.ToString());
+                div3.InnerHtml = html.ViewBag.OperacaoSucesso.ToString();
 
-                div.InnerHtml = div2.ToString();
+                div.InnerHtml = button.ToString();
+                div.InnerHtml += div2.ToString();
                 div.InnerHtml += div3.ToString();
 
                 return new MvcHtmlString(div.ToString());
@@ -55,12 +56,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
                 div2.InnerHtml = img.ToString();
 
                 TagBuilder div3 = new TagBuilder("div");
-                div3.AddCssClass("col-md-11");
+                div3.AddCssClass("col-md-10");
 
                 string errorMessage = modelState.Errors[0].ErrorMessage;
-                div3.InnerHtml = string.Concat(button.ToString(), errorMessage);
+                div3.InnerHtml = errorMessage;
 
-                div.InnerHtml = div2.ToString();
+                div.InnerHtml = button.ToString();
+                div.InnerHtml += div2.ToString();
                 div.InnerHtml += div3.ToString();
 
                 return new MvcHtmlString(div.ToString());
