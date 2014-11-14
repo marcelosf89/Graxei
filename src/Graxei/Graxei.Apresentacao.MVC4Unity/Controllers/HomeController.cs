@@ -27,18 +27,18 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Pesquisar(string txtSearch)
+        public ActionResult Pesquisar(string q)
         {
             DateTime dtIni = DateTime.Now;
             IList<ProdutoVendedor> list;
             IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];
             if (ir == null)
-                list = _iConsultasProdutoVendedor.Get(txtSearch, "", "", 0);
+                list = _iConsultasProdutoVendedor.Get(q, "", "", 0);
             else
-                list = _iConsultasProdutoVendedor.Get(txtSearch, ir.Pais, ir.Cidade, 0);
+                list = _iConsultasProdutoVendedor.Get(q, ir.Pais, ir.Cidade, 0);
 
             PesquisarModel pm = new PesquisarModel();
-            pm.Texto = txtSearch;
+            pm.Texto = q;
             pm.PaginaSelecionada = 0;
 
             if (list.Count < 10)
