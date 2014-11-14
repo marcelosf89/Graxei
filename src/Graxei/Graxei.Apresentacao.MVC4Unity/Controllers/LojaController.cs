@@ -10,9 +10,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LojaController : Controller
     {
-        public LojaController(IConsultasLojas consultasLojas)
+        public LojaController(IConsultasEnderecos consultasEnderecos)
         {
-            _consultasLojas = consultasLojas;
+            _consultasEnderecos = consultasEnderecos;
         }
         //
         // GET: /Loja/
@@ -24,11 +24,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
         public ActionResult VerLoja(long IdTeste)
         {
-            Loja loja = _consultasLojas.Get(IdTeste);
-            return View(loja);
+            Endereco endereco = _consultasEnderecos.Get(IdTeste);
+            return View(endereco);
         }
 
 
-        private IConsultasLojas _consultasLojas;
+        private IConsultasEnderecos _consultasEnderecos;
     }
 }

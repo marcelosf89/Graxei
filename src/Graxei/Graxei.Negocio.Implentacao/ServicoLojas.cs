@@ -12,11 +12,12 @@ namespace Graxei.Negocio.Implementacao
     public class ServicoLojas : GravacaoTemplateMethod<Loja>, IServicoLojas
     {
         private Usuario _usuario;
-
+        private IServicoPlanos _servicoPlanos;
         #region Construtor
-        public ServicoLojas(IRepositorioLojas repositorioLojas)
+        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoPlanos servicoPlanos)
         {
             RepositorioEntidades = repositorioLojas;
+            _servicoPlanos = servicoPlanos;
         }
         #endregion
 
@@ -36,6 +37,7 @@ namespace Graxei.Negocio.Implementacao
             {
                 throw new ValidacaoEntidadeException(Erros.UmUsuarioAoMenos);
             }
+            loja.Plano = _servicoPlanos.GetPorId(1);
             Validar(loja);
             loja.AdicionarUsuario(_usuario);
             Loja repetida = Get(loja.Nome);

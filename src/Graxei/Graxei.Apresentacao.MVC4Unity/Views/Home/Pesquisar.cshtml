@@ -1,5 +1,5 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
-@model IList<Graxei.Modelo.ProdutoVendedor>
+@model IList<Graxei.Transversais.ContratosDeDados.PesquisaContrato>
 
 <script>
 
@@ -25,46 +25,43 @@ else
 {
     <div>
         <div id="clock2">@ViewBag.TempoBusca seg</div>
-    </div>
+    </div>@*
     <div class="panel panel-default hidden-xs  hidden-sm hidden-md hidden-lg" data-spy="affix" data-offset-top="60">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-1">
                     @Html.DropDownList("estado",
                     (from mm in Model
-                     from z in mm.Loja.Enderecos
                      select new SelectListItem()
                      {
-                         Value = z.Bairro.Cidade.Estado.Id.ToString(),
-                         Text = z.Bairro.Cidade.Estado.Sigla
+                         Value = mm.Endereco.Bairro.Cidade.Estado.Id.ToString(),
+                         Text = mm.Endereco.Bairro.Cidade.Estado.Sigla
                      }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "estado", onchange = "filtroSelecionado('estado',this);" })
                 </div>
 
                 <div class="col-md-2">
                     @Html.DropDownList("cidade",
                     (from mm in Model
-                     from z in mm.Loja.Enderecos
                      select new SelectListItem()
                      {
-                         Value = z.Bairro.Cidade.Id.ToString(),
-                         Text = z.Bairro.Cidade.Nome
+                         Value =mm.Endereco.Bairro.Cidade.Id.ToString(),
+                         Text = mm.Endereco.Bairro.Cidade.Nome
                      }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "cidade", onchange = "filtroSelecionado('cidade',this);" })
                 </div>
                 <div class="col-md-2">
                     @Html.DropDownList("bairro",
                     (from mm in Model
-                     from z in mm.Loja.Enderecos
                      select new SelectListItem()
                      {
-                         Value = z.Bairro.Id.ToString(),
-                         Text = z.Bairro.Nome
+                         Value = mm.Endereco.Bairro.Id.ToString(),
+                         Text = mm.Endereco.Bairro.Nome
                      }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "Bairro", onchange = "filtroSelecionado('bairro',this);" })
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 }
-@foreach (Graxei.Modelo.ProdutoVendedor pv in Model)
+@foreach (Graxei.Transversais.ContratosDeDados.PesquisaContrato pv in Model)
 {    
     <div class="row">
         <div class="col-md-12">
@@ -72,27 +69,27 @@ else
                 <div class="row">
                     <div class="col-md-2">
                         @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 60, Height = 71 },
-                         "", "VerLoja", "Loja", new { Controller = "Loja", IdTeste = pv.Loja.Id }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
+                         "", "VerLoja", "Loja", new { Controller = "Loja", IdTeste = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
                     </div>
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-8">
-                                <h4>@pv.Produto.Codigo</h4>
+                                <h4>@pv.Codigo</h4>
                             </div>
                             <div class="col-md-4">
-                                @foreach (Graxei.Modelo.Telefone tel in @pv.Loja.Enderecos.Where(p => p.Telefones.Any()).Select(p => p.Telefones.FirstOrDefault()))
+                                @*@foreach (Graxei.Modelo.Telefone tel in @pv.Numeros)
                                 {
-                                    <div class="row">
+                                    *@<div class="row">
                                         <div class="col-md-12">
-                                            @tel.Numero
+                                            @pv.Numero
                                         </div>
                                     </div>
-                                }
+                                @*}*@
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                @pv.Produto.Descricao
+                                @pv.Descricao
                             </div>
                         </div>
                     </div>

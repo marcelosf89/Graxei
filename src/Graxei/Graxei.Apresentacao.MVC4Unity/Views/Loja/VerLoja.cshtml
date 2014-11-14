@@ -1,47 +1,45 @@
-﻿@model Graxei.Modelo.Loja
+﻿@model Graxei.Modelo.Endereco
 <script src="~/Scripts/bootstrap-validation.js"></script>
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div id="dialogo" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <strong>@Model.Nome</strong>
+                <strong>@Model.Loja.Nome</strong>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                @foreach (Graxei.Modelo.Endereco endereco in Model.Enderecos)
-                                {
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>Logradouro</label><p>@endereco.Logradouro</p>
+                                            <label>Logradouro</label><p>@Model.Logradouro</p>
                                         </div>
                                     </div>  
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>Complemento</label><p>@endereco.Complemento</p>
+                                            <label>Complemento</label><p>@Model.Complemento</p>
                                         </div>
                                     </div>  
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Numero</label><p>@endereco.Numero</p>
+                                            <label>Numero</label><p>@Model.Numero</p>
                                         </div>
                                     </div>  
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <label>Cidade</label><p>@endereco.Bairro.Cidade.Nome</p>
+                                            <label>Cidade</label><p>@Model.Bairro.Cidade.Nome</p>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Estado</label><p>@endereco.Bairro.Cidade.Estado.Sigla</p>
+                                            <label>Estado</label><p>@Model.Bairro.Cidade.Estado.Sigla</p>
                                         </div>
                                         <div class="col-md-3">
-                                            <label>Bairro</label><p>@endereco.Bairro.Nome</p>
+                                            <label>Bairro</label><p>@Model.Bairro.Nome</p>
                                         </div>
                                     </div>  
                                     <div class="row">
                                         <div class="col-md-3">
-                                            @foreach (Graxei.Modelo.Telefone telefone in endereco.Telefones)
+                                            @foreach (Graxei.Modelo.Telefone telefone in Model.Telefones)
                                             {
                                                 <br />
                                                 @telefone.Numero

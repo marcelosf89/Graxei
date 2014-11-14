@@ -16,14 +16,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 .Where(
                     p =>
                     p.ProdutoVendedor.Descricao.Trim().ToLower() == descricaoProduto.Trim().ToLower() &&
-                    p.ProdutoVendedor.Loja.Nome == nomeLoja).ToList<Atributo>();
+                    p.ProdutoVendedor.Endereco.Loja.Nome == nomeLoja).ToList<Atributo>();
         }
 
         public IList<Atributo> Todos(ProdutoVendedor produtoVendedor)
         {
             if (!UtilidadeEntidades.IsTransiente(produtoVendedor) && produtoVendedor.Validar())
             {
-                return Todos(produtoVendedor.Descricao, produtoVendedor.Loja.Nome);
+                return Todos(produtoVendedor.Descricao, produtoVendedor.Endereco.Loja.Nome);
             }
             return SessaoAtual.Query<Atributo>()
                 .Where(p => p.ProdutoVendedor.Id == produtoVendedor.Id).ToList<Atributo>();

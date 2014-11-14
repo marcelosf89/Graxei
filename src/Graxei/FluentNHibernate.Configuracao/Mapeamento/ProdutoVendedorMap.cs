@@ -14,7 +14,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.Preco);
             Map(p => p.Excluida);
             References(p => p.Produto).Cascade.SaveUpdate();
-            References(p => p.Loja);
+            References(p => p.Endereco).Column(Constantes.ID_ENDERECO);
             References(p => p.UnidadeEntrada).Column(Constantes.ID_UNIDADE_ENTRADA).Cascade.All();
             References(p => p.UnidadeSaida).Column(Constantes.ID_UNIDADE_SAIDA).Cascade.All();
             HasMany(p => p.Atributos).Cascade.All();

@@ -7,6 +7,9 @@ using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 using NHibernate.Linq;
 using System.Linq;
+using Graxei.Transversais.ContratosDeDados;
+using NHibernate.Criterion;
+using NHibernate.Transform;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -28,10 +31,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
-            
+
             String sql = @"
                 select count(p.id_produto) from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
+                join enderecos en on en.id_endereco = pv.id_endereco
+                join telefones tl on en.id_endereco = tl.id_endereco
                 where match(p.descricao, p.codigo) against(:descricao)
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
@@ -39,26 +44,41 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 .UniqueResult<long>();
         }
 
-        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
+        public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
             String sql = @"
-                select pv.* from produtos p 
+                select pv.id_produto_vendedor Id, pv.Descricao Descricao,  p.Codigo Codigo,
+                    pv.Preco Preco, pv.id_produto ProdutoId, pv.id_endereco EnderecoId,
+                    tl.numero Numero
+                from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
+                join enderecos en on en.id_endereco = pv.id_endereco
+                join telefones tl on en.id_endereco = tl.id_endereco
                 where match(p.descricao, p.codigo) against(:descricao)
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
-                .AddEntity(typeof(ProdutoVendedor))
-                .SetParameter<String>("descricao",descricao)
-                .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
+                .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
+                .SetParameter<String>("descricao", descricao)
+                                .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
                 .SetMaxResults(10)
-                .List<ProdutoVendedor>();
+                .List<PesquisaContrato>();
+            //.Select(Projections.ProjectionList()
+            //        .Add(Projections.Property("Id"), "Id")
+            //        .Add(Projections.Property("Nome"), "Nome"))
+            //.TransformUsing(Transformers.AliasToBean<PesquisaContrato>());
+            //.AddEntity(typeof(PesquisaContrato))
+            //.
+            //.AddEntity(typeof(Endereco))
+
+
+            //.List<ProdutoVendedor>();
         }
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
         {
             ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
                                                  .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower()
-                                                                    && p.Loja.Nome.Trim().ToLower() == nomeLoja.Trim().ToLower());
+                                                                    && p.Endereco.Loja.Nome.Trim().ToLower() == nomeLoja.Trim().ToLower());
             return pvl;
         }
 
@@ -73,7 +93,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 throw new EntidadeInvalidaException(Erros.LojaInvalida);
             }
             ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
-                                             .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
+                                             .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Endereco.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
             return pvl;
         }
 

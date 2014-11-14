@@ -29,7 +29,7 @@ namespace Graxei.Modelo
         [IndexedEmbedded(Depth = 1)]
         public virtual Produto Produto { get; set; }
 
-        public virtual Loja Loja { get; set; }
+        public virtual Endereco Endereco { get; set; }
         public virtual UnidadeMedida UnidadeEntrada { get; set; }
         public virtual UnidadeMedida UnidadeSaida { get; set; }
         public virtual IList<Atributo> Atributos { get; protected internal set; }
@@ -59,7 +59,7 @@ namespace Graxei.Modelo
         public virtual bool Validar()
         {
             return (!string.IsNullOrEmpty(Descricao)) &&
-                   (this.Loja != null && this.Loja.Validar()) && (this.Produto != null && this.Produto.Validar());
+                   (this.Endereco != null && this.Endereco.Validar()) && (this.Produto != null && this.Produto.Validar());
         }
 
     }
