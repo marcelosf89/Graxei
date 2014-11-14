@@ -70,6 +70,9 @@ namespace Graxei.Negocio.Fabrica
             //Lista lojas
             container.RegisterType<IRepositorioListaLojas, ListaLojasNHibernateMySQL>()
                        .RegisterType<IServicoListaLojas, ServicoListaLojas>();
+
+            container.RegisterType<IRepositorioPlanos, PlanosNHibernateMySQL>()
+                       .RegisterType<IServicoPlanos, ServicoPlanos>();
         }
     }
 }

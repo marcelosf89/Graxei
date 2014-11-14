@@ -71,6 +71,7 @@
     <Compile Include="Mapeamento\Constantes.cs" />
     <Compile Include="Convencoes\ClasseComumConvencao.cs" />
     <Compile Include="Mapeamento\AtributoMap.cs" />
+    <Compile Include="Mapeamento\PlanoMap.cs" />
     <Compile Include="Mapeamento\LogradouroMap.cs" />
     <Compile Include="Mapeamento\EnderecoMap.cs" />
     <Compile Include="Mapeamento\EstadoMap.cs" />

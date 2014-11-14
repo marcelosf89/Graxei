@@ -3,12 +3,12 @@
 @{
     @Html.HiddenFor(p => p.LojaContrato.Id, new { id = "idnovaloja" })
     <div class="form-group has-error">
-        <div class="col-lg-offset-1 col-lg-6">
+        <div class="col-lg-offset-1 col-lg-11">
             @Html.Erro()
         </div>
     </div>
     <div class="form-group has-success">
-        <div class="col-lg-offset-1 col-lg-6">
+        <div class="col-lg-offset-1 col-lg-11">
             @Html.Sucesso()
         </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="form-group">
         <div class="col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2">
             <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
-            @Ajax.ActionLink(Rotulos.Voltar, "Listar", "Lojas", new { Controller = "Lojas", tamanho = 10, numeroPagina = 0 }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "btn btn-default" })
+            @Ajax.ActionLink(Rotulos.Voltar, "Listar", "Lojas", new { Controller = "Lojas", tamanho = 5, numeroPagina = 0 }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "btn btn-default" })
         </div>
     </div>
 }

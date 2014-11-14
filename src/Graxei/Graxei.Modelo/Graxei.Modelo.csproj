@@ -67,6 +67,7 @@
     <Compile Include="Fabricante.cs" />
     <Compile Include="Loja.cs" />
     <Compile Include="Movimentacao.cs" />
+    <Compile Include="Plano.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="ProdutoVendedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

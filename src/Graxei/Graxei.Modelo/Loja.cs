@@ -19,6 +19,8 @@ namespace Graxei.Modelo
 
         public virtual IList<Usuario> Usuarios { get; protected internal set; }
 
+        public virtual Plano Plano { get; set; }
+
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
         {
