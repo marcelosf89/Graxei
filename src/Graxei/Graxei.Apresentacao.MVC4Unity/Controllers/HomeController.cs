@@ -133,6 +133,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View("Contato");
         }
 
+        [AllowAnonymous]
+        public ActionResult Enviar(string assunto, string mensagem)
+        {
+            FAST.Utils.SendEmail email = new FAST.Utils.SendEmail();
+email.AddTo("ebnovaes
+                oMail.SendMail("Email", "xxxxx@xxxxxx.com", new String[] { Subject, Body });
+          
+            return Content("Success");
+        }
+
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
     }
 }
