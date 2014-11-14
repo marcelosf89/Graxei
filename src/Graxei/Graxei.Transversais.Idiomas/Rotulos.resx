@@ -225,4 +225,31 @@
   <data name="Enviar" xml:space="preserve">
     <value>Enviar</value>
   </data>
+  <data name="Cifra" xml:space="preserve">
+    <value>R$</value>
+  </data>
+  <data name="Consulte_nos" xml:space="preserve">
+    <value>Consulte-nos</value>
+  </data>
+  <data name="Contratado" xml:space="preserve">
+    <value>Contratado</value>
+  </data>
+  <data name="Contratar" xml:space="preserve">
+    <value>Contratar</value>
+  </data>
+  <data name="Customizado" xml:space="preserve">
+    <value>Customizado</value>
+  </data>
+  <data name="Gratuito" xml:space="preserve">
+    <value>Gratuito</value>
+  </data>
+  <data name="Mes" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="Monte_seu_plano" xml:space="preserve">
+    <value>Monte seu plano</value>
+  </data>
+  <data name="Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+  </data>
 </root>

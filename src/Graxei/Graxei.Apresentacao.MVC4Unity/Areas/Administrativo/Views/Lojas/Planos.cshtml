@@ -17,18 +17,18 @@
                                 <label>@pla.Nome</label>
                                 @if (pla.Valor > 0)
                                 {
-                                    <h5>R$@pla.Valor / @pla.Meses Mes</h5>
+                                    <h5>@Rotulos.Cifra @pla.Valor /@pla.Meses @Rotulos.Mes</h5>
                                 }
                                 else
                                 {
-                                    <h5>Gratuito</h5>
+                                    <h5>@Rotulos.Gratuito</h5>
                                 }
                                 <br />
                                 <ul>
-                                    <li>@pla.QuantidadeFilial Loja(s)</li>
-                                    <li>@pla.QuantidadeProduto Produtos</li>
+                                    <li>@pla.QuantidadeFilial @Rotulos.Lojas</li>
+                                    <li>@pla.QuantidadeProduto @Rotulos.Produtos</li>
                                 </ul>
-                                <div class="btn btn-default" disabled="disabled">Contratado</div>
+                                <div class="btn btn-default" disabled="disabled">@Rotulos.Contratado</div>
                             </a>  
                             }
                             else
@@ -37,7 +37,7 @@
                                 <label>@pla.Nome</label>
                                 @if (pla.Valor > 0)
                                 {
-                                    <h5>R$@pla.Valor / @pla.Meses Mes</h5>
+                                    <h5>@Rotulos.Cifra @pla.Valor /@pla.Meses @Rotulos.Mes</h5>
                                 }
                                 else
                                 {
@@ -45,22 +45,23 @@
                                 }
                                 <br />
                                 <ul>
-                                    <li>@pla.QuantidadeFilial Loja(s)</li>
-                                    <li>@pla.QuantidadeProduto Produtos</li>
+                                    <li>@pla.QuantidadeFilial @Rotulos.Lojas</li>
+                                    <li>@pla.QuantidadeProduto @Rotulos.Produtos</li>
                                 </ul>
-                                <button class="btn btn-primary">Contratar</button>
+                                <button class="btn btn-primary">@Rotulos.Contratar</button>
                             </a>    
                             }
                         }
 
                         <a href="#" class="thumbnail thumbnail-plano">
-                            <label>Customizado</label>
-                            <h5>Consulte-nos</h5>
+                            <label>@Rotulos.Customizado</label>
+                            <h5>@Rotulos.Consulte_nos</h5>
                             <br />
                             <ul>
-                                <li>Monte o seu plano</li>
+                                <li>@Rotulos.Monte_seu_plano</li>
+                                <li> @Rotulos.Lojas /@Rotulos.Produtos</li>
                             </ul>
-                            <button class="btn btn-primary">Consulte-nos</button>
+                            <button class="btn btn-primary">@Rotulos.Consulte_nos</button>
                         </a>
                     </div>
                 </div>
