@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models
 {
@@ -13,6 +14,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models
 
         public string Controller { get; set; }
 
-        public object Route { get; set; }
+        public RouteValueDictionary Route { get; set; }
     }
 }
