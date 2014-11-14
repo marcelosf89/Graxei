@@ -73,6 +73,7 @@
     <Compile Include="BairrosNHibernatePostgre.cs" />
     <Compile Include="CidadesNHibernatePostgre.cs" />
     <Compile Include="ConsultasSQL.cs" />
+    <Compile Include="PlanosNHibernatePostgre.cs" />
     <Compile Include="EnderecosNHibernatePostgre.cs" />
     <Compile Include="EstadosNHibernatePostgre.cs" />
     <Compile Include="FabricantesNHibernatePostgre.cs" />

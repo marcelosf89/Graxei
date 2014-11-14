@@ -19,7 +19,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     {
         public LojasController(IConsultasEnderecos consultasEnderecos, IGerenciamentoLojas gerenciamentoLojas,
             IConsultasLojas consultasLojas, ITransformacaoMutua<Loja, LojaContrato> transformacaoMutuaLojas,
-            IConsultasEstados consultasEstados, IConsultasListaLojas consultasListaLojas)
+            IConsultasEstados consultasEstados, IConsultasListaLojas consultasListaLojas, IConsultasPlanos consultasPlanos)
         {
             _gerenciamentoLojas = gerenciamentoLojas;
             _consultasLojas = consultasLojas;
@@ -27,6 +27,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasEstados = consultasEstados;
             _consultasEnderecos = consultasEnderecos;
             _consultasListaLojas = consultasListaLojas;
+            _consultasPlanos = consultasPlanos;
         }
 
         #region ActionResults
@@ -98,7 +99,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         [LimpezaSessaoNovaLoja]
         public ActionResult EditarNova(Usuario usuario, LojaModel item)
         {
-            if (item == null) { item = new LojaModel(); }
             if (!ModelState.IsValid)
             {
                 return PartialView("NovaLojaAjax", item);
@@ -120,6 +120,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 ModelState.AddModelError(string.Empty, ee.Message);
                 return PartialView("NovaLojaAjax", item);
             }
+        }
+
+        [HttpPost]
+        public ActionResult Planos(long idLoja)
+        {
+            PlanoLojaModel plm = new PlanoLojaModel();
+            plm.Planos = _consultasPlanos.GetPlanosAtivos();
+            plm.PlanoLojaContratado = _consultasLojas.Get(idLoja).Plano;
+            return PartialView("Planos", plm);
         }
 
         public FileContentResult GetImagem(int idLoja = 0)
@@ -147,6 +156,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private IConsultasEstados _consultasEstados;
         private IConsultasListaLojas _consultasListaLojas;
         private ITransformacaoMutua<Endereco, EnderecosViewModelEntidade> _transformacaoMutuaEnderecos;
+        private IConsultasPlanos _consultasPlanos;
 
         #endregion
     }

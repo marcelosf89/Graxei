@@ -44,7 +44,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string ID_ENDERECO = "id_endereco";
         public const string ID_ESTADO = "id_estado";
         public const string ID_FABRICANTE = "id_fabricante";
-        public const string ID_LOJA = "id_loja";
+        public const string ID_LOJA = "id_loja"; 
         public const string ID_MOVIMENTACAO = "id_movimentacao";
         public const string ID_PRODUTO = "id_produto";
         public const string ID_PRODUTO_VENDEDOR = "id_produto_vendedor";
@@ -66,6 +66,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public const string SENTIDO = "sentido";
         public const string SIGLA = "sigla";
         public const string CEP = "cep";
+        public const string ID_PLANO = "id_plano"; 
 
         #endregion
 

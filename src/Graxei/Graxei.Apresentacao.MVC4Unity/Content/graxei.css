@@ -171,6 +171,27 @@
     font-weight: bold;
 }
 
+a.thumbnail-plano {
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+}
+
+.thumbnail-plano {
+    width: 30%;
+    margin: 3px;
+    padding: 2px;
+    float: left;
+}
+
+    .thumbnail-plano > ul {
+        padding-left: 30%;
+        text-align: justify;
+        color: #6C6A67;
+        list-style: none;
+        padding-bottom: 5px;
+    }
+
 @media (max-width: 767px) {
     a.btn.btn-success {
         width: 100%;
@@ -180,6 +201,18 @@
     .navbar-right .navbar-form {
         margin-right: 0px;
     }
+
+    .thumbnail-plano {
+        width: 100%;
+        margin: 3px;
+        padding: 2px;
+        float: none;
+    }
+
+        .thumbnail-plano > ul {
+            padding-left: 45%;
+            padding-bottom: 5px;
+        }
 }
 /*.header {
     background-color: #eee;

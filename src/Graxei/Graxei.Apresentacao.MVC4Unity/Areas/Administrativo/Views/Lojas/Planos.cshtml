@@ -1,0 +1,75 @@
+﻿@model PlanoLojaModel
+
+<div id="modalPlanos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach (Graxei.Modelo.Plano pla in Model.Planos)
+                        {
+                            if (Model.PlanoLojaContratado.Id == @pla.Id)
+                            {
+                            <a href="#" class="thumbnail thumbnail-plano">
+                                <label>@pla.Nome</label>
+                                @if (pla.Valor > 0)
+                                {
+                                    <h5>R$@pla.Valor / @pla.Meses Mes</h5>
+                                }
+                                else
+                                {
+                                    <h5>Gratuito</h5>
+                                }
+                                <br />
+                                <ul>
+                                    <li>@pla.QuantidadeFilial Loja(s)</li>
+                                    <li>@pla.QuantidadeProduto Produtos</li>
+                                </ul>
+                                <div class="btn btn-default" disabled="disabled">Contratado</div>
+                            </a>  
+                            }
+                            else
+                            {
+                            <a href="#" class="thumbnail thumbnail-plano">
+                                <label>@pla.Nome</label>
+                                @if (pla.Valor > 0)
+                                {
+                                    <h5>R$@pla.Valor / @pla.Meses Mes</h5>
+                                }
+                                else
+                                {
+                                    <h5>Gratuito</h5>
+                                }
+                                <br />
+                                <ul>
+                                    <li>@pla.QuantidadeFilial Loja(s)</li>
+                                    <li>@pla.QuantidadeProduto Produtos</li>
+                                </ul>
+                                <button class="btn btn-primary">Contratar</button>
+                            </a>    
+                            }
+                        }
+
+                        <a href="#" class="thumbnail thumbnail-plano">
+                            <label>Customizado</label>
+                            <h5>Consulte-nos</h5>
+                            <br />
+                            <ul>
+                                <li>Monte o seu plano</li>
+                            </ul>
+                            <button class="btn btn-primary">Consulte-nos</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#modalPlanos').modal('show');
+</script>
+

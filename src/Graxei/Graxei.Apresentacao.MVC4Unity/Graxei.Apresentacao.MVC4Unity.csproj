@@ -202,6 +202,7 @@
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />
+    <Compile Include="Areas\Administrativo\Models\PlanoLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\TelefoneModel.cs" />
     <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -343,6 +344,7 @@
     <Content Include="Areas\Administrativo\Views\Lojas\Listar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Home\_Index.cshtml" />
     <Content Include="Areas\Administrativo\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\Planos.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
