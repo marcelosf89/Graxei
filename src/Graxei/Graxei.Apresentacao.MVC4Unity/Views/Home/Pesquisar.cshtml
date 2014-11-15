@@ -105,18 +105,28 @@ else
 }
 <div class="row">
     <div class="span12">
-        @using (Ajax.BeginForm("PesquisarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
-        {
-            long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 5) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 4);
+        @{            
+            long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
 
-            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 4);
-            if ((mIdx - idx) < 10 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
+            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 2);
+            if ((mIdx - idx) < 3 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
             {
-                mIdx = mIdx + (mIdx - idx) + 1;
+                mIdx = mIdx + (mIdx - idx);
+            }
+            @Ajax.LinkPaginacaoRangePagina("PesquisarPagina", "Home","paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2)
+        }
+        @*@using (Ajax.BeginForm("PesquisarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
+        {
+            long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
+
+            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 2);
+            if ((mIdx - idx) < 3 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
+            {
+                mIdx = mIdx + (mIdx - idx);
             }
                     
-            @Html.LinkPaginacaoRangePagina("paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 4, 10)
-        }
+            @Html.LinkPaginacaoRangePagina("paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2, "PesquisarPagina")
+        }*@
     </div>
 </div>
 <div id="myModal"></div>

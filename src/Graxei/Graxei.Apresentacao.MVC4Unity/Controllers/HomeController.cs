@@ -54,7 +54,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View(list);
         }
 
-        [HttpGet]
         [AllowAnonymous]
         public ActionResult PesquisarPagina(string paginaSelecionada)
         {
