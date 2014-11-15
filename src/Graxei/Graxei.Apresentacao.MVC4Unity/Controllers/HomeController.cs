@@ -1,6 +1,7 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Excecoes;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult Pesquisar(string q)
         {
             DateTime dtIni = DateTime.Now;
-            IList<ProdutoVendedor> list;
+            IList<PesquisaContrato> list;
             IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];
             if (ir == null)
                 list = _iConsultasProdutoVendedor.Get(q, "", "", 0);
@@ -62,7 +63,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             PesquisarModel pm = (PesquisarModel)TempData["txtSearch"];
             pm.PaginaSelecionada = Convert.ToInt32(paginaSelecionada);
 
-            IList<ProdutoVendedor> list;
+            IList<PesquisaContrato> list;
             try
             {
                 IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];

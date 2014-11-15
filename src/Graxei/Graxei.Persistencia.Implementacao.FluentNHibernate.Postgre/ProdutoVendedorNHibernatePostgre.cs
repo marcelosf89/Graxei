@@ -7,6 +7,8 @@ using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 using NHibernate.Linq;
 using System.Linq;
+using Graxei.Transversais.ContratosDeDados;
+using NHibernate.Transform;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -26,27 +28,32 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
         }
 
-        public IList<ProdutoVendedor> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int pagina)
+        public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int pagina)
         {
             String sql = @"
-                                select pv.* from produtos p 
+                select pv.id_produto_vendedor Id, pv.Descricao Descricao,  p.Codigo Codigo,
+                    pv.Preco Preco, pv.id_produto ProdutoId, pv.id_endereco EnderecoId,
+                    tl.numero Numero
+                from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
+                join enderecos en on en.id_endereco = pv.id_endereco
+                join telefones tl on en.id_endereco = tl.id_endereco
                 where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
                 order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
-                .AddEntity(typeof(ProdutoVendedor))
+                .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
                 .SetParameter<String>("descricao", descricao)
                 .SetFirstResult((pagina * 10) < 0 ? 1 : (pagina * 10))
                 .SetMaxResults(10)
-                .List<ProdutoVendedor>();
+                .List<PesquisaContrato>();
         }
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
         {
             ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
                                                  .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower()
-                                                                    && p.Loja.Nome.Trim().ToLower() == nomeLoja.Trim().ToLower());
+                                                                    && p.Endereco.Loja.Nome.Trim().ToLower() == nomeLoja.Trim().ToLower());
             return pvl;
         }
 
@@ -61,7 +68,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 throw new EntidadeInvalidaException(Erros.LojaInvalida);
             }
             ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
-                                             .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
+                                             .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Endereco.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
             return pvl;
         }
 
@@ -93,6 +100,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             String sql = @"
                 select count(p.id_produto) from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
+                join enderecos en on en.id_endereco = pv.id_endereco
+                join telefones tl on en.id_endereco = tl.id_endereco
                 where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
                 ";
             return SessaoAtual.CreateSQLQuery(sql)

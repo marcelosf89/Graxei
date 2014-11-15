@@ -80,6 +80,10 @@
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
+      <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>
+      <Name>Graxei.Transversais.ContratosDeDados</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

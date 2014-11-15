@@ -1,6 +1,7 @@
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
@@ -27,7 +28,7 @@ namespace Graxei.Negocio.Implementacao
             _servicoProdutos.PreSalvar(produtoVendedor.Produto);
             _servicoAtributos.PreSalvar(produtoVendedor);
             ProdutoVendedor pvExiste = Repositorio.GetPorDescricaoAndLoja(produtoVendedor.Descricao,
-                                                                          produtoVendedor.Loja.Nome);
+                                                                          produtoVendedor.Endereco.Loja.Nome);
             if (pvExiste != null)
             {
                 throw new ObjetoJaExisteException(Erros.ProdutoMesmaLoja);
@@ -40,7 +41,7 @@ namespace Graxei.Negocio.Implementacao
             _servicoProdutos.PreAtualizar(produtoVendedor.Produto);
             _servicoAtributos.PreAtualizar(produtoVendedor);
             ProdutoVendedor pvExiste = Repositorio.GetPorDescricaoAndLoja(produtoVendedor.Descricao,
-                                                                          produtoVendedor.Loja.Nome);
+                                                                          produtoVendedor.Endereco.Loja.Nome);
             if (pvExiste != null && pvExiste.Id != produtoVendedor.Id)
             {
                 throw new ObjetoJaExisteException(Erros.ProdutoMesmaLoja);
@@ -71,7 +72,7 @@ namespace Graxei.Negocio.Implementacao
             }
             _servicoUnidadeMedida.PreSalvar(produtoVendedor.UnidadeEntrada);
             _servicoUnidadeMedida.PreSalvar(produtoVendedor.UnidadeSaida);
-            if (produtoVendedor.Loja == null)
+            if (produtoVendedor.Endereco == null || produtoVendedor.Endereco.Loja == null)
             {
                 throw new ValidacaoEntidadeException(Erros.LojaNula);
             }
@@ -97,12 +98,12 @@ namespace Graxei.Negocio.Implementacao
         #endregion
 
 
-        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto)
+        public System.Collections.Generic.IList<PesquisaContrato> Get(string texto)
         {
             return Repositorio.GetPorDescricaoPesquisa(texto, "", "", 0);
         }
 
-        public System.Collections.Generic.IList<ProdutoVendedor> Get(string texto, string pais, string cidade, int page)
+        public System.Collections.Generic.IList<PesquisaContrato> Get(string texto, string pais, string cidade, int page)
         {
             return Repositorio.GetPorDescricaoPesquisa(texto, pais, cidade, page);
         }
