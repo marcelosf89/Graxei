@@ -44,6 +44,8 @@
                 <tr>
                     <th colspan="2">
                             @Ajax.LinkPaginacao2("Listar", "Lojas", "numeroPagina", (int)ViewBag.Page, Model.Total.Total, 5);
+                            @Html.LinkPaginacao2("numeroPagina", (int)ViewBag.Page, Model.Total.Total, 5);
+                            @Html.LinkPaginacao2("numeroPagina", Model.Atual.Atual, Model.Total.Total, 5);
                     </th>
                 </tr>
             </tfoot>
