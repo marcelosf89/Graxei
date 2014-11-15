@@ -192,6 +192,12 @@ a.thumbnail-plano {
         padding-bottom: 5px;
     }
 
+.pag-btn-group {
+    padding-top: 7px;
+    padding-left: 15px;
+    padding-bottom: 7px;
+}
+
 @media (max-width: 767px) {
     a.btn.btn-success {
         width: 100%;
