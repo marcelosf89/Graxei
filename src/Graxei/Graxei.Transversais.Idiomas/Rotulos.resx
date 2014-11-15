@@ -252,4 +252,7 @@
   <data name="Upgrade" xml:space="preserve">
     <value>Upgrade</value>
   </data>
+  <data name="Assunto" xml:space="preserve">
+    <value>Assunto</value>
+  </data>
 </root>

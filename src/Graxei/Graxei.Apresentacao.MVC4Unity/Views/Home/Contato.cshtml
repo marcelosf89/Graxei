@@ -5,7 +5,7 @@
 
 <h2>Contato</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Enviar", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
         <div>
@@ -15,6 +15,10 @@
         <div>
             @Rotulos.Email
             @Html.TextBox("Email")
+        </div>
+        <div>
+            @Rotulos.Assunto
+            @Html.TextBox("Assunto")
         </div>
         <div>
             @Rotulos.Mensagem
