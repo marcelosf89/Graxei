@@ -21,10 +21,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo
                  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            ////context.MapRoute(
-            ////    "ListarLojas",
-            ////    "Administrativo/Lojas/Listar/{idLoja}",
-            ////    new {controller = "Lojas", Action = "Editar"});
+            context.MapRoute(
+                    "ListarLojas",
+                    "Administrativo/Lojas/Listar/{numeroPagina}/{tamanho}",
+                    new {controller = "Lojas", Action = "Listar", numeroPagina = UrlParameter.Optional, tamanho = UrlParameter.Optional});
         }
     }
 }

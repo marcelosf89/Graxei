@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Web.Mvc;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoStrategy;
+using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain;
 using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
@@ -9,7 +9,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
     {
         public static MvcHtmlString LinkPaginacao(this HtmlHelper htmlHelper, ListaLojas listaLojas)
         {
-            return new MaisQueCincoTotal(listaLojas).Get();
+            ////return new MaisQueMaximoElementos().Get();
+            return null;
         }
 
         public static MvcHtmlString LinkPaginacaoRangePagina(this HtmlHelper htmlHelper, string requestName, int paginaSelecionada, long paginasMaxima, int quantidadePaginasAbaixoAtual, int valorMaximoDePaginaApresentacao)
