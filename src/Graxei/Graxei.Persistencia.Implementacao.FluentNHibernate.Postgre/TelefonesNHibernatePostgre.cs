@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
+using Graxei.Persistencia.Implementacao.NHibernate;
 using NHibernate.Linq;
 
-namespace Graxei.Persistencia.Implementacao.NHibernate
+namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
 {
     public class TelefonesNHibernatePostgre : PadraoNHibernatePostgre<Telefone>, IRepositorioTelefones
     {
