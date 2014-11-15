@@ -3,29 +3,43 @@
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div id="dialogo" class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <strong>@Model.Loja.Nome</strong>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+            @if (@Model == null)
+            {        
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="row alert alert-danger">
+                        <div class="col-md-12">
+                            A Loja não foi encontrada. Favor entre em contato.
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="modal-header">
+                    <strong>@Model.Loja.Nome</strong>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Logradouro</label><p>@Model.Logradouro</p>
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Complemento</label><p>@Model.Complemento</p>
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-2">
                                             <label>Numero</label><p>@Model.Numero</p>
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label>Cidade</label><p>@Model.Bairro.Cidade.Nome</p>
@@ -36,7 +50,7 @@
                                         <div class="col-md-3">
                                             <label>Bairro</label><p>@Model.Bairro.Nome</p>
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             @foreach (Graxei.Modelo.Telefone telefone in Model.Telefones)
@@ -46,13 +60,14 @@
                                             }
                                         </div>
                                     </div>
-                        
-                                }
+
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
             </div>

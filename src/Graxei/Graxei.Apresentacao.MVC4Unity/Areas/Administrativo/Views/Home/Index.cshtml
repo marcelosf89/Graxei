@@ -38,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Ajax.ActionLink(" raxei", "Dashboard", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-brand logo" })
+                    @Ajax.ActionLink(" raxei", "Dashboard", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-brand logo" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -77,7 +77,7 @@
     </div>
     <div id="menuAdmin" class="menu-body">
         <ul>
-            <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Lojas", "Listar", "Lojas", new { controller = "Lojas", numeroPagina = 0, tamanho = 5 }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "" })</li>
+            <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Lojas", "Listar", "Lojas", new { controller = "Lojas", numeroPagina = 0, tamanho = 5 }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "" })</li>
         </ul>
     </div>
 }

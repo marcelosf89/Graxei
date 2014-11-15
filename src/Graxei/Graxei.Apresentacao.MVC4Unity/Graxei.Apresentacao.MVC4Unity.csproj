@@ -194,7 +194,6 @@
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\PaginacaoChainFactory.cs" />
-    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoHelper.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\MenosQueMaximoElementos.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\IPaginacaoStrategy.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\MaisQueMaximoElementos.cs" />
@@ -216,6 +215,7 @@
     <Compile Include="Controllers\LojaController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Extension\MVCExtensionComponent.cs" />
+    <Compile Include="Extension\MVCExtensionComponentPaginacao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

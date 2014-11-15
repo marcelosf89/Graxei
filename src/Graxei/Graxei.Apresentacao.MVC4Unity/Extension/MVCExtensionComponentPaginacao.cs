@@ -1,21 +1,15 @@
-﻿using System.Text;
-using System.Web.Mvc;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain;
-using Graxei.Transversais.ContratosDeDados;
-using Graxei.Apresentacao.MVC4Unity.Extension;
-using System.Web.Routing;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
-namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
+namespace Graxei.Apresentacao.MVC4Unity.Extension
 {
-    public static class PaginacaoHelper
+    public static partial class MVCExtensionComponent
     {
-        public static MvcHtmlString LinkPaginacao(this HtmlHelper htmlHelper, ListaLojas listaLojas)
-        {
-            ////return new MaisQueMaximoElementos().Get();
-            return null;
-        }
-
         public static MvcHtmlString LinkPaginacaoRangePagina(this AjaxHelper ajaxHelper, string action, string controller, string requestName, int paginaSelecionada, long paginasMaxima, int quantidadePaginasAbaixoAtual)
         {
             StringBuilder sb = new StringBuilder();
@@ -117,5 +111,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
             sb.Append("</div>");
             return new MvcHtmlString(sb.ToString());
         }
+
     }
 }

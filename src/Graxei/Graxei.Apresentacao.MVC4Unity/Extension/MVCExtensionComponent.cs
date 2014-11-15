@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension
 {
-    public static class MVCExtensionComponent
+    public static partial class MVCExtensionComponent
     {
         public static MvcHtmlString IconActionLink(this AjaxHelper helper, string icon, string text, string actionName, string controllerName, RouteValueDictionary routeValues, AjaxOptions ajaxOptions, IDictionary<string, object> htmlAttributes)
         {
@@ -36,14 +36,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
         }
 
 
-
-        //public static MvcHtmlString IconActionLink(this HtmlHelper helper, string icon, string text, string actionName, string controllerName, object routeValues, object htmlAttributes)
-        //{
-        //    var builder = new TagBuilder("i");
-        //    builder.MergeAttribute("class", icon);
-        //    var link = helper.ActionLink("[replaceme] " + text, actionName, controllerName, routeValues, htmlAttributes).ToHtmlString();
-        //    return new MvcHtmlString(link.Replace("[replaceme]", builder.ToString()));
-        //}
     }
 
     public class ImageTag{
