@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,13 +8,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @RenderSection("Styles", false)
+    @Styles.Render("~/Content/bootstrap/base")
+@*    @Styles.Render("~/Content/themes/base/css")*@
+    @Styles.Render("~/Content/css")
 </head>
 <body>
-    @*<div style="float: right">@{ Html.RenderAction("UsuarioLogado", "Login");}</div>*@
-@*    <a href="Lojas">Nova Loja</a>
-    <div id="nova-loja">*@
-        @RenderBody()
-    @*</div>*@
+    @RenderBody()
     @RenderSection("Scripts", false)
 </body>
 </html>

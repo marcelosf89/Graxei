@@ -1,32 +1,13 @@
 ﻿@{
     ViewBag.Title = "Graxei";
 }
-@Styles.Render("~/Content/bootstrap/base")
-@Styles.Render("~/Content/themes/base/css")
-@Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/sc")
 @Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/jqueryui")
+@*@Scripts.Render("~/bundles/jqueryui")*@
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/modernizr")
-
-<script>
-    $(document).ready(function () {
-        $("#openMenu").on("click", function () {
-            $("#menuAdmin").toggle();
-
-            if ($("#openMenu").attr("estaAberto") === "true") {
-                $("#openMenu").css("left", "0em");
-            } else {
-                $("#openMenu").css("left", "15em");
-            }
-
-            $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
-        });
-    });
-</script>
 <div class="navbar-wrapper">
     <div class="container">
         <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
@@ -81,14 +62,8 @@
         </ul>
     </div>
 }
-<!-- Marketing messaging and featurettes
-    ================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
 <div class="container marketing container-body" id="myContent">
     @{Html.RenderAction("Dashboard");}
-
-    <!-- FOOTER -->
     <footer>
         <p class="pull-right"><a href="#">Ir para o topo</a></p>
         <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
@@ -97,4 +72,18 @@
     </div>
 </div>
 <div id="msg-display"></div>
-<!-- /.container -->
+<script>
+    $(document).ready(function () {
+        $("#openMenu").on("click", function () {
+            $("#menuAdmin").toggle();
+
+            if ($("#openMenu").attr("estaAberto") === "true") {
+                $("#openMenu").css("left", "0em");
+            } else {
+                $("#openMenu").css("left", "15em");
+            }
+
+            $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
+        });
+    });
+</script>
