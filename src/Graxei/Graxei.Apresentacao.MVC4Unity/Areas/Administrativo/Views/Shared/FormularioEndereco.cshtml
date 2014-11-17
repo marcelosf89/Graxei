@@ -1,5 +1,4 @@
 ﻿@model EnderecoModel
-
 @{
     AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "SuccessEndereco" };
     using (Ajax.BeginForm("Salvar", "Enderecos", null, ajax, new { id = "form-enderecos", @class = "form-horizontal" }))
@@ -104,4 +103,3 @@
     }
     
 }
-
