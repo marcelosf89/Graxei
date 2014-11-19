@@ -23,9 +23,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
         public MvcHtmlString Get()
         {
             bool impar = (_maximoElementosPaginacao%2 != 0);
-            int meioLista = _maximoElementosPaginacao/2;
-            bool ficarNoCentro = _listaElementoAtual.Atual > meioLista;
-            if (impar && ficarNoCentro)
+            int meioLista = _maximoElementosPaginacao / 2;
+            bool menosQueMaximoElementos = _listaElementoAtual.Atual < _maximoElementosPaginacao;
+            bool temMetadeOuMaisDaMaximaPaginacaoAdiante = _listaElementoAtual.Atual + (meioLista - 1) >=
+                                                     _listaTotalElementos.Total;
+            bool criteriosAceitos = impar && menosQueMaximoElementos && !temMetadeOuMaisDaMaximaPaginacaoAdiante;
+            if (criteriosAceitos)
             {
                 StringBuilder stringBuilder = new StringBuilder();
 
@@ -38,7 +41,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
                 List<string> links = new List<string>();
                 string controller = _routeValueDictionary["Controller"].ToString();
                 string action = _routeValueDictionary["Action"].ToString();
-                for (int i = 1; i <= _maximoElementosPaginacao; i++)
+
+                int irAte = _maximoElementosPaginacao > _listaTotalElementos.Total
+                    ? _listaTotalElementos.Total
+                    : _maximoElementosPaginacao;
+                for (int i = 1; i <= irAte; i++)
                 {
                     RouteValueDictionary route = new RouteValueDictionary();
                     route.Add("numeroPagina", i);
@@ -46,13 +53,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
                         _ajaxHelper.IconActionLink("", i.ToString(CultureInfo.InvariantCulture), action, controller, route, ajaxOptions, new Dictionary<string, object> { { "class", "btn btn-default" } }).ToHtmlString());
                 }
 
-                links.RemoveAt(meioLista);
-                string atual = _ajaxHelper.IconActionLink(string.Empty, _listaElementoAtual.Atual.ToString(), string.Empty, string.Empty, _routeValueDictionary, ajaxOptions, new Dictionary<string, object> { { "class", "btn btn-warning" }, { "disabled", "disabled" } }).ToHtmlString();
-                links.Insert(meioLista, atual);
-                for (int i = 0; i < links.Count; i++)
-                {
-                    stringBuilder.Append(links[i]);
-                }
                 return MvcHtmlString.Create(stringBuilder.ToString());
             }
 

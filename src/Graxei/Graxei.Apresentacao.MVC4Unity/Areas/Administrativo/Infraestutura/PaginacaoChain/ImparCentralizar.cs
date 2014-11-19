@@ -9,9 +9,9 @@ using Graxei.Transversais.ContratosDeDados.TinyTypes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain
 {
-    public class ImparMenosQueMaximoElementosCentralizar : IPaginacaoChain
+    public class ImparCentralizar : IPaginacaoChain
     {
-        public ImparMenosQueMaximoElementosCentralizar(AjaxHelper ajaxHelper, ListaTotalElementos listaTotalElementos, ListaElementoAtual listaElementoAtual, int maximoElementosPaginacao, RouteValueDictionary routeValueDictionary)
+        public ImparCentralizar(AjaxHelper ajaxHelper, ListaTotalElementos listaTotalElementos, ListaElementoAtual listaElementoAtual, int maximoElementosPaginacao, RouteValueDictionary routeValueDictionary)
         {
             _listaTotalElementos = listaTotalElementos;
             _listaElementoAtual = listaElementoAtual;
@@ -24,9 +24,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
         {
             bool impar = (_maximoElementosPaginacao%2 != 0);
             int meioLista = _maximoElementosPaginacao/2;
-            bool temMetadeOuMaisDaMaximaPaginacaoAdiante = _listaElementoAtual.Atual + (meioLista - 1) >=
-                                                     _listaTotalElementos.Total;
-            bool ficarNoCentro = _listaElementoAtual.Atual > meioLista && temMetadeOuMaisDaMaximaPaginacaoAdiante;
+            bool ficarNoCentro = (_listaTotalElementos.Total > _maximoElementosPaginacao) &&
+                                    _listaElementoAtual.Atual > meioLista &&
+                                    _listaElementoAtual.Atual < (_listaTotalElementos.Total - _maximoElementosPaginacao);
             if (impar && ficarNoCentro)
             {
                 StringBuilder stringBuilder = new StringBuilder();

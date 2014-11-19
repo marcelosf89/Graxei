@@ -195,7 +195,7 @@
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ImparMenosQueMaximoElementos.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\PaginacaoChainFactory.cs" />
-    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ImparMenosQueMaximoElementosCentralizar.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ImparCentralizar.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\IPaginacaoChain.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ElementosPaginacaoImpar.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\UltimoGrupoElementos.cs" />
