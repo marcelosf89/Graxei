@@ -10,5 +10,7 @@ namespace Graxei.Negocio.Contrato
         System.Collections.Generic.IList<PesquisaContrato> Get(string texto, string pais, string cidade, int page);
 
         long GetMax(string texto, string pais, string cidade, int page);
+
+        long GetQuantidadeProduto();
     }
 }

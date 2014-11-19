@@ -2,6 +2,7 @@
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using System;
 using System.Collections.Generic;
@@ -136,38 +137,42 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         [AllowAnonymous]
         public ActionResult Contato()
         {
-            return View("Contato");
+            return View("Contato", new ContatoModel());
         }
 
         [AllowAnonymous]
-        public ActionResult Enviar(string nome, string email, string assunto, string mensagem)
+        public ActionResult Enviar(ContatoModel contatoModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("Contato", contatoModel);
+            }
             string _mailserver = ConfigurationManager.AppSettings["mailserver"];
             string _mailuser = ConfigurationManager.AppSettings["mailuser"];
             string _mailpassword = ConfigurationManager.AppSettings["mailpassword"];
             string _contatonome = ConfigurationManager.AppSettings["contatonome"];
             string _contatoendereco = ConfigurationManager.AppSettings["contatoendereco"];
 
-            FAST.Utils.SendEmail mail = new FAST.Utils.SendEmail();
-
-            mail.Subject = assunto;
-            mail.Body = mensagem;
-            mail.Host = _mailserver;
-            mail.Port = 25;
-            mail.AddTo(_contatoendereco, _contatonome); ;
-            mail.SetFrom(email, nome);
-            mail.SetCredentials(_mailuser, _mailpassword);
-
             try
             {
+                FAST.Utils.SendEmail mail = new FAST.Utils.SendEmail();
+                mail.Subject = contatoModel.Assunto;
+                mail.Body = contatoModel.Mensagem;
+                mail.Host = _mailserver;
+                mail.Port = 25;
+                mail.AddTo(_contatoendereco, _contatonome); ;
+                mail.SetFrom(contatoModel.Email, contatoModel.Nome);
+                mail.SetCredentials(_mailuser, _mailpassword);
                 mail.Send();
-                return Content("Seu e-mail foi enviado com sucesso.");
             }
             catch (Exception)
             {
-
-                return Content("Falha ao enviar o e-mail.");
-            }         
+                ModelState.AddModelError(string.Empty, "Falha ao enviar o e-mail.");
+                return PartialView("Contato", contatoModel);
+            }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
+            return PartialView("Contato", new ContatoModel());
         }
 
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;

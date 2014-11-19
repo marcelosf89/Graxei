@@ -9,5 +9,7 @@ namespace Graxei.Aplicacao.Contrato.Consultas
     {
         IList<PesquisaContrato> Get(string texto);
         IList<PesquisaContrato> Get(string txtSearch, string pais, string cidade, int page);
+
+        long GetQuantidadeProduto();
     }
 }

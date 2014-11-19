@@ -117,6 +117,15 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         }
 
         #endregion
+
+
+        public long GetQuantidadeProduto(Usuario usuario)
+        {
+            return (from pv in SessaoAtual.Query<ProdutoVendedor>()
+                    from u in pv.Endereco.Loja.Usuarios
+                    where u.Id == usuario.Id
+                    select pv.Id).Count();
+        }
     }
 
 }
