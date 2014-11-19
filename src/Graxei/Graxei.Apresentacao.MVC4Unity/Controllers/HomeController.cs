@@ -23,9 +23,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         //
         // GET: /Home/
         [AllowAnonymous]
-        public ActionResult Index(string txtSearch)
+        public ActionResult Index(string q)
         {
-            return View(txtSearch);
+            if (q != null)
+            {
+                ViewBag.q = q;
+            }
+            return View("");
         }
 
         [AllowAnonymous]
@@ -52,6 +56,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
             TimeSpan tf = DateTime.Now - dtIni;
             ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
+            ViewBag.newq = q;
             return View(list);
         }
 

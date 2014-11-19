@@ -2,42 +2,6 @@
     ViewBag.Title = "Graxei";
 }
 @model String
-@Styles.Render("~/Content/bootstrap/base")
-@Styles.Render("~/Content/themes/base/css")
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/sc")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/jqueryui")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/modal")
-@Scripts.Render("~/bundles/modernizr")
-
-<script>
-    $(document).ready(function () {
-        $.getJSON("http://www.telize.com/geoip?callback=?",
-            function (json) {
-                $.ajax({
-                    type: "POST",
-                    url: "Home/SetRegionIP",
-                    data: { pais: json.country, cidade: json.city, regiao: json.region_code }
-                });
-            }
-        );
-
-        $("#openMenu").on("click", function () {
-            $("#menuAdmin").toggle();
-
-            if ($("#openMenu").attr("estaAberto") === "true") {
-                $("#openMenu").css("left", "0em");
-            } else {
-                $("#openMenu").css("left", "15em");
-            }
-
-            $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
-        });
-    });
-</script>
 <div class="navbar-wrapper">
     <div class="container">
         <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
@@ -49,13 +13,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                     @Ajax.ActionLink(" raxei", "_Index", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-brand logo" })
+                    @Ajax.ActionLink(" raxei", "_Index", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-brand logo" })
                 </div>
                 <div class="navbar-collapse collapse">
-                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod= "GET", OnBegin="openL();", OnComplete="closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
+                    @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL(); teste();" }, new { @class = "navbar-form navbar-left", role = "search", id = "fq" }))
                     {	  
                         <div class="input-group nav-search">
-                            @Html.TextBox("q", Model, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id="q",  mozactionhint="search"})
+                            @Html.TextBox("q", Model, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id = "q", mozactionhint = "search" })
                             <span class="input-group-btn">
                                 <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                             </span>
@@ -70,7 +34,7 @@
                                 <form class="navbar-form navbar-left" role="search">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                                            @User.Identity.Name                                        
+                                            @User.Identity.Name
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
@@ -105,18 +69,11 @@
     </div>
     <div id="menuAdmin" class="menu-body">
         <ul>
-
         </ul>
     </div>
 }
-<!-- Marketing messaging and featurettes
-    ================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
 <div class="container marketing container-body" id="myContent">
     @{Html.RenderPartial("_Index");}
-
-    <!-- FOOTER -->
     <footer>
         <p class="pull-right"><a href="#">Ir para o topo</a></p>
         <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
@@ -124,8 +81,12 @@
     <div id="myModal">
     </div>
 </div>
- <div id="msg-display"></div>
-<!-- /.container -->
+<div id="msg-display"></div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/sc")
+@Scripts.Render("~/bundles/modal")
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -134,7 +95,41 @@
         m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-56770692-1', 'auto');
+    ga('create', 'UA-56830058-1', 'auto');
     ga('send', 'pageview');
 
+    $(document).ready(function () {
+        $.getJSON("http://www.telize.com/geoip?callback=?",
+            function (json) {
+                $.ajax({
+                    type: "POST",
+                    url: "Home/SetRegionIP",
+                    data: { pais: json.country, cidade: json.city, regiao: json.region_code }
+                });
+            }
+        );
+
+        $("#openMenu").on("click", function () {
+            $("#menuAdmin").toggle();
+
+            if ($("#openMenu").attr("estaAberto") === "true") {
+                $("#openMenu").css("left", "0em");
+            } else {
+                $("#openMenu").css("left", "15em");
+            }
+
+            $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
+        });
+    });
 </script>
+
+@if (ViewBag.q != null)
+{
+    <script>
+        $(document).ready(function () {
+            var q = "@ViewBag.q";
+            $("#fq").submit();
+        });
+    </script>
+}
+

@@ -130,3 +130,19 @@ else
     </div>
 </div>
 <div id="myModal"></div>
+@if (ViewBag.newq != null)
+{
+    <script>
+        function teste() {
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=@ViewBag.newq';
+            window.history.pushState({ path: newurl }, '', newurl);
+        }
+    </script>
+}
+else
+{
+    <script>
+        function teste() {
+        }
+    </script>
+}

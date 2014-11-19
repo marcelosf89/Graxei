@@ -232,6 +232,7 @@
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\graxei.min.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\fonts\download.svg" />
@@ -242,8 +243,6 @@
     <Content Include="Content\imagens\graxei_logo.png" />
     <Content Include="Content\themes\base\bootstrap-responsive.css" />
     <Content Include="Content\themes\base\bootstrap-responsive.min.css" />
-    <Content Include="Content\themes\base\bootstrap.css" />
-    <Content Include="Content\themes\base\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -301,7 +300,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Areas\Administrativo\Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -321,6 +319,7 @@
     <Content Include="Scripts\button.js" />
     <Content Include="Scripts\carousel.js" />
     <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\graxei.min.js" />
     <Content Include="Scripts\dropdown.js" />
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\google-code-prettify\prettify.css" />
@@ -379,6 +378,8 @@
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\typeahead.js" />
     <Content Include="Scripts\typeahead.min.js" />
     <Content Include="Scripts\_references.js" />

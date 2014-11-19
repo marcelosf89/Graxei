@@ -2,67 +2,16 @@
 @{
     ViewBag.Title = Rotulos.NovaLoja;
 }
-@section Styles{
-    <style>
-        .modal-dialog {
-            width: 90%;
-        }
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
 
-        .modal-content {
-            width: 90%;
-            margin-left: 5%;
-        }
+<script type="text/javascript">
 
-
-        .modal-wide .modal-body {
-            overflow-y: auto;
-        }
-
-        span.field-validation-error, small.field-validation-error {
-            display: block;
-            padding: 0.375rem;
-            margin-top: -1px;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            font-weight: normal;
-            background: #e25252;
-            color: white;
-            border-radius: 3px;
-        }
-
-
-        /* line 515, ../../Scss/Components/_forms.scss */
-        .field-validation-error span.error-message {
-            display: block;
-        }
-
-        .validation-summary-errors {
-            font-size: 12px;
-            line-height: 15px;
-            font-weight: bold;
-            background: #db484a;
-        }
-
-            .validation-summary-errors ul {
-                padding-left: 0;
-                margin: 0;
-            }
-
-            .validation-summary-errors li {
-                list-style: none;
-                color: #fff;
-                padding: 10px;
-            }
-    </style>
-}
-@section Scripts{
-    <script type="text/javascript">
-
-        $("#IdEstado").live("change", (function () {
-            var estado = $("#IdEstado").val();
-            ////alert('aaa');
-            if (estado != 0) {
-                var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+    $("#IdEstado").live("change", (function () {
+        var estado = $("#IdEstado").val();
+        ////alert('aaa');
+        if (estado != 0) {
+            var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
                 $.post(url, { idEstado: estado },
                     function () {
                     });
@@ -75,28 +24,28 @@
             var nomeCidade = $("#IdCidade").val();
             if (estado > 0 && nomeCidade.length > 0) {
                 var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
-                    $.post(url, { idEstado: estado, cidade: nomeCidade },
-                        function () {
-                        });
-                }
-            });
-
-            $("#IdBairro").live("blur", function () {
-                var idEstado = $("#IdEstado").val();
-                var nomeCidade = $("#IdCidade").val();
-                var nomeBairro = $("#IdBairro").val();
-                if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
-                    var url = '@Url.Action("BairroSelecionado", "Enderecos")';
-                $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
+                $.post(url, { idEstado: estado, cidade: nomeCidade },
                     function () {
                     });
             }
         });
 
-        $("#IdCidade").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
+        $("#IdBairro").live("blur", function () {
+            var idEstado = $("#IdEstado").val();
+            var nomeCidade = $("#IdCidade").val();
+            var nomeBairro = $("#IdBairro").val();
+            if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+                var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+                    $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
+                        function () {
+                        });
+                }
+            });
+
+            $("#IdCidade").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
                     type: "POST",
                     dataType: "json",
                     data: { term: request.term },
@@ -179,26 +128,7 @@
                 }
             });
         }
-
-        //$("#form-enderecos").on("submit", function() {
-        //    var telefones = document.getElementsByClassName('telefone');
-        //    var totalValidos;
-        //    for (i = 0; i < telefones.length; i++) {
-        //        totalValidos += validarTelefone(telefones[i]);
-        //    }
-        //    if (totalValidos > 0) {
-        //        return false;
-        //    }
-        //});
-
-        //function validarTelefone(telefone) {
-        //    if (telefone.value.length == 0) {
-
-        //    }
-        //}
-
-    </script>
-}
+</script>
 
 <h4>@Rotulos.NovaLoja</h4>
 <div id="novaloja">

@@ -3,18 +3,15 @@
 }
 
 @Styles.Render("~/Content/bootstrap/base")
-@Styles.Render("~/Content/themes/base/css")
 @Styles.Render("~/Content/css")
+
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/sc")
 @Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/jqueryui")
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/modal")
-@Scripts.Render("~/bundles/modernizr")
 
-<di
-    <div class="navbar-wrapper">
+<div class="navbar-wrapper">
     <div class="container">
         <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
             <div class="container">
@@ -28,7 +25,7 @@
                     @Ajax.ActionLink(" raxei", "Index", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-brand logo" })
                 </div>
                 <div class="navbar-collapse collapse">
-                     @using (Ajax.BeginForm("CarregarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod= "GET", OnBegin="openL();", OnComplete="closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
+                    @using (Ajax.BeginForm("CarregarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
                     {	  
                         <div class="input-group nav-search">
                             @Html.TextBox("txtRota", null, null, new { @class = "form-control ", placeholder = "Incluir Rota" })
@@ -38,7 +35,6 @@
                         </div>
                     }
                     <ul class="nav navbar-nav navbar-right">
-                       
                     </ul>
                 </div>
             </div>
@@ -46,12 +42,11 @@
     </div>
 </div>
 <div class="container marketing container-body" id="myContent">
-    
 </div>
-    <footer>
-        <p class="pull-right"><a href="#">Ir para o topo</a></p>
-        <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
-    </footer>
-    <div id="myModal">
-    </div>
+<footer>
+    <p class="pull-right"><a href="#">Ir para o topo</a></p>
+    <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
+</footer>
+<div id="myModal">
+</div>
 <div id="msg-display"></div>

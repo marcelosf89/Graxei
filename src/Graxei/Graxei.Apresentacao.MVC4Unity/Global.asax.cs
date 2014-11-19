@@ -4,6 +4,8 @@ using Graxei.Apresentacao.MVC4Unity.Binders;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Microsoft.Practices.Unity;
+using System;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -32,6 +34,15 @@ namespace Graxei.Apresentacao.MVC4Unity
             /*IServicoUsuarios usu = cont.Resolve<IServicoUsuarios>();
             Usuario usuario = usu.GetPorLogin("graxeiadmin");
             Session[Constantes.UsuarioAtual] = usuario;*/
+            
+            //BundleTable.EnableOptimizations = true;
+            //HttpCachePolicy cachePolicy = HttpContext.Current.Response.Cache;
+            //cachePolicy.SetCacheability(BundleTable);
+            //cachePolicy.SetOmitVaryStar(true);
+            //cachePolicy.SetExpires(DateTime.Now.AddDays(1));
+            //cachePolicy.SetValidUntilExpires(true);
+            //cachePolicy.SetLastModified(DateTime.Now);
+            //cachePolicy.VaryByHeaders["User-Agent"] = true;
         }
     }
 }

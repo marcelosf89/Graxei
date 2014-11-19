@@ -8,6 +8,7 @@ using Graxei.Transversais.Utilidades.NHibernate;
 using NHibernate.Linq;
 using System.Linq;
 using Graxei.Transversais.ContratosDeDados;
+using NHibernate.Criterion;
 using NHibernate.Transform;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
@@ -28,12 +29,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
         }
 
-        public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int pagina)
+        public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
             String sql = @"
-                select pv.id_produto_vendedor Id, pv.Descricao Descricao,  p.Codigo Codigo,
-                    pv.Preco Preco, pv.id_produto ProdutoId, pv.id_endereco EnderecoId,
-                    tl.numero Numero
+                select pv.id_produto_vendedor as ""Id"", pv.Descricao ""Descricao"",  p.Codigo ""Codigo"",
+                    pv.Preco ""Preco"", pv.id_produto ""ProdutoId"", pv.id_endereco ""EnderecoId"",
+                    tl.numero ""Numero""
                 from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
                 join enderecos en on en.id_endereco = pv.id_endereco
@@ -41,12 +42,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
                 order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
+
             return SessaoAtual.CreateSQLQuery(sql)
-                .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
-                .SetParameter<String>("descricao", descricao)
-                .SetFirstResult((pagina * 10) < 0 ? 1 : (pagina * 10))
-                .SetMaxResults(10)
-                .List<PesquisaContrato>();
+          .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
+          .SetParameter<String>("descricao", descricao)
+                          .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
+          .SetMaxResults(10)
+          .List<PesquisaContrato>();
         }
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
