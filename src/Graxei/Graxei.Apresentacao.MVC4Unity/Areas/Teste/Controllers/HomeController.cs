@@ -1,5 +1,9 @@
 ﻿
+using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models;
+using Graxei.Modelo;
+using Graxei.Transversais.Utilidades;
+using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,11 +17,22 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Controllers
 {
     public class HomeController : Controller
     {
+
+        public HomeController(IConsultasLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
+        {
+            _consultasLogin = consultasUsuarios;
+            _gerenciadorAutenticacao = gerenciadorAutenticacao;
+        }
         //
         // GET: /Teste/Home/
 
         public ActionResult Index()
         {
+            if (Session[Constantes.UsuarioAtual] == null && User.Identity.IsAuthenticated)
+            {
+                Usuario usuarioAutenticado = _consultasLogin.GetPorNome(User.Identity.Name);
+                _gerenciadorAutenticacao.Registrar(usuarioAutenticado);
+            }
             return View();
         }
 
@@ -51,6 +66,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Controllers
             return View(obm);
         }
 
-
+        private IConsultasLogin _consultasLogin;
+        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
     }
 }
