@@ -46,6 +46,8 @@ span.field-validation-error, small.field-validation-error { display: block; padd
 .validation-summary-errors li { list-style: none; color: #fff; padding: 10px; }
 
 .border-r-contact { border-right: 1px solid #BBB6B6; border-radius: 20px; }
+.input-validation-error { border-color: #a94442; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); }
+.input-validation-error:focus { border-color: #843534; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483; }
 
 @media (max-width: 767px) {
     a.btn.btn-success { width: 100%; margin-left: 7px; }
