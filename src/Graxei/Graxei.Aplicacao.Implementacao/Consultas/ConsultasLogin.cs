@@ -31,6 +31,12 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return ServicoUsuarios.GetPorEmail(email);
         }
 
+        public Usuario GetPorNome(string nome)
+        {
+            return ServicoUsuarios.GetPorNome(nome);
+        }
+        
+
         public IServicoUsuarios ServicoUsuarios { get; private set; }
 
         #endregion

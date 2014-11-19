@@ -222,6 +222,7 @@
     </Compile>
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
+    <Compile Include="Models\ContatoModel.cs" />
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\PesquisarModel.cs" />

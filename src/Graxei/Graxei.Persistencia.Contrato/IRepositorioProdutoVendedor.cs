@@ -13,6 +13,8 @@ namespace Graxei.Persistencia.Contrato
         void ExcluirDe(Loja loja);
 
         long GetMaxPorDescricaoPesquisa(string texto, string pais, string cidade, int page);
+
+        long GetQuantidadeProduto(Usuario usuario);
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Graxei";
 }
+@Scripts.Render("~/bundles/jquery")
 <div class="navbar-wrapper">
     <div class="container">
         <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
@@ -22,17 +23,17 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <form class="navbar-form navbar-left">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                    <div class="btn-group btn-max">
+                                        <button type="button" class="btn btn-warning dropdown-toggle btn-max" data-toggle="dropdown">
                                             @User.Identity.Name
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>@Html.ActionLink("Graxei", "Index", "Home", new { controller = "Home", area = "" }, new AjaxOptions())
+                                            <li class="menu-a-login">@Html.ActionLink("Graxei", "Index", "Home", new { controller = "Home", area = "" }, new AjaxOptions())
                                             </li>
                                             <li class="divider"></li>
-                                            <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login", area = "" }, new AjaxOptions())</li>
+                                            <li class="menu-a-login">@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login", area = "" }, new AjaxOptions())</li>
                                         </ul>
                                     </div>
                                 </form> 
@@ -66,7 +67,6 @@
     </div>
 </div>
 <div id="msg-display"></div>
-@Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/sc")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")

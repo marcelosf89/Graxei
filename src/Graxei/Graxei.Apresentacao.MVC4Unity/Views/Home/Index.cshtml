@@ -32,17 +32,17 @@
                         {
                             <li>
                                 <form class="navbar-form navbar-left" role="search">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                    <div class="btn-group btn-max">
+                                        <button type="button" class="btn btn-warning dropdown-toggle btn-max" data-toggle="dropdown">
                                             @User.Identity.Name
                                             <span class="caret"></span>
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li>@Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area = "Administrativo" }, new AjaxOptions())
+                                            <li class="menu-a-login">@Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area = "Administrativo" }, new AjaxOptions())
                                             </li>
                                             <li class="divider"></li>
-                                            <li>@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login" }, new AjaxOptions())</li>
+                                            <li class="menu-a-login">@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login" }, new AjaxOptions())</li>
                                         </ul>
                                     </div>
                                 </form>
@@ -52,7 +52,7 @@
                         {
                             <li>
                                 <form class="navbar-form navbar-left" role="search">
-                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success" })
+                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success btn-max" })
                                 </form>
                             </li>
                         }

@@ -3,6 +3,7 @@ using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Idiomas;
+using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 
@@ -10,15 +11,17 @@ namespace Graxei.Negocio.Implementacao
 {
     public class ServicoProdutoVendedor : ServicoPadraoEntidades<ProdutoVendedor>, IServicoProdutoVendedor
     {
+        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 
         #region Construtor
-        public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida)
+        public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
            RepositorioEntidades = repositorio;
             _repositorioProdutos = repositorioProdutos;
             _servicoProdutos = servicoProdutos;
             _servicoAtributos = servicoAtributos;
             _servicoUnidadeMedida = servicoUnidadeMedida;
+            _gerenciadorAutenticacao = gerenciadorAutenticacao;
         }
         #endregion
 
@@ -112,6 +115,13 @@ namespace Graxei.Negocio.Implementacao
         public long GetMax(string texto, string pais, string cidade, int page)
         {
             return Repositorio.GetMaxPorDescricaoPesquisa(texto, pais, cidade, page);
+        }
+
+
+        public long GetQuantidadeProduto()
+        {
+            Usuario usuario = _gerenciadorAutenticacao.Get();
+            return Repositorio.GetQuantidadeProduto(usuario);
         }
     }
 }

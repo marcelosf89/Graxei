@@ -1,10 +1,13 @@
 ﻿.container-body { margin-top: 51px; }
+
 @media (min-width: 991px) {
     .nav-search { width: 430px; }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
     .nav-search { width: 330px; }
 }
+
 .thumbnail-search { margin-bottom: 0px; }
 .bs-callout { padding: 20px; border: 1px solid #eee; border-left-width: 5px; border-radius: 3px; }
 .bs-callout-info { border-left-color: #5bc0de; }
@@ -30,20 +33,25 @@ a.thumbnail-plano { color: #000; text-align: center; text-decoration: none; }
 .thumbnail-plano { width: 30%; margin: 3px; padding: 2px; float: left; }
 .thumbnail-plano > ul { padding-left: 30%; text-align: justify; color: #6C6A67; list-style: none; padding-bottom: 5px; }
 .pag-btn-group { padding-top: 7px; padding-left: 15px; padding-bottom: 7px; }
+.btn-max { width: 100%; margin-left: 7px; }
 
 .modal-dialog.modal-dialog-endereco { width: 90%; }
 .modal-dialog-endereco > .modal-content { width: 90%; margin-left: 5%; }
-.modal-dialog-endereco > .modal-content > .modal-wide  .modal-dialog-endereco > .modal-content > .modal-body { overflow-y: auto; }
+.modal-dialog-endereco > .modal-content > .modal-wide .modal-dialog-endereco > .modal-content > .modal-body { overflow-y: auto; }
 span.field-validation-error, small.field-validation-error { display: block; padding: 0.375rem; margin-top: -1px; margin-bottom: 1rem; font-size: 1.25rem; font-weight: normal; background: #e25252; color: white; border-radius: 3px; }
 
 .field-validation-error span.error-message { display: block; }
 .validation-summary-errors { font-size: 12px; line-height: 15px; font-weight: bold; background: #db484a; }
 .validation-summary-errors ul { padding-left: 0; margin: 0; }
 .validation-summary-errors li { list-style: none; color: #fff; padding: 10px; }
+
+.border-r-contact { border-right: 1px solid #BBB6B6; border-radius: 20px; }
+
 @media (max-width: 767px) {
-   a.btn.btn-success { width: 100%; margin-left: 7px; }
+    a.btn.btn-success { width: 100%; margin-left: 7px; }
     .navbar-right .navbar-form { margin-right: 0px; }
     .thumbnail-plano { width: 100%; margin: 3px; padding: 2px; float: none; }
     .thumbnail-plano > ul { padding-left: 45%; padding-bottom: 5px; }
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus { color: orange; }
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a { color: black; }
 }
-

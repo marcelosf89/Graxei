@@ -10,5 +10,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
         IServicoUsuarios ServicoUsuarios { get;  }
 
         Usuario GetPorEmail(string email);
+        Usuario GetPorNome(string nome);
     }
 }
