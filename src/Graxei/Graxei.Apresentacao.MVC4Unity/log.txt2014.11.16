@@ -1,0 +1,1 @@
+2014-11-16 10:19:37,325 [9] DEBUG NHibernate.SQL - select usuario0_.id_usuario as id1_17_, usuario0_.Login as Login17_, usuario0_.Email as Email17_, usuario0_.Nome as Nome17_, usuario0_.Senha as Senha17_ from usuarios usuario0_ where lower(trim(both from usuario0_.Login ))=?p0;?p0 = 'admingraxei' [Type: String (11)]

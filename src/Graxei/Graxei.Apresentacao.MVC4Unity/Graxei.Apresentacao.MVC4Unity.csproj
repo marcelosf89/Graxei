@@ -193,11 +193,12 @@
     <Compile Include="Areas\Administrativo\HtmlHelpers\Mensagens.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ImparMenosQueMaximoElementos.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\PaginacaoChainFactory.cs" />
-    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\MenosQueMaximoElementos.cs" />
-    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\IPaginacaoStrategy.cs" />
-    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\MaisQueMaximoElementos.cs" />
-    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\PrimeiroItem.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ImparMenosQueMaximoElementosCentralizar.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\IPaginacaoChain.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ElementosPaginacaoImpar.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\UltimoGrupoElementos.cs" />
     <Compile Include="Areas\Administrativo\Models\EnderecoModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
