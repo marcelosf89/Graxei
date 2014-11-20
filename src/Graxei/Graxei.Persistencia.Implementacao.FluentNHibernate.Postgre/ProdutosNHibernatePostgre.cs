@@ -30,7 +30,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public System.Collections.Generic.IList<Produto> Get(string texto, long page)
         {
             String textos = texto.Replace(" ", "");
-            double textoL = textos.Length * 0.0067;
+            double textoL = textos.Length * 0.0074;
 
 
             String sql = @"
@@ -50,7 +50,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public long GetMax(string texto)
         {
             String textos = texto.Replace(" ", "");
-            double textoL = textos.Length * 0.0067;
+            double textoL = textos.Length * 0.0074;
             String sql = @"
                 select count(p.id_produto) from produtos p 
                 join fabricantes f on p.id_fabricante = f.id_fabricante 

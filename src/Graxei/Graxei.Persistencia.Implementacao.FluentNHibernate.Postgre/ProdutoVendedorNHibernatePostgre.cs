@@ -32,7 +32,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
             String textos = descricao.Replace(" ", "");
-            double textoL = textos.Length * 0.0067;
+            double textoL = textos.Length * 0.0074;
 
             String sql = @"
                 select pv.id_produto_vendedor as ""Id"", pv.Descricao ""Descricao"",  p.Codigo ""Codigo"",
@@ -103,7 +103,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
             String textos = descricao.Replace(" ", "");
-            double textoL = textos.Length * 0.0067;
+            double textoL = textos.Length * 0.0074;
 
             String sql = @"
                 select count(p.id_produto) from produtos p 
