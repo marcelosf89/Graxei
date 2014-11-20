@@ -42,6 +42,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.FluentNHibernate", "FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj", "{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Teste", "6-Teste", "{24C44558-CBEE-423D-B14C-138A3D15549B}"
+	ProjectSection(SolutionItems) = preProject
+		Graxei.Aplicacao.Contrato\packages.config = Graxei.Aplicacao.Contrato\packages.config
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Transversais.Idiomas", "Graxei.Transversais.Idiomas\Graxei.Transversais.Idiomas.csproj", "{5015A01C-2E90-44CF-A45C-4B121696508C}"
 EndProject

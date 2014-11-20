@@ -31,6 +31,9 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
+            String textos = descricao.Replace(" ", "");
+            double textoL = textos.Length * 0.0067;
+
             String sql = @"
                 select pv.id_produto_vendedor as ""Id"", pv.Descricao ""Descricao"",  p.Codigo ""Codigo"",
                     pv.Preco ""Preco"", pv.id_produto ""ProdutoId"", pv.id_endereco ""EnderecoId"",
@@ -39,14 +42,15 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
                 join enderecos en on en.id_endereco = pv.id_endereco
                 join telefones tl on en.id_endereco = tl.id_endereco
-                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
+                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val
                 order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
 
             return SessaoAtual.CreateSQLQuery(sql)
           .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
           .SetParameter<String>("descricao", descricao)
-                          .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
+          .SetParameter<double>("val", textoL)
+          .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
           .SetMaxResults(10)
           .List<PesquisaContrato>();
         }
@@ -98,16 +102,19 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
+            String textos = descricao.Replace(" ", "");
+            double textoL = textos.Length * 0.0067;
 
             String sql = @"
                 select count(p.id_produto) from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
                 join enderecos en on en.id_endereco = pv.id_endereco
                 join telefones tl on en.id_endereco = tl.id_endereco
-                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > 0.04
+                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
                 .SetParameter<String>("descricao", descricao)
+                .SetParameter<double>("val", textoL)
                 .UniqueResult<long>();
         }
 
