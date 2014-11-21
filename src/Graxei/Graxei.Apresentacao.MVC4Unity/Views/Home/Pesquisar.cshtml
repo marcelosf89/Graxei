@@ -11,21 +11,22 @@
         });
     }
 </script>
-@if (!Model.Any())
-{
-    <div class="alert alert-danger" role="alert">
-        <div class="row">
-            <div class="col-md-12">
-                <strong>Não existem resultados para essa pesquisa :c </strong>
+<div class="container">
+    @if (!Model.Any())
+    {
+        <div class="alert alert-danger" role="alert">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Não existem resultados para essa pesquisa :c </strong>
+                </div>
             </div>
         </div>
-    </div>
-}
-else
-{
-    <div>
-        <div id="clock2">@ViewBag.TempoBusca seg</div>
-    </div>@*
+    }
+    else
+    {
+        <div>
+            <div id="clock2">@ViewBag.TempoBusca seg</div>
+        </div>@*
     <div class="panel panel-default hidden-xs  hidden-sm hidden-md hidden-lg" data-spy="affix" data-offset-top="60">
         <div class="panel-body">
             <div class="row">
@@ -60,62 +61,62 @@ else
             </div>
         </div>
     </div>*@
-}
-@foreach (Graxei.Transversais.ContratosDeDados.PesquisaContrato pv in Model)
-{    
-    <div class="row">
-        <div class="col-md-12">
-            <div class="thumbnail thumbnail-search">
-                <div class="row">
-                    <div class="col-md-2">
-                        @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 60, Height = 71 },
+    }
+    @foreach (Graxei.Transversais.ContratosDeDados.PesquisaContrato pv in Model)
+    {    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="thumbnail thumbnail-search">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 60, Height = 71 },
                          "", "VerLoja", "Loja", new { Controller = "Loja", IdTeste = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h4>@pv.Codigo</h4>
-                            </div>
-                            <div class="col-md-4">
-                                @*@foreach (Graxei.Modelo.Telefone tel in @pv.Numeros)
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4>@pv.Codigo</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    @*@foreach (Graxei.Modelo.Telefone tel in @pv.Numeros)
                                 {
                                     *@<div class="row">
                                         <div class="col-md-12">
                                             @pv.Numero
                                         </div>
                                     </div>
-                                @*}*@
+                                    @*}*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @pv.Descricao
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                @pv.Descricao
+                        <div class="col-md-2">
+                            <div class="bs-callout bs-callout-info">
+                                <h4>R$@pv.Preco</h4>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="bs-callout bs-callout-info">
-                            <h4>R$@pv.Preco</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-}
-<div class="row pag-btn-group">
-    <div class="span12">
-        @{            
-            long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
+    }
+    <div class="row pag-btn-group">
+        <div class="span12">
+            @{            
+                long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
 
-            long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 2);
-            if ((mIdx - idx) < 3 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
-            {
-                mIdx = mIdx + (mIdx - idx);
+                long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 2);
+                if ((mIdx - idx) < 3 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
+                {
+                    mIdx = mIdx + (mIdx - idx);
+                }
+                @Ajax.LinkPaginacaoRangePagina("PesquisarPagina", "Home", "paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2)
             }
-            @Ajax.LinkPaginacaoRangePagina("PesquisarPagina", "Home","paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2)
-        }
-        @*@using (Ajax.BeginForm("PesquisarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
+            @*@using (Ajax.BeginForm("PesquisarPagina", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form navbar-left", role = "search" }))
         {
             long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
 
@@ -127,6 +128,7 @@ else
                     
             @Html.LinkPaginacaoRangePagina("paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2, "PesquisarPagina")
         }*@
+        </div>
     </div>
 </div>
 <div id="myModal"></div>

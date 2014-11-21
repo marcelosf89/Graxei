@@ -1,64 +1,65 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
 @model Graxei.Apresentacao.MVC4Unity.Models.ContatoModel
-
-<h4>Contato</h4>
-<div class="form-group has-error">
-    <div class="col-lg-offset-1 col-lg-11">
-        @Html.Erro()
+<div class="container">
+    <h4>Contato</h4>
+    <div class="form-group has-error">
+        <div class="col-lg-offset-1 col-lg-11">
+            @Html.Erro()
+        </div>
     </div>
-</div>
-<div class="form-group has-success">
-    <div class="col-lg-offset-1 col-lg-11">
-        @Html.Sucesso()
+    <div class="form-group has-success">
+        <div class="col-lg-offset-1 col-lg-11">
+            @Html.Sucesso()
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-8 border-r-contact">
-        @using (Ajax.BeginForm("Enviar", "Home", new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL('Enviando...');", OnComplete = "closeL();", HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
-        {
-            <div class="row">
-                <div class="col-md-12 form-group">
-                    <label>@Rotulos.Nome</label>
-                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control " })
-                    @Html.ValidationMessageFor(m => m.Nome)
+    <div class="row">
+        <div class="col-md-8 border-r-contact">
+            @using (Ajax.BeginForm("Enviar", "Home", new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL('Enviando...');", OnComplete = "closeL();", HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Nome</label>
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control " })
+                        @Html.ValidationMessageFor(m => m.Nome)
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 form-group">
-                    <label>@Rotulos.Email</label>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 form-group">
-                    <label>@Rotulos.Assunto</label>
-                    @Html.TextBoxFor(m => m.Assunto, new { @class = "form-control" })
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Assunto</label>
+                        @Html.TextBoxFor(m => m.Assunto, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 form-group">
-                    <label>@Rotulos.Mensagem</label>
-                    @Html.TextAreaFor(m => m.Mensagem, 6, 0, new { @class = "form-control" })
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Mensagem</label>
+                        @Html.TextAreaFor(m => m.Mensagem, 6, 0, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 form-group">
-                    <button class="btn btn-primary">@Rotulos.Enviar</button>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <button class="btn btn-primary">@Rotulos.Enviar</button>
+                    </div>
                 </div>
-            </div>
    
-        }
-    </div>
-    <div class="col-md-4">
-        ekvnerwijnvrkej vlre v<br />
-        re v<br />
-        fe bktr<br />
+            }
+        </div>
+        <div class="col-md-4">
+            ekvnerwijnvrkej vlre v<br />
+            re v<br />
+            fe bktr<br />
+            <br />
+            t
         <br />
-        t
+            tr
         <br />
-        tr
+            t
         <br />
-        t
-        <br />
+        </div>
     </div>
 </div>
