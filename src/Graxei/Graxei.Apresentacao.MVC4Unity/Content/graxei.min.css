@@ -55,12 +55,26 @@ span.field-validation-error, small.field-validation-error { display: block; padd
 .note-f2-row { background-color: #F7F7F7; }
 .carousel-caption-right { top: 20px; text-align: end; max-width: 30%; left: 50%; }
 .carousel-caption-inverse { color: #1d1d1d; }
+footer { border-top: 1px solid #ed9c28; background-color: #F0F0F0; background-image: url('/content/imagens/graxei_logo.png'); background-repeat: no-repeat; background-position: right; background-size: 40px; background-position-x: 97%; }
+footer > .container { padding-left: 70px; padding-right: 70px; border-top: 1px solid #ed9c28; }
+footer ul { list-style-type: none; }
+
+.pla { border: 1px solid #CAC7C7; max-width: 250px; margin: 15px; background-color: #f0f0f0; border-radius: 5px; min-height: 250px; }
+.pla ul { list-style: none; position: absolute; vertical-align: middle; text-align: center; left: 0%; top: 35%; width: 100%; }
+.pla li { padding-bottom: 10px; text-align: center; }
+.pla-header { text-align: center; font-size: x-large; padding-bottom: 29px; border-bottom: 1px solid #FFF; }
+.pla-value { text-align: center; background-color: #F98B3D; font-weight: bold; padding: 5px; margin: 5px 10px; border-radius: 6px; position: absolute; bottom: 0px; left: 0px; right: 0px; }
+
+.container-body { background-color: #ffffff; }
+body { background-color: #f0f0f0; }
 
 @media (max-width: 767px) {
+
     a.btn.btn-success { width: 100%; margin-left: 7px; }
     .navbar-right .navbar-form { margin-right: 0px; }
     .thumbnail-plano { width: 100%; margin: 3px; padding: 2px; float: none; }
     .thumbnail-plano > ul { padding-left: 45%; padding-bottom: 5px; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus { color: orange; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a { color: black; }
+    .pla { width: 95%; max-width: 95%; margin-left: 15px; margin-right: 15px; }
 }
