@@ -59,11 +59,12 @@ footer { border-top: 1px solid #ed9c28; background-color: #F0F0F0; background-im
 footer > .container { padding-left: 70px; padding-right: 70px; border-top: 1px solid #ed9c28; }
 footer ul { list-style-type: none; }
 
-.pla { border: 1px solid #CAC7C7; max-width: 250px; margin: 15px; background-color: #f0f0f0; border-radius: 5px; min-height: 250px; }
-.pla ul { list-style: none; position: absolute; vertical-align: middle; text-align: center; left: 0%; top: 35%; width: 100%; }
-.pla li { padding-bottom: 10px; text-align: center; }
+.pla { border: 1px solid #CAC7C7; min-width: 200px; margin: 5px; background-color: #F9F9F9; border-radius: 5px; min-height: 250px; padding: 0px; }
+.pla ul { list-style: none; position: relative; vertical-align: top; text-align: justify; width: 100%; height: 52%; }
+.pla li { padding-bottom: 10px; text-align: justify; }
 .pla-header { text-align: center; font-size: x-large; padding-bottom: 29px; border-bottom: 1px solid #FFF; }
-.pla-value { text-align: center; background-color: #F98B3D; font-weight: bold; padding: 5px; margin: 5px 10px; border-radius: 6px; position: absolute; bottom: 0px; left: 0px; right: 0px; }
+.pla-value { text-align: center; background-color: #F98B3D; border-radius:4px; font-weight: bold; padding: 5px; margin: 5px 10px; }
+.pla-row { position: relative; left: 7%; }
 
 .container-body { background-color: #ffffff; }
 body { background-color: #f0f0f0; }
@@ -77,4 +78,5 @@ body { background-color: #f0f0f0; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus { color: orange; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a { color: black; }
     .pla { width: 95%; max-width: 95%; margin-left: 15px; margin-right: 15px; }
+    .pla-row { left: 0%; }
 }

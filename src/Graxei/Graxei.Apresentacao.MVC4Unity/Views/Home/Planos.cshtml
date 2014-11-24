@@ -1,32 +1,38 @@
 ﻿@model IList<Graxei.Modelo.Plano>
 
 <div class="container">
+    @{
+        int idxRow = 12 / (Model.Count + 1);
+        
+    }
     <div class="row pla-row">
         @foreach (Graxei.Modelo.Plano plano in Model)
         {
-            <div class="pla col-md-4">
+            <div class="pla col-md-@(idxRow - 1)">
                 <div class="pla-header">
-                    @plano.Nome
+                    <h3>@plano.Nome</h3>
+                    <div class="pla-value">
+                        R$ @plano.Valor / mes
+                    </div>
                 </div>
+
                 <ul>
                     <li><strong>@plano.QuantidadeFilial</strong> Quantidade de Lojas</li>
                     <li><strong>@plano.QuantidadeProduto</strong> Quantidade de Produtos</li>
                 </ul>
-                <div class="pla-value">
-                    R$ @plano.Valor / mes
-                </div>
+
             </div>
         }
-        <div class="pla col-md-4">
+        <div class="pla col-md-@(idxRow - 1)">
             <div class="pla-header">
-                Customizado
+                <h3>Customizado</h3>
+                <div class="pla-value">
+                    A definir / mes
+                </div>
             </div>
             <ul>
                 <li>Monte o seu proprio plano</li>
             </ul>
-            <div class="pla-value">
-                A definir / mes
-            </div>
         </div>
     </div>
 
