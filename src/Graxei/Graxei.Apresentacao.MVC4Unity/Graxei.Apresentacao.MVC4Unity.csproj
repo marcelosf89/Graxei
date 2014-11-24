@@ -239,7 +239,10 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\graxei.css" />
+    <Content Include="Content\imagens\b1.png" />
+    <Content Include="Content\imagens\b2.png" />
     <Content Include="Content\imagens\f1.png" />
+    <Content Include="Content\imagens\f2.png" />
     <Content Include="Content\imagens\favicon.ico" />
     <Content Include="Content\imagens\graxei_logo.png" />
     <Content Include="Content\themes\base\bootstrap-responsive.css" />

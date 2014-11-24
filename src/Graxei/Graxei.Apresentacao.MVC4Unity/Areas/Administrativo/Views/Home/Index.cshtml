@@ -53,17 +53,38 @@
     <div id="menuAdmin" class="menu-body">
         <ul>
             <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Lojas", "Listar", "Lojas", new { controller = "Lojas", numeroPagina = 0, tamanho = 5 }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "" })</li>
-            <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Produtos", "ListarLojas", "Produtos", new { controller = "Produtos"}, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "" })</li>
+            <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Produtos", "ListarLojas", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "" })</li>
         </ul>
     </div>
 }
 <div class="container marketing container-body" id="myContent">
     @{Html.RenderAction("Dashboard");}
-    <footer>
-        <p class="pull-right"><a href="#">Ir para o topo</a></p>
-        <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
-    </footer>
 </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Preços</h4>
+                <ul>
+                    <li>@Ajax.ActionLink("Planos", "Planos", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Suporte</h4>
+                <ul>
+                    <li>@Ajax.ActionLink("Contato", "Contato", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
 <div id="myModal"></div>
 <div id="msg-display"></div>
 @Scripts.Render("~/bundles/sc")
