@@ -40,7 +40,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
                 List<string> links = new List<string>();
                 string controller = _routeValueDictionary["Controller"].ToString();
                 string action = _routeValueDictionary["Action"].ToString();
-                for (int i = 1; i <= _maximoElementosPaginacao; i++)
+                int irDe = _listaElementoAtual.Atual - meioLista;
+                int irAte = _listaElementoAtual.Atual + (meioLista + 1);
+                for (int i = irDe; i <= irAte; i++)
                 {
                     RouteValueDictionary route = new RouteValueDictionary();
                     route.Add("numeroPagina", i);

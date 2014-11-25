@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
@@ -22,6 +23,16 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             }
             return SessaoAtual.Query<Produto>()
                               .SingleOrDefault<Produto>(p => p.Descricao.Trim().ToLower() == descricao);
+        }
+
+        public long GetMax(string texto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Produto> Get(string texto, long page)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
