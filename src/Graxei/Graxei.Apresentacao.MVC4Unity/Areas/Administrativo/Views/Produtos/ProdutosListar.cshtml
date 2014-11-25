@@ -1,0 +1,23 @@
+﻿<h4>Produtos
+</h4>
+<div class="row">
+    <div class="col-md-2">
+        @Ajax.ActionLink("Todas as Filiais", "", "Produtos", new { Controller = "Produtos" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "myModal" }, new { @class = "btn btn-default btn-filial" })
+    </div>
+    <div class="col-md-5">
+        @using (Ajax.BeginForm("Pesquisar", "Produtos", new { Controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "myContentProd", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL(); teste();" }, new { @class = "navbar-form", role = "search", id = "fq" }))
+        {	  
+            <div class="input-group nav-search">
+                @Html.TextBox("txtProduto", null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id = "q", mozactionhint = "search" })
+                <span class="input-group-btn">
+                    <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="myContentProd"></div>
+    </div>
+</div>

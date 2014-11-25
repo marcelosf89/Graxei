@@ -14,12 +14,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
     {
         public static MvcHtmlString LinkPaginacaoRangePagina(this AjaxHelper ajaxHelper, string action, string controller, string requestName, int paginaSelecionada, long paginasMaxima, int quantidadePaginasAbaixoAtual)
         {
+            return LinkPaginacaoRangePagina(ajaxHelper, action, controller, requestName, paginaSelecionada, paginasMaxima, quantidadePaginasAbaixoAtual, "myContent");
+        }
+        public static MvcHtmlString LinkPaginacaoRangePagina(this AjaxHelper ajaxHelper, string action, string controller, string requestName, int paginaSelecionada, long paginasMaxima, int quantidadePaginasAbaixoAtual, String updateTargetId)
+        {
             StringBuilder sb = new StringBuilder();
 
             long idx = ((paginaSelecionada <= quantidadePaginasAbaixoAtual + 1) ? 0 : paginaSelecionada - quantidadePaginasAbaixoAtual);
 
             System.Web.Mvc.Ajax.AjaxOptions ao = new System.Web.Mvc.Ajax.AjaxOptions();
-            ao.OnBegin = "openL()"; ao.OnComplete = "closeL()"; ao.UpdateTargetId = "myContent";
+            ao.OnBegin = "openL()"; ao.OnComplete = "closeL()"; ao.UpdateTargetId = updateTargetId;
             ao.HttpMethod = "GET";
 
             sb.Append("<div class=\"btn-group\">");

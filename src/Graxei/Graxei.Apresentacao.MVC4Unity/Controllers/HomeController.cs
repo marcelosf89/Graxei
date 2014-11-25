@@ -17,9 +17,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IConsultasProdutoVendedor consultaVendedor)
+        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos)
         {
             _iConsultasProdutoVendedor = consultaVendedor;
+            _consultasPlanos = consultasPlanos;
         }
         //
         // GET: /Home/
@@ -93,6 +94,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             TimeSpan tf = DateTime.Now - dtIni;
             ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
             return View("Pesquisar", list);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Planos()
+        {
+
+            IList<Plano> lp = _consultasPlanos.GetPlanosAtivos();
+            return View(lp);
         }
 
         [HttpPost]
@@ -176,5 +185,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
+        IConsultasPlanos _consultasPlanos;
     }
 }

@@ -7,5 +7,8 @@ namespace Graxei.Negocio.Contrato
     {
         void PreSalvar(Produto produto);
         void PreAtualizar(Produto produto);
+
+        long GetMax(string texto);
+        System.Collections.Generic.IList<Produto> Get(string texto, long p);
     }
 }

@@ -25,6 +25,42 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         }
 
         #endregion
+
+
+        public System.Collections.Generic.IList<Produto> Get(string texto, long page)
+        {
+            String textos = texto.Replace(" ", "");
+            double textoL = textos.Length * 0.0074;
+
+
+            String sql = @"
+                select p.* from produtos p 
+                join fabricantes f on p.id_fabricante = f.id_fabricante 
+                where similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome,:descricao)  > :val
+                order by similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome,:descricao) desc";
+            return SessaoAtual.CreateSQLQuery(sql)
+                .AddEntity(typeof(Produto))
+                .SetParameter<String>("descricao", texto)
+                .SetParameter<double>("val", textoL)
+                .SetFirstResult(Convert.ToInt32((page * 10) < 0 ? 1 : (page * 10)))
+          .SetMaxResults(10)
+                .List<Produto>();
+        }
+
+        public long GetMax(string texto)
+        {
+            String textos = texto.Replace(" ", "");
+            double textoL = textos.Length * 0.0074;
+            String sql = @"
+                select count(p.id_produto) from produtos p 
+                join fabricantes f on p.id_fabricante = f.id_fabricante 
+                where similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome,:descricao)  > :val
+                ";
+            return SessaoAtual.CreateSQLQuery(sql)
+                .SetParameter<String>("descricao", texto)
+                .SetParameter<double>("val", textoL)
+                .UniqueResult<long>();
+        }
     }
 
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using FluentNHibernate.Utils;
 using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
@@ -8,9 +7,6 @@ using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
 using NHibernate.Linq;
-using NHibernate.Criterion;
-using NHibernate.Transform;
-using NHibernate.SqlCommand;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {

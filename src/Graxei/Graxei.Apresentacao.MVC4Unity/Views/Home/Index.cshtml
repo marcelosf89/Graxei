@@ -72,15 +72,39 @@
         </ul>
     </div>
 }
-<div class="container marketing container-body" id="myContent">
+<div class="marketing container-body" id="myContent">
     @{Html.RenderPartial("_Index");}
-    <footer>
-        <p class="pull-right"><a href="#">Ir para o topo</a></p>
-        <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
-    </footer>
     <div id="myModal">
     </div>
 </div>
+<p class="pull-right"><a href="#" class="btn btn-default" data-toggle="tooltip" title="Ir para o topo"><i class="glyphicon glyphicon-chevron-up"></i></a></p>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Preços</h4>
+                <ul>
+                    <li>@Ajax.ActionLink("Planos", "Planos", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Suporte</h4>
+                <ul>
+                    <li>@Ajax.ActionLink("Contato", "Contato", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
+            </div>
+            </div>
+    </div>
+
+    
+</footer>
 <div id="msg-display"></div>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")

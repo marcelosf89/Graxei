@@ -52,5 +52,15 @@ namespace Graxei.Negocio.Implementacao
                 throw new ValidacaoEntidadeException(Erros.ProdutoFabricanteNulo);
             }
         }
+
+        public long GetMax(string texto)
+        {
+            return _reposProdutos.GetMax(texto);
+        }
+
+        public System.Collections.Generic.IList<Produto> Get(string texto, long page)
+        {
+            return _reposProdutos.Get(texto, page);
+        }
     }
 }

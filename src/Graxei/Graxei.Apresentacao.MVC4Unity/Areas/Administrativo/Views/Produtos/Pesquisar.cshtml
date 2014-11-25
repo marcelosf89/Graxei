@@ -1,0 +1,69 @@
+﻿@model IList<Graxei.Modelo.Produto>
+@{ 
+    long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
+
+    long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 2);
+    if ((mIdx - idx) < 3 && ViewBag.PesquisarModel.NumeroMaximoPagina == null)
+    {
+        mIdx = mIdx + (mIdx - idx);
+    }
+}
+
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th class="">#</th>
+            <th class="col-md-2">Codigo</th>
+            <th class="col-md-5">Descricao</th>
+            <th class="col-md-2">Valor</th>
+            <th class="col-md-3"></th>
+        </tr>
+        <tr>
+            <th colspan="5">
+                @Ajax.LinkPaginacaoRangePagina("Pesquisar", "Produtos", "paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2, "myContentProd")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Graxei.Modelo.Produto item in Model)
+        {
+            <tr id-prod="@item.Id" >
+                <td class="">
+                    <input type="checkbox" doc-type="cp" id-prod="@item.Id" /></td>
+                <td class="col-md-2">@item.Codigo</td>
+                <td class="col-md-5">@item.Descricao</td>
+                <td class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">R$</span>
+                        <input type="number" class="form-control" onkeypress='return validate(event);' min="0" step="any" doc-type="ip" id-prod="@item.Id" >
+                    </div>
+                </td>
+                <td class="col-md-3"></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="5">
+                @Ajax.LinkPaginacaoRangePagina("Pesquisar", "Produtos", "paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2, "myContentProd")
+            </th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    $("input[doc-type=cp]").on("click", function () {
+        var id = $(this).attr("id-prod");
+        $("tr[id-prod=" + id + "]").toggleClass("success");
+    });
+    $("input[doc-type=ip]").on("focusout", function () {
+        var id = $(this).attr("id-prod");
+        if ($(this).val() != "") {
+            $("tr[id-prod=" + id + "]").addClass("success");
+            $("input[id-prod=" + id + "]").attr("checked", "checked");
+        } else {
+            $("tr[id-prod=" + id + "]").removeClass("success");
+            $("input[id-prod=" + id + "]").removeAttr("checked");
+        }
+    });
+</script>

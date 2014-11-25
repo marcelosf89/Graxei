@@ -1,0 +1,41 @@
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
+@using Graxei.Transversais.ContratosDeDados
+@model ListaLojas
+
+<h4>Cadastro de Produtos / Lojas</h4>
+<div class="row">
+    <div class="col-md-12">
+        <table class=" table table-hover table-bordered ">
+            <thead>
+                <tr>
+                    <th>Nome Loja
+                    </th>
+                    <th>Ação
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (ListaLojasContrato listaLojasContrato in Model.Lista)
+                    {
+                    <tr>
+                        <td class="col-md-6 col-lg-9">
+                            @listaLojasContrato.Nome
+                        </td>
+                        <td class="col-md-3 col-lg-3">
+                            @Ajax.IconActionLink("glyphicon glyphicon-inbox", "Produtos", "ProdutosListar", "Produtos", new { Controller = "Produtos", idLoja = listaLojasContrato.Id }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new {  @class = "btn btn-default btn-sm" })
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">
+                            @Ajax.LinkPaginacao2("Listar", "Lojas", "numeroPagina", Model.Atual.Atual, Model.Total.Total, 5)
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
