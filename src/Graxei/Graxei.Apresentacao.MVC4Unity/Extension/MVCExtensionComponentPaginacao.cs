@@ -5,6 +5,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension
 {
@@ -65,6 +67,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
             return new MvcHtmlString(sb.ToString());
         }
 
+        public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxlHelper, string controller, string action, ListaElementoAtual listaElementoAtual, ListaTotalElementos listaTotalElementos, int maximoElementosPaginacao)
+        {
+            RouteValueDictionary route = new RouteValueDictionary();
+            route.Add("Controller", controller);
+            route.Add("Action", action);
+            PaginacaoChainFactory paginacaoChainFactory = new PaginacaoChainFactory(ajaxlHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, route);
+            return paginacaoChainFactory.ConstruirCadeiaDePaginacao().Get();
+        }
 
         public static MvcHtmlString LinkPaginacao2(this AjaxHelper ajaxHelper, string action, string controller, string requestName, int paginaSelecionada, int valorTotal, int quantidadeApresentacao)
         {

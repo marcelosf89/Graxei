@@ -1,4 +1,6 @@
-﻿using Graxei.Transversais.ContratosDeDados.Interfaces;
+﻿using System.Web.Mvc;
+using System.Web.Routing;
+using Graxei.Transversais.ContratosDeDados.Interfaces;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain
@@ -6,19 +8,23 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
     public class PaginacaoChainFactory
     {
 
-        public PaginacaoChainFactory(ListaTotalElementos listaTotalElementos, ListaElementoAtual listaElementoAtual, int maximoElementosPaginacao)
+        public PaginacaoChainFactory(AjaxHelper ajaxHelper, ListaTotalElementos listaTotalElementos, ListaElementoAtual listaElementoAtual, int maximoElementosPaginacao, RouteValueDictionary rota)
         {
             _listaTotalElementos = listaTotalElementos;
             _listaElementoAtual = listaElementoAtual;
             _maximoElementosPaginacao = maximoElementosPaginacao;
+            _rota = rota;
+            _ajaxHelper = ajaxHelper;
         }
 
-        public IPaginacaoChain Get()
+        public IPaginacaoChain ConstruirCadeiaDePaginacao()
         {
-            ////IPaginacaoChain primeiroElemento = new PrimeiroItem(_listaTotalElementos);
-            ////IPaginacaoChain segundoElemento =
-            ////primeiroElemento
-            return null;
+            IPaginacaoChain primeiroElemento = new ImparMenosQueMaximoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _rota);
+            IPaginacaoChain segundoElemento = new UltimoGrupoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _rota);
+            primeiroElemento.SetProximoElemento(segundoElemento);
+            IPaginacaoChain terceiroElemento = new ImparCentralizar(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _rota);
+            segundoElemento.SetProximoElemento(terceiroElemento);
+            return primeiroElemento;
         }
 
         private ListaTotalElementos _listaTotalElementos;
@@ -27,5 +33,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
 
         private int _maximoElementosPaginacao = 5;
 
+        private RouteValueDictionary _rota;
+
+        private AjaxHelper _ajaxHelper;
     }
 }
