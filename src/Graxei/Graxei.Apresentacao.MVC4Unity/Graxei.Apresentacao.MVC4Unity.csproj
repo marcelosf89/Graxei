@@ -417,6 +417,8 @@
     <Content Include="Views\Home\_Sobre.cshtml" />
     <Content Include="Views\Home\Contato.cshtml" />
     <Content Include="Views\Home\Planos.cshtml" />
+    <Content Include="Views\Home\ContatoAnuncioModal.cshtml" />
+    <Content Include="Views\Home\ContatoAnuncio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

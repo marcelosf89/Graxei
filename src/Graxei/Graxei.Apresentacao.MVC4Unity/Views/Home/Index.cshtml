@@ -74,8 +74,6 @@
 }
 <div class="marketing container-body" id="myContent">
     @{Html.RenderPartial("_Index");}
-    <div id="myModal">
-    </div>
 </div>
 <p class="pull-right"><a href="#" class="btn btn-default" data-toggle="tooltip" title="Ir para o topo"><i class="glyphicon glyphicon-chevron-up"></i></a></p>
 <footer>
@@ -85,6 +83,7 @@
                 <h4>Preços</h4>
                 <ul>
                     <li>@Ajax.ActionLink("Planos", "Planos", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                    <li>@Ajax.ActionLink("Anuncie Aqui", "ContatoAnuncioModal", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { })</li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -105,6 +104,7 @@
 
     
 </footer>
+<div id="myModal"></div>
 <div id="msg-display"></div>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
