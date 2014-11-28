@@ -37,7 +37,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 select p.* from produtos p 
                 join fabricantes f on p.id_fabricante = f.id_fabricante 
                 where similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome,:descricao)  > :val
-                order by similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome,:descricao) desc";
+                order by similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome || ' ' || p.carros || ' ' || p.observacao,:descricao) desc";
             return SessaoAtual.CreateSQLQuery(sql)
                 .AddEntity(typeof(Produto))
                 .SetParameter<String>("descricao", texto)
@@ -54,7 +54,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             String sql = @"
                 select count(p.id_produto) from produtos p 
                 join fabricantes f on p.id_fabricante = f.id_fabricante 
-                where similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome,:descricao)  > :val
+                where similarity(p.descricao || ' ' || p.codigo || ' ' || f.nome || ' ' || p.carros || ' ' || p.observacao,:descricao)  > :val
                 ";
             return SessaoAtual.CreateSQLQuery(sql)
                 .SetParameter<String>("descricao", texto)

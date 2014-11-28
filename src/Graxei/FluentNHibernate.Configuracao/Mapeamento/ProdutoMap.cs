@@ -18,6 +18,8 @@ namespace Graxei.FluentNHibernate.Mapeamento
             Map(p => p.FatorConversao).Column(Constantes.FATOR_CONVERSAO);
             References(p => p.Categoria).Cascade.All();
             References(p => p.Fabricante).Cascade.All();
+            Map(p => p.Carros);
+            Map(p => p.Observacao);
         }
     }
 }

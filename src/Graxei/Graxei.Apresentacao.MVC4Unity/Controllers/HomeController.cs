@@ -184,6 +184,55 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return PartialView("Contato", new ContatoModel());
         }
 
+
+        [AllowAnonymous]
+        public ActionResult ContatoAnuncioModal()
+        {
+            return View("ContatoAnuncioModal");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ContatoAnuncio()
+        {
+            ContatoModel cm = new ContatoModel();
+            cm.Assunto = "-- Anuncie Aqui ---";
+            return View("ContatoAnuncio", cm);
+        }
+        [AllowAnonymous]
+        public ActionResult EnviarContatoAnuncio(ContatoModel contatoModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("ContatoAnuncio", contatoModel);
+            }
+            string _mailserver = ConfigurationManager.AppSettings["mailserver"];
+            string _mailuser = ConfigurationManager.AppSettings["mailuser"];
+            string _mailpassword = ConfigurationManager.AppSettings["mailpassword"];
+            string _contatonome = ConfigurationManager.AppSettings["contatonome"];
+            string _contatoendereco = ConfigurationManager.AppSettings["contatoendereco"];
+
+            try
+            {
+                FAST.Utils.SendEmail mail = new FAST.Utils.SendEmail();
+                mail.Subject = contatoModel.Assunto;
+                mail.Body = contatoModel.Mensagem;
+                mail.Host = _mailserver;
+                mail.Port = 25;
+                mail.AddTo(_contatoendereco, _contatonome); ;
+                mail.SetFrom(contatoModel.Email, contatoModel.Nome);
+                mail.SetCredentials(_mailuser, _mailpassword);
+                mail.Send();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Falha ao enviar o e-mail.");
+                return PartialView("ContatoAnuncio", contatoModel);
+            }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
+            return PartialView("ContatoAnuncio", new ContatoModel());
+        }
+
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
         IConsultasPlanos _consultasPlanos;
     }

@@ -11,7 +11,7 @@ namespace Graxei.Modelo
 
         [DocumentId]
         public override long Id { get; protected set; }
-        
+
         [Field(Index.Tokenized, Store = Store.Yes)]
         [Display(ResourceType = typeof(Propriedades), Name = "Codigo")]
         public virtual string Codigo { get; set; }
@@ -26,6 +26,12 @@ namespace Graxei.Modelo
         [IndexedEmbedded(Depth = 1)]
         public virtual Fabricante Fabricante { get; set; }
         public virtual Categoria Categoria { get; set; }
+
+        [Field(Index.Tokenized, Store = Store.Yes)]
+        public virtual string Carros { get; set; }
+
+        [Field(Index.Tokenized, Store = Store.Yes)]
+        public virtual string Observacao { get; set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
