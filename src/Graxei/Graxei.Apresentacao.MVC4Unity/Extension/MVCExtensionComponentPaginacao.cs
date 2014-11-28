@@ -69,10 +69,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
 
         public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxlHelper, string controller, string action, ListaElementoAtual listaElementoAtual, ListaTotalElementos listaTotalElementos, int maximoElementosPaginacao)
         {
-            RouteValueDictionary route = new RouteValueDictionary();
-            route.Add("Controller", controller);
-            route.Add("Action", action);
-            PaginacaoChainFactory paginacaoChainFactory = new PaginacaoChainFactory(ajaxlHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, route);
+            PaginacaoChainFactory paginacaoChainFactory = new PaginacaoChainFactory(ajaxlHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, controller, action);
             return paginacaoChainFactory.ConstruirCadeiaDePaginacao().Get();
         }
 
