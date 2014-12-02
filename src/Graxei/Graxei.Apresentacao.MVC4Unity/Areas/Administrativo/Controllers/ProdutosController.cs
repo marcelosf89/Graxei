@@ -42,7 +42,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return View();
         }
 
-        public ActionResult Pesquisar(String txtProduto, long paginaSelecionada = 0)
+        public ActionResult Pesquisar(String txtProduto, bool meusProdutos, long paginaSelecionada = 0)
         {
             PesquisarModel pm = (PesquisarModel)TempData["txtProduto"];
             if (pm == null || !String.IsNullOrEmpty(txtProduto))
