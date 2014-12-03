@@ -7,7 +7,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public AtributoMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity(); ;
             Map(p => p.Nome);
             Map(p => p.Rotulo);
             Map(p => p.Tamanho);

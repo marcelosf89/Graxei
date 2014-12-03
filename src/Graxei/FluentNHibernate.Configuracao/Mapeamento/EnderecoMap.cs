@@ -7,7 +7,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public EnderecoMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Logradouro);
             Map(p => p.Numero);
             Map(p => p.Complemento);

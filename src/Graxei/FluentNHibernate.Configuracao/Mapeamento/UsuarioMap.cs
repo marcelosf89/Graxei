@@ -6,7 +6,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public UsuarioMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Login);
             Map(p => p.Email);
             Map(p => p.Nome);

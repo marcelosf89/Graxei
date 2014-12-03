@@ -13,7 +13,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public UnidadeMedidaMap()
         {
             Table(Constantes.UNIDADES_MEDIDA);
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Sigla);
             Map(p => p.Descricao);
         }

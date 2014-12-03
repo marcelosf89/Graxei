@@ -18,7 +18,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
             _listaTotalElementos = listaTotalElementos;
             _listaElementoAtual = listaElementoAtual;
             _maximoElementosPaginacao = maximoElementosPaginacao;
-            _totalPaginas = _listaTotalElementos.Total/_maximoElementosPaginacao;
+            _totalPaginas = 1;
+            if (_listaTotalElementos.Total / _maximoElementosPaginacao >= 1)
+            {
+                _totalPaginas = _listaTotalElementos.Total / 10;
+            }
             _ajaxHelper = ajaxHelper;
             _controller = controller;
             _action = action;

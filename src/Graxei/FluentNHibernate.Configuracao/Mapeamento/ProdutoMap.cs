@@ -12,7 +12,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public ProdutoMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Codigo);
             Map(p => p.Descricao);
             Map(p => p.FatorConversao).Column(Constantes.FATOR_CONVERSAO);
@@ -20,6 +20,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
             References(p => p.Fabricante).Cascade.All();
             Map(p => p.Carros);
             Map(p => p.Observacao);
+
         }
     }
 }

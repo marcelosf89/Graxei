@@ -13,7 +13,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public EstadoMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Nome).Column(Constantes.NOME);
             Map(p => p.Sigla).Column(Constantes.SIGLA);
         }

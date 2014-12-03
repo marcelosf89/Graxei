@@ -6,7 +6,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public PlanoMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Nome);
             Map(p => p.QuantidadeProduto);
             Map(p => p.QuantidadeFilial);

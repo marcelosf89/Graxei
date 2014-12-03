@@ -54,14 +54,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         public ActionResult Listar(int numeroPagina = 1, int tamanho = 10)
         {
-            if (numeroPagina < 0)
-            {
-                numeroPagina = 0;
-            }
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
-            List<ListaLojasContrato> listaLojasContrato = new List<ListaLojasContrato>();
-            listaLojasContrato.AddRange(listaLojas.Lista);
-            listaLojas = new ListaLojas(listaLojasContrato, new ListaTotalElementos(130), new ListaElementoAtual(numeroPagina));
+            ////List<ListaLojasContrato> listaLojasContrato = new List<ListaLojasContrato>();
+            ////listaLojasContrato.AddRange(listaLojas.Lista);
+            ////listaLojas = new ListaLojas(listaLojasContrato, , new ListaElementoAtual(numeroPagina));
 
             return View("Listar", listaLojas);
         }

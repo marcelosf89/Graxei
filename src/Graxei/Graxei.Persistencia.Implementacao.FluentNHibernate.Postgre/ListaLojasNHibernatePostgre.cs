@@ -31,7 +31,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                                  NomePlano = l.Plano.Nome
                              }
                             )
-                            .Skip(pagina * tamanhoPagina)
+                            .Skip((pagina - 1) * tamanhoPagina)
                         .Take(tamanhoPagina).ToList<ListaLojasContrato>();
             //IList<ListaLojasContrato> lista =
             //    SessaoAtual.QueryOver<Loja>()

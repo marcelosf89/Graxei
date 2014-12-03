@@ -25,7 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
         public override int GetFimLista()
         {
             return _maximoElementosPaginacao > _listaTotalElementos.Total
-                    ? _listaTotalElementos.Total
+                    ? _totalPaginas
                     : _maximoElementosPaginacao;
         }
 

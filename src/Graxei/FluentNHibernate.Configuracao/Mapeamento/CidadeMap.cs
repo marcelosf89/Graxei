@@ -8,7 +8,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
 
         public CidadeMap()
         {
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Nome);
             References(p => p.Estado).Fetch.Join();
         }

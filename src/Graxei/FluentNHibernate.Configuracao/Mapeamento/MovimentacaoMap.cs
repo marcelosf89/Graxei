@@ -13,7 +13,7 @@ namespace Graxei.FluentNHibernate.Mapeamento
         public MovimentacaoMap()
         {
             Table(Constantes.MOVIMENTACOES);
-            Id(p => p.Id);
+            Id(p => p.Id).GeneratedBy.Identity();
             Map(p => p.Quantidade).Column(Constantes.QUANTIDADE);
             Map(p => p.Data).Column(Constantes.DATA);
             Map(p => p.Sentido).Column(Constantes.SENTIDO);
