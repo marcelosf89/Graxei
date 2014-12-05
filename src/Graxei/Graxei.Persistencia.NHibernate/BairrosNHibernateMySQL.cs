@@ -13,21 +13,21 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<Bairro> Get(Cidade cidade)
         {
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                               .Where(p => p.Cidade != null && p.Cidade.Equals(cidade))
                               .ToList();
         }
 
         public IList<Bairro> Get(long idCidade)
         {
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                               .Where(p => p.Cidade != null && p.Cidade.Id == idCidade)
                               .ToList();
         }
 
         public Bairro Get(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                 .SingleOrDefault(p => p.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
                                    && p.Cidade.Nome.Trim().ToLower() == nomeCidade.Trim().ToLower()
                                    && p.Cidade.Estado.Id == idEstado);
@@ -35,7 +35,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Bairro Get(string nomeBairro, long idCidade)
         {
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                 .SingleOrDefault(p =>
                                       p.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
                                    && p.Cidade.Id == idCidade);
@@ -43,7 +43,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Bairro Get(string nomeBairro, string nomeCidade, Estado estado)
         {
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                 .SingleOrDefault(p =>
                                       p.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
                                    && p.Cidade.Nome.Trim().ToLower() == nomeCidade.Trim().ToLower()
@@ -53,7 +53,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public Bairro Get(string nomeBairro, Cidade cidade)
         {
             /* TODO: resolver os CompararString */
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                 .SingleOrDefault(p =>
                                       //Queries.CompararStrings(p.Nome, nomeBairro)
                                       p.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
@@ -62,7 +62,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<Bairro> GetPorCidade(string nomeCidade, long idEstado)
         {
-            return SessaoAtual.Query<Bairro>()
+            return GetSessaoAtual().Query<Bairro>()
                 .Where(p =>
                        //Queries.CompararStrings(p.Nome, nomeBairro)
                        p.Cidade.Nome.Trim().ToLower() == nomeCidade.Trim().ToLower()

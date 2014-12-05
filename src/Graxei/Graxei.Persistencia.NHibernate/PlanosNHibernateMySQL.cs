@@ -11,7 +11,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public System.Collections.Generic.IList<Plano> GetPlanosAtivos()
         {
-            return SessaoAtual.Query<Plano>().Where(p => p.EstaAtivo).ToList<Plano>();
+            return GetSessaoAtual().Query<Plano>().Where(p => p.EstaAtivo).ToList<Plano>();
         }
     }
 }

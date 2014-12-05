@@ -16,7 +16,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         /// <returns></returns>
         public IList<string> TodosNomes()
         {
-            return SessaoAtual.QueryOver<Fabricante>().Select(p => p.Nome).List<string>();
+            return GetSessaoAtual().QueryOver<Fabricante>().Select(p => p.Nome).List<string>();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Graxei.Negocio.Implementacao.Teste.Integracao
     [TestClass]
     public class ImplementacaoLojas
     {
-        [AssemblyInitialize]
+        ///[AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
             string server = ConfigurationManager.AppSettings["dbserver"];

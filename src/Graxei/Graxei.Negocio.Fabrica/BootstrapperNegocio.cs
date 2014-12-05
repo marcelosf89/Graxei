@@ -9,7 +9,6 @@ namespace Graxei.Negocio.Fabrica
 {
     public static class BootstrapperNegocio
     {
-
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IServicosFabrica, ServicoFabricaUnity>(new ContainerControlledLifetimeManager());

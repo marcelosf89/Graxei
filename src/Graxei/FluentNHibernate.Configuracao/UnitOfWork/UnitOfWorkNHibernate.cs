@@ -55,6 +55,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
         {
             _sessionFactory = NHibernateWebSessionFactory.GetInstancia(sessionFactory);
         }
+
         public static UnitOfWorkNHibernate GetInstancia()
         {
             return _instancia ?? (_instancia = new UnitOfWorkNHibernate());

@@ -13,21 +13,21 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<Logradouro> Get(Bairro bairro)
         {
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                               .Where(p => p.Bairro != null && p.Bairro.Equals(bairro))
                               .ToList();
         }
 
         public IList<Logradouro> Get(long idBairro)
         {
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                               .Where(p => p.Bairro != null && p.Bairro.Id == idBairro)
                               .ToList();
         }
 
         public Logradouro Get(string nomeLogradouro, string nomeBairro, long idCidade)
         {
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                 .SingleOrDefault(p => 
                                       Queries.CompararStrings(p.Nome, nomeLogradouro)
                                    && Queries.CompararStrings(p.Bairro.Nome, nomeBairro)
@@ -36,7 +36,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Logradouro Get(string nomeLogradouro, long idBairro)
         {
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                 .SingleOrDefault(p =>
                                       Queries.CompararStrings(p.Nome, nomeLogradouro)
                                    && p.Bairro.Id == idBairro);
@@ -44,7 +44,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Logradouro Get(string nomeLogradouro, string nomeBairro, Cidade cidade)
         {
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                 .SingleOrDefault(p =>
                                       p.Nome.Trim().ToLower() == nomeLogradouro.Trim().ToLower()
                                    && p.Bairro.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
@@ -54,7 +54,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         public Logradouro Get(string nomeLogradouro, Bairro bairro)
         {
             /* TODO: resolver os CompararString */
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                 .SingleOrDefault(p =>
                                       p.Nome.Trim().ToLower() == nomeLogradouro.Trim().ToLower()
                                    && p.Bairro.Id == bairro.Id);
@@ -62,7 +62,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<Logradouro> GetPorBairro(string nomeBairro, string nomeCidade, long idEstado)
         {
-            return SessaoAtual.Query<Logradouro>()
+            return GetSessaoAtual().Query<Logradouro>()
                 .Where(p =>
                        p.Bairro.Nome.Trim().ToLower() == nomeBairro.Trim().ToLower()
                        && p.Bairro.Cidade.Nome == nomeCidade

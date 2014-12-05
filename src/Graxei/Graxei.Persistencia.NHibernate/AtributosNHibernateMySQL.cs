@@ -12,7 +12,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         #region Implementation of IRepositorioAtributos
         public IList<Atributo> Todos(string descricaoProduto, string nomeLoja)
         {
-            return SessaoAtual.Query<Atributo>()
+            return GetSessaoAtual().Query<Atributo>()
                 .Where(
                     p =>
                     p.ProdutoVendedor.Descricao.Trim().ToLower() == descricaoProduto.Trim().ToLower() &&
@@ -25,7 +25,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             {
                 return Todos(produtoVendedor.Descricao, produtoVendedor.Endereco.Loja.Nome);
             }
-            return SessaoAtual.Query<Atributo>()
+            return GetSessaoAtual().Query<Atributo>()
                 .Where(p => p.ProdutoVendedor.Id == produtoVendedor.Id).ToList<Atributo>();
         }
         #endregion

@@ -7,6 +7,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate.Interfaces
 {
     public interface INHiberateMySQL<T> : IRepositorioEntidades<T> where T : Entidade
     {
-        ISession SessaoAtual { get; }
+        ISession GetSessaoAtual();
     }
 }
