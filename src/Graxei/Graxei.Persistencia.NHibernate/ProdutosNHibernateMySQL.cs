@@ -21,7 +21,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             {
                 throw new ArgumentNullException("descricao");
             }
-            return SessaoAtual.Query<Produto>()
+            return GetSessaoAtual().Query<Produto>()
                               .SingleOrDefault<Produto>(p => p.Descricao.Trim().ToLower() == descricao);
         }
 

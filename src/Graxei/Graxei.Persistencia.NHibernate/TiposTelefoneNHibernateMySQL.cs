@@ -9,7 +9,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
     {
         public TipoTelefone Get(string tipo)
         {
-            return SessaoAtual.Query<TipoTelefone>().SingleOrDefault(p => p.Nome == tipo);
+            return GetSessaoAtual().Query<TipoTelefone>().SingleOrDefault(p => p.Nome == tipo);
         }
     }
 }

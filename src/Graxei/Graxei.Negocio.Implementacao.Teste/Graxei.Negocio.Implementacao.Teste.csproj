@@ -62,6 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bairros.cs" />
+    <Compile Include="Cidades.cs" />
     <Compile Include="Integracao\ImplementacaoLojas.cs" />
     <Compile Include="Lojas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

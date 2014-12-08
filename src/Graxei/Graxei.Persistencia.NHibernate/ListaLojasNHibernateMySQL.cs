@@ -12,12 +12,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 {
     public class ListaLojasNHibernateMySQL : IRepositorioListaLojas
     {
+        private ISession sessao;
         public ListaLojas Get(int pagina, int tamanhoPagina, Usuario usuario)
         {
-            int total = SessaoAtual
+            int total = sessao
                 .QueryOver<Loja>().JoinQueryOver<Usuario>(p => p.Usuarios).Where(q => q.Id == usuario.Id).RowCount();
             IList<ListaLojasContrato> lista =
-                (from l in SessaoAtual.Query<Loja>()
+                (from l in GetSessaoAtual().Query<Loja>()
                  from u in l.Usuarios
                  where u.Id == usuario.Id
                  select new ListaLojasContrato()
@@ -30,7 +31,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                      .Skip(pagina * tamanhoPagina)
                     .Take(tamanhoPagina).ToList<ListaLojasContrato>();
 
-            //SessaoAtual.QueryOver<Loja>()
+            //GetSessaoAtual().QueryOver<Loja>()
             //    .JoinQueryOver<Usuario>(p => p.Usuarios)
             //    .Where(q => q.Id == usuario.Id)
             //    .Select(Projections.ProjectionList()
@@ -45,9 +46,19 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             return new ListaLojas(lista, totalElementos, elementoAtual);
         }
 
-        public ISession SessaoAtual
+        public ISession GetSessaoAtual()
         {
-            get { return UnitOfWorkNHibernate.GetInstancia().SessaoAtual; }
+            if (sessao == null)
+            {
+                sessao = UnitOfWorkNHibernate.GetInstancia().SessaoAtual;
+            }
+
+            return sessao;
+        }
+
+        public void SetSessaoAtual(ISession session)
+        {
+            this.sessao = session;
         }
     }
 }

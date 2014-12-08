@@ -7,13 +7,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
     {
         public T Salvar(T t)
         {
-            SessaoAtual.SaveOrUpdate(t);
+            GetSessaoAtual().SaveOrUpdate(t);
             return t;
         }
 
         public void Excluir(T t)
         {
-            SessaoAtual.Delete(t);
+            GetSessaoAtual().Delete(t);
         }
 
     }

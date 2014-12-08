@@ -13,7 +13,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<Telefone> Todos(long idEndereco)
         {
-            return SessaoAtual.Query<Telefone>().Where(p => p.Endereco.Id == idEndereco).ToList();
+            return GetSessaoAtual().Query<Telefone>().Where(p => p.Endereco.Id == idEndereco).ToList();
         }
 
         #endregion

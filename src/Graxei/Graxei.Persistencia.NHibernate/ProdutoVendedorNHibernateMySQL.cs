@@ -23,7 +23,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<ProdutoVendedor> GetPorDescricao(string descricao)
         {
-            return SessaoAtual.Query<ProdutoVendedor>().Where(p => p.Descricao != null
+            return GetSessaoAtual().Query<ProdutoVendedor>().Where(p => p.Descricao != null
                                                                              &&
                                                                              p.Descricao.Trim().ToLower() ==
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
@@ -39,7 +39,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 join telefones tl on en.id_endereco = tl.id_endereco
                 where match(p.descricao, p.codigo) against(:descricao)
                 ";
-            return SessaoAtual.CreateSQLQuery(sql)
+            return GetSessaoAtual().CreateSQLQuery(sql)
                 .SetParameter<String>("descricao", descricao)
                 .UniqueResult<long>();
         }
@@ -56,7 +56,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 join telefones tl on en.id_endereco = tl.id_endereco
                 where match(p.descricao, p.codigo) against(:descricao)
                 ";
-            return SessaoAtual.CreateSQLQuery(sql)
+            return GetSessaoAtual().CreateSQLQuery(sql)
                 .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
                 .SetParameter<String>("descricao", descricao)
                                 .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
@@ -76,7 +76,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
         {
-            ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
+            ProdutoVendedor pvl = GetSessaoAtual().Query<ProdutoVendedor>()
                                                  .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower()
                                                                     && p.Endereco.Loja.Nome.Trim().ToLower() == nomeLoja.Trim().ToLower());
             return pvl;
@@ -92,7 +92,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             {
                 throw new EntidadeInvalidaException(Erros.LojaInvalida);
             }
-            ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
+            ProdutoVendedor pvl = GetSessaoAtual().Query<ProdutoVendedor>()
                                              .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Endereco.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
             return pvl;
         }
@@ -103,7 +103,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             {
                 throw new ArgumentException("Loja é nula ou não foi salva");
             }
-            SessaoAtual.CreateSQLQuery(ConsultasSQL.ExcluirProdutosVendedorDeLoja)
+            GetSessaoAtual().CreateSQLQuery(ConsultasSQL.ExcluirProdutosVendedorDeLoja)
                        .SetParameter("p0", loja.Id).ExecuteUpdate();
         }
 
@@ -121,7 +121,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public long GetQuantidadeProduto(Usuario usuario)
         {
-            return (from pv in SessaoAtual.Query<ProdutoVendedor>()
+            return (from pv in GetSessaoAtual().Query<ProdutoVendedor>()
                     from u in pv.Endereco.Loja.Usuarios
                     where u.Id == usuario.Id
                     select pv.Id).Count();

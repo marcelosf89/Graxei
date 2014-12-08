@@ -17,14 +17,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Loja Get(string nome)
         {
-            return SessaoAtual.Query<Loja>()
+            return GetSessaoAtual().Query<Loja>()
                               .SingleOrDefault<Loja>(loja => loja.Nome.Trim().ToLower() == nome.Trim().ToLower());
         }
 
         public List<Usuario> GetUsuarios(Loja loja)
         {
             List<Usuario> usuarios = new List<Usuario>();
-            Loja lojaSelecionada = SessaoAtual.Query<Loja>().Fetch(l => l.Usuarios).FirstOrDefault(p => p.Id == loja.Id);
+            Loja lojaSelecionada = GetSessaoAtual().Query<Loja>().Fetch(l => l.Usuarios).FirstOrDefault(p => p.Id == loja.Id);
             if (lojaSelecionada != null)
             {
                 usuarios = lojaSelecionada.Usuarios.ToList();
@@ -39,7 +39,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public Loja GetComEnderecos(long id)
         {
-            return SessaoAtual.QueryOver<Loja>().Where(p => p.Id == id).Fetch(p => p.Enderecos).Eager.SingleOrDefault();
+            return GetSessaoAtual().QueryOver<Loja>().Where(p => p.Id == id).Fetch(p => p.Enderecos).Eager.SingleOrDefault();
         }
 
         #endregion
