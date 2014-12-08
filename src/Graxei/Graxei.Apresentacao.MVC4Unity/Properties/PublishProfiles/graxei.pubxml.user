@@ -10,28 +10,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Administrativo/Views/Home/Dashboard.cshtml">
-      <publishTime>11/10/2014 18:00:50</publishTime>
+      <publishTime>11/18/2014 13:29:58</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Home/Index.cshtml">
-      <publishTime>11/17/2014 14:08:52</publishTime>
+      <publishTime>12/02/2014 21:25:27</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Home/_Index.cshtml">
       <publishTime>11/10/2014 17:53:42</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Lojas/Formulario.cshtml">
-      <publishTime>11/13/2014 11:05:43</publishTime>
+      <publishTime>12/02/2014 22:35:44</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Lojas/Listar.cshtml">
-      <publishTime>11/15/2014 01:58:09</publishTime>
+      <publishTime>12/02/2014 21:28:21</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Lojas/Loja.cshtml">
-      <publishTime>11/12/2014 19:18:12</publishTime>
+      <publishTime>11/17/2014 16:08:43</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Lojas/Nova.cshtml">
       <publishTime>11/07/2014 10:23:40</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Lojas/NovaLojaAjax.cshtml">
-      <publishTime>11/13/2014 11:51:04</publishTime>
+      <publishTime>11/17/2014 15:35:07</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Lojas/Planos.cshtml">
       <publishTime>11/14/2014 11:24:42</publishTime>
@@ -39,35 +39,44 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/Administrativo/Views/Produtos/Copiar.cshtml">
       <publishTime>08/21/2014 16:13:10</publishTime>
     </File>
+    <File Include="Areas/Administrativo/Views/Produtos/ListarLojas.cshtml">
+      <publishTime>12/02/2014 22:18:34</publishTime>
+    </File>
     <File Include="Areas/Administrativo/Views/Produtos/Novo.cshtml">
       <publishTime>08/21/2014 16:13:10</publishTime>
     </File>
+    <File Include="Areas/Administrativo/Views/Produtos/Pesquisar.cshtml">
+      <publishTime>11/20/2014 12:02:38</publishTime>
+    </File>
+    <File Include="Areas/Administrativo/Views/Produtos/ProdutosListar.cshtml">
+      <publishTime>11/28/2014 15:31:36</publishTime>
+    </File>
     <File Include="Areas/Administrativo/Views/Shared/FormularioEndereco.cshtml">
-      <publishTime>11/12/2014 18:59:34</publishTime>
+      <publishTime>11/17/2014 16:08:39</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Shared/ListaEnderecos.cshtml">
       <publishTime>11/07/2014 10:23:40</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Shared/ModalEndereco.cshtml">
-      <publishTime>10/27/2014 12:53:17</publishTime>
+      <publishTime>11/17/2014 15:55:24</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Shared/Telefones.cshtml">
       <publishTime>11/07/2014 10:23:40</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Shared/_Layout.cshtml">
-      <publishTime>11/17/2014 14:02:47</publishTime>
+      <publishTime>11/17/2014 15:12:13</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Web.config">
       <publishTime>10/28/2014 18:38:34</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/_ViewStart.cshtml">
-      <publishTime>11/14/2014 11:27:57</publishTime>
+      <publishTime>11/17/2014 15:06:55</publishTime>
     </File>
     <File Include="Areas/Teste/Views/Home/CarregarPagina.cshtml">
       <publishTime>11/14/2014 17:05:05</publishTime>
     </File>
     <File Include="Areas/Teste/Views/Home/Index.cshtml">
-      <publishTime>11/17/2014 14:12:43</publishTime>
+      <publishTime>11/17/2014 15:11:43</publishTime>
     </File>
     <File Include="Areas/Teste/Views/Shared/_Layout.cshtml">
       <publishTime>11/14/2014 11:26:51</publishTime>
@@ -127,76 +136,76 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/13/2014 11:22:02</publishTime>
     </File>
     <File Include="bin/Graxei.Aplicacao.Contrato.dll">
-      <publishTime>11/15/2014 02:09:51</publishTime>
+      <publishTime>12/02/2014 21:01:01</publishTime>
     </File>
     <File Include="bin/Graxei.Aplicacao.Contrato.pdb">
-      <publishTime>11/15/2014 02:09:51</publishTime>
+      <publishTime>12/02/2014 21:01:01</publishTime>
     </File>
     <File Include="bin/Graxei.Aplicacao.Fabrica.dll">
-      <publishTime>11/15/2014 02:09:51</publishTime>
+      <publishTime>12/02/2014 21:01:02</publishTime>
     </File>
     <File Include="bin/Graxei.Aplicacao.Fabrica.pdb">
-      <publishTime>11/15/2014 02:09:51</publishTime>
+      <publishTime>12/02/2014 21:01:02</publishTime>
     </File>
     <File Include="bin/Graxei.Aplicacao.Implementacao.dll">
-      <publishTime>11/15/2014 02:09:51</publishTime>
+      <publishTime>12/02/2014 21:01:02</publishTime>
     </File>
     <File Include="bin/Graxei.Aplicacao.Implementacao.pdb">
-      <publishTime>11/15/2014 02:09:51</publishTime>
+      <publishTime>12/02/2014 21:01:02</publishTime>
     </File>
     <File Include="bin/Graxei.Apresentacao.MVC4Unity.dll">
-      <publishTime>11/17/2014 13:07:30</publishTime>
+      <publishTime>12/03/2014 11:40:34</publishTime>
     </File>
     <File Include="bin/Graxei.Apresentacao.MVC4Unity.pdb">
-      <publishTime>11/17/2014 13:07:30</publishTime>
+      <publishTime>12/03/2014 11:40:34</publishTime>
     </File>
     <File Include="bin/Graxei.FluentNHibernate.dll">
-      <publishTime>11/15/2014 02:09:48</publishTime>
+      <publishTime>12/02/2014 20:16:47</publishTime>
     </File>
     <File Include="bin/Graxei.FluentNHibernate.pdb">
-      <publishTime>11/15/2014 02:09:48</publishTime>
+      <publishTime>12/02/2014 20:16:47</publishTime>
     </File>
     <File Include="bin/Graxei.Modelo.dll">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/27/2014 17:26:37</publishTime>
     </File>
     <File Include="bin/Graxei.Modelo.pdb">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/27/2014 17:26:37</publishTime>
     </File>
     <File Include="bin/Graxei.Negocio.Contrato.dll">
-      <publishTime>11/15/2014 02:09:48</publishTime>
+      <publishTime>11/27/2014 17:26:38</publishTime>
     </File>
     <File Include="bin/Graxei.Negocio.Contrato.pdb">
-      <publishTime>11/15/2014 02:09:48</publishTime>
+      <publishTime>11/27/2014 17:26:38</publishTime>
     </File>
     <File Include="bin/Graxei.Negocio.Fabrica.dll">
-      <publishTime>11/15/2014 02:09:50</publishTime>
+      <publishTime>12/02/2014 21:01:01</publishTime>
     </File>
     <File Include="bin/Graxei.Negocio.Fabrica.pdb">
-      <publishTime>11/15/2014 02:09:50</publishTime>
+      <publishTime>12/02/2014 21:01:01</publishTime>
     </File>
     <File Include="bin/Graxei.Negocio.Implementacao.dll">
-      <publishTime>11/15/2014 02:09:50</publishTime>
+      <publishTime>12/02/2014 20:16:48</publishTime>
     </File>
     <File Include="bin/Graxei.Negocio.Implementacao.pdb">
-      <publishTime>11/15/2014 02:09:50</publishTime>
+      <publishTime>12/02/2014 20:16:48</publishTime>
     </File>
     <File Include="bin/Graxei.Persistencia.Contrato.dll">
-      <publishTime>11/15/2014 02:09:48</publishTime>
+      <publishTime>11/27/2014 17:26:38</publishTime>
     </File>
     <File Include="bin/Graxei.Persistencia.Contrato.pdb">
-      <publishTime>11/15/2014 02:09:48</publishTime>
+      <publishTime>11/27/2014 17:26:38</publishTime>
     </File>
     <File Include="bin/Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.dll">
-      <publishTime>11/15/2014 02:09:49</publishTime>
+      <publishTime>12/02/2014 21:01:00</publishTime>
     </File>
     <File Include="bin/Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.pdb">
-      <publishTime>11/15/2014 02:09:49</publishTime>
+      <publishTime>12/02/2014 21:01:00</publishTime>
     </File>
     <File Include="bin/Graxei.Persistencia.Implementacao.NHibernate.dll">
-      <publishTime>11/15/2014 02:09:49</publishTime>
+      <publishTime>11/19/2014 10:53:05</publishTime>
     </File>
     <File Include="bin/Graxei.Persistencia.Implementacao.NHibernate.pdb">
-      <publishTime>11/15/2014 02:09:49</publishTime>
+      <publishTime>11/19/2014 10:53:05</publishTime>
     </File>
     <File Include="bin/Graxei.Search.dll">
       <publishTime>08/22/2014 14:47:26</publishTime>
@@ -205,22 +214,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/22/2014 14:47:26</publishTime>
     </File>
     <File Include="bin/Graxei.Transversais.ContratosDeDados.dll">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/19/2014 10:53:03</publishTime>
     </File>
     <File Include="bin/Graxei.Transversais.ContratosDeDados.pdb">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/19/2014 10:53:03</publishTime>
     </File>
     <File Include="bin/Graxei.Transversais.Idiomas.dll">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/19/2014 10:53:03</publishTime>
     </File>
     <File Include="bin/Graxei.Transversais.Idiomas.pdb">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/19/2014 10:53:03</publishTime>
     </File>
     <File Include="bin/Graxei.Transversais.Utilidades.dll">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/27/2014 17:26:37</publishTime>
     </File>
     <File Include="bin/Graxei.Transversais.Utilidades.pdb">
-      <publishTime>11/15/2014 02:09:47</publishTime>
+      <publishTime>11/27/2014 17:26:37</publishTime>
     </File>
     <File Include="bin/Iesi.Collections.dll">
       <publishTime>08/21/2014 16:13:12</publishTime>
@@ -285,14 +294,59 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Portable.Licensing.dll">
       <publishTime>08/21/2014 16:13:14</publishTime>
     </File>
+    <File Include="bin/System.ComponentModel.DataAnnotations.dll">
+      <publishTime>07/09/2012 00:40:08</publishTime>
+    </File>
+    <File Include="bin/System.Configuration.dll">
+      <publishTime>07/09/2012 00:40:08</publishTime>
+    </File>
+    <File Include="bin/System.Data.DataSetExtensions.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Data.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Data.Entity.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Drawing.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.EnterpriseServices.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>11/01/2014 18:29:44</publishTime>
+      <publishTime>10/30/2014 22:38:57</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Abstractions.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.ApplicationServices.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.DynamicData.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Entity.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Extensions.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>11/01/2014 18:29:45</publishTime>
+      <publishTime>10/30/2014 22:38:57</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>11/01/2014 18:29:45</publishTime>
+      <publishTime>10/30/2014 22:38:58</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>10/30/2014 22:38:56</publishTime>
@@ -306,6 +360,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>10/30/2014 22:38:57</publishTime>
     </File>
+    <File Include="bin/System.Web.Routing.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Services.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
       <publishTime>10/30/2014 22:38:58</publishTime>
     </File>
@@ -314,6 +374,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>10/30/2014 22:38:58</publishTime>
+    </File>
+    <File Include="bin/System.Xml.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Xml.Linq.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/T4MVCExtensions.dll">
       <publishTime>10/30/2014 22:38:59</publishTime>
@@ -379,10 +445,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2014 16:13:10</publishTime>
     </File>
     <File Include="Content/graxei.css">
-      <publishTime>11/17/2014 10:48:24</publishTime>
+      <publishTime>11/21/2014 17:10:55</publishTime>
     </File>
     <File Include="Content/graxei.min.css">
-      <publishTime>11/17/2014 10:49:06</publishTime>
+      <publishTime>11/27/2014 16:33:41</publishTime>
+    </File>
+    <File Include="Content/imagens/b1.png">
+      <publishTime>11/21/2014 18:34:48</publishTime>
+    </File>
+    <File Include="Content/imagens/b2.png">
+      <publishTime>11/21/2014 19:49:49</publishTime>
+    </File>
+    <File Include="Content/imagens/f1.png">
+      <publishTime>11/21/2014 16:32:27</publishTime>
+    </File>
+    <File Include="Content/imagens/f2.png">
+      <publishTime>11/21/2014 17:01:00</publishTime>
     </File>
     <File Include="Content/imagens/favicon.ico">
       <publishTime>10/31/2014 14:31:22</publishTime>
@@ -634,10 +712,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2014 16:13:10</publishTime>
     </File>
     <File Include="Scripts/graxei.js">
-      <publishTime>11/13/2014 11:50:41</publishTime>
+      <publishTime>11/20/2014 09:47:14</publishTime>
     </File>
     <File Include="Scripts/graxei.min.js">
-      <publishTime>11/17/2014 10:51:34</publishTime>
+      <publishTime>11/20/2014 10:13:57</publishTime>
     </File>
     <File Include="Scripts/holder/holder.js">
       <publishTime>08/21/2014 16:13:10</publishTime>
@@ -711,6 +789,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/transition.js">
       <publishTime>08/21/2014 16:13:11</publishTime>
     </File>
+    <File Include="Scripts/typeahead.jquery.js">
+      <publishTime>08/21/2014 16:13:11</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.jquery.min.js">
+      <publishTime>08/21/2014 16:13:11</publishTime>
+    </File>
     <File Include="Scripts/typeahead.js">
       <publishTime>08/21/2014 16:13:11</publishTime>
     </File>
@@ -724,16 +808,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2014 16:13:11</publishTime>
     </File>
     <File Include="Views/Home/Contato.cshtml">
-      <publishTime>11/15/2014 02:09:25</publishTime>
+      <publishTime>11/27/2014 16:13:39</publishTime>
+    </File>
+    <File Include="Views/Home/ContatoAnuncio.cshtml">
+      <publishTime>11/27/2014 16:34:49</publishTime>
+    </File>
+    <File Include="Views/Home/ContatoAnuncioModal.cshtml">
+      <publishTime>11/27/2014 16:36:22</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/17/2014 14:15:50</publishTime>
+      <publishTime>11/27/2014 16:28:15</publishTime>
     </File>
     <File Include="Views/Home/Pesquisar.cshtml">
-      <publishTime>11/15/2014 02:17:06</publishTime>
+      <publishTime>11/27/2014 16:31:54</publishTime>
+    </File>
+    <File Include="Views/Home/Planos.cshtml">
+      <publishTime>11/24/2014 11:22:24</publishTime>
     </File>
     <File Include="Views/Home/_Index.cshtml">
-      <publishTime>11/13/2014 11:12:29</publishTime>
+      <publishTime>11/26/2014 12:43:51</publishTime>
     </File>
     <File Include="Views/Home/_Sobre.cshtml">
       <publishTime>11/13/2014 11:12:29</publishTime>
@@ -763,7 +856,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2014 16:13:11</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/17/2014 14:34:10</publishTime>
+      <publishTime>12/03/2014 11:06:34</publishTime>
     </File>
   </ItemGroup>
 </Project>

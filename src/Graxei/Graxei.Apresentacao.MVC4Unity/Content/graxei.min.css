@@ -79,6 +79,8 @@ body { background-color: #f0f0f0; }
 .m2 {font-weight: bold;font-size: x-large;color: #F98C12;}
 .container-perquisar {width: 70%; min-height: 300px;}
 
+.panel-warning > .panel-heading { background: -webkit-radial-gradient(#FAE2AE 18%, #faebcc); background: -o-radial-gradient(#FAE2AE 18%, #faebcc);  background: -moz-radial-gradient(#FAE2AE 18%, #faebcc); background: linear-gradient(#FAE2AE 18%, #faebcc);}
+.panel-primary > .panel-heading {    background: linear-gradient(#0772CF 20%, #428bca);    background: -webkit-radial-gradient(#0772CF 20%, #428bca);    background: -o-radial-gradient(#0772CF 20%, #428bca);    background: -moz-radial-gradient(#0772CF 20%, #428bca);}
 @media (max-width: 767px) {
 
     a.btn.btn-success { width: 100%; margin-left: 7px; }
