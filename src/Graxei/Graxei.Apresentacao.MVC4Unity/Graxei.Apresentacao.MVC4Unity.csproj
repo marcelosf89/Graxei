@@ -461,7 +461,7 @@
     <Content Include="Views\Home\ContatoAnuncioModal.cshtml" />
     <Content Include="Views\Home\ContatoAnuncio.cshtml" />
     <Content Include="Views\Loja\IndexPaginaLoja.cshtml" />
-    <Content Include="Views\Shared\_404.cshtml" />
+    <Content Include="Views\Home\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

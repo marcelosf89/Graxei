@@ -239,11 +239,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
             Loja loja = _consultasLojas.GetPorNome(lojaNome);
 
-            if(loja== null)
-                return View("_404");
+            if (loja == null)
+                return View("Error404");
 
             ViewBag.loja = loja;
             return View("Index");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Error404()
+        {
+            return View();
         }
 
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
