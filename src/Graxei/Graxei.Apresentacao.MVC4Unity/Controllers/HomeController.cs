@@ -17,10 +17,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos)
+        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas)
         {
             _iConsultasProdutoVendedor = consultaVendedor;
             _consultasPlanos = consultasPlanos;
+            _consultasLojas = consultasLojas;
         }
         //
         // GET: /Home/
@@ -233,7 +234,20 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return PartialView("ContatoAnuncio", new ContatoModel());
         }
 
+        [AllowAnonymous]
+        public ActionResult IndexLoja(String lojaNome)
+        {
+            Loja loja = _consultasLojas.GetPorNome(lojaNome);
+
+            if(loja== null)
+                return View("_404");
+
+            ViewBag.loja = loja;
+            return View("Index");
+        }
+
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
         IConsultasPlanos _consultasPlanos;
+        IConsultasLojas _consultasLojas;
     }
 }

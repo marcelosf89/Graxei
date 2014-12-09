@@ -9,6 +9,15 @@ namespace Graxei.Apresentacao.MVC4Unity
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "DefaultLoja",
+                url: "{lojaNome}",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "IndexLoja"
+                }, 
+                namespaces: new string[] { "Graxei.Apresentacao.MVC4Unity.Controllers" });
             //routes.MapRoute(
             //    name: "Default",
             //    url: "{controller}/{action}",
@@ -19,7 +28,9 @@ namespace Graxei.Apresentacao.MVC4Unity
             //                  txtSearch = UrlParameter.Optional
             //              },
             //              namespaces: new string[] { "Graxei.Apresentacao.MVC4Unity.Controllers" });
-        //namespaces: new string[] {"Graxei.Apresentacao.MVC4Unity.Controllers"});
+            //namespaces: new string[] {"Graxei.Apresentacao.MVC4Unity.Controllers"});
+
+
 
             routes.MapRoute(
                 name: "Default",
@@ -32,10 +43,12 @@ namespace Graxei.Apresentacao.MVC4Unity
                           },
                           namespaces: new string[] { "Graxei.Apresentacao.MVC4Unity.Controllers" });
 
+
+
+
             routes.MapRoute(null,
                             "Administrativo/Enderecos/Excluir/{id}",
-                            new {controller = "Enderecos", action = "Excluir", idList = (int) 0});
-
+                            new { controller = "Enderecos", action = "Excluir", idList = (int)0 });
 
 
         }

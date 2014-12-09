@@ -12,5 +12,7 @@ namespace Graxei.Negocio.Contrato
         long GetMax(string texto, string pais, string cidade, int page);
 
         long GetQuantidadeProduto();
+
+        long GetQuantidadeProduto(long lojaId);
     }
 }

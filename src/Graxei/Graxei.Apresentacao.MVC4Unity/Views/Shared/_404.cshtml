@@ -75,8 +75,22 @@
 }
 <div class="marketing container-body" id="myContent">
     @if (ViewBag.loja == null)
-    {
-        Html.RenderPartial("_Index");
+    {   
+        <div class="item">
+            <img src="~/Content/imagens/404.png" style="float: none; display: block; margin-left: auto; margin-right: auto;" />
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>
+                    <p class="text-center">
+                        : ( Página não encontrada.
+                    </p>
+                </h2>
+                <p class="text-center">
+                    A pagina que digitou não existe. Verifique se o caminho digitado está correto e tente novamente
+                </p>
+            </div>
+        </div>
     }
     else
     {
@@ -163,4 +177,6 @@
         });
     </script>
 }
+
+
 

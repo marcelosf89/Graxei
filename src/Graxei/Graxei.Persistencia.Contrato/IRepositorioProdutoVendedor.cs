@@ -15,6 +15,8 @@ namespace Graxei.Persistencia.Contrato
         long GetMaxPorDescricaoPesquisa(string texto, string pais, string cidade, int page);
 
         long GetQuantidadeProduto(Usuario usuario);
+
+        long GetQuantidadeProduto(long lojaId);
     }
 
 }

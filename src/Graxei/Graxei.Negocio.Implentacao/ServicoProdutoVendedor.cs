@@ -123,5 +123,10 @@ namespace Graxei.Negocio.Implementacao
             Usuario usuario = _gerenciadorAutenticacao.Get();
             return Repositorio.GetQuantidadeProduto(usuario);
         }
+
+        public long GetQuantidadeProduto(long lojaId)
+        {
+            return Repositorio.GetQuantidadeProduto(lojaId);
+        }
     }
 }

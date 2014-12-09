@@ -46,6 +46,12 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         {
             return ServicoProdutoVendedor.GetQuantidadeProduto();
         }
+
+        public long GetQuantidadeProduto(long lojaId)
+        {
+            return ServicoProdutoVendedor.GetQuantidadeProduto(lojaId);
+        }
+
         #endregion
 
 

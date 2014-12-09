@@ -1,0 +1,87 @@
+﻿@model Graxei.Modelo.Loja
+<div class="bg-default-loja">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bg-panel-loja header-loja">
+                    <div class="item">
+                        <img src=@Scripts.Url("~/Content/imagens/b" + Model.Id +".png")>
+                    </div>
+                    <div class="item-sumario">
+                        <div class="col-md-2 item">
+                            <div class="info">
+                                <h4><span id="qtdPr"></span></h4>
+                            </div>
+                            <div class="description">
+                               <h6>Produtos</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="bg-caption">
+                    <h4>@Model.Nome</h4>
+                </div>
+
+                <div class="bg-panel-loja header-loja">
+                    <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" role="complementary">
+                        <ul class="nav bs-docs-sidenav">
+                            <li><a href="#">Produtos</a>
+                            </li>
+                            <li><a href="#">Endereços</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="bg-panel-loja header-loja">
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                    Descrição da loja 123<br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            async: true,
+            url: "@Url.Action("GetQuantidadeProdutos", "Loja")",
+            data: { lojaId: @Model.Id },
+            type: "POST",
+            dataType: "json",            
+            success: function (data) {
+                $("#qtdPr").html(data);
+            }
+        });
+    });
+
+
+</script>
