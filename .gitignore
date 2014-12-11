@@ -7,7 +7,7 @@ licenses.licx
 *.orig
 *.Publish.xml
 IO/
-LogWeb/
+Log/
 _Resharper*/
 src/Graxei/TestResults
 src/Graxei/TestResults/*
