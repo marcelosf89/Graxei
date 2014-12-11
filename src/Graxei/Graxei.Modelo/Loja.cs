@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Graxei.Transversais.Idiomas;
+using System.Text;
 
 namespace Graxei.Modelo
 {
@@ -11,7 +12,7 @@ namespace Graxei.Modelo
         [Required(ErrorMessageResourceType = typeof(Textos), ErrorMessageResourceName = "NomeObrigatorio")]
         [StringLength(80)]
         [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
-        public virtual string Nome { get;  set; }
+        public virtual string Nome { get; set; }
 
         public virtual byte[] Logotipo { get; set; }
 
@@ -81,5 +82,16 @@ namespace Graxei.Modelo
         {
             return (!string.IsNullOrEmpty(this.Nome));
         }
+
+        [Display(ResourceType = typeof(Propriedades), Name = "HabilitarUrl")]
+        public virtual bool HabilitarUrl { get; set; }
+
+        [StringLength(100)]
+        [Display(ResourceType = typeof(Propriedades), Name = "Url")]
+        public virtual String Url { get; set; }
+
+        [Display(ResourceType = typeof(Propriedades), Name = "DescricaoPaginaInicial")]
+        public virtual String DescricaoPaginaInicial { get; set; }
+
     }
 }

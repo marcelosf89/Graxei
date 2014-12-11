@@ -101,6 +101,21 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
                 throw;
             }           
         }
+
+        public void AtualizarUrl(Loja loja)
+        {
+            IniciarTransacao();
+            try
+            {
+                loja = _servicoLojas.Salvar(loja);
+                Confirmar();
+            }
+            catch (OperacaoEntidadeException)
+            {
+                Desfazer();
+                throw;
+            }
+        }
         #endregion
 
         #region Atributos Privados

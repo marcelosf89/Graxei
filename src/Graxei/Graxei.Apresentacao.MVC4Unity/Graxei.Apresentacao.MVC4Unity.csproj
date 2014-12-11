@@ -360,11 +360,13 @@
     <Content Include="Scripts\autocomplete.js" />
     <Content Include="Scripts\bootstrap-typeahead.js" />
     <Content Include="Scripts\bootstrap-validation.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\button.js" />
     <Content Include="Scripts\carousel.js" />
     <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\graxei.min.js" />
     <Content Include="Scripts\dropdown.js" />
     <Content Include="Scripts\foundation.min.js" />
@@ -404,7 +406,11 @@
     <Content Include="Areas\Administrativo\Views\Produtos\ProdutosListar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Pesquisar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarLogo.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\AdicionarUrl.cshtml" />
+    <Content Include="Scripts\jquery-1.11.1.min.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.11.1.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />

@@ -11,8 +11,6 @@ namespace Graxei.Transversais.ContratosDeDados
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NomeLojaObrigatorio")]
         public string Nome { get; set; }
 
-        public virtual byte[] Logotipo { get; set; }
-
         public List<EnderecoListaContrato> EnderecosListaContrato
         {
             get

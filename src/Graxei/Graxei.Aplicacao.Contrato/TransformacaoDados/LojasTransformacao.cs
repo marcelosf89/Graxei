@@ -24,7 +24,6 @@ namespace Graxei.Aplicacao.Contrato.TransformacaoDados
                 retorno = _servicoLojas.GetPorId(contrato.Id);
             }
             retorno.Nome = contrato.Nome;
-            retorno.Logotipo = contrato.Logotipo;
             return retorno;
         }
 
@@ -37,7 +36,6 @@ namespace Graxei.Aplicacao.Contrato.TransformacaoDados
             }
             retorno.Id = entidade.Id;
             retorno.Nome = entidade.Nome;
-            retorno.Logotipo = entidade.Logotipo;
             if (entidade.Enderecos != null)
             {
                 foreach (Endereco endereco in entidade.Enderecos)

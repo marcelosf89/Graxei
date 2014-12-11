@@ -1,0 +1,73 @@
+﻿@using Graxei.Modelo
+@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
+@model Loja
+@{
+    AjaxOptions ajax = new AjaxOptions {InsertionMode = InsertionMode.Replace,  UpdateTargetId = "content-nova", HttpMethod = "POST", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
+    <div id="content-nova">
+        @using (Ajax.BeginForm("AtualizarUrl", "Lojas", new { contentType = "application/json", lojaId = Model.Id }, ajax, new { @class = "form-horizontal" }))
+        {
+            <script src="@Scripts.Url("~/Scripts/wysihtml5-0.3.0.js")"></script>
+            <script src="@Scripts.Url("~/Scripts/bootstrap-wysiwyg.js")"></script>
+
+            <div class="form-group has-error">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Erro()
+                </div>
+            </div>
+            <div class="form-group has-success">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Sucesso()
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.CheckBoxFor(p => p.HabilitarUrl) @Html.LabelFor(p => p.HabilitarUrl, new { @class = "control-label" })
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    @{
+            Model.Url = String.IsNullOrEmpty(Model.Url) ? Model.Nome.Replace(" ", "-").ToLower() : Model.Url;
+                    }
+                    @Html.LabelFor(p => p.Url, new { @class = "control-label" })
+                    @Html.TextBoxFor(p => p.Url, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Url)
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(p => p.DescricaoPaginaInicial, new { @class = "control-label" })
+                </div>
+            </div>
+            <hr />
+            <div class="row row-textarea">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(p => p.DescricaoPaginaInicial, new { @class = "form-control textarea", placeholder = "Enter text ...", style = "width: 100%; height: 600px" })
+                    <script>
+                        $('.textarea').wysihtml5({
+                            "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                            "emphasis": true, //Italics, bold, etc. Default true
+                            "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                            "html": true, //Button which allows you to edit the generated HTML. Default false
+                            "link": true, //Button to insert a link. Default true
+                            "image": true, //Button to insert an image. Default true,
+                            "color": false, //Button to change color of font  
+                            "blockquote": true, //Blockquote  
+                            "size": "sm" //default: none, other options are xs, sm, lg
+                        });
+                    </script>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-right">
+                        <button class="btn btn-primary">@Rotulos.Salvar</button>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}

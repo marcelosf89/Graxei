@@ -9,6 +9,8 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
         LojaContrato Salvar(LojaContrato loja);
         void ExcluirLoja(LojaContrato loja);
         void AdicionarLogo(Loja loja);
+
+        void AtualizarUrl(Loja loja);
     }
 
 }

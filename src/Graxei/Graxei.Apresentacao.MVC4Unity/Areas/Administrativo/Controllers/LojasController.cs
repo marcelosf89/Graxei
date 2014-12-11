@@ -165,6 +165,43 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return null;
         }
 
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AtualizarUrl(Loja loja, long lojaId)
+        {
+            try
+            {
+                Loja lojaPer = _consultasLojas.Get(lojaId);
+                lojaPer.DescricaoPaginaInicial = loja.DescricaoPaginaInicial;
+                lojaPer.Url = loja.Url;
+                lojaPer.HabilitarUrl = loja.HabilitarUrl;
+
+                _gerenciamentoLojas.AtualizarUrl(lojaPer);
+                loja = lojaPer;
+            }
+            catch (OperacaoEntidadeException ee)
+            {
+                ModelState.AddModelError(string.Empty, ee.Message);
+                return PartialView("AdicionarUrl", loja);
+            }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.LogoAdicionadoComSucesso;
+            return View("AdicionarUrl", loja);
+        }
+
+
+
+        public ActionResult AdicionarUrl(long idLoja)
+        {
+            Loja loja = _consultasLojas.Get(idLoja);
+            if (loja != null)
+            {
+                return View("AdicionarUrl", loja);
+            }
+            return null;
+        }
+
         public ActionResult Upload(long idLoja)
         {
             Loja model = null;
@@ -183,7 +220,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 model.Logotipo = System.IO.File.ReadAllBytes(fileName);
                 System.IO.File.Delete(fileName);
 
-                _gerenciamentoLojas.AdicionarLogo(model);                
+                _gerenciamentoLojas.AdicionarLogo(model);
             }
             catch (OperacaoEntidadeException ee)
             {
