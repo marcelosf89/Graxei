@@ -252,4 +252,10 @@
   <data name="UmUsuarioAoMenos" xml:space="preserve">
     <value>Deve haver ao menos um usuário associado a uma nova loja</value>
   </data>
+  <data name="NaoExisteImagem" xml:space="preserve">
+    <value>Favor incluir uma imagem</value>
+  </data>
+  <data name="VariasImagensSelecionadas" xml:space="preserve">
+    <value>Favor selecione somente uma imagem</value>
+  </data>
 </root>

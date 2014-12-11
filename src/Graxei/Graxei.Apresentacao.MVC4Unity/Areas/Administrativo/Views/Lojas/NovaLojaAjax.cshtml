@@ -1,16 +1,15 @@
 ﻿@model LojaModel
-    @{
-        Scripts.Render("~/bundles/typeahead");
-        AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "novaloja", HttpMethod = "POST", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
-      using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { @class = "form-horizontal" }))
-      {
-
-          Html.RenderPartial("Formulario", Model);
-          if (Model.LojaContrato != null && this.Model.LojaContrato.Id != 0)
-          {
-        <button id="btn-novo-endereco" type="button" class="col-lg-offset-1 btn btn-default" data-toggle="modal" data-target="#modalEnderecos" onclick="resetModal();">@Rotulos.NovoEndereco</button>
-            {Html.RenderPartial("ListaEnderecos", Model.ListaEnderecos);}
-          }
-      }
-    }
-
+@{
+    Scripts.Render("~/bundles/typeahead");
+    <div class="row" id="content-nova">
+        <div class="col-md-12">
+            @{
+                AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "content-nova", HttpMethod = "POST", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
+                using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    Html.RenderPartial("Formulario", Model);
+                }
+            }
+        </div>
+    </div>
+}

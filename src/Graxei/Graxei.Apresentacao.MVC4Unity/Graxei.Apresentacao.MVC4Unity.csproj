@@ -403,6 +403,7 @@
     <Content Include="Areas\Administrativo\Views\Produtos\ListarLojas.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\ProdutosListar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Pesquisar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Lojas\AdicionarLogo.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

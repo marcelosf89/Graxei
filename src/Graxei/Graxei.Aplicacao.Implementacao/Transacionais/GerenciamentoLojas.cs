@@ -87,6 +87,20 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             throw new NotImplementedException();
         }
 
+        public void AdicionarLogo(Loja loja)
+        {
+            IniciarTransacao();
+            try
+            {
+                loja = _servicoLojas.Salvar(loja);
+                Confirmar();
+            }
+            catch (OperacaoEntidadeException)
+            {
+                Desfazer();
+                throw;
+            }           
+        }
         #endregion
 
         #region Atributos Privados
@@ -96,6 +110,9 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
         private IServicoTelefones _servicoTelefones;
         private ITransformacaoMutua<Loja, LojaContrato> _transformacao;
         #endregion
+
+
+
 
     }
 }

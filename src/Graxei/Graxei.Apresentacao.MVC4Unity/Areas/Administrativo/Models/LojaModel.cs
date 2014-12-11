@@ -17,7 +17,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         public EnderecoModel EnderecoModel { get; set; }
         public List<EnderecoModel> ListEnderecosModel { get; set; }
         public List<EnderecoListaContrato> ListaEnderecos { get; set; }
-
         public bool HaEnderecos()
         {
             return (ListEnderecosModel != null && ListEnderecosModel.Any());

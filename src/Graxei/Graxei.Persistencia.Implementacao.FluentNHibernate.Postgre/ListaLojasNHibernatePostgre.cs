@@ -23,13 +23,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             IList<ListaLojasContrato> lista =
                             (from l in SessaoAtual.Query<Loja>()
                              from u in l.Usuarios
-                             where u.Id == usuario.Id
+                             where u.Id == usuario.Id orderby l.Id
                              select new ListaLojasContrato()
                              {
                                  Id = l.Id,
                                  Nome = l.Nome,
                                  NomePlano = l.Plano.Nome
-                             }
+                             } 
                             )
                             .Skip((pagina - 1) * tamanhoPagina)
                         .Take(tamanhoPagina).ToList<ListaLojasContrato>();

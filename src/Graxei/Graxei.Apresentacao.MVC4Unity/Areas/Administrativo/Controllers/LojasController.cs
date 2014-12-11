@@ -12,6 +12,9 @@ using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using System.Web;
+using System.IO;
+using System;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -34,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         public ActionResult Index(EnderecoModel item)
         {
-            var model = new LojaModel {LojaContrato = new LojaContrato(), EnderecoModel = item};
+            var model = new LojaModel { LojaContrato = new LojaContrato(), EnderecoModel = item };
             return View("Loja", model);
         }
 
@@ -46,8 +49,22 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             {
                 LojaContrato lojaContrato = _transformacaoMutuaLojas.Transformar(loja);
 
-                var model = new LojaModel {LojaContrato = lojaContrato, EnderecoModel = null};
+                var model = new LojaModel { LojaContrato = lojaContrato, EnderecoModel = null };
                 return View("Loja", model);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult NovaLojaAjax(long idLoja)
+        {
+            Loja loja = _consultasLojas.Get(idLoja);
+            if (loja != null)
+            {
+                LojaContrato lojaContrato = _transformacaoMutuaLojas.Transformar(loja);
+
+                var model = new LojaModel { LojaContrato = lojaContrato, EnderecoModel = null };
+                return View("NovaLojaAjax", model);
             }
             return null;
         }
@@ -55,15 +72,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult Listar(int numeroPagina = 1, int tamanho = 10)
         {
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
-            ////List<ListaLojasContrato> listaLojasContrato = new List<ListaLojasContrato>();
-            ////listaLojasContrato.AddRange(listaLojas.Lista);
-            ////listaLojas = new ListaLojas(listaLojasContrato, , new ListaElementoAtual(numeroPagina));
-
             return View("Listar", listaLojas);
         }
 
         [HttpPost]
         [LimpezaSessaoNovaLoja]
+
         public ActionResult Salvar(Usuario usuario, LojaModel item)
         {
             if (item != null && item.LojaContrato != null && item.LojaContrato.Id > 0)
@@ -131,13 +145,54 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             if (idLoja != 0)
             {
                 Loja loja = _consultasLojas.Get(idLoja);
-                if (loja != null)
+                if (loja.Logotipo != null)
                 {
                     return File(loja.Logotipo, "image/jpeg");
                 }
             }
 
             return null;
+        }
+
+        [HttpPost]
+        public ActionResult AdicionarLogo(long idLoja)
+        {
+            Loja loja = _consultasLojas.Get(idLoja);
+            if (loja != null)
+            {
+                return View("AdicionarLogo", loja);
+            }
+            return null;
+        }
+
+        public ActionResult Upload(long idLoja)
+        {
+            Loja model = null;
+            try
+            {
+                if (Request.Files.Count > 1)
+                    throw new OperacaoEntidadeException(Erros.NaoExisteImagem);
+                if (Request.Files.Count <= 0)
+                    throw new OperacaoEntidadeException(Erros.VariasImagensSelecionadas);
+
+                HttpPostedFileBase file = Request.Files[0];
+                String fileName = Server.MapPath("~/Temp/LojaImagem/") + Guid.NewGuid().ToString();
+                file.SaveAs(fileName);
+
+                model = _consultasLojas.Get(idLoja);
+                model.Logotipo = System.IO.File.ReadAllBytes(fileName);
+                System.IO.File.Delete(fileName);
+
+                _gerenciamentoLojas.AdicionarLogo(model);                
+            }
+            catch (OperacaoEntidadeException ee)
+            {
+                ModelState.AddModelError(string.Empty, ee.Message);
+                return PartialView("AdicionarLogo", model);
+            }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.LogoAdicionadoComSucesso;
+            return View("AdicionarLogo", model);
         }
 
         #endregion

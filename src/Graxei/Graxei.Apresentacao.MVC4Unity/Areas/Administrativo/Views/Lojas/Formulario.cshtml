@@ -2,6 +2,7 @@
 @model LojaModel
 @{
     @Html.HiddenFor(p => p.LojaContrato.Id, new { id = "idnovaloja" })
+    <script src="@Scripts.Url("~/Scripts/fileinput.js")"></script>
     <div class="form-group has-error">
         <div class="col-lg-offset-1 col-lg-11">
             @Html.Erro()
@@ -13,16 +14,18 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1 col-md-1 col-lg-1" })
-        <div class="col-xs-6 col-md-6 col-lg-6">
+        <div class="col-md-12">
+            <p class="text-left">@Html.LabelFor(m => m.LojaContrato.Nome, new { @class = "control-label col-xs-1 col-md-1 col-lg-1" })</p>
             @Html.TextBoxFor(m => m.LojaContrato.Nome, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.LojaContrato.Nome)
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2">
-            <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
-            @Ajax.ActionLink(Rotulos.Voltar, "Listar", "Lojas", new { Controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "btn btn-default" })
+        <div class="col-md-12">
+            <p class="text-right">
+                <button type="submit" id="t" class="btn btn-primary">@Rotulos.Salvar</button>
+                @Ajax.ActionLink(Rotulos.Voltar, "Listar", "Lojas", new { Controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "btn btn-default" })
+            </p>
         </div>
     </div>
 }

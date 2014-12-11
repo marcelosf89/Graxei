@@ -1,5 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.Utilidades.Excecoes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -22,6 +23,7 @@ namespace Graxei.Negocio.Implementacao.Teste
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ValidacaoEntidadeException))]
         public void Get_BairrosPorCidade_RecuperarLista()
         {
             // Arrange

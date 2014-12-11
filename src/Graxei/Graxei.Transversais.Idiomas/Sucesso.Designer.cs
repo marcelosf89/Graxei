@@ -70,6 +70,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logo adicionado com sucesso.
+        /// </summary>
+        public static string LogoAdicionadoComSucesso {
+            get {
+                return ResourceManager.GetString("LogoAdicionadoComSucesso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loja atualizada.
         /// </summary>
         public static string LojaAtualizada {
