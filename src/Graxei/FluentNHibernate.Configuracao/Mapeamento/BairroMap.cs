@@ -7,9 +7,9 @@ namespace Graxei.FluentNHibernate.Mapeamento
     {
         public BairroMap()
         {
-            Id(p => p.Id).GeneratedBy.Identity(); ;
+            Id(p => p.Id).GeneratedBy.Identity(); 
             Map(p => p.Nome).Column(Constantes.NOME);
-            References(p => p.Cidade).Fetch.Join();
+            References(p => p.Cidade).Cascade.SaveUpdate().Fetch.Join();
         }
     }
 }

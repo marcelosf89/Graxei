@@ -24,6 +24,9 @@ namespace Graxei.Aplicacao.Fabrica
 
         private string _telefones;
 
+        private string _cnpj;
+        
+
         private IConsultasEnderecos _consultasEnderecos;
 
         private IConsultasTiposTelefone _consultasTiposTelefone;
@@ -80,6 +83,12 @@ namespace Graxei.Aplicacao.Fabrica
             return this;
         }
 
+        public EnderecosBuilder SetCnpj(string cnpj)
+        {
+            _cnpj = cnpj;
+            return this;
+        }
+
         public Endereco Build()
         {
             Validar();
@@ -91,6 +100,7 @@ namespace Graxei.Aplicacao.Fabrica
             endereco.Complemento = _complemento;
             endereco.Bairro = _bairro;
             endereco.Loja = _loja;
+            endereco.Cnpj = _cnpj;
             if (telefones.Any())
             {
                 endereco.SubstituirTelefones(telefones);    
@@ -134,6 +144,10 @@ namespace Graxei.Aplicacao.Fabrica
             if (_loja == null)
             {
                 throw new ModeloDominioConstrucaoException("Não foi possível construir endereço: loja deve ser informada");
+            }
+            if (_cnpj == null)
+            {
+                throw new ModeloDominioConstrucaoException("Não foi possível construir endereço: CNPJ deve ser informada");
             }
         }
 

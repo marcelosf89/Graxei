@@ -92,8 +92,8 @@
 
         function SuccessEndereco(result) {
             if (result.Mensagem === undefined) {
-                var divLista = document.getElementById("listaEnderecos");
-                divLista.innerHTML = result;
+                //var divLista = document.getElementById("listaEnderecos");
+                //divLista.innerHTML = result;
                 $("#modalEnderecos").modal('hide');
             } else {
                 var divErro = document.getElementById("validationEndereco");
@@ -102,11 +102,12 @@
         }
 
         function resetModal() {
-            document.getElementById("form-enderecos").reset();
-            var idLoja = document.getElementById("idnovaloja").value;
-            var idLojaEndereco = document.getElementById("idlojaendereco");
-            document.getElementById("idHiddenEndereco").value = "";
-            idLojaEndereco.value = idLoja;
+            ////document.getElementById("form-enderecos").reset();
+            //var idLoja = document.getElementById("idnovaloja").value;
+            //var idLojaEndereco = document.getElementById("idlojaendereco");
+            //document.getElementById("idHiddenEndereco").value = "";
+            //idLojaEndereco.value = idLoja;
+            $('#modalEnderecos').modal('show');
         }
 
         function editarEndereco(id) {
@@ -130,7 +131,6 @@
         }
 </script>
 
-<h4>@Rotulos.NovaLoja</h4>
 <div id="novaloja">
     @{Html.RenderPartial("Nova", Model);}
 </div>
