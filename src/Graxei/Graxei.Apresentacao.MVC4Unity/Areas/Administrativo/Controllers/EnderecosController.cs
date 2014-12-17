@@ -96,6 +96,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
             EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
             EnderecoModel item = transformacao.Transformar(endereco);
+            return PartialFormularioEndereco(item);
+        }
+
+        private ActionResult PartialFormularioEndereco(EnderecoModel item)
+        {
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return PartialView("FormularioEndereco", item);
@@ -104,6 +109,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         [HttpPost]
         public ActionResult Salvar(EnderecoModel enderecoModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return PartialFormularioEndereco(enderecoModel);
+            }
             try
             {
                 Bairro bairro = new BairrosBuilder(_consultasBairros, _consultasCidades, _consultasEstados)
@@ -139,16 +148,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             catch (GraxeiException graxeiException)
             {
                 ModelState.AddModelError(string.Empty, graxeiException.Message);
-                return View("NovoEnderecoRetorno", enderecoModel);
+                return PartialFormularioEndereco(enderecoModel);
             }
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos");
-                return View("NovoEnderecoRetorno", enderecoModel);
+                return PartialFormularioEndereco(enderecoModel);
             }
             ModelState.Clear();
             ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
-            return View("NovoEnderecoRetorno", new EnderecoModel());
+            return PartialFormularioEndereco(enderecoModel);
 
         }
 

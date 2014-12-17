@@ -1,21 +1,21 @@
 ﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
 @model EnderecoModel
 @{
-
-    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "SuccessEndereco", UpdateTargetId = "fm-content", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
-    using (Ajax.BeginForm("Salvar", "Enderecos", null, ajax, new { id = "form-enderecos", @class = "form-horizontal" }))
-    {
     @Html.HiddenFor(m => m.IdLoja, new { id = "idlojaendereco" })
     @Html.HiddenFor(m => m.Id, new { id = "idHiddenEndereco" })
     <div id="validationEndereco"></div>
-    <div class="form-group has-error">
-        <div class="col-lg-offset-1 col-lg-11">
-            @Html.Erro()
-        </div>
-    </div>
-    <div class="form-group has-success">
-        <div class="col-lg-offset-1 col-lg-11">
-            @Html.Sucesso()
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group has-error">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Erro()
+                </div>
+            </div>
+            <div class="form-group has-success">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Sucesso()
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -119,6 +119,108 @@
             <button class="btn btn-danger" data-dismiss="modal">@Rotulos.Cancelar</button>
         </div>
     </div>
-    }    
 }
 
+<script>
+    function SuccessEndereco(result) {
+        var msg = '@ViewBag.OperacaoSucesso';
+        var idLoja = @Model.IdLoja ;
+        if (msg != '') {
+            $("#modalEnderecos").modal('hide');
+
+            openL();
+            $.ajax({
+                url: '@Url.Action("ListaEnderecos", "Enderecos")',
+                        type: 'GET',
+                        data: { idLoja: idLoja },
+                        success: function (result) {
+                            $('#fm-content').html(result);
+                        },
+                        complete: function () { closeL(); }
+                    });
+                }
+            }
+    
+            $("#IdEstado").live("change", (function () {
+                var estado = $("#IdEstado").val();
+                if (estado != 0) {
+                    var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+            $.post(url, { idEstado: estado },
+                function () {
+                });
+        }
+    })
+        );
+
+    $("#IdCidade").live("blur", function () {
+        var estado = $("#IdEstado").val();
+        var nomeCidade = $("#IdCidade").val();
+        if (estado > 0 && nomeCidade.length > 0) {
+            var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+            $.post(url, { idEstado: estado, cidade: nomeCidade },
+                function () {
+                });
+        }
+    });
+
+    $("#IdBairro").live("blur", function () {
+        var idEstado = $("#IdEstado").val();
+        var nomeCidade = $("#IdCidade").val();
+        var nomeBairro = $("#IdBairro").val();
+        if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+            var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+            $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
+                function () {
+                });
+        }
+    });
+
+    $("#IdCidade").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
+                type: "POST",
+                dataType: "json",
+                data: { term: request.term },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { value: item };
+                    }));
+                }
+            });
+        },
+    });
+
+    $("#IdBairro").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { value: item };
+                        }));
+                    }
+                });
+            },
+        });
+
+        $("#IdLogradouro").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { value: item };
+                        }));
+                    }
+                });
+            },
+        });
+
+</script>

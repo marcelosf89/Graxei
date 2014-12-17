@@ -6,20 +6,16 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
-            <div class="modal-body" id="model-endereco-body">
-                <div class="form-group has-error">
-                    <div class="col-lg-offset-1 col-lg-11">
-                        @Html.Erro()
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <div class="col-lg-offset-1 col-lg-11">
-                        @Html.Sucesso()
-                    </div>
-                </div>
+            <div class="modal-body">
                 @if (Model.IdLoja > 0)
                 {
-                    Html.RenderPartial("FormularioEndereco", Model);
+                    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess="SuccessEndereco", UpdateTargetId = "model-endereco-body", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
+                    using (Ajax.BeginForm("Salvar", "Enderecos", null, ajax, new { id = "form-enderecos", @class = "form-horizontal" }))
+                    {
+                    <div id="model-endereco-body">
+                        @{Html.RenderPartial("FormularioEndereco", Model);}
+                    </div>
+                    }
                 }
             </div>
         </div>

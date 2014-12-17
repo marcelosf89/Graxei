@@ -31,8 +31,6 @@
                             @{
             AjaxOptions ajaxenderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
                                 @Ajax.ActionLink(Rotulos.Enderecos, "ListaEnderecos", "Enderecos", new { Controller = "Enderecos", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
-@* <button id="btn-novo-endereco" type="button" class="col-lg-offset-1 btn btn-default" data-toggle="modal" data-target="#modalEnderecos" onclick="resetModal();">@Rotulos.NovoEndereco</button>
-                                { Html.RenderPartial("ListaEnderecos", Model.ListaEnderecos); }   *@
                             }
                         </li>
 
