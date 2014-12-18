@@ -40,7 +40,7 @@ namespace Graxei.Aplicacao.Contrato.TransformacaoDados
             {
                 foreach (Endereco endereco in entidade.Enderecos)
                 {
-                    EnderecoListaContrato enderecoListaContrato = new EnderecoListaContrato(endereco.Id, endereco.ToString());
+                    EnderecoListaContrato enderecoListaContrato = new EnderecoListaContrato(endereco.Id, endereco.ToString(), endereco.Cnpj);
                     retorno.AdicionarEndereco(enderecoListaContrato);
                 }
             }

@@ -1,18 +1,37 @@
-﻿@model EnderecoModel
+﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.HtmlHelpers
+@model EnderecoModel
 @{
-    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "SuccessEndereco" };
-    using (Ajax.BeginForm("Salvar", "Enderecos", null, ajax, new { id = "form-enderecos", @class = "form-horizontal" }))
-    {
     @Html.HiddenFor(m => m.IdLoja, new { id = "idlojaendereco" })
     @Html.HiddenFor(m => m.Id, new { id = "idHiddenEndereco" })
     <div id="validationEndereco"></div>
     <div class="row">
         <div class="col-md-12">
+            <div class="form-group has-error">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Erro()
+                </div>
+            </div>
+            <div class="form-group has-success">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Sucesso()
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-group">
-                <div class="control-label col-xs-2 col-md-2 col-lg-2">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Cnpj)
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Cnpj, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Cnpj)
+                </div>
+                <div class="control-label col-md-2">
                     @Html.LabelFor(m => m.IdEstado)
                 </div>
-                <div class="col-xs-2 col-md-2 col-lg-2">
+                <div class="col-md-2">
                     @Html.DropDownListFor(m => m.IdEstado, (IEnumerable<SelectListItem>)ViewBag.Estados, new { id = "IdEstado", @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.IdEstado)
                 </div>
@@ -22,10 +41,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <div class="control-label col-xs-2 col-md-2 col-lg-2">
+                <div class="control-label col-md-2">
                     @Html.LabelFor(m => m.Cidade)
                 </div>
-                <div class="col-xs-10 col-md-10 col-lg-10">
+                <div class="col-md-10">
                     @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control typeahead", id = "IdCidade" })
                     @Html.ValidationMessageFor(m => m.Cidade)
                 </div>
@@ -35,10 +54,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <div class="control-label col-xs-2 col-md-2 col-lg-2">
+                <div class="control-label col-md-2">
                     @Html.LabelFor(m => m.Bairro)
                 </div>
-                <div class="col-xs-10 col-md-10 col-lg-10">
+                <div class="col-md-10">
                     @Html.TextBoxFor(m => m.Bairro, new { @class = "form-control", id = "IdBairro" })
                     @Html.ValidationMessageFor(m => m.Bairro)
                 </div>
@@ -48,10 +67,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <div class="control-label col-xs-2 col-md-2 col-lg-2">
+                <div class="control-label col-md-2">
                     @Html.LabelFor(m => m.Logradouro)
                 </div>
-                <div class="col-xs-10 col-md-10 col-lg-10">
+                <div class="col-md-10">
                     @Html.TextBoxFor(m => m.Logradouro, new { @class = "form-control", id = "IdLogradouro" })
                     @Html.ValidationMessageFor(m => m.Logradouro)
                 </div>
@@ -61,17 +80,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <div class="control-label col-xs-2 col-md-2 col-lg-2">
+                <div class="control-label col-md-2">
                     @Html.LabelFor(m => m.Numero)
                 </div>
-                <div class="col-xs-2 col-md-2 col-lg-2">
+                <div class="col-md-2">
                     @Html.TextBoxFor(m => m.Numero, new { @class = "form-control", id = "IdNumero" })
                     @Html.ValidationMessageFor(m => m.Numero)
                 </div>
-                <div class=" control-label col-xs-2 col-md-2 col-lg-2">
+                <div class=" control-label col-md-2">
                     @Html.LabelFor(m => m.Complemento)
                 </div>
-                <div class="col-xs-6 col-md-6 col-lg-6">
+                <div class="col-md-6">
                     @Html.TextBoxFor(m => m.Complemento, new { @class = "form-control", id = "IdComplemento" })
                     @Html.ValidationMessageFor(m => m.Complemento)
                 </div>
@@ -81,14 +100,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <div class="control-label col-xs-2 col-md-2 col-lg-2">
+                <div class="control-label col-md-2">
                     @Html.LabelFor(m => m.Telefones)
                 </div>
-                <div class="col-xs-5 col-md-5 col-lg-5">
+                <div class="col-md-5">
                     @Html.TextBoxFor(m => m.Telefones, new { @class = "form-control", id = "IdTelefones" })
                     @Html.ValidationMessageFor(m => m.Telefones)
                 </div>
-                <div class="col-xs-5 col-md-5">
+                <div class="col-md-5">
                     <div class="label label-info"><i class="glyphicon glyphicon-info-sign"></i>@Textos.SepareTelefonesVirgula</div>
                 </div>
             </div>
@@ -100,6 +119,108 @@
             <button class="btn btn-danger" data-dismiss="modal">@Rotulos.Cancelar</button>
         </div>
     </div>
-    }
-    
 }
+
+<script>
+    function SuccessEndereco(result) {
+        var msg = '@ViewBag.OperacaoSucesso';
+        var idLoja = @Model.IdLoja ;
+        if (msg != '') {
+            $("#modalEnderecos").modal('hide');
+
+            openL();
+            $.ajax({
+                url: '@Url.Action("ListaEnderecos", "Enderecos")',
+                        type: 'GET',
+                        data: { idLoja: idLoja },
+                        success: function (result) {
+                            $('#fm-content').html(result);
+                        },
+                        complete: function () { closeL(); }
+                    });
+                }
+            }
+    
+            $("#IdEstado").live("change", (function () {
+                var estado = $("#IdEstado").val();
+                if (estado != 0) {
+                    var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+            $.post(url, { idEstado: estado },
+                function () {
+                });
+        }
+    })
+        );
+
+    $("#IdCidade").live("blur", function () {
+        var estado = $("#IdEstado").val();
+        var nomeCidade = $("#IdCidade").val();
+        if (estado > 0 && nomeCidade.length > 0) {
+            var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
+            $.post(url, { idEstado: estado, cidade: nomeCidade },
+                function () {
+                });
+        }
+    });
+
+    $("#IdBairro").live("blur", function () {
+        var idEstado = $("#IdEstado").val();
+        var nomeCidade = $("#IdCidade").val();
+        var nomeBairro = $("#IdBairro").val();
+        if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+            var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+            $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
+                function () {
+                });
+        }
+    });
+
+    $("#IdCidade").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
+                type: "POST",
+                dataType: "json",
+                data: { term: request.term },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { value: item };
+                    }));
+                }
+            });
+        },
+    });
+
+    $("#IdBairro").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { value: item };
+                        }));
+                    }
+                });
+            },
+        });
+
+        $("#IdLogradouro").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { value: item };
+                        }));
+                    }
+                });
+            },
+        });
+
+</script>

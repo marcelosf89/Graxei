@@ -28,6 +28,22 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             }
         }
 
+        public void Remover(Endereco endereco)
+        {
+            IniciarTransacao();
+            try
+            {
+                endereco.Excluida = true;
+                endereco = _servicoEnderecos.Salvar(endereco);
+                Confirmar();
+            }
+            catch (Exception)
+            {
+                Desfazer();
+                throw;
+            }
+        }
+
         private IServicoEnderecos _servicoEnderecos;
     }
 }

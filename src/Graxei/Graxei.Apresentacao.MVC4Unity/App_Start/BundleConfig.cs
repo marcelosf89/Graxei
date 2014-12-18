@@ -11,6 +11,7 @@ namespace Graxei.Apresentacao.MVC4Unity
         {
 
             bundles.Add(new ScriptBundle("~/bundles/sc").Include(
+                        "~/Scripts/tooltip.js",
                         "~/Scripts/graxei.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(

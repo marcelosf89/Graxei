@@ -12,6 +12,7 @@ using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -30,12 +31,63 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasTiposTelefone = consultasTiposTelefone;
         }
 
-        public ActionResult NovoEndereco(EnderecoModel enderecoModel)
+        public ActionResult EditarEndereco(long idEndereco)
         {
             ModelState.Clear();
+            EnderecoModel item;
+            Endereco endereco = _consultaEnderecos.Get(idEndereco);
+            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
+            item = transformacao.Transformar(endereco);
+
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView("ModalEndereco", enderecoModel);
+            return PartialView("ModalEndereco", item);
+        }
+
+        public ActionResult NovoEndereco(long idLoja)
+        {
+            ModelState.Clear();
+            EnderecoModel item = new EnderecoModel();
+            item.IdLoja = idLoja;
+
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return PartialView("ModalEndereco", item);
+        }
+
+        [HttpPost]
+        public ActionResult NovoEnderecoRetorno(EnderecoModel endereco)
+        {
+            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
+            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            return PartialView("ModalEndereco", endereco);
+        }
+
+        public ActionResult ListaEnderecos(long idLoja)
+        {
+            try
+            {
+                Loja loja = _consultasLojas.Get(idLoja);
+                if (loja == null)
+                {
+                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada",
+                        idLoja));
+                }
+                ListaEnderecoModel em = new ListaEnderecoModel();
+                List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
+                em.IdLoja = loja.Id;
+                em.QuantidadeEndereco = loja.Plano.QuantidadeFilial;
+                em.Enderecos = new List<EnderecoListaContrato>();
+                foreach (Endereco end in enderecos)
+                {
+                    em.Enderecos.Add(new EnderecoListaContrato(end.Id, end.ToString(), end.Cnpj));
+                }
+                return PartialView("ListaEnderecos", em);
+            }
+            catch (GraxeiException graxeiException)
+            {
+                return Json(new { Mensagem = graxeiException.Message });
+            }
         }
 
         [HttpGet]
@@ -44,14 +96,23 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
             EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
             EnderecoModel item = transformacao.Transformar(endereco);
+            return PartialFormularioEndereco(item);
+        }
+
+        private ActionResult PartialFormularioEndereco(EnderecoModel item)
+        {
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return Json(item, JsonRequestBehavior.AllowGet);
+            return PartialView("FormularioEndereco", item);
         }
 
         [HttpPost]
         public ActionResult Salvar(EnderecoModel enderecoModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return PartialFormularioEndereco(enderecoModel);
+            }
             try
             {
                 Bairro bairro = new BairrosBuilder(_consultasBairros, _consultasCidades, _consultasEstados)
@@ -73,6 +134,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                     .SetComplemento(enderecoModel.Complemento)
                     .SetLoja(loja)
                     .SetBairro(bairro)
+                    .SetCnpj(enderecoModel.Cnpj)
                     .SetTelefones(enderecoModel.Telefones)
                     .Build();
                 _gerenciamentoEnderecos.Salvar(endereco, null);
@@ -80,19 +142,49 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 List<EnderecoListaContrato> listaEnderecos = new List<EnderecoListaContrato>();
                 foreach (Endereco end in enderecos)
                 {
-                    listaEnderecos.Add(new EnderecoListaContrato(end.Id, end.ToString()));
+                    listaEnderecos.Add(new EnderecoListaContrato(end.Id, end.ToString(), end.Cnpj));
                 }
-                return PartialView("ListaEnderecos", listaEnderecos);
             }
             catch (GraxeiException graxeiException)
             {
-                return Json(new {Mensagem = graxeiException.Message});
+                ModelState.AddModelError(string.Empty, graxeiException.Message);
+                return PartialFormularioEndereco(enderecoModel);
             }
             catch (Exception)
             {
-                return Json(new { Mensagem = "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos" });
+                ModelState.AddModelError(string.Empty, "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos");
+                return PartialFormularioEndereco(enderecoModel);
             }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
+            return PartialFormularioEndereco(enderecoModel);
+
         }
+
+        [HttpPost]
+        public ActionResult ExcluirEndereco(long idEndereco, long idLoja)
+        {
+            try
+            {
+                throw new Exception();
+                Endereco endereco = _consultaEnderecos.Get(idEndereco);
+                _gerenciamentoEnderecos.Remover(endereco);
+            }
+            catch (GraxeiException graxeiException)
+            {
+                ModelState.AddModelError(string.Empty, graxeiException.Message);
+                return ListaEnderecos(idLoja);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos");
+                return ListaEnderecos(idLoja);
+            }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
+            return ListaEnderecos(idLoja);
+        }
+
 
         #region AutoComplete
 

@@ -126,9 +126,12 @@
     right: 0;
     height: 100%;
     background-color: rgba(152, 152, 152, 0.45);
-    z-index: 999;
+    z-index: 1099;
 }
 
+.btn.disabled {
+    pointer-events: bounding-box;
+}
 .logo {
     background-image: url('/Content/imagens/graxei_logo.png');
     background-size: 32px 32px;
@@ -138,7 +141,7 @@
     background-position: left center;
 }
 
-.modal-body > .form-horizontal > .rodape {
+.modal-body .rodape {
     padding: 19px 20px 20px;
     margin-top: 15px;
     text-align: right;
@@ -447,6 +450,24 @@ body {
         color: #ed9c28;
     }
 
+.ul-link a:active,
+.ul-link a:focus,
+.ul-link a:visited,
+.ul-link a:hover,
+.ul-link a {
+    color: #ed9c28;
+}
+
+.row-btn-margin {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pn-menu-loja {
+    border-right: 1px #D2D2D2 solid;
+    border-radius: 5px;
+}
+
 .bg-default-loja {
     background-color: #fff;
     padding-top: 10px;
@@ -697,6 +718,13 @@ body {
 
     .m1, .m2 {
         float: left;
+    }
+
+    .pn-menu-loja {
+        border-right: 0px #D2D2D2 solid;
+        border-bottom: 1px #D2D2D2 solid;
+        border-radius: 5px;
+        margin-top:25px;
     }
 }
 

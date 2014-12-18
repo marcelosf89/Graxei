@@ -24,6 +24,8 @@ namespace Graxei.Modelo
         
         public virtual IList<Telefone> Telefones { get; set; }
 
+        public virtual String Cnpj { get; set; }
+
         #region Métodos Sobrescritos
         public override bool Equals(object obj)
         {
@@ -134,5 +136,7 @@ namespace Graxei.Modelo
             return (!String.IsNullOrEmpty(this.Logradouro) && !String.IsNullOrEmpty(this.Numero)
                     && this.Bairro != null && this.Bairro.Validar());
         }
+
+        
     }
 }

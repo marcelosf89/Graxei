@@ -47,5 +47,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         
         [StringLength(100, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximoTelefones")]
         public string Telefones { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "LogradouroObrigatorio")]
+        [StringLength(50, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximoTelefones")]
+        public string Cnpj { get; set; }
     }
 }

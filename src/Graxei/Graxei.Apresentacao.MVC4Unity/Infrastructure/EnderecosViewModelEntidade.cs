@@ -44,6 +44,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
             enderecoModel.Numero = entidade.Numero;
             enderecoModel.Complemento = entidade.Complemento;
             enderecoModel.IdEstado = entidade.Bairro.Cidade.Estado.Id;
+            enderecoModel.Cnpj = entidade.Cnpj;
+            
             if (entidade.Telefones != null && entidade.Telefones.Any())
             {
                 foreach (Telefone telefone in entidade.Telefones)

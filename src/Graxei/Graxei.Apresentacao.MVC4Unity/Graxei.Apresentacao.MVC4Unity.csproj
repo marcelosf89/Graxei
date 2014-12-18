@@ -240,6 +240,7 @@
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\ImparCentralizar.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\IPaginacaoChain.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\PaginacaoChain\UltimoGrupoElementos.cs" />
+    <Compile Include="Areas\Administrativo\Models\ListaEnderecoModel.cs" />
     <Compile Include="Areas\Administrativo\Models\EnderecoModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
