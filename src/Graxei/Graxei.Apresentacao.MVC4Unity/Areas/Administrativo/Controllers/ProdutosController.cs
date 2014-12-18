@@ -8,6 +8,7 @@ using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using System;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -36,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return View(listaLojas);
         }
 
-        public ActionResult ProdutosListar(long idLoja)
+        public ActionResult Listar(long idLoja)
         {
 
             return View();

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PersistenciaAtributos.cs" />
+    <Compile Include="PersistenciaListaProdutosLoja.cs" />
     <Compile Include="PersistenciaLojas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

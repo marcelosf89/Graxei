@@ -7,6 +7,7 @@ using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
 using NHibernate.Linq;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {

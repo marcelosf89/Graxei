@@ -10,10 +10,11 @@ using System.Linq;
 using NHibernate.Criterion;
 using NHibernate.Transform;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
-namespace Graxei.Persistencia.Implementacao.NHibernate
+namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
 {
-    public class ListaLojasNHibernatePostgre : IRepositorioListaLojas
+    public class ListaLojasRepositorio : IRepositorioListaLojas
     {
         public ListaLojas Get(int pagina, int tamanhoPagina, Usuario usuario)
         {

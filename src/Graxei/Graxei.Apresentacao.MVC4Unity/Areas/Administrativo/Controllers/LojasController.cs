@@ -15,6 +15,7 @@ using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
 using System.Web;
 using System.IO;
 using System;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {

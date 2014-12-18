@@ -1,6 +1,7 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Aplicacao.Implementacao
 {

@@ -1,6 +1,6 @@
 ﻿using Graxei.Transversais.ContratosDeDados.Interfaces;
 
-namespace Graxei.Transversais.ContratosDeDados
+namespace Graxei.Transversais.ContratosDeDados.Listas
 {
     public class ListaLojasContrato : IItemLista
     {

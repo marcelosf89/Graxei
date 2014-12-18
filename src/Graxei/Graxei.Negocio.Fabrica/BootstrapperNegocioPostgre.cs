@@ -29,7 +29,7 @@ namespace Graxei.Negocio.Fabrica
                      .RegisterType<IServicoProdutos, ServicoProdutos>();
 
             // ProdutosVendedores
-            container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorNHibernatePostgre>()
+            container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorRepositorio>()
                   .RegisterType<IServicoProdutoVendedor, ServicoProdutoVendedor>();
 
             // Atributos
@@ -61,7 +61,7 @@ namespace Graxei.Negocio.Fabrica
                   .RegisterType<IServicoTelefones, ServicoTelefones>();
 
             // Endereços
-            container.RegisterType<IRepositorioEnderecos, EnderecosNHibernatePostgre>()
+            container.RegisterType<IRepositorioEnderecos, Enderecos>()
                        .RegisterType<IServicoEnderecos, ServicoEnderecos>();
 
             // Telefone
@@ -69,7 +69,7 @@ namespace Graxei.Negocio.Fabrica
                        .RegisterType<IServicoTiposTelefone, ServicoTiposTelefone>();
 
             //Lista lojas
-            container.RegisterType<IRepositorioListaLojas, ListaLojasNHibernatePostgre>()
+            container.RegisterType<IRepositorioListaLojas, ListaLojasRepositorio>()
                        .RegisterType<IServicoListaLojas, ServicoListaLojas>();
 
             container.RegisterType<IRepositorioPlanos, PlanosNHibernatePostgre>()

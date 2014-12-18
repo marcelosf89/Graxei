@@ -17,7 +17,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
     /// <summary>
     /// Classe de implementação das funções relativas à entidade ProdutoVendedor
     /// </summary>
-    public class ProdutoVendedorNHibernatePostgre : PadraoNHibernatePostgre<ProdutoVendedor>, IRepositorioProdutoVendedor
+    public class ProdutoVendedorRepositorio : PadraoNHibernatePostgre<ProdutoVendedor>, IRepositorioProdutoVendedor
     {
         #region Implementação de IRepositorioProdutoVendedor
 

@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listas\ListaProdutosLoja.cs" />
+    <Compile Include="Listas\ListaProdutosLojaContrato.cs" />
     <Compile Include="PesquisaContrato.cs" />
     <Compile Include="EnderecoListaContrato.cs" />
     <Compile Include="Interfaces\IItemLista.cs" />
     <Compile Include="Interfaces\ILista.cs" />
-    <Compile Include="ListaLojas.cs" />
-    <Compile Include="ListaLojasContrato.cs" />
+    <Compile Include="Listas\ListaLojas.cs" />
+    <Compile Include="Listas\ListaLojasContrato.cs" />
     <Compile Include="LojaContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TinyTypes\ListaElementoAtual.cs" />

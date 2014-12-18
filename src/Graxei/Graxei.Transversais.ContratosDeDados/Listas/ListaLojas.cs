@@ -4,7 +4,7 @@ using Graxei.Transversais.ContratosDeDados.Interfaces;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Transversais.Idiomas;
 
-namespace Graxei.Transversais.ContratosDeDados
+namespace Graxei.Transversais.ContratosDeDados.Listas
 {
     public class ListaLojas : ILista<ListaLojasContrato>
     {

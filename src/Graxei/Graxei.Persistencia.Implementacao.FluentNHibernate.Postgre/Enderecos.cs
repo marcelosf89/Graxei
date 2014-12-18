@@ -4,14 +4,15 @@ using FAST.Utils;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;
+using Graxei.Persistencia.Implementacao.NHibernate;
 
-namespace Graxei.Persistencia.Implementacao.NHibernate
+namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
 {
-    public class EnderecosNHibernatePostgre : PadraoNHibernatePostgre<Endereco>, IRepositorioEnderecos
+    public class Enderecos : PadraoNHibernatePostgre<Endereco>, IRepositorioEnderecos
     {
 
         #region Construtor
-        public EnderecosNHibernatePostgre(IRepositorioEstados repoEstados, IRepositorioCidades repoCidades, IRepositorioBairros repoBairros)
+        public Enderecos(IRepositorioEstados repoEstados, IRepositorioCidades repoCidades, IRepositorioBairros repoBairros)
         {
             _repoEstados = repoEstados;
             _repoCidades = repoCidades;
