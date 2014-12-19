@@ -84,6 +84,12 @@ namespace Graxei.Negocio.Implementacao
             return RepositorioLojas.GetComEnderecos(id);
         }
 
+                public Loja GetPorUrl(String nome)
+        {
+            return RepositorioLojas.GetPorUrl(nome);
+        }
+        
+
         #endregion
 
         #region Atributos Privados

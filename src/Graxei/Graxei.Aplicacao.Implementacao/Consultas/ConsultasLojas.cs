@@ -37,6 +37,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return _servicoLojas.Get(nome);
         }
 
+        public Loja GetPorUrl(string nome)
+        {
+            return _servicoLojas.GetPorUrl(nome);
+        }
+
         #endregion
     }
 }
