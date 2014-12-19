@@ -44,7 +44,19 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return Json(quantidadeProduto, JsonRequestBehavior.AllowGet);
         }
 
-        
+        public FileContentResult GetImagem(int idLoja = 0)
+        {
+            if (idLoja != 0)
+            {
+                Loja loja = _consultasLojas.Get(idLoja);
+                if (loja.Logotipo != null)
+                {
+                    return File(loja.Logotipo, "image/jpeg");
+                }
+            }
+
+            return null;
+        }
 
         private IConsultasEnderecos _consultasEnderecos;
         private IConsultasLojas _consultasLojas;

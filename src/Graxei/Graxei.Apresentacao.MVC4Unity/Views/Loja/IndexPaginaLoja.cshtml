@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="bg-panel-loja header-loja">
                     <div class="item">
-                        <img src=@Scripts.Url("~/Content/imagens/b" + Model.Id +".png")>
+                        <img src="@Url.Action("GetImagem", "Loja", new { idLoja = Model.Id })" />
                     </div>
                     <div class="item-sumario">
                         <div class="col-md-2 item">
@@ -22,7 +22,6 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-
                 <div class="bg-caption">
                     <h4>@Model.Nome</h4>
                 </div>
@@ -40,30 +39,7 @@
             </div>
             <div class="col-md-9">
                 <div class="bg-panel-loja header-loja">
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
-                    Descrição da loja 123<br />
+                    @Html.Raw(Model.DescricaoPaginaInicial)
                 </div>
             </div>
         </div>
