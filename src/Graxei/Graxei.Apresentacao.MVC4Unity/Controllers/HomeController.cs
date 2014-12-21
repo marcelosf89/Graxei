@@ -237,7 +237,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         [AllowAnonymous]
         public ActionResult IndexLoja(String lojaNome)
         {
-            Loja loja = _consultasLojas.GetPorNome(lojaNome);
+            Loja loja = _consultasLojas.GetPorUrl(lojaNome);
 
             if (loja == null)
                 return View("Error404");

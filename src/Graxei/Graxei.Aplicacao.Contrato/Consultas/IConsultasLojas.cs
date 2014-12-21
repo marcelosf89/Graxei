@@ -8,5 +8,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
         Loja Get(long id);
         Loja GetPorNome(string nome);
         LojaContrato GetComEnderecos(long id);
+        Loja GetPorUrl(string lojaNome);
     }
 }

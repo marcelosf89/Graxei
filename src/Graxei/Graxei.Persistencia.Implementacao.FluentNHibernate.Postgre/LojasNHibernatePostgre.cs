@@ -42,6 +42,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             return SessaoAtual.QueryOver<Loja>().Where(p => p.Id == id).Fetch(p => p.Enderecos).Eager.SingleOrDefault();
         }
 
+        public Loja GetPorUrl(string nome)
+        {
+            return SessaoAtual.QueryOver<Loja>().Where(p => p.Url == nome).SingleOrDefault();
+        }
+
         #endregion
 
         public new void Excluir(Loja loja)
