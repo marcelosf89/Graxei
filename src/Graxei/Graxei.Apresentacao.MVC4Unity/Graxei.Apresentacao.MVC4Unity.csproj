@@ -249,6 +249,7 @@
     <Compile Include="Areas\Administrativo\Models\TelefoneModel.cs" />
     <Compile Include="Areas\Teste\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teste\Models\ObjectTesteModel.cs" />
+    <Compile Include="Areas\Teste\Models\PesquisaProdutoLojaModel.cs" />
     <Compile Include="Areas\Teste\TesteAreaRegistration.cs" />
     <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -404,7 +405,7 @@
     <Content Include="Areas\Teste\Views\Home\Index.cshtml" />
     <Content Include="Areas\Teste\Views\Home\CarregarPagina.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\ListarLojas.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Produtos\ProdutosListar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Produtos\Listar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Pesquisar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarLogo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarUrl.cshtml" />

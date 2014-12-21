@@ -1,6 +1,4 @@
-﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
-@using Graxei.Transversais.ContratosDeDados
-@model ListaLojas
+﻿@model Graxei.Transversais.ContratosDeDados.Listas.ListaLojas
 
 <h4>Cadastro de Produtos / Lojas</h4>
 <div class="row">
@@ -8,31 +6,33 @@
         <table class=" table table-hover table-bordered ">
             <thead>
                 <tr>
-                    <th>Nome Loja
+                    <th>
+                        Nome da Loja
                     </th>
-                    <th>Ação
+                    <th>
+                        Ação
                     </th>
                 </tr>
             </thead>
             <tbody>
                 @{
-                    foreach (ListaLojasContrato listaLojasContrato in Model.Lista)
+                    foreach (Graxei.Transversais.ContratosDeDados.Listas.ListaLojasContrato listaLojasContrato in Model.Lista)
                     {
-                    <tr>
-                        <td class="col-md-6 col-lg-9">
-                            @listaLojasContrato.Nome
-                        </td>
-                        <td class="col-md-3 col-lg-3">
-                            @Ajax.IconActionLink("glyphicon glyphicon-inbox", "Produtos", "Listar", "Produtos", new { Controller = "Produtos", idLoja = listaLojasContrato.Id }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new {  @class = "btn btn-default btn-sm" })
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="col-md-6 col-lg-9">
+                                @listaLojasContrato.Nome
+                            </td>
+                            <td class="col-md-3 col-lg-3">
+                                @Ajax.IconActionLink("glyphicon glyphicon-inbox", "Produtos", "Listar", "Produtos", new { idLoja = listaLojasContrato.Id }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "btn btn-default btn-sm", idLoja =  listaLojasContrato.Id })
+                            </td>
+                        </tr>
                     }
                 }
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="2">
-                            @Ajax.LinkPaginacao2("Listar", "Lojas", "numeroPagina", Model.Atual.Atual, Model.Total.Total, 10)
+                        @Ajax.LinkPaginacao2("Listar", "Lojas", "numeroPagina", Model.Atual.Atual, Model.Total.Total, 10)
                     </th>
                 </tr>
             </tfoot>

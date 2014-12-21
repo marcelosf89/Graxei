@@ -7,12 +7,28 @@ using System.Threading.Tasks;
 
 namespace Graxei.Transversais.ContratosDeDados.Listas
 {
-    public class ListaProdutosLojaContrato : IItemLista
+    public sealed class ListaProdutosLojaContrato : IItemLista
     {
         public long Id { get; set; }
 
         public string Descricao { get; set; }
 
-        public decimal Preco {  get; set; }
+        public double Preco {  get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is ListaProdutosLojaContrato) || obj == null)
+            {
+                return false;
+            }
+
+            ListaProdutosLojaContrato that = (ListaProdutosLojaContrato)obj;
+            return (this.Id == that.Id && this.Descricao == that.Descricao);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode() ^ 11 + this.Descricao.GetHashCode() ^ 9;
+        }
     }
 }

@@ -9,17 +9,19 @@ using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using System;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.ContratosDeDados.Listas;
+using Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class ProdutosController : Controller
     {
 
-        public ProdutosController(IConsultasLojas consultasLojas, IConsultasListaLojas consultasListaLojas, IConsultasProdutos consultasProdutos)
+        public ProdutosController(IConsultasLojas consultasLojas, IConsultasListaLojas consultasListaLojas, IConsultasProdutos consultasProdutos, IConsultaListaProdutosLoja consultaListaProdutosLoja)
         {
             _consultasLojas = consultasLojas;
             _consultasListaLojas = consultasListaLojas;
             _consultasProdutos = consultasProdutos;
+            _consultaListaProdutosLoja = consultaListaProdutosLoja;
         }
 
         public ActionResult Index()
@@ -30,7 +32,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult ListarLojas(int numeroPagina = 1, int tamanho = 10)
         {
             if (numeroPagina < 0)
+            {
                 numeroPagina = 0;
+            }
+                
 
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
             listaLojas = new ListaLojas(listaLojas.Lista, new ListaTotalElementos(130), new ListaElementoAtual(numeroPagina));
@@ -39,46 +44,37 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         public ActionResult Listar(long idLoja)
         {
-
-            return View();
+            return View(new PesquisaProdutoLojaModel { IdLoja = idLoja });
         }
 
-        public ActionResult Pesquisar(String txtProduto, bool meusProdutos, long paginaSelecionada = 0)
+        [HttpPost]
+        public ActionResult Pesquisar(PesquisaProdutoLojaModel model)
         {
-            PesquisarModel pm = (PesquisarModel)TempData["txtProduto"];
-            if (pm == null || !String.IsNullOrEmpty(txtProduto))
-            {
-                pm = new PesquisarModel();
-                pm.Texto = txtProduto;
-            }
-
             try
             {
-                IList<Produto> produtos = _consultasProdutos.Get(pm.Texto, paginaSelecionada);
-                pm.PaginaSelecionada = paginaSelecionada;
-                if (produtos.Count < 10)
-                {
-                    TempData["NumeroMaximoPagina_P"] = paginaSelecionada;
-                    pm.NumeroMaximoPagina = paginaSelecionada;
-                }
-
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model.DescricaoProduto, model.IdLoja, 1, 10, 0);
                 return View(produtos);
             }
             catch (ProdutoForaDoLimiteException e)
             {
-                pm.NumeroMaximoPagina = e.Max;
-                pm.PaginaSelecionada = e.Max;
                 IList<Produto> produtos = e.List;
                 return View(produtos);
             }
-            finally
-            {
-                ViewBag.PesquisarModel = pm;
-                TempData["txtProduto"] = pm;
-            }
         }
 
-
+        public ActionResult LinkPesquisar(string criterio, long idLoja, int pagina, int totalPaginas, int totalElementos)
+        {
+            try
+            {
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(criterio, idLoja, 1, 10, 0);
+                return View(produtos);
+            }
+            catch (ProdutoForaDoLimiteException e)
+            {
+                IList<Produto> produtos = e.List;
+                return View(produtos);
+            }
+        }
         /*
         public ActionResult Novo()
         {
@@ -104,5 +100,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private readonly IConsultasLojas _consultasLojas;
         private readonly IConsultasListaLojas _consultasListaLojas;
         private readonly IConsultasProdutos _consultasProdutos;
+        private IConsultaListaProdutosLoja _consultaListaProdutosLoja;
     }
 }

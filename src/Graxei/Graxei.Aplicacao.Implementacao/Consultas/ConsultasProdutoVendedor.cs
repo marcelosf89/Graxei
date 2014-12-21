@@ -53,11 +53,5 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         }
 
         #endregion
-
-
-
-
-
-
     }
 }

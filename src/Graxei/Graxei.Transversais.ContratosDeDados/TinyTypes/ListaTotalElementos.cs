@@ -19,5 +19,21 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
         {
             get { return _total; }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is ListaTotalElementos) || obj == null)
+            {
+                return false;
+            }
+
+            ListaTotalElementos that = (ListaTotalElementos)obj;
+            return that.Total == this.Total;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Total.GetHashCode() ^ 3;
+        }
     }
 }

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0788D099-D0C1-43D7-B33A-96800274E201}</ProjectGuid>
+    <ProjectGuid>{52009047-2402-49DC-AECA-97F3AD52B601}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Graxei.Aplicacao.Implementacao</RootNamespace>
-    <AssemblyName>Graxei.Aplicacao.Implementacao</AssemblyName>
+    <RootNamespace>Graxei.Transversais.Teste</RootNamespace>
+    <AssemblyName>Graxei.Transversais.Teste</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,48 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsultasListaLojas.cs" />
-    <Compile Include="Consultas\ConsultaListaProdutosLoja.cs" />
-    <Compile Include="Consultas\ConsultaCidades.cs" />
-    <Compile Include="Consultas\ConsultaLogradouros.cs" />
-    <Compile Include="Consultas\ConsultasBairros.cs" />
-    <Compile Include="Consultas\ConsultasEnderecos.cs" />
-    <Compile Include="Consultas\ConsultasEstados.cs" />
-    <Compile Include="Consultas\ConsultasLogin.cs" />
-    <Compile Include="Consultas\ConsultasLojas.cs" />
-    <Compile Include="Consultas\ConsultasTiposTelefone.cs" />
-    <Compile Include="Consultas\ConsultasUsuarios.cs" />
-    <Compile Include="Consultas\ConsultasFabricantes.cs" />
-    <Compile Include="Consultas\ConsultasProdutoVendedor.cs" />
-    <Compile Include="Consultas\ConsultasPlanos.cs" />
-    <Compile Include="Consultas\ConsultasProdutos.cs" />
-    <Compile Include="Transacionais\GerenciamentoEnderecos.cs" />
-    <Compile Include="Transacionais\GerenciamentoLojas.cs" />
-    <Compile Include="IPadraoTransacao.cs" />
+    <Compile Include="ContratosListaTeste.cs" />
+    <Compile Include="TinyTypesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transacionais\GerenciamentoProdutos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
-      <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
-      <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
-      <Name>Graxei.Aplicacao.Contrato</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
-      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
-      <Name>Graxei.Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
-      <Project>{98F3B7B4-B5F1-4124-A62F-A0047AB08840}</Project>
-      <Name>Graxei.Negocio.Contrato</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
       <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>
       <Name>Graxei.Transversais.ContratosDeDados</Name>
@@ -97,7 +59,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

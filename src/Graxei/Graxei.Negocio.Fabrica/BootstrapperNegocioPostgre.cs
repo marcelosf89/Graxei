@@ -72,6 +72,9 @@ namespace Graxei.Negocio.Fabrica
             container.RegisterType<IRepositorioListaLojas, ListaLojasRepositorio>()
                        .RegisterType<IServicoListaLojas, ServicoListaLojas>();
 
+            container.RegisterType<IRepositorioListaProdutosLoja, ListaProdutosLojaRepositorio>()
+                       .RegisterType<IServicoListaProdutosLoja, ServicoListaProdutosLojaUmEndereco>();
+
             container.RegisterType<IRepositorioPlanos, PlanosNHibernatePostgre>()
                        .RegisterType<IServicoPlanos, ServicoPlanos>();
         }

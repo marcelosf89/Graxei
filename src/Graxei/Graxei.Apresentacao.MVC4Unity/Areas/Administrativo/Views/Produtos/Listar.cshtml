@@ -1,23 +1,26 @@
-﻿<h4>Produtos
+﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models.PesquisaProdutoLojaModel
+<h4>
+    Produtos
 </h4>
 <div class="row">
     <div class="col-md-2">
         @Ajax.ActionLink("Todas as Filiais", "", "Produtos", new { Controller = "Produtos" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "myModal" }, new { @class = "btn btn-default btn-filial" })
     </div>
     <div class="col-md-8">
-        @using (Ajax.BeginForm("Pesquisar", "Produtos", new { Controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "myContentProd", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL(); teste();" }, new { @class = "navbar-form", role = "search", id = "fq" }))
-        {	  
+        @{using (Ajax.BeginForm("Pesquisar", "Produtos", null, new AjaxOptions() { UpdateTargetId = "myContentProd", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form", role = "search", id = "fq" }))
+        {
             <div class="input-group">
                 <span class="input-group-addon">
                     @Html.CheckBox("meusProdutos", false)
                     Meus Produtos
                 </span>
-                @Html.TextBox("txtProduto", null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id = "q", mozactionhint = "search" })
+                @Html.HiddenFor(m => m.IdLoja)
+                @Html.TextBoxFor(m => m.DescricaoProduto, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id = "q", mozactionhint = "search" })
                 <span class="input-group-btn">
                     <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                 </span>
             </div>
-            
+        }
         }
     </div>
 </div>

@@ -23,7 +23,6 @@ namespace Graxei.Negocio.Implementacao.Teste
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidacaoEntidadeException))]
         public void Get_BairrosPorCidade_RecuperarLista()
         {
             // Arrange

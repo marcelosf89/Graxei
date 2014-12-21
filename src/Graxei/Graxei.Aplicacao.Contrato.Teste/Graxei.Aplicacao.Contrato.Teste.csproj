@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsultaListaProdutosLojaTeste.cs" />
     <Compile Include="NegocioProdutos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformacao\LojaTransformacaoTeste.cs" />
@@ -56,6 +57,10 @@
       <Project>{CBF20A20-BA65-4DBC-A5A6-8F06EB2F4ED5}</Project>
       <Name>Graxei.Aplicacao.Contrato</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Graxei.Aplicacao.Implementacao\Graxei.Aplicacao.Implementacao.csproj">
+      <Project>{0788d099-d0c1-43d7-b33a-96800274e201}</Project>
+      <Name>Graxei.Aplicacao.Implementacao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{FE888923-D56D-403A-B51F-0549C4E12919}</Project>
       <Name>Graxei.Modelo</Name>
@@ -63,6 +68,10 @@
     <ProjectReference Include="..\Graxei.Negocio.Contrato\Graxei.Negocio.Contrato.csproj">
       <Project>{98F3B7B4-B5F1-4124-A62F-A0047AB08840}</Project>
       <Name>Graxei.Negocio.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Persistencia.Implementacao.Teste\Graxei.Persistencia.Implementacao.Teste.csproj">
+      <Project>{8dbd3918-5f79-4835-be46-083458f4a735}</Project>
+      <Name>Graxei.Persistencia.Implementacao.Teste</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
       <Project>{2B3F16A3-F753-4431-AC97-3CCA9070B3DB}</Project>
@@ -76,6 +85,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

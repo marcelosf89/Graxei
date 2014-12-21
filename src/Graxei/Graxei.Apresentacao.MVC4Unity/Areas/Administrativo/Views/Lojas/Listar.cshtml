@@ -1,6 +1,4 @@
-﻿@using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
-@using Graxei.Transversais.ContratosDeDados
-@model ListaLojas
+﻿@model Graxei.Transversais.ContratosDeDados.Listas.ListaLojas
 
 @{
     ViewBag.Title = "Listar";
@@ -25,7 +23,7 @@
             </thead>
             <tbody>
                 @{
-                    foreach (ListaLojasContrato listaLojasContrato in Model.Lista)
+                    foreach (Graxei.Transversais.ContratosDeDados.Listas.ListaLojasContrato listaLojasContrato in Model.Lista)
                     {
                     <tr>
                         <td class="col-md-6 col-lg-9">
