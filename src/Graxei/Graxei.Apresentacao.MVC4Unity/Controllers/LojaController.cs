@@ -2,6 +2,7 @@
 using Graxei.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -48,15 +49,33 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
             if (idLoja != 0)
             {
-                Loja loja = _consultasLojas.Get(idLoja);
-                if (loja.Logotipo != null)
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                byte[] file = _consultasLojas.GetImageBackground(idLoja, caminhoImagem);
+                if (file != null)
                 {
-                    return File(loja.Logotipo, "image/jpeg");
+                    return File(file, "image/jpeg");
                 }
             }
 
             return null;
         }
+
+
+        public FileContentResult GetLogo(int idLoja = 0)
+        {
+            if (idLoja != 0)
+            {
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                byte[] file = _consultasLojas.GetLogo(idLoja, caminhoImagem);
+                if (file != null)
+                {
+                    return File(file, "image/jpeg");
+                }
+            }
+
+            return null;
+        }
+        
 
         private IConsultasEnderecos _consultasEnderecos;
         private IConsultasLojas _consultasLojas;
