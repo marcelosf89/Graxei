@@ -22,7 +22,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                         "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
-                "~/Scripts/typeahead.jquery.js"));
+                "~/Scripts/typeahead.jquery.js", "~/Scripts/bloodhound.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             "~/Scripts/jquery-1.11.1.min.js",
