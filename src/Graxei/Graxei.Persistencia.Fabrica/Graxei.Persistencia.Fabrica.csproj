@@ -72,10 +72,6 @@
       <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj">
-      <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

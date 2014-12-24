@@ -78,10 +78,6 @@
       <Project>{30ce3e7b-b1b7-4231-96db-619f72ffd9f4}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj">
-      <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
       <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>
       <Name>Graxei.Transversais.ContratosDeDados</Name>

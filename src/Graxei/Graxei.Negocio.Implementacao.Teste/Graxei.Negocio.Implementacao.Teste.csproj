@@ -102,10 +102,6 @@
       <Project>{8dbd3918-5f79-4835-be46-083458f4a735}</Project>
       <Name>Graxei.Persistencia.Implementacao.Teste</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.NHibernate\Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL.csproj">
-      <Project>{f1d4000a-3ecd-455f-a882-d64248980f1e}</Project>
-      <Name>Graxei.Persistencia.Implementacao.FluentNHibernate.MySQL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
       <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>
       <Name>Graxei.Transversais.ContratosDeDados</Name>

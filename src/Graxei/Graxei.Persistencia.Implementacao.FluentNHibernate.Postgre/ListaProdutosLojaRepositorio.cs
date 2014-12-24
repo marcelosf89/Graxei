@@ -37,7 +37,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
                 return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new ListaTotalElementos(0), new ListaElementoAtual(0));
             }
 
-            string sql = @"SELECT pv.id_produto_vendedor ""Id"", pv.descricao ""Descricao"", pv.preco ""Preco""
+            string sql = @"SELECT pv.id_produto_vendedor ""Id"", p.codigo ""Codigo"", pv.descricao ""Descricao"", pv.preco ""Preco""
                              FROM produtos p
                              JOIN produtos_vendedores pv ON p.id_produto = pv.id_produto
                              JOIN enderecos e ON pv.id_endereco = e.id_endereco

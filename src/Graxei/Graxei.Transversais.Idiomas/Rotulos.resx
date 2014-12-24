@@ -255,4 +255,13 @@
   <data name="Assunto" xml:space="preserve">
     <value>Assunto</value>
   </data>
+  <data name="Codigo" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="Descricao" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="Valor" xml:space="preserve">
+    <value>Valor</value>
+  </data>
 </root>

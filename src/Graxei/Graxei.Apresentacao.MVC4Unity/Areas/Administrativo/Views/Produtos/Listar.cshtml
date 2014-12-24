@@ -3,10 +3,10 @@
     Produtos
 </h4>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 col-lg-2">
         @Ajax.ActionLink("Todas as Filiais", "", "Produtos", new { Controller = "Produtos" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "myModal" }, new { @class = "btn btn-default btn-filial" })
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-lg-8">
         @{using (Ajax.BeginForm("Pesquisar", "Produtos", null, new AjaxOptions() { UpdateTargetId = "myContentProd", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form", role = "search", id = "fq" }))
         {
             <div class="input-group">
@@ -22,6 +22,9 @@
             </div>
         }
         }
+    </div>
+    <div class="col-md-2 col-lg-2">
+        <button id="salvarPrecos" class="btn btn-success invisible pull-right">@Rotulos.Salvar</button>
     </div>
 </div>
 <div class="row">

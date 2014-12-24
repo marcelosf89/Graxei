@@ -10,6 +10,8 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
     public sealed class ListaProdutosLojaContrato : IItemLista
     {
         public long Id { get; set; }
+        
+        public string Codigo { get; set; }
 
         public string Descricao { get; set; }
 

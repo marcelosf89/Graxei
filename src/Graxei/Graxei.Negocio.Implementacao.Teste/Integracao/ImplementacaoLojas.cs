@@ -12,7 +12,6 @@ using NHibernate.Context;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
-using Graxei.Persistencia.Implementacao.NHibernate;
 using System.Collections.Generic;
 
 namespace Graxei.Negocio.Implementacao.Teste.Integracao

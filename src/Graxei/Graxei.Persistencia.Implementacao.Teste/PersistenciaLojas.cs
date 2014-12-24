@@ -8,12 +8,6 @@ namespace Graxei.Persistencia.Implementacao.Teste
     [TestClass]
     public class PersistenciaLojas
     {
-        [TestMethod]
-        public void Nova_DeveIncluirLoja()
-        {
-            // Arrange
-            IRepositorioProdutoVendedor repositorioProdutoVendedor = new ProdutoVendedorNHibernateMySQL();
-            IRepositorioLojas repositorioLojas = new LojasNHibernateMySQL(repositorioProdutoVendedor);
-        }
+       
     }
 }

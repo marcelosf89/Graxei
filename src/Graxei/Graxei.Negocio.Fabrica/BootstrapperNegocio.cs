@@ -17,9 +17,9 @@ namespace Graxei.Negocio.Fabrica
 
             switch (_type)
             {
-                case "MYSQL":
-                   BootstrapperNegocioMySQL.Register(container);
-                    break;
+                //case "MYSQL":
+                //   BootstrapperNegocioMySQL.Register(container);
+                //    break;
                 case "POSTGRESQL":
                 default:
                    BootstrapperNegocioPostgre.Register(container);
