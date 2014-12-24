@@ -25,8 +25,8 @@ namespace Graxei.Persistencia.Implementacao.Teste
 
         public static ListaProdutosLoja Construir(List<ListaProdutosLojaContrato> lista, int total, int atual)
         {
-            ListaTotalElementos listaTotalElementos = new ListaTotalElementos(total);
-            ListaElementoAtual listaElementoAtual = new ListaElementoAtual(atual);
+            TotalElementosLista listaTotalElementos = new TotalElementosLista(total);
+            PaginaAtualLista listaElementoAtual = new PaginaAtualLista(atual);
             return new ListaProdutosLoja(lista, listaTotalElementos, listaElementoAtual);
         }
     }

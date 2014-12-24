@@ -21,7 +21,7 @@
             string idPreco = "valor" + item.Id;
             <tr id-prod="@item.Id">
                 <td class="">
-                    <input type="checkbox" doc-type="cp" id-prod="@item.Id" />
+                    <input type="checkbox" doc-type="cp" checked="@item.IsMeuProduto()" />
                 </td>
                 <td class="col-md-2 col-md-2">@item.Codigo</td>
                 <td class="col-md-8 col-md-8">@item.Descricao</td>

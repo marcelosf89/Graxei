@@ -11,8 +11,8 @@
         {
             <div class="input-group">
                 <span class="input-group-addon">
-                    @Html.CheckBox("meusProdutos", false)
-                    Meus Produtos
+                    @Html.CheckBoxFor(m => m.MeusProdutos, false)
+                    @Rotulos.MeusProdutos
                 </span>
                 @Html.HiddenFor(m => m.IdLoja)
                 @Html.TextBoxFor(m => m.DescricaoProduto, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id = "q", mozactionhint = "search" })

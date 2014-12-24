@@ -77,8 +77,8 @@ namespace Graxei.Transversais.Teste
         public void ListaProdutosLoja_ListaTotalElementosDiferente_RetornaFalso()
         {
             // Arrange/Act
-            ListaProdutosLoja thisListaProdutosLoja = new ListaProdutosLoja(null, new ListaTotalElementos(1), null);
-            ListaProdutosLoja thatListaProdutosLoja = new ListaProdutosLoja(null, new ListaTotalElementos(2), null);
+            ListaProdutosLoja thisListaProdutosLoja = new ListaProdutosLoja(null, new TotalElementosLista(1), null);
+            ListaProdutosLoja thatListaProdutosLoja = new ListaProdutosLoja(null, new TotalElementosLista(2), null);
 
             // Assert
             Assert.AreNotEqual(thisListaProdutosLoja, thatListaProdutosLoja);
@@ -90,8 +90,8 @@ namespace Graxei.Transversais.Teste
         public void ListaProdutosLoja_ListaElementoAtualDiferente_RetornaFalso()
         {
             // Arrange/Act
-            ListaProdutosLoja thisListaProdutosLoja = new ListaProdutosLoja(null, new ListaTotalElementos(9), new ListaElementoAtual(5));
-            ListaProdutosLoja thatListaProdutosLoja = new ListaProdutosLoja(null, new ListaTotalElementos(9), new ListaElementoAtual(7));
+            ListaProdutosLoja thisListaProdutosLoja = new ListaProdutosLoja(null, new TotalElementosLista(9), new PaginaAtualLista(5));
+            ListaProdutosLoja thatListaProdutosLoja = new ListaProdutosLoja(null, new TotalElementosLista(9), new PaginaAtualLista(7));
 
             // Assert
             Assert.AreNotEqual(thisListaProdutosLoja, thatListaProdutosLoja);
@@ -110,8 +110,8 @@ namespace Graxei.Transversais.Teste
             lista2.Add(listaProdutosLojaContrato2);
 
             // Act
-            ListaProdutosLoja thisListaProdutosLoja = new ListaProdutosLoja(lista1, new ListaTotalElementos(9), new ListaElementoAtual(5));
-            ListaProdutosLoja thatListaProdutosLoja = new ListaProdutosLoja(lista2, new ListaTotalElementos(9), new ListaElementoAtual(5));
+            ListaProdutosLoja thisListaProdutosLoja = new ListaProdutosLoja(lista1, new TotalElementosLista(9), new PaginaAtualLista(5));
+            ListaProdutosLoja thatListaProdutosLoja = new ListaProdutosLoja(lista2, new TotalElementosLista(9), new PaginaAtualLista(5));
 
             // Assert
             Assert.AreEqual(thisListaProdutosLoja, thatListaProdutosLoja);

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain
+namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public interface IPaginacaoChain
     {

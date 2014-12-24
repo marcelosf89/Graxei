@@ -264,4 +264,7 @@
   <data name="Valor" xml:space="preserve">
     <value>Valor</value>
   </data>
+  <data name="MeusProdutos" xml:space="preserve">
+    <value>Meus Produtos</value>
+  </data>
 </root>

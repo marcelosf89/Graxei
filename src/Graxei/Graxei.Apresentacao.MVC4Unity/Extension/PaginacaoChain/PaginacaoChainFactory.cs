@@ -3,12 +3,12 @@ using System.Web.Routing;
 using Graxei.Transversais.ContratosDeDados.Interfaces;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 
-namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain
+namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public class PaginacaoChainFactory
     {
 
-        public PaginacaoChainFactory(AjaxHelper ajaxHelper, ListaTotalElementos listaTotalElementos, ListaElementoAtual listaElementoAtual, int maximoElementosPaginacao, string controller, string action)
+        public PaginacaoChainFactory(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, string controller, string action)
         {
             _listaTotalElementos = listaTotalElementos;
             _listaElementoAtual = listaElementoAtual;
@@ -28,9 +28,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Pagin
             return primeiroElemento;
         }
 
-        private ListaTotalElementos _listaTotalElementos;
+        private TotalElementosLista _listaTotalElementos;
 
-        private ListaElementoAtual _listaElementoAtual;
+        private PaginaAtualLista _listaElementoAtual;
 
         private int _maximoElementosPaginacao = 5;
 

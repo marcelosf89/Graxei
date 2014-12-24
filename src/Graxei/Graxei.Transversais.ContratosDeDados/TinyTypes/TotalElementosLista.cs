@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 {
-    public class ListaTotalElementos
+    public class TotalElementosLista
     {
-        public ListaTotalElementos(int total)
+        public TotalElementosLista(int total)
         {
             _total = total;
         }
@@ -22,12 +22,12 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 
         public override bool Equals(object obj)
         {
-            if (!(obj is ListaTotalElementos) || obj == null)
+            if (!(obj is TotalElementosLista) || obj == null)
             {
                 return false;
             }
 
-            ListaTotalElementos that = (ListaTotalElementos)obj;
+            TotalElementosLista that = (TotalElementosLista)obj;
             return that.Total == this.Total;
         }
 

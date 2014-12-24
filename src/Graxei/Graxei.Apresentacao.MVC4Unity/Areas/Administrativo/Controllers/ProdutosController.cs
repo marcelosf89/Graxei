@@ -38,7 +38,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 
 
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
-            listaLojas = new ListaLojas(listaLojas.Lista, new ListaTotalElementos(130), new ListaElementoAtual(numeroPagina));
+            listaLojas = new ListaLojas(listaLojas.Lista, new TotalElementosLista(130), new PaginaAtualLista(numeroPagina));
             return View(listaLojas);
         }
 
@@ -52,7 +52,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             try
             {
-                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model.DescricaoProduto, model.IdLoja, 1, 10, 0);
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model.DescricaoProduto, model.MeusProdutos, model.IdLoja, 1, 10, 0);
                 return View(produtos);
             }
             catch (ProdutoForaDoLimiteException e)
@@ -62,11 +62,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
         }
 
-        public ActionResult LinkPesquisar(string criterio, long idLoja, int pagina, int totalPaginas, int totalElementos)
+        public ActionResult LinkPesquisar(string criterio, bool meusProdutos, long idLoja, int pagina, int totalPaginas, int totalElementos)
         {
             try
             {
-                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(criterio, idLoja, 1, 10, 0);
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(criterio, meusProdutos, idLoja, 1, 10, 0);
                 return View(produtos);
             }
             catch (ProdutoForaDoLimiteException e)

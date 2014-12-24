@@ -9,5 +9,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models
     {
         public long IdLoja { get; set; }
         public string DescricaoProduto { get; set; }
+        public bool MeusProdutos { get; set; }
     }
 }

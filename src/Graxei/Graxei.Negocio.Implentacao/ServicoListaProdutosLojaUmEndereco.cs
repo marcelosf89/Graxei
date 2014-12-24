@@ -18,9 +18,9 @@ namespace Graxei.Negocio.Implementacao
             _repositorioListaProdutosLoja = repositorioListaProdutosLoja;
         }
 
-        public ListaProdutosLoja Get(string criterio, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
+        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
         {
-            return _repositorioListaProdutosLoja.GetSomenteUmEndereco(criterio, idLoja, pagina, tamanhoPagina, totalElementos);
+            return _repositorioListaProdutosLoja.GetSomenteUmEndereco(criterio, meusProdutos, idLoja, pagina, tamanhoPagina, totalElementos);
         }
     }
 }

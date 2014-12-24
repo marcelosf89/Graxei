@@ -46,8 +46,8 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
             //        .Skip(pagina)
             //        .Take(tamanhoPagina)
             //        .List<ListaLojasContrato>();
-            ListaTotalElementos totalElementos = new ListaTotalElementos(total);
-            ListaElementoAtual elementoAtual = new ListaElementoAtual(pagina);
+            TotalElementosLista totalElementos = new TotalElementosLista(total);
+            PaginaAtualLista elementoAtual = new PaginaAtualLista(pagina);
             return new ListaLojas(lista, totalElementos, elementoAtual);
         }
 

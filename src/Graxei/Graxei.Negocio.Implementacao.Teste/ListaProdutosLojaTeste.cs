@@ -21,10 +21,10 @@ namespace Graxei.Negocio.Implementacao.Teste
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = RepositorioCommon.Construir(RepositorioCommon.GetDoisElementos(), 1, 1);
             Mock<IRepositorioListaProdutosLoja> mockRepositorioListaProdutosLoja = new Mock<IRepositorioListaProdutosLoja>();
-            mockRepositorioListaProdutosLoja.Setup(p => p.GetSomenteUmEndereco(It.IsAny<string>(), It.IsAny<long>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(expectedListaProdutosLoja);
+            mockRepositorioListaProdutosLoja.Setup(p => p.GetSomenteUmEndereco(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<long>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(expectedListaProdutosLoja);
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = new ServicoListaProdutosLojaUmEndereco(mockRepositorioListaProdutosLoja.Object).Get("criterio", It.IsAny<long>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>());
+            ListaProdutosLoja actualListaProdutosLoja = new ServicoListaProdutosLojaUmEndereco(mockRepositorioListaProdutosLoja.Object).Get("criterio", It.IsAny<bool>(), It.IsAny<long>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>());
 
             // Assert
             Assert.AreEqual(expectedListaProdutosLoja, actualListaProdutosLoja);

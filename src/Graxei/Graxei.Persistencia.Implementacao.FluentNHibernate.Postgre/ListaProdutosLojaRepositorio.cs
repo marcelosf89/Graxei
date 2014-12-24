@@ -1,6 +1,7 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
@@ -17,8 +18,14 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
     public class ListaProdutosLojaRepositorio : IRepositorioListaProdutosLoja
     {
         private ISession _sessao;
+        private IListaProdutosLojaSqlResolverFactory _listaProdutosLojaSqlResolverFactory;
 
-        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
+        public ListaProdutosLojaRepositorio(IListaProdutosLojaSqlResolverFactory listaProdutosLojaSqlResolverFactory)
+        {
+            _listaProdutosLojaSqlResolverFactory = listaProdutosLojaSqlResolverFactory;
+        }
+
+        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool somenteMeusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
         {
             int total = totalElementos;
             if (totalElementos == 0)
@@ -30,21 +37,15 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
                                         .JoinQueryOver<Loja>(p => p.Loja)
                                         .Where(p => p.Id == idLoja)
                                         .RowCount();
+                if (total == 0)
+                {
+                    return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
+                }
             }
 
-            if (total == 0)
-            {
-                return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new ListaTotalElementos(0), new ListaElementoAtual(0));
-            }
 
-            string sql = @"SELECT pv.id_produto_vendedor ""Id"", p.codigo ""Codigo"", pv.descricao ""Descricao"", pv.preco ""Preco""
-                             FROM produtos p
-                             JOIN produtos_vendedores pv ON p.id_produto = pv.id_produto
-                             JOIN enderecos e ON pv.id_endereco = e.id_endereco
-                             JOIN lojas l ON e.id_loja = l.id_loja
-                            WHERE l.id_loja = :id AND lower(p.descricao) like :descricao
-                         ORDER BY pv.descricao";
-
+            string sql = _listaProdutosLojaSqlResolverFactory.Get(somenteMeusProdutos).Get();
+            
             IList<ListaProdutosLojaContrato> lista = 
                GetSessaoAtual().CreateSQLQuery(sql)
                                .SetResultTransformer(Transformers.AliasToBean(typeof(ListaProdutosLojaContrato)))
@@ -54,18 +55,18 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
                                .SetMaxResults(tamanhoPagina)
                                .List<ListaProdutosLojaContrato>();
 
-            ListaTotalElementos listaTotalElementos = new ListaTotalElementos(total);
-            ListaElementoAtual listaElementoAtual = new ListaElementoAtual(pagina);
+            TotalElementosLista listaTotalElementos = new TotalElementosLista(total);
+            PaginaAtualLista listaElementoAtual = new PaginaAtualLista(pagina);
             if (!lista.Any())
             {
-                return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new ListaTotalElementos(0), new ListaElementoAtual(0));
+                return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
             }
             return new ListaProdutosLoja(lista, listaTotalElementos, listaElementoAtual);
         }
 
-        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, long idLoja, int pagina, int tamanhoPagina)
+        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina)
         {
-            return GetSomenteUmEndereco(criterio, idLoja, pagina, tamanhoPagina, 0);
+            return GetSomenteUmEndereco(criterio, meusProdutos, idLoja, pagina, tamanhoPagina, 0);
         }
 
         public ISession GetSessaoAtual()

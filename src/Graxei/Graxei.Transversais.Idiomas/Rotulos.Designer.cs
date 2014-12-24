@@ -367,6 +367,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meus Produtos.
+        /// </summary>
+        public static string MeusProdutos {
+            get {
+                return ResourceManager.GetString("MeusProdutos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monte seu plano.
         /// </summary>
         public static string Monte_seu_plano {

@@ -10,11 +10,11 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
     {
         private IList<ListaLojasContrato> _lista;
 
-        private ListaTotalElementos _total;
+        private TotalElementosLista _total;
 
-        private ListaElementoAtual _atual;
+        private PaginaAtualLista _atual;
 
-        public ListaLojas(IList<ListaLojasContrato> lista, ListaTotalElementos total, ListaElementoAtual atual)
+        public ListaLojas(IList<ListaLojasContrato> lista, TotalElementosLista total, PaginaAtualLista atual)
         {
             if (atual.Atual > total.Total)
             {
@@ -30,11 +30,11 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
             get { return _lista; }
         }
 
-        public ListaTotalElementos Total
+        public TotalElementosLista Total
         {
             get { return _total; }
         }
 
-        public ListaElementoAtual Atual { get { return _atual; } }
+        public PaginaAtualLista Atual { get { return _atual; } }
     }
 }

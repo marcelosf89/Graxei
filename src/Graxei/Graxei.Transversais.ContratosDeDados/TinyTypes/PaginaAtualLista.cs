@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 {
-    public class ListaElementoAtual
+    public class PaginaAtualLista
     {
-        public ListaElementoAtual(int atual)
+        public PaginaAtualLista(int atual)
         {
             _atual = atual;
         }
@@ -22,12 +22,12 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 
         public override bool Equals(object obj)
         {
-            if (!(obj is ListaElementoAtual) || obj == null)
+            if (!(obj is PaginaAtualLista) || obj == null)
             {
                 return false;
             }
 
-            ListaElementoAtual that = (ListaElementoAtual)obj;
+            PaginaAtualLista that = (PaginaAtualLista)obj;
             return that.Atual == this.Atual;
         }
 

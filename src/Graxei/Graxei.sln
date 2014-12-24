@@ -82,6 +82,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Impleme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Transversais.Teste", "Graxei.Transversais.Teste\Graxei.Transversais.Teste.csproj", "{52009047-2402-49DC-AECA-97F3AD52B601}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Apresentacao.Teste", "Graxei.Apresentacao.Teste\Graxei.Apresentacao.Teste.csproj", "{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +178,10 @@ Global
 		{52009047-2402-49DC-AECA-97F3AD52B601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52009047-2402-49DC-AECA-97F3AD52B601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52009047-2402-49DC-AECA-97F3AD52B601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,6 +217,7 @@ Global
 		{2B3F16A3-F753-4431-AC97-3CCA9070B3DB} = {B30AB0AE-487E-428D-AA03-E424F1F4C0B1}
 		{30CE3E7B-B1B7-4231-96DB-619F72FFD9F4} = {DC19629A-1120-44A4-8D4E-774EB71176A6}
 		{52009047-2402-49DC-AECA-97F3AD52B601} = {24C44558-CBEE-423D-B14C-138A3D15549B}
+		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35

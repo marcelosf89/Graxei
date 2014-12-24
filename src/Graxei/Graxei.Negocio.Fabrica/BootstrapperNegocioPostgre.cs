@@ -2,6 +2,7 @@
 using Graxei.Negocio.Implementacao;
 using Graxei.Persistencia.Contrato;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.NHibernate;
 using Microsoft.Practices.Unity;
 using System;
@@ -77,6 +78,8 @@ namespace Graxei.Negocio.Fabrica
 
             container.RegisterType<IRepositorioPlanos, PlanosNHibernatePostgre>()
                        .RegisterType<IServicoPlanos, ServicoPlanos>();
+
+            container.RegisterType<IListaProdutosLojaSqlResolverFactory, ListaProdutosLojaSqlResolverFactory>();
         }
     }
 }

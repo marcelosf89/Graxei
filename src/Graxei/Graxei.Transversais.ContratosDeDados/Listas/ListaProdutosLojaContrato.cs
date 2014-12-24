@@ -15,7 +15,14 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
 
         public string Descricao { get; set; }
 
+        public long? IdMeuProduto { get; set; }
+
         public double Preco {  get; set; }
+
+        public bool IsMeuProduto()
+        {
+            return IdMeuProduto != null;
+        }
 
         public override bool Equals(object obj)
         {

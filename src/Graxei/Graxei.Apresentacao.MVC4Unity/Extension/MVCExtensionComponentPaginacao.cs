@@ -5,8 +5,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.PaginacaoChain;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension
 {
@@ -67,7 +67,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
             return new MvcHtmlString(sb.ToString());
         }
 
-        public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxlHelper, string controller, string action, ListaElementoAtual listaElementoAtual, ListaTotalElementos listaTotalElementos, int maximoElementosPaginacao)
+        public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxlHelper, string controller, string action, PaginaAtualLista listaElementoAtual, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)
         {
             if (listaTotalElementos.Total <= 0)
             {

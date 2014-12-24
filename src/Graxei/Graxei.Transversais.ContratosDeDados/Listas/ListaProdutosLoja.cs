@@ -13,19 +13,19 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
     {
         private IList<ListaProdutosLojaContrato> _lista;
 
-        private ListaTotalElementos _total;
+        private TotalElementosLista _total;
 
-        private ListaElementoAtual _atual;
+        private PaginaAtualLista _atual;
 
-        public ListaProdutosLoja(IList<ListaProdutosLojaContrato> lista, ListaTotalElementos total, ListaElementoAtual atual)
+        public ListaProdutosLoja(IList<ListaProdutosLojaContrato> lista, TotalElementosLista total, PaginaAtualLista atual)
         {
             if (atual == null)
             {
-                atual = new ListaElementoAtual(0);
+                atual = new PaginaAtualLista(0);
             }
             if (total == null)
             {
-                total = new ListaTotalElementos(0);
+                total = new TotalElementosLista(0);
             }
 
             if (atual.Atual > total.Total)
@@ -53,7 +53,7 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
             }
         }
 
-        public ListaTotalElementos Total
+        public TotalElementosLista Total
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
             }
         }
 
-        public ListaElementoAtual Atual
+        public PaginaAtualLista Atual
         {
             get
             {

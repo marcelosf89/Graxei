@@ -17,7 +17,7 @@ namespace Graxei.Transversais.Teste
         public void ListaElementoAtual_Equals_FalseQuandoObjetoComparadoNull()
         {
             // Act
-            ListaElementoAtual listaElementoAtualPrincipal = new ListaElementoAtual(1);
+            PaginaAtualLista listaElementoAtualPrincipal = new PaginaAtualLista(1);
 
             // Assert
             Assert.IsFalse(listaElementoAtualPrincipal.Equals(null));
@@ -27,7 +27,7 @@ namespace Graxei.Transversais.Teste
         public void ListaElementoAtual_Equals_FalseQuandoObjetoComparadoNaoForDoTipoListaElementoAtual()
         {
             // Act
-            ListaElementoAtual listaElementoAtualPrincipal = new ListaElementoAtual(1);
+            PaginaAtualLista listaElementoAtualPrincipal = new PaginaAtualLista(1);
 
             // Assert
             Assert.IsFalse(listaElementoAtualPrincipal.Equals(new GerenciadorAutenticacaoSessaoHttp()));
@@ -37,8 +37,8 @@ namespace Graxei.Transversais.Teste
         public void ListaElementoAtual_Equals_FalseQuandoValoresDeAtualForemDiferentes()
         {
             // Act
-            ListaElementoAtual listaElementoAtualPrincipal = new ListaElementoAtual(1);
-            ListaElementoAtual listaElementoAtualComparar = new ListaElementoAtual(2);
+            PaginaAtualLista listaElementoAtualPrincipal = new PaginaAtualLista(1);
+            PaginaAtualLista listaElementoAtualComparar = new PaginaAtualLista(2);
 
             // Assert
             Assert.AreNotEqual(listaElementoAtualPrincipal, listaElementoAtualComparar);
@@ -48,8 +48,8 @@ namespace Graxei.Transversais.Teste
         public void ListaElementoAtual_Equals_TrueQuandoValoresDeAtualForemIguais()
         {
             // Act
-            ListaElementoAtual listaElementoAtualPrincipal = new ListaElementoAtual(99);
-            ListaElementoAtual listaElementoAtualComparar = new ListaElementoAtual(99);
+            PaginaAtualLista listaElementoAtualPrincipal = new PaginaAtualLista(99);
+            PaginaAtualLista listaElementoAtualComparar = new PaginaAtualLista(99);
 
             // Assert
             Assert.AreEqual(listaElementoAtualPrincipal, listaElementoAtualComparar);
@@ -59,7 +59,7 @@ namespace Graxei.Transversais.Teste
         public void ListaTotalElementos_Equals_FalseQuandoObjetoComparadoNull()
         {
             // Act
-            ListaTotalElementos listaTotalElementosPrincipal = new ListaTotalElementos(1);
+            TotalElementosLista listaTotalElementosPrincipal = new TotalElementosLista(1);
 
             // Assert
             Assert.IsFalse(listaTotalElementosPrincipal.Equals(null));
@@ -69,7 +69,7 @@ namespace Graxei.Transversais.Teste
         public void ListaTotalElementos_Equals_FalseQuandoObjetoComparadoNaoForDoTipoListaTotalElementos()
         {
             // Act
-            ListaTotalElementos listaTotalElementosPrincipal = new ListaTotalElementos(1);
+            TotalElementosLista listaTotalElementosPrincipal = new TotalElementosLista(1);
 
             // Assert
             Assert.IsFalse(listaTotalElementosPrincipal.Equals(new GerenciadorAutenticacaoSessaoHttp()));
@@ -79,8 +79,8 @@ namespace Graxei.Transversais.Teste
         public void ListaTotalElementos_Equals_FalseQuandoValoresDeTotalForemDiferentes()
         {
             // Act
-            ListaTotalElementos listaTotalElementosPrincipal = new ListaTotalElementos(1);
-            ListaTotalElementos listaTotalElementosComparar = new ListaTotalElementos(2);
+            TotalElementosLista listaTotalElementosPrincipal = new TotalElementosLista(1);
+            TotalElementosLista listaTotalElementosComparar = new TotalElementosLista(2);
 
             // Assert
             Assert.AreNotEqual(listaTotalElementosPrincipal, listaTotalElementosComparar);
@@ -90,8 +90,8 @@ namespace Graxei.Transversais.Teste
         public void ListaTotalElementos_Equals_TrueQuandoValoresDeTotalForemIguais()
         {
             // Act
-            ListaTotalElementos listaTotalElementosPrincipal = new ListaTotalElementos(99);
-            ListaTotalElementos listaTotalElementosComparar = new ListaTotalElementos(99);
+            TotalElementosLista listaTotalElementosPrincipal = new TotalElementosLista(99);
+            TotalElementosLista listaTotalElementosComparar = new TotalElementosLista(99);
 
             // Assert
             Assert.AreEqual(listaTotalElementosPrincipal, listaTotalElementosComparar);
