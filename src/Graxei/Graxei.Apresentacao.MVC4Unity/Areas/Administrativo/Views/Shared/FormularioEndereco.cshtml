@@ -45,7 +45,7 @@
                     @Html.LabelFor(m => m.Cidade)
                 </div>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control typeahead", id = "IdCidade" })
+                    @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control typeahead", id = "IdCidade", autocomplete = "off" })
                     @Html.ValidationMessageFor(m => m.Cidade)
                 </div>
             </div>
@@ -121,6 +121,7 @@
     </div>
 }
 
+@Scripts.Render("~/bundles/typeahead")
 <script>
     function SuccessEndereco(result) {
         var msg = '@ViewBag.OperacaoSucesso';
@@ -131,26 +132,26 @@
             openL();
             $.ajax({
                 url: '@Url.Action("ListaEnderecos", "Enderecos")',
-                        type: 'GET',
-                        data: { idLoja: idLoja },
-                        success: function (result) {
-                            $('#fm-content').html(result);
-                        },
-                        complete: function () { closeL(); }
-                    });
-                }
-            }
-    
-            $("#IdEstado").live("change", (function () {
-                var estado = $("#IdEstado").val();
-                if (estado != 0) {
-                    var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
+                type: 'GET',
+                data: { idLoja: idLoja },
+                success: function (result) {
+                    $('#fm-content').html(result);
+                },
+                complete: function () { closeL(); }
+            });
+        }
+    }
+
+    $("#IdEstado").live("change", (function () {
+        var estado = $("#IdEstado").val();
+        if (estado != 0) {
+            var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
             $.post(url, { idEstado: estado },
                 function () {
                 });
         }
     })
-        );
+);
 
     $("#IdCidade").live("blur", function () {
         var estado = $("#IdEstado").val();
@@ -159,6 +160,7 @@
             var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
             $.post(url, { idEstado: estado, cidade: nomeCidade },
                 function () {
+
                 });
         }
     });
@@ -175,52 +177,73 @@
         }
     });
 
-    $("#IdCidade").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "@Url.Action("AutoCompleteCidade", "Enderecos")",
-                type: "POST",
-                dataType: "json",
-                data: { term: request.term },
-                success: function (data) {
-                    response($.map(data, function (item) {
-                        return { value: item };
-                    }));
-                }
-            });
-        },
+    var cidades = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: '@Url.Action("AutoCompleteCidade", "Enderecos")?term='+$('#IdCidade').val(),
+        remote: {
+            url: '@Url.Action("AutoCompleteCidade", "Enderecos")?term=%QUERY',
+            filter: function (response) {
+                // Map the remote source JSON array to a JavaScript object array
+                return $.map(response, function (val) {
+                    return {value: val };
+                });
+            }
+        }
     });
 
-    $("#IdBairro").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "@Url.Action("AutoCompleteBairro", "Enderecos")",
-                    type: "POST",
-                    dataType: "json",
-                    data: { term: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { value: item };
-                        }));
-                    }
+    var bairros = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: '@Url.Action("AutoCompleteBairro", "Enderecos")?term='+$('#IdBairro').val(),
+        remote: {
+            url: '@Url.Action("AutoCompleteBairro", "Enderecos")?term=%QUERY',
+            filter: function (response) {
+                // Map the remote source JSON array to a JavaScript object array
+                return $.map(response, function (val) {
+                    return {value: val };
                 });
-            },
-        });
+            }
+        }
+    });
 
-        $("#IdLogradouro").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "@Url.Action("AutoCompleteLogradouro", "Enderecos")",
-                    type: "POST",
-                    dataType: "json",
-                    data: { term: request.term },
-                    success: function (data) {
-                        response($.map(data, function (item) {
-                            return { value: item };
-                        }));
-                    }
+    var logradouros = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: '@Url.Action("AutoCompleteLogradouro", "Enderecos")?term='+$('#IdLogradouro').val(),
+        remote: {
+            url: '@Url.Action("AutoCompleteLogradouro", "Enderecos")?term=%QUERY',
+            filter: function (response) {
+                // Map the remote source JSON array to a JavaScript object array
+                return $.map(response, function (val) {
+                    return {value: val };
                 });
-            },
-        });
+            }
+        }
+    });
+
+    cidades.initialize();
+    bairros.initialize();
+    logradouros.initialize();
+
+     $('#IdCidade').typeahead(null, {
+        name: 'cidades',
+        displayKey: 'value',
+        source: cidades.ttAdapter()
+    });
+
+    $('#IdBairro').typeahead(null, {
+        name: 'bairros',
+        displayKey: 'value',
+        source: bairros.ttAdapter()
+    });
+
+    $('#IdLogradouro').typeahead(null, {
+        name: 'logradouros',
+        displayKey: 'value',
+        source: logradouros.ttAdapter()
+    });
+  
+   
 
 </script>

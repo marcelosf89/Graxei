@@ -87,19 +87,36 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             throw new NotImplementedException();
         }
 
-        public void AdicionarLogo(Loja loja)
+        public void AdicionarLogo(Loja loja, string caminhoImagem, byte[] arquivo, string extensao)
         {
-            IniciarTransacao();
+            //IniciarTransacao();
             try
             {
-                loja = _servicoLojas.Salvar(loja);
-                Confirmar();
+                System.IO.File.WriteAllBytes(System.IO.Path.Combine(caminhoImagem, loja.Id.ToString(), "l" + extensao), arquivo);
+                //loja = _servicoLojas.Salvar(loja);
+                //Confirmar();
             }
-            catch (OperacaoEntidadeException)
+            catch (OperacaoEntidadeException ex)
             {
-                Desfazer();
-                throw;
-            }           
+                //Desfazer();
+                throw ex;
+            }         
+        }
+
+        public void AdicionarBackground(Loja loja, string caminhoImagem, byte[] arquivo, string extensao)
+        {
+            //IniciarTransacao();
+            try
+            {
+                System.IO.File.WriteAllBytes(System.IO.Path.Combine(caminhoImagem, loja.Id.ToString(), "bg" + extensao), arquivo);
+                //loja = _servicoLojas.Salvar(loja);
+                //Confirmar();
+            }
+            catch (OperacaoEntidadeException ex)
+            {
+                //Desfazer();
+                throw ex;
+            }
         }
 
         public void AtualizarUrl(Loja loja)

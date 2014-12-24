@@ -3,6 +3,7 @@ using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using System.IO;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
@@ -42,6 +43,39 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return _servicoLojas.GetPorUrl(nome);
         }
 
+        public byte[] GetLogo(int idLoja, string caminhoImagem)
+        {
+            Loja loja = _servicoLojas.GetPorId(idLoja);
+            DirectoryInfo dir = new DirectoryInfo(Path.Combine(caminhoImagem, loja.Id.ToString()));
+            if (!dir.Exists)
+                dir.Create();
+
+            FileInfo[] files = dir.GetFiles("l.*");
+            if (files.Length == 1)
+            {
+                return System.IO.File.ReadAllBytes(files[0].FullName);
+            }
+            return null;
+        }
+
+        public byte[] GetImageBackground(int idLoja, string caminhoImagem)
+        {
+            Loja loja = _servicoLojas.GetPorId(idLoja);
+            DirectoryInfo dir = new DirectoryInfo(Path.Combine(caminhoImagem, loja.Id.ToString()));
+            if (!dir.Exists)
+                dir.Create();
+
+            FileInfo[] files = dir.GetFiles("bg.*");
+            if (files.Length == 1)
+            {
+                return System.IO.File.ReadAllBytes(files[0].FullName);
+            }
+            return null;
+        }
+        
         #endregion
+
+
+
     }
 }

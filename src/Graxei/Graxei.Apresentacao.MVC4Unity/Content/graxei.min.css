@@ -132,6 +132,7 @@
 .btn.disabled {
     pointer-events: bounding-box;
 }
+
 .logo {
     background-image: url('/Content/imagens/graxei_logo.png');
     background-size: 32px 32px;
@@ -435,9 +436,8 @@ body {
 
 .bg-panel-loja {
     background-color: #fff;
-    margin: 5px;
-    border-radius: 3px;
-    border: 1px #f0f0f0 solid;
+    border-radius: 1px;
+    border-bottom: 1px #f0f0f0 solid;
     box-shadow: 0px 0px 1px #7B7878;
     padding: 0px;
 }
@@ -469,16 +469,14 @@ body {
 }
 
 .bg-default-loja {
-    background-color: #fff;
-    padding-top: 10px;
-    height: 100%;
+    height: 320px;
+    padding-bottom: 60px;
 }
 
 .header-loja > .bg-caption {
     position: absolute;
-    right: 15%;
-    bottom: 50%;
-    left: 15%;
+    top: 15%;
+    right: 10%;
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -487,23 +485,45 @@ body {
     text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .6);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    height: 150px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 150px;
 }
 
-
-.header-loja > .item > img {
+.bg-inner-loja {
+    position: relative;
     width: 100%;
-    height: 200px;
+    z-index: 4;
 }
 
-.header-loja > .item-sumario {
-    width: 100%;
-    height: 50px;
+.item-sumario {
+    background-color: #fff;
+    border-bottom: 1px solid #e1e8ed;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 60px;
 }
 
-.item-sumario > .item {
-    border-right: 1px rgba(0,0,0,0.2) solid;
-    text-align: center;
-    height: 50px;
+    .item-sumario .item {
+        border-right: 1px rgba(0,0,0,0.2) solid;
+        border-left: 1px rgba(0,0,0,0.2) solid;
+        text-align: center;
+        height: 50px;
+    }
+
+.bg-body-loja {
+    background-color: #F7F7F7;
+}
+
+.bg-text-loja {
+    margin: 5px;
+    background-color: #fff;
+    border-radius: 1px;
+    border-bottom: 1px #f0f0f0 solid;
+    box-shadow: 0px 0px 1px #7B7878;
+    padding: 0px;
+    padding: 5px;
 }
 
 .img-60 {
@@ -650,6 +670,36 @@ body {
     border-radius: 5px;
 }
 
+.header-loja {
+    margin-top: 0px;
+    height: 260px;
+}
+
+.item-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 260px;
+}
+
+    .item-bg img {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0px;
+        bottom: 0px;
+        margin: 0px;
+        width: 100%;
+        transform: none;
+    }
+
+.row0 .thumbnail-search {
+    background-color: #FFFBF2;
+}
+
 @media (max-width: 767px) {
 
     a.btn.btn-success {
@@ -724,7 +774,7 @@ body {
         border-right: 0px #D2D2D2 solid;
         border-bottom: 1px #D2D2D2 solid;
         border-radius: 5px;
-        margin-top:25px;
+        margin-top: 25px;
     }
 }
 
@@ -843,4 +893,73 @@ ul.wysihtml5-toolbar div[data-wysihtml5-command-value="orange"] {
     position: relative;
     pointer-events: none;
     float: left;
+}
+
+/* Typeahead*/
+
+pre {
+    z-index: 999999999999;
+    width: 100%;
+}
+
+.tt-query,
+.tt-hint {
+    width: 396px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.tt-query {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+    color: #999;
+}
+
+.tt-dropdown-menu {
+    width: 422px;
+    margin-top: 12px;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+    .tt-suggestion.tt-cursor {
+        color: #fff;
+        background-color: #0097cf;
+    }
+
+    .tt-suggestion p {
+        margin: 0;
+    }
+
+.gist {
+    font-size: 14px;
+}
+
+.twitter-typeahead {
+    width: 100%;
 }

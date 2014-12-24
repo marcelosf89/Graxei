@@ -33,45 +33,12 @@
     {
         <div>
             <div id="clock2">@ViewBag.TempoBusca seg</div>
-        </div>@*
-    <div class="panel panel-default hidden-xs  hidden-sm hidden-md hidden-lg" data-spy="affix" data-offset-top="60">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-1">
-                    @Html.DropDownList("estado",
-                    (from mm in Model
-                     select new SelectListItem()
-                     {
-                         Value = mm.Endereco.Bairro.Cidade.Estado.Id.ToString(),
-                         Text = mm.Endereco.Bairro.Cidade.Estado.Sigla
-                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "estado", onchange = "filtroSelecionado('estado',this);" })
-                </div>
-
-                <div class="col-md-2">
-                    @Html.DropDownList("cidade",
-                    (from mm in Model
-                     select new SelectListItem()
-                     {
-                         Value =mm.Endereco.Bairro.Cidade.Id.ToString(),
-                         Text = mm.Endereco.Bairro.Cidade.Nome
-                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "cidade", onchange = "filtroSelecionado('cidade',this);" })
-                </div>
-                <div class="col-md-2">
-                    @Html.DropDownList("bairro",
-                    (from mm in Model
-                     select new SelectListItem()
-                     {
-                         Value = mm.Endereco.Bairro.Id.ToString(),
-                         Text = mm.Endereco.Bairro.Nome
-                     }).Distinct().ToList(), "", new { @class = "form-control", placeholder = "Bairro", onchange = "filtroSelecionado('bairro',this);" })
-                </div>
-            </div>
         </div>
-    </div>*@
     }
+    @{int idxRow = 0;}
     @foreach (Graxei.Transversais.ContratosDeDados.PesquisaContrato pv in Model)
     {    
-        <div class="row">
+        <div class="row row@(idxRow % 2)">
             <div class="col-md-12">
                 <div class="thumbnail thumbnail-search">
                     <div class="row">
@@ -110,6 +77,7 @@
                 </div>
             </div>
         </div>
+        idxRow++;
     }
     <div class="row pag-btn-group">
         <div class="span12">

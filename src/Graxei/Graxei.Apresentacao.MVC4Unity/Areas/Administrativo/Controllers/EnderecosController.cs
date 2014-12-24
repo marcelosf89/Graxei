@@ -39,6 +39,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
             item = transformacao.Transformar(endereco);
 
+            if (item.IdEstado > 0)
+                Cidades = _consultasCidades.GetPorEstado(item.IdEstado);
+
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
             return PartialView("ModalEndereco", item);

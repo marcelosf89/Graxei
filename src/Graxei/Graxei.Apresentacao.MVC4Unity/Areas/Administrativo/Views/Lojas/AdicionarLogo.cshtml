@@ -21,6 +21,27 @@
 <div class="row">
     <div class="col-md-12">
         @{
+            String fileInputCSSLogo = Model.Logotipo == null ? "fileinput-new" : "fileinput-exists";
+        }
+        <div class="fileinput @fileInputCSSLogo" data-provides="fileinput">
+            <div class="fileinput @fileInputCSSLogo" data-provides="fileinput">
+                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 100%; height: 150px;">
+                    <img src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" />
+                </div>
+                <span class="btn btn-default btn-file">
+                    <span class="fileinput-new">Selecione a Imagem</span>
+                    <span class="fileinput-exists">Mudar</span>
+                    <input type="file" id="fileLogo" name="fileLogo" />
+                </span>
+                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                <a href="#" id="btnSalvarLogo" class="btn btn btn-primary fileinput-exists" data-dismiss="fileinput" actions="UploadLogo">Salvar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @{
             String fileInputCSS = Model.Logotipo == null ? "fileinput-new" : "fileinput-exists";
         }
         <div class="fileinput @fileInputCSS" data-provides="fileinput" >
@@ -34,7 +55,7 @@
                     <input type="file" id="file" name="file" />
                 </span>
                 <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                <a href="#" id="btnSalvar" class="btn btn btn-primary fileinput-exists" data-dismiss="fileinput">Salvar</a>
+                <a href="#" id="btnSalvar" class="btn btn btn-primary fileinput-exists" data-dismiss="fileinput" actions="Upload">Salvar</a>
             </div>
         </div>
     </div>
@@ -54,6 +75,21 @@
         xhr.send(formdata);
         xhr.onreadystatechange = function () { closeL(); }
         
+    });
+    $("#btnSalvarLogo").click(function (e) {
+        e.preventDefault();
+        openL('Adicionando Imagem...');
+        var formdata = new FormData(); //FormData object
+        var fileInput = document.getElementById('fileLogo');
+        for (i = 0; i < fileInput.files.length; i++) {
+            formdata.append(fileInput.files[i].name, fileInput.files[i]);
+        }
+        formdata.append("idLoja", "@Model.Id");
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/Lojas/UploadLogo');
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () { closeL(); }
+
     });
 </script>
 

@@ -16,6 +16,7 @@ using System.Web;
 using System.IO;
 using System;
 using Graxei.Transversais.ContratosDeDados.Listas;
+using System.Configuration;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -145,10 +146,26 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             if (idLoja != 0)
             {
-                Loja loja = _consultasLojas.Get(idLoja);
-                if (loja.Logotipo != null)
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                byte[] file = _consultasLojas.GetImageBackground(idLoja, caminhoImagem);
+                if (file != null)
                 {
-                    return File(loja.Logotipo, "image/jpeg");
+                    return File(file, "image/jpeg");
+                }
+            }
+
+            return null;
+        }
+
+        public FileContentResult GetLogo(int idLoja = 0)
+        {
+            if (idLoja != 0)
+            {
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                byte[] file = _consultasLojas.GetLogo(idLoja, caminhoImagem);
+                if (file != null)
+                {
+                    return File(file, "image/jpeg");
                 }
             }
 
@@ -216,12 +233,42 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 HttpPostedFileBase file = Request.Files[0];
                 String fileName = Server.MapPath("~/Temp/LojaImagem/") + Guid.NewGuid().ToString();
                 file.SaveAs(fileName);
-
+                System.IO.Path.GetExtension(file.FileName);
                 model = _consultasLojas.Get(idLoja);
-                model.Logotipo = System.IO.File.ReadAllBytes(fileName);
-                System.IO.File.Delete(fileName);
 
-                _gerenciamentoLojas.AdicionarLogo(model);
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                _gerenciamentoLojas.AdicionarBackground(model, caminhoImagem, System.IO.File.ReadAllBytes(fileName), System.IO.Path.GetExtension(file.FileName));
+                System.IO.File.Delete(fileName);
+            }
+            catch (OperacaoEntidadeException ee)
+            {
+                ModelState.AddModelError(string.Empty, ee.Message);
+                return PartialView("AdicionarLogo", model);
+            }
+            ModelState.Clear();
+            ViewBag.OperacaoSucesso = Sucesso.LogoAdicionadoComSucesso;
+            return View("AdicionarLogo", model);
+        }
+
+        public ActionResult UploadLogo(long idLoja)
+        {
+            Loja model = null;
+            try
+            {
+                if (Request.Files.Count > 1)
+                    throw new OperacaoEntidadeException(Erros.NaoExisteImagem);
+                if (Request.Files.Count <= 0)
+                    throw new OperacaoEntidadeException(Erros.VariasImagensSelecionadas);
+
+                HttpPostedFileBase file = Request.Files[0];
+                String fileName = Server.MapPath("~/Temp/LojaImagem/") + Guid.NewGuid().ToString();
+                file.SaveAs(fileName);
+                System.IO.Path.GetExtension(file.FileName);
+                model = _consultasLojas.Get(idLoja);
+
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                _gerenciamentoLojas.AdicionarLogo(model, caminhoImagem, System.IO.File.ReadAllBytes(fileName), System.IO.Path.GetExtension(file.FileName));
+                System.IO.File.Delete(fileName);
             }
             catch (OperacaoEntidadeException ee)
             {
