@@ -9,14 +9,14 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
 {
     public class ListaProdutosLojaSqlResolverFactory : IListaProdutosLojaSqlResolverFactory
     {
-        public IListaProdutosLojaSqlResolver Get(bool meusProdutos)
+        public IListaProdutosLojaSqlResolver Get(long idLoja, string criterio, bool meusProdutos)
         {
             if (meusProdutos)
             {
-                return new ListaProdutosLojaMeusProdutosResolver();
+                return new ListaProdutosLojaMeusProdutosResolver(idLoja, criterio);
             }
 
-            return new ListaProdutosLojaCompletoResolver();
+            return new ListaProdutosLojaCompletoResolver(idLoja, criterio);
         }
     }
 }

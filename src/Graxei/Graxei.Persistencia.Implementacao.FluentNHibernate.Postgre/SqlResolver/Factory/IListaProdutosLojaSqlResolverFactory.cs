@@ -9,6 +9,6 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
 {
     public interface IListaProdutosLojaSqlResolverFactory
     {
-        IListaProdutosLojaSqlResolver Get(bool meusProdutos);
+        IListaProdutosLojaSqlResolver Get(long idLoja, string criterio, bool meusProdutos);
     }
 }

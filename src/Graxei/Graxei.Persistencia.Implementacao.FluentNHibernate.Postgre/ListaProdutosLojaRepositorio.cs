@@ -2,6 +2,7 @@
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
@@ -27,33 +28,29 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
 
         public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool somenteMeusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
         {
-            int total = totalElementos;
+            IListaProdutosLojaSqlResolver sqlResolver = _listaProdutosLojaSqlResolverFactory.Get(idLoja, criterio, somenteMeusProdutos);
+            long total = totalElementos;
             if (totalElementos == 0)
             {
-                total = GetSessaoAtual().QueryOver<ProdutoVendedor>()
-                                        .Where(Restrictions.InsensitiveLike(Projections.Property<ProdutoVendedor>(p => p.Descricao),
-                                                                            criterio.ToLower(), MatchMode.Anywhere))
-                                        .JoinQueryOver<Endereco>(p => p.Endereco)
-                                        .JoinQueryOver<Loja>(p => p.Loja)
-                                        .Where(p => p.Id == idLoja)
-                                        .RowCount();
+                ////total = GetSessaoAtual().QueryOver<Produto>()
+                ////                        .Where(Restrictions.InsensitiveLike(Projections.Property<Produto>(p => p.Descricao),
+                ////                                                            criterio.ToLower(), MatchMode.Anywhere))
+                ////                        .JoinQueryOver<ProdutoVendedor>(p => p.)
+                ////                        .Where(Restrictions.InsensitiveLike(Projections.Property<ProdutoVendedor>(p => p.Descricao),
+                ////                                                            criterio.ToLower(), MatchMode.Anywhere))
+                ////                        .JoinQueryOver<Endereco>(p => p.Endereco)
+                ////                        .JoinQueryOver<Loja>(p => p.Loja)
+                ////                        .Where(p => p.Id == idLoja)
+                ////                        .RowCount();
+                total = sqlResolver.GetConsultaDeContagem();
+
                 if (total == 0)
                 {
                     return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
                 }
             }
 
-
-            string sql = _listaProdutosLojaSqlResolverFactory.Get(somenteMeusProdutos).Get();
-            
-            IList<ListaProdutosLojaContrato> lista = 
-               GetSessaoAtual().CreateSQLQuery(sql)
-                               .SetResultTransformer(Transformers.AliasToBean(typeof(ListaProdutosLojaContrato)))
-                               .SetParameter<long>("id", idLoja)
-                               .SetParameter<string>("descricao", string.Format("{0}{1}{2}", "%", criterio.ToLower(), "%"))
-                               .SetFirstResult(pagina)
-                               .SetMaxResults(tamanhoPagina)
-                               .List<ListaProdutosLojaContrato>();
+            IList<ListaProdutosLojaContrato> lista = sqlResolver.Get(pagina, tamanhoPagina);
 
             TotalElementosLista listaTotalElementos = new TotalElementosLista(total);
             PaginaAtualLista listaElementoAtual = new PaginaAtualLista(pagina);

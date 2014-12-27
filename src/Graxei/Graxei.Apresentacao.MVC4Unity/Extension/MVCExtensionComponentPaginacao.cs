@@ -77,7 +77,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
             return paginacaoChainFactory.ConstruirCadeiaDePaginacao().Get();
         }
 
-        public static MvcHtmlString LinkPaginacao2(this AjaxHelper ajaxHelper, string action, string controller, string requestName, int paginaSelecionada, int valorTotal, int quantidadeApresentacao)
+        public static MvcHtmlString LinkPaginacao2(this AjaxHelper ajaxHelper, string action, string controller, string requestName, int paginaSelecionada, long valorTotal, int quantidadeApresentacao)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -97,7 +97,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
                     ajaxHelper.IconActionLink("glyphicon glyphicon-chevron-left", "", action, controller, rd, ao, new Dictionary<string, object> { { "class", "btn btn-default" } }).ToHtmlString()
                     );
             }
-            int count = (valorTotal - 1) / quantidadeApresentacao;
+            long count = (valorTotal - 1) / quantidadeApresentacao;
             for (int i = 0; i <= count; i++)
             {
                 RouteValueDictionary rd = new RouteValueDictionary();

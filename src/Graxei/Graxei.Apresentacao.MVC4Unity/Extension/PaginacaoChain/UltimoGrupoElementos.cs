@@ -18,21 +18,21 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         public override bool RegraAtende()
         {
             int meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2;
-            int inicioUltimoGrupo = _totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez;
+            long inicioUltimoGrupo = _totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez;
             return _elementoAtualLista.Atual > (inicioUltimoGrupo + meioLista);
         }
 
-        public override int GetPrimeiraPaginaGrupoAtual()
+        public override long GetPrimeiraPaginaGrupoAtual()
         {
             return (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez) + 1;
         }
 
-        public override int GetUltimaPaginaGrupoAtual()
+        public override long GetUltimaPaginaGrupoAtual()
         {
             return _totalPaginas;
         }
 
-        public override int GetElementoParaSubstituir()
+        public override long GetElementoParaSubstituir()
         {
             return _elementoAtualLista.Atual - ((_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez) + 1);
         }

@@ -17,19 +17,19 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             return impar && menosQueMaximoElementos;
         }
 
-        public override int GetPrimeiraPaginaGrupoAtual()
+        public override long GetPrimeiraPaginaGrupoAtual()
         {
             return 1;
         }
 
-        public override int GetUltimaPaginaGrupoAtual()
+        public override long GetUltimaPaginaGrupoAtual()
         {
             return _quantidadeMaximaLinksPaginacaoPorVez > _totalPaginas
                     ? _totalPaginas
                     : _quantidadeMaximaLinksPaginacaoPorVez;
         }
 
-        public override int GetElementoParaSubstituir()
+        public override long GetElementoParaSubstituir()
         {
             return _elementoAtualLista.Atual - 1;
         }

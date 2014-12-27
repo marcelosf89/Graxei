@@ -33,11 +33,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         
         public abstract bool RegraAtende();
 
-        public abstract int GetPrimeiraPaginaGrupoAtual();
+        public abstract long GetPrimeiraPaginaGrupoAtual();
 
-        public abstract int GetUltimaPaginaGrupoAtual();
+        public abstract long GetUltimaPaginaGrupoAtual();
 
-        public abstract int GetElementoParaSubstituir();
+        public abstract long GetElementoParaSubstituir();
         
         public MvcHtmlString Get()
         {
@@ -66,24 +66,24 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 
         private void SubstituirElementoAtual(List<string> links)
         {
-            int elementoParaSubstituir = GetElementoParaSubstituir();
-            links.RemoveAt(elementoParaSubstituir);
+            long elementoParaSubstituir = GetElementoParaSubstituir();
+            links.RemoveAt((int)elementoParaSubstituir);
             string atual =
                 _ajaxHelper.IconActionLink(string.Empty,
                     _elementoAtualLista.Atual.ToString(CultureInfo.InvariantCulture), string.Empty, string.Empty,
                     _routeValueDictionary, _ajaxOptions,
                     new Dictionary<string, object> { { "class", "btn btn-warning" }, { "disabled", "disabled" } })
                     .ToHtmlString();
-            links.Insert(elementoParaSubstituir, atual);
+            links.Insert((int)elementoParaSubstituir, atual);
         }
 
         public List<string> BuildLinks()
         {
             SetUpAjaxOptions();
             List<string> links = new List<string>();
-            int irDe = GetPrimeiraPaginaGrupoAtual();
-            int irAte = GetUltimaPaginaGrupoAtual();
-            for (int i = irDe; i <= irAte; i++)
+            long irDe = GetPrimeiraPaginaGrupoAtual();
+            long irAte = GetUltimaPaginaGrupoAtual();
+            for (long i = irDe; i <= irAte; i++)
             {
                 RouteValueDictionary route = new RouteValueDictionary();
                 route.Add("numeroPagina", i);
@@ -122,7 +122,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         protected TotalElementosLista _totalElementosLista;
         protected PaginaAtualLista _elementoAtualLista;
         protected int _quantidadeMaximaLinksPaginacaoPorVez;
-        protected int _totalPaginas;
+        protected long _totalPaginas;
         protected AjaxHelper _ajaxHelper;
         protected AjaxOptions _ajaxOptions;
         protected string _controller;

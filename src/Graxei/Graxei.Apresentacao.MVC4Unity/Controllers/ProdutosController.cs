@@ -44,6 +44,11 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             return Json(nomes, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult Salvar(IList<ProdutoPrecoModel> itens)
+        {
+            return null;
+        }
         private readonly IConsultasFabricantes _appConsultasFabricantes;
 
     }

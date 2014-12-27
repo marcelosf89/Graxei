@@ -8,14 +8,14 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 {
     public class TotalElementosLista
     {
-        public TotalElementosLista(int total)
+        public TotalElementosLista(long total)
         {
             _total = total;
         }
 
-        private int _total;
+        private long _total;
 
-        public int Total
+        public long Total
         {
             get { return _total; }
         }

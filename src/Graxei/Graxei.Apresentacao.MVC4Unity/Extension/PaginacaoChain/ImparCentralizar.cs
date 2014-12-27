@@ -24,17 +24,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             return (impar && ficarNoCentro);
         }
 
-        public override int GetPrimeiraPaginaGrupoAtual()
+        public override long GetPrimeiraPaginaGrupoAtual()
         {
             return _elementoAtualLista.Atual - _meioLista;
         }
 
-        public override int GetUltimaPaginaGrupoAtual()
+        public override long GetUltimaPaginaGrupoAtual()
         {
             return _elementoAtualLista.Atual + _meioLista;
         }
 
-        public override int GetElementoParaSubstituir()
+        public override long GetElementoParaSubstituir()
         {
             return _meioLista;
         }
