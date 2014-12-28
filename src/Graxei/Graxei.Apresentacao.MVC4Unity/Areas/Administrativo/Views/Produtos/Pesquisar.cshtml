@@ -19,7 +19,7 @@
         @foreach (Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLojaContrato item in Model.Lista)
         {
             string idPreco = "valor" + item.Id;
-            <tr id-prod="@item.Id">
+            <tr id-prod="@item.Id" meu-prod="@item.IdMeuProduto">
                 <td class="">
                     <input type="checkbox" doc-type="cp" checked="@item.IsMeuProduto" />
                 </td>
@@ -44,20 +44,20 @@
 </table>
 
 <script>
-    $("input[doc-type=cp]").on("click", function () {
-        var id = $(this).attr("id-prod");
-        $("tr[id-prod=" + id + "]").toggleClass("success");
-    });
-    $("input[doc-type=ip]").on("focusout", function () {
-        var id = $(this).attr("id-prod");
-        if ($(this).val() != "") {
-            $("tr[id-prod=" + id + "]").addClass("success");
-            $("input[id-prod=" + id + "]").attr("checked", "checked");
-        } else {
-            $("tr[id-prod=" + id + "]").removeClass("success");
-            $("input[id-prod=" + id + "]").removeAttr("checked");
-        }
-    });
+    //$("input[doc-type=cp]").on("click", function () {
+    //    var id = $(this).attr("id-prod");
+    //    $("tr[id-prod=" + id + "]").toggleClass("success");
+    //});
+    //$("input[doc-type=ip]").on("focusout", function () {
+    //    var id = $(this).attr("id-prod");
+    //    if ($(this).val() != "") {
+    //        $("tr[id-prod=" + id + "]").addClass("success");
+    //        $("input[id-prod=" + id + "]").attr("checked", "checked");
+    //    } else {
+    //        $("tr[id-prod=" + id + "]").removeClass("success");
+    //        $("input[id-prod=" + id + "]").removeAttr("checked");
+    //    }
+    //});
         
     function habilitarBotaoSalvar(me) {
         var button = $('#salvarPrecos');
@@ -72,18 +72,27 @@
 
     function salvarPrecos() {
         var itens = [];
-        $('#tabela-precos tr').each(function () {
+        $('#tabela-precos tbody tr').each(function () {
             var td = $('td', this);
-            itens.push({
-                IdProduto: $('input[name="TransID"]', td).val(),
-                Preco: $('input[name="precoProduto"]', td).val()
-            });
+            var preco = $('input[name="precoProduto"]', td).val();
+            var idProd = $(this).attr('id-prod');
+            var meuProd = $(this).attr('meu-prod');
+            if (preco > 0) {
+                itens.push({
+                    IdProduto: idProd,
+                    IdMeuProduto: meuProd,
+                    Preco: preco
+                });
+            }
         });
+
+        var json = { itens: itens };
 
         $.ajax({
             url: "@Url.Action("Salvar", "Produtos")",
             type: "POST",
-            data: JSON.stringify(itens),
+            data: JSON.stringify(json),
+            dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
                 

@@ -75,6 +75,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 return View(produtos);
             }
         }
+
+        [HttpPost]
+        public ActionResult Salvar(IList<ProdutoPrecoModel> itens)
+        {
+            return null;
+        }
+
         /*
         public ActionResult Novo()
         {

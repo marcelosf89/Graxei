@@ -8,6 +8,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Models
     public class ProdutoPrecoModel
     {
         public int IdProduto { get; set; }
+        public int IdMeuProduto { get; set; }
         public double Preco { get; set; }
     }
 }

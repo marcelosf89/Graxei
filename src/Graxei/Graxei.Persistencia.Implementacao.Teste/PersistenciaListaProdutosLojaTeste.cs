@@ -26,14 +26,17 @@ namespace Graxei.Persistencia.Implementacao.Teste
 
         private Mock<IListaProdutosLojaSqlResolver> _mockSqlResolver;
 
+        private ListaProdutosLojaRepositorio _listaProdutosLojaRepositorio;
+
         [TestInitialize]
         public void SetUp()
         {
             _mockSession = new Mock<ISession>();
             _mockSqlResolver = new Mock<IListaProdutosLojaSqlResolver>();
-            _mockSqlResolver.Setup(p => p.Get()).Returns("SELECT UM_VALOR_ARBITRARIO");
             _mockSqlResolverFactory = new Mock<IListaProdutosLojaSqlResolverFactory>();
-            _mockSqlResolverFactory.Setup(p => p.Get(It.IsAny<bool>())).Returns(_mockSqlResolver.Object);
+            _mockSqlResolverFactory.Setup(p => p.Get(It.IsAny<long>(), It.IsAny<string>(),  It.IsAny<bool>())).Returns(_mockSqlResolver.Object);
+            _listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
+            _listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
         }
 
         [TestMethod]
@@ -44,15 +47,15 @@ namespace Graxei.Persistencia.Implementacao.Teste
             int expectedTotalElementos = 100;
             int expectedElementoAtual = 5;
             ListaProdutosLoja expectedListaProdutosLoja = RepositorioCommon.Construir(lista, expectedTotalElementos, expectedElementoAtual);
-            ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(this._mockSqlResolverFactory.Object);
             SetupMockSessionQueryOverTotal(expectedTotalElementos);
             SetupMockSessionQueryOverListar(lista);
-            listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
+            _mockSqlResolver.Setup(p => p.GetConsultaDeContagem()).Returns(expectedTotalElementos);
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<int>(), expectedElementoAtual, 0);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<int>(), expectedElementoAtual, 0);
 
             // Assert
+            _mockSqlResolver.Verify(p => p.GetConsultaDeContagem(), Times.Once);
             Assert.AreEqual(expectedListaProdutosLoja, actualListaProdutosLoja);
         }
 
@@ -61,12 +64,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
         {
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
-            ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
             SetupMockSessionQueryOverTotal(0);
-            listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
-
+            
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), 1, 0);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), 1, 0);
 
             // Assert
             _mockSession.Verify(p => p.CreateSQLQuery(It.IsAny<string>())
@@ -84,11 +85,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
             ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
-            listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
             SetupMockSessionQueryOverListar(new List<ListaProdutosLojaContrato>());
-
+           
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<int>(), 0, 0, 12);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<int>(), 0, 0, 12);
 
             // Assert
             _mockSession.Verify((p => p.QueryOver<ProdutoVendedor>()
@@ -102,12 +102,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
         {
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
-            ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
-            listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
             SetupMockSessionQueryOverListar(new List<ListaProdutosLojaContrato>());
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), 0, 0, 12);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), 0, 0, 12);
 
             // Assert
             _mockSession.Verify((p => p.QueryOver<ProdutoVendedor>()
@@ -125,12 +123,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
             int expectedTotalElementos = 88;
             int expectedElementoAtual = 5;
             ListaProdutosLoja expectedListaProdutosLoja = RepositorioCommon.Construir(lista, expectedTotalElementos, expectedElementoAtual);
-            ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
-            listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
             SetupMockSessionQueryOverListar(lista);
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), expectedElementoAtual, 0, expectedTotalElementos);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), expectedElementoAtual, 0, expectedTotalElementos);
 
             // Assert
             _mockSession.Verify((p => p.QueryOver<ProdutoVendedor>()
@@ -150,9 +146,9 @@ namespace Graxei.Persistencia.Implementacao.Teste
                                         .RowCount()).Returns(expectedTotalElementos);
         }
 
-
         private void SetupMockSessionQueryOverListar(IList<ListaProdutosLojaContrato> lista)
         {
+            _mockSqlResolver.Setup(p => p.Get(It.IsAny<int>(), It.IsAny<int>())).Returns(lista);
             _mockSession.Setup(p => p.CreateSQLQuery(It.IsAny<string>())
                                       .SetResultTransformer(Transformers.AliasToBean(typeof(ListaProdutosLojaContrato)))
                                       .SetParameter<long>("id", It.IsAny<long>())
