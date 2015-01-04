@@ -6,6 +6,7 @@ using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
+using System.Collections.Generic;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -85,22 +86,6 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        #region Propriedades Privadas
-        public IRepositorioProdutoVendedor Repositorio
-        {
-            get { return (IRepositorioProdutoVendedor) RepositorioEntidades; }
-        }
-        #endregion
-
-        #region Atributos Privados
-        private IRepositorioProdutos _repositorioProdutos;
-        private readonly IServicoProdutos _servicoProdutos;
-        private readonly IServicoAtributos _servicoAtributos;
-        private readonly IServicoUnidadeMedida _servicoUnidadeMedida;
-
-        #endregion
-
-
         public System.Collections.Generic.IList<PesquisaContrato> Get(string texto)
         {
             return Repositorio.GetPorDescricaoPesquisa(texto, "", "", 0);
@@ -128,5 +113,27 @@ namespace Graxei.Negocio.Implementacao
         {
             return Repositorio.GetQuantidadeProduto(lojaId);
         }
+
+        public void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
+        {
+            Repositorio.GerenciarAtualizacaoLista(produtoLojaPrecoContrato);
+        }
+
+        #region Propriedades Privadas
+        public IRepositorioProdutoVendedor Repositorio
+        {
+            get { return (IRepositorioProdutoVendedor) RepositorioEntidades; }
+        }
+        #endregion
+
+        #region Atributos Privados
+        private IRepositorioProdutos _repositorioProdutos;
+        private readonly IServicoProdutos _servicoProdutos;
+        private readonly IServicoAtributos _servicoAtributos;
+        private readonly IServicoUnidadeMedida _servicoUnidadeMedida;
+
+        #endregion
+
+        
     }
 }

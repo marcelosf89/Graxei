@@ -1,7 +1,11 @@
 using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Excecoes;
+using System;
+using System.Collections.Generic;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {
@@ -20,7 +24,8 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             {
                 Servico.Salvar(produtoVendedor);
                 Confirmar();
-            } catch (OperacaoEntidadeException oe)
+            }
+            catch (OperacaoEntidadeException oe)
             {
                 Desfazer();
                 throw;
@@ -36,6 +41,24 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
                 Confirmar();
             }
             catch (OperacaoEntidadeException oe)
+            {
+                Desfazer();
+                throw;
+            }
+        }
+
+        public void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
+        {
+            IniciarTransacao();
+            try
+            {
+                if (produtoLojaPrecoContrato != null)
+                {
+                    Servico.AtualizarLista(produtoLojaPrecoContrato);
+                    Confirmar();
+                }
+            }
+            catch (Exception ex)
             {
                 Desfazer();
                 throw;

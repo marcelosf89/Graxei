@@ -84,7 +84,7 @@
     <Compile Include="LojasNHibernatePostgre.cs" />
     <Compile Include="PadraoNHibernatePostgre.cs" />
     <Compile Include="PadraoNHibernatePostgreLeitura.cs" />
-    <Compile Include="ProdutosNHibernatePostgre.cs" />
+    <Compile Include="ProdutosRepositorio.cs" />
     <Compile Include="ProdutoVendedorRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlResolver\Factory\IListaProdutosLojaSqlResolverFactory.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
+using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Aplicacao.Contrato.Transacionais
 {
@@ -12,6 +13,7 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
     {
         void Salvar(ProdutoVendedor produtoVendedor);
         void Excluir(ProdutoVendedor produtoVendedor);
+        void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
         IServicoProdutoVendedor Servico { get; }
     }
 }

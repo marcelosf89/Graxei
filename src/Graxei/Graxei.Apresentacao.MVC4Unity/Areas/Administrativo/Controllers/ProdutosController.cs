@@ -10,18 +10,20 @@ using System;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models;
+using Graxei.Aplicacao.Contrato.Transacionais;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class ProdutosController : Controller
     {
 
-        public ProdutosController(IConsultasLojas consultasLojas, IConsultasListaLojas consultasListaLojas, IConsultasProdutos consultasProdutos, IConsultaListaProdutosLoja consultaListaProdutosLoja)
+        public ProdutosController(IConsultasLojas consultasLojas, IConsultasListaLojas consultasListaLojas, IConsultasProdutos consultasProdutos, IConsultaListaProdutosLoja consultaListaProdutosLoja, IGerenciamentoProdutos gerenciamentoProdutos)
         {
             _consultasLojas = consultasLojas;
             _consultasListaLojas = consultasListaLojas;
             _consultasProdutos = consultasProdutos;
             _consultaListaProdutosLoja = consultaListaProdutosLoja;
+            _gerenciamentoProdutos = gerenciamentoProdutos;
         }
 
         public ActionResult Index()
@@ -35,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             {
                 numeroPagina = 0;
             }
-                
+
 
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
             listaLojas = new ListaLojas(listaLojas.Lista, new TotalElementosLista(130), new PaginaAtualLista(numeroPagina));
@@ -77,36 +79,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Salvar(IList<ProdutoPrecoModel> itens)
+        public JsonResult Salvar(IList<ProdutoLojaPrecoContrato> itens)
         {
+            _gerenciamentoProdutos.SalvarLista(itens);
             return null;
         }
 
-        /*
-        public ActionResult Novo()
-        {
-            return View();
-        }
-
-        public ActionResult Copiar()
-        {
-            return View();
-        }
-
-        public ActionResult Autocomplete(string term)
-        {
-            IList<Fabricante> fabs = null;
-            if (Session[Constantes.Fabricantes] == null)
-            {
-                Session[Constantes.Fabricantes] = _servicoFabricantes.TodosNomes();
-            }
-            string[] nomes = ((IList<string>)Session[Constantes.Fabricantes]).ToArray();
-            return Json(nomes, JsonRequestBehavior.AllowGet);
-        }
-  */
         private readonly IConsultasLojas _consultasLojas;
         private readonly IConsultasListaLojas _consultasListaLojas;
         private readonly IConsultasProdutos _consultasProdutos;
+        private readonly IGerenciamentoProdutos _gerenciamentoProdutos;
         private IConsultaListaProdutosLoja _consultaListaProdutosLoja;
     }
 }

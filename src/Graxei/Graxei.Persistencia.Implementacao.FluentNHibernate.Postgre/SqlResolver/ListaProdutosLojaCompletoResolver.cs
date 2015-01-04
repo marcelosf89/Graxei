@@ -53,7 +53,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
 
         public IList<ListaProdutosLojaContrato> Get(int pagina, int tamanhoPagina)
         {
-            string campos = @"SELECT p.id_produto ""Id"", p.codigo ""Codigo"", pv.descricao ""Descricao"", pv.id_produto_vendedor ""IdMeuProduto"", pv.preco ""Preco""";
+            string campos = @"SELECT p.id_produto ""Id"", p.codigo ""Codigo"", pv.descricao ""Descricao"", pv.id_produto_vendedor ""IdMeuProduto"", e.id_endereco ""IdEndereco"", pv.preco ""Preco"", pv.excluida ""Excluido""";
             string sql =  string.Format("{0} {1} {2}", campos, Consulta, Ordem);
             int primeiroResultado = (tamanhoPagina * pagina) - tamanhoPagina;
             IList<ListaProdutosLojaContrato> lista = 

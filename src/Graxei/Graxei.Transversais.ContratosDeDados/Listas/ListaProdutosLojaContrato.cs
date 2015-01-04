@@ -15,15 +15,19 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
 
         public string Descricao { get; set; }
 
+        public long IdEndereco { get; set; }
+
         public long? IdMeuProduto { get; set; }
 
         public double Preco { get; set; }
+
+        public bool Excluido { get; set; }
 
         public bool IsMeuProduto
         {
             get
             {
-                return IdMeuProduto != null;
+                return IdMeuProduto != null && !Excluido;
             }
 
         }

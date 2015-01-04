@@ -270,7 +270,6 @@
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\PesquisarModel.cs" />
-    <Compile Include="Models\ProdutoPrecoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

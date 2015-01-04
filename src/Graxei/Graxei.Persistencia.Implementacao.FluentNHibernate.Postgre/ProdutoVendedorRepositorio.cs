@@ -73,9 +73,10 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             {
                 throw new EntidadeInvalidaException(Erros.LojaInvalida);
             }
-            ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
+            ProdutoVendedor produtoVendedor =
+                                  SessaoAtual.Query<ProdutoVendedor>()
                                              .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Endereco.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
-            return pvl;
+            return produtoVendedor;
         }
 
         public void ExcluirDe(Loja loja)
@@ -99,7 +100,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         #endregion
 
-
         public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
             String textos = descricao.Replace(" ", "");
@@ -121,12 +121,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public long GetQuantidadeProduto(Usuario usuario)
         {
-            return ( from l in SessaoAtual.Query<Loja>()
-              from e in l.Enderecos
-              join pv in SessaoAtual.Query<ProdutoVendedor>() on e.Id equals pv.Endereco.Id
-              from u in l.Usuarios
-              where u.Id == usuario.Id
-                  select pv.Id ).Count();
+            return (from l in SessaoAtual.Query<Loja>()
+                    from e in l.Enderecos
+                    join pv in SessaoAtual.Query<ProdutoVendedor>() on e.Id equals pv.Endereco.Id
+                    from u in l.Usuarios
+                    where u.Id == usuario.Id
+                    select pv.Id).Count();
         }
 
 
@@ -139,6 +139,56 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                     where l.Id == lojaId
                     select pv.Id).Count();
         }
-    }
 
+        public void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
+        {
+            string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, excluida) 
+                                         VALUES (:preco, :id_produto, :id_endereco, false)";
+            string queryAlterar = @"UPDATE produtos_vendedores SET excluida = false
+                                     WHERE id_produto_vendedor = :id_produto_vendedor";
+            for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
+            {
+                if (produtoLojaPrecoContratos[i].IdMeuProduto > 0)
+                {
+                    SessaoAtual.CreateSQLQuery(queryAlterar)
+                           .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
+                           .ExecuteUpdate();
+                }
+                else
+                {
+                    SessaoAtual.CreateSQLQuery(queryInserir)
+                           .SetParameter("id_produto", produtoLojaPrecoContratos[i].IdProduto)
+                           .SetParameter("id_endereco", produtoLojaPrecoContratos[i].IdEndereco)
+                           .SetParameter("preco", produtoLojaPrecoContratos[i].Preco)
+                           .ExecuteUpdate();
+                }
+            }
+        }
+
+        public void RemoverLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
+        {
+            string query = @"UPDATE produtos_vendedores SET excluida = true
+                              WHERE id_produto_vendedor :id_produto_vendedor";
+            for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
+            {
+                int resultado =
+                SessaoAtual.CreateSQLQuery(query)
+                           .SetParameter(0, produtoLojaPrecoContratos[i].IdMeuProduto)
+                           .ExecuteUpdate();
+            }
+        }
+
+        public void GerenciarAtualizacaoLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
+        {
+            if (produtoLojaPrecoContratos == null || produtoLojaPrecoContratos.Count == 0)
+            {
+                return;
+            }
+            ////SessaoAtual.SetBatchSize(produtoLojaPrecoContratos.Count + 10);
+            IList<ProdutoLojaPrecoContrato> salvar = produtoLojaPrecoContratos.Where(p => p.Preco > 0).ToList();
+            SalvarLista(salvar);
+            //IList<ProdutoLojaPrecoContrato> excluir = produtoLojaPrecoContratos.Where(p => p.Preco <= 0).ToList();
+            //RemoverLista(excluir);
+        }
+    }
 }
