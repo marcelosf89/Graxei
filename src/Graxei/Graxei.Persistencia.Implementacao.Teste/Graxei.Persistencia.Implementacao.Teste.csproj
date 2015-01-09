@@ -56,6 +56,7 @@
     <Compile Include="PersistenciaLojas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioCommon.cs" />
+    <Compile Include="Postgres\SqlResolvers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FAST\FAST.csproj">

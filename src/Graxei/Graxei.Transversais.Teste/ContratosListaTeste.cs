@@ -39,8 +39,8 @@ namespace Graxei.Transversais.Teste
         public void ListaProdutosLoja_ThatListaProdutoComMesmoNumeroDeElementosMasDiferencaEntreEles_RetornaFalso()
         {
             // Arrange
-            ListaProdutosLojaContrato listaProdutosLojaContrato1 = new ListaProdutosLojaContrato { Id = 1, Descricao = "Produto 1", Preco = 99 };
-            ListaProdutosLojaContrato listaProdutosLojaContrato2 = new ListaProdutosLojaContrato { Id = 2, Descricao = "Produto X", Preco = 99 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato1 = new ListaProdutosLojaContrato { Id = 1, DescricaoOriginal = "Produto 1", Preco = 99 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato2 = new ListaProdutosLojaContrato { Id = 2, DescricaoOriginal = "Produto X", Preco = 99 };
             List<ListaProdutosLojaContrato> lista1 = new List<ListaProdutosLojaContrato>();
             lista1.Add(listaProdutosLojaContrato1);
             List<ListaProdutosLojaContrato> lista2 = new List<ListaProdutosLojaContrato>();
@@ -57,9 +57,9 @@ namespace Graxei.Transversais.Teste
         public void ListaProdutosLoja_ThatListaProdutoComMaisElementos_RetornaFalso()
         {
             // Arrange
-            ListaProdutosLojaContrato listaProdutosLojaContrato1 = new ListaProdutosLojaContrato { Id = 1, Descricao = "Produto 1", Preco = 99 };
-            ListaProdutosLojaContrato listaProdutosLojaContrato2 = new ListaProdutosLojaContrato { Id = 2, Descricao = "Produto X", Preco = 99 };
-            ListaProdutosLojaContrato listaProdutosLojaContrato3 = new ListaProdutosLojaContrato { Id = 3, Descricao = "Produto N", Preco = 101 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato1 = new ListaProdutosLojaContrato { Id = 1, DescricaoOriginal = "Produto 1", Preco = 99 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato2 = new ListaProdutosLojaContrato { Id = 2, DescricaoOriginal = "Produto X", Preco = 99 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato3 = new ListaProdutosLojaContrato { Id = 3, DescricaoOriginal = "Produto N", Preco = 101 };
             List<ListaProdutosLojaContrato> lista1 = new List<ListaProdutosLojaContrato>();
             lista1.Add(listaProdutosLojaContrato1);
             List<ListaProdutosLojaContrato> lista2 = new List<ListaProdutosLojaContrato>();
@@ -102,8 +102,8 @@ namespace Graxei.Transversais.Teste
         public void ListaProdutosLoja_TudoIgual_RetornaVerdadeiro()
         {
             // Arrange
-            ListaProdutosLojaContrato listaProdutosLojaContrato1 = new ListaProdutosLojaContrato { Id = 1, Descricao = "Produto 1", Preco = 99 };
-            ListaProdutosLojaContrato listaProdutosLojaContrato2 = new ListaProdutosLojaContrato { Id = 1, Descricao = "Produto 1", Preco = 99 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato1 = new ListaProdutosLojaContrato { Id = 1, DescricaoOriginal = "Produto 1", Preco = 99 };
+            ListaProdutosLojaContrato listaProdutosLojaContrato2 = new ListaProdutosLojaContrato { Id = 1, DescricaoOriginal = "Produto 1", Preco = 99 };
             List<ListaProdutosLojaContrato> lista1 = new List<ListaProdutosLojaContrato>();
             lista1.Add(listaProdutosLojaContrato1);
             List<ListaProdutosLojaContrato> lista2 = new List<ListaProdutosLojaContrato>();

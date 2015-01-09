@@ -13,7 +13,9 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
 
         public string Codigo { get; set; }
 
-        public string Descricao { get; set; }
+        public string MinhaDescricao { get; set; }
+
+        public string DescricaoOriginal { get; set; }
 
         public long IdEndereco { get; set; }
 
@@ -23,6 +25,13 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
 
         public bool Excluido { get; set; }
 
+        public string Descricao
+        {
+            get
+            {
+                return string.IsNullOrEmpty(MinhaDescricao) ? DescricaoOriginal : MinhaDescricao;
+            }
+        }
         public bool IsMeuProduto
         {
             get

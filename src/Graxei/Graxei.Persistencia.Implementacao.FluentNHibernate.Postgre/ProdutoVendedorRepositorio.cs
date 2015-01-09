@@ -167,13 +167,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public void RemoverLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
-            string query = @"UPDATE produtos_vendedores SET excluida = true
-                              WHERE id_produto_vendedor :id_produto_vendedor";
+            string query = @"UPDATE produtos_vendedores SET excluida = true, preco = 0
+                              WHERE id_produto_vendedor = :id_produto_vendedor";
             for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
             {
                 int resultado =
                 SessaoAtual.CreateSQLQuery(query)
-                           .SetParameter(0, produtoLojaPrecoContratos[i].IdMeuProduto)
+                           .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
                            .ExecuteUpdate();
             }
         }
@@ -187,8 +187,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             ////SessaoAtual.SetBatchSize(produtoLojaPrecoContratos.Count + 10);
             IList<ProdutoLojaPrecoContrato> salvar = produtoLojaPrecoContratos.Where(p => p.Preco > 0).ToList();
             SalvarLista(salvar);
-            //IList<ProdutoLojaPrecoContrato> excluir = produtoLojaPrecoContratos.Where(p => p.Preco <= 0).ToList();
-            //RemoverLista(excluir);
+            IList<ProdutoLojaPrecoContrato> excluir = produtoLojaPrecoContratos.Where(p => p.Preco <= 0).ToList();
+            RemoverLista(excluir);
         }
     }
 }
