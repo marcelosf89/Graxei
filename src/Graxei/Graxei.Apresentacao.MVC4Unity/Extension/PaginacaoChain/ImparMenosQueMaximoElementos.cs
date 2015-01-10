@@ -1,11 +1,13 @@
 ﻿using System.Web.Mvc;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public class ImparMenosQueMaximoElementos : AbstractPaginacao
     {
-        public ImparMenosQueMaximoElementos(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, string controller, string action) : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, controller, action)
+        public ImparMenosQueMaximoElementos(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
+            : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
         {
         }
 

@@ -120,6 +120,9 @@
   <data name="EmailEnviado" xml:space="preserve">
     <value>Seu e-mail foi enviado com sucesso.</value>
   </data>
+  <data name="ListaAtualizada" xml:space="preserve">
+    <value>Sua lista foi atualizada</value>
+  </data>
   <data name="LogoAdicionadoComSucesso" xml:space="preserve">
     <value>Logo adicionado com sucesso</value>
   </data>

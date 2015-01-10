@@ -250,6 +250,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sua lista não pôde ser atualizada. Por favor contate o suporte..
+        /// </summary>
+        public static string ListaNaoAtualizada {
+            get {
+                return ResourceManager.GetString("ListaNaoAtualizada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Endereço incompleto: preencha o logradouro.
         /// </summary>
         public static string LogradouroNulo {

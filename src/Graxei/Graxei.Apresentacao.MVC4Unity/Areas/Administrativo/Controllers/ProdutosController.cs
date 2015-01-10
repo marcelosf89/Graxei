@@ -11,6 +11,7 @@ using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -64,33 +65,20 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
         }
 
-        public ActionResult LinkPesquisar(string criterio, bool meusProdutos, long idLoja, int pagina, int totalPaginas, int totalElementos)
-        {
-            try
-            {
-                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(criterio, meusProdutos, idLoja, 1, 10, 0);
-                return View(produtos);
-            }
-            catch (ProdutoForaDoLimiteException e)
-            {
-                IList<Produto> produtos = e.List;
-                return View(produtos);
-            }
-        }
-
         [HttpPost]
         public JsonResult Salvar(IList<ProdutoLojaPrecoContrato> itens)
         {
             try
             {
                 _gerenciamentoProdutos.SalvarLista(itens);
+                return Json(new { Sucesso = false, Mensagem = Erros.ListaNaoAtualizada });
             }
             catch (GraxeiException)
             {
-                return null;
+                return Json(new { Sucesso = false, Mensagem =  Erros.ListaNaoAtualizada }); ;
             }
-            
-            return null;
+
+            return Json(new { Sucesso = true, Mensagem = Sucesso.ListaAtualizada });
         }
 
         private readonly IConsultasLojas _consultasLojas;

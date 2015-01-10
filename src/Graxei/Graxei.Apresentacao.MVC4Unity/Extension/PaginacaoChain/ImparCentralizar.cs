@@ -6,12 +6,14 @@ using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 using Graxei.Apresentacao.MVC4Unity.Extension;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public class ImparCentralizar : AbstractPaginacao
     {
-        public ImparCentralizar(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, string controller, string action) : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, controller, action)
+        public ImparCentralizar(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
+            : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
         {
             _meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2;
         }

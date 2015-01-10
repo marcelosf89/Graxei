@@ -1,4 +1,5 @@
 ﻿using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain;
+using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -16,10 +17,13 @@ namespace Graxei.Apresentacao.Teste
     {
         private Mock<IViewDataContainer> mockViewDataContainer;
 
+        private Mock<ILinkBuilderStrategy> mockLinkBuilderStrategy;
+
         [TestInitialize]
         public void SetUp()
         {
             mockViewDataContainer = new Mock<IViewDataContainer>();
+            mockLinkBuilderStrategy = new Mock<ILinkBuilderStrategy>();
         }
 
         [TestMethod]
@@ -29,7 +33,7 @@ namespace Graxei.Apresentacao.Teste
            int maximoPaginasNoGrupo = 5;
            int totalElementos = 45;
            int expected = (totalElementos / 10);
-           ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(totalElementos), It.IsAny<PaginaAtualLista>(), maximoPaginasNoGrupo, string.Empty, string.Empty);
+           ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(totalElementos), It.IsAny<PaginaAtualLista>(), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.AreEqual(expected, imparMenosQueMaximoElementos.GetUltimaPaginaGrupoAtual());
@@ -42,7 +46,7 @@ namespace Graxei.Apresentacao.Teste
             int maximoPaginasNoGrupo = 5;
             int totalElementos = 82;
             int expected = maximoPaginasNoGrupo;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(totalElementos), It.IsAny<PaginaAtualLista>(), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(totalElementos), It.IsAny<PaginaAtualLista>(), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.AreEqual(maximoPaginasNoGrupo, imparMenosQueMaximoElementos.GetUltimaPaginaGrupoAtual());
@@ -54,7 +58,7 @@ namespace Graxei.Apresentacao.Teste
             // Act
             int maximoPaginasNoGrupo = 5;
             int totalElementos = 543;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(totalElementos), It.IsAny<PaginaAtualLista>(), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(totalElementos), It.IsAny<PaginaAtualLista>(), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.AreEqual(1, imparMenosQueMaximoElementos.GetPrimeiraPaginaGrupoAtual());
@@ -67,7 +71,7 @@ namespace Graxei.Apresentacao.Teste
             int maximoPaginasNoGrupo = 7;
             int paginaAtual = 2;
             int expected = paginaAtual - 1;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.AreEqual(expected, imparMenosQueMaximoElementos.GetElementoParaSubstituir());
@@ -80,7 +84,7 @@ namespace Graxei.Apresentacao.Teste
             int maximoPaginasNoGrupo = 6;
             int paginaAtual = 2;
             int expected = paginaAtual - 1;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.IsFalse(imparMenosQueMaximoElementos.RegraAtende());
@@ -92,7 +96,7 @@ namespace Graxei.Apresentacao.Teste
             // Act
             int maximoPaginasNoGrupo = 5;
             int paginaAtual = 4;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.IsFalse(imparMenosQueMaximoElementos.RegraAtende());
@@ -104,7 +108,7 @@ namespace Graxei.Apresentacao.Teste
             // Act
             int maximoPaginasNoGrupo = 5;
             int paginaAtual = 6;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.IsFalse(imparMenosQueMaximoElementos.RegraAtende());
@@ -116,7 +120,7 @@ namespace Graxei.Apresentacao.Teste
             // Act
             int maximoPaginasNoGrupo = 5;
             int paginaAtual = 2;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.IsTrue(imparMenosQueMaximoElementos.RegraAtende());
@@ -128,7 +132,7 @@ namespace Graxei.Apresentacao.Teste
             // Act
             int maximoPaginasNoGrupo = 5;
             int paginaAtual = 3;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, string.Empty, string.Empty);
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
             Assert.IsTrue(imparMenosQueMaximoElementos.RegraAtende());

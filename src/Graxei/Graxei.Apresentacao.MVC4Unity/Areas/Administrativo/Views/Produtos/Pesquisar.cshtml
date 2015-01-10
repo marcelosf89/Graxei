@@ -6,6 +6,7 @@
         <input type="hidden" id="enderecoAtual" value="@Model.Lista[0].IdEndereco"/>
     }
 }
+<div id="msg-produtos-atualizar"></div>
 <table id="tabela-precos" class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
@@ -17,7 +18,6 @@
         <tr>
             <th colspan="5">
                 @*@Ajax.LinkPaginacao("Produtos", "Pesquisar", Model.Atual, Model.Total, 5)*@
-                @*LinkPaginacaoRangePagina("Pesquisar", "Produtos", "paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2, "myContentProd")*@
             </th>
         </tr>
     </thead>
@@ -58,28 +58,21 @@
     });
 
     $("input[doc-type=ip]").on("keyup", function () {
+        $('#msg-produtos-atualizar').empty();
+        $('#msg-produtos-atualizar').removeClass();
         var valor = $(this).val();
         if (valor == null || valor < 0) {
             valor = 0;
         }
-        if (valor > 0) {
-            var id = $(this).parents("tr").attr("id-prod");
+        var id = $(this).parents("tr").attr("id-prod");
+
+        if (valor <= 0) {
             $("tr[id-prod=" + id + "]").removeClass("success");
         } else {
             $("tr[id-prod=" + id + "]").addClass("success");
         }
     });
-    //$("input[doc-type=ip]").on("focusout", function () {
-    //    var id = $(this).attr("id-prod");
-    //    if ($(this).val() != "") {
-    //        $("tr[id-prod=" + id + "]").addClass("success");
-    //        $("input[id-prod=" + id + "]").attr("checked", "checked");
-    //    } else {
-    //        $("tr[id-prod=" + id + "]").removeClass("success");
-    //        $("input[id-prod=" + id + "]").removeAttr("checked");
-    //    }
-    //});
-
+    
     function habilitarBotaoSalvar(me) {
         var button = $('#salvarPrecos');
         button.addClass("invisible");
@@ -116,12 +109,34 @@
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (result) {
-
-            },
-            error: function (request) {
-                // ...
+                resultadoSalvar(result);
             }
         });
+        
+        function resultadoSalvar(args) {
+            $('#msg-produtos-atualizar').empty();
+            if (args.Sucesso) {
+                $('#msg-produtos-atualizar').addClass("alert alert-success");
+            } else {
+                $('#msg-produtos-atualizar').addClass("alert alert-danger");
+            }
+            $('#msg-produtos-atualizar').html(args.Mensagem)
+
+        }
+
+        function OnSuccessSignUp(args) {
+            if (args.Success) {
+                window.location.href = args.ReturnUrl;
+            } else {
+                $('#ajax-signup-error-messages').empty();
+                var listError = "";
+                for (var i = 0, len = args.ErrorMessages.length; i < len; i++) {
+                    listError += "<li>" + args.ErrorMessages[i] + "</li>";
+                }
+                $('#ajax-signup-error-messages').prepend("<span class='field-validation-error'><ul style='margin: 0;'>" + listError + "</ul></span>");
+            }
+        }
+
     }
 
 </script>
