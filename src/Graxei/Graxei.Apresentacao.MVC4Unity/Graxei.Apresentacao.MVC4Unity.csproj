@@ -246,6 +246,7 @@
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Extension\PaginacaoChain\AbstractPaginacao.cs" />
     <Compile Include="Extension\PaginacaoChain\ImparMenosQueMaximoElementos.cs" />
+    <Compile Include="Extension\PaginacaoChain\LinkBuilderStrategy\LinkBuilderPequisaProdutosStrategy.cs" />
     <Compile Include="Extension\PaginacaoChain\LinkBuilderStrategy\LinkBuilderPadraoStrategy.cs" />
     <Compile Include="Extension\PaginacaoChain\LinkBuilderStrategy\ILinkBuilderStrategy.cs" />
     <Compile Include="Extension\PaginacaoChain\PaginacaoChainFactory.cs" />
