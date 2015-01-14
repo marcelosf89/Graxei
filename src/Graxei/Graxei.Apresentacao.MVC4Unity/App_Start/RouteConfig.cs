@@ -18,6 +18,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                     action = "IndexLoja"
                 }, 
                 namespaces: new string[] { "Graxei.Apresentacao.MVC4Unity.Controllers" });
+
             //routes.MapRoute(
             //    name: "Default",
             //    url: "{controller}/{action}",
@@ -37,7 +38,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                 url: "{controller}/{action}",
                 defaults: new
                           {
-                              controller = "Login",
+                              controller = "Home",
                               action = "Index",
                               q = UrlParameter.Optional
                           },

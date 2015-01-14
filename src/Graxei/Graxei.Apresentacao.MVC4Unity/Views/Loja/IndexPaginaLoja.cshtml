@@ -34,7 +34,7 @@
                     <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" role="complementary">
                         <ul class="nav bs-docs-sidenav">
                             <li>
-                                <a href="#">Produtos</a>
+                                @Ajax.ActionLink("Produtos", "Produtos", "Loja", new { controller = "Loja" }, new AjaxOptions() { UpdateTargetId = "bg-text-loja" })
                             </li>
                             <li>
                                 <a href="#">Endereços</a>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="bg-text-loja">
+                <div class="bg-text-loja" id="bg-text-loja">
                     @Html.Raw(Model.DescricaoPaginaInicial)
                 </div>
             </div>
