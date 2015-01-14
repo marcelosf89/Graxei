@@ -267,4 +267,7 @@
   <data name="MeusProdutos" xml:space="preserve">
     <value>Meus Produtos</value>
   </data>
+  <data name="Acao" xml:space="preserve">
+    <value>Ação</value>
+  </data>
 </root>
