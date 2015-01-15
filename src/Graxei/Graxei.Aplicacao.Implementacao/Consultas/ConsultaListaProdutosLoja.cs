@@ -17,7 +17,7 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             _servicoListaProdutosLoja = servicoListaProdutosLoja;
         }
 
-        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
+        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos)
         {
             return _servicoListaProdutosLoja.Get(criterio, meusProdutos, idLoja, pagina, tamanhoPagina, totalElementos);
         }

@@ -25,7 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             IPaginacaoChain primeiroElemento = new ImparMenosQueMaximoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
             IPaginacaoChain segundoElemento = new UltimoGrupoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
             primeiroElemento.SetProximoElemento(segundoElemento);
-            IPaginacaoChain terceiroElemento = new ImparCentralizar(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
+            IPaginacaoChain terceiroElemento = new ImparCentralizar(_listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
             segundoElemento.SetProximoElemento(terceiroElemento);
             return primeiroElemento;
         }

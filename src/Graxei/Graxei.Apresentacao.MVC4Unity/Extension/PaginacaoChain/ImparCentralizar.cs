@@ -12,8 +12,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public class ImparCentralizar : AbstractPaginacao
     {
-        public ImparCentralizar(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
-            : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
+        public ImparCentralizar(TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
+            : base(listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
         {
             _meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2;
         }

@@ -12,7 +12,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public abstract class AbstractPaginacao : IPaginacaoChain
     {
-        public AbstractPaginacao(AjaxHelper ajaxHelper, TotalElementosLista totalElementosLista,
+        public AbstractPaginacao(TotalElementosLista totalElementosLista,
             PaginaAtualLista elementoAtualLista, int quantidadeMaximaLinksPaginacaoPorVez, ILinkBuilderStrategy linkBuilderStrategy)
         {
             _totalElementosLista = totalElementosLista;
@@ -23,7 +23,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             {
                 _totalPaginas = _totalElementosLista.Total / 10;
             }
-            _ajaxHelper = ajaxHelper;
             _linkBuilderStrategy = linkBuilderStrategy;
         }
         
@@ -84,7 +83,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         protected PaginaAtualLista _elementoAtualLista;
         protected int _quantidadeMaximaLinksPaginacaoPorVez;
         protected long _totalPaginas;
-        protected AjaxHelper _ajaxHelper;
         protected ILinkBuilderStrategy _linkBuilderStrategy;
     }
 }

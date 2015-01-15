@@ -14,7 +14,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models
         
         public bool MeusProdutos { get; set; }
 
-        public long PaginaAtualLista { get; set; }
+        public int PaginaAtualLista { get; set; }
 
         public long TotalElementosLista { get; set; }
     }

@@ -80,14 +80,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
             return paginacaoChainFactory.ConstruirCadeiaDePaginacao().Get();
         }
 
-        public static MvcHtmlString LinkPaginacaoPesquisaProdutos(this AjaxHelper ajaxHelper, string controller, string action, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)
+        public static MvcHtmlString LinkPaginacaoPesquisaProdutos(this AjaxHelper ajaxHelper, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)
         {
             if (listaTotalElementos.Total <= 0)
             {
                 return MvcHtmlString.Create("<div>Nenhum resultado</div>");
             }
-            LinkBuilderPadraoStrategy linkBuilder = new LinkBuilderPadraoStrategy(ajaxHelper, controller, action, paginaAtualLista);
-            PaginacaoChainFactory paginacaoChainFactory = new PaginacaoChainFactory(ajaxHelper, listaTotalElementos, paginaAtualLista, maximoElementosPaginacao, controller, action, linkBuilder);
+            LinkBuilderPequisaProdutosStrategy linkBuilder = new LinkBuilderPequisaProdutosStrategy(paginaAtualLista);
+            PaginacaoChainFactory paginacaoChainFactory = new PaginacaoChainFactory(ajaxHelper, listaTotalElementos, paginaAtualLista, maximoElementosPaginacao, string.Empty, string.Empty, linkBuilder);
             return paginacaoChainFactory.ConstruirCadeiaDePaginacao().Get();
         }
     }
