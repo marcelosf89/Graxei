@@ -36,7 +36,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 
         public override long GetElementoParaSubstituir()
         {
-            return _elementoAtualLista.Atual - ((_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez) + 1);
+            return _elementoAtualLista.Atual - (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez);
         }
     }
 }

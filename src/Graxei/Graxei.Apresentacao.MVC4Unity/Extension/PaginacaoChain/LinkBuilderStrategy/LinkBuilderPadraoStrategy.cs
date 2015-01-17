@@ -38,7 +38,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStra
 
         public List<string> SubstituirElementoAtual(long elemento)
         {
-
+            elemento = elemento - 1;
             _links.RemoveAt((int)elemento);
             string atual =
                 _ajaxHelper.IconActionLink(string.Empty,
