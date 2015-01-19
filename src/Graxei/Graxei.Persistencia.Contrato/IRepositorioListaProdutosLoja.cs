@@ -9,7 +9,7 @@ namespace Graxei.Persistencia.Contrato
 {
     public interface IRepositorioListaProdutosLoja
     {
-        ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos);
+        ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos);
         ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina);
     }
 }

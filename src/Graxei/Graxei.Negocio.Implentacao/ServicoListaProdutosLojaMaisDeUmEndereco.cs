@@ -18,7 +18,7 @@ namespace Graxei.Negocio.Implementacao
             _repositorioListaProdutosLoja = repositorioListaProdutosLoja;
         }
 
-        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
+        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos)
         {
             throw new NotImplementedException();
         }

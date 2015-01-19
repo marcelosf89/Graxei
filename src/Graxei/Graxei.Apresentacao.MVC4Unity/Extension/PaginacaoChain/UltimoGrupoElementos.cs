@@ -13,7 +13,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
     public class UltimoGrupoElementos : AbstractPaginacao
     {
         public UltimoGrupoElementos(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
-            : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
+            : base(listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
         {
         }
 
@@ -36,7 +36,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 
         public override long GetElementoParaSubstituir()
         {
-            return _elementoAtualLista.Atual - ((_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez) + 1);
+            return _elementoAtualLista.Atual - (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez);
         }
     }
 }

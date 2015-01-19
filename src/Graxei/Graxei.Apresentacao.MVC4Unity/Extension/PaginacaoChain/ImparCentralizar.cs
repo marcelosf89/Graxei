@@ -12,28 +12,27 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public class ImparCentralizar : AbstractPaginacao
     {
-        public ImparCentralizar(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
-            : base(ajaxHelper, listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
+        public ImparCentralizar(TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, ILinkBuilderStrategy linkBuilderStrategy)
+            : base(listaTotalElementos, listaElementoAtual, maximoElementosPaginacao, linkBuilderStrategy)
         {
-            _meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2;
+            _meioLista = (_quantidadeMaximaLinksPaginacaoPorVez / 2) + 1;
         }
 
         public override bool RegraAtende()
         {
             bool impar = (_quantidadeMaximaLinksPaginacaoPorVez%2 != 0);
-            int meioLista = _quantidadeMaximaLinksPaginacaoPorVez/2;
-            bool ficarNoCentro = _elementoAtualLista.Atual < (_totalPaginas - meioLista) && _elementoAtualLista.Atual > (meioLista + 1);
+            bool ficarNoCentro = _elementoAtualLista.Atual < (_totalPaginas - (_meioLista - 1)) && _elementoAtualLista.Atual > _meioLista;
             return (impar && ficarNoCentro);
         }
 
         public override long GetPrimeiraPaginaGrupoAtual()
         {
-            return _elementoAtualLista.Atual - _meioLista;
+            return _elementoAtualLista.Atual - (_meioLista - 1);
         }
 
         public override long GetUltimaPaginaGrupoAtual()
         {
-            return _elementoAtualLista.Atual + _meioLista;
+            return _elementoAtualLista.Atual + (_meioLista - 1);
         }
 
         public override long GetElementoParaSubstituir()
