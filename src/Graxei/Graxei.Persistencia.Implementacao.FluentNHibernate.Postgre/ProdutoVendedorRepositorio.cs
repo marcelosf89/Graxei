@@ -144,13 +144,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         {
             string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, excluida) 
                                          VALUES (:preco, :id_produto, :id_endereco, false)";
-            string queryAlterar = @"UPDATE produtos_vendedores SET excluida = false
+            string queryAlterar = @"UPDATE produtos_vendedores SET preco = :preco, excluida = false
                                      WHERE id_produto_vendedor = :id_produto_vendedor";
             for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
             {
                 if (produtoLojaPrecoContratos[i].IdMeuProduto > 0)
                 {
                     SessaoAtual.CreateSQLQuery(queryAlterar)
+                           .SetParameter("preco", produtoLojaPrecoContratos[i].Preco)
                            .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
                            .ExecuteUpdate();
                 }

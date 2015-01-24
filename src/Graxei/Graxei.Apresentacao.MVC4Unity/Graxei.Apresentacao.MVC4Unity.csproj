@@ -369,6 +369,7 @@
     <Content Include="Areas\Administrativo\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Copiar.cshtml" />
+    <Content Include="Scripts\Administrativo\Produtos\pesquisar.js" />
     <Content Include="Scripts\affix.js" />
     <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\application.js" />
