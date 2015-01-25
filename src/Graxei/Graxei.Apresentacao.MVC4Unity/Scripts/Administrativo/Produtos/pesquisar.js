@@ -58,14 +58,17 @@ function salvarPrecos() {
         var preco = $('input[name="precoProduto"]', td).val();
         var idProd = $(this).attr('id-prod');
         var meuProd = $(this).attr('meu-prod');
+        var descricao = $('input[textarea]', td).val();
         var idEndereco = ("#")
         itens.push({
             IdProduto: idProd,
             IdMeuProduto: meuProd,
+            MinhaDescricao: descricao,
             IdEndereco: $("#enderecoAtual").val(),
             Preco: preco
         });
     });
+    alert('não entrou');
 
     var json = { itens: itens };
     var rota = document.getElementById("salvar-produtos-url").value;
