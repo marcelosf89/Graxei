@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Optimization;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo
 {
@@ -25,6 +26,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo
                     "ListarLojas",
                     "Administrativo/Lojas/Listar/{numeroPagina}/{tamanho}",
                     new {controller = "Lojas", Action = "Listar", numeroPagina = UrlParameter.Optional, tamanho = UrlParameter.Optional});
+
+            RegisterBundles(BundleTable.Bundles);
+        }
+
+        private void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/Administrativo/Produtos/Pesquisar/js").Include("~/Script/Administrativo/Produtos/pesquisar.js"));
         }
     }
 }
