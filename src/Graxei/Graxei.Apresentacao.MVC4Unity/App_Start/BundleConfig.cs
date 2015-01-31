@@ -25,7 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                 "~/Scripts/typeahead.jquery.js", "~/Scripts/bloodhound.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-            "~/Scripts/jquery-1.11.1.min.js",
+            "~/Scripts/jquery-2.1.3.min.js",
             "~/Scripts/jquery-migrate-1.1.1.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

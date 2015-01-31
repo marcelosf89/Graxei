@@ -1,6 +1,5 @@
 ﻿$('button[doc-type=paginar]').on("click", function () {
     var produtos = {};
-    console.log("foi btnpagina");
     produtos.IdLoja = $("#loja-chave").val();
     produtos.DescricaoProduto = $("#descricao-produto").val();
     produtos.MeusProdutos = $("#meus-produtos-chave").prop('checked');
@@ -52,13 +51,17 @@ function habilitarBotaoSalvar(me) {
 }
 
 function salvarPrecos() {
+    if (!$("#meuForm").valid()) {
+        return;
+    }
+
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {
         var td = $('td', this);
         var preco = $('input[name="precoProduto"]', td).val();
         var idProd = $(this).attr('id-prod');
         var meuProd = $(this).attr('meu-prod');
-        var descricao = $('input[textarea]', td).val();
+        var descricao = $('textarea', td).val();
         var idEndereco = ("#")
         itens.push({
             IdProduto: idProd,
@@ -68,7 +71,6 @@ function salvarPrecos() {
             Preco: preco
         });
     });
-    alert('não entrou');
 
     var json = { itens: itens };
     var rota = document.getElementById("salvar-produtos-url").value;
@@ -92,4 +94,45 @@ function salvarPrecos() {
         }
         $('#msg-produtos-atualizar').html(args.Mensagem)
     }
+}
+
+function habilitarEdicao(element) {
+    var div = $(element).siblings("div");
+    div.show();
+    var textArea = $(div).children("textarea");
+    if (textArea.val().trim().length == 0) {
+        textArea.val($(element).html());
+    }
+    $(element).hide();
+}
+
+function tratarCliqueEdicao(element) {
+    var textArea = $(element).siblings("textarea");
+    var div = $(element).parent("div");
+    var currentLabel = $(div).siblings("label");
+    var valorOriginal = currentLabel.data("original");
+    currentLabel.show();
+    console.log($(element).html());
+    var botaoAtual = $(element).html();
+    switch (botaoAtual){
+        case "OK":
+            $(currentLabel).text($(textArea).val());
+            break;
+        case "Desfazer":
+            currentLabel.text(valorOriginal);
+        default:
+            textArea.val("");
+    }
+    div.hide();
+}
+
+function intercalarExibicao3(element) {
+    //var textArea = $(element).siblings("textarea");
+    //textArea.hide();
+    //$(element).siblings("button").hide();
+    //var currentLabel = $(element).siblings("label");
+    //alert(textArea.text());
+    //currentLabel.val(textArea.text());
+    //currentLabel.show();
+    //$(element).hide();
 }
