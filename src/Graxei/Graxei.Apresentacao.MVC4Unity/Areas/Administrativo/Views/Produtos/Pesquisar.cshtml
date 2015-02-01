@@ -37,14 +37,19 @@
                         <input type="checkbox" doc-type="cp" checked="@item.IsMeuProduto" />
                     </td>
                     <td class="col-md-2 col-md-2">@item.Codigo</td>
-                    <td class="col-md-8 col-md-8">
-                        <label ondblclick="habilitarEdicao(this);" data-original="@item.Descricao">@item.Descricao</label>
+                    <td id="td-lista" class="col-md-8 col-md-8">
+                        <div>
+                            <button type="button" class="cancel btn btn-link" onclick="habilitarEdicao(this);">
+                                <img src="~/Content/imagens/editar.png" />
+                            </button>
+                            <label ondblclick="habilitarEdicao(this);" data-original="@item.Descricao">@item.Descricao</label>
+                        </div>
                         <div style="display: none">
                             <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 50 caracteres" data-val-length-max="50" rows="2"></textarea>
                             <span class="field-validation-valid" data-valmsg-for="@nomeTextArea" data-valmsg-replace="true"></span>
-                            <button type="button" class="cancel" onclick="tratarCliqueEdicao(this);">OK</button>
-                            <button type="button" class="cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
-                            <button type="button" class="cancel" onclick="tratarCliqueEdicao(this);">Desfazer</button>
+                            <button type="button" class="btn btn-group-sm btn-default cancel" onclick="tratarCliqueEdicao(this);">OK</button>
+                            <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
+                            <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Desfazer</button>
                         </div>
                     </td>
                     <td class="col-md-2 col-md-2">
@@ -68,4 +73,4 @@
 </form>
 
 @*@Scripts.Render("~/Administrativo/Produtos/Pesquisar/js")*@
-<script src="~/Scripts/Administrativo/Produtos/pesquisar.js"></script>
+<script src="~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js"></script>

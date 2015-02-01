@@ -51,9 +51,21 @@ function habilitarBotaoSalvar(me) {
 }
 
 function salvarPrecos() {
-    if (!$("#meuForm").valid()) {
-        return;
-    }
+    //if (!$("#meuForm").valid()) {
+    //    alert('s');
+    //    $.each($("textarea"), function (index, element) {
+    //        if (!$(element).hasClass("valid")) {
+    //            var parentDiv = $(element).parent("div");
+    //            var divExibir = parentDiv.siblings("div");
+    //            var label = parentDiv.children("label");
+    //            divExibir.show();
+    //            parentDiv.hide();
+    //        }
+    //    });
+    //    return;
+    //} else {
+    //    alert('valido');
+    //}
 
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {
@@ -97,24 +109,29 @@ function salvarPrecos() {
 }
 
 function habilitarEdicao(element) {
-    var div = $(element).siblings("div");
-    div.show();
-    var textArea = $(div).children("textarea");
+    var parentDiv = $(element).parent("div");
+    var divExibir = parentDiv.siblings("div");
+    var label = parentDiv.children("label");
+    var textArea = divExibir.children("textarea");
     if (textArea.val().trim().length == 0) {
-        textArea.val($(element).html());
+        textArea.val(label.html());
     }
-    $(element).hide();
+    divExibir.show();
+    parentDiv.hide();
+    textArea.focus();
+}
+
+function exibirPainelEdicao(parentDiv, divToShow) {
 }
 
 function tratarCliqueEdicao(element) {
     var textArea = $(element).siblings("textarea");
     var div = $(element).parent("div");
-    var currentLabel = $(div).siblings("label");
+    var painelPrincipalDiv = $(div).siblings("div");
+    var currentLabel = painelPrincipalDiv.children("label");
     var valorOriginal = currentLabel.data("original");
-    currentLabel.show();
-    console.log($(element).html());
     var botaoAtual = $(element).html();
-    switch (botaoAtual){
+    switch (botaoAtual) {
         case "OK":
             $(currentLabel).text($(textArea).val());
             break;
@@ -123,16 +140,6 @@ function tratarCliqueEdicao(element) {
         default:
             textArea.val("");
     }
+    painelPrincipalDiv.show();
     div.hide();
-}
-
-function intercalarExibicao3(element) {
-    //var textArea = $(element).siblings("textarea");
-    //textArea.hide();
-    //$(element).siblings("button").hide();
-    //var currentLabel = $(element).siblings("label");
-    //alert(textArea.text());
-    //currentLabel.val(textArea.text());
-    //currentLabel.show();
-    //$(element).hide();
 }

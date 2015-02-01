@@ -13,7 +13,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Ajax.ActionLink(" raxei", "Dashboard", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-brand logo" })
+                    @Ajax.ActionLink(" raxei", "Dashboard", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();foco();" }, new { @class = "navbar-brand logo" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -95,3 +95,10 @@
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/typeahead")
+
+<script>
+    function foco() {
+        alert('aaaa');
+        setTimeout(function () { $("#descricao-produto").focus(); }, 1000);
+    }
+</script>

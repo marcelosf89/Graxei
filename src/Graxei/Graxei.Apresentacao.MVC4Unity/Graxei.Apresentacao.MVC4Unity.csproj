@@ -298,6 +298,8 @@
     <Content Include="Content\graxei.css" />
     <Content Include="Content\imagens\b1.png" />
     <Content Include="Content\imagens\b2.png" />
+    <Content Include="Content\imagens\edit-icon.png" />
+    <Content Include="Content\imagens\editar.png" />
     <Content Include="Content\imagens\f1.png" />
     <Content Include="Content\imagens\f2.png" />
     <Content Include="Content\imagens\favicon.ico" />
@@ -369,7 +371,7 @@
     <Content Include="Areas\Administrativo\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Copiar.cshtml" />
-    <Content Include="Scripts\Administrativo\Produtos\pesquisar.js" />
+    <Content Include="Scripts\Graxei\Administrativo\Produtos\pesquisar.js" />
     <Content Include="Scripts\affix.js" />
     <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\application.js" />
@@ -445,6 +447,7 @@
     <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\popover.js" />
+    <Content Include="Scripts\Graxei\login.js" />
     <Content Include="Scripts\scrollspy.js" />
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\tooltip.js" />

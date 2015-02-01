@@ -53,7 +53,7 @@
                         {
                             <li>
                                 <form class="navbar-form navbar-left" role="search">
-                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success btn-max" })
+                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal", OnSuccess = "login" }, new { id = "loginId", @class = "btn btn-success btn-max" })
                                 </form>
                             </li>
                         }
@@ -170,6 +170,8 @@
             $("#openMenu").attr("estaAberto", $("#openMenu").attr("estaAberto") === "false")
         });
     });
+
+    
 </script>
 
 @if (ViewBag.q != null)
