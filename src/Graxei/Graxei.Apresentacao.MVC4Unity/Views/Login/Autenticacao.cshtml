@@ -10,11 +10,11 @@
                HttpMethod = "POST",
                OnSuccess = "loadPage",
                UpdateTargetId = "myError"
-           }; 
+           };
         }
         @using (Ajax.BeginForm("Autenticacao", "Login", ajaxOptions))
         {
-            
+
             @Html.ValidationSummary(true);
             <div class="modal-content">
                 <div class="modal-header">
@@ -39,7 +39,7 @@
                                         @Html.LabelFor(model => model.LoginOuEmail)
                                     </label>
                                     <div class="row form-group">
-                                        @Html.TextBoxFor(model => model.LoginOuEmail, new { @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.LoginOuEmail, new { id = "campoLogin", @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
@@ -73,15 +73,4 @@
     </div>
 </div>
 <div id="myModalRemote"></div>
-<script>
-    $('#Modal2').modal('show');
-
-    function loadPage(result) {
-        if (result.url) {
-            // if the server returned a JSON object containing an url 
-            // property we redirect the browser to that url
-            window.location.href = result.url;
-        }
-    }
-
-</script>
+<script src="~/Scripts/Graxei/login.js"></script>

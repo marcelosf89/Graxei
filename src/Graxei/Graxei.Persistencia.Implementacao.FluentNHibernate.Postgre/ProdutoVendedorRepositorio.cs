@@ -171,17 +171,19 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
-            string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, excluida) 
-                                         VALUES (:preco, :id_produto, :id_endereco, false)";
-            string queryAlterar = @"UPDATE produtos_vendedores SET preco = :preco, excluida = false
+            string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, descricao, excluida) 
+                                         VALUES (:preco, :id_produto, :id_endereco, :descricao, false)";
+            string queryAlterar = @"UPDATE produtos_vendedores SET preco = :preco, descricao = :descricao, excluida = false
                                      WHERE id_produto_vendedor = :id_produto_vendedor";
             for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
             {
+                ProdutoLojaPrecoContrato contratoAtual = produtoLojaPrecoContratos[i];
                 if (produtoLojaPrecoContratos[i].IdMeuProduto > 0)
                 {
                     SessaoAtual.CreateSQLQuery(queryAlterar)
-                           .SetParameter("preco", produtoLojaPrecoContratos[i].Preco)
-                           .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
+                           .SetParameter("preco", contratoAtual.Preco)
+                           .SetParameter("id_produto_vendedor", contratoAtual.IdMeuProduto)
+                           .SetParameter("descricao", contratoAtual.MinhaDescricao)
                            .ExecuteUpdate();
                 }
                 else
@@ -190,6 +192,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                            .SetParameter("id_produto", produtoLojaPrecoContratos[i].IdProduto)
                            .SetParameter("id_endereco", produtoLojaPrecoContratos[i].IdEndereco)
                            .SetParameter("preco", produtoLojaPrecoContratos[i].Preco)
+                           .SetParameter("descricao", contratoAtual.MinhaDescricao)
                            .ExecuteUpdate();
                 }
             }

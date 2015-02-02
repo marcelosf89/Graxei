@@ -14,7 +14,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Ajax.ActionLink(" raxei", "_Index", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-brand logo" })
+                    @Ajax.ActionLink("Graxei", "_Index", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { @class = "navbar-brand logo" })
                 </div>
                 <div class="navbar-collapse collapse">
                     @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL(); teste();" }, new { @class = "navbar-form navbar-left", role = "search", id = "fq" }))
@@ -61,7 +61,7 @@
                         {
                             <li>
                                 <form class="navbar-form navbar-left" role="search">
-                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success btn-max" })
+                                    @Ajax.ActionLink("login", "Autenticacao", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "btn btn-success btn-maxZ", id = "loginId" })
                                 </form>
                             </li>
                         }
@@ -103,7 +103,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p>&copy; 2014 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
+                <p>&copy; 2015 Graxei. &middot; <a href="#">Privacidade</a> &middot; <a href="#">Termos</a></p>
             </div>
         </div>
     </div>

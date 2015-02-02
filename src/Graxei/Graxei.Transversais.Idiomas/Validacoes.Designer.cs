@@ -160,6 +160,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tamanho máximo permitido é de 50 caracteres .
+        /// </summary>
+        public static string TamanhoMaximo50 {
+            get {
+                return ResourceManager.GetString("TamanhoMaximo50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O número máximo de telefones para esta loja foi atingido.
         /// </summary>
         public static string TamanhoMaximoTelefones {

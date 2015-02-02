@@ -1,6 +1,5 @@
 ﻿$('button[doc-type=paginar]').on("click", function () {
     var produtos = {};
-    console.log("foi btnpagina");
     produtos.IdLoja = $("#loja-chave").val();
     produtos.DescricaoProduto = $("#descricao-produto").val();
     produtos.MeusProdutos = $("#meus-produtos-chave").prop('checked');
@@ -52,16 +51,34 @@ function habilitarBotaoSalvar(me) {
 }
 
 function salvarPrecos() {
+    //if (!$("#meuForm").valid()) {
+    //    alert('s');
+    //    $.each($("textarea"), function (index, element) {
+    //        if (!$(element).hasClass("valid")) {
+    //            var parentDiv = $(element).parent("div");
+    //            var divExibir = parentDiv.siblings("div");
+    //            var label = parentDiv.children("label");
+    //            divExibir.show();
+    //            parentDiv.hide();
+    //        }
+    //    });
+    //    return;
+    //} else {
+    //    alert('valido');
+    //}
+
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {
         var td = $('td', this);
         var preco = $('input[name="precoProduto"]', td).val();
         var idProd = $(this).attr('id-prod');
         var meuProd = $(this).attr('meu-prod');
+        var descricao = $('textarea', td).val();
         var idEndereco = ("#")
         itens.push({
             IdProduto: idProd,
             IdMeuProduto: meuProd,
+            MinhaDescricao: descricao,
             IdEndereco: $("#enderecoAtual").val(),
             Preco: preco
         });
@@ -89,4 +106,40 @@ function salvarPrecos() {
         }
         $('#msg-produtos-atualizar').html(args.Mensagem)
     }
+}
+
+function habilitarEdicao(element) {
+    var parentDiv = $(element).parent("div");
+    var divExibir = parentDiv.siblings("div");
+    var label = parentDiv.children("label");
+    var textArea = divExibir.children("textarea");
+    if (textArea.val().trim().length == 0) {
+        textArea.val(label.html());
+    }
+    divExibir.show();
+    parentDiv.hide();
+    textArea.focus();
+}
+
+function exibirPainelEdicao(parentDiv, divToShow) {
+}
+
+function tratarCliqueEdicao(element) {
+    var textArea = $(element).siblings("textarea");
+    var div = $(element).parent("div");
+    var painelPrincipalDiv = $(div).siblings("div");
+    var currentLabel = painelPrincipalDiv.children("label");
+    var valorOriginal = currentLabel.data("original");
+    var botaoAtual = $(element).html();
+    switch (botaoAtual) {
+        case "OK":
+            $(currentLabel).text($(textArea).val());
+            break;
+        case "Desfazer":
+            currentLabel.text(valorOriginal);
+        default:
+            textArea.val("");
+    }
+    painelPrincipalDiv.show();
+    div.hide();
 }
