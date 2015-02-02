@@ -700,6 +700,29 @@ body {
     background-color: #FFFBF2;
 }
 
+.label-search {
+    position: absolute;
+    z-index: 90;
+    float: right;
+    right: 40px;
+    top: 4px;
+    font-size: larger;
+    color: white;
+}
+
+    .label-search a,
+    .label-search a:hover,
+    .label-search a:focus,
+    .label-search a:active {
+        color: #000;
+        text-decoration: none;
+    }
+
+.border-right {
+    border-right: 1px solid #C5C4C4;
+    padding-right: 30px;
+}
+
 @media (max-width: 767px) {
 
     a.btn.btn-success {

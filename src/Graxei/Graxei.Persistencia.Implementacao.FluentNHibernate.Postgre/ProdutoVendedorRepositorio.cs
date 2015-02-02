@@ -31,8 +31,18 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
+            String loja = GetLojaNaDescricao(descricao);
+
+            descricao = descricao.ToLower().Replace("loja:" + loja, "");
+
             String textos = descricao.Replace(" ", "");
             double textoL = textos.Length * 0.0074;
+
+            String lojasql = "";
+            if (!String.IsNullOrEmpty(loja))
+            {
+                lojasql = "and (l.nome = '" + loja + "' or l.url = '" + loja + "' )";
+            }
 
             String sql = @"
                 select pv.id_produto_vendedor as ""Id"", pv.Descricao ""Descricao"",  p.Codigo ""Codigo"",
@@ -41,10 +51,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
                 join enderecos en on en.id_endereco = pv.id_endereco
+                join lojas l on l.id_loja = en.id_loja
                 join telefones tl on en.id_endereco = tl.id_endereco
-                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val
+                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val {0}
                 order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
+
+            sql = String.Format(sql, lojasql);
 
             return SessaoAtual.CreateSQLQuery(sql)
           .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
@@ -53,6 +66,22 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
           .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
           .SetMaxResults(10)
           .List<PesquisaContrato>();
+        }
+
+        private String GetLojaNaDescricao(String descricao)
+        {
+            String loja = "";
+            if (descricao.ToLower().Contains("loja:"))
+            {
+                int idxOfLoja = descricao.ToLower().IndexOf("loja:");
+                int nIdxOf = descricao.Substring(idxOfLoja).IndexOf(' ');
+
+                if (nIdxOf <= 0)
+                    loja =   descricao.Substring(idxOfLoja + 5);
+                else
+                    loja = descricao.Substring(idxOfLoja + 5, nIdxOf - 5);
+            }
+            return  loja;
         }
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)

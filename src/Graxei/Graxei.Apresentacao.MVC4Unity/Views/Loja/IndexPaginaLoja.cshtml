@@ -34,9 +34,6 @@
                     <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" role="complementary">
                         <ul class="nav bs-docs-sidenav">
                             <li>
-                                @Ajax.ActionLink("Produtos", "Produtos", "Loja", new { controller = "Loja" }, new AjaxOptions() { UpdateTargetId = "bg-text-loja" })
-                            </li>
-                            <li>
                                 <a href="#">Endereços</a>
                             </li>
                         </ul>
@@ -53,6 +50,10 @@
 </div>
 <script>
     $(document).ready(function () {
+
+        sessionStorage.setItem("lojaNome_graxei", "@Model.Url");
+        $("#lbl-loja-nome").text("@Model.Url");
+
         $.ajax({
             async: true,
             url: "@Url.Action("GetQuantidadeProdutos", "Loja")",

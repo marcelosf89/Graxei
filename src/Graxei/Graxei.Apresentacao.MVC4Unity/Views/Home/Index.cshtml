@@ -18,8 +18,15 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     @using (Ajax.BeginForm("Pesquisar", "Home", new { Controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", HttpMethod = "GET", OnBegin = "openL();", OnComplete = "closeL(); teste();" }, new { @class = "navbar-form navbar-left", role = "search", id = "fq" }))
-                    {	  
+                    {
                         <div class="input-group nav-search">
+                            @Html.Hidden("lojaNome")
+                            <div class="label-search" style="visibility:hidden">
+                                <span id="lbl-loja" class="label label-warning">
+                                    <a href="javascript:RemoverLoja()"><span id="lbl-loja-nome"></span> [x]</a>
+                                </span>
+                            </div>
+
                             @Html.TextBox("q", Model, null, new { @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, id = "q", mozactionhint = "search" })
                             <span class="input-group-btn">
                                 <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
@@ -40,7 +47,8 @@
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li class="menu-a-login">@Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area = "Administrativo" }, new AjaxOptions())
+                                            <li class="menu-a-login">
+                                                @Html.ActionLink("Administrador", "Index", "Home", new { controller = "Home", area = "Administrativo" }, new AjaxOptions())
                                             </li>
                                             <li class="divider"></li>
                                             <li class="menu-a-login">@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login" }, new AjaxOptions())</li>
@@ -63,16 +71,6 @@
         </div>
     </div>
 </div>
-@if (User.Identity.IsAuthenticated)
-{
-    <div id="openMenu" class="menu-button-open hidden" estaaberto="false">
-        <i class="glyphicon glyphicon-th-large"></i>
-    </div>
-    <div id="menuAdmin" class="menu-body">
-        <ul>
-        </ul>
-    </div>
-}
 <div class="marketing container-body" id="myContent">
     @if (ViewBag.loja == null)
     {
@@ -159,6 +157,39 @@
     <script>
         $(document).ready(function () {
             var q = "@ViewBag.q";
+
+            var idxLoja = q.toLowerCase().indexOf("loja:");
+
+            var newurl = window.location.protocol + "//" + window.location.host /*+ window.location.pathname */ + '?q=@ViewBag.q';
+            if (idxLoja <= 0 && sessionStorage.getItem("lojaNome_graxei") != "") {
+                newurl = window.location.protocol + "//" + window.location.host /*+ window.location.pathname */ +
+                    '?q=@ViewBag.q' + ' loja:' + sessionStorage.getItem("lojaNome_graxei");
+            }
+            window.history.pushState({ path: newurl }, '', newurl);
+
+            if (idxLoja >= 0) {
+                var idxLojaFim = q.toLowerCase().indexOf(" ", idxLoja)
+                var loja = q.substring(idxLoja + 5);
+
+                if (idxLojaFim > 0) {
+                    loja = q.substring(idxLoja + 5, idxLojaFim);
+                }
+                sessionStorage.setItem("lojaNome_graxei", loja);
+                $("#q").val(q.toLowerCase().replace("loja:" + loja, "").trim());
+            }
+
+            $("#lojaNome").val(sessionStorage.getItem("lojaNome_graxei"));
+
+            var lojaApresentacao = sessionStorage.getItem("lojaNome_graxei");
+            if (lojaApresentacao.length > 4) {
+                lojaApresentacao = lojaApresentacao.substr(0, 4) + "...";
+            }
+            $("#lbl-loja-nome").text(lojaApresentacao);
+            if (sessionStorage.getItem("lojaNome_graxei") != "") {
+                $(".label-search").css("visibility", "visible");
+            }
+            $("#q").val(q);
+
             $("#fq").submit();
         });
     </script>

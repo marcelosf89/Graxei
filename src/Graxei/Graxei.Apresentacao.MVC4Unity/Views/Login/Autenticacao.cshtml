@@ -32,7 +32,7 @@
                         </div>
                     }
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 border-right">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>
@@ -53,6 +53,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
+                                    <input type="submit" class="btn btn-primary" value="@Rotulos.Entrar" />
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <a href="/Login/ContaGoogle" class="btn btn-block btn-social btn-google-plus">
@@ -60,11 +66,6 @@
                                 @Textos.GoogleAccount
                             </a>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        @Ajax.ActionLink(Textos.EsqueceuSuaSenha, "RedefinirSenha", "Login", new { controller = "Login" }, new AjaxOptions() { UpdateTargetId = "myModalRemote", OnComplete = " $('#Modal2').modal('toggle')" })
-                        <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
-                        <input type="submit" class="btn btn-primary" value="@Rotulos.Entrar"/>
                     </div>
                 </div>
             </div>
