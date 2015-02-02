@@ -9,5 +9,5 @@ function RemoverLoja() {
     $("#lojaNome").val("");
 
     $("#fq").submit();
-
+ 
 }
