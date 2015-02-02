@@ -1,0 +1,7 @@
+language: csharp
+csharp:
+  - dotNet40
+build_environment: win2013
+env: EnableNuGetPackageRestore=true
+script:
+ - msbuild src\Graxei\Graxei.sln
