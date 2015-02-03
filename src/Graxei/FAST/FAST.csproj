@@ -101,7 +101,6 @@
     <Compile Include="Thread\ExceptionDefs\ExceptionThread.cs" />
     <Compile Include="Thread\List\ThreadList.cs" />
     <Compile Include="Thread\MultiThreadFactory.cs" />
-    <Compile Include="Util\ADAutenticate.cs" />
     <Compile Include="Util\AssemblyResourceProvider.cs" />
     <Compile Include="Util\Query.cs" />
     <Compile Include="Util\SendEmail.cs" />
