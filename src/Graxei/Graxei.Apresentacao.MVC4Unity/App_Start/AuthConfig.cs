@@ -1,5 +1,5 @@
 ﻿using DotNetOpenAuth.GoogleOAuth2;
-using Microsoft.Web.WebPages.OAuth;
+//using Microsoft.Web.WebPages.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Graxei.Apresentacao.MVC4Unity
                 "329386834568-nfgtohevn3maqca3at0gvqqd17plipvt.apps.googleusercontent.com",
                 "FsKU-7qwbJC1XTwsTG54xuym");
             Dictionary<string, object> extraData = new Dictionary<string, object>();
-            OAuthWebSecurity.RegisterClient(client, "Google", extraData);
+            //OAuthWebSecurity.RegisterClient(client, "Google", extraData);
 
             //OAuthWebSecurity.RegisterGoogleClient("Graxei");
         }
