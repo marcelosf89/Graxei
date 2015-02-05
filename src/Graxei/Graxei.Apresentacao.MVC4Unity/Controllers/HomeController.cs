@@ -1,4 +1,6 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Aplicacao.Contrato.Operacoes;
+using Graxei.Aplicacao.Implementacao.Operacoes;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
@@ -17,11 +19,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas)
+        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas,IGerenciamentoMensageria gerenciamentoMensageria)
         {
             _iConsultasProdutoVendedor = consultaVendedor;
             _consultasPlanos = consultasPlanos;
             _consultasLojas = consultasLojas;
+            _gerenciamentoMensageria = gerenciamentoMensageria;
         }
         //
         // GET: /Home/
@@ -182,23 +185,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             {
                 return PartialView("Contato", contatoModel);
             }
-            string _mailserver = ConfigurationManager.AppSettings["mailserver"];
-            string _mailuser = ConfigurationManager.AppSettings["mailuser"];
-            string _mailpassword = ConfigurationManager.AppSettings["mailpassword"];
-            string _contatonome = ConfigurationManager.AppSettings["contatonome"];
-            string _contatoendereco = ConfigurationManager.AppSettings["contatoendereco"];
 
             try
             {
-                FAST.Utils.SendEmail mail = new FAST.Utils.SendEmail();
-                mail.Subject = contatoModel.Assunto;
-                mail.Body = contatoModel.Mensagem;
-                mail.Host = _mailserver;
-                mail.Port = 25;
-                mail.AddTo(_contatoendereco, _contatonome); ;
-                mail.SetFrom(contatoModel.Email, contatoModel.Nome);
-                mail.SetCredentials(_mailuser, _mailpassword);
-                mail.Send();
+                Mensagem mensagem = new Mensagem(contatoModel.Assunto, contatoModel.Mensagem, contatoModel.Nome, contatoModel.Email);
+                ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contatonome"],ConfigurationManager.AppSettings["mailpassword"],ConfigurationManager.AppSettings["mailserver"],int.Parse(ConfigurationManager.AppSettings["mailport"]), ConfigurationManager.AppSettings["mailuser"], ConfigurationManager.AppSettings["contatoendereco"]);
+                _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail); 
             }
             catch (Exception)
             {
@@ -231,23 +223,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             {
                 return PartialView("ContatoAnuncio", contatoModel);
             }
-            string _mailserver = ConfigurationManager.AppSettings["mailserver"];
-            string _mailuser = ConfigurationManager.AppSettings["mailuser"];
-            string _mailpassword = ConfigurationManager.AppSettings["mailpassword"];
-            string _contatonome = ConfigurationManager.AppSettings["contatonome"];
-            string _contatoendereco = ConfigurationManager.AppSettings["contatoendereco"];
 
             try
             {
-                FAST.Utils.SendEmail mail = new FAST.Utils.SendEmail();
-                mail.Subject = contatoModel.Assunto;
-                mail.Body = contatoModel.Mensagem;
-                mail.Host = _mailserver;
-                mail.Port = 25;
-                mail.AddTo(_contatoendereco, _contatonome); ;
-                mail.SetFrom(contatoModel.Email, contatoModel.Nome);
-                mail.SetCredentials(_mailuser, _mailpassword);
-                mail.Send();
+                Mensagem mensagem = new Mensagem(contatoModel.Assunto, contatoModel.Mensagem, contatoModel.Nome, contatoModel.Email);
+                ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["mailpassword"], ConfigurationManager.AppSettings["mailserver"], int.Parse(ConfigurationManager.AppSettings["mailport"]), ConfigurationManager.AppSettings["mailuser"], ConfigurationManager.AppSettings["contatoendereco"]);
+                _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail); 
             }
             catch (Exception)
             {
@@ -287,5 +268,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         IConsultasProdutoVendedor _iConsultasProdutoVendedor;
         IConsultasPlanos _consultasPlanos;
         IConsultasLojas _consultasLojas;
+        IGerenciamentoMensageria _gerenciamentoMensageria;
     }
 }

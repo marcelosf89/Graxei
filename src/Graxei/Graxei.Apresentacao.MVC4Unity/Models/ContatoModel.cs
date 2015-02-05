@@ -9,7 +9,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Models
 {
     public class ContatoModel
     {
-
         public String Assunto { get; set; }
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NomeObrigatorio")]
         public String Nome { get; set; }
