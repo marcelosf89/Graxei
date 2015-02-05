@@ -61,6 +61,8 @@
     <Compile Include="Bairro.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="Cidade.cs" />
+    <Compile Include="ConfiguracaoMail.cs" />
+    <Compile Include="Mensagem.cs" />
     <Compile Include="Logradouro.cs" />
     <Compile Include="Endereco.cs" />
     <Compile Include="Estado.cs" />
