@@ -6,14 +6,14 @@ using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 using Graxei.Apresentacao.MVC4Unity.Extension;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public abstract class AbstractPaginacao : IPaginacaoChain
     {
-        public AbstractPaginacao(AjaxHelper ajaxHelper, TotalElementosLista totalElementosLista,
-            PaginaAtualLista elementoAtualLista,
-            int quantidadeMaximaLinksPaginacaoPorVez, string controller, string action)
+        public AbstractPaginacao(TotalElementosLista totalElementosLista,
+            PaginaAtualLista elementoAtualLista, int quantidadeMaximaLinksPaginacaoPorVez, ILinkBuilderStrategy linkBuilderStrategy)
         {
             _totalElementosLista = totalElementosLista;
             _elementoAtualLista = elementoAtualLista;
@@ -23,12 +23,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             {
                 _totalPaginas = _totalElementosLista.Total / 10;
             }
-            _ajaxHelper = ajaxHelper;
-            _controller = controller;
-            _action = action;
-            _routeValueDictionary = new RouteValueDictionary();
-            _routeValueDictionary.Add("Controller", _controller);
-            _routeValueDictionary.Add("Action", _action);
+            _linkBuilderStrategy = linkBuilderStrategy;
         }
         
         public abstract bool RegraAtende();
@@ -47,9 +42,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("<div class=\"btn-group\">");
 
-                List<string> links = BuildLinks();
-
-                SubstituirElementoAtual(links);
+                List<string> links = _linkBuilderStrategy.Build(GetPrimeiraPaginaGrupoAtual(), GetUltimaPaginaGrupoAtual());
+                links = _linkBuilderStrategy.SubstituirElementoAtual(GetElementoParaSubstituir());
                 for (int i = 0; i < links.Count; i++)
                 {
                     stringBuilder.Append(links[i]);
@@ -67,41 +61,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         private void SubstituirElementoAtual(List<string> links)
         {
             long elementoParaSubstituir = GetElementoParaSubstituir();
-            links.RemoveAt((int)elementoParaSubstituir);
-            string atual =
-                _ajaxHelper.IconActionLink(string.Empty,
-                    _elementoAtualLista.Atual.ToString(CultureInfo.InvariantCulture), string.Empty, string.Empty,
-                    _routeValueDictionary, _ajaxOptions,
-                    new Dictionary<string, object> { { "class", "btn btn-warning" }, { "disabled", "disabled" } })
-                    .ToHtmlString();
-            links.Insert((int)elementoParaSubstituir, atual);
-        }
-
-        public List<string> BuildLinks()
-        {
-            SetUpAjaxOptions();
-            List<string> links = new List<string>();
-            long irDe = GetPrimeiraPaginaGrupoAtual();
-            long irAte = GetUltimaPaginaGrupoAtual();
-            for (long i = irDe; i <= irAte; i++)
-            {
-                RouteValueDictionary route = new RouteValueDictionary();
-                route.Add("numeroPagina", i);
-                links.Add(
-                    _ajaxHelper.IconActionLink("", i.ToString(CultureInfo.InvariantCulture), _action, _controller,
-                        route, _ajaxOptions, new Dictionary<string, object> { { "class", "btn btn-default" } })
-                        .ToHtmlString());
-            }
-            return links;
-        }
-
-        private void SetUpAjaxOptions()
-        {
-            _ajaxOptions = new AjaxOptions();
-            _ajaxOptions.OnBegin = "openL()";
-            _ajaxOptions.OnComplete = "closeL()";
-            _ajaxOptions.UpdateTargetId = "myContent";
-            _ajaxOptions.HttpMethod = "GET";
+            
         }
 
         public IPaginacaoChain ProximoElemento { get; private set; }
@@ -111,11 +71,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             ProximoElemento = paginacaoChain;
         }
 
-        public AjaxOptions AjaxOptions
+        public ILinkBuilderStrategy LinkBuilderStrategy
         {
             get
             {
-                return _ajaxOptions;
+                return _linkBuilderStrategy;
             }
         }
 
@@ -123,10 +83,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         protected PaginaAtualLista _elementoAtualLista;
         protected int _quantidadeMaximaLinksPaginacaoPorVez;
         protected long _totalPaginas;
-        protected AjaxHelper _ajaxHelper;
-        protected AjaxOptions _ajaxOptions;
-        protected string _controller;
-        protected string _action;
-        protected RouteValueDictionary _routeValueDictionary;
+        protected ILinkBuilderStrategy _linkBuilderStrategy;
     }
 }

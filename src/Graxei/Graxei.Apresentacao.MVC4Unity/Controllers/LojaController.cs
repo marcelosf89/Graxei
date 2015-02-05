@@ -76,6 +76,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return null;
         }
         
+        public ActionResult Produtos(Loja loja)
+        {
+            return View(loja);
+        }
 
         private IConsultasEnderecos _consultasEnderecos;
         private IConsultasLojas _consultasLojas;

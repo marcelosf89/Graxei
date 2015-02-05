@@ -258,4 +258,7 @@
   <data name="VariasImagensSelecionadas" xml:space="preserve">
     <value>Favor selecione somente uma imagem</value>
   </data>
+  <data name="ListaNaoAtualizada" xml:space="preserve">
+    <value>Sua lista não pôde ser atualizada. Por favor contate o suporte.</value>
+  </data>
 </root>

@@ -61,6 +61,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ação.
+        /// </summary>
+        public static string Acao {
+            get {
+                return ResourceManager.GetString("Acao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adicionar.
         /// </summary>
         public static string Adicionar {

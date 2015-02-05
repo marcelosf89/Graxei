@@ -11,6 +11,7 @@ using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
@@ -54,21 +55,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             try
             {
-                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model.DescricaoProduto, model.MeusProdutos, model.IdLoja, 1, 10, 0);
-                return View(produtos);
-            }
-            catch (ProdutoForaDoLimiteException e)
-            {
-                IList<Produto> produtos = e.List;
-                return View(produtos);
-            }
-        }
-
-        public ActionResult LinkPesquisar(string criterio, bool meusProdutos, long idLoja, int pagina, int totalPaginas, int totalElementos)
-        {
-            try
-            {
-                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(criterio, meusProdutos, idLoja, 1, 10, 0);
+                if (model.PaginaAtualLista == 0)
+                {
+                    model.PaginaAtualLista = 1;
+                }
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model.DescricaoProduto, model.MeusProdutos, model.IdLoja, model.PaginaAtualLista, 10, model.TotalElementosLista);
                 return View(produtos);
             }
             catch (ProdutoForaDoLimiteException e)
@@ -81,8 +72,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         [HttpPost]
         public JsonResult Salvar(IList<ProdutoLojaPrecoContrato> itens)
         {
-            _gerenciamentoProdutos.SalvarLista(itens);
-            return null;
+            try
+            {
+                _gerenciamentoProdutos.SalvarLista(itens);
+            }
+            catch (GraxeiException)
+            {
+                return Json(new { Sucesso = false, Mensagem =  Erros.ListaNaoAtualizada }); ;
+            }
+
+            return Json(new { Sucesso = true, Mensagem = Sucesso.ListaAtualizada });
         }
 
         private readonly IConsultasLojas _consultasLojas;

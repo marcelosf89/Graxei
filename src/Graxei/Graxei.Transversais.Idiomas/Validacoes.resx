@@ -150,6 +150,9 @@
   <data name="TamanhoMaximo250" xml:space="preserve">
     <value>O número máximo de caracteres é de 250</value>
   </data>
+  <data name="TamanhoMaximo50" xml:space="preserve">
+    <value>Tamanho máximo permitido é de 50 caracteres </value>
+  </data>
   <data name="TamanhoMaximoTelefones" xml:space="preserve">
     <value>O número máximo de telefones para esta loja foi atingido</value>
   </data>

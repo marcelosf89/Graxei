@@ -26,7 +26,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
             _listaProdutosLojaSqlResolverFactory = listaProdutosLojaSqlResolverFactory;
         }
 
-        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool somenteMeusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos)
+        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool somenteMeusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos)
         {
             IListaProdutosLojaSqlResolver sqlResolver = _listaProdutosLojaSqlResolverFactory.Get(idLoja, criterio, somenteMeusProdutos);
             long total = totalElementos;

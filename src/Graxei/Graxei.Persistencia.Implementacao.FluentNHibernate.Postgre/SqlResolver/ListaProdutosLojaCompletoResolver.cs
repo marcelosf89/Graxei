@@ -1,4 +1,5 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.Constantes;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using NHibernate;
@@ -15,10 +16,10 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
     {
         private const string Consulta =
                      @"FROM produtos p
-                  LEFT JOIN produtos_vendedores pv ON p.id_produto = pv.id_produto AND lower(pv.descricao) like :descricao
+                  LEFT JOIN produtos_vendedores pv ON p.id_produto = pv.id_produto
                   LEFT JOIN enderecos e ON pv.id_endereco = e.id_endereco
                   LEFT JOIN lojas l ON e.id_loja = l.id_loja AND l.id_loja = :id 
-                      WHERE lower(p.descricao) like :descricao";
+                      WHERE (lower(p.descricao) like :descricao OR lower(pv.descricao) like :descricao)";
 
         private const string Ordem = "ORDER BY pv.descricao";
 
@@ -48,13 +49,16 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
         public ListaProdutosLojaCompletoResolver(long idLoja, string criterio)
         {
             _idLoja = idLoja;
+            if (string.IsNullOrEmpty(criterio))
+            {
+                throw new ArgumentException("Critério deve ser preenchido");
+            }
             _criterio = criterio;
         }
 
         public IList<ListaProdutosLojaContrato> Get(int pagina, int tamanhoPagina)
         {
-            string campos = @"SELECT p.id_produto ""Id"", p.codigo ""Codigo"", pv.descricao ""Descricao"", pv.id_produto_vendedor ""IdMeuProduto"", e.id_endereco ""IdEndereco"", pv.preco ""Preco"", pv.excluida ""Excluido""";
-            string sql =  string.Format("{0} {1} {2}", campos, Consulta, Ordem);
+            string sql = string.Format("{0} {1} {2}", ListaProdutosSqlResolverConstantes.Campos, Consulta, Ordem);
             int primeiroResultado = (tamanhoPagina * pagina) - tamanhoPagina;
             IList<ListaProdutosLojaContrato> lista = 
                  SessaoAtual.CreateSQLQuery(sql)

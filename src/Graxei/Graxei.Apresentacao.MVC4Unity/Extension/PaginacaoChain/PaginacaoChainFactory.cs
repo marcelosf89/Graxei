@@ -2,13 +2,14 @@
 using System.Web.Routing;
 using Graxei.Transversais.ContratosDeDados.Interfaces;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
 {
     public class PaginacaoChainFactory
     {
 
-        public PaginacaoChainFactory(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, string controller, string action)
+        public PaginacaoChainFactory(AjaxHelper ajaxHelper, TotalElementosLista listaTotalElementos, PaginaAtualLista listaElementoAtual, int maximoElementosPaginacao, string controller, string action, ILinkBuilderStrategy linkBuilderStrategy)
         {
             _listaTotalElementos = listaTotalElementos;
             _listaElementoAtual = listaElementoAtual;
@@ -16,14 +17,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
             _controller = controller;
             _action = action;
             _ajaxHelper = ajaxHelper;
+            _linkBuilderStrategy = linkBuilderStrategy;
         }
 
         public IPaginacaoChain ConstruirCadeiaDePaginacao()
         {
-            IPaginacaoChain primeiroElemento = new ImparMenosQueMaximoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _controller, _action);
-            IPaginacaoChain segundoElemento = new UltimoGrupoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _controller, _action);
+            IPaginacaoChain primeiroElemento = new ImparMenosQueMaximoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
+            IPaginacaoChain segundoElemento = new UltimoGrupoElementos(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
             primeiroElemento.SetProximoElemento(segundoElemento);
-            IPaginacaoChain terceiroElemento = new ImparCentralizar(_ajaxHelper, _listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _controller, _action);
+            IPaginacaoChain terceiroElemento = new ImparCentralizar(_listaTotalElementos, _listaElementoAtual, _maximoElementosPaginacao, _linkBuilderStrategy);
             segundoElemento.SetProximoElemento(terceiroElemento);
             return primeiroElemento;
         }
@@ -39,5 +41,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         private string _action;
 
         private AjaxHelper _ajaxHelper;
+
+        private ILinkBuilderStrategy _linkBuilderStrategy;
     }
 }

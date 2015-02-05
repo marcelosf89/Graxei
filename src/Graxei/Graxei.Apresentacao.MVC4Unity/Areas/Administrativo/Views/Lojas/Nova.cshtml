@@ -12,25 +12,25 @@
                         <li>
                             @{
             AjaxOptions ajaxCadastro = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
-                                @Ajax.ActionLink("Cadastro", "NovaLojaAjax", "Lojas", new { Controller = "Lojas", idLoja = Model.LojaContrato.Id }, ajaxCadastro)
+            @Ajax.ActionLink("Cadastro", "NovaLojaAjax", "Lojas", new { Controller = "Lojas", idLoja = Model.LojaContrato.Id }, ajaxCadastro)
                             }
                         </li>
                         <li>
                             @{
             AjaxOptions ajaxAdicionarLogo = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
-                                @Ajax.ActionLink("Logo", "AdicionarLogo", "Lojas", new { Controller = "Lojas", idLoja = Model.LojaContrato.Id }, ajaxAdicionarLogo)
+            @Ajax.ActionLink("Logo", "AdicionarLogo", "Lojas", new { Controller = "Lojas", idLoja = Model.LojaContrato.Id }, ajaxAdicionarLogo)
                             }
                         </li>
                         <li>
                             @{
             AjaxOptions ajaxHabilitarUrl = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
-                                @Ajax.ActionLink("Url", "AdicionarUrl", "Lojas", new { Controller = "Lojas", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
+            @Ajax.ActionLink("Url", "AdicionarUrl", "Lojas", new { Controller = "Lojas", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
                             }
                         </li>
                         <li>
                             @{
             AjaxOptions ajaxenderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
-                                @Ajax.ActionLink(Rotulos.Enderecos, "ListaEnderecos", "Enderecos", new { Controller = "Enderecos", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
+            @Ajax.ActionLink(Rotulos.Enderecos, "ListaEnderecos", "Enderecos", new { Controller = "Enderecos", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
                             }
                         </li>
 

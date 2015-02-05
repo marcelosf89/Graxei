@@ -39,8 +39,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Pesquisar(string q)
+        public ActionResult Pesquisar(string q, string lojaNome)
         {
+            q = GetQuerySearch(q, lojaNome);
             DateTime dtIni = DateTime.Now;
             IList<PesquisaContrato> list;
             IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];
@@ -64,6 +65,30 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
             ViewBag.newq = q;
             return View(list);
+        }
+
+        private string GetQuerySearch(string q, string lojaNome)
+        {
+            if (!String.IsNullOrEmpty(lojaNome) && !q.ToLower().Contains("loja:" + lojaNome))
+            {
+                int idxOfLoja = q.ToLower().IndexOf("loja:");
+                if (idxOfLoja >= 0)
+                {
+                    int nIdxOf = q.Substring(idxOfLoja).IndexOf(' ');
+
+                    string loja = q.Substring(idxOfLoja + 5);
+                    if (nIdxOf > 0)
+                        loja = q.Substring(idxOfLoja + 5, nIdxOf - 5);
+
+                    q = q.Replace("loja:" + lojaNome, " loja:" + loja);
+                    lojaNome = loja;
+                }
+                else
+                {
+                    q = q + " loja:" + lojaNome;
+                }
+            }
+            return q;
         }
 
         [AllowAnonymous]
@@ -216,7 +241,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult IndexLoja(String lojaNome)
+        public ActionResult IndexLoja(String lojaNome, String q)
         {
             Loja loja = _consultasLojas.GetPorUrl(lojaNome);
 
@@ -224,7 +249,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
                 return View("Error404");
 
             ViewBag.loja = loja;
+
+            if (!String.IsNullOrEmpty(q))
+            {
+                q = GetQuerySearch(q, lojaNome);
+                ViewBag.q = q;
+            }
             return View("Index");
+
         }
 
         [AllowAnonymous]

@@ -5,7 +5,7 @@ using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
-using Microsoft.Web.WebPages.OAuth;
+//using Microsoft.Web.WebPages.OAuth;
 using DotNetOpenAuth.AspNet;
 using System.Web.Security;
 using DotNetOpenAuth.GoogleOAuth2;
@@ -47,17 +47,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
             GoogleOAuth2Client.RewriteRequest();
-            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
-            if (!result.IsSuccessful)
-            {
+            //AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            //if (!result.IsSuccessful)
+            //{
                 return RedirectToAction("ExternalLoginFailure");
-            }
+            //}
 
-            Usuario usuarioAutenticado = _consultasLogin.GetPorEmail(result.ExtraData["email"]);
-            if (usuarioAutenticado == null)
+            //Usuario usuarioAutenticado = _consultasLogin.GetPorEmail(result.ExtraData["email"]);
+            //if (usuarioAutenticado == null)
                 throw new System.Exception("O Usuario não existe");
 
-            FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
+           // FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false);
 
             //if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             //{
@@ -67,14 +67,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 // If the current user is logged in add the new account
-                OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
+               // OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 // User is new, ask for their desired membership name
-                string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+                //string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
+                //ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
                 ViewBag.ReturnUrl = returnUrl;
                 return RedirectToAction("Index", "Home");
             }
@@ -143,7 +143,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
+               // OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
             }
         }
     }

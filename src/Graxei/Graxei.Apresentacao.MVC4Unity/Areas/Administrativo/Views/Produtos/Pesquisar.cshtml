@@ -3,125 +3,74 @@
 @{
     if (Model.Lista != null && Model.Lista.Count() > 0)
     {
-        <input type="hidden" id="enderecoAtual" value="@Model.Lista[0].IdEndereco"/>
+        <input type="hidden" id="enderecoAtual" value="@Model.Lista[0].IdEndereco" />
     }
 }
-<table id="tabela-precos" class="table table-striped table-hover table-bordered">
-    <thead>
-        <tr>
-            <th class="">#</th>
-            <th class="col-md-2 col-lg-2">@Rotulos.Codigo</th>
-            <th class="col-md-8 col-lg-8">@Rotulos.Descricao</th>
-            <th class="col-md-2 col-lg-2">@Rotulos.Valor</th>
-        </tr>
-        <tr>
-            <th colspan="5">
-                @*@Ajax.LinkPaginacao("Produtos", "Pesquisar", Model.Atual, Model.Total, 5)*@
-                @*LinkPaginacaoRangePagina("Pesquisar", "Produtos", "paginaSelecionada", (int)ViewBag.PesquisarModel.PaginaSelecionada, mIdx, 2, "myContentProd")*@
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLojaContrato item in Model.Lista)
-        {
-            string idPreco = "valor" + item.Id;
-            string pertencente = item.IsMeuProduto ? "success" : string.Empty;
-            <tr id-prod="@item.Id" meu-prod="@item.IdMeuProduto" class="@pertencente">
-                <td>
-                    <input type="checkbox" doc-type="cp" checked="@item.IsMeuProduto" />
-                </td>
-                <td class="col-md-2 col-md-2">@item.Codigo</td>
-                <td class="col-md-8 col-md-8">@item.Descricao</td>
-                <td class="col-md-2 col-md-2">
-                    <div class="input-group">
-                        <span class="input-group-addon">R$</span>
-                        <input id="@idPreco" name="precoProduto" type="number" value="@item.Preco" data-preco-original="@item.Preco" class="form-control valor-produto" onkeyup="habilitarBotaoSalvar();" onkeypress='return validate(event);' min="0" step="any" doc-type="ip" id-prod="@item.Id">
-                    </div>
-                </td>
+<script src="~/Scripts/jquery-2.1.3.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div id="msg-produtos-atualizar"></div>
+@Html.HiddenFor(m => m.Total.Total, new { id = "total-elementos" })
+@Html.HiddenFor(m => m.Atual.Atual, new { id = "elemento-atual" })
+<input type="hidden" id="salvar-produtos-url" value="@Url.Action("Salvar", "Produtos")" />
+<input type="hidden" id="pesquisar-produtos-url" value="@Url.Action("Pesquisar", "Produtos")" />
+<form id="meuForm">
+    <table id="tabela-precos" class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class="">#</th>
+                <th class="col-md-2 col-lg-2">@Rotulos.Codigo</th>
+                <th class="col-md-8 col-lg-8">@Rotulos.Descricao</th>
+                <th class="col-md-2 col-lg-2">@Rotulos.Valor</th>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <th colspan="5">
-                @Ajax.LinkPaginacao("Produtos", "Pesquisar", Model.Atual, Model.Total, 5)
-            </th>
-        </tr>
-    </tfoot>
-</table>
-
-<script>
-
-    $("input[doc-type=cp]").on("click", function () {
-        var id = $(this).parents("tr").attr("id-prod");
-        $("tr[id-prod=" + id + "]").toggleClass("success");
-    });
-
-    $("input[doc-type=ip]").on("keyup", function () {
-        var valor = $(this).val();
-        if (valor == null || valor < 0) {
-            valor = 0;
-        }
-        if (valor > 0) {
-            var id = $(this).parents("tr").attr("id-prod");
-            $("tr[id-prod=" + id + "]").removeClass("success");
-        } else {
-            $("tr[id-prod=" + id + "]").addClass("success");
-        }
-    });
-    //$("input[doc-type=ip]").on("focusout", function () {
-    //    var id = $(this).attr("id-prod");
-    //    if ($(this).val() != "") {
-    //        $("tr[id-prod=" + id + "]").addClass("success");
-    //        $("input[id-prod=" + id + "]").attr("checked", "checked");
-    //    } else {
-    //        $("tr[id-prod=" + id + "]").removeClass("success");
-    //        $("input[id-prod=" + id + "]").removeAttr("checked");
-    //    }
-    //});
-
-    function habilitarBotaoSalvar(me) {
-        var button = $('#salvarPrecos');
-        button.addClass("invisible");
-        $(".valor-produto").each(function () {
-            if ($(this).val() != $(this).data("preco-original")) {
-                button.removeClass("invisible");
-                return false;
+        </thead>
+        <tbody>
+            @foreach (Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLojaContrato item in Model.Lista)
+            {
+                string idPreco = "valor" + item.Id;
+                string pertencente = item.IsMeuProduto ? "success" : string.Empty;
+                string idTextArea = "ta" + item.Id;
+                string nomeTextArea = "nome.ta" + item.Id;
+                <tr id-prod="@item.Id" meu-prod="@item.IdMeuProduto" class="@pertencente">
+                    <td>
+                        <input type="checkbox" doc-type="cp" checked="@item.IsMeuProduto" />
+                    </td>
+                    <td class="col-md-2 col-md-2">@item.Codigo</td>
+                    <td id="td-lista" class="col-md-8 col-md-8">
+                        <div>
+                            <button type="button" class="cancel btn btn-link" onclick="habilitarEdicao(this);">
+                                <img src="~/Content/imagens/editar.png" />
+                            </button>
+                            <label ondblclick="habilitarEdicao(this);" data-original="@item.Descricao">@item.Descricao</label>
+                        </div>
+                        <div style="display: none">
+                            <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 50 caracteres" data-val-length-max="50" rows="2"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="@nomeTextArea" data-valmsg-replace="true"></span>
+                            <button type="button" class="btn btn-group-sm btn-default cancel" onclick="tratarCliqueEdicao(this);">OK</button>
+                            <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
+                            <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Desfazer</button>
+                        </div>
+                    </td>
+                    <td class="col-md-2 col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">R$</span>
+                            <input id="@idPreco" name="precoProduto" type="number" value="@item.Preco" data-preco-original="@item.Preco" class="form-control valor-produto" onkeyup="habilitarBotaoSalvar();" onkeypress='return validate(event);' min="0" step="any" doc-type="ip" id-prod="@item.Id">
+                        </div>
+                    </td>
+                </tr>
             }
-        });
-    }
+        </tbody>
 
-    function salvarPrecos() {
-        var itens = [];
-        $('#tabela-precos tbody tr').each(function () {
-            var td = $('td', this);
-            var preco = $('input[name="precoProduto"]', td).val();
-            var idProd = $(this).attr('id-prod');
-            var meuProd = $(this).attr('meu-prod');
-            var idEndereco = ("#")
-            itens.push({
-                IdProduto: idProd,
-                IdMeuProduto: meuProd,
-                IdEndereco: $("#enderecoAtual").val(),
-                Preco: preco
-            });
-        });
+        <tfoot>
+            <tr>
+                <th colspan="5">
+                    @Ajax.LinkPaginacaoPesquisaProdutos(Model.Atual, Model.Total, 5)
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</form>
 
-        var json = { itens: itens };
-
-        $.ajax({
-            url: "@Url.Action("Salvar", "Produtos")",
-            type: "POST",
-            data: JSON.stringify(json),
-            dataType: "json",
-            contentType: 'application/json; charset=utf-8',
-            success: function (result) {
-
-            },
-            error: function (request) {
-                // ...
-            }
-        });
-    }
-
-</script>
+@*@Scripts.Render("~/Administrativo/Produtos/Pesquisar/js")*@
+<script src="~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js"></script>

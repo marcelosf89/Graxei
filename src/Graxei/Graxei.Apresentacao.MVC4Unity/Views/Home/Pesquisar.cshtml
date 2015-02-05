@@ -37,7 +37,7 @@
     }
     @{int idxRow = 0;}
     @foreach (Graxei.Transversais.ContratosDeDados.PesquisaContrato pv in Model)
-    {    
+    {
         <div class="row row@(idxRow % 2)">
             <div class="col-md-12">
                 <div class="thumbnail thumbnail-search">
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     @*@foreach (Graxei.Modelo.Telefone tel in @pv.Numeros)
-                                {
+                                        {
                                     *@<div class="row">
                                         <div class="col-md-12">
                                             @pv.Numero
@@ -81,7 +81,7 @@
     }
     <div class="row pag-btn-group">
         <div class="span12">
-            @{            
+            @{
                 long idx = ((ViewBag.PesquisarModel.PaginaSelecionada <= 2) ? 0 : ViewBag.PesquisarModel.PaginaSelecionada - 2);
 
                 long mIdx = ViewBag.PesquisarModel.NumeroMaximoPagina != null ? ViewBag.PesquisarModel.NumeroMaximoPagina : (idx + 2);
@@ -104,8 +104,38 @@
 {
     <script>
         function teste() {
-            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=@ViewBag.newq';
+            var newurl = window.location.protocol + "//" + window.location.host /*+ window.location.pathname */ + '?q=@ViewBag.newq';
             window.history.pushState({ path: newurl }, '', newurl);
+
+            var q = "@ViewBag.newq";
+            var idxLoja = q.toLowerCase().indexOf("loja:");
+            if (idxLoja >= 0) {
+                var idxLojaFim = q.toLowerCase().indexOf(" ", idxLoja)
+                var loja = q.substring(idxLoja + 5);
+
+                if (idxLojaFim > 0) {
+                    loja = q.substring(idxLoja + 5, idxLojaFim);
+                }
+                sessionStorage.setItem("lojaNome_graxei", loja);
+                $("#q").val(q.toLowerCase().replace("loja:" + loja, "").trim());
+                var lojaApresentacao = loja;
+                if (lojaApresentacao.length > 4) {
+                    lojaApresentacao = lojaApresentacao.substr(0, 4) + "...";
+                }
+                $("#lbl-loja-nome").text(lojaApresentacao);
+                $("#lojaNome").val(loja);
+                $(".label-search").css("visibility", "visible");
+            }
+
+            if (sessionStorage.getItem("lojaNome_graxei") != "") {
+                $(".label-search").css("visibility", "visible");
+            }
+        }
+        function InsertUrlLojaProdutos() {
+            $("#q").val("@ViewBag.newq");
+
+            teste();
+            $("#lbl-loja-nome").val(sessionStorage.getItem("lojaNome_graxei"));
         }
     </script>
 }
@@ -114,5 +144,6 @@ else
     <script>
         function teste() {
         }
+        function InsertUrlLojaProdutos() { }
     </script>
 }

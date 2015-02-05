@@ -31,8 +31,18 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
+            String loja = GetLojaNaDescricao(descricao);
+
+            descricao = descricao.ToLower().Replace("loja:" + loja, "");
+
             String textos = descricao.Replace(" ", "");
             double textoL = textos.Length * 0.0074;
+
+            String lojasql = "";
+            if (!String.IsNullOrEmpty(loja))
+            {
+                lojasql = "and (l.nome = '" + loja + "' or l.url = '" + loja + "' )";
+            }
 
             String sql = @"
                 select pv.id_produto_vendedor as ""Id"", pv.Descricao ""Descricao"",  p.Codigo ""Codigo"",
@@ -41,10 +51,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
                 join enderecos en on en.id_endereco = pv.id_endereco
+                join lojas l on l.id_loja = en.id_loja
                 join telefones tl on en.id_endereco = tl.id_endereco
-                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val
+                where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val {0}
                 order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
+
+            sql = String.Format(sql, lojasql);
 
             return SessaoAtual.CreateSQLQuery(sql)
           .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
@@ -53,6 +66,22 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
           .SetFirstResult((page * 10) < 0 ? 1 : (page * 10))
           .SetMaxResults(10)
           .List<PesquisaContrato>();
+        }
+
+        private String GetLojaNaDescricao(String descricao)
+        {
+            String loja = "";
+            if (descricao.ToLower().Contains("loja:"))
+            {
+                int idxOfLoja = descricao.ToLower().IndexOf("loja:");
+                int nIdxOf = descricao.Substring(idxOfLoja).IndexOf(' ');
+
+                if (nIdxOf <= 0)
+                    loja =   descricao.Substring(idxOfLoja + 5);
+                else
+                    loja = descricao.Substring(idxOfLoja + 5, nIdxOf - 5);
+            }
+            return  loja;
         }
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
@@ -142,16 +171,19 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
-            string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, excluida) 
-                                         VALUES (:preco, :id_produto, :id_endereco, false)";
-            string queryAlterar = @"UPDATE produtos_vendedores SET excluida = false
+            string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, descricao, excluida) 
+                                         VALUES (:preco, :id_produto, :id_endereco, :descricao, false)";
+            string queryAlterar = @"UPDATE produtos_vendedores SET preco = :preco, descricao = :descricao, excluida = false
                                      WHERE id_produto_vendedor = :id_produto_vendedor";
             for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
             {
+                ProdutoLojaPrecoContrato contratoAtual = produtoLojaPrecoContratos[i];
                 if (produtoLojaPrecoContratos[i].IdMeuProduto > 0)
                 {
                     SessaoAtual.CreateSQLQuery(queryAlterar)
-                           .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
+                           .SetParameter("preco", contratoAtual.Preco)
+                           .SetParameter("id_produto_vendedor", contratoAtual.IdMeuProduto)
+                           .SetParameter("descricao", contratoAtual.MinhaDescricao)
                            .ExecuteUpdate();
                 }
                 else
@@ -160,6 +192,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                            .SetParameter("id_produto", produtoLojaPrecoContratos[i].IdProduto)
                            .SetParameter("id_endereco", produtoLojaPrecoContratos[i].IdEndereco)
                            .SetParameter("preco", produtoLojaPrecoContratos[i].Preco)
+                           .SetParameter("descricao", contratoAtual.MinhaDescricao)
                            .ExecuteUpdate();
                 }
             }
@@ -167,13 +200,13 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public void RemoverLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
-            string query = @"UPDATE produtos_vendedores SET excluida = true
-                              WHERE id_produto_vendedor :id_produto_vendedor";
+            string query = @"UPDATE produtos_vendedores SET excluida = true, preco = 0
+                              WHERE id_produto_vendedor = :id_produto_vendedor";
             for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
             {
                 int resultado =
                 SessaoAtual.CreateSQLQuery(query)
-                           .SetParameter(0, produtoLojaPrecoContratos[i].IdMeuProduto)
+                           .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
                            .ExecuteUpdate();
             }
         }
@@ -187,8 +220,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             ////SessaoAtual.SetBatchSize(produtoLojaPrecoContratos.Count + 10);
             IList<ProdutoLojaPrecoContrato> salvar = produtoLojaPrecoContratos.Where(p => p.Preco > 0).ToList();
             SalvarLista(salvar);
-            //IList<ProdutoLojaPrecoContrato> excluir = produtoLojaPrecoContratos.Where(p => p.Preco <= 0).ToList();
-            //RemoverLista(excluir);
+            IList<ProdutoLojaPrecoContrato> excluir = produtoLojaPrecoContratos.Where(p => p.Preco <= 0).ToList();
+            RemoverLista(excluir);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
 {
     public interface IConsultaListaProdutosLoja
     {
-        ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, int totalElementos);
+        ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos);
     }
 }
