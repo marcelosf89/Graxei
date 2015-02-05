@@ -11,7 +11,7 @@ namespace FAST.Layers.Negocio
     public abstract class NegocioBase<TEntity, TId> where TEntity : EntidadeBase<TId>
     {
         #region Fields
-        private IData<TEntity, TId> _dataObject;
+       // private IData<TEntity, TId> _dataObject;
         #endregion
 
         #region Properties
