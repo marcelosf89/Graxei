@@ -1,8 +1,10 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Contrato.TransformacaoDados;
 using Graxei.Aplicacao.Implementacao;
 using Graxei.Aplicacao.Implementacao.Consultas;
+using Graxei.Aplicacao.Implementacao.Operacoes;
 using Graxei.Aplicacao.Implementacao.Transacionais;
 using Graxei.Modelo;
 using Graxei.Negocio.Fabrica;
@@ -37,7 +39,9 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasListaLojas, ConsultasListaLojas>()
                 .RegisterType<IConsultasPlanos, ConsultasPlanos>()
                 .RegisterType<IConsultasProdutos, ConsultasProdutos>()
-                .RegisterType<IConsultaListaProdutosLoja, ConsultaListaProdutosLoja>();
+                .RegisterType<IConsultaListaProdutosLoja, ConsultaListaProdutosLoja>()
+                .RegisterType<IGerenciamentoMensageria, GerenciamentoMensageria>()
+                ;
         }
     }
 }
