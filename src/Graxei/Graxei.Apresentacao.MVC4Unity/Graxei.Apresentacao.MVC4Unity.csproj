@@ -458,6 +458,8 @@
     <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\typeahead.js" />
     <Content Include="Scripts\typeahead.min.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Views\Login\Autenticacao_cshtml_Modificada.txt" />
