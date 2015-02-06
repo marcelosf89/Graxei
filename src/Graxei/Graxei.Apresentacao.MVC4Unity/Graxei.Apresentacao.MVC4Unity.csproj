@@ -285,6 +285,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap3-wysiwyg5\bootstrap3-wysiwyg5-color.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
