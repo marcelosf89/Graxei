@@ -371,6 +371,9 @@
     <Content Include="Areas\Administrativo\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Copiar.cshtml" />
+    <Content Include="google36645a16adb9f897.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Graxei\Administrativo\Produtos\pesquisar.js" />
     <Content Include="Scripts\affix.js" />
     <Content Include="Scripts\alert.js" />
