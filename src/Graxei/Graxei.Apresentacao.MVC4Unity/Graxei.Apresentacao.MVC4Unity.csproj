@@ -284,6 +284,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap3-wysiwyg5\bootstrap3-wysiwyg5-color.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
@@ -370,6 +371,9 @@
     <Content Include="Areas\Administrativo\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Novo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Copiar.cshtml" />
+    <Content Include="google36645a16adb9f897.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Graxei\Administrativo\Produtos\pesquisar.js" />
     <Content Include="Scripts\affix.js" />
     <Content Include="Scripts\alert.js" />
@@ -457,6 +461,8 @@
     <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\typeahead.js" />
     <Content Include="Scripts\typeahead.min.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Views\Login\Autenticacao_cshtml_Modificada.txt" />
