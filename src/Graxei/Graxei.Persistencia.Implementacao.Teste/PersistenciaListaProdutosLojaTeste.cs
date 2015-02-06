@@ -2,6 +2,7 @@
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -34,7 +35,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
             _mockSession = new Mock<ISession>();
             _mockSqlResolver = new Mock<IListaProdutosLojaSqlResolver>();
             _mockSqlResolverFactory = new Mock<IListaProdutosLojaSqlResolverFactory>();
-            _mockSqlResolverFactory.Setup(p => p.Get(It.IsAny<long>(), It.IsAny<string>(),  It.IsAny<bool>())).Returns(_mockSqlResolver.Object);
+            _mockSqlResolverFactory.Setup(p => p.Get(It.IsAny<PesquisaProdutoContrato>())).Returns(_mockSqlResolver.Object);
             _listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
             _listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
         }
@@ -50,9 +51,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
             SetupMockSessionQueryOverTotal(expectedTotalElementos);
             SetupMockSessionQueryOverListar(lista);
             _mockSqlResolver.Setup(p => p.GetConsultaDeContagem()).Returns(expectedTotalElementos);
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { DescricaoProduto = "criterio", MeusProdutos = It.IsAny<bool>(), PaginaAtualLista = expectedElementoAtual };
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<int>(), expectedElementoAtual, 0);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco(pesquisaProdutoContrato, 0);
 
             // Assert
             _mockSqlResolver.Verify(p => p.GetConsultaDeContagem(), Times.Once);
@@ -65,9 +67,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
             SetupMockSessionQueryOverTotal(0);
-            
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { DescricaoProduto = "criterio", IdLoja = It.IsAny<long>(), MeusProdutos = It.IsAny<bool>(), TotalElementosLista = 0 };
+
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), 1, 0);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco(pesquisaProdutoContrato, 1);
 
             // Assert
             _mockSession.Verify(p => p.CreateSQLQuery(It.IsAny<string>())
@@ -86,9 +89,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
             ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
             SetupMockSessionQueryOverListar(new List<ListaProdutosLojaContrato>());
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato() { DescricaoProduto = "criterio", TotalElementosLista = 12 };
            
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<int>(), 0, 0, 12);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco(pesquisaProdutoContrato, 1);
 
             // Assert
             _mockSession.Verify((p => p.QueryOver<ProdutoVendedor>()
@@ -103,9 +107,11 @@ namespace Graxei.Persistencia.Implementacao.Teste
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
             SetupMockSessionQueryOverListar(new List<ListaProdutosLojaContrato>());
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { DescricaoProduto = "criterio", MeusProdutos = It.IsAny<bool>(), PaginaAtualLista = 0 };
+
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), 0, 0, 12);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco(pesquisaProdutoContrato, 0);
 
             // Assert
             _mockSession.Verify((p => p.QueryOver<ProdutoVendedor>()
@@ -124,9 +130,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
             int expectedElementoAtual = 5;
             ListaProdutosLoja expectedListaProdutosLoja = RepositorioCommon.Construir(lista, expectedTotalElementos, expectedElementoAtual);
             SetupMockSessionQueryOverListar(lista);
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { DescricaoProduto = "criterio", MeusProdutos = It.IsAny<bool>(), PaginaAtualLista = expectedElementoAtual, TotalElementosLista = expectedTotalElementos };
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco("criterio", It.IsAny<bool>(), It.IsAny<long>(), expectedElementoAtual, 0, expectedTotalElementos);
+            ListaProdutosLoja actualListaProdutosLoja = _listaProdutosLojaRepositorio.GetSomenteUmEndereco(pesquisaProdutoContrato, 0);
 
             // Assert
             _mockSession.Verify((p => p.QueryOver<ProdutoVendedor>()

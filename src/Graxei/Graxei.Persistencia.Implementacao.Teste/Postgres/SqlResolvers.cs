@@ -1,5 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -31,9 +32,10 @@ namespace Graxei.Persistencia.Implementacao.Teste.Postgres
             // Arrange
             List<ListaProdutosLojaContrato> expectedLista = RepositorioCommon.GetDoisElementos();
             SetupMockSessionQueryOverListar(expectedLista);
-            
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { IdLoja = It.IsAny<long>(), DescricaoProduto = "criterio" };
+
             // Act
-            ListaProdutosLojaCompletoResolver listaProdutosLojaCompletoResolver = new ListaProdutosLojaCompletoResolver(It.IsAny<long>(), "criterio");
+            ListaProdutosLojaCompletoResolver listaProdutosLojaCompletoResolver = new ListaProdutosLojaCompletoResolver(pesquisaProdutoContrato);
             listaProdutosLojaCompletoResolver.SessaoAtual = _mockSession.Object;
             IList<ListaProdutosLojaContrato> actualLista = listaProdutosLojaCompletoResolver.Get(It.IsAny<int>(), It.IsAny<int>());
 
@@ -47,9 +49,10 @@ namespace Graxei.Persistencia.Implementacao.Teste.Postgres
             // Arrange
             List<ListaProdutosLojaContrato> expectedLista = RepositorioCommon.GetDoisElementos();
             SetupMockSessionQueryOverListar(expectedLista);
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { IdLoja = It.IsAny<long>(), DescricaoProduto = "criterio" };
 
             // Act
-            ListaProdutosLojaMeusProdutosResolver listaProdutosLojaMeusProdutosResolver = new ListaProdutosLojaMeusProdutosResolver(It.IsAny<long>(), "criterio");
+            ListaProdutosLojaMeusProdutosResolver listaProdutosLojaMeusProdutosResolver = new ListaProdutosLojaMeusProdutosResolver(pesquisaProdutoContrato);
             listaProdutosLojaMeusProdutosResolver.SessaoAtual = _mockSession.Object;
             IList<ListaProdutosLojaContrato> actualLista = listaProdutosLojaMeusProdutosResolver.Get(It.IsAny<int>(), It.IsAny<int>());
 
@@ -63,9 +66,10 @@ namespace Graxei.Persistencia.Implementacao.Teste.Postgres
             // Arrange
             long expectedTotalElementos = 9;
             SetupMockSessionQueryOverTotal(expectedTotalElementos);
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato{ IdLoja = It.IsAny<long>(), DescricaoProduto = "criterio"};
 
             // Act
-            ListaProdutosLojaCompletoResolver listaProdutosLojaCompletoResolver = new ListaProdutosLojaCompletoResolver(It.IsAny<long>(), "criterio");
+            ListaProdutosLojaCompletoResolver listaProdutosLojaCompletoResolver = new ListaProdutosLojaCompletoResolver(pesquisaProdutoContrato);
             listaProdutosLojaCompletoResolver.SessaoAtual = _mockSession.Object;
             long actualTotalElementos = listaProdutosLojaCompletoResolver.GetConsultaDeContagem();
 
@@ -79,9 +83,10 @@ namespace Graxei.Persistencia.Implementacao.Teste.Postgres
             // Arrange
             long expectedTotalElementos = 12;
             SetupMockSessionQueryOverTotal(expectedTotalElementos);
+            PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato { IdLoja = It.IsAny<long>(), DescricaoProduto = "criterio" };
 
             // Act
-            ListaProdutosLojaMeusProdutosResolver listaProdutosLojaMeusProdutosResolver = new ListaProdutosLojaMeusProdutosResolver(It.IsAny<long>(), "criterio");
+            ListaProdutosLojaMeusProdutosResolver listaProdutosLojaMeusProdutosResolver = new ListaProdutosLojaMeusProdutosResolver(pesquisaProdutoContrato);
             listaProdutosLojaMeusProdutosResolver.SessaoAtual = _mockSession.Object;
             long actualTotalElementos = listaProdutosLojaMeusProdutosResolver.GetConsultaDeContagem();
 

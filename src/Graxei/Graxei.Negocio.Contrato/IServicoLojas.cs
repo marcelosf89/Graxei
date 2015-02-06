@@ -1,4 +1,5 @@
 ﻿using Graxei.Modelo;
+using System.Collections.Generic;
 
 namespace Graxei.Negocio.Contrato
 {
@@ -8,5 +9,6 @@ namespace Graxei.Negocio.Contrato
         Loja Salvar(Loja loja, Usuario usuario);
         Loja GetComEnderecos(long id);
         Loja GetPorUrl(string nome);
+        IList<long> GetIdsEnderecos(long idLoja);
     }
 }

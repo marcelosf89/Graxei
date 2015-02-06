@@ -3,6 +3,7 @@ using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
@@ -43,6 +44,17 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return _servicoLojas.GetPorUrl(nome);
         }
 
+        public long GetIdDoUnicoEndereco(long idLoja)
+        {
+            IList<long> enderecos = _servicoLojas.GetIdsEnderecos(idLoja);
+            if (enderecos == null || enderecos.Count > 1)
+            {
+                return 0;
+            }
+
+            return enderecos[0];
+        }
+
         public byte[] GetLogo(int idLoja, string caminhoImagem)
         {
             Loja loja = _servicoLojas.GetPorId(idLoja);
@@ -74,8 +86,6 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         }
         
         #endregion
-
-
-
+        
     }
 }

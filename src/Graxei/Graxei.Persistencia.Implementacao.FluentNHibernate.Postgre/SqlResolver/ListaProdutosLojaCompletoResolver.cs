@@ -1,6 +1,7 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.Constantes;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using NHibernate;
 using NHibernate.Transform;
@@ -46,14 +47,14 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
             }
         }
 
-        public ListaProdutosLojaCompletoResolver(long idLoja, string criterio)
+        public ListaProdutosLojaCompletoResolver(PesquisaProdutoContrato pesquisaProdutoContrato)
         {
-            _idLoja = idLoja;
-            if (string.IsNullOrEmpty(criterio))
+            _idLoja = pesquisaProdutoContrato.IdLoja;
+            if (string.IsNullOrEmpty(pesquisaProdutoContrato.DescricaoProduto))
             {
                 throw new ArgumentException("Critério deve ser preenchido");
             }
-            _criterio = criterio;
+            _criterio = pesquisaProdutoContrato.DescricaoProduto;
         }
 
         public IList<ListaProdutosLojaContrato> Get(int pagina, int tamanhoPagina)

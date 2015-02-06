@@ -69,12 +69,11 @@ namespace Graxei.Apresentacao.Teste
         {
             // Act
             int maximoPaginasNoGrupo = 7;
-            int paginaAtual = 2;
-            int expected = paginaAtual - 1;
-            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(paginaAtual), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
+            int esperado = 2;
+            ImparMenosQueMaximoElementos imparMenosQueMaximoElementos = new ImparMenosQueMaximoElementos(new AjaxHelper(new ViewContext(), mockViewDataContainer.Object), new TotalElementosLista(73), new PaginaAtualLista(esperado), maximoPaginasNoGrupo, mockLinkBuilderStrategy.Object);
 
             // Assert
-            Assert.AreEqual(expected, imparMenosQueMaximoElementos.GetElementoParaSubstituir());
+            Assert.AreEqual(esperado, imparMenosQueMaximoElementos.GetElementoParaSubstituir());
         }
 
         [TestMethod]

@@ -3,6 +3,7 @@ using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
@@ -26,22 +27,12 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
             _listaProdutosLojaSqlResolverFactory = listaProdutosLojaSqlResolverFactory;
         }
 
-        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool somenteMeusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos)
+        public ListaProdutosLoja GetSomenteUmEndereco(PesquisaProdutoContrato pesquisaProdutoContrato, int tamanhoPagina)
         {
-            IListaProdutosLojaSqlResolver sqlResolver = _listaProdutosLojaSqlResolverFactory.Get(idLoja, criterio, somenteMeusProdutos);
-            long total = totalElementos;
-            if (totalElementos == 0)
+            IListaProdutosLojaSqlResolver sqlResolver = _listaProdutosLojaSqlResolverFactory.Get(pesquisaProdutoContrato);
+            long total = pesquisaProdutoContrato.TotalElementosLista;
+            if (total == 0)
             {
-                ////total = GetSessaoAtual().QueryOver<Produto>()
-                ////                        .Where(Restrictions.InsensitiveLike(Projections.Property<Produto>(p => p.Descricao),
-                ////                                                            criterio.ToLower(), MatchMode.Anywhere))
-                ////                        .JoinQueryOver<ProdutoVendedor>(p => p.)
-                ////                        .Where(Restrictions.InsensitiveLike(Projections.Property<ProdutoVendedor>(p => p.Descricao),
-                ////                                                            criterio.ToLower(), MatchMode.Anywhere))
-                ////                        .JoinQueryOver<Endereco>(p => p.Endereco)
-                ////                        .JoinQueryOver<Loja>(p => p.Loja)
-                ////                        .Where(p => p.Id == idLoja)
-                ////                        .RowCount();
                 total = sqlResolver.GetConsultaDeContagem();
 
                 if (total == 0)
@@ -50,20 +41,15 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
                 }
             }
 
-            IList<ListaProdutosLojaContrato> lista = sqlResolver.Get(pagina, tamanhoPagina);
+            IList<ListaProdutosLojaContrato> lista = sqlResolver.Get(pesquisaProdutoContrato.PaginaAtualLista, tamanhoPagina);
 
             TotalElementosLista listaTotalElementos = new TotalElementosLista(total);
-            PaginaAtualLista listaElementoAtual = new PaginaAtualLista(pagina);
+            PaginaAtualLista listaElementoAtual = new PaginaAtualLista(pesquisaProdutoContrato.PaginaAtualLista);
             if (!lista.Any())
             {
                 return new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
             }
             return new ListaProdutosLoja(lista, listaTotalElementos, listaElementoAtual);
-        }
-
-        public ListaProdutosLoja GetSomenteUmEndereco(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina)
-        {
-            return GetSomenteUmEndereco(criterio, meusProdutos, idLoja, pagina, tamanhoPagina, 0);
         }
 
         public ISession GetSessaoAtual()

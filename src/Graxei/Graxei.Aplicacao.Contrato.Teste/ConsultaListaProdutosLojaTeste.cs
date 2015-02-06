@@ -1,6 +1,7 @@
 ﻿using Graxei.Aplicacao.Implementacao.Consultas;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Implementacao.Teste;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -21,10 +22,10 @@ namespace Graxei.Aplicacao.Contrato.Teste
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = RepositorioCommon.Construir(RepositorioCommon.GetDoisElementos(), 1, 1);
             Mock<IServicoListaProdutosLoja> mockRepositorioListaProdutosLoja = new Mock<IServicoListaProdutosLoja>();
-            mockRepositorioListaProdutosLoja.Setup(p => p.Get(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<long>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>())).Returns(expectedListaProdutosLoja);
+            mockRepositorioListaProdutosLoja.Setup(p => p.Get(It.IsAny<PesquisaProdutoContrato>(), It.IsAny<int>())).Returns(expectedListaProdutosLoja);
 
             // Act
-            ListaProdutosLoja actualListaProdutosLoja = new ConsultaListaProdutosLoja(mockRepositorioListaProdutosLoja.Object).Get(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<long>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>());
+            ListaProdutosLoja actualListaProdutosLoja = new ConsultaListaProdutosLoja(mockRepositorioListaProdutosLoja.Object).Get(It.IsAny<PesquisaProdutoContrato>(), It.IsAny<int>());
 
             // Assert
             Assert.AreEqual(expectedListaProdutosLoja, actualListaProdutosLoja);

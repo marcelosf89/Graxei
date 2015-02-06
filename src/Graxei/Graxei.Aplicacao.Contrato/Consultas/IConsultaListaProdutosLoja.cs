@@ -1,4 +1,5 @@
-﻿using Graxei.Transversais.ContratosDeDados.Listas;
+﻿using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.ContratosDeDados.Listas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Graxei.Aplicacao.Contrato.Consultas
 {
     public interface IConsultaListaProdutosLoja
     {
-        ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos);
+        ListaProdutosLoja Get(PesquisaProdutoContrato pesquisaProdutoContrato, int tamanhoPagina);
     }
 }

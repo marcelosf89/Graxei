@@ -47,11 +47,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         public ActionResult Listar(long idLoja)
         {
-            return View(new PesquisaProdutoLojaModel { IdLoja = idLoja });
+            long endereco = this._consultasLojas.GetIdDoUnicoEndereco(idLoja);
+            return View(new PesquisaProdutoContrato { IdLoja = idLoja, IdUnicoEndereco = endereco });
         }
 
         [HttpPost]
-        public ActionResult Pesquisar(PesquisaProdutoLojaModel model)
+        public ActionResult Pesquisar(PesquisaProdutoContrato model)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 {
                     model.PaginaAtualLista = 1;
                 }
-                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model.DescricaoProduto, model.MeusProdutos, model.IdLoja, model.PaginaAtualLista, 10, model.TotalElementosLista);
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model, 10);
                 return View(produtos);
             }
             catch (ProdutoForaDoLimiteException e)
@@ -76,9 +77,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             {
                 _gerenciamentoProdutos.SalvarLista(itens);
             }
-            catch (GraxeiException)
+            catch (Exception)
             {
-                return Json(new { Sucesso = false, Mensagem =  Erros.ListaNaoAtualizada }); ;
+                return Json(new { Sucesso = false, Mensagem = Erros.ListaNaoAtualizada }); ;
             }
 
             return Json(new { Sucesso = true, Mensagem = Sucesso.ListaAtualizada });

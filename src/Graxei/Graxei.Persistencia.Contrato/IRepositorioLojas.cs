@@ -8,7 +8,7 @@ namespace Graxei.Persistencia.Contrato
         List<Usuario> GetUsuarios(Loja loja);
         List<Usuario> GetUsuarios(long idLoja);
         Loja GetComEnderecos(long id);
-
+        IList<long> GetIdsEnderecos(long idLoja);
         Loja GetPorUrl(string nome);
     }
 }

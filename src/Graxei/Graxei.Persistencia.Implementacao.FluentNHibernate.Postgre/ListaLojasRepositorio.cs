@@ -34,18 +34,6 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
                             )
                             .Skip((pagina - 1) * tamanhoPagina)
                         .Take(tamanhoPagina).ToList<ListaLojasContrato>();
-            //IList<ListaLojasContrato> lista =
-            //    SessaoAtual.QueryOver<Loja>()
-            //        .JoinQueryOver<Usuario>(p => p.Usuarios)
-            //        .Where(q => q.Id == usuario.Id)
-            //        .Select(Projections.ProjectionList()
-            //                .Add(Projections.Property("Id"), "Id")
-            //                .Add(Projections.Property("Nome"), "Nome")
-            //                .Add(Projections.Alias(Projections.Property("Nome"), "Plano"), "NomePlano"))
-            //        .TransformUsing(Transformers.AliasToBean<ListaLojasContrato>())
-            //        .Skip(pagina)
-            //        .Take(tamanhoPagina)
-            //        .List<ListaLojasContrato>();
             TotalElementosLista totalElementos = new TotalElementosLista(total);
             PaginaAtualLista elementoAtual = new PaginaAtualLista(pagina);
             return new ListaLojas(lista, totalElementos, elementoAtual);

@@ -1,4 +1,5 @@
 ﻿using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
+using Graxei.Transversais.ContratosDeDados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
 {
     public interface IListaProdutosLojaSqlResolverFactory
     {
-        IListaProdutosLojaSqlResolver Get(long idLoja, string criterio, bool meusProdutos);
+        IListaProdutosLojaSqlResolver Get(PesquisaProdutoContrato pesquisaProdutoContrato);
     }
 }

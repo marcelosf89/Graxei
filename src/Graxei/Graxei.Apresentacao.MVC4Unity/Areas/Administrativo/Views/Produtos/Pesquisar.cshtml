@@ -1,21 +1,18 @@
 ﻿@model Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLoja
 
 @{
-    if (Model.Lista != null && Model.Lista.Count() > 0)
-    {
-        <input type="hidden" id="enderecoAtual" value="@Model.Lista[0].IdEndereco" />
-    }
 }
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/jquery-2.1.3.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 <div id="msg-produtos-atualizar"></div>
 @Html.HiddenFor(m => m.Total.Total, new { id = "total-elementos" })
 @Html.HiddenFor(m => m.Atual.Atual, new { id = "elemento-atual" })
 <input type="hidden" id="salvar-produtos-url" value="@Url.Action("Salvar", "Produtos")" />
 <input type="hidden" id="pesquisar-produtos-url" value="@Url.Action("Pesquisar", "Produtos")" />
-<form id="meuForm">
+<form name="form-produtos-vendedor">
     <table id="tabela-precos" class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
@@ -45,9 +42,9 @@
                             <label ondblclick="habilitarEdicao(this);" data-original="@item.Descricao">@item.Descricao</label>
                         </div>
                         <div style="display: none">
-                            <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 50 caracteres" data-val-length-max="50" rows="2"></textarea>
+                            <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 300 caracteres" data-val-length-max="300" rows="2"></textarea>
                             <span class="field-validation-valid" data-valmsg-for="@nomeTextArea" data-valmsg-replace="true"></span>
-                            <button type="button" class="btn btn-group-sm btn-default cancel" onclick="tratarCliqueEdicao(this);">OK</button>
+                            <button type="button" class="btn btn-default" onclick="tratarCliqueEdicao(this);">OK</button>
                             <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
                             <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Desfazer</button>
                         </div>

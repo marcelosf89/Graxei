@@ -1,5 +1,6 @@
 ﻿using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace Graxei.Negocio.Implementacao
             _repositorioListaProdutosLoja = repositorioListaProdutosLoja;
         }
 
-        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos)
+        public ListaProdutosLoja Get(PesquisaProdutoContrato pesquisaProdutoContrato, int tamanhoPagina)
         {
-            return _repositorioListaProdutosLoja.GetSomenteUmEndereco(criterio, meusProdutos, idLoja, pagina, tamanhoPagina, totalElementos);
+            return _repositorioListaProdutosLoja.GetSomenteUmEndereco(pesquisaProdutoContrato, tamanhoPagina);
         }
     }
 }

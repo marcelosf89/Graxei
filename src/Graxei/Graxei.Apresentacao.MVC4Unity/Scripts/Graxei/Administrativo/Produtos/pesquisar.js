@@ -51,21 +51,21 @@ function habilitarBotaoSalvar(me) {
 }
 
 function salvarPrecos() {
-    //if (!$("#meuForm").valid()) {
-    //    alert('s');
-    //    $.each($("textarea"), function (index, element) {
-    //        if (!$(element).hasClass("valid")) {
-    //            var parentDiv = $(element).parent("div");
-    //            var divExibir = parentDiv.siblings("div");
-    //            var label = parentDiv.children("label");
-    //            divExibir.show();
-    //            parentDiv.hide();
-    //        }
-    //    });
-    //    return;
-    //} else {
-    //    alert('valido');
-    //}
+    var currentForm = $("form[name='form-produtos-vendedor']");
+    if (!currentForm.valid()) {
+        $.each($("textarea"), function (index, element) {
+            var divEdicao = $(element).parent("div");
+            var divRotulo = divEdicao.siblings("div");
+            if (!$(element).hasClass("input-validation-error")) {
+                divEdicao.hide();
+                divRotulo.show();
+            } else {
+                divEdicao.show();
+                divRotulo.hide();
+            }
+        });
+        return;
+    } 
 
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {
@@ -74,12 +74,12 @@ function salvarPrecos() {
         var idProd = $(this).attr('id-prod');
         var meuProd = $(this).attr('meu-prod');
         var descricao = $('textarea', td).val();
-        var idEndereco = ("#")
+        var idEndereco = $('#unico-endereco');
         itens.push({
             IdProduto: idProd,
             IdMeuProduto: meuProd,
             MinhaDescricao: descricao,
-            IdEndereco: $("#enderecoAtual").val(),
+            IdEndereco: idEndereco.val(),
             Preco: preco
         });
     });
@@ -133,6 +133,11 @@ function tratarCliqueEdicao(element) {
     var botaoAtual = $(element).html();
     switch (botaoAtual) {
         case "OK":
+            var textArea = $(element).siblings("textarea")
+            var validator = $("form[name='form-produtos-vendedor']").validate();
+            if (!validator.element(textArea)) {
+                return;
+            }
             $(currentLabel).text($(textArea).val());
             break;
         case "Desfazer":

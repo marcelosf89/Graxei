@@ -262,7 +262,6 @@
     <Compile Include="Areas\Administrativo\Models\TelefoneModel.cs" />
     <Compile Include="Areas\Teste\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teste\Models\ObjectTesteModel.cs" />
-    <Compile Include="Areas\Teste\Models\PesquisaProdutoLojaModel.cs" />
     <Compile Include="Areas\Teste\TesteAreaRegistration.cs" />
     <Compile Include="Binders\UsuariosLogadoBinder.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -431,13 +430,13 @@
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-migrate-1.1.1.js" />
     <Content Include="Scripts\jquery-migrate-1.1.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.1.js" />
     <Content Include="Scripts\jquery-ui-1.11.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

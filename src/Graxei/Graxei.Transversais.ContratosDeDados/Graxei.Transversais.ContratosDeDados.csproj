@@ -49,6 +49,7 @@
     <Compile Include="Listas\ListaLojas.cs" />
     <Compile Include="Listas\ListaLojasContrato.cs" />
     <Compile Include="LojaContrato.cs" />
+    <Compile Include="PesquisaProdutoContrato.cs" />
     <Compile Include="ProdutoLojaPrecoContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TinyTypes\PaginaAtualLista.cs" />

@@ -1,4 +1,4 @@
-﻿@model Graxei.Apresentacao.MVC4Unity.Areas.Teste.Models.PesquisaProdutoLojaModel
+﻿@model Graxei.Transversais.ContratosDeDados.PesquisaProdutoContrato
 <h4>
     Produtos
 </h4>
@@ -15,6 +15,7 @@
                     @Rotulos.MeusProdutos
                 </span>
                 @Html.HiddenFor(m => m.IdLoja, new { id = "loja-chave" })
+                @Html.HiddenFor(m => m.IdUnicoEndereco, new { id = "unico-endereco" })
                 @Html.TextBoxFor(m => m.DescricaoProduto, new { id = "descricao-produto", @class = "form-control ", placeholder = @Graxei.Transversais.Idiomas.Rotulos.Pesquisar, mozactionhint = "search" })
                 <span class="input-group-btn">
                     <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>

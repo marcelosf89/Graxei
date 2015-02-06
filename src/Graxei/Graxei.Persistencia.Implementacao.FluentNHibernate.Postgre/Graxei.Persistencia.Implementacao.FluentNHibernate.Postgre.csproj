@@ -100,7 +100,7 @@
     <Compile Include="Interfaces\INHiberatePostgre.cs" />
     <Compile Include="ListaLojasRepositorio.cs" />
     <Compile Include="LogradourosNHibernatePostgre.cs" />
-    <Compile Include="LojasNHibernatePostgre.cs" />
+    <Compile Include="LojasRepositorio.cs" />
     <Compile Include="PadraoNHibernatePostgre.cs" />
     <Compile Include="PadraoNHibernatePostgreLeitura.cs" />
     <Compile Include="ProdutosRepositorio.cs" />

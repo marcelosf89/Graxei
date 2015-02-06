@@ -4,11 +4,11 @@ using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;
 
-namespace Graxei.Persistencia.Implementacao.NHibernate
+namespace Graxei.Persistencia.Implementacao.NHibernate.Postgre
 {
-    public class LojasNHibernatePostgre : PadraoNHibernatePostgre<Loja>, IRepositorioLojas
+    public class LojasRepositorio : PadraoNHibernatePostgre<Loja>, IRepositorioLojas
     {
-        public LojasNHibernatePostgre(IRepositorioProdutoVendedor repositorioProdutoVendedor)
+        public LojasRepositorio(IRepositorioProdutoVendedor repositorioProdutoVendedor)
         {
             _repositorioProdutoVendedor = repositorioProdutoVendedor;
         }
@@ -46,6 +46,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         {
             return SessaoAtual.QueryOver<Loja>().Where(p => p.Url == nome).SingleOrDefault();
         }
+
+        public IList<long> GetIdsEnderecos(long idLoja)
+        {
+            return SessaoAtual.QueryOver<Endereco>().Where(p => p.Loja.Id == idLoja).Select(p => p.Id).List<long>();
+        }
+
 
         #endregion
 

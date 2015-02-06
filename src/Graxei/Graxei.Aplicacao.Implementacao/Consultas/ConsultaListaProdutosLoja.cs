@@ -1,5 +1,6 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Negocio.Contrato;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             _servicoListaProdutosLoja = servicoListaProdutosLoja;
         }
 
-        public ListaProdutosLoja Get(string criterio, bool meusProdutos, long idLoja, int pagina, int tamanhoPagina, long totalElementos)
+        public ListaProdutosLoja Get(PesquisaProdutoContrato pesquisaProdutoContrato, int tamanhoPagina)
         {
-            return _servicoListaProdutosLoja.Get(criterio, meusProdutos, idLoja, pagina, tamanhoPagina, totalElementos);
+            return _servicoListaProdutosLoja.Get(pesquisaProdutoContrato, tamanhoPagina);
         }
     }
 }
