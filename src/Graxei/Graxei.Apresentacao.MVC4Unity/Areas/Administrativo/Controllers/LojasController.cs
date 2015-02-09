@@ -231,12 +231,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                     throw new OperacaoEntidadeException(Erros.VariasImagensSelecionadas);
 
                 HttpPostedFileBase file = Request.Files[0];
+                if (!Directory.Exists(Server.MapPath("~/Temp/LojaImagem/"))) Directory.CreateDirectory(Server.MapPath("~/Temp/LojaImagem/"));
                 String fileName = Server.MapPath("~/Temp/LojaImagem/") + Guid.NewGuid().ToString();
                 file.SaveAs(fileName);
                 System.IO.Path.GetExtension(file.FileName);
                 model = _consultasLojas.Get(idLoja);
 
                 String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                if (!Directory.Exists(caminhoImagem)) Directory.CreateDirectory(caminhoImagem);
                 _gerenciamentoLojas.AdicionarBackground(model, caminhoImagem, System.IO.File.ReadAllBytes(fileName), System.IO.Path.GetExtension(file.FileName));
                 System.IO.File.Delete(fileName);
             }
@@ -262,11 +264,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
                 HttpPostedFileBase file = Request.Files[0];
                 String fileName = Server.MapPath("~/Temp/LojaImagem/") + Guid.NewGuid().ToString();
+                if (!Directory.Exists(Server.MapPath("~/Temp/LojaImagem/"))) Directory.CreateDirectory(Server.MapPath("~/Temp/LojaImagem/"));
                 file.SaveAs(fileName);
                 System.IO.Path.GetExtension(file.FileName);
                 model = _consultasLojas.Get(idLoja);
 
                 String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                if (!Directory.Exists(caminhoImagem)) Directory.CreateDirectory(caminhoImagem);
                 _gerenciamentoLojas.AdicionarLogo(model, caminhoImagem, System.IO.File.ReadAllBytes(fileName), System.IO.Path.GetExtension(file.FileName));
                 System.IO.File.Delete(fileName);
             }
