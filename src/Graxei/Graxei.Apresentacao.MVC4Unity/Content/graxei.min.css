@@ -478,8 +478,8 @@ body {
     top: 15%;
     right: 10%;
     z-index: 10;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     color: #000;
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
@@ -721,6 +721,14 @@ body {
 .border-right {
     border-right: 1px solid #C5C4C4;
     padding-right: 30px;
+}
+
+img.bg-logo {
+    border-radius: 10px;
+    max-width: 150px;
+    height: 150px;
+    max-height: 150px;
+    width: 150px;
 }
 
 @media (max-width: 767px) {

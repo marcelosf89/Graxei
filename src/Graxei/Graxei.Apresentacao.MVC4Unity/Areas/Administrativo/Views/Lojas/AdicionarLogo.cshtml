@@ -4,6 +4,8 @@
 @{
     AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL('Inserindo Logo...');", OnComplete = "closeL();" };
 }
+@Scripts.Render("~/Content/fileinput");
+<script src="~/Scripts/fileinput.js"></script>
 <div class="row">
     <div class="col-md-12">
         <div class="form-group has-error">
@@ -26,7 +28,7 @@
         <div class="fileinput @fileInputCSSLogo" data-provides="fileinput">
             <div class="fileinput @fileInputCSSLogo" data-provides="fileinput">
                 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 100%; height: 150px;">
-                    <img src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" />
+                    <img src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" class="bg-logo" />
                 </div>
                 <span class="btn btn-default btn-file">
                     <span class="fileinput-new">Selecione a Imagem</span>

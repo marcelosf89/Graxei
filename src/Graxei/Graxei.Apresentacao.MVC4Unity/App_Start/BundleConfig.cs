@@ -50,6 +50,9 @@ namespace Graxei.Apresentacao.MVC4Unity
                         "~/Content/themes/base/minified/jquery.ui.theme.min.css",
                         "~/Content/themes/base/minified/jquery-ui.min.css"
                         ));
+
+            bundles.Add(new StyleBundle("~/Content/fileinput").Include(
+            "~/Scripts/fileinput.js"));
         }
     }
 }
