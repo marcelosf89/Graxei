@@ -103,7 +103,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             ModelState.Clear();
             item.LojaContrato = lojaSalva;
             ViewBag.OperacaoSucesso = Sucesso.LojaIncluida;
-            return PartialView("NovaLojaAjax", item);
+            return PartialView("Loja", item);
         }
 
         [HttpPost]

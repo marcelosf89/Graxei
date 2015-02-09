@@ -414,7 +414,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Areas\Administrativo\Views\Lojas\Nova.cshtml" />
     <Content Include="Areas\Administrativo\Views\Shared\Telefones.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\Listar.cshtml" />
     <Content Include="Areas\Administrativo\Views\Home\_Index.cshtml" />
