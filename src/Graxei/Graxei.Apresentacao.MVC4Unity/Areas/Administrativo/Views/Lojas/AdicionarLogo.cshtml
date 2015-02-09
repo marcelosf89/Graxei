@@ -22,80 +22,93 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        @{
-            String fileInputCSSLogo = Model.Logotipo == null ? "fileinput-new" : "fileinput-exists";
-        }
-        <h3>Logo</h3>
-        <div id="divLogo" class="fileinput @fileInputCSSLogo" data-provides="fileinput">
-            <div id="divLogo2" class="fileinput @fileInputCSSLogo" data-provides="fileinput">
-                <div id="divImg" class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 100%; height: 150px;">
-                    <img id="imglogo" src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" class="bg-logo" />
-                </div>
-                <span class="btn btn-default btn-file">
-                    <span class="fileinput-new">Selecione a Imagem</span>
-                    <span class="fileinput-exists">Mudar</span>
-                    <input type="file" id="fileLogo" name="fileLogo" />
-                </span>
-                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                <a href="#" id="btnSalvarLogo" class="btn btn btn-primary fileinput-exists" data-dismiss="fileinput" actions="UploadLogo">Salvar</a>
+        <div class="header-loja">
+            <div id="divImg" class="item-bg">
+                <img id="imgCorpo" src="@Url.Action("GetImagem", "Lojas", new { idLoja = Model.Id })" />
+            </div>
+            <div id="divLogo" class="bg-caption">
+                <img id="imgLogo" src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" class="bg-logo" />
             </div>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-        @{
-            String fileInputCSS = Model.Logotipo == null ? "fileinput-new" : "fileinput-exists";
-        }
-        <h3>Imagem Cabeçalho</h3>
-        <div id="divCorpo" class="fileinput @fileInputCSS" data-provides="fileinput">
-            <div id="divCorpo2" class="fileinput @fileInputCSS" data-provides="fileinput">
-                <div id="divImgCorpo" class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 100%; height: 150px;">
-                    <img id="imgCorpo" src="@Url.Action("GetImagem", "Lojas", new { idLoja = Model.Id })" />
-                </div>
-                <span class="btn btn-default btn-file">
-                    <span class="fileinput-new">Selecione a Imagem</span>
-                    <span class="fileinput-exists">Mudar</span>
-                    <input type="file" id="file" name="file" />
-                </span>
-                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                <a href="#" id="btnSalvar" class="btn btn btn-primary fileinput-exists" data-dismiss="fileinput" actions="Upload">Salvar</a>
-            </div>
-        </div>
+
+        <h4>Logo</h4>
+        <span class="btn btn-default btn-file">
+            <span class="fileinput-new">Selecione a Imagem</span>
+            <input type="file" id="fileLogo" name="fileLogo" />
+        </span>
+        
+
+        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Imagem Cabeçalho</h4>
+        <span class="btn btn-default btn-file">
+            <span class="fileinput-new">Selecione a Imagem</span>
+            <input type="file" id="file" name="file" />
+        </span>
+        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
     </div>
 </div>
 <script>
-    $("#btnSalvar").click(function (e) {
-        e.preventDefault();
+
+    $("#fileLogo").change(function (e) {
+        //e.preventDefault();
         openL('Adicionando Imagem...');
-        var formdata = new FormData(); //FormData object
+        var data = new FormData(); //FormData object
+        var fileInput = document.getElementById('fileLogo');
+        for (i = 0; i < fileInput.files.length; i++) {
+            data.append(fileInput.files[i].name, fileInput.files[i]);
+        }
+
+        data.append("idLoja", @Model.Id);
+
+        $("#divLogo").html('');
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/Lojas/UploadLogo?idLoja=@Model.Id');
+        xhr.send(data);
+        xhr.onreadystatechange = function (event) {
+            if(event.currentTarget.readyState === 4){
+                $("#divLogo").html('<img id="imgLogo" src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" class="bg-logo" />');
+                closeL();
+            }
+        }
+    });
+
+    $("#file").change(function(e) {
+        //e.preventDefault();
+        openL('Adicionando Imagem...');
+        var data = new FormData(); //FormData object
         var fileInput = document.getElementById('file');
         for (i = 0; i < fileInput.files.length; i++) {
-            formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            data.append(fileInput.files[i].name, fileInput.files[i]);
         }
-        formdata.append("idLoja", "@Model.Id");
+
+        data.append("idLoja", @Model.Id);
+
+        $("#divImg").html('');
+
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/Lojas/Upload');
-        xhr.send(formdata);
-        xhr.onreadystatechange = function () {
-
-            $.get( "@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })", function( data ) {
-
-                if(data === null){
-                    $("#divCorpo").addClass("fileinput-new"); $("#divCorpo").removeClass("fileinput-exists");
-                    $("#divCorpo2").addClass("fileinput-new"); $("#divCorpo2").removeClass("fileinput-exists");
-                }
-                else{
-                    $("#divImgCorpo").html('<img id="imgCorpo" src="@Url.Action("GetLogo", "Lojas", new { idLoja = Model.Id })" class="bg-logo" />');
-                    $("#divCorpo").removeClass("fileinput-new"); $("#divCorpo").addClass("fileinput-exists");
-                    $("#divCorpo2").removeClass("fileinput-new"); $("#divCorpo2").addClass("fileinput-exists");
-                }
-            });
-
-            closeL(); }
-
+        xhr.open('POST', '/Lojas/Upload?idLoja=@Model.Id');
+        xhr.send(data);
+        xhr.onreadystatechange = function (event) {
+            if(event.currentTarget.readyState === 4){
+                $("#divImg").html('<img id="imgLogo" src="@Url.Action("GetImagem", "Lojas", new { idLoja = Model.Id })"  />');
+                closeL();
+            }
+        }
     });
-    $("#btnSalvarLogo").click(function (e) {
+
+
+
+    @*
+        $("#btnSalvarLogo").click(function (e) {
         e.preventDefault();
         openL('Adicionando Imagem...');
         var formdata = new FormData(); //FormData object
@@ -122,7 +135,6 @@
                 }
             });
             closeL();
-        }
-    });
+        }*@
 </script>
 

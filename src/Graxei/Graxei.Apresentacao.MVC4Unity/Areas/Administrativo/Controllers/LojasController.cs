@@ -220,7 +220,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return null;
         }
 
-        public ActionResult Upload(long idLoja)
+        public void Upload(long idLoja)
         {
             Loja model = null;
             try
@@ -245,14 +245,14 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             catch (OperacaoEntidadeException ee)
             {
                 ModelState.AddModelError(string.Empty, ee.Message);
-                return PartialView("AdicionarLogo", model);
+                return;// View("AdicionarLogo", model);
             }
             ModelState.Clear();
             ViewBag.OperacaoSucesso = Sucesso.LogoAdicionadoComSucesso;
-            return View("AdicionarLogo", model);
+            return;// View("AdicionarLogo", model);
         }
 
-        public ActionResult UploadLogo(long idLoja)
+        public void UploadLogo(long idLoja)
         {
             Loja model = null;
             try
@@ -277,11 +277,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             catch (OperacaoEntidadeException ee)
             {
                 ModelState.AddModelError(string.Empty, ee.Message);
-                return PartialView("AdicionarLogo", model);
+                return;// PartialView("AdicionarLogo", model);
             }
             ModelState.Clear();
             ViewBag.OperacaoSucesso = Sucesso.LogoAdicionadoComSucesso;
-            return View("AdicionarLogo", model);
+            return;// PartialView("AdicionarLogo", model);
         }
 
         #endregion
