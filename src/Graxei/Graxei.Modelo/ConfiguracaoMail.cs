@@ -7,7 +7,7 @@ namespace Graxei.Modelo
 {
     public class ConfiguracaoMail 
     {
-        public ConfiguracaoMail(string credencialNome, string credencialSenha, string servidor, int porta, string remetenteNome, string remetendeEndereco)
+        public ConfiguracaoMail(string credencialNome, string credencialSenha, string servidor, int porta, string remetenteNome, string remetendeEndereco, bool requerAutenticacao)
         {
             this.CredencialNome = credencialNome;
             this.CredencialSenha = credencialSenha;
@@ -15,6 +15,7 @@ namespace Graxei.Modelo
             this.Porta = porta;
             this.RemetenteNome = remetenteNome;
             this.RemetenteEndereco = remetendeEndereco;
+            this.RequerAutenticacao = requerAutenticacao;
         }
                     
         public virtual string CredencialNome { get; set; }
@@ -28,6 +29,8 @@ namespace Graxei.Modelo
         public virtual string RemetenteNome { get; set; }
 
         public virtual string RemetenteEndereco { get; set; }
+
+        public virtual bool RequerAutenticacao { get; set; }
 
         #region Métodos Sobrescritos
         public override bool Equals(object obj)

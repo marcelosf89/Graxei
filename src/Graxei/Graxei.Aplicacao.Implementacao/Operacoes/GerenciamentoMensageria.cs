@@ -34,6 +34,7 @@ namespace Graxei.Aplicacao.Implementacao.Operacoes
                 mail.AddTo(mensagem.DestinatarioEndereco, mensagem.DestinatarioNome); ;
                 mail.SetFrom(configuracao.RemetenteEndereco, configuracao.RemetenteNome);
                 mail.SetCredentials(configuracao.CredencialNome, configuracao.CredencialSenha);
+                mail.EnableSSL(configuracao.RequerAutenticacao);
                 mail.Send();
             }
             catch (Exception)
