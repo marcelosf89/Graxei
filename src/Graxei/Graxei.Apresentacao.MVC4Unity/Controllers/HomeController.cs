@@ -189,7 +189,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             try
             {
                 Mensagem mensagem = new Mensagem(contatoModel.Assunto, contatoModel.Mensagem, contatoModel.Nome, contatoModel.Email);
-                ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["senhaservidormail"], ConfigurationManager.AppSettings["enderecoservidormail"], int.Parse(ConfigurationManager.AppSettings["portaservidormail"]), ConfigurationManager.AppSettings["contaservidormail"], ConfigurationManager.AppSettings["contatoendereco"], bool.Parse(ConfigurationManager.AppSettings["habilitarSSL"]));
+                ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contaservidormail"], ConfigurationManager.AppSettings["senhaservidormail"], ConfigurationManager.AppSettings["enderecoservidormail"], int.Parse(ConfigurationManager.AppSettings["portaservidormail"]), ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["contatoendereco"], bool.Parse(ConfigurationManager.AppSettings["habilitarSSL"]));
                 _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail); 
             }
             catch (Exception)
@@ -227,7 +227,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             try
             {
                 Mensagem mensagem = new Mensagem(contatoModel.Assunto, contatoModel.Mensagem, contatoModel.Nome, contatoModel.Email);
-                ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["senhaservidormail"], ConfigurationManager.AppSettings["enderecoservidormail"], int.Parse(ConfigurationManager.AppSettings["portaservidormail"]), ConfigurationManager.AppSettings["contaservidormail"], ConfigurationManager.AppSettings["contatoendereco"], bool.Parse(ConfigurationManager.AppSettings["habilitarSSL"]));
+                ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contaservidormail"], ConfigurationManager.AppSettings["senhaservidormail"], ConfigurationManager.AppSettings["enderecoservidormail"], int.Parse(ConfigurationManager.AppSettings["portaservidormail"]), ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["contatoendereco"], bool.Parse(ConfigurationManager.AppSettings["habilitarSSL"]));
                 _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail); 
             }
             catch (Exception)
