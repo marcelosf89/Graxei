@@ -142,42 +142,7 @@
         }
     }
 
-    $("#IdEstado").live("change", (function () {
-        var estado = $("#IdEstado").val();
-        if (estado != 0) {
-            var url = '@Url.Action("EstadoSelecionado", "Enderecos")';
-            $.post(url, { idEstado: estado },
-                function () {
-                });
-        }
-    })
-);
-
-    $("#IdCidade").live("blur", function () {
-        var estado = $("#IdEstado").val();
-        var nomeCidade = $("#IdCidade").val();
-        if (estado > 0 && nomeCidade.length > 0) {
-            var url = '@Url.Action("CidadeSelecionada", "Enderecos")';
-            $.post(url, { idEstado: estado, cidade: nomeCidade },
-                function () {
-
-                });
-        }
-    });
-
-    $("#IdBairro").live("blur", function () {
-        var idEstado = $("#IdEstado").val();
-        var nomeCidade = $("#IdCidade").val();
-        var nomeBairro = $("#IdBairro").val();
-        if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
-            var url = '@Url.Action("BairroSelecionado", "Enderecos")';
-            $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
-                function () {
-                });
-        }
-    });
-
-    var cidades = new Bloodhound({
+   var cidades = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: '@Url.Action("AutoCompleteCidade", "Enderecos")?term='+$('#IdCidade').val(),

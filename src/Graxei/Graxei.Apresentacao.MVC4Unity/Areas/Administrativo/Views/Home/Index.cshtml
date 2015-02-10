@@ -68,13 +68,13 @@
             <div class="col-md-4">
                 <h4>Preços</h4>
                 <ul>
-                    <li>@Ajax.ActionLink("Planos", "Planos", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                    <li>@Ajax.ActionLink("Planos", "Planos", "Home", new { controller = "Home", area = "" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <h4>Suporte</h4>
                 <ul>
-                    <li>@Ajax.ActionLink("Contato", "Contato", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
+                    <li>@Ajax.ActionLink("Contato", "Contato", "Home", new { controller = "Home", area = "" }, new AjaxOptions() { UpdateTargetId = "myContent" }, new { })</li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -92,7 +92,6 @@
 @Scripts.Render("~/bundles/sc")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/modal")
 @Scripts.Render("~/bundles/typeahead")
 
