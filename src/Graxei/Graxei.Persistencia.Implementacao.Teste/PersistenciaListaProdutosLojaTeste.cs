@@ -1,5 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
 using Graxei.Transversais.ContratosDeDados;
@@ -27,8 +28,10 @@ namespace Graxei.Persistencia.Implementacao.Teste
 
         private Mock<IListaProdutosLojaSqlResolver> _mockSqlResolver;
 
-        private ListaProdutosLojaRepositorio _listaProdutosLojaRepositorio;
+        private Mock<IVisitorCriacaoFuncao> _mockVisitorCriacaoFuncao;
 
+        private ListaProdutosLojaRepositorio _listaProdutosLojaRepositorio;
+        
         [TestInitialize]
         public void SetUp()
         {
@@ -36,7 +39,8 @@ namespace Graxei.Persistencia.Implementacao.Teste
             _mockSqlResolver = new Mock<IListaProdutosLojaSqlResolver>();
             _mockSqlResolverFactory = new Mock<IListaProdutosLojaSqlResolverFactory>();
             _mockSqlResolverFactory.Setup(p => p.Get(It.IsAny<PesquisaProdutoContrato>())).Returns(_mockSqlResolver.Object);
-            _listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
+            _mockVisitorCriacaoFuncao = new Mock<IVisitorCriacaoFuncao>();
+            _listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object, _mockVisitorCriacaoFuncao.Object);
             _listaProdutosLojaRepositorio.SetSessaoAtual(_mockSession.Object);
         }
 
@@ -87,7 +91,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
         {
             // Arrange
             ListaProdutosLoja expectedListaProdutosLoja = new ListaProdutosLoja(new List<ListaProdutosLojaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
-            ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object);
+            ListaProdutosLojaRepositorio listaProdutosLojaRepositorio = new ListaProdutosLojaRepositorio(_mockSqlResolverFactory.Object, _mockVisitorCriacaoFuncao.Object);
             SetupMockSessionQueryOverListar(new List<ListaProdutosLojaContrato>());
             PesquisaProdutoContrato pesquisaProdutoContrato = new PesquisaProdutoContrato() { DescricaoProduto = "criterio", TotalElementosLista = 12 };
            

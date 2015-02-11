@@ -1,6 +1,7 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
 using Graxei.Transversais.ContratosDeDados;
@@ -21,10 +22,12 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
     {
         private ISession _sessao;
         private IListaProdutosLojaSqlResolverFactory _listaProdutosLojaSqlResolverFactory;
+        private IVisitorCriacaoFuncao _visitorCriacaoFuncao;
 
-        public ListaProdutosLojaRepositorio(IListaProdutosLojaSqlResolverFactory listaProdutosLojaSqlResolverFactory)
+        public ListaProdutosLojaRepositorio(IListaProdutosLojaSqlResolverFactory listaProdutosLojaSqlResolverFactory, IVisitorCriacaoFuncao visitorCriacaoFuncao)
         {
             _listaProdutosLojaSqlResolverFactory = listaProdutosLojaSqlResolverFactory;
+            _visitorCriacaoFuncao = visitorCriacaoFuncao;
         }
 
         public ListaProdutosLoja GetSomenteUmEndereco(PesquisaProdutoContrato pesquisaProdutoContrato, int tamanhoPagina)

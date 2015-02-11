@@ -2,6 +2,7 @@
 using Graxei.Negocio.Implementacao;
 using Graxei.Persistencia.Contrato;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.NHibernate;
 using Graxei.Persistencia.Implementacao.NHibernate.Postgre;
@@ -81,6 +82,8 @@ namespace Graxei.Negocio.Fabrica
                        .RegisterType<IServicoPlanos, ServicoPlanos>();
 
             container.RegisterType<IListaProdutosLojaSqlResolverFactory, ListaProdutosLojaSqlResolverFactory>();
+
+            container.RegisterType<IVisitorCriacaoFuncao, VisitorFuncoesComVetorDeTipos>();
         }
     }
 }

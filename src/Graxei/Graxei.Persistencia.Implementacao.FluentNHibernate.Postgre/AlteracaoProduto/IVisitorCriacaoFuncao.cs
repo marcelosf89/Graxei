@@ -8,8 +8,8 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
 {
     public interface IVisitorCriacaoFuncao
     {
-        void Visit(CriarProdutoVendedor funcao);
-        void Visit(AlterarProdutoVendedor funcao);
-        void Visit(ExcluirProdutoVendedor funcao);
+        string Visit(CriarProdutoVendedor funcao);
+        string Visit(AlterarProdutoVendedor funcao);
+        string Visit(ExcluirProdutoVendedor funcao);
     }
 }

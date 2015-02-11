@@ -11,7 +11,7 @@ namespace Graxei.Modelo
     {
 
         [DocumentId]
-        public override long Id { get; protected set; }
+        public override long Id { get; set; }
 
         [Display(ResourceType = typeof(Propriedades), Name = "Descricao")]
         [Required(ErrorMessageResourceName = "DescricaoNula", ErrorMessageResourceType = typeof(Erros))]
