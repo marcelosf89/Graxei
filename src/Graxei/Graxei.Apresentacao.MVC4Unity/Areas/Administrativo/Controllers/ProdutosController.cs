@@ -75,6 +75,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             try
             {
+                throw new Exception("Erro!");
                 _gerenciamentoProdutos.SalvarLista(itens);
             }
             catch (Exception)

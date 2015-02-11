@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlteracaoProduto\ExcluirProdutoVendedor.cs" />
+    <Compile Include="AlteracaoProduto\CriarProdutoVendedor.cs" />
+    <Compile Include="AlteracaoProduto\AlterarProdutoVendedor.cs" />
+    <Compile Include="AlteracaoProduto\IMudancaProdutoVendedorFuncao.cs" />
+    <Compile Include="AlteracaoProduto\IVisitorCriacaoFuncao.cs" />
+    <Compile Include="AlteracaoProduto\VisitorFuncoesComVetorDeTipos.cs" />
     <Compile Include="Aop\LogErroPostgresBehavior.cs" />
     <Compile Include="AtributosNHibernatePostgre.cs" />
     <Compile Include="BairrosNHibernatePostgre.cs" />
