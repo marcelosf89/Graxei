@@ -1,6 +1,7 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
 using Graxei.Transversais.ContratosDeDados;

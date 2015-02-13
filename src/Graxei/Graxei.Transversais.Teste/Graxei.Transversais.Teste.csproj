@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ContratosListaTeste.cs" />
     <Compile Include="TestePostgresComum.cs" />
+    <Compile Include="TesteProdutoLojaPrecoContrato.cs" />
     <Compile Include="TinyTypesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

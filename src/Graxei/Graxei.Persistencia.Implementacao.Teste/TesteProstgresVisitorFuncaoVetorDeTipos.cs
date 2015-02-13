@@ -1,5 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
 using Graxei.Transversais.Utilidades.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

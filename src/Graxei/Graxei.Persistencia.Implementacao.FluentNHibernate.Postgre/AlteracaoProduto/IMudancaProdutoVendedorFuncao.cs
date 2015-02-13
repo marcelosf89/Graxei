@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

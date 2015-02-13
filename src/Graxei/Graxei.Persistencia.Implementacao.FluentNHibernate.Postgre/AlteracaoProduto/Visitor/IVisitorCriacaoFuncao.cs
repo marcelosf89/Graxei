@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto
+namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor
 {
     public interface IVisitorCriacaoFuncao
     {
