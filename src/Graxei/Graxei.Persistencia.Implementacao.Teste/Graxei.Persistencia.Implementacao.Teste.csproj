@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioCommon.cs" />
     <Compile Include="Postgres\SqlResolvers.cs" />
+    <Compile Include="TesteMudancaProdutoVendedorFuncao.cs" />
     <Compile Include="TesteProstgresVisitorFuncaoVetorDeTipos.cs" />
   </ItemGroup>
   <ItemGroup>

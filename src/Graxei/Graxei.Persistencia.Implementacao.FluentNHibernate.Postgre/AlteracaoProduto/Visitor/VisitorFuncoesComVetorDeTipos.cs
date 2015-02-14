@@ -17,48 +17,60 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
 
         public string GetResultado()
         {
-            string criar = _criar.ToString();
-            criar = criar.Remove(criar.Length - 1);
-            criar = "SELECT";
-            return string.Empty;
+            string resultado = _selectCriar + _selectAlterar + _selectExcluir;
+
+            int index = resultado.Length - 7;
+            if (resultado.LastIndexOf(" UNION") == index)
+            {
+                resultado = resultado.Remove(index);
+            }
+
+            return resultado;
         }
 
         public string Visit(CriarProdutoVendedor funcao)
         {
-            _criar.Append(string.Format("row({0}, {1}, '{2}', {3}, {4}, '{5}')::produto_criacao,",
+            _criar.Append(string.Format("row({0}, {1}, '{2}', {3}, {4}, '{5}')::produto_criacao, ",
                                         funcao.IdProduto,
                                         funcao.IdEndereco,
                                         funcao.DescricaoProdutoVendedor,
                                         funcao.Preco.ToString("0.00", CultureInfo.InvariantCulture),
                                         funcao.Usuario.Id,
                                         PostgresComum.DataValida(DataSistema.Agora)));
-            string resultado = _criar.ToString();
-            resultado = resultado.Remove(_criar.Length - 1);
-            return string.Format("SELECT criar_produto_vendedor(array[{0}])", resultado);
+            _selectCriar = Formatar(_selectCriar, _criar, "criar_produto_vendedor") + " UNION ";
+            return _selectCriar;
+
         }
 
         public string Visit(AlterarProdutoVendedor funcao)
         {
-            _alterar.Append(string.Format("row({0}, '{1}', {2}, {3}, '{4}')::produto_modificacao,",
+            _alterar.Append(string.Format("row({0}, '{1}', {2}, {3}, '{4}')::produto_modificacao, ",
                                           funcao.IdProdutoVendedor,
                                           funcao.DescricaoProdutoVendedor,
                                           funcao.Preco.ToString("0.00", CultureInfo.InvariantCulture),
                                           funcao.Usuario.Id,
                                           PostgresComum.DataValida(DataSistema.Agora)));
-            string resultado = _alterar.ToString();
-            resultado = resultado.Remove(_alterar.Length - 1);
-            return string.Format("SELECT alterar_produto_vendedor(array[{0}])", resultado);
+
+            _selectAlterar = Formatar(_selectAlterar, _alterar, "alterar_produto_vendedor") + " UNION ";
+            return _selectAlterar;
         }
 
         public string Visit(ExcluirProdutoVendedor funcao)
         {
-            _excluir.Append(string.Format("row({0}, {1}, '{2}')::produto_exclusao,",
+            _excluir.Append(string.Format("row({0}, {1}, '{2}')::produto_exclusao, ",
                                           funcao.IdProdutoVendedor,
                                           funcao.Usuario.Id,
                                           PostgresComum.DataValida(DataSistema.Agora)));
-            string resultado = _excluir.ToString();
-            resultado = resultado.Remove(_excluir.Length - 1);
-            return string.Format("SELECT excluir_produto_vendedor(array[{0}])", resultado);
+            _selectExcluir = Formatar(_selectExcluir, _excluir, "excluir_produto_vendedor");
+            return _selectExcluir;
+        }
+
+        private string Formatar(string select, StringBuilder row, string funcao)
+        {
+            select = row.ToString();
+            select = select.Remove(row.Length - 2);
+            select = string.Format("SELECT {0}(array[{1}])", funcao, select);
+            return select;
         }
 
         private string _resultadoChamadaFuncoes;
@@ -68,5 +80,11 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
         private StringBuilder _alterar = new StringBuilder();
 
         private StringBuilder _excluir = new StringBuilder();
+
+        private string _selectCriar;
+
+        private string _selectAlterar;
+
+        private string _selectExcluir;
     }
 }

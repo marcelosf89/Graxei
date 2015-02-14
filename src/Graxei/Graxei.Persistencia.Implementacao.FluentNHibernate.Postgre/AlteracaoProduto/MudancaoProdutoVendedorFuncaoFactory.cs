@@ -27,7 +27,11 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
             List<IMudancaProdutoVendedorFuncao> resultado = new List<IMudancaProdutoVendedorFuncao>();
             for (int i = 0; i < list.Count; i++)
             {
-                resultado.Add(GetComBaseEm(list[i]));
+                IMudancaProdutoVendedorFuncao produto = GetComBaseEm(list[i]);
+                if (produto != null)
+                {
+                    resultado.Add(produto);
+                }
             }
 
             return resultado;

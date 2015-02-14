@@ -21,7 +21,7 @@ namespace Graxei.Transversais.ContratosDeDados
                 {
                     return OperacaoProdutoLoja.Excluir;
                 }
-                else if (IdMeuProduto <= 0 && IdProduto > 0)
+                else if (IdMeuProduto <= 0 && IdProduto > 0 && IdEndereco > 0)
                 {
                     return OperacaoProdutoLoja.Incluir;
                 }

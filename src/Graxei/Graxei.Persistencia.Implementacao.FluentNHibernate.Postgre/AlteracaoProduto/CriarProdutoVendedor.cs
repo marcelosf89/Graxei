@@ -43,8 +43,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
         {
             get { return _usuario; }
         }
-
-
+        
         public void Aceitar(IVisitorCriacaoFuncao visitor)
         {
             visitor.Visit(this);
