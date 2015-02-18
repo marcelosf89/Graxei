@@ -85,6 +85,8 @@ namespace Graxei.Negocio.Fabrica
             container.RegisterType<IListaProdutosLojaSqlResolverFactory, ListaProdutosLojaSqlResolverFactory>();
 
             container.RegisterType<IVisitorCriacaoFuncao, VisitorFuncoesComVetorDeTipos>();
+
+            container.RegisterType<IMudancaProdutoVendedorFuncaoFactory, MudancaoProdutoVendedorFuncaoFactory>();
         }
     }
 }

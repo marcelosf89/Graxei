@@ -1,6 +1,7 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
+using Graxei.Persistencia.Implementacao.Teste.Helper;
 using Graxei.Transversais.Utilidades.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -14,45 +15,38 @@ namespace Graxei.Persistencia.Implementacao.Teste
     [TestClass]
     public class TesteProstgresVisitorFuncaoVetorDeTipos
     {
-        private string _esperadoCriar = "SELECT criar_produto_vendedor(array[row(1, 2, 'NovaDescricao', 110.25, 1, '2010-11-12 13:39:36:123')::produto_criacao]) UNION ";
+        private string _esperadoCriar = "SELECT criar_produto_vendedor(array[row(1, 2, 'NovaDescricao', 110.25, 1, '2010-11-12 13:39:36.123')::produto_criacao{0}]) UNION ";
 
-        private string _esperadoAlterar = "SELECT alterar_produto_vendedor(array[row(1, 'DescricaoModificada', 15.33, 25, '2006-05-22 10:47:19:596')::produto_modificacao]) UNION ";
+        private string _esperadoAlterar = "SELECT alterar_produto_vendedor(array[row(1, 'DescricaoModificada', 15.33, 25, '2010-11-12 13:39:36.123')::produto_modificacao{0}]) UNION ";
 
-        private string _esperadoExcluir = "SELECT excluir_produto_vendedor(array[row(1, 10, '1997-09-21 22:11:48:819')::produto_exclusao])";
+        private string _esperadoExcluir = "SELECT excluir_produto_vendedor(array[row(1, 10, '2010-11-12 13:39:36.123')::produto_exclusao{0}])";
 
         [TestMethod]
         public void QuandoHaSomenteUmCriarProdutoRetornarConsultaApropriada()
         {   
             //  Arrange
-            string esperado = RemoverClausulaUnionDe(_esperadoCriar);
-            CriarProdutoVendedor criarProdutoVendedor = GetCriarPadrao();
-            DateTime data = new DateTime(2010, 11, 12, 13, 39, 36, 123);
+            string esperado = PostgresVisitorHelper.GetLimpo(_esperadoCriar);
+            CriarProdutoVendedor criarProdutoVendedor = PostgresVisitorHelper.GetCriarPadrao();
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            string actual = visitor.Visit(criarProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(criarProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
             Assert.AreEqual(esperado, actualResultado);
-
         }
 
         [TestMethod]
         public void QuandoHaDoisCriarProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperado = "SELECT criar_produto_vendedor(array[row(1, 2, 'NovaDescricao', 110.25, 1, '2010-11-12 13:39:36:123')::produto_criacao, row(2, 1, 'NovaDescricao2', 110.30, 1, '2010-11-12 13:39:36:123')::produto_criacao])";
-            CriarProdutoVendedor criarProdutoVendedor = GetCriarPadrao();
-            CriarProdutoVendedor criarProdutoVendedor2 = new CriarProdutoVendedor(2, "NovaDescricao2", 110.30, 1, GetUsuario(1));
-            DateTime data = new DateTime(2010, 11, 12, 13, 39, 36, 123);
+            string esperado = string.Format(_esperadoCriar, ", row(2, 1, 'NovaDescricao2', 110.30, 1, '2010-11-12 13:39:36.123')::produto_criacao");
+            esperado = PostgresVisitorHelper.GetLimpo(esperado);
+            CriarProdutoVendedor criarProdutoVendedor = PostgresVisitorHelper.GetCriarPadrao();
+            CriarProdutoVendedor criarProdutoVendedor2 = new CriarProdutoVendedor(2, "NovaDescricao2", 110.30, 1, PostgresVisitorHelper.GetUsuario(1));
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(criarProdutoVendedor);
-            visitor.Visit(criarProdutoVendedor2);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(criarProdutoVendedor, criarProdutoVendedor2);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -63,14 +57,11 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoHaSomentUmAlterarProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperado = RemoverClausulaUnionDe(_esperadoAlterar);
-            AlterarProdutoVendedor alterarProdutoVendedor = GetAlterarPadrao();
-            DateTime data = new DateTime(2006, 5, 22, 10, 47, 19, 596);
+            string esperado = PostgresVisitorHelper.GetLimpo(_esperadoAlterar);
+            AlterarProdutoVendedor alterarProdutoVendedor = PostgresVisitorHelper.GetAlterarPadrao();
             
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(alterarProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(alterarProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -81,16 +72,13 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoHaDoisAlterarProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperado = "SELECT alterar_produto_vendedor(array[row(1, 'DescricaoModificada', 15.33, 25, '2006-05-22 10:47:19:596')::produto_modificacao, row(2, 'DescricaoModificada2', 155.44, 25, '2006-05-22 10:47:19:596')::produto_modificacao])";
-            AlterarProdutoVendedor alterarProdutoVendedor = GetAlterarPadrao();
-            AlterarProdutoVendedor alterarProdutoVendedor2 = new AlterarProdutoVendedor(2, "DescricaoModificada2", 155.44, GetUsuario(25));
-            DateTime data = new DateTime(2006, 5, 22, 10, 47, 19, 596);
-
+            string esperado = string.Format(_esperadoAlterar, ", row(2, 'DescricaoModificada2', 155.44, 25, '2010-11-12 13:39:36.123')::produto_modificacao");
+            esperado = PostgresVisitorHelper.GetLimpo(esperado);
+            AlterarProdutoVendedor alterarProdutoVendedor = PostgresVisitorHelper.GetAlterarPadrao();
+            AlterarProdutoVendedor alterarProdutoVendedor2 = new AlterarProdutoVendedor(2, "DescricaoModificada2", 155.44, PostgresVisitorHelper.GetUsuario(25));
+            
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(alterarProdutoVendedor);
-            visitor.Visit(alterarProdutoVendedor2);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(alterarProdutoVendedor, alterarProdutoVendedor2);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -100,33 +88,28 @@ namespace Graxei.Persistencia.Implementacao.Teste
         [TestMethod]
         public void QuandoHaSomentUmExcluirProdutoRetornarConsultaApropriada()
         {
-            ExcluirProdutoVendedor excluirProdutoVendedor = new ExcluirProdutoVendedor(1, GetUsuario(10));
-            DateTime data = new DateTime(1997, 9, 21, 22, 11, 48, 819);
+            // Arrange
+            string esperado = string.Format(_esperadoExcluir, string.Empty);
+            ExcluirProdutoVendedor excluirProdutoVendedor = new ExcluirProdutoVendedor(1, PostgresVisitorHelper.GetUsuario(10));
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(excluirProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(excluirProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
-            Assert.AreEqual(_esperadoExcluir, actualResultado);
+            Assert.AreEqual(esperado, actualResultado);
         }
 
         [TestMethod]
         public void QuandoHaDoisExcluirProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperado = "SELECT excluir_produto_vendedor(array[row(1, 10, '1997-09-21 22:11:48:819')::produto_exclusao, row(2, 10, '1997-09-21 22:11:48:819')::produto_exclusao])";
-            ExcluirProdutoVendedor excluirProdutoVendedor = GetExcluirPadrao();
-            ExcluirProdutoVendedor excluirProdutoVendedor2 = new ExcluirProdutoVendedor(2, GetUsuario(10));
-            DateTime data = new DateTime(1997, 9, 21, 22, 11, 48, 819);
+            string esperado = string.Format(_esperadoExcluir, ", row(2, 10, '2010-11-12 13:39:36.123')::produto_exclusao");
+            ExcluirProdutoVendedor excluirProdutoVendedor = PostgresVisitorHelper.GetExcluirPadrao();
+            ExcluirProdutoVendedor excluirProdutoVendedor2 = new ExcluirProdutoVendedor(2, PostgresVisitorHelper.GetUsuario(10));
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(excluirProdutoVendedor);
-            visitor.Visit(excluirProdutoVendedor2);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(excluirProdutoVendedor, excluirProdutoVendedor2);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -137,18 +120,13 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoHaUmCriarEUmAlterarProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperadoAlterar = "SELECT alterar_produto_vendedor(array[row(1, 'DescricaoModificada', 15.33, 25, '2010-11-12 13:39:36:123')::produto_modificacao])";
-            string esperado = _esperadoCriar + esperadoAlterar;
+            string esperado = string.Format(_esperadoCriar, string.Empty) + PostgresVisitorHelper.GetLimpo(_esperadoAlterar);
 
-            CriarProdutoVendedor criarProdutoVendedor = GetCriarPadrao();
-            AlterarProdutoVendedor alterarProdutoVendedor = GetAlterarPadrao();
-            DateTime data = new DateTime(2010, 11, 12, 13, 39, 36, 123);
+            CriarProdutoVendedor criarProdutoVendedor = PostgresVisitorHelper.GetCriarPadrao();
+            AlterarProdutoVendedor alterarProdutoVendedor = PostgresVisitorHelper.GetAlterarPadrao();
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(criarProdutoVendedor);
-            visitor.Visit(alterarProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(criarProdutoVendedor, alterarProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -159,18 +137,13 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoHaUmCriarEUmExcluirProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperadoExcluir = "SELECT excluir_produto_vendedor(array[row(1, 10, '2010-11-12 13:39:36:123')::produto_exclusao])";
-            string esperado = _esperadoCriar + esperadoExcluir;
+            string esperado = string.Format(_esperadoCriar, string.Empty) + string.Format(_esperadoExcluir, string.Empty);
 
-            CriarProdutoVendedor criarProdutoVendedor = GetCriarPadrao();
-            ExcluirProdutoVendedor excluirProdutoVendedor = GetExcluirPadrao();
-            DateTime data = new DateTime(2010, 11, 12, 13, 39, 36, 123);
+            CriarProdutoVendedor criarProdutoVendedor = PostgresVisitorHelper.GetCriarPadrao();
+            ExcluirProdutoVendedor excluirProdutoVendedor = PostgresVisitorHelper.GetExcluirPadrao();
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(criarProdutoVendedor);
-            visitor.Visit(excluirProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(criarProdutoVendedor, excluirProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -181,18 +154,13 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoHaUmAlterarEUmExcluirProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperadoExcluir = "SELECT excluir_produto_vendedor(array[row(1, 10, '2006-05-22 10:47:19:596')::produto_exclusao])";
-            string esperado = _esperadoAlterar + esperadoExcluir;
+            string esperado = string.Format(_esperadoAlterar, string.Empty) + string.Format(_esperadoExcluir, string.Empty);
 
-            AlterarProdutoVendedor alterarProdutoVendedor = GetAlterarPadrao();
-            ExcluirProdutoVendedor excluirProdutoVendedor = GetExcluirPadrao();
-            DateTime data = new DateTime(2006, 5, 22, 10, 47, 19, 596);
+            AlterarProdutoVendedor alterarProdutoVendedor = PostgresVisitorHelper.GetAlterarPadrao();
+            ExcluirProdutoVendedor excluirProdutoVendedor = PostgresVisitorHelper.GetExcluirPadrao();
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(alterarProdutoVendedor);
-            visitor.Visit(excluirProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(alterarProdutoVendedor, excluirProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
@@ -203,82 +171,37 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoHaUmCriarUmAlterarEUmExcluirProdutoRetornarConsultaApropriada()
         {
             //  Arrange
-            string esperadoAlterar = "SELECT alterar_produto_vendedor(array[row(1, 'DescricaoModificada', 15.33, 25, '2010-11-12 13:39:36:123')::produto_modificacao]) UNION ";
-            string esperadoExcluir = "SELECT excluir_produto_vendedor(array[row(1, 10, '2010-11-12 13:39:36:123')::produto_exclusao])";
-            string esperado = _esperadoCriar + esperadoAlterar + esperadoExcluir;
+            string esperado = string.Format(_esperadoCriar, string.Empty) + string.Format(_esperadoAlterar, string.Empty) + string.Format(_esperadoExcluir,  string.Empty);
 
-            CriarProdutoVendedor criarProdutoVendedor = GetCriarPadrao();
-            AlterarProdutoVendedor alterarProdutoVendedor = GetAlterarPadrao();
-            ExcluirProdutoVendedor excluirProdutoVendedor = GetExcluirPadrao();
-            DateTime data = new DateTime(2010, 11, 12, 13, 39, 36, 123);
+            CriarProdutoVendedor criarProdutoVendedor = PostgresVisitorHelper.GetCriarPadrao();
+            AlterarProdutoVendedor alterarProdutoVendedor = PostgresVisitorHelper.GetAlterarPadrao();
+            ExcluirProdutoVendedor excluirProdutoVendedor = PostgresVisitorHelper.GetExcluirPadrao();
 
             // Act
-            VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-            visitor.DataSistema = new DataSistemaTeste(data);
-            visitor.Visit(criarProdutoVendedor);
-            visitor.Visit(alterarProdutoVendedor);
-            visitor.Visit(excluirProdutoVendedor);
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(criarProdutoVendedor, alterarProdutoVendedor, excluirProdutoVendedor);
             string actualResultado = visitor.GetResultado();
 
             // Assert
             Assert.AreEqual(esperado, actualResultado);
         }
 
-        private ExcluirProdutoVendedor GetExcluirPadrao()
+        [TestMethod]
+        public void QuandoHaDoisCriarUmAlterarEUmExcluirProdutoRetornarConsultaApropriada()
         {
-            ExcluirProdutoVendedor excluirProdutoVendedor = new ExcluirProdutoVendedor(1, GetUsuario(10));
-            return excluirProdutoVendedor;
-        }
+            //  Arrange
+            string esperadoCriarDoTeste = string.Format(_esperadoCriar, ", row(2, 1, 'NovaDescricao2x', 110.30, 1, '2010-11-12 13:39:36.123')::produto_criacao");
+            string esperado = esperadoCriarDoTeste + string.Format(_esperadoAlterar, string.Empty) + string.Format(_esperadoExcluir, string.Empty);
+            CriarProdutoVendedor criarProdutoVendedor = PostgresVisitorHelper.GetCriarPadrao();
+            CriarProdutoVendedor criarProdutoVendedor2 = new CriarProdutoVendedor(2, "NovaDescricao2x", 110.30, 1, PostgresVisitorHelper.GetUsuario(1));
+            AlterarProdutoVendedor alterarProdutoVendedor = PostgresVisitorHelper.GetAlterarPadrao();
+            ExcluirProdutoVendedor excluirProdutoVendedor = PostgresVisitorHelper.GetExcluirPadrao();
 
-        private CriarProdutoVendedor GetCriarPadrao()
-        {
-            CriarProdutoVendedor criarProdutoVendedor = new CriarProdutoVendedor(1, "NovaDescricao", 110.25, 2, GetUsuario(1));
-            return criarProdutoVendedor;
-        }
+            // Act
+            VisitorFuncoesComVetorDeTipos visitor = PostgresVisitorHelper.GetVisitorAndVisit(criarProdutoVendedor, criarProdutoVendedor2, alterarProdutoVendedor, excluirProdutoVendedor);
+            string actualResultado = visitor.GetResultado();
 
-        private AlterarProdutoVendedor GetAlterarPadrao()
-        {
-            AlterarProdutoVendedor alterarProdutoVendedor = new AlterarProdutoVendedor(1, "DescricaoModificada", 15.33, GetUsuario(25));
-            return alterarProdutoVendedor;
-        }
-        
-        private string RemoverClausulaUnionDe(string str)
-        {
-            return str.Remove(str.Length - 7);
-        }
-
-        private Usuario GetUsuario(int id)
-        {
-            return new Usuario() { Id = id };
-        }
-
-        //private VisitorFuncoesComVetorDeTipos GetVisitor(DateTime data, params IMudancaProdutoVendedorFuncao[] produtos)
-        //{
-        //    VisitorFuncoesComVetorDeTipos visitor = new VisitorFuncoesComVetorDeTipos();
-        //    visitor.DataSistema = new DataSistemaTeste(data);
-        //    for (int i = 0; i < produtos.Length; i++)
-        //    {
-        //        visitor.Visit(produtos[i]);
-        //    }
-
-        //    return visitor;
-        //}
-
-        private class DataSistemaTeste : IDataSistema
-        {
-            private DateTime _data;
-            public DataSistemaTeste(DateTime data)
-            {
-                _data = data;
-            }
-
-            public DateTime Agora
-            {
-                get
-                {
-                    return _data;
-                }
-            }
+            // Assert
+            Assert.AreEqual(esperado, actualResultado);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Graxei.Transversais.Utilidades
     {
         public static string DataValida(DateTime data)
         {
-            return data.ToString("yyyy-MM-dd HH:mm:ss:fff");
+            return data.ToString("yyyy-MM-dd HH:mm:ss.fff");
         }
     }
 }
