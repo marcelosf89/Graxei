@@ -116,7 +116,7 @@ namespace Graxei.Negocio.Implementacao
 
         public void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
         {
-            Repositorio.GerenciarAtualizacaoLista(produtoLojaPrecoContrato);
+            Repositorio.AtualizarLista(produtoLojaPrecoContrato);
         }
 
         #region Propriedades Privadas

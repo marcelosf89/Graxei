@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Listas\ListaProdutosLoja.cs" />
     <Compile Include="Listas\ListaProdutosLojaContrato.cs" />
+    <Compile Include="OperacaoProdutoLoja.cs" />
     <Compile Include="PesquisaContrato.cs" />
     <Compile Include="EnderecoListaContrato.cs" />
     <Compile Include="Interfaces\IItemLista.cs" />

@@ -17,10 +17,10 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
     {
         private const string Consulta =
                      @"FROM produtos p
-                  LEFT JOIN produtos_vendedores pv ON p.id_produto = pv.id_produto
+                  LEFT JOIN produtos_vendedores_ativos pv ON p.id_produto = pv.id_produto
                   LEFT JOIN enderecos e ON pv.id_endereco = e.id_endereco
                   LEFT JOIN lojas l ON e.id_loja = l.id_loja AND l.id_loja = :id 
-                      WHERE (lower(p.descricao) like :descricao OR lower(pv.descricao) like :descricao)";
+                      WHERE p.excluida = false AND (lower(p.descricao) like :descricao OR lower(pv.descricao) like :descricao)";
 
         private const string Ordem = "ORDER BY pv.descricao";
 

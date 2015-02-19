@@ -10,6 +10,11 @@ using System.Linq;
 using Graxei.Transversais.ContratosDeDados;
 using NHibernate.Criterion;
 using NHibernate.Transform;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
+using NHibernate;
+using Graxei.FluentNHibernate.UnitOfWork;
+using System.Data;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -19,11 +24,17 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
     /// </summary>
     public class ProdutoVendedorRepositorio : PadraoNHibernatePostgre<ProdutoVendedor>, IRepositorioProdutoVendedor
     {
+        public ProdutoVendedorRepositorio(IVisitorCriacaoFuncao visitorCriacaoFuncao, IMudancaProdutoVendedorFuncaoFactory mudancaFactory)
+        {
+            _visitorCriacaoFuncao = visitorCriacaoFuncao;
+            _mudancaFactory = mudancaFactory; 
+        }
+
         #region Implementação de IRepositorioProdutoVendedor
 
         public IList<ProdutoVendedor> GetPorDescricao(string descricao)
         {
-            return SessaoAtual.Query<ProdutoVendedor>().Where(p => p.Descricao != null
+            return GetSessaoAtual().Query<ProdutoVendedor>().Where(p => p.Descricao != null
                                                                              &&
                                                                              p.Descricao.Trim().ToLower() ==
                                                                              descricao.Trim().ToLower()).ToList<ProdutoVendedor>();
@@ -59,7 +70,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
             sql = String.Format(sql, lojasql);
 
-            return SessaoAtual.CreateSQLQuery(sql)
+            return GetSessaoAtual().CreateSQLQuery(sql)
           .SetResultTransformer(Transformers.AliasToBean(typeof(PesquisaContrato)))
           .SetParameter<String>("descricao", descricao)
           .SetParameter<double>("val", textoL)
@@ -86,7 +97,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja)
         {
-            ProdutoVendedor pvl = SessaoAtual.Query<ProdutoVendedor>()
+            ProdutoVendedor pvl = GetSessaoAtual().Query<ProdutoVendedor>()
                                                  .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower()
                                                                     && p.Endereco.Loja.Nome.Trim().ToLower() == nomeLoja.Trim().ToLower());
             return pvl;
@@ -103,7 +114,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 throw new EntidadeInvalidaException(Erros.LojaInvalida);
             }
             ProdutoVendedor produtoVendedor =
-                                  SessaoAtual.Query<ProdutoVendedor>()
+                                  GetSessaoAtual().Query<ProdutoVendedor>()
                                              .SingleOrDefault(p => p.Descricao.Trim().ToLower() == descricao.Trim().ToLower() && p.Endereco.Loja.Nome.Trim().ToLower() == loja.Nome.Trim().ToLower());
             return produtoVendedor;
         }
@@ -114,7 +125,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             {
                 throw new ArgumentException("Loja é nula ou não foi salva");
             }
-            SessaoAtual.CreateSQLQuery(ConsultasSQL.ExcluirProdutosVendedorDeLoja)
+            GetSessaoAtual().CreateSQLQuery(ConsultasSQL.ExcluirProdutosVendedorDeLoja)
                        .SetParameter("p0", loja.Id).ExecuteUpdate();
         }
 
@@ -141,7 +152,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 join telefones tl on en.id_endereco = tl.id_endereco
                 where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val
                 ";
-            return SessaoAtual.CreateSQLQuery(sql)
+            return GetSessaoAtual().CreateSQLQuery(sql)
                 .SetParameter<String>("descricao", descricao)
                 .SetParameter<double>("val", textoL)
                 .UniqueResult<long>();
@@ -150,7 +161,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public long GetQuantidadeProduto(Usuario usuario)
         {
-            return (from l in SessaoAtual.Query<Loja>()
+            return (from l in GetSessaoAtual().Query<Loja>()
                     from e in l.Enderecos
                     join pv in SessaoAtual.Query<ProdutoVendedor>() on e.Id equals pv.Endereco.Id
                     from u in l.Usuarios
@@ -161,7 +172,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public long GetQuantidadeProduto(long lojaId)
         {
-            return (from l in SessaoAtual.Query<Loja>()
+            return (from l in GetSessaoAtual().Query<Loja>()
                     from e in l.Enderecos
                     join pv in SessaoAtual.Query<ProdutoVendedor>() on e.Id equals pv.Endereco.Id
                     from u in l.Usuarios
@@ -169,59 +180,49 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                     select pv.Id).Count();
         }
 
-        public void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
-        {
-            string queryInserir = @"INSERT INTO produtos_vendedores (preco, id_produto, id_endereco, descricao, excluida) 
-                                         VALUES (:preco, :id_produto, :id_endereco, :descricao, false)";
-            string queryAlterar = @"UPDATE produtos_vendedores SET preco = :preco, descricao = :descricao, excluida = false
-                                     WHERE id_produto_vendedor = :id_produto_vendedor";
-            for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
-            {
-                ProdutoLojaPrecoContrato contratoAtual = produtoLojaPrecoContratos[i];
-                if (produtoLojaPrecoContratos[i].IdMeuProduto > 0)
-                {
-                    SessaoAtual.CreateSQLQuery(queryAlterar)
-                           .SetParameter("preco", contratoAtual.Preco)
-                           .SetParameter("id_produto_vendedor", contratoAtual.IdMeuProduto)
-                           .SetParameter("descricao", contratoAtual.MinhaDescricao)
-                           .ExecuteUpdate();
-                }
-                else
-                {
-                    SessaoAtual.CreateSQLQuery(queryInserir)
-                           .SetParameter("id_produto", produtoLojaPrecoContratos[i].IdProduto)
-                           .SetParameter("id_endereco", produtoLojaPrecoContratos[i].IdEndereco)
-                           .SetParameter("preco", produtoLojaPrecoContratos[i].Preco)
-                           .SetParameter("descricao", contratoAtual.MinhaDescricao)
-                           .ExecuteUpdate();
-                }
-            }
-        }
-
-        public void RemoverLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
-        {
-            string query = @"UPDATE produtos_vendedores SET excluida = true, preco = 0
-                              WHERE id_produto_vendedor = :id_produto_vendedor";
-            for (int i = 0; i < produtoLojaPrecoContratos.Count(); i++)
-            {
-                int resultado =
-                SessaoAtual.CreateSQLQuery(query)
-                           .SetParameter("id_produto_vendedor", produtoLojaPrecoContratos[i].IdMeuProduto)
-                           .ExecuteUpdate();
-            }
-        }
-
-        public void GerenciarAtualizacaoLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
+        public void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
             if (produtoLojaPrecoContratos == null || produtoLojaPrecoContratos.Count == 0)
             {
                 return;
             }
-            ////SessaoAtual.SetBatchSize(produtoLojaPrecoContratos.Count + 10);
-            IList<ProdutoLojaPrecoContrato> salvar = produtoLojaPrecoContratos.Where(p => p.Preco > 0).ToList();
-            SalvarLista(salvar);
-            IList<ProdutoLojaPrecoContrato> excluir = produtoLojaPrecoContratos.Where(p => p.Preco <= 0).ToList();
-            RemoverLista(excluir);
+
+            IList<IMudancaProdutoVendedorFuncao> listaMudancaProdutoVendedor = _mudancaFactory.GetComBaseEm(produtoLojaPrecoContratos);
+            foreach (IMudancaProdutoVendedorFuncao produtoVendedor in listaMudancaProdutoVendedor)
+            {
+                produtoVendedor.Aceitar(_visitorCriacaoFuncao);
+            }
+
+            string sql = _visitorCriacaoFuncao.GetResultado();
+            using (IDbCommand command = GetSessaoAtual().Connection.CreateCommand())
+            {
+                command.CommandText = sql;
+                command.ExecuteReader();
+            };
+            
+            //GetSessaoAtual().CreateSQLQuery(sql)
+                           // .UniqueResult();
         }
+
+        public ISession GetSessaoAtual()
+        {
+            if (_sessao == null)
+            {
+                _sessao = UnitOfWorkNHibernate.GetInstancia().SessaoAtual;
+            }
+
+            return _sessao;
+        }
+
+        public void SetSessaoAtual(ISession session)
+        {
+            _sessao = session;
+        }
+
+        private IVisitorCriacaoFuncao _visitorCriacaoFuncao;
+
+        private IMudancaProdutoVendedorFuncaoFactory _mudancaFactory;
+
+        private ISession _sessao;
     }
 }

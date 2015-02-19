@@ -53,6 +53,7 @@ namespace Graxei.FluentNHibernate.Configuracao
         #region Métodos Privados
         public ISessionFactory GetSessionFactory()
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["graxei"].ToString();
             if (this._sessionFactory == null)
             {
                 FluentConfiguration config = Fluently.Configure();
@@ -61,17 +62,15 @@ namespace Graxei.FluentNHibernate.Configuracao
                 {
                     case "MYSQL":
                         config.CurrentSessionContext<WebSessionContext>()
-                              .Database(MySQLConfiguration.Standard.ConnectionString(c => c.Server(_server).Database(_database)
-                              .Username(_username).Password(_password))
-                              .AdoNetBatchSize(1).ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>()
+                              .Database(MySQLConfiguration.Standard.ConnectionString(connectionString)
+                              .ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>()
                               .Conventions.Add<ClasseComumConvencao>()).BuildConfiguration();
                         break;
                     case "POSTGRESQL":
                     default:
                         config.CurrentSessionContext<WebSessionContext>()
-                              .Database(PostgreSQLConfiguration.Standard.ConnectionString(c => c.Host(_server).Database(_database)
-                              .Username(_username).Password(_password).Port(_port))
-                              .AdoNetBatchSize(1).ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>()
+                              .Database(PostgreSQLConfiguration.Standard.ConnectionString(connectionString)
+                              .ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>()
                               .Conventions.Add<ClasseComumConvencao>())
                               .BuildConfiguration();
                         break;

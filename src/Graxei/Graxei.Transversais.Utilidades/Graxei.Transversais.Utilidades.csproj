@@ -32,15 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+    <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +58,8 @@
     <Compile Include="Autenticacao\GerenciadorAutenticacao.cs" />
     <Compile Include="Autenticacao\Interfaces\IGerenciadorAutenticacao.cs" />
     <Compile Include="Constantes.cs" />
+    <Compile Include="Data\DataSistemaPadrao.cs" />
+    <Compile Include="Data\IDataSistema.cs" />
     <Compile Include="Entidades\EstadoOrdem.cs" />
     <Compile Include="Excecoes\AutenticacaoException.cs" />
     <Compile Include="Excecoes\ProdutoForaDoLimiteException.cs" />
@@ -71,6 +75,7 @@
     <Compile Include="NHibernate\ConsultasHql.cs" />
     <Compile Include="NHibernate\Queries.cs" />
     <Compile Include="NHibernate\UtilidadeEntidades.cs" />
+    <Compile Include="PostgresComum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransformacaoDados\Interface\ITransformacaoMutua.cs" />
   </ItemGroup>
@@ -89,6 +94,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

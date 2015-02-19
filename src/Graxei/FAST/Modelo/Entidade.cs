@@ -3,7 +3,7 @@
 
     public abstract class Entidade
     {
-        public virtual long Id { get; protected set; }
+        public virtual long Id { get; set; }
         //public abstract void Validar();
     }
 
