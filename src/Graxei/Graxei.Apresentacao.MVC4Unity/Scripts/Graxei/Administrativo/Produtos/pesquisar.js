@@ -39,13 +39,29 @@ $("input[doc-type=ip]").on("keyup", function () {
     }
 });
 
-function habilitarBotaoSalvar(me) {
+function habilitarBotaoSalvar() {
     var button = $('#salvarPrecos');
     button.addClass("invisible");
+    var tr = $(this).parents("tr");
+
     $(".valor-produto").each(function () {
         if ($(this).val() != $(this).data("preco-original")) {
             button.removeClass("invisible");
             return false;
+        }
+    });
+
+    $(".descricao-produto").each(function () {
+        var textArea = $(tr).children("textarea");
+        var label = $(tr).children("label");
+        var valorAreaTexto = textArea.val();
+        if (valorAreaTexto != '' && $(this).data("original") != valorAreaTexto) {
+            var inputValor = $(tr).children("input");
+            console.log("inputvalor: " + inputValor.val());
+            if (inputValor.val() > 0) {
+                button.removeClass("invisible");
+                return false;
+            }
         }
     });
 }
@@ -65,7 +81,7 @@ function salvarPrecos() {
             }
         });
         return;
-    } 
+    }
 
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {

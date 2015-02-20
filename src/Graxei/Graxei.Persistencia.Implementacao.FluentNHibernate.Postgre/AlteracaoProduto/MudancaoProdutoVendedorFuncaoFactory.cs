@@ -39,6 +39,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
 
         public IMudancaProdutoVendedorFuncao GetComBaseEm(ProdutoLojaPrecoContrato produtoLojaPrecoContrato)
         {
+            IMudancaProdutoVendedorFuncao retorno;
             switch (produtoLojaPrecoContrato.OperacaoNoContrato)
             {
                 case OperacaoProdutoLoja.Incluir:

@@ -17,7 +17,7 @@ namespace Graxei.Transversais.ContratosDeDados
         {
             get 
             {
-                if (Preco <= 0)
+                if (Preco <= 0 && IdMeuProduto > 0)
                 {
                     return OperacaoProdutoLoja.Excluir;
                 }

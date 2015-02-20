@@ -18,6 +18,10 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
         public string GetResultado()
         {
             string resultado = _selectCriar + _selectAlterar + _selectExcluir;
+            if (string.IsNullOrEmpty(resultado))
+            {
+                return resultado;
+            }
 
             int index = resultado.Length - 7;
             if (resultado.LastIndexOf(" UNION") == index)

@@ -38,10 +38,10 @@
                             <button type="button" class="cancel btn btn-link" onclick="habilitarEdicao(this);">
                                 <img src="~/Content/imagens/editar.png" />
                             </button>
-                            <label ondblclick="habilitarEdicao(this);" data-original="@item.Descricao">@item.Descricao</label>
+                            <label onclick="habilitarEdicao(this);" data-original="@item.Descricao" class="descricao-produto">@item.Descricao</label>
                         </div>
                         <div style="display: none">
-                            <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 300 caracteres" data-val-length-max="300" rows="2"></textarea>
+                            <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 300 caracteres" data-val-length-max="300" rows="2" onkeyup="\(this)"></textarea>
                             <span class="field-validation-valid" data-valmsg-for="@nomeTextArea" data-valmsg-replace="true"></span>
                             <button type="button" class="btn btn-default" onclick="tratarCliqueEdicao(this);">OK</button>
                             <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
@@ -51,7 +51,7 @@
                     <td class="col-md-2 col-md-2">
                         <div class="input-group">
                             <span class="input-group-addon">R$</span>
-                            <input id="@idPreco" name="precoProduto" type="number" value="@item.Preco" data-preco-original="@item.Preco" class="form-control valor-produto" onkeyup="habilitarBotaoSalvar();" onkeypress='return validate(event);' min="0" step="any" doc-type="ip" id-prod="@item.Id">
+                            <input id="@idPreco" name="precoProduto" type="number" value="@item.Preco" data-preco-original="@item.Preco" class="form-control valor-produto" onkeyup="habilitarBotaoSalvar(this);" onkeypress='return validate(event);' min="0" step="any" doc-type="ip" id-prod="@item.Id">
                         </div>
                     </td>
                 </tr>

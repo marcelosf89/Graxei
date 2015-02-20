@@ -15,6 +15,7 @@ using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProdut
 using NHibernate;
 using Graxei.FluentNHibernate.UnitOfWork;
 using System.Data;
+using Graxei.Transversais.Utilidades;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -182,7 +183,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 
         public void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
-            if (produtoLojaPrecoContratos == null || produtoLojaPrecoContratos.Count == 0)
+            if (Listas.NulaOuVazia<ProdutoLojaPrecoContrato>(produtoLojaPrecoContratos))
             {
                 return;
             }
@@ -194,14 +195,16 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             }
 
             string sql = _visitorCriacaoFuncao.GetResultado();
+            if (string.IsNullOrEmpty(sql))
+            {
+                return;
+            }
+
             using (IDbCommand command = GetSessaoAtual().Connection.CreateCommand())
             {
                 command.CommandText = sql;
                 command.ExecuteReader();
             };
-            
-            //GetSessaoAtual().CreateSQLQuery(sql)
-                           // .UniqueResult();
         }
 
         public ISession GetSessaoAtual()

@@ -26,11 +26,11 @@ namespace Graxei.Transversais.Teste
         }
 
         [TestMethod]
-        public void DeveTrazerExcluirQuandoPrecoMenorQueZero()
+        public void DeveTrazerInvalidoQuandoPrecoMenorQueZeroEIdMeuProdutoMenorQueZero()
         {
             // Arrange
-            OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Excluir;
-            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = -1 };
+            OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Invalido;
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = -1, IdMeuProduto = -5 };
 
             // Act
             OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;
@@ -40,11 +40,11 @@ namespace Graxei.Transversais.Teste
         }
 
         [TestMethod]
-        public void DeveTrazerExcluirQuandoPrecoIgualAZero()
+        public void DeveTrazerInvalidoQuandoPrecoIgualAZeroEMeuProdutoIgualAZero()
         {
             // Arrange
-            OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Excluir;
-            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 0 };
+            OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Invalido;
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 0, IdMeuProduto = 0 };
 
             // Act
             OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;

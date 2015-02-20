@@ -72,6 +72,7 @@
     <Compile Include="Excecoes\ObjetoJaExisteException.cs" />
     <Compile Include="Excecoes\OperacaoEntidadeException.cs" />
     <Compile Include="Excecoes\ValidacaoEntidadeException.cs" />
+    <Compile Include="Listas.cs" />
     <Compile Include="NHibernate\ConsultasHql.cs" />
     <Compile Include="NHibernate\Queries.cs" />
     <Compile Include="NHibernate\UtilidadeEntidades.cs" />

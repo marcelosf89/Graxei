@@ -19,7 +19,8 @@ namespace Graxei.Apresentacao.MVC4Unity
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                        "~/Scripts/jquery.validate.min.js"));
+                        "~/Scripts/jquery.validate.min.js",
+                        "~/Scripts/jquery.validate.unobtrusive.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
                 "~/Scripts/typeahead.jquery.js", "~/Scripts/bloodhound.min.js"));
