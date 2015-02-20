@@ -68,6 +68,20 @@ namespace Graxei.Transversais.Teste
         }
 
         [TestMethod]
+        public void DeveTrazerInvalidoQuandoPrecoMaiorQueZeroEIdMeuProdutoIgualQueZero()
+        {
+            // Arrange
+            OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Invalido;
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 2, IdMeuProduto = 0 };
+
+            // Act
+            OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;
+
+            // Assert
+            Assert.AreEqual(esperado, real);
+        }
+
+        [TestMethod]
         public void DeveTrazerInvalidoQuandoPrecoMaiorQueZeroIdProdutoIgualZeroIdMeuProdutoIgualZero()
         {
             // Arrange

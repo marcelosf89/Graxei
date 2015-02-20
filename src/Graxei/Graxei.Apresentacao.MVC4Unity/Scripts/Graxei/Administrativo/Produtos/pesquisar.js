@@ -42,8 +42,6 @@ $("input[doc-type=ip]").on("keyup", function () {
 function habilitarBotaoSalvar() {
     var button = $('#salvarPrecos');
     button.addClass("invisible");
-    var tr = $(this).parents("tr");
-
     $(".valor-produto").each(function () {
         if ($(this).val() != $(this).data("preco-original")) {
             button.removeClass("invisible");
@@ -52,12 +50,14 @@ function habilitarBotaoSalvar() {
     });
 
     $(".descricao-produto").each(function () {
-        var textArea = $(tr).children("textarea");
-        var label = $(tr).children("label");
+        var tr = $(this).parents("tr");
+        var textArea = $(tr).find("textarea");
+        var label = $(tr).find("label");
         var valorAreaTexto = textArea.val();
-        if (valorAreaTexto != '' && $(this).data("original") != valorAreaTexto) {
-            var inputValor = $(tr).children("input");
-            console.log("inputvalor: " + inputValor.val());
+        var valorOriginal = $(this).data("original");
+        console.log("valorOriginal: " + valorOriginal + "  ///  valorAreaTexto: " + valorAreaTexto);
+        if (valorAreaTexto != '' && valorOriginal != valorAreaTexto) {
+            var inputValor = $(tr).find("input[type='number']");
             if (inputValor.val() > 0) {
                 button.removeClass("invisible");
                 return false;
@@ -137,9 +137,6 @@ function habilitarEdicao(element) {
     textArea.focus();
 }
 
-function exibirPainelEdicao(parentDiv, divToShow) {
-}
-
 function tratarCliqueEdicao(element) {
     var textArea = $(element).siblings("textarea");
     var div = $(element).parent("div");
@@ -163,4 +160,5 @@ function tratarCliqueEdicao(element) {
     }
     painelPrincipalDiv.show();
     div.hide();
+    habilitarBotaoSalvar();
 }
