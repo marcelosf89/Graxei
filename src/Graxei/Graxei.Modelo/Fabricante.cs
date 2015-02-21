@@ -1,17 +1,14 @@
 ﻿using FAST.Modelo;
 using Graxei.Transversais.Idiomas;
-using Graxei.Search.Attributes;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Graxei.Modelo
 {
-    [Indexed]
     public class Fabricante : Entidade
     {
-        [DocumentId]
         public new virtual long Id { get; protected internal set; }
-        [Field(Index.Tokenized, Store = Store.Yes)]
+     
         [Display(ResourceType = typeof(Propriedades), Name = "Nome")]
         public virtual string Nome { get; set; }
 

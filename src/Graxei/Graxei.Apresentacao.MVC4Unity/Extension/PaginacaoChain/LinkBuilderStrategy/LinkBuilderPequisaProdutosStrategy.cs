@@ -25,6 +25,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStra
                 TagBuilder tagBuilder = new TagBuilder("button");
                 tagBuilder.AddCssClass("btn btn-default btn-pagina");
                 tagBuilder.Attributes.Add("doc-type", "paginar");
+                tagBuilder.Attributes.Add("type", "button");
                 tagBuilder.InnerHtml = i.ToString();
                 _links.Add(MvcHtmlString.Create(tagBuilder.ToString()).ToString());
             }

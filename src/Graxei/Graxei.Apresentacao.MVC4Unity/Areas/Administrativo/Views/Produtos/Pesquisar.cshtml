@@ -1,11 +1,9 @@
 ﻿@model Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLoja
 
-@{
-}
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/jquery-2.1.3.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
-
+<script src="~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js"></script>
 <div id="msg-produtos-atualizar"></div>
 @Html.HiddenFor(m => m.Total.Total, new { id = "total-elementos" })
 @Html.HiddenFor(m => m.Atual.Atual, new { id = "elemento-atual" })
@@ -68,5 +66,4 @@
     </table>
 </form>
 
-@*@Scripts.Render("~/Administrativo/Produtos/Pesquisar/js")*@
-<script src="~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js"></script>
+

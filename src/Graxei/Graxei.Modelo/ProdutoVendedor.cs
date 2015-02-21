@@ -2,20 +2,16 @@
 using FAST.Modelo;
 using Graxei.Transversais.Idiomas;
 using System.ComponentModel.DataAnnotations;
-using Graxei.Search.Attributes;
 
 namespace Graxei.Modelo
 {
-    [Indexed]
     public class ProdutoVendedor : ExclusaoLogica
     {
 
-        [DocumentId]
         public override long Id { get; set; }
 
         [Display(ResourceType = typeof(Propriedades), Name = "Descricao")]
         [Required(ErrorMessageResourceName = "DescricaoNula", ErrorMessageResourceType = typeof(Erros))]
-        [Field(Index.Tokenized, Store = Store.Yes)]
         public virtual string Descricao { get; set; }
 
         [Display(ResourceType = typeof(Propriedades), Name="Preco")]
@@ -26,12 +22,14 @@ namespace Graxei.Modelo
         [Display(ResourceType = typeof(Propriedades), Name = "FatorConversao")]
         public virtual double FatorConversao { get; set; }
 
-        [IndexedEmbedded(Depth = 1)]
         public virtual Produto Produto { get; set; }
 
         public virtual Endereco Endereco { get; set; }
+
         public virtual UnidadeMedida UnidadeEntrada { get; set; }
+        
         public virtual UnidadeMedida UnidadeSaida { get; set; }
+        
         public virtual IList<Atributo> Atributos { get; protected internal set; }
 
         public virtual void AdicionarAtributo(Atributo atributo)
