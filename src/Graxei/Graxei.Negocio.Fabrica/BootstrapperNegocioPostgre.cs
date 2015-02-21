@@ -4,6 +4,7 @@ using Graxei.Persistencia.Contrato;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.NHibernate;
 using Graxei.Persistencia.Implementacao.NHibernate.Postgre;
@@ -34,7 +35,8 @@ namespace Graxei.Negocio.Fabrica
 
             // ProdutosVendedores
             container.RegisterType<IRepositorioProdutoVendedor, ProdutoVendedorRepositorio>()
-                  .RegisterType<IServicoProdutoVendedor, ServicoProdutoVendedor>();
+                     .RegisterType<IProdutoVendedorNativo, ProdutoVendedorNativo>()
+                     .RegisterType<IServicoProdutoVendedor, ServicoProdutoVendedor>();
 
             // Atributos
             container.RegisterType<IRepositorioAtributos, AtributosNHibernatePostgre>()

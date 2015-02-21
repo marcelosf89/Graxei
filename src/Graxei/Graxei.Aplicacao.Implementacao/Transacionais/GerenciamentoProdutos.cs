@@ -47,14 +47,15 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             }
         }
 
-        public void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
+        public IList<ProdutoLojaPrecoContrato> SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
         {
             IniciarTransacao();
+            IList<ProdutoLojaPrecoContrato> resultado = new List<ProdutoLojaPrecoContrato>();
             try
             {
                 if (produtoLojaPrecoContrato != null)
                 {
-                    Servico.AtualizarLista(produtoLojaPrecoContrato);
+                    resultado = Servico.AtualizarLista(produtoLojaPrecoContrato);
                     Confirmar();
                 }
             }
@@ -63,6 +64,8 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
                 Desfazer();
                 throw;
             }
+
+            return resultado;
         }
 
         public IServicoProdutoVendedor Servico { get; private set; }

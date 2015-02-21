@@ -10,7 +10,7 @@ namespace Graxei.Negocio.Contrato
 
         IList<PesquisaContrato> Get(string texto, string pais, string cidade, int page);
 
-        void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
+        IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
 
         long GetMax(string texto, string pais, string cidade, int page);
 

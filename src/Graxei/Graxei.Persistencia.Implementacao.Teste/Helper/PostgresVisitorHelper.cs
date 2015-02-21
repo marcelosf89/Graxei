@@ -66,6 +66,11 @@ namespace Graxei.Persistencia.Implementacao.Teste.Helper
             return visitor;
         }
 
+        public static string VisitorConsultaFinal(string sqlParcial)
+        {
+            return string.Format("SELECT * FROM ({0}) a WHERE a.id_produto_vendedor > 0", sqlParcial);
+        }
+
         public static DateTime _data = new DateTime(2010, 11, 12, 13, 39, 36, 123);
 
         private class DataSistemaTeste : IDataSistema

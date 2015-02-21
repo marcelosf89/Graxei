@@ -73,16 +73,17 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         [HttpPost]
         public JsonResult Salvar(IList<ProdutoLojaPrecoContrato> itens)
         {
+            IList<ProdutoLojaPrecoContrato> saida = null;
             try
             {
-                _gerenciamentoProdutos.SalvarLista(itens);
+                saida =_gerenciamentoProdutos.SalvarLista(itens);
             }
             catch (Exception)
             {
                 return Json(new { Sucesso = false, Mensagem = Erros.ListaNaoAtualizada }); ;
             }
 
-            return Json(new { Sucesso = true, Mensagem = Sucesso.ListaAtualizada });
+            return Json(new { Sucesso = true, Mensagem = Sucesso.ListaAtualizada, ProdutosIncluidos = saida });
         }
 
         private readonly IConsultasLojas _consultasLojas;

@@ -55,7 +55,7 @@ function habilitarBotaoSalvar() {
         var label = $(tr).find("label");
         var valorAreaTexto = textArea.val();
         var valorOriginal = $(this).data("original");
-        console.log("valorOriginal: " + valorOriginal + "  ///  valorAreaTexto: " + valorAreaTexto);
+        ////console.log("valorOriginal: " + valorOriginal + "  ///  valorAreaTexto: " + valorAreaTexto);
         if (valorAreaTexto != '' && valorOriginal != valorAreaTexto) {
             var inputValor = $(tr).find("input[type='number']");
             if (inputValor.val() > 0) {
@@ -117,12 +117,25 @@ function salvarPrecos() {
         $('#msg-produtos-atualizar').empty();
         if (args.Sucesso) {
             $('#msg-produtos-atualizar').addClass("alert alert-success");
+            atualizarNovosProdutos(args);
         } else {
             $('#msg-produtos-atualizar').addClass("alert alert-danger");
         }
         $('#msg-produtos-atualizar').html(args.Mensagem)
     }
+
+    function atualizarNovosProdutos(objeto) {
+        var lista = objeto.ProdutosIncluidos;
+        for (i = 0; i < lista.length; i++) {
+            var elementoAtual = lista[i];
+            console.log("IdProduto: " + lista[i].IdProduto + "///" + "IdMeuProduto" + lista[i].IdMeuProduto);
+            var tr = $("tr[id-prod=" + elementoAtual.IdProduto + "]");
+            $(tr).attr("meu-prod", elementoAtual.IdMeuProduto);
+        }
+    }
+
 }
+
 
 function habilitarEdicao(element) {
     var parentDiv = $(element).parent("div");

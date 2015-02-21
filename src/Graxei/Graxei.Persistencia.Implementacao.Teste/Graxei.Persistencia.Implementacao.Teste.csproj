@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Helper\PostgresVisitorHelper.cs" />
     <Compile Include="PersistenciaAtributos.cs" />
+    <Compile Include="TesteProdutoVendedorNativo.cs" />
     <Compile Include="TestePersistenciaListaProdutosLoja.cs" />
     <Compile Include="PersistenciaLojas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

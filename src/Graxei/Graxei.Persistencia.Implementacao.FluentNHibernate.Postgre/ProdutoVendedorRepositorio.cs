@@ -16,6 +16,7 @@ using NHibernate;
 using Graxei.FluentNHibernate.UnitOfWork;
 using System.Data;
 using Graxei.Transversais.Utilidades;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
@@ -25,10 +26,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
     /// </summary>
     public class ProdutoVendedorRepositorio : PadraoNHibernatePostgre<ProdutoVendedor>, IRepositorioProdutoVendedor
     {
-        public ProdutoVendedorRepositorio(IVisitorCriacaoFuncao visitorCriacaoFuncao, IMudancaProdutoVendedorFuncaoFactory mudancaFactory)
+        public ProdutoVendedorRepositorio(IVisitorCriacaoFuncao visitorCriacaoFuncao, IMudancaProdutoVendedorFuncaoFactory mudancaFactory, IProdutoVendedorNativo produtoVendedorNativo)
         {
             _visitorCriacaoFuncao = visitorCriacaoFuncao;
-            _mudancaFactory = mudancaFactory; 
+            _mudancaFactory = mudancaFactory;
+            _produtoVendedorNativo = produtoVendedorNativo;
         }
 
         #region Implementação de IRepositorioProdutoVendedor
@@ -181,11 +183,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                     select pv.Id).Count();
         }
 
-        public void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
+        public IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos)
         {
+            List<ProdutoLojaPrecoContrato> resultado = new List<ProdutoLojaPrecoContrato>();
             if (Listas.NulaOuVazia<ProdutoLojaPrecoContrato>(produtoLojaPrecoContratos))
             {
-                return;
+                return resultado;
             }
 
             IList<IMudancaProdutoVendedorFuncao> listaMudancaProdutoVendedor = _mudancaFactory.GetComBaseEm(produtoLojaPrecoContratos);
@@ -195,16 +198,7 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             }
 
             string sql = _visitorCriacaoFuncao.GetResultado();
-            if (string.IsNullOrEmpty(sql))
-            {
-                return;
-            }
-
-            using (IDbCommand command = GetSessaoAtual().Connection.CreateCommand())
-            {
-                command.CommandText = sql;
-                command.ExecuteReader();
-            };
+            return _produtoVendedorNativo.Get(sql);
         }
 
         public ISession GetSessaoAtual()
@@ -225,6 +219,8 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
         private IVisitorCriacaoFuncao _visitorCriacaoFuncao;
 
         private IMudancaProdutoVendedorFuncaoFactory _mudancaFactory;
+
+        private IProdutoVendedorNativo _produtoVendedorNativo;
 
         private ISession _sessao;
     }

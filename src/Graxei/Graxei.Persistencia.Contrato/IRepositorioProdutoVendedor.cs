@@ -14,7 +14,7 @@ namespace Graxei.Persistencia.Contrato
         
         ProdutoVendedor GetPorDescricaoAndLoja(string descricao, Loja loja);
 
-        void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos);
+        IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos);
 
         void ExcluirDe(Loja loja);
 

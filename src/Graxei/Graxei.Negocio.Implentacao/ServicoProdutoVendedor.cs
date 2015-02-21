@@ -114,9 +114,9 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.GetQuantidadeProduto(lojaId);
         }
 
-        public void AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
+        public IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato)
         {
-            Repositorio.AtualizarLista(produtoLojaPrecoContrato);
+            return Repositorio.AtualizarLista(produtoLojaPrecoContrato);
         }
 
         #region Propriedades Privadas
@@ -134,6 +134,5 @@ namespace Graxei.Negocio.Implementacao
 
         #endregion
 
-        
     }
 }

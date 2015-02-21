@@ -29,6 +29,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
                 resultado = resultado.Remove(index);
             }
 
+            resultado = string.Format("SELECT * FROM ({0}) a WHERE a.id_produto_vendedor > 0", resultado);
             return resultado;
         }
 
@@ -41,7 +42,10 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
                                         funcao.Preco.ToString("0.00", CultureInfo.InvariantCulture),
                                         funcao.Usuario.Id,
                                         PostgresComum.DataValida(DataSistema.Agora)));
-            _selectCriar = Formatar(_selectCriar, _criar, "criar_produto_vendedor") + " UNION ";
+
+            string select = _criar.ToString();
+            select = select.Remove(select.Length - 2);
+            _selectCriar = string.Format("SELECT * FROM {0}(array[{1}])", "criar_produto_vendedor", select) + " UNION ";
             return _selectCriar;
 
         }
@@ -73,7 +77,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
         {
             select = row.ToString();
             select = select.Remove(row.Length - 2);
-            select = string.Format("SELECT {0}(array[{1}])", funcao, select);
+            select = string.Format("SELECT {0}(array[{1}]) id_produto_vendedor, null", funcao, select);
             return select;
         }
 

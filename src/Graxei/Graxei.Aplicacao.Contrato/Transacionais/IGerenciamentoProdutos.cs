@@ -13,7 +13,7 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
     {
         void Salvar(ProdutoVendedor produtoVendedor);
         void Excluir(ProdutoVendedor produtoVendedor);
-        void SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
+        IList<ProdutoLojaPrecoContrato> SalvarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
         IServicoProdutoVendedor Servico { get; }
     }
 }
