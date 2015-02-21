@@ -9,6 +9,7 @@ using NHibernate;
 using NHibernate.Context;
 using Configuration = NHibernate.Cfg.Configuration;
 using NHibernate.Tool.hbm2ddl;
+using StackExchange.Profiling;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {
