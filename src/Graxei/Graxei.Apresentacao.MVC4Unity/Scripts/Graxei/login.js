@@ -9,5 +9,5 @@ function loadPage(result) {
 }
 
 function login() {
-    setTimeout(function () { $("#campoLogin").focus(); }, 500);
+    setTimeout(function () { $("#campoLogin").focus(); }, 5);
 }

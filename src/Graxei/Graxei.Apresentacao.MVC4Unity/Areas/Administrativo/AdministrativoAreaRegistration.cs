@@ -27,12 +27,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo
                     "Administrativo/Lojas/Listar/{numeroPagina}/{tamanho}",
                     new {controller = "Lojas", Action = "Listar", numeroPagina = UrlParameter.Optional, tamanho = UrlParameter.Optional});
 
-            RegisterBundles(BundleTable.Bundles);
         }
 
-        private void RegisterBundles(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/Administrativo/Produtos/Pesquisar/js").Include("~/Script/Administrativo/Produtos/pesquisar.js"));
-        }
     }
 }

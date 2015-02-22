@@ -50,13 +50,13 @@ namespace Graxei.Apresentacao.MVC4Unity
         {
             if (Request.IsLocal)
             {
-                MiniProfiler.Start();
+                //// MiniProfiler.Start();
             }
         }
 
         protected void Application_EndRequest()
         {
-            MiniProfiler.Stop();
+            ////MiniProfiler.Stop();
         }
     }
 }

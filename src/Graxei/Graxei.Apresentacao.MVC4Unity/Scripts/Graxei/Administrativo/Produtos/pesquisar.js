@@ -1,45 +1,4 @@
-﻿$('button[doc-type=paginar]').on("click", function () {
-    var produtos = {};
-    produtos.IdLoja = $("#loja-chave").val();
-    produtos.DescricaoProduto = $("#descricao-produto").val();
-    produtos.MeusProdutos = $("#meus-produtos-chave").prop('checked');
-    produtos.TotalElementosLista = $("#total-elementos").val();
-    produtos.PaginaAtualLista = $(this).html();
-    var url = document.getElementById("pesquisar-produtos-url").value;
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: JSON.stringify(produtos),
-        dataType: "html",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
-            $('#myContentProd').html(result);
-        },
-    });
-});
-
-$("input[doc-type=cp]").on("click", function () {
-    var id = $(this).parents("tr").attr("id-prod");
-    $("tr[id-prod=" + id + "]").toggleClass("success");
-});
-
-$("input[doc-type=ip]").on("keyup", function () {
-    $('#msg-produtos-atualizar').empty();
-    $('#msg-produtos-atualizar').removeClass();
-    var valor = $(this).val();
-    if (valor == null || valor < 0) {
-        valor = 0;
-    }
-    var id = $(this).parents("tr").attr("id-prod");
-
-    if (valor <= 0) {
-        $("tr[id-prod=" + id + "]").removeClass("success");
-    } else {
-        $("tr[id-prod=" + id + "]").addClass("success");
-    }
-});
-
-function habilitarBotaoSalvar() {
+﻿function habilitarBotaoSalvar() {
     var button = $('#salvarPrecos');
     button.addClass("invisible");
     $(".valor-produto").each(function () {
@@ -112,30 +71,28 @@ function salvarPrecos() {
             resultadoSalvar(result);
         }
     });
-
-    function resultadoSalvar(args) {
-        $('#msg-produtos-atualizar').empty();
-        if (args.Sucesso) {
-            $('#msg-produtos-atualizar').addClass("alert alert-success");
-            atualizarNovosProdutos(args);
-        } else {
-            $('#msg-produtos-atualizar').addClass("alert alert-danger");
-        }
-        $('#msg-produtos-atualizar').html(args.Mensagem)
-    }
-
-    function atualizarNovosProdutos(objeto) {
-        var lista = objeto.ProdutosIncluidos;
-        for (i = 0; i < lista.length; i++) {
-            var elementoAtual = lista[i];
-            console.log("IdProduto: " + lista[i].IdProduto + "///" + "IdMeuProduto" + lista[i].IdMeuProduto);
-            var tr = $("tr[id-prod=" + elementoAtual.IdProduto + "]");
-            $(tr).attr("meu-prod", elementoAtual.IdMeuProduto);
-        }
-    }
-
 }
 
+function resultadoSalvar(args) {
+    var elemento = getPainelMensagem();
+    elemento.empty();
+    if (args.Sucesso) {
+        elemento.addClass("alert alert-success");
+        atualizarNovosProdutos(args);
+    } else {
+        elemento.addClass("alert alert-danger");
+    }
+    elemento.html(args.Mensagem)
+}
+
+function atualizarNovosProdutos(objeto) {
+    var lista = objeto.ProdutosIncluidos;
+    for (i = 0; i < lista.length; i++) {
+        var elementoAtual = lista[i];
+        var tr = getTr(elementoAtual.IdProduto);
+        $(tr).attr("meu-prod", elementoAtual.IdMeuProduto);
+    }
+}
 
 function habilitarEdicao(element) {
     var parentDiv = $(element).parent("div");
@@ -174,4 +131,44 @@ function tratarCliqueEdicao(element) {
     painelPrincipalDiv.show();
     div.hide();
     habilitarBotaoSalvar();
+}
+
+function getTr(idProd) {
+    return $("tr[id-prod=" + idProd + "]");
+}
+
+function alteracaoPendente() {
+    var button = $('#salvarPrecos');
+    return !button.hasClass("invisible");
+}
+
+function getPainelMensagem() {
+    return $('#msg-produtos-atualizar');
+}
+
+function getHtmlAvisoAlteracaoPendente(paginaAtual) {
+    var buttons = '  <button type="button" class="btn btn-success" id="salvar-pendencias">Sim</button> <button type="button" class="btn btn-danger" data-pagina-atual="' + paginaAtual + '" id="descartar-pendencias">Não</button>';
+    return 'Há alterações pendentes. Salvar agora?' + buttons;
+}
+
+function paginar(numeroPagina) {
+    //var produtos = getJsonProduto();
+    var produtos = {};
+    produtos.IdLoja = $("#loja-chave").val();
+    produtos.DescricaoProduto = $("#descricao-produto").val();
+    produtos.MeusProdutos = $("#meus-produtos-chave").prop('checked');
+    produtos.TotalElementosLista = $("#total-elementos").val();
+    produtos.PaginaAtualLista = numeroPagina;
+    var url = document.getElementById("pesquisar-produtos-url").value;
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify(produtos),
+        dataType: "html",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            $('#myContentProd').html(result);
+        },
+    });
 }

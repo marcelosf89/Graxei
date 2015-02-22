@@ -22,6 +22,12 @@ namespace Graxei.Apresentacao.MVC4Unity
                         "~/Scripts/jquery.validate.min.js",
                         "~/Scripts/jquery.validate.unobtrusive.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryvalajax").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                        "~/Scripts/jquery-2.1.3.min.js",
+                        "~/Scripts/jquery.validate.min.js"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
                 "~/Scripts/typeahead.jquery.js", "~/Scripts/bloodhound.min.js"));
 
@@ -29,14 +35,18 @@ namespace Graxei.Apresentacao.MVC4Unity
             "~/Scripts/jquery-2.1.3.min.js",
             "~/Scripts/jquery-migrate-1.1.1.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+           bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+           bundles.Add(new ScriptBundle("~/Administrativo/Produtos/Pesquisar/js")
+                   .Include("~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js")
+                   .Include("~/Scripts/Graxei/Administrativo/Produtos/pesquisar.eventos.js"));
+
+            bundles.Add(new StyleBundle("~/css/themes").Include(
                 "~/Content/graxei.min.css",
                 "~/Content/css/font-awesome.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+            bundles.Add(new StyleBundle("~/css/themes/base/css").Include(
                         "~/Content/themes/base/minified/jquery.ui.core.min.css",
                         "~/Content/themes/base/minified/jquery.ui.resizable.min.css",
                         "~/Content/themes/base/minified/jquery.ui.selectable.min.css",
@@ -52,8 +62,10 @@ namespace Graxei.Apresentacao.MVC4Unity
                         "~/Content/themes/base/minified/jquery-ui.min.css"
                         ));
 
-            bundles.Add(new StyleBundle("~/Content/fileinput").Include(
+            bundles.Add(new StyleBundle("~/css/fileinput").Include(
             "~/Scripts/fileinput.js"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
