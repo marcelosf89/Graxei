@@ -4,6 +4,8 @@
         var painelMensagem = getPainelMensagem();
         painelMensagem.empty();
         painelMensagem.append(getHtmlAvisoAlteracaoPendente(paginaAtualLista));
+        document.getElementById('salvar-pendencias').addEventListener("click", salvarPrecos);
+        document.getElementById('descartar-pendencias').addEventListener("click", cliqueDescartarPendencias);
         painelMensagem.addClass("alert alert-warning");
         painelMensagem.show();
         window.scrollTo(0, 0);
@@ -35,11 +37,10 @@ $("input[doc-type=valor-meu-produto]").on("keyup", function () {
     }
 });
 
-$("#descartar-pendencias").on("click", "div", function () {
-    alert('oi');
+function cliqueDescartarPendencias() {
     var paginaAtual = $(this).data("pagina-atual");
     paginar(paginaAtual);
-});
+}
 
 function getJsonProduto() {
     var produtos = {};

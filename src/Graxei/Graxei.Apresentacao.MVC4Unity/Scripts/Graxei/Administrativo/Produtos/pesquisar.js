@@ -76,6 +76,7 @@ function salvarPrecos() {
 function resultadoSalvar(args) {
     var elemento = getPainelMensagem();
     elemento.empty();
+    elemento.removeClass();
     if (args.Sucesso) {
         elemento.addClass("alert alert-success");
         atualizarNovosProdutos(args);
@@ -148,7 +149,7 @@ function getPainelMensagem() {
 
 function getHtmlAvisoAlteracaoPendente(paginaAtual) {
     var buttons = '  <button type="button" class="btn btn-success" id="salvar-pendencias">Sim</button> <button type="button" class="btn btn-danger" data-pagina-atual="' + paginaAtual + '" id="descartar-pendencias">Não</button>';
-    return 'Há alterações pendentes. Salvar agora?' + buttons;
+    return 'Há alterações pendentes. Salvar agora?' + buttons;  
 }
 
 function paginar(numeroPagina) {
@@ -171,4 +172,5 @@ function paginar(numeroPagina) {
             $('#myContentProd').html(result);
         },
     });
+    window.scrollTo(0, 0);
 }
