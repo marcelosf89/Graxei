@@ -23,10 +23,12 @@ namespace Graxei.Apresentacao.MVC4Unity
                         "~/Scripts/jquery.validate.unobtrusive.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryvalajax").Include(
-                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                        "~/Scripts/jquery-2.1.3.min.js",
-                        "~/Scripts/jquery.validate.min.js"));
+                    "~/Scripts/jquery-2.1.3.min.js",
+                    "~/Scripts/jquery.validate.min.js",
+                    "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerymaskmoney").Include(
+                "~/Scripts/jquery.maskMoney.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
                 "~/Scripts/typeahead.jquery.js", "~/Scripts/bloodhound.min.js"));

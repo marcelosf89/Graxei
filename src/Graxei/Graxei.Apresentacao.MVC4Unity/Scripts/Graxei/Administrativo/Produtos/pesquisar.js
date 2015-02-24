@@ -1,5 +1,7 @@
-﻿function habilitarBotaoSalvar() {
-    var button = $('#salvarPrecos');
+﻿
+
+function habilitarBotaoSalvar() {
+    var button = $('#salvar-precos');
     button.addClass("invisible");
     $(".valor-produto").each(function () {
         if ($(this).val() != $(this).data("preco-original")) {
@@ -45,7 +47,7 @@ function salvarPrecos() {
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {
         var td = $('td', this);
-        var preco = $('input[name="precoProduto"]', td).val();
+        var preco = $('input[name="preco-produto"]', td).val();// .maskMoney('unmasked')[0];
         var idProd = $(this).attr('id-prod');
         var meuProd = $(this).attr('meu-prod');
         var descricao = $('textarea', td).val();
@@ -71,6 +73,8 @@ function salvarPrecos() {
             resultadoSalvar(result);
         }
     });
+
+    $("#salvar-precos").addClass("invisible");
 }
 
 function resultadoSalvar(args) {
@@ -139,7 +143,7 @@ function getTr(idProd) {
 }
 
 function alteracaoPendente() {
-    var button = $('#salvarPrecos');
+    var button = $('#salvar-precos');
     return !button.hasClass("invisible");
 }
 
@@ -149,7 +153,7 @@ function getPainelMensagem() {
 
 function getHtmlAvisoAlteracaoPendente(paginaAtual) {
     var buttons = '  <button type="button" class="btn btn-success" id="salvar-pendencias">Sim</button> <button type="button" class="btn btn-danger" data-pagina-atual="' + paginaAtual + '" id="descartar-pendencias">Não</button>';
-    return 'Há alterações pendentes. Salvar agora?' + buttons;  
+    return 'Há alterações pendentes. Salvar agora?' + buttons;
 }
 
 function paginar(numeroPagina) {
@@ -173,4 +177,8 @@ function paginar(numeroPagina) {
         },
     });
     window.scrollTo(0, 0);
+    $("#salvar-precos").addClass("invisible");
 }
+
+$("input[name=preco-produto").maskMoney();
+//filter(function() { return $(this).val() == "0,00"; }).
