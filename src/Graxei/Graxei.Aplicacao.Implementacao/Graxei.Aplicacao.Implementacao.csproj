@@ -45,14 +45,14 @@
     <Compile Include="Consultas\ConsultaListaProdutosLoja.cs" />
     <Compile Include="Consultas\ConsultaCidades.cs" />
     <Compile Include="Consultas\ConsultaLogradouros.cs" />
-    <Compile Include="Consultas\ConsultasBairros.cs" />
-    <Compile Include="Consultas\ConsultasEnderecos.cs" />
-    <Compile Include="Consultas\ConsultasEstados.cs" />
-    <Compile Include="Consultas\ConsultasLogin.cs" />
+    <Compile Include="Consultas\ConsultaBairros.cs" />
+    <Compile Include="Consultas\ConsultaEnderecos.cs" />
+    <Compile Include="Consultas\ConsultaEstados.cs" />
+    <Compile Include="Consultas\ConsultaLogin.cs" />
     <Compile Include="Consultas\ConsultasLojas.cs" />
     <Compile Include="Consultas\ConsultasTiposTelefone.cs" />
     <Compile Include="Consultas\ConsultasUsuarios.cs" />
-    <Compile Include="Consultas\ConsultasFabricantes.cs" />
+    <Compile Include="Consultas\ConsultaFabricantes.cs" />
     <Compile Include="Consultas\ConsultasProdutoVendedor.cs" />
     <Compile Include="Consultas\ConsultasPlanos.cs" />
     <Compile Include="Consultas\ConsultasProdutos.cs" />
@@ -65,10 +65,6 @@
     <Compile Include="Transacionais\GerenciamentoProdutos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
       <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>

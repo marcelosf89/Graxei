@@ -67,10 +67,6 @@
     <Compile Include="TesteProstgresVisitorFuncaoVetorDeTipos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
       <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>

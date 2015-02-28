@@ -14,7 +14,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LoginController : Controller
     {
-        public LoginController(IConsultasLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
+        public LoginController(IConsultaLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             _consultasLogin = consultasUsuarios;
             _gerenciadorAutenticacao = gerenciadorAutenticacao;
@@ -127,7 +127,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         {
         }
 
-        private IConsultasLogin _consultasLogin;
+        private IConsultaLogin _consultasLogin;
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 
         internal class ExternalLoginResult : ActionResult

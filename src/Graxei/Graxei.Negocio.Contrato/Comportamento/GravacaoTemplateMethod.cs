@@ -1,4 +1,4 @@
-﻿using FAST.Modelo;
+﻿using Graxei.Modelo.Generico;
 using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Contrato.Comportamento

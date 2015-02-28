@@ -19,7 +19,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultasEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultasEstados consultasEstados, IConsultasCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
+        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados, IConsultaCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
         {
             _consultaEnderecos = consultasEnderecos;
             _consultasBairros = consultasBairros;
@@ -299,12 +299,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         #endregion
 
         #region Atributos Privados
-        private readonly IConsultasEnderecos _consultaEnderecos;
+        private readonly IConsultaEnderecos _consultaEnderecos;
         private readonly IConsultasLogradouros _consultasLogradouros;
         private readonly IConsultasBairros _consultasBairros;
-        private readonly IConsultasEstados _consultasEstados;
+        private readonly IConsultaEstados _consultasEstados;
         private readonly IConsultasLojas _consultasLojas;
-        private readonly IConsultasCidades _consultasCidades;
+        private readonly IConsultaCidades _consultasCidades;
         private readonly IConsultasTiposTelefone _consultasTiposTelefone;
         private readonly IGerenciamentoEnderecos _gerenciamentoEnderecos;
 

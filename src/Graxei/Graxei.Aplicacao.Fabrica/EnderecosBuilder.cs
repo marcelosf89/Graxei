@@ -27,11 +27,11 @@ namespace Graxei.Aplicacao.Fabrica
         private string _cnpj;
         
 
-        private IConsultasEnderecos _consultasEnderecos;
+        private IConsultaEnderecos _consultasEnderecos;
 
         private IConsultasTiposTelefone _consultasTiposTelefone;
 
-        public EnderecosBuilder(IConsultasEnderecos consultasEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
+        public EnderecosBuilder(IConsultaEnderecos consultasEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
         {
             _consultasEnderecos = consultasEnderecos;
             _consultasTiposTelefone = consultasTiposTelefone;

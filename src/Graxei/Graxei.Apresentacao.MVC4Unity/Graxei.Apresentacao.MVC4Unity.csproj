@@ -432,7 +432,7 @@
     <Content Include="Areas\Teste\Views\Home\CarregarPagina.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\ListarLojas.cshtml" />
     <Content Include="Areas\Administrativo\Views\Produtos\Listar.cshtml" />
-    <Content Include="Areas\Administrativo\Views\Produtos\Pesquisar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Produtos\PesquisarDoEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarLogo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarUrl.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -510,10 +510,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Aplicacao.Contrato\Graxei.Aplicacao.Contrato.csproj">
       <Project>{cbf20a20-ba65-4dbc-a5a6-8f06eb2f4ed5}</Project>
       <Name>Graxei.Aplicacao.Contrato</Name>

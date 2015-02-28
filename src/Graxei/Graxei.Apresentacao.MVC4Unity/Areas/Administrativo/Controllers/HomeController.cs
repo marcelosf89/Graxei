@@ -13,7 +13,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
     public class HomeController : Controller
     {
 
-        public HomeController(IConsultasProdutoVendedor consultasProdutoVendedor, IConsultasLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
+        public HomeController(IConsultasProdutoVendedor consultasProdutoVendedor, IConsultaLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             _consultasProdutoVendedor = consultasProdutoVendedor;
             _consultasLogin = consultasUsuarios;
@@ -56,7 +56,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         private IConsultasProdutoVendedor _consultasProdutoVendedor;
-        private IConsultasLogin _consultasLogin;
+        private IConsultaLogin _consultasLogin;
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 
     }

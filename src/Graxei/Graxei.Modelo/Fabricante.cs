@@ -1,4 +1,4 @@
-﻿using FAST.Modelo;
+﻿using Graxei.Modelo.Generico;
 using Graxei.Transversais.Idiomas;
 using System;
 using System.ComponentModel.DataAnnotations;

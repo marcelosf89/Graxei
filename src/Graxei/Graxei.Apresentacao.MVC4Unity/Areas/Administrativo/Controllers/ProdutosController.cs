@@ -27,19 +27,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _gerenciamentoProdutos = gerenciamentoProdutos;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult ListarLojas(int numeroPagina = 1, int tamanho = 10)
         {
             if (numeroPagina < 0)
             {
                 numeroPagina = 0;
             }
-
-
+            
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
             listaLojas = new ListaLojas(listaLojas.Lista, new TotalElementosLista(130), new PaginaAtualLista(numeroPagina));
             return View(listaLojas);
@@ -52,7 +46,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Pesquisar(PesquisaProdutoContrato model)
+        public ActionResult PesquisarDoEndereco(PesquisaProdutoContrato model)
         {
             try
             {

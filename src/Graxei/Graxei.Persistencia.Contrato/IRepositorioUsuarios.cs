@@ -1,5 +1,4 @@
-﻿using FAST.Modelo;
-using Graxei.Modelo;
+﻿using Graxei.Modelo;
 
 namespace Graxei.Persistencia.Contrato
 {

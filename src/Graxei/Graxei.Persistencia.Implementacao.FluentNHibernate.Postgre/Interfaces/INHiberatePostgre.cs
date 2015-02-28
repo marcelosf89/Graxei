@@ -1,5 +1,6 @@
-﻿using FAST.Modelo;
+﻿
 using Graxei.FluentNHibernate.UnitOfWork;
+using Graxei.Modelo.Generico;
 using Graxei.Persistencia.Contrato;
 using NHibernate;
 

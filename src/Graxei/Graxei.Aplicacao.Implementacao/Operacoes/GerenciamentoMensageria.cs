@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Modelo;
+using Graxei.Transversais.Utilidades;
 
 namespace Graxei.Aplicacao.Implementacao.Operacoes
 {
@@ -26,7 +27,7 @@ namespace Graxei.Aplicacao.Implementacao.Operacoes
         {
             try
             {
-                FAST.Utils.SendEmail mail = new FAST.Utils.SendEmail();
+                SendEmail mail = new SendEmail();
                 mail.Subject = mensagem.Assunto;
                 mail.Body = mensagem.Conteudo;
                 mail.Host = configuracao.Servidor;

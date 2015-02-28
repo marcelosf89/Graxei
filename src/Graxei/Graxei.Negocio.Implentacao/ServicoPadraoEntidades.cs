@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using FAST.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Modelo.Generico;
 
 namespace Graxei.Negocio.Implementacao
 {
     public abstract class ServicoPadraoEntidades<T> : ServicoPadraoSomenteLeitura<T>, IEntidadesIrrestrito<T> where T : Entidade
     {
-
-        #region Implementações Padrão
-        #endregion
-
-        #region Implementação de IServicoEntidades<T>
 
         public abstract void PreSalvar(T t);
 
@@ -46,8 +41,6 @@ namespace Graxei.Negocio.Implementacao
             }
             RepositorioIrrestrito.Excluir(t);    
         }
-
-        #endregion
 
         private IRepositorioIrrestrito<T> RepositorioIrrestrito
         {

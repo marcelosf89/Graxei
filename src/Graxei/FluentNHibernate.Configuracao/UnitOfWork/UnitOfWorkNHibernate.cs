@@ -5,7 +5,6 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using System.Web;
-using FAST.Log;
 using Graxei.FluentNHibernate.Configuracao;
 using NHibernate;
 using NHibernate.Context;
@@ -87,7 +86,6 @@ namespace Graxei.FluentNHibernate.UnitOfWork
             }
             catch (Exception exception)
             {
-                ExceptionLogger.Instance.LogException(Level.Error, "Begin Exception", exception);
                 throw exception;
             }
         }
@@ -112,8 +110,7 @@ namespace Graxei.FluentNHibernate.UnitOfWork
                 }
             }
             catch (Exception exception)
-            {
-                ExceptionLogger.Instance.LogException(Level.Error, "Commit Exception", exception);
+            {   
                 DesfazerTransacao();
                 throw exception;
             }

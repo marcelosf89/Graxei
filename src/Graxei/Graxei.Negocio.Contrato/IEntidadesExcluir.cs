@@ -1,5 +1,4 @@
-using FAST.Modelo;
-
+using Graxei.Modelo.Generico;
 namespace Graxei.Negocio.Contrato
 {
     public interface IEntidadesExcluir<T> : IServicoEntidades<T> where T : Entidade

@@ -11,11 +11,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
     {
         private readonly IConsultasBairros _consultasBairros;
 
-        private readonly IConsultasEnderecos _consultasEnderecos;
+        private readonly IConsultaEnderecos _consultasEnderecos;
 
         private readonly IConsultasTiposTelefone _consultasTiposTelefone;
 
-        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros, IConsultasEnderecos consultasEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
+        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros, IConsultaEnderecos consultasEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
         {
             _consultasBairros = consultasBairros;
             _consultasEnderecos = consultasEnderecos;

@@ -1,0 +1,67 @@
+﻿@model Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLoja
+@Scripts.Render("~/bundles/jqueryvalajax")
+@Scripts.Render("~/bundles/jquerymaskmoney")
+@Scripts.Render("~/Administrativo/Produtos/Pesquisar/js")
+@*<script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    --<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js"></script>
+    <script src="~/Scripts/Graxei/Administrativo/Produtos/pesquisar.eventos.js"></script>*@
+<div id="msg-produtos-atualizar"></div>
+@Html.HiddenFor(m => m.Total.Total, new { id = "total-elementos" })
+@Html.HiddenFor(m => m.Atual.Atual, new { id = "elemento-atual" })
+<input type="hidden" id="salvar-produtos-url" value="@Url.Action("Salvar", "Produtos")" />
+<input type="hidden" id="pesquisar-produtos-url" value="@Url.Action("PesquisarDoEndereco", "Produtos")" />
+<form name="form-produtos-vendedor">
+    <table id="tabela-precos" class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class="col-md-2 col-lg-2">@Rotulos.Codigo</th>
+                <th class="col-md-8 col-lg-8">@Rotulos.Descricao</th>
+                <th class="col-md-2 col-lg-2">@Rotulos.Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Graxei.Transversais.ContratosDeDados.Listas.ListaProdutosLojaContrato item in Model.Lista)
+            {
+                string idPreco = "valor" + item.Id;
+                string pertencente = item.IsMeuProduto ? "success" : string.Empty;
+                string idTextArea = "ta" + item.Id;
+                string nomeTextArea = "nome.ta" + item.Id;
+                <tr id-prod="@item.Id" meu-prod="@item.IdMeuProduto" class="@pertencente">
+                    <td class="col-md-2 col-md-2">@item.Codigo</td>
+                    <td id="td-lista" class="col-md-8 col-md-8">
+                        <div>
+                            <button type="button" class="cancel btn btn-link" onclick="habilitarEdicao(this);">
+                                <img src="~/Content/imagens/editar.png" />
+                            </button>
+                            <label onclick="habilitarEdicao(this);" data-original="@item.Descricao" class="descricao-produto">@item.Descricao</label>
+                        </div>
+                        <div style="display: none">
+                            <textarea id="@idTextArea" name="@nomeTextArea" class="form-control" data-val="true" data-val-length="Tamanho máximo permitido é de 300 caracteres" data-val-length-max="300" rows="2" onkeyup="habilitarBotaoSalvar()"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="@nomeTextArea" data-valmsg-replace="true"></span>
+                            <button type="button" class="btn btn-default" onclick="tratarCliqueEdicao(this);">OK</button>
+                            <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
+                            <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Desfazer</button>
+                        </div>
+                    </td>
+                    <td class="col-md-2 col-md-2">
+                        <div class="input-group">
+                            <span class="input-group-addon">R$</span>
+                            <input id="@idPreco" style="text-align:right;" name="preco-produto" type="text" value="@item.PrecoMascara" data-preco-original="@item.Preco" class="form-control valor-produto" onkeyup="habilitarBotaoSalvar()" onchange='return validate(event);' doc-type="valor-meu-produto" id-prod="@item.Id" data-thousands="." data-decimal="," />
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th colspan="5">
+                    @Ajax.LinkPaginacaoPesquisaProdutos(Model.Atual, Model.Total, 5)
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</form>

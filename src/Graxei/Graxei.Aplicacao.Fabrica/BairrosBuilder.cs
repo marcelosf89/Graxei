@@ -11,8 +11,8 @@ namespace Graxei.Aplicacao.Fabrica
 {
     public class BairrosBuilder 
     {
-        public BairrosBuilder(IConsultasBairros consultasBairros, IConsultasCidades consultasCidades,
-            IConsultasEstados consultasEstados)
+        public BairrosBuilder(IConsultasBairros consultasBairros, IConsultaCidades consultasCidades,
+            IConsultaEstados consultasEstados)
         {
             _consultasBairros = consultasBairros;
             _consultasCidades = consultasCidades;
@@ -68,8 +68,8 @@ namespace Graxei.Aplicacao.Fabrica
         }
 
         private IConsultasBairros _consultasBairros;
-        private IConsultasCidades _consultasCidades;
-        private IConsultasEstados _consultasEstados;
+        private IConsultaCidades _consultasCidades;
+        private IConsultaEstados _consultasEstados;
         private string _nomeBairro;
         private string _nomeCidade;
         private long _idEstado;

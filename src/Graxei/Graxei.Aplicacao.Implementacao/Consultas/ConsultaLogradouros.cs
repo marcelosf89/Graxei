@@ -5,9 +5,9 @@ using Graxei.Negocio.Contrato;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
-    public class ConsultasLogradouros : IConsultasLogradouros
+    public class ConsultaLogradouros : IConsultasLogradouros
     {
-        public ConsultasLogradouros(IServicoLogradouros servicoLogradouros)
+        public ConsultaLogradouros(IServicoLogradouros servicoLogradouros)
         {
             _servicoLogradouros = servicoLogradouros;
         }

@@ -37,8 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Fabrica", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Implementacao", "Graxei.Negocio.Implentacao\Graxei.Negocio.Implementacao.csproj", "{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAST", "FAST\FAST.csproj", "{8C396BBC-F47C-4845-934E-A467302AAA81}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.FluentNHibernate", "FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj", "{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Teste", "6-Teste", "{24C44558-CBEE-423D-B14C-138A3D15549B}"
@@ -68,8 +66,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Aplicacao.Fabrica", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Contrato.Teste", "Graxei.Persistencia.Contrato.Teste\Graxei.Persistencia.Contrato.Teste.csproj", "{8DA82346-5DA4-4A62-B117-51D3B85071E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Aplicacao.Contrato.Teste", "Graxei.Aplicacao.Contrato.Teste\Graxei.Aplicacao.Contrato.Teste.csproj", "{D591F9D3-F2F4-47C5-8525-3B5EBFB30737}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Negocio.Implementacao.Teste", "Graxei.Negocio.Implementacao.Teste\Graxei.Negocio.Implementacao.Teste.csproj", "{FB481980-89D9-415A-8FCD-3E30F34276D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Persistencia.Implementacao.Teste", "Graxei.Persistencia.Implementacao.Teste\Graxei.Persistencia.Implementacao.Teste.csproj", "{8DBD3918-5F79-4835-BE46-083458F4A735}"
@@ -88,6 +84,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1AE10A
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Aplicacao.Teste", "Graxei.Aplicacao.Teste\Graxei.Aplicacao.Teste.csproj", "{EB5D9E89-820E-4051-816D-5093DF9AAACB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,10 +117,6 @@ Global
 		{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8BFA7C6-4675-4997-81DF-AE7FE058C1F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C396BBC-F47C-4845-934E-A467302AAA81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C396BBC-F47C-4845-934E-A467302AAA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C396BBC-F47C-4845-934E-A467302AAA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C396BBC-F47C-4845-934E-A467302AAA81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1DF8AA8-C6F2-4518-94A8-D80658D2091D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -154,9 +148,6 @@ Global
 		{8DA82346-5DA4-4A62-B117-51D3B85071E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DA82346-5DA4-4A62-B117-51D3B85071E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA82346-5DA4-4A62-B117-51D3B85071E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D591F9D3-F2F4-47C5-8525-3B5EBFB30737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D591F9D3-F2F4-47C5-8525-3B5EBFB30737}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D591F9D3-F2F4-47C5-8525-3B5EBFB30737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB481980-89D9-415A-8FCD-3E30F34276D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB481980-89D9-415A-8FCD-3E30F34276D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB481980-89D9-415A-8FCD-3E30F34276D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -177,6 +168,10 @@ Global
 		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -205,13 +200,13 @@ Global
 		{0788D099-D0C1-43D7-B33A-96800274E201} = {01369373-2BD1-4D8F-815B-E7ED44239DF1}
 		{08975121-A680-4AC3-A0DA-984D4AF28156} = {545B4045-E39F-4295-BCF7-32F65F5C1895}
 		{8DA82346-5DA4-4A62-B117-51D3B85071E4} = {24C44558-CBEE-423D-B14C-138A3D15549B}
-		{D591F9D3-F2F4-47C5-8525-3B5EBFB30737} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 		{FB481980-89D9-415A-8FCD-3E30F34276D6} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 		{8DBD3918-5F79-4835-BE46-083458F4A735} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 		{2B3F16A3-F753-4431-AC97-3CCA9070B3DB} = {B30AB0AE-487E-428D-AA03-E424F1F4C0B1}
 		{30CE3E7B-B1B7-4231-96DB-619F72FFD9F4} = {DC19629A-1120-44A4-8D4E-774EB71176A6}
 		{52009047-2402-49DC-AECA-97F3AD52B601} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9} = {24C44558-CBEE-423D-B14C-138A3D15549B}
+		{EB5D9E89-820E-4051-816D-5093DF9AAACB} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35

@@ -1,5 +1,4 @@
-﻿using FAST.Modelo;
-
+﻿using Graxei.Modelo.Generico;
 namespace Graxei.Negocio.Contrato
 {
     /// <summary>

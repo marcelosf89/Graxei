@@ -5,9 +5,9 @@ using Graxei.Negocio.Contrato;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
-    public class ConsultasCidades : IConsultasCidades
+    public class ConsultaCidades : IConsultaCidades
     {
-        public ConsultasCidades(IServicoCidades servicoCidades)
+        public ConsultaCidades(IServicoCidades servicoCidades)
         {
             _servicoCidades = servicoCidades;
         }

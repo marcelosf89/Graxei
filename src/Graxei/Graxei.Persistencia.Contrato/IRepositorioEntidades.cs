@@ -1,4 +1,4 @@
-﻿using FAST.Modelo;
+﻿using Graxei.Modelo.Generico;
 using System.Collections.Generic;
 
 namespace Graxei.Persistencia.Contrato
