@@ -68,6 +68,7 @@
     <Compile Include="Consultas\IConsultasUsuarios.cs" />
     <Compile Include="Consultas\IConsultaLogradouros.cs" />
     <Compile Include="Operacoes\IMensageria.cs" />
+    <Compile Include="Operacoes\IOperacaoEndereco.cs" />
     <Compile Include="Transacionais\IGerenciamentoEnderecos.cs" />
     <Compile Include="Transacionais\IGerenciamentoLojas.cs" />
     <Compile Include="ITransacional.cs" />

@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excecoes\ModeloDominioConstrucaoException.cs" />
     <Compile Include="Factories\BairroBuilder.cs" />
+    <Compile Include="Factories\EnderecosBuilder.cs" />
     <Compile Include="ServicoListaProdutosLojaMaisDeUmEndereco.cs" />
     <Compile Include="ServicoListaProdutosLojaUmEndereco.cs" />
     <Compile Include="ServicoPlanos.cs" />

@@ -58,6 +58,7 @@
     <Compile Include="Consultas\ConsultasProdutos.cs" />
     <Compile Include="ContratosDeDados\ProdutoLojaPrecoContrato.cs" />
     <Compile Include="Operacoes\GerenciamentoMensageria.cs" />
+    <Compile Include="Operacoes\OperacaoEndereco.cs" />
     <Compile Include="Transacionais\GerenciamentoEnderecos.cs" />
     <Compile Include="Transacionais\GerenciamentoLojas.cs" />
     <Compile Include="IPadraoTransacao.cs" />

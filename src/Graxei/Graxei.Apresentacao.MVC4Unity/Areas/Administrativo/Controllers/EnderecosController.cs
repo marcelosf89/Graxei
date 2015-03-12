@@ -13,13 +13,14 @@ using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Idiomas;
+using Graxei.Aplicacao.Contrato.Operacoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados, IConsultaCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
+        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasBairros consultasBairros, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados, IConsultaCidades consultasCidades, IConsultasLogradouros consultasLogradouros, IGerenciamentoEnderecos gerenciamentoEnderecos, IConsultasTiposTelefone consultasTiposTelefone, IOperacaoEndereco operacaoEndereco)
         {
             _consultaEnderecos = consultasEnderecos;
             _consultasBairros = consultasBairros;
@@ -29,14 +30,15 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _consultasLogradouros = consultasLogradouros;
             _gerenciamentoEnderecos = gerenciamentoEnderecos;
             _consultasTiposTelefone = consultasTiposTelefone;
+            _operacaoEndereco = operacaoEndereco;
         }
 
         public ActionResult EditarEndereco(long idEndereco)
         {
             ModelState.Clear();
-            EnderecoModel item;
+            EnderecoVistaContrato item;
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
-            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
+            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_operacaoEndereco);
             item = transformacao.Transformar(endereco);
 
             if (item.IdEstado > 0)
@@ -50,7 +52,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult NovoEndereco(long idLoja)
         {
             ModelState.Clear();
-            EnderecoModel item = new EnderecoModel();
+            EnderecoVistaContrato item = new EnderecoVistaContrato();
             item.IdLoja = idLoja;
 
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
@@ -59,7 +61,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult NovoEnderecoRetorno(EnderecoModel endereco)
+        public ActionResult NovoEnderecoRetorno(EnderecoVistaContrato endereco)
         {
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -97,12 +99,12 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         public ActionResult Get(long idEndereco)
         {
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
-            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_consultasBairros, _consultaEnderecos, _consultasTiposTelefone);
-            EnderecoModel item = transformacao.Transformar(endereco);
+            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_operacaoEndereco);
+            EnderecoVistaContrato item = transformacao.Transformar(endereco);
             return PartialFormularioEndereco(item);
         }
 
-        private ActionResult PartialFormularioEndereco(EnderecoModel item)
+        private ActionResult PartialFormularioEndereco(EnderecoVistaContrato item)
         {
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -110,7 +112,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Salvar(EnderecoModel enderecoModel)
+        public ActionResult Salvar(EnderecoVistaContrato enderecoModel)
         {
             if (!ModelState.IsValid)
             {
@@ -118,35 +120,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
             try
             {
-                Bairro bairro = new BairrosBuilder(_consultasBairros, _consultasCidades, _consultasEstados)
-                    .SetBairro(enderecoModel.Bairro)
-                    .SetCidade(enderecoModel.Cidade)
-                    .SetEstado(enderecoModel.IdEstado)
-                    .Build();
-                Loja loja = _consultasLojas.Get(enderecoModel.IdLoja);
-                if (loja == null)
-                {
-                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada",
-                        enderecoModel.IdLoja));
-                }
-                EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultaEnderecos, _consultasTiposTelefone);
-                Endereco endereco = enderecosBuilder
-                    .SetId(enderecoModel.Id)
-                    .SetLogradouro(enderecoModel.Logradouro)
-                    .SetNumero(enderecoModel.Numero)
-                    .SetComplemento(enderecoModel.Complemento)
-                    .SetLoja(loja)
-                    .SetBairro(bairro)
-                    .SetCnpj(enderecoModel.Cnpj)
-                    .SetTelefones(enderecoModel.Telefones)
-                    .Build();
-                _gerenciamentoEnderecos.Salvar(endereco, null);
-                List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
-                List<EnderecoListaContrato> listaEnderecos = new List<EnderecoListaContrato>();
-                foreach (Endereco end in enderecos)
-                {
-                    listaEnderecos.Add(new EnderecoListaContrato(end.Id, end.ToString(), end.Cnpj));
-                }
+                _gerenciamentoEnderecos.Salvar(enderecoModel);
             }
             catch (GraxeiException graxeiException)
             {
@@ -243,9 +217,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         }
         #endregion
 
-        #region Propriedades de Sessão
-        /* TODO: Refazer os mecanismos de acesso a elementos de sessão Http*/
-        private IList<Cidade> Cidades
+       private IList<Cidade> Cidades
         {
             get
             {
@@ -296,9 +268,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             }
         }
 
-        #endregion
-
-        #region Atributos Privados
         private readonly IConsultaEnderecos _consultaEnderecos;
         private readonly IConsultasLogradouros _consultasLogradouros;
         private readonly IConsultasBairros _consultasBairros;
@@ -307,8 +276,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private readonly IConsultaCidades _consultasCidades;
         private readonly IConsultasTiposTelefone _consultasTiposTelefone;
         private readonly IGerenciamentoEnderecos _gerenciamentoEnderecos;
-
-        #endregion
+        private readonly IOperacaoEndereco _operacaoEndereco;
 
     }
 }

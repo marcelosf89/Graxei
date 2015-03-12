@@ -4,38 +4,25 @@ using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Graxei.Aplicacao.Contrato.Operacoes;
 
 namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
 {
-    public class EnderecosViewModelEntidade : ITransformacaoMutua<Endereco, EnderecoModel>
+    public class EnderecosViewModelEntidade : ITransformacaoMutua<Endereco, EnderecoVistaContrato>
     {
-        private readonly IConsultasBairros _consultasBairros;
-
-        private readonly IConsultaEnderecos _consultasEnderecos;
-
-        private readonly IConsultasTiposTelefone _consultasTiposTelefone;
-
-        public EnderecosViewModelEntidade(IConsultasBairros consultasBairros, IConsultaEnderecos consultasEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
+        public EnderecosViewModelEntidade(IOperacaoEndereco operacaoEndereco)
         {
-            _consultasBairros = consultasBairros;
-            _consultasEnderecos = consultasEnderecos;
-            _consultasTiposTelefone = consultasTiposTelefone;
+            _operacaoEndereco = operacaoEndereco;
         }
 
-        public Endereco Transformar(EnderecoModel contrato)
+        public Endereco Transformar(EnderecoVistaContrato contrato)
         {
-            Bairro bairro = _consultasBairros.Get(contrato.Bairro, contrato.Cidade, contrato.IdEstado);
-            EnderecosBuilder enderecosBuilder = new EnderecosBuilder(_consultasEnderecos, _consultasTiposTelefone);
-            Endereco endereco = enderecosBuilder.SetLogradouro(contrato.Logradouro)
-                                                .SetComplemento(contrato.Complemento)
-                                                .SetNumero(contrato.Numero)
-                                                .SetBairro(bairro).Build();
-            return endereco;
+            return _operacaoEndereco.GetComBaseEm(contrato);
         }
 
-        public EnderecoModel Transformar(Endereco entidade)
+        public EnderecoVistaContrato Transformar(Endereco entidade)
         {
-            EnderecoModel enderecoModel = new EnderecoModel();
+            EnderecoVistaContrato enderecoModel = new EnderecoVistaContrato();
             enderecoModel.Id = entidade.Id;
             enderecoModel.IdLoja = entidade.Loja.Id;
             enderecoModel.Bairro = entidade.Bairro.Nome;
@@ -56,5 +43,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Infrastructure
             }
             return enderecoModel;
         }
+
+        private readonly IOperacaoEndereco _operacaoEndereco;
+
     }
 }

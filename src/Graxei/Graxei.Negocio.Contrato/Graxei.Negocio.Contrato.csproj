@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Comportamento\GravacaoTemplateMethod.cs" />
     <Compile Include="Factories\IBairroBuilder.cs" />
+    <Compile Include="Factories\IEnderecosBuilder.cs" />
     <Compile Include="IServicoListaProdutosLoja.cs" />
     <Compile Include="IServicoPlanos.cs" />
     <Compile Include="ISegurancaEndereco.cs" />

@@ -37,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         #region ActionResults
 
-        public ActionResult Index(EnderecoModel item)
+        public ActionResult Index(EnderecoVistaContrato item)
         {
             var model = new LojaModel { LojaContrato = new LojaContrato(), EnderecoModel = item };
             return View("Loja", model);

@@ -7,7 +7,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
     /// <summary>
     /// Contrato de dados para cadastro de Endereços
     /// </summary>
-    public class EnderecoModel
+    public class EnderecoVistaContrato
     {
         private long _id;
 

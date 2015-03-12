@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Graxei.Aplicacao.Fabrica.Excecoes
+namespace Graxei.Negocio.Implementacao.Excecoes
 {
     public class ModeloDominioConstrucaoException : Exception
     {

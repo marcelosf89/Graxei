@@ -259,7 +259,6 @@
     <Compile Include="Extension\PaginacaoChain\IPaginacaoChain.cs" />
     <Compile Include="Extension\PaginacaoChain\UltimoGrupoElementos.cs" />
     <Compile Include="Areas\Administrativo\Models\ListaEnderecoModel.cs" />
-    <Compile Include="Areas\Administrativo\Models\EnderecoModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LogotipoNovaLojaModel.cs" />
     <Compile Include="Areas\Administrativo\Models\LojaModel.cs" />
     <Compile Include="Areas\Administrativo\Controllers\ProdutosController.cs" />

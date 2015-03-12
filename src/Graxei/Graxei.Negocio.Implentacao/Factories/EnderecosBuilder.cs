@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Graxei.Aplicacao.Contrato.Consultas;
-using Graxei.Aplicacao.Fabrica.Excecoes;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Negocio.Contrato;
+using Graxei.Negocio.Implementacao.Excecoes;
+using Graxei.Negocio.Contrato.Factories;
 
-namespace Graxei.Aplicacao.Fabrica
+namespace Graxei.Negocio.Implementacao.Factories
 {
-    public class EnderecosBuilder
+    public class EnderecosBuilder : IEnderecosBuilder
     {
         private long _id;
 
@@ -27,41 +28,41 @@ namespace Graxei.Aplicacao.Fabrica
         private string _cnpj;
         
 
-        private IConsultaEnderecos _consultasEnderecos;
+        private IServicoEnderecos _servicoEnderecos;
 
-        private IConsultasTiposTelefone _consultasTiposTelefone;
+        private IServicoTiposTelefone _servicosTiposTelefone;
 
-        public EnderecosBuilder(IConsultaEnderecos consultasEnderecos, IConsultasTiposTelefone consultasTiposTelefone)
+        public EnderecosBuilder(IServicoEnderecos servicoEnderecos, IServicoTiposTelefone servicoTiposTelefone)
         {
-            _consultasEnderecos = consultasEnderecos;
-            _consultasTiposTelefone = consultasTiposTelefone;
+            _servicoEnderecos = servicoEnderecos;
+            _servicosTiposTelefone = servicoTiposTelefone;
         }
 
-        public EnderecosBuilder SetId(long id)
+        public IEnderecosBuilder SetId(long id)
         {
             _id = id;
             return this;
         }
 
-        public EnderecosBuilder SetLogradouro(string logradouro)
+        public IEnderecosBuilder SetLogradouro(string logradouro)
         {
             _logradouro = logradouro;
             return this;
         }
 
-        public EnderecosBuilder SetNumero(string numero)
+        public IEnderecosBuilder SetNumero(string numero)
         {
             _numero = numero;
             return this;
         }
 
-        public EnderecosBuilder SetComplemento(string complemento)
+        public IEnderecosBuilder SetComplemento(string complemento)
         {
             _complemento = complemento;
             return this;
         }
 
-        public EnderecosBuilder SetBairro(Bairro bairro)
+        public IEnderecosBuilder SetBairro(Bairro bairro)
         {
             if (!bairro.Validar())
             {
@@ -71,19 +72,19 @@ namespace Graxei.Aplicacao.Fabrica
             return this;
         }
 
-        public EnderecosBuilder SetLoja(Loja loja)
+        public IEnderecosBuilder SetLoja(Loja loja)
         {
             _loja = loja;
             return this;
         }
 
-        public EnderecosBuilder SetTelefones(string telefones)
+        public IEnderecosBuilder SetTelefones(string telefones)
         {
             _telefones = telefones;
             return this;
         }
 
-        public EnderecosBuilder SetCnpj(string cnpj)
+        public IEnderecosBuilder SetCnpj(string cnpj)
         {
             _cnpj = cnpj;
             return this;
@@ -113,7 +114,7 @@ namespace Graxei.Aplicacao.Fabrica
             Endereco endereco;
             if (_id > 0)
             {
-                endereco = _consultasEnderecos.Get(_id);
+                endereco = _servicoEnderecos.Get(_id);
                 if (endereco == null)
                 {
                     throw new ModeloDominioConstrucaoException(
@@ -159,7 +160,7 @@ namespace Graxei.Aplicacao.Fabrica
                 return retorno; 
             }
             
-            TipoTelefone tipoTelefone = _consultasTiposTelefone.Get("Comercial");
+            TipoTelefone tipoTelefone = _servicosTiposTelefone.Get("Comercial");
             if (tipoTelefone == null)
             {
                 throw new ObjetoNaoEncontradoException("O tipo de telefone 'Comercial' não está cadastrado");
