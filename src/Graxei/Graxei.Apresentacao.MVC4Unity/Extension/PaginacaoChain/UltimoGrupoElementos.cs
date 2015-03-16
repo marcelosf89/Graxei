@@ -20,7 +20,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
         public override bool RegraAtende()
         {
             int meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2;
-            long inicioUltimoGrupo = _totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez;
+            long inicioUltimoGrupo = (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez) + 1;
             return _elementoAtualLista.Atual > (inicioUltimoGrupo + meioLista);
         }
 
