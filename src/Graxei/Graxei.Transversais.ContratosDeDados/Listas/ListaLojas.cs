@@ -16,10 +16,6 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
 
         public ListaLojas(IList<ListaLojasContrato> lista, TotalElementosLista total, PaginaAtualLista atual)
         {
-            if (atual.Atual > total.Total)
-            {
-                throw new ArgumentOutOfRangeException(ErrosInternos.TotalMenorQueAtual);
-            }
             _lista = lista;
             _total = total;
             _atual = atual;
