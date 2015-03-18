@@ -11,7 +11,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class LojaController : Controller
     {
-        public LojaController(IConsultasEnderecos consultasEnderecos, IConsultasLojas consultasLojas,  IConsultasProdutoVendedor consultasProdutoVendedor)
+        public LojaController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas,  IConsultasProdutoVendedor consultasProdutoVendedor)
         {
             _consultasEnderecos = consultasEnderecos;
             _consultasLojas = consultasLojas;
@@ -81,7 +81,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View(loja);
         }
 
-        private IConsultasEnderecos _consultasEnderecos;
+        private IConsultaEnderecos _consultasEnderecos;
         private IConsultasLojas _consultasLojas;
         private IConsultasProdutoVendedor _consultasProdutoVendedor;
     }

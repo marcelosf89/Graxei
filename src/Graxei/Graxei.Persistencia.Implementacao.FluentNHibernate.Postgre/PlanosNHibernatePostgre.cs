@@ -1,5 +1,4 @@
 using System.Linq;
-using FAST.Modelo;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;

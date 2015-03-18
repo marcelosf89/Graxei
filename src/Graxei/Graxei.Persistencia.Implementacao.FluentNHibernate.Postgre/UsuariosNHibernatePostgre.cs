@@ -1,5 +1,4 @@
 using System.Linq;
-using FAST.Modelo;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;
@@ -8,9 +7,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
 {
     public class UsuariosNHibernatePostgre : PadraoNHibernatePostgre<Usuario>, IRepositorioUsuarios
     {
-
-        #region Implementação of IRepositorioUsuarios<T>
-
         public Usuario GetPorLogin(string login)
         {
             return SessaoAtual.Query<Usuario>().SingleOrDefault<Usuario>(p => p.Login.Trim().ToLower().Equals(login.Trim().ToLower()));
@@ -30,6 +26,5 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                 .SingleOrDefault<Usuario>();
         }
 
-        #endregion
     }
 }

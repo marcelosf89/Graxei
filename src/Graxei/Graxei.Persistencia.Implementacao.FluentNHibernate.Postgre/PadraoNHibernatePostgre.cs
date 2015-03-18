@@ -1,5 +1,5 @@
 ﻿using Graxei.Persistencia.Contrato;
-using FAST.Modelo;
+using Graxei.Modelo.Generico;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {

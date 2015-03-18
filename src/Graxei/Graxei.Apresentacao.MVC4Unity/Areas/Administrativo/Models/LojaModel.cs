@@ -9,13 +9,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
         public LojaModel()
         {
             LojaContrato = new LojaContrato();
-            EnderecoModel = new EnderecoModel();
-            ListEnderecosModel = new List<EnderecoModel>();
+            EnderecoModel = new EnderecoVistaContrato();
+            ListEnderecosModel = new List<EnderecoVistaContrato>();
             ListaEnderecos = new List<EnderecoListaContrato>();
         }
         public LojaContrato LojaContrato { get; set; }
-        public EnderecoModel EnderecoModel { get; set; }
-        public List<EnderecoModel> ListEnderecosModel { get; set; }
+        public EnderecoVistaContrato EnderecoModel { get; set; }
+        public List<EnderecoVistaContrato> ListEnderecosModel { get; set; }
         public List<EnderecoListaContrato> ListaEnderecos { get; set; }
         public bool HaEnderecos()
         {

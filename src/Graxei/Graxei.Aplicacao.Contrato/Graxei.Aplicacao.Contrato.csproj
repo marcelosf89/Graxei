@@ -57,17 +57,18 @@
     <Compile Include="Consultas\IConsultasPlanos.cs" />
     <Compile Include="Consultas\IConsultasListaLojas.cs" />
     <Compile Include="Consultas\IConsultasProdutoVendedor.cs" />
-    <Compile Include="Consultas\IConsultasFabricantes.cs" />
+    <Compile Include="Consultas\IConsultaFabricantes.cs" />
     <Compile Include="Consultas\IConsultaCidades.cs" />
     <Compile Include="Consultas\IConsultasBairros.cs" />
-    <Compile Include="Consultas\IConsultasEnderecos.cs" />
-    <Compile Include="Consultas\IConsultasEstados.cs" />
-    <Compile Include="Consultas\IConsultasLogin.cs" />
+    <Compile Include="Consultas\IConsultaEnderecos.cs" />
+    <Compile Include="Consultas\IConsultaEstados.cs" />
+    <Compile Include="Consultas\IConsultaLogin.cs" />
     <Compile Include="Consultas\IConsultasLojas.cs" />
     <Compile Include="Consultas\IConsultasTiposTelefone.cs" />
     <Compile Include="Consultas\IConsultasUsuarios.cs" />
     <Compile Include="Consultas\IConsultaLogradouros.cs" />
     <Compile Include="Operacoes\IMensageria.cs" />
+    <Compile Include="Operacoes\IOperacaoEndereco.cs" />
     <Compile Include="Transacionais\IGerenciamentoEnderecos.cs" />
     <Compile Include="Transacionais\IGerenciamentoLojas.cs" />
     <Compile Include="ITransacional.cs" />
@@ -76,10 +77,6 @@
     <Compile Include="TransformacaoDados\LojasTransformacao.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>

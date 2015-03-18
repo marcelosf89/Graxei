@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using FAST.Utils;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;
@@ -11,16 +10,13 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
     public class Enderecos : PadraoNHibernatePostgre<Endereco>, IRepositorioEnderecos
     {
 
-        #region Construtor
         public Enderecos(IRepositorioEstados repoEstados, IRepositorioCidades repoCidades, IRepositorioBairros repoBairros)
         {
             _repoEstados = repoEstados;
             _repoCidades = repoCidades;
             _repoBairros = repoBairros;
         }
-        #endregion
 
-        #region Implementation of IRepositorioEnderecos
         public IList<Endereco> Todos(Loja loja)
         {
             return SessaoAtual.Query<Endereco>()
@@ -60,12 +56,8 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
                               .Where(() => usuarioResult.Id == usuario.Id).RowCount() > 0;
         }
 
-        #endregion
-
-        #region Atributos Privados
         private readonly IRepositorioEstados _repoEstados;
         private readonly IRepositorioCidades _repoCidades;
         private readonly IRepositorioBairros _repoBairros;
-        #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿using FAST.Modelo;
+﻿using Graxei.Modelo.Generico;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,7 +22,6 @@ namespace Graxei.Modelo
 
         public virtual Plano Plano { get; set; }
 
-        #region Métodos Sobrescritos
         public override bool Equals(object obj)
         {
             if (!(obj is Loja))
@@ -41,7 +40,6 @@ namespace Graxei.Modelo
             }
             return 0;
         }
-        #endregion
 
         public virtual void AdicionarEndereco(Endereco endereco)
         {

@@ -15,19 +15,20 @@ namespace Graxei.Transversais.ContratosDeDados
 
         public OperacaoProdutoLoja OperacaoNoContrato
         {
-            get 
+            get
             {
-                if (Preco <= 0)
+                if (IdMeuProduto > 0)
                 {
-                    return OperacaoProdutoLoja.Excluir;
+                    if (Preco <= 0)
+                    {
+                        return OperacaoProdutoLoja.Excluir;
+                    }
+
+                    return OperacaoProdutoLoja.Alterar;
                 }
-                else if (IdMeuProduto <= 0 && IdProduto > 0 && IdEndereco > 0)
+                else if (IdProduto > 0 && IdEndereco > 0 && Preco > 0)
                 {
                     return OperacaoProdutoLoja.Incluir;
-                }
-                else if (IdMeuProduto > 0)
-                {
-                    return OperacaoProdutoLoja.Alterar;
                 }
 
                 return OperacaoProdutoLoja.Invalido;

@@ -23,6 +23,14 @@ namespace Graxei.Transversais.ContratosDeDados.Listas
 
         public double Preco { get; set; }
 
+        public string PrecoMascara
+        {
+            get
+            {
+                return Preco.ToString("N");
+            }
+        }
+
         public bool Excluido { get; set; }
 
         public string Descricao

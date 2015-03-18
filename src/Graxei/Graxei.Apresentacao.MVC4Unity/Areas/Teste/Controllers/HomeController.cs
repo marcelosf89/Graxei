@@ -18,7 +18,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Controllers
     public class HomeController : Controller
     {
 
-        public HomeController(IConsultasLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
+        public HomeController(IConsultaLogin consultasUsuarios, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             _consultasLogin = consultasUsuarios;
             _gerenciadorAutenticacao = gerenciadorAutenticacao;
@@ -66,7 +66,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Teste.Controllers
             return View(obm);
         }
 
-        private IConsultasLogin _consultasLogin;
+        private IConsultaLogin _consultasLogin;
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
     }
 }

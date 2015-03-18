@@ -48,6 +48,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain
                 {
                     stringBuilder.Append(links[i]);
                 }
+                stringBuilder.Append("</div>"); 
                 return MvcHtmlString.Create(stringBuilder.ToString());
             }
             if (ProximoElemento != null)

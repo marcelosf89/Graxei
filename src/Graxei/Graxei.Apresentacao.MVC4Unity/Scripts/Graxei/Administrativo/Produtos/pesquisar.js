@@ -1,51 +1,28 @@
-﻿$('button[doc-type=paginar]').on("click", function () {
-    var produtos = {};
-    produtos.IdLoja = $("#loja-chave").val();
-    produtos.DescricaoProduto = $("#descricao-produto").val();
-    produtos.MeusProdutos = $("#meus-produtos-chave").prop('checked');
-    produtos.TotalElementosLista = $("#total-elementos").val();
-    produtos.PaginaAtualLista = $(this).html();
-    var url = document.getElementById("pesquisar-produtos-url").value;
-    $.ajax({
-        url: url,
-        type: "POST",
-        data: JSON.stringify(produtos),
-        dataType: "html",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
-            $('#myContentProd').html(result);
-        },
-    });
-});
+﻿
 
-$("input[doc-type=cp]").on("click", function () {
-    var id = $(this).parents("tr").attr("id-prod");
-    $("tr[id-prod=" + id + "]").toggleClass("success");
-});
-
-$("input[doc-type=ip]").on("keyup", function () {
-    $('#msg-produtos-atualizar').empty();
-    $('#msg-produtos-atualizar').removeClass();
-    var valor = $(this).val();
-    if (valor == null || valor < 0) {
-        valor = 0;
-    }
-    var id = $(this).parents("tr").attr("id-prod");
-
-    if (valor <= 0) {
-        $("tr[id-prod=" + id + "]").removeClass("success");
-    } else {
-        $("tr[id-prod=" + id + "]").addClass("success");
-    }
-});
-
-function habilitarBotaoSalvar(me) {
-    var button = $('#salvarPrecos');
+function habilitarBotaoSalvar() {
+    var button = $('#salvar-precos');
     button.addClass("invisible");
     $(".valor-produto").each(function () {
         if ($(this).val() != $(this).data("preco-original")) {
             button.removeClass("invisible");
             return false;
+        }
+    });
+
+    $(".descricao-produto").each(function () {
+        var tr = $(this).parents("tr");
+        var textArea = $(tr).find("textarea");
+        var label = $(tr).find("label");
+        var valorAreaTexto = textArea.val();
+        var valorOriginal = $(this).data("original");
+        ////console.log("valorOriginal: " + valorOriginal + "  ///  valorAreaTexto: " + valorAreaTexto);
+        if (valorAreaTexto != '' && valorOriginal != valorAreaTexto) {
+            var inputValor = $(tr).find("input[type='number']");
+            if (inputValor.val() > 0) {
+                button.removeClass("invisible");
+                return false;
+            }
         }
     });
 }
@@ -65,12 +42,12 @@ function salvarPrecos() {
             }
         });
         return;
-    } 
+    }
 
     var itens = [];
     $('#tabela-precos tbody tr').each(function () {
         var td = $('td', this);
-        var preco = $('input[name="precoProduto"]', td).val();
+        var preco = $('input[name="preco-produto"]', td).val();// .maskMoney('unmasked')[0];
         var idProd = $(this).attr('id-prod');
         var meuProd = $(this).attr('meu-prod');
         var descricao = $('textarea', td).val();
@@ -97,14 +74,28 @@ function salvarPrecos() {
         }
     });
 
-    function resultadoSalvar(args) {
-        $('#msg-produtos-atualizar').empty();
-        if (args.Sucesso) {
-            $('#msg-produtos-atualizar').addClass("alert alert-success");
-        } else {
-            $('#msg-produtos-atualizar').addClass("alert alert-danger");
-        }
-        $('#msg-produtos-atualizar').html(args.Mensagem)
+    $("#salvar-precos").addClass("invisible");
+}
+
+function resultadoSalvar(args) {
+    var elemento = getPainelMensagem();
+    elemento.empty();
+    elemento.removeClass();
+    if (args.Sucesso) {
+        elemento.addClass("alert alert-success");
+        atualizarNovosProdutos(args);
+    } else {
+        elemento.addClass("alert alert-danger");
+    }
+    elemento.html(args.Mensagem)
+}
+
+function atualizarNovosProdutos(objeto) {
+    var lista = objeto.ProdutosIncluidos;
+    for (i = 0; i < lista.length; i++) {
+        var elementoAtual = lista[i];
+        var tr = getTr(elementoAtual.IdProduto);
+        $(tr).attr("meu-prod", elementoAtual.IdMeuProduto);
     }
 }
 
@@ -119,9 +110,6 @@ function habilitarEdicao(element) {
     divExibir.show();
     parentDiv.hide();
     textArea.focus();
-}
-
-function exibirPainelEdicao(parentDiv, divToShow) {
 }
 
 function tratarCliqueEdicao(element) {
@@ -147,4 +135,50 @@ function tratarCliqueEdicao(element) {
     }
     painelPrincipalDiv.show();
     div.hide();
+    habilitarBotaoSalvar();
 }
+
+function getTr(idProd) {
+    return $("tr[id-prod=" + idProd + "]");
+}
+
+function alteracaoPendente() {
+    var button = $('#salvar-precos');
+    return !button.hasClass("invisible");
+}
+
+function getPainelMensagem() {
+    return $('#msg-produtos-atualizar');
+}
+
+function getHtmlAvisoAlteracaoPendente(paginaAtual) {
+    var buttons = '  <button type="button" class="btn btn-success" id="salvar-pendencias">Sim</button> <button type="button" class="btn btn-danger" data-pagina-atual="' + paginaAtual + '" id="descartar-pendencias">Não</button>';
+    return 'Há alterações pendentes. Salvar agora?' + buttons;
+}
+
+function paginar(numeroPagina) {
+    //var produtos = getJsonProduto();
+    var produtos = {};
+    produtos.IdLoja = $("#loja-chave").val();
+    produtos.DescricaoProduto = $("#descricao-produto").val();
+    produtos.MeusProdutos = $("#meus-produtos-chave").prop('checked');
+    produtos.TotalElementosLista = $("#total-elementos").val();
+    produtos.PaginaAtualLista = numeroPagina;
+    var url = document.getElementById("pesquisar-produtos-url").value;
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify(produtos),
+        dataType: "html",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            $('#myContentProd').html(result);
+        },
+    });
+    window.scrollTo(0, 0);
+    $("#salvar-precos").addClass("invisible");
+}
+
+$("input[name=preco-produto").maskMoney();
+//filter(function() { return $(this).val() == "0,00"; }).

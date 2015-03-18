@@ -24,16 +24,16 @@ namespace Graxei.Aplicacao.Fabrica
             container.RegisterType<IGerenciamentoLojas, GerenciamentoLojas>()
                 .RegisterType<IGerenciamentoProdutos, GerenciamentoProdutos>()
                 .RegisterType<IGerenciamentoEnderecos, GerenciamentoEnderecos>()
-                .RegisterType<IConsultasBairros, ConsultasBairros>()
-                .RegisterType<IConsultasCidades, ConsultasCidades>()
-                .RegisterType<IConsultasEstados, ConsultasEstados>()
-                .RegisterType<IConsultasLogradouros, ConsultasLogradouros>()
-                .RegisterType<IConsultasLogin, ConsultasLogin>()
+                .RegisterType<IConsultasBairros, ConsultaBairros>()
+                .RegisterType<IConsultaCidades, ConsultaCidades>()
+                .RegisterType<IConsultaEstados, ConsultaEstados>()
+                .RegisterType<IConsultasLogradouros, ConsultaLogradouros>()
+                .RegisterType<IConsultaLogin, ConsultaLogin>()
                 .RegisterType<IConsultasLojas, ConsultasLojas>()
                 .RegisterType<IConsultasUsuarios, ConsultasUsuarios>()
-                .RegisterType<IConsultasEnderecos, ConsultasEnderecos>()
+                .RegisterType<IConsultaEnderecos, ConsultaEnderecos>()
                 .RegisterType<ITransformacaoMutua<Loja, LojaContrato>, LojasTransformacao>()
-                .RegisterType<IConsultasFabricantes,ConsultasFabricantes>()
+                .RegisterType<IConsultaFabricantes,ConsultaFabricantes>()
                 .RegisterType<IConsultasProdutoVendedor, ConsultasProdutoVendedor>()
                 .RegisterType<IConsultasTiposTelefone, ConsultasTiposTelefone>()
                 .RegisterType<IConsultasListaLojas, ConsultasListaLojas>()
@@ -41,7 +41,7 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasProdutos, ConsultasProdutos>()
                 .RegisterType<IConsultaListaProdutosLoja, ConsultaListaProdutosLoja>()
                 .RegisterType<IGerenciamentoMensageria, GerenciamentoMensageria>()
-                ;
+                .RegisterType<IOperacaoEndereco, OperacaoEndereco>();
         }
     }
 }

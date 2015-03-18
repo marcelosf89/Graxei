@@ -1,11 +1,9 @@
 @using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura
 @using Graxei.Transversais.ContratosDeDados.Listas
 @model ListaLojas
-
 @{
     ViewBag.Title = "Listar";
 }
-
 <h4>Listar</h4>
 <div class="row row-btn-margin">
     <div class="col-md-12">
@@ -18,10 +16,10 @@
             <thead>
                 <tr>
                     <th>
-                        Nome Loja
+                        @Rotulos.Nome
                     </th>
                     <th>
-                        Ação
+                        @Rotulos.Acao
                     </th>
                 </tr>
             </thead>
@@ -45,7 +43,7 @@
             <tfoot>
                 <tr>
                     <th colspan="2">
-                        @Ajax.LinkPaginacao("Lojas", "Listar", Model.Atual, Model.Total, 5)
+                        @Ajax.LinkPaginacao("Lojas", "Listar", Model.Atual, Model.Total, 5, Info.NenhumaLoja)
                     </th>
                 </tr>
             </tfoot>

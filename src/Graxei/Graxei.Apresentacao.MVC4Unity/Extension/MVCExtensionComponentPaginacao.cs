@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain;
 using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
+using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Apresentacao.MVC4Unity.Extension
 {
@@ -69,15 +70,21 @@ namespace Graxei.Apresentacao.MVC4Unity.Extension
             return new MvcHtmlString(sb.ToString());
         }
 
-        public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxHelper, string controller, string action, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)
+        public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxHelper, string controller, string action, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao, string mensagemNenhumResultado)
         {
             if (listaTotalElementos.Total <= 0)
             {
-                return MvcHtmlString.Create("<div>Nenhum resultado</div>");
+                return MvcHtmlString.Create(string.Format("<div>{0}</div>", mensagemNenhumResultado));
             }
             LinkBuilderPadraoStrategy linkBuilder = new LinkBuilderPadraoStrategy(ajaxHelper, controller, action, paginaAtualLista);
             PaginacaoChainFactory paginacaoChainFactory = new PaginacaoChainFactory(ajaxHelper, listaTotalElementos, paginaAtualLista, maximoElementosPaginacao, controller, action, linkBuilder);
             return paginacaoChainFactory.ConstruirCadeiaDePaginacao().Get();
+        }
+
+        public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxHelper, string controller, string action, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)
+        {
+            string mensagemPadrao = Info.NenhumResultado;
+            return LinkPaginacao(ajaxHelper, controller, action, paginaAtualLista, listaTotalElementos, maximoElementosPaginacao, mensagemPadrao);
         }
 
         public static MvcHtmlString LinkPaginacaoPesquisaProdutos(this AjaxHelper ajaxHelper, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)

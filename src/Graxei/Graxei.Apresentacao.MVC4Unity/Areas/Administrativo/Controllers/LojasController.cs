@@ -22,9 +22,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class LojasController : Controller
     {
-        public LojasController(IConsultasEnderecos consultasEnderecos, IGerenciamentoLojas gerenciamentoLojas,
+        public LojasController(IConsultaEnderecos consultasEnderecos, IGerenciamentoLojas gerenciamentoLojas,
             IConsultasLojas consultasLojas, ITransformacaoMutua<Loja, LojaContrato> transformacaoMutuaLojas,
-            IConsultasEstados consultasEstados, IConsultasListaLojas consultasListaLojas, IConsultasPlanos consultasPlanos)
+            IConsultaEstados consultasEstados, IConsultasListaLojas consultasListaLojas, IConsultasPlanos consultasPlanos)
         {
             _gerenciamentoLojas = gerenciamentoLojas;
             _consultasLojas = consultasLojas;
@@ -37,7 +37,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 
         #region ActionResults
 
-        public ActionResult Index(EnderecoModel item)
+        public ActionResult Index(EnderecoVistaContrato item)
         {
             var model = new LojaModel { LojaContrato = new LojaContrato(), EnderecoModel = item };
             return View("Loja", model);
@@ -207,9 +207,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             ViewBag.OperacaoSucesso = Sucesso.LogoAdicionadoComSucesso;
             return View("AdicionarUrl", loja);
         }
-
-
-
+        
         public ActionResult AdicionarUrl(long idLoja)
         {
             Loja loja = _consultasLojas.Get(idLoja);
@@ -291,8 +289,8 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private readonly IConsultasLojas _consultasLojas;
         private readonly IGerenciamentoLojas _gerenciamentoLojas;
         private readonly ITransformacaoMutua<Loja, LojaContrato> _transformacaoMutuaLojas;
-        private IConsultasEnderecos _consultasEnderecos;
-        private IConsultasEstados _consultasEstados;
+        private IConsultaEnderecos _consultasEnderecos;
+        private IConsultaEstados _consultasEstados;
         private IConsultasListaLojas _consultasListaLojas;
         private ITransformacaoMutua<Endereco, EnderecosViewModelEntidade> _transformacaoMutuaEnderecos;
         private IConsultasPlanos _consultasPlanos;

@@ -1,4 +1,4 @@
-﻿using FAST.Modelo;
+﻿using Graxei.Modelo.Generico;
 
 namespace Graxei.Transversais.Utilidades.TransformacaoDados.Interface
 {

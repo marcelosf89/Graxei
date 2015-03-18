@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comportamento\GravacaoTemplateMethod.cs" />
+    <Compile Include="Factories\IBairroBuilder.cs" />
+    <Compile Include="Factories\IEnderecosBuilder.cs" />
     <Compile Include="IServicoListaProdutosLoja.cs" />
     <Compile Include="IServicoPlanos.cs" />
     <Compile Include="ISegurancaEndereco.cs" />
@@ -68,10 +70,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FAST\FAST.csproj">
-      <Project>{8c396bbc-f47c-4845-934e-a467302aaa81}</Project>
-      <Name>FAST</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>

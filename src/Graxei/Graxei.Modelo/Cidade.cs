@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using FAST.Modelo;
+using Graxei.Modelo.Generico;
 using System;
 using Graxei.Transversais.Idiomas;
 

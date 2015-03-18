@@ -13,7 +13,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
     public class ProdutosController : Controller
     {
 
-        public ProdutosController(IConsultasFabricantes appConsultasFabricantes)
+        public ProdutosController(IConsultaFabricantes appConsultasFabricantes)
         {
             _appConsultasFabricantes = appConsultasFabricantes;
         }
@@ -44,7 +44,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             return Json(nomes, JsonRequestBehavior.AllowGet);
         }
 
-        private readonly IConsultasFabricantes _appConsultasFabricantes;
+        private readonly IConsultaFabricantes _appConsultasFabricantes;
 
     }
 }
