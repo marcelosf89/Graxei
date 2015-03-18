@@ -13,7 +13,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
 {
     public class GerenciamentoEnderecos : PadraoTransacao, IGerenciamentoEnderecos
     {
-        public GerenciamentoEnderecos(IServicoEnderecos servicoEnderecos, IBairroBuilder bairroBuilder, IConsultasLojas consultasLojas, IEnderecosBuilder enderecoBuilder)
+        public GerenciamentoEnderecos(IServicoEnderecos servicoEnderecos, IBairrosBuilder bairroBuilder, IConsultasLojas consultasLojas, IEnderecosBuilder enderecoBuilder)
         {
             _servicoEnderecos = servicoEnderecos;
             _bairroBuilder = bairroBuilder;
@@ -76,7 +76,7 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
 
         private IServicoEnderecos _servicoEnderecos;
 
-        private IBairroBuilder _bairroBuilder;
+        private IBairrosBuilder _bairroBuilder;
 
         private IConsultasLojas _consultasLojas;
 

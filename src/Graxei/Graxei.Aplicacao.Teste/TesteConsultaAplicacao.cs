@@ -23,7 +23,7 @@ namespace Graxei.Aplicacao.Teste
         [TestInitialize]
         public void SetUp()
         {
-            _mockBairroBuilder = new Mock<IBairroBuilder>();
+            _mockBairroBuilder = new Mock<IBairrosBuilder>();
             _mockBairroBuilder.Setup(p => p.SetNome(NomeBairro)).Returns(_mockBairroBuilder.Object);
             _mockBairroBuilder.Setup(p => p.SetCidade(It.IsAny<string>())).Returns(_mockBairroBuilder.Object);
             _mockBairroBuilder.Setup(p => p.SetIdEstado(It.IsAny<long>())).Returns(_mockBairroBuilder.Object);
@@ -315,7 +315,7 @@ namespace Graxei.Aplicacao.Teste
         private const long IdLoja = 101;
         private const string SiglaEstado = "ZZ";
         private const string UsuarioLogin = "adminuser";
-        private Mock<IBairroBuilder> _mockBairroBuilder;
+        private Mock<IBairrosBuilder> _mockBairroBuilder;
         private Mock<IServicoBairros> _mockServicoBairros;
         private Mock<IServicoCidades> _mockServicoCidades;
         private Mock<IServicoEstados> _mockServicoEstados;

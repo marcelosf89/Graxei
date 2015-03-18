@@ -2,12 +2,12 @@
 using System;
 namespace Graxei.Negocio.Contrato.Factories
 {
-    public interface IBairroBuilder
+    public interface IBairrosBuilder
     {
         Bairro Build();
-        IBairroBuilder SetCidade(string cidade);
-        IBairroBuilder SetIdEstado(long id);
-        IBairroBuilder SetNome(string nome);
+        IBairrosBuilder SetCidade(string cidade);
+        IBairrosBuilder SetIdEstado(long id);
+        IBairrosBuilder SetNome(string nome);
         void Validar();
     }
 }

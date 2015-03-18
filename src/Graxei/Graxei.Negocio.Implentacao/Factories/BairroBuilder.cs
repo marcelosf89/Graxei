@@ -10,28 +10,28 @@ using System.Threading.Tasks;
 
 namespace Graxei.Negocio.Implementacao.Factories
 {
-    public class BairroBuilder : IBairroBuilder
+    public class BairrosBuilder : IBairrosBuilder
     {
-        public BairroBuilder(IServicoBairros servicoBairros, IServicoCidades servicoCidades, IServicoEstados servicoEstados)
+        public BairrosBuilder(IServicoBairros servicoBairros, IServicoCidades servicoCidades, IServicoEstados servicoEstados)
         {
             _servicoBairros = servicoBairros;
             _servicoCidades = servicoCidades;
             _servicoEstados = servicoEstados;
         }
 
-        public IBairroBuilder SetNome(string nome)
+        public IBairrosBuilder SetNome(string nome)
         {
             _nome = nome;
             return this;
         }
 
-        public IBairroBuilder SetCidade(string cidade)
+        public IBairrosBuilder SetCidade(string cidade)
         {
             _nomeCidade = cidade;
             return this;
         }
 
-        public IBairroBuilder SetIdEstado(long id)
+        public IBairrosBuilder SetIdEstado(long id)
         {
             _idEstado = id;
             return this;

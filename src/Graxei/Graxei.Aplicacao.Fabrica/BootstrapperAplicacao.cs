@@ -41,7 +41,7 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasProdutos, ConsultasProdutos>()
                 .RegisterType<IConsultaListaProdutosLoja, ConsultaListaProdutosLoja>()
                 .RegisterType<IGerenciamentoMensageria, GerenciamentoMensageria>()
-                ;
+                .RegisterType<IOperacaoEndereco, OperacaoEndereco>();
         }
     }
 }

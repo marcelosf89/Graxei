@@ -21,7 +21,7 @@ namespace Graxei.Negocio.Implementacao.Teste.Factories
             _mockServicoBairros = new Mock<IServicoBairros>();
             _mockServicoCidades = new Mock<IServicoCidades>();
             _mockServicoEstados = new Mock<IServicoEstados>();
-            _bairroBuilder = new BairroBuilder(_mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
+            _bairroBuilder = new BairrosBuilder(_mockServicoBairros.Object, _mockServicoCidades.Object, _mockServicoEstados.Object);
         }
 
         [TestCleanup]
@@ -37,7 +37,7 @@ namespace Graxei.Negocio.Implementacao.Teste.Factories
         [ExpectedException(typeof(ObjetoConstrucaoException))]
         public void QuandoNomeForVazioNoBuilderDeBairros_DeveDispararExcecao()
         {
-            new BairroBuilder(null, null, null).Validar();
+            new BairrosBuilder(null, null, null).Validar();
         }
 
         [TestMethod]
@@ -126,7 +126,7 @@ namespace Graxei.Negocio.Implementacao.Teste.Factories
 
         private Mock<IServicoEstados> _mockServicoEstados;
 
-        private BairroBuilder _bairroBuilder;
+        private BairrosBuilder _bairroBuilder;
 
         private const string _bairro = "Bairro 1";
 

@@ -11,9 +11,9 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         private readonly IServicoBairros _servicoBairros;
         private readonly IServicoCidades _servicoCidades;
         private readonly IServicoEstados _servicoEstados;
-        private readonly IBairroBuilder _bairroBuilder;
+        private readonly IBairrosBuilder _bairroBuilder;
 
-        public ConsultaBairros(IServicoBairros servicoBairros, IServicoCidades servicoCidades, IServicoEstados servicoEstados, IBairroBuilder bairroBuilder)
+        public ConsultaBairros(IServicoBairros servicoBairros, IServicoCidades servicoCidades, IServicoEstados servicoEstados, IBairrosBuilder bairroBuilder)
         {
             _servicoBairros = servicoBairros;
             _servicoCidades = servicoCidades;
