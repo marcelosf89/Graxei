@@ -160,11 +160,47 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O endereço deve estar associado a uma loja.
+        /// </summary>
+        public static string EnderecoAssociadoLoja {
+            get {
+                return ResourceManager.GetString("EnderecoAssociadoLoja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O endereço não pode ser transiente na atualização.
         /// </summary>
         public static string EnderecoAtualizarNaoTransiente {
             get {
                 return ResourceManager.GetString("EnderecoAtualizarNaoTransiente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O endereço deve ter um bairro.
+        /// </summary>
+        public static string EnderecoDeveTerBairro {
+            get {
+                return ResourceManager.GetString("EnderecoDeveTerBairro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O endereço deve ter um logradouro.
+        /// </summary>
+        public static string EnderecoDeveTerLogradouro {
+            get {
+                return ResourceManager.GetString("EnderecoDeveTerLogradouro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O endereço deve ter um número.
+        /// </summary>
+        public static string EnderecoDeveTerNumero {
+            get {
+                return ResourceManager.GetString("EnderecoDeveTerNumero", resourceCulture);
             }
         }
         

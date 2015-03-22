@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Bairros.cs" />
     <Compile Include="Cidades.cs" />
+    <Compile Include="Especificacoes\LojasSpecTeste.cs" />
     <Compile Include="Factories\TesteBuilders.cs" />
     <Compile Include="Integracao\ImplementacaoLojas.cs" />
     <Compile Include="ListaProdutosLojaTeste.cs" />

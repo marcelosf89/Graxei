@@ -52,12 +52,9 @@ namespace Graxei.Negocio.Implementacao.Especificacoes
 
         private void ChecarSeguranca(Loja loja)
         {
-            Usuario usuarioLogado = _gerenciadorAutenticacao.Get();
-            bool associado = _repositorioEnderecos.UsuarioAssociado(endereco, usuarioLogado);
-            if (!associado)
+            if (!_servicoLojas.UsuarioAtualAssociado(loja))
             {
-                throw new SegurancaEntidadeException(string.Format("Usuário {0} não tem acesso à loja {1}", usuarioLogado.Nome,
-                    endereco.Loja.Nome));
+                throw new SegurancaEntidadeException(string.Format("Usuário não tem acesso à loja {0}", loja.Nome));
             }
         }
 

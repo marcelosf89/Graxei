@@ -7,15 +7,17 @@ using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Negocio.Implementacao.Especificacoes;
+using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 
 namespace Graxei.Negocio.Implementacao
 {
     public class ServicoLojas : GravacaoTemplateMethod<Loja>, IServicoLojas
     {
-        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoPlanos servicoPlanos)
+        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoPlanos servicoPlanos, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
             RepositorioEntidades = repositorioLojas;
             _servicoPlanos = servicoPlanos;
+            _gerenciadorAutenticacao = gerenciadorAutenticacao;
         }
         
         public override Loja Salvar(Loja loja)
@@ -36,7 +38,7 @@ namespace Graxei.Negocio.Implementacao
 
         public bool UsuarioAtualAssociado(Loja loja)
         {
-            return RepositorioLojas.UsuarioAssociado(loja)
+            return RepositorioLojas.UsuarioAssociado(loja, _gerenciadorAutenticacao.Get());
         }
 
         public Loja Get(string nome)
@@ -94,7 +96,7 @@ namespace Graxei.Negocio.Implementacao
 
         private IServicoPlanos _servicoPlanos;
 
-
+        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 
     }
 }

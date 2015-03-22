@@ -13,6 +13,21 @@ namespace Graxei.Negocio.Contrato.Especificacoes
             _ok = true;
         }
 
+        public bool Ok
+        {
+            get
+            {
+                return _ok;
+            }
+        }
+
+        public string Mensagem
+        {
+            get
+            {
+                return _mensagem;
+            }
+        }
         public ResultadoEspecificacao(bool ok, string mensagem)
         {
             _ok = ok;

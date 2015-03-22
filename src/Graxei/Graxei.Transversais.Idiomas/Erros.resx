@@ -261,4 +261,16 @@
   <data name="ListaNaoAtualizada" xml:space="preserve">
     <value>Sua lista não pôde ser atualizada. Por favor contate o suporte.</value>
   </data>
+  <data name="EnderecoAssociadoLoja" xml:space="preserve">
+    <value>O endereço deve estar associado a uma loja</value>
+  </data>
+  <data name="EnderecoDeveTerBairro" xml:space="preserve">
+    <value>O endereço deve ter um bairro</value>
+  </data>
+  <data name="EnderecoDeveTerLogradouro" xml:space="preserve">
+    <value>O endereço deve ter um logradouro</value>
+  </data>
+  <data name="EnderecoDeveTerNumero" xml:space="preserve">
+    <value>O endereço deve ter um número</value>
+  </data>
 </root>
