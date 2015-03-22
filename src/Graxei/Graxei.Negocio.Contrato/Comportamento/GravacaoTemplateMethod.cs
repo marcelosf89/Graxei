@@ -16,14 +16,46 @@ namespace Graxei.Negocio.Contrato.Comportamento
             ResultadoEspecificacao resultado;
             if (UtilidadeEntidades.IsTransiente(entidade))
             {
-                resultado = especificacaoSalvar.Satisfeita(entidade);
+                resultado = GetEspecificacaoSalvar().Satisfeita(entidade);
             }
             else
             {
-                resultado = especificacaoAlterar.Satisfeita(entidade);
+                resultado = GetEspecificacaoAlterar().Satisfeita(entidade);
             }
 
             return resultado;
+        }
+
+        public abstract IEspecificacao<T> GetEspecificacaoSalvarPadrao();
+
+        public abstract IEspecificacao<T> GetEspecificacaoAlterarPadrao();
+
+        public IEspecificacao<T> GetEspecificacaoSalvar()
+        {
+            if (especificacaoSalvar == null)
+            {
+                return GetEspecificacaoSalvarPadrao();
+            }
+            return especificacaoSalvar;
+        }
+
+        public IEspecificacao<T> GetEspecificacaoAlterar()
+        {
+            if (especificacaoAlterar == null)
+            {
+                return GetEspecificacaoAlterarPadrao();
+            }
+            return especificacaoAlterar;
+        }
+
+        public void SetEspecificacaoSalvar(IEspecificacao<T> especificacao)
+        {
+            especificacaoSalvar = especificacao;
+        }
+
+        public void SetEspecificacaoAlterar(IEspecificacao<T> especificacao)
+        {
+            especificacaoAlterar = especificacao;
         }
 
         public abstract T Salvar(T t);

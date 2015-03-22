@@ -273,4 +273,7 @@
   <data name="EnderecoDeveTerNumero" xml:space="preserve">
     <value>O endereço deve ter um número</value>
   </data>
+  <data name="UsuarioSemAcessoLoja" xml:space="preserve">
+    <value>Usuário não tem acesso à loja</value>
+  </data>
 </root>

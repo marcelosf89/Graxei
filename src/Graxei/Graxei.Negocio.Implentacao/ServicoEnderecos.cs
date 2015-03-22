@@ -8,6 +8,7 @@ using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 using Graxei.Negocio.Implementacao.Especificacoes;
+using Graxei.Negocio.Contrato.Especificacoes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -40,6 +41,16 @@ namespace Graxei.Negocio.Implementacao
 
             PreGravar(endereco);
             return _repositorioEnderecos.Salvar(endereco);
+        }
+
+        public override IEspecificacao<Endereco> GetEspecificacaoSalvarPadrao()
+        {
+            return new EnderecosSalvar(this);
+        }
+
+        public override IEspecificacao<Endereco> GetEspecificacaoAlterarPadrao()
+        {
+            return new EnderecosAtualizar(this);
         }
 
         public override Endereco GetPorId(long id)

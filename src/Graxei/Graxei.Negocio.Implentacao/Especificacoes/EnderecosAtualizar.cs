@@ -43,7 +43,7 @@ namespace Graxei.Negocio.Implementacao.Especificacoes
 
             if (!_servicoEnderecos.UsuarioAtualAssociado(endereco))
             {
-                return new ResultadoEspecificacao(false, string.Format("Usuário não tem acesso à loja {0}", endereco.Loja.Nome));
+                return new ResultadoEspecificacao(false, Erros.UsuarioSemAcessoLoja);
             }
 
             Endereco enderecoRepetido = _servicoEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);

@@ -511,6 +511,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usuário não tem acesso à loja.
+        /// </summary>
+        public static string UsuarioSemAcessoLoja {
+            get {
+                return ResourceManager.GetString("UsuarioSemAcessoLoja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O valor deve ser maior que zero.
         /// </summary>
         public static string ValorMaiorZero {

@@ -8,6 +8,7 @@ using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Negocio.Implementacao.Especificacoes;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Negocio.Contrato.Especificacoes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -22,16 +23,11 @@ namespace Graxei.Negocio.Implementacao
         
         public override Loja Salvar(Loja loja)
         {
-            if (especificacaoAlterar == null)
+            ResultadoEspecificacao resultadoEspecificacao = PreGravar(loja);
+            if (!resultadoEspecificacao.Ok)
             {
-                especificacaoAlterar = new LojasAtualizar(this);
+                throw new ValidacaoEntidadeException(resultadoEspecificacao.Mensagem);
             }
-            if (especificacaoSalvar == null)
-            {
-                especificacaoSalvar = new LojasSalvar(this);
-            }
-
-            PreGravar(loja);
             loja = this.RepositorioLojas.Salvar(loja);
             return loja;
         }
@@ -48,7 +44,8 @@ namespace Graxei.Negocio.Implementacao
 
         public Loja Salvar(Loja loja, Usuario usuario)
         {
-            _usuario = usuario;
+            loja.AdicionarUsuario(usuario);
+            loja.Plano = _servicoPlanos.GetPorId(1);
             return Salvar(loja);
         }
 
@@ -67,9 +64,6 @@ namespace Graxei.Negocio.Implementacao
             return RepositorioLojas.GetIdsEnderecos(idLoja);
         }
 
-        private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas)RepositorioEntidades; } }
-
-
         public void PreExcluir(Loja t)
         {
             throw new NotImplementedException();
@@ -78,6 +72,16 @@ namespace Graxei.Negocio.Implementacao
         public void Excluir(Loja t)
         {
             throw new NotImplementedException();
+        }
+
+        public override IEspecificacao<Loja> GetEspecificacaoSalvarPadrao()
+        {
+            return new LojasSalvar(this);
+        }
+
+        public override IEspecificacao<Loja> GetEspecificacaoAlterarPadrao()
+        {
+            return new LojasSalvar(this);
         }
 
         public override Loja GetPorId(long id)
@@ -97,6 +101,8 @@ namespace Graxei.Negocio.Implementacao
         private IServicoPlanos _servicoPlanos;
 
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
+
+        private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas)RepositorioEntidades; } }
 
     }
 }
