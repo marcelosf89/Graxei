@@ -59,7 +59,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
 
         public IList<ListaProdutosLojaContrato> Get(int pagina, int tamanhoPagina)
         {
-            string sql = string.Format("{0} {1} {2}", ListaProdutosSqlResolverConstantes.Campos, Consulta, Ordem); 
+            string sql = string.Format("{0} {1} {2}", ListaProdutosSqlResolverConstantes.CamposMeusProdutos, Consulta, Ordem); 
             int primeiroResultado = (tamanhoPagina * pagina) - tamanhoPagina;
             IList<ListaProdutosLojaContrato> lista = 
                  SessaoAtual.CreateSQLQuery(sql)

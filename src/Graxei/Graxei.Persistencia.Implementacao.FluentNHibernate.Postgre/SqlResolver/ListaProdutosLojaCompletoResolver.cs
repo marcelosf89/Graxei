@@ -16,13 +16,22 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
     public class ListaProdutosLojaCompletoResolver : IListaProdutosLojaSqlResolver
     {
         private const string Consulta =
-                     @"FROM produtos p
-                  LEFT JOIN produtos_vendedores_ativos pv ON p.id_produto = pv.id_produto
-                  LEFT JOIN enderecos e ON pv.id_endereco = e.id_endereco
-                  LEFT JOIN lojas l ON e.id_loja = l.id_loja AND l.id_loja = :id 
-                      WHERE p.excluida = false AND (lower(p.descricao) like :descricao OR lower(pv.descricao) like :descricao)";
+                  @"FROM (
+                  SELECT p.id_produto, p.codigo, null minha_descricao, p.descricao descricao_original, 
+                         null id_meu_produto, null id_endereco, null preco, false excluido
+                    FROM produtos p 
+                   WHERE p.excluida = false AND lower(p.descricao) LIKE :descricao 
+                     AND NOT EXISTS (SELECT 1 FROM produtos_vendedores pv WHERE pv.id_produto = p.id_produto)
+                   UNION
+                  SELECT p.id_produto, p.codigo, pv.descricao minha_descricao, p.descricao descricao_original, 
+                         pv.id_produto_vendedor id_meu_produto, pv.id_endereco, pv.preco, pv.excluida
+                    FROM produtos p
+                    JOIN produtos_vendedores_ativos pv on p.id_produto = pv.id_produto
+                    JOIN enderecos e ON pv.id_endereco = e.id_endereco
+                    JOIN lojas l ON e.id_loja = l.id_loja 
+                   WHERE l.id_loja = :id AND (lower(pv.descricao) like :descricao OR lower(p.descricao) like :descricao)) p";
 
-        private const string Ordem = "ORDER BY pv.descricao";
+        private const string Ordem = "ORDER BY p.minha_descricao";
 
         private ISession _sessao;
         

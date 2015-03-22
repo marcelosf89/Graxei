@@ -40,6 +40,9 @@ namespace Graxei.Apresentacao.MVC4Unity
            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+           bundles.Add(new ScriptBundle("~/Administrativo/Enderecos/Formulario/js")
+                  .Include("~/Scripts/Graxei/Administrativo/Enderecos/formularioEndereco.js"));
+
            bundles.Add(new ScriptBundle("~/Administrativo/Produtos/Pesquisar/js")
                    .Include("~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js")
                    .Include("~/Scripts/Graxei/Administrativo/Produtos/pesquisar.eventos.js"));
@@ -67,7 +70,7 @@ namespace Graxei.Apresentacao.MVC4Unity
             bundles.Add(new StyleBundle("~/css/fileinput").Include(
             "~/Scripts/fileinput.js"));
 
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

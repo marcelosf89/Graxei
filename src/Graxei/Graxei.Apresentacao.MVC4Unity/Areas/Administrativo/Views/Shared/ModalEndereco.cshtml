@@ -1,19 +1,32 @@
 ﻿@model EnderecoVistaContrato
+@Scripts.Render("~/bundles/jqueryvalajax")
+@Scripts.Render("~/bundles/typeahead")
+@Scripts.Render("~/bundles/modal")
+@Scripts.Render("~/Administrativo/Enderecos/Formulario/js")
 <div id="modalEnderecos" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-dialog-endereco">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
-            <div class="modal-body">
+            <input type="hidden" id="luk" value="@Model.IdLoja">
+            <input type="hidden" id="endLista" value="@Url.Action("ListaEnderecos", "Enderecos")">
+            <input type="hidden" id="estadoSelec" value="@Url.Action("EstadoSelecionado", "Enderecos")">
+            <input type="hidden" id="cidadeSelec" value="@Url.Action("CidadeSelecionada", "Enderecos")">
+            <input type="hidden" id="bairroSelec" value="@Url.Action("BairroSelecionado", "Enderecos")">
+            <input type="hidden" id="autoCidade" value="@Url.Action("AutoCompleteCidade", "Enderecos")">
+            <input type="hidden" id="autoBairro" value="@Url.Action("AutoCompleteBairro", "Enderecos")">
+            <input type="hidden" id="autoLogradouro" value="@Url.Action("autocompletelogradouro", "Enderecos")">
+            <input type="hidden" id="msgSucesso" value="@ViewBag.OperacaoSucesso">
+            <input type="hidden"><div class="modal-body">
                 @if (Model.IdLoja > 0)
                 {
-                    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess="SuccessEndereco", UpdateTargetId = "model-endereco-body", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
+                    AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnSuccess = "SuccessEndereco", UpdateTargetId = "model-endereco-body", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
                     using (Ajax.BeginForm("Salvar", "Enderecos", null, ajax, new { id = "form-enderecos", @class = "form-horizontal" }))
                     {
-                    <div id="model-endereco-body">
-                        @{Html.RenderPartial("FormularioEndereco", Model);}
-                    </div>
+                        <div id="model-endereco-body">
+                            @{Html.RenderPartial("FormularioEndereco", Model);}
+                        </div>
                     }
                 }
             </div>

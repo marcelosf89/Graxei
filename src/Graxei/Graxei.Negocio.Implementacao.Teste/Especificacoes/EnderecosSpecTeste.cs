@@ -248,7 +248,7 @@ namespace Graxei.Negocio.Implementacao.Teste.Especificacoes
             ResultadoEspecificacao resultadoEspecificacao = new EnderecosAtualizar(null).Satisfeita(endereco);
 
             // Assert
-            Assert.IsTrue(SpecCommon.ResultadoEspecificacaoNotOk(resultadoEspecificacao, Erros.EnderecoDeveTerLogradouro));
+            Assert.IsTrue(SpecCommon.ResultadoEspecificacaoNotOk(resultadoEspecificacao, Erros.EnderecoDeveTerNumero));
         }
 
         [TestMethod]
