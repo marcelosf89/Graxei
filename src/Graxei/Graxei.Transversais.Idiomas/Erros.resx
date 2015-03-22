@@ -181,7 +181,7 @@
     <value>O valor deve ser maior que zero</value>
   </data>
   <data name="LojaNula" xml:space="preserve">
-    <value>A Loja não pode ser nula</value>
+    <value>A loja deve ser informada</value>
   </data>
   <data name="LojaInvalida" xml:space="preserve">
     <value>Loja inválida: atributos obrigatórios têm valor nulo</value>
@@ -238,7 +238,7 @@
     <value>A loja já possui este endereço</value>
   </data>
   <data name="LojasListaUsuariosVazia" xml:space="preserve">
-    <value>A lista de usuários não pode ser nula ou vazia</value>
+    <value>A loja deve ter ao menos um usuário associado</value>
   </data>
   <data name="UsuarioLogNulo" xml:space="preserve">
     <value>Usuário de Log não pode ser nulo </value>

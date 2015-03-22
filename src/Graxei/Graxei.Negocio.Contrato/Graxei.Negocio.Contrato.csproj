@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comportamento\GravacaoTemplateMethod.cs" />
+    <Compile Include="Especificacoes\IEspecificacao.cs" />
+    <Compile Include="Especificacoes\ResultadoEspecificacao.cs" />
     <Compile Include="Factories\IBairroBuilder.cs" />
     <Compile Include="Factories\IEnderecosBuilder.cs" />
     <Compile Include="IServicoListaProdutosLoja.cs" />

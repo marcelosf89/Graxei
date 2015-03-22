@@ -10,5 +10,6 @@ namespace Graxei.Negocio.Contrato
         Loja GetComEnderecos(long id);
         Loja GetPorUrl(string nome);
         IList<long> GetIdsEnderecos(long idLoja);
+        bool UsuarioAtualAssociado(Loja loja);
     }
 }

@@ -46,7 +46,7 @@ namespace Graxei.Negocio.Fabrica
                       .RegisterType<IServicoLogradouros, ServicoLogradouros>()
                       .RegisterType<IRepositorioTelefones, TelefonesNHibernatePostgre>()
                       .RegisterType<IServicoTelefones, ServicoTelefones>()
-                      .RegisterType<IRepositorioEnderecos, Enderecos>()
+                      .RegisterType<IRepositorioEnderecos, EnderecosRepositorio>()
                       .RegisterType<IServicoEnderecos, ServicoEnderecos>()
                       .RegisterType<IRepositorioTiposTelefone, TiposTelefoneNHibernatePostgre>()
                       .RegisterType<IServicoTiposTelefone, ServicoTiposTelefone>()

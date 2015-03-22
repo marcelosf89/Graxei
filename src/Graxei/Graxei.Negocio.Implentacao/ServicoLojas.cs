@@ -6,67 +6,38 @@ using Graxei.Negocio.Contrato.Comportamento;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Negocio.Implementacao.Especificacoes;
 
 namespace Graxei.Negocio.Implementacao
 {
     public class ServicoLojas : GravacaoTemplateMethod<Loja>, IServicoLojas
     {
-        private Usuario _usuario;
-        private IServicoPlanos _servicoPlanos;
-        #region Construtor
         public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoPlanos servicoPlanos)
         {
             RepositorioEntidades = repositorioLojas;
             _servicoPlanos = servicoPlanos;
         }
-        #endregion
-
-        #region Métodos de sobrescrita
-
-        public void Validar(Loja loja)
-        {
-            if (string.IsNullOrEmpty(loja.Nome))
-            {
-                throw new ValidacaoEntidadeException(Validacoes.NomeLojaObrigatorio);
-            }
-        }
-
-        public override void PreSalvar(Loja loja)
-        {
-            if (_usuario == null)
-            {
-                throw new ValidacaoEntidadeException(Erros.UmUsuarioAoMenos);
-            }
-            loja.Plano = _servicoPlanos.GetPorId(1);
-            Validar(loja);
-            loja.AdicionarUsuario(_usuario);
-            Loja repetida = Get(loja.Nome);
-            if (repetida != null)
-            {
-                throw new ObjetoJaExisteException(Erros.LojaJaExiste);
-            }
-        }
-
-        public override void PreAtualizar(Loja loja)
-        {
-            Validar(loja);
-            Loja repetida = Get(loja.Nome);
-            if (repetida != null && repetida.Id != loja.Id)
-            {
-                throw new ObjetoJaExisteException(Erros.LojaJaExiste);
-            }
-        }
-
+        
         public override Loja Salvar(Loja loja)
         {
+            if (especificacaoAlterar == null)
+            {
+                especificacaoAlterar = new LojasAtualizar(this);
+            }
+            if (especificacaoSalvar == null)
+            {
+                especificacaoSalvar = new LojasSalvar(this);
+            }
+
             PreGravar(loja);
             loja = this.RepositorioLojas.Salvar(loja);
             return loja;
         }
 
-        #endregion
-
-        #region Implementação de IServicoLojas
+        public bool UsuarioAtualAssociado(Loja loja)
+        {
+            return RepositorioLojas.UsuarioAssociado(loja)
+        }
 
         public Loja Get(string nome)
         {
@@ -94,13 +65,8 @@ namespace Graxei.Negocio.Implementacao
             return RepositorioLojas.GetIdsEnderecos(idLoja);
         }
 
-        #endregion
-
-        #region Atributos Privados
         private IRepositorioLojas RepositorioLojas { get { return (IRepositorioLojas)RepositorioEntidades; } }
-        #endregion
 
-        #region Implementation of IExcluirEntidade<Loja>
 
         public void PreExcluir(Loja t)
         {
@@ -111,10 +77,6 @@ namespace Graxei.Negocio.Implementacao
         {
             throw new NotImplementedException();
         }
-
-        #endregion
-
-        #region Implementação de IServicoEntidades<Loja>
 
         public override Loja GetPorId(long id)
         {
@@ -128,7 +90,11 @@ namespace Graxei.Negocio.Implementacao
 
         public IRepositorioEntidades<Loja> RepositorioEntidades { get; private set; }
 
-        #endregion
+        private Usuario _usuario;
+
+        private IServicoPlanos _servicoPlanos;
+
+
 
     }
 }

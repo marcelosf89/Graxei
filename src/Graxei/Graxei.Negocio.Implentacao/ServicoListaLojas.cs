@@ -9,9 +9,6 @@ namespace Graxei.Negocio.Implementacao
 {
     public class ServicoListaLojas : IServicoListaLojas
     {
-        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
-        private IRepositorioListaLojas _repositorioListaLojas;
-
         public ServicoListaLojas(IRepositorioListaLojas repositorioListaLojas,
             IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
@@ -24,5 +21,9 @@ namespace Graxei.Negocio.Implementacao
             Usuario usuario = _gerenciadorAutenticacao.Get();
             return _repositorioListaLojas.Get(pagina, tamanhoPagina, usuario);
         }
+
+        private IGerenciadorAutenticacao _gerenciadorAutenticacao;
+        private IRepositorioListaLojas _repositorioListaLojas;
+
     }
 }

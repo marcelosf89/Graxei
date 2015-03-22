@@ -13,8 +13,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate.Postgre
             _repositorioProdutoVendedor = repositorioProdutoVendedor;
         }
 
-        #region Implementação de IRepositorioLojas
-
         public Loja Get(string nome)
         {
             return SessaoAtual.Query<Loja>()
@@ -52,9 +50,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate.Postgre
             return SessaoAtual.QueryOver<Endereco>().Where(p => p.Loja.Id == idLoja).Select(p => p.Id).List<long>();
         }
 
-
-        #endregion
-
         public new void Excluir(Loja loja)
         {
             loja.Excluida = true;
@@ -66,10 +61,14 @@ namespace Graxei.Persistencia.Implementacao.NHibernate.Postgre
             Salvar(loja);
         }
 
-        #region Atributos Privados
+        public bool UsuarioAssociado(Loja loja, Usuario usuario)
+        {
+            Usuario usuarioResult = null;
+            return SessaoAtual.QueryOver<Loja>().Where(p => p.Id == loja.Id)
+                              .JoinQueryOver(q => q.Usuarios, () => usuarioResult)
+                              .Where(() => usuarioResult.Id == usuario.Id).RowCount() > 0;
+        }
 
         private readonly IRepositorioProdutoVendedor _repositorioProdutoVendedor;
-
-        #endregion
     }
 }

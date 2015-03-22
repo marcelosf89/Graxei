@@ -1,4 +1,5 @@
 ﻿using Graxei.Modelo.Generico;
+using Graxei.Negocio.Contrato.Especificacoes;
 using Graxei.Transversais.Utilidades.NHibernate;
 
 namespace Graxei.Negocio.Contrato.Comportamento
@@ -10,25 +11,28 @@ namespace Graxei.Negocio.Contrato.Comportamento
     /// </summary>
     public abstract class GravacaoTemplateMethod<T> : IEntidadesSalvar<T> where T : Entidade
     {
-        public void PreGravar(T entidade)
+        public ResultadoEspecificacao PreGravar(T entidade)
         {
+            ResultadoEspecificacao resultado;
             if (UtilidadeEntidades.IsTransiente(entidade))
             {
-                PreSalvar(entidade);
+                resultado = especificacaoSalvar.Satisfeita(entidade);
             }
             else
             {
-                PreAtualizar(entidade);    
+                resultado = especificacaoAlterar.Satisfeita(entidade);
             }
+
+            return resultado;
         }
-
-        public abstract void PreSalvar(T t);
-
-        public abstract void PreAtualizar(T t);
 
         public abstract T Salvar(T t);
 
         public abstract T GetPorId(long id);
+
+        protected IEspecificacao<T> especificacaoSalvar;
+
+        protected IEspecificacao<T> especificacaoAlterar;
 
     }
 }
