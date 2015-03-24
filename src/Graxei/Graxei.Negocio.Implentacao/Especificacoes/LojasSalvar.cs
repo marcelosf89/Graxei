@@ -29,7 +29,7 @@ namespace Graxei.Negocio.Implementacao.Especificacoes
 
             if (!UtilidadeEntidades.IsTransiente(loja))
             {
-                throw new OperacaoEntidadeException("Loja não pode ser transiente");
+                throw new OperacaoEntidadeException("Não foi possível salvar os dados para esta loja. Por favor, contate o suporte.");
             }
 
             if (string.IsNullOrEmpty(loja.Nome))
