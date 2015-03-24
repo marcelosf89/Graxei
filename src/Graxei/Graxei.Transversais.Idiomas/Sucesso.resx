@@ -120,6 +120,15 @@
   <data name="EmailEnviado" xml:space="preserve">
     <value>Seu e-mail foi enviado com sucesso.</value>
   </data>
+  <data name="EnderecoAtualizado" xml:space="preserve">
+    <value>Endereço atualizado com sucesso</value>
+  </data>
+  <data name="EnderecoExcluido" xml:space="preserve">
+    <value>Endereço excluído</value>
+  </data>
+  <data name="EnderecoSalvo" xml:space="preserve">
+    <value>Endereço salvo com sucesso</value>
+  </data>
   <data name="ListaAtualizada" xml:space="preserve">
     <value>Sua lista foi atualizada</value>
   </data>
