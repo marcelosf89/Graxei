@@ -23,12 +23,12 @@
 
                 if (Model.Enderecos.Count >= Model.QuantidadeEndereco)
                 {
-                <button class="btn btn-default disabled" data-toggle="tooltip" data-placement="bottom" title="O seu plano não permite a criação de mais um endereço. Peço que contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-plus"></i>@Rotulos.NovoEndereco</button>
-                <div class="label label-warning" title="O seu plano não permite a criação de mais um endereço. Peço que contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-exclamation-sign"></i></div>
+                    <button class="btn btn-default disabled" data-toggle="tooltip" data-placement="bottom" title="O seu plano não permite a criação de mais um endereço. Contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-plus"></i>@Rotulos.NovoEndereco</button>
+                    <div class="label label-warning" title="O seu plano não permite a criação de mais um endereço. Contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-exclamation-sign"></i></div>
                 }
                 else
                 {
-                @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovoEndereco, "NovoEndereco", "Enderecos", new { Controller = "Enderecos", idloja = Model.IdLoja }, ajaxNovoEnderecos, new { @class = "btn btn-default" })
+                    @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovoEndereco, "NovoEndereco", "Enderecos", new { Controller = "Enderecos", idloja = Model.IdLoja }, ajaxNovoEnderecos, new { @class = "btn btn-default" })
                 }
             }
         </div>

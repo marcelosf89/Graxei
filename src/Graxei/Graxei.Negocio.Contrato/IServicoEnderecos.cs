@@ -7,5 +7,7 @@ namespace Graxei.Negocio.Contrato
     {
         Endereco Get(long id);
         List<Endereco> GetPorLoja(long idLoja);
+        bool UsuarioAtualAssociado(Endereco endereco);
+        Endereco Get(long idLoja, string logradouro, string numero, string complemento, long idBairro);
     }
 }

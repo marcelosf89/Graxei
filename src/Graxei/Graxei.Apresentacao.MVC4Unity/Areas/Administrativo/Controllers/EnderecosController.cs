@@ -133,7 +133,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 return PartialFormularioEndereco(enderecoModel);
             }
             ModelState.Clear();
-            ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
+            ViewBag.OperacaoSucesso = Sucesso.EnderecoSalvo;
             return PartialFormularioEndereco(enderecoModel);
 
         }
@@ -158,7 +158,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
                 return ListaEnderecos(idLoja);
             }
             ModelState.Clear();
-            ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
+            ViewBag.OperacaoSucesso = Sucesso.EnderecoExcluido;
             return ListaEnderecos(idLoja);
         }
 

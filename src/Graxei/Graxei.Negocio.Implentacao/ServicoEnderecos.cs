@@ -7,6 +7,8 @@ using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
 using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Negocio.Implementacao.Especificacoes;
+using Graxei.Negocio.Contrato.Especificacoes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -20,49 +22,35 @@ namespace Graxei.Negocio.Implementacao
         }
         
         public enum AtributosOrdem { Sigla, Nome }
-        
-        public override void PreSalvar(Endereco endereco)
-        {
-            ValidarEspecificacao(endereco);
-            ChecarSeguranca(endereco);
-            Endereco enderecoRepetido = _repositorioEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);
-            if (enderecoRepetido != null)
-            {
-                throw new OperacaoEntidadeException("Já existe um endereço para esta loja");
-            }
-        }
 
-        private void ChecarSeguranca(Endereco endereco)
+        public bool UsuarioAtualAssociado(Endereco endereco)
         {
-            Usuario usuarioLogado = _gerenciadorAutenticacao.Get();
-            bool associado = _repositorioEnderecos.UsuarioAssociado(endereco, usuarioLogado);
-            if (!associado)
-            {
-                throw new SegurancaEntidadeException(string.Format("Usuário {0} não tem acesso à loja {1}", usuarioLogado.Nome,
-                    endereco.Loja.Nome));
-            }
-        }
-
-        public override void PreAtualizar(Endereco endereco)
-        {
-            ValidarEspecificacao(endereco);
-            ChecarSeguranca(endereco);
-            Endereco enderecoRepetido = _repositorioEnderecos.Get(endereco.Loja.Id, endereco.Logradouro, endereco.Numero, endereco.Complemento, endereco.Bairro.Id);
-            if (enderecoRepetido != null && enderecoRepetido.Id != endereco.Id)
-            {
-                throw new OperacaoEntidadeException("Já existe um endereço para esta loja");
-            }
+            return _repositorioEnderecos.UsuarioAssociado(endereco, _gerenciadorAutenticacao.Get());
         }
 
         public override Endereco Salvar(Endereco endereco)
         {
-            if (endereco == null)
+            if (especificacaoAlterar == null)
             {
-                throw new NullReferenceException("Endereço não pode ser nulo");
+                especificacaoAlterar = new EnderecosAtualizar(this);
+            }
+            if (especificacaoSalvar == null)
+            {
+                especificacaoSalvar = new EnderecosSalvar(this);
             }
 
             PreGravar(endereco);
             return _repositorioEnderecos.Salvar(endereco);
+        }
+
+        public override IEspecificacao<Endereco> GetEspecificacaoSalvarPadrao()
+        {
+            return new EnderecosSalvar(this);
+        }
+
+        public override IEspecificacao<Endereco> GetEspecificacaoAlterarPadrao()
+        {
+            return new EnderecosAtualizar(this);
         }
 
         public override Endereco GetPorId(long id)
@@ -85,33 +73,12 @@ namespace Graxei.Negocio.Implementacao
             return _repositorioEnderecos.Get(id);
         }
 
+        public Endereco Get(long idLoja, string logradouro, string numero, string complemento, long idBairro){
+            return _repositorioEnderecos.Get(idLoja, logradouro, numero, complemento, idBairro);
+        }
         public List<Endereco> GetPorLoja(long idLoja)
         {
             return _repositorioEnderecos.GetPorLoja(idLoja);
-        }
-
-        private void ValidarEspecificacao(Endereco endereco)
-        {
-            if (endereco == null)
-            {
-                throw new ArgumentNullException("endereco", "Endereço não pode ser nulo");
-            }
-            if (endereco.Loja == null || UtilidadeEntidades.IsTransiente(endereco.Loja))
-            {
-                throw new OperacaoEntidadeException("O endereço deve estar associado a uma loja");
-            }
-            if (string.IsNullOrEmpty(endereco.Logradouro))
-            {
-                throw new OperacaoEntidadeException("O endereço deve ter um logradouro");
-            }
-            if (string.IsNullOrEmpty(endereco.Numero))
-            {
-                throw new OperacaoEntidadeException("O endereço deve ter um número");
-            }
-            if (endereco.Bairro == null)//// || UtilidadeEntidades.IsTransiente(endereco.Bairro))
-            {
-                throw new OperacaoEntidadeException("O endereço deve possuir um bairro");
-            }
         }
 
         private IRepositorioEnderecos _repositorioEnderecos;

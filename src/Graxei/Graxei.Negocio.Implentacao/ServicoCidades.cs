@@ -10,16 +10,11 @@ namespace Graxei.Negocio.Implementacao
 {
     public class ServicoCidades : ServicoPadraoEntidades<Cidade>, IServicoCidades
     {
-
-        #region Construtor
         public ServicoCidades(IRepositorioCidades repositorio)
         {
            RepositorioEntidades = repositorio;
         }
 
-        #endregion
-
-        #region Métodos Privados
         private void ValidarEntidade(Cidade cidade)
         {
             if (cidade == null)
@@ -36,9 +31,7 @@ namespace Graxei.Negocio.Implementacao
                 throw new EntidadeInvalidaException(ErrosInternos.CidadeInvalida);
             }
         }
-        #endregion
 
-        #region Métodos Sobrescritos
         public override void PreSalvar(Cidade cidade)
         {
             ValidarEntidade(cidade);
@@ -63,10 +56,6 @@ namespace Graxei.Negocio.Implementacao
                throw new ObjetoJaExisteException(Erros.CidadeJaExiste);
            }
         }
-
-        #endregion
-
-        #region Implementação de IServicoCidades
 
         public Cidade Get(string nome, long idEstado)
         {
@@ -98,10 +87,6 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.GetPorNomeEstado(nome);
         }
 
-        #endregion
-
-        #region Propriedades Privadas
-
         private IRepositorioCidades Repositorio
         {
             get
@@ -109,7 +94,5 @@ namespace Graxei.Negocio.Implementacao
                 return (IRepositorioCidades)RepositorioEntidades;
             }
         }
-
-        #endregion
     }
 }

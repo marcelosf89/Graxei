@@ -102,7 +102,7 @@
     <Compile Include="ConsultasSQL.cs" />
     <Compile Include="ListaProdutosLojaRepositorio.cs" />
     <Compile Include="PlanosNHibernatePostgre.cs" />
-    <Compile Include="Enderecos.cs" />
+    <Compile Include="EnderecosRepositorio.cs" />
     <Compile Include="EstadosNHibernatePostgre.cs" />
     <Compile Include="FabricantesNHibernatePostgre.cs" />
     <Compile Include="Interfaces\INHiberatePostgre.cs" />

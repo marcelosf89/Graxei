@@ -7,10 +7,10 @@ using Graxei.Persistencia.Implementacao.NHibernate;
 
 namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
 {
-    public class Enderecos : PadraoNHibernatePostgre<Endereco>, IRepositorioEnderecos
+    public class EnderecosRepositorio : PadraoNHibernatePostgre<Endereco>, IRepositorioEnderecos
     {
 
-        public Enderecos(IRepositorioEstados repoEstados, IRepositorioCidades repoCidades, IRepositorioBairros repoBairros)
+        public EnderecosRepositorio(IRepositorioEstados repoEstados, IRepositorioCidades repoCidades, IRepositorioBairros repoBairros)
         {
             _repoEstados = repoEstados;
             _repoCidades = repoCidades;

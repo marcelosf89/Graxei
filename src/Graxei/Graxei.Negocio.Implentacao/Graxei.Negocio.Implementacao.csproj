@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Especificacoes\EnderecosAtualizar.cs" />
+    <Compile Include="Especificacoes\EnderecosSalvar.cs" />
+    <Compile Include="Especificacoes\LojasAtualizar.cs" />
+    <Compile Include="Especificacoes\LojasSalvar.cs" />
     <Compile Include="Excecoes\ModeloDominioConstrucaoException.cs" />
     <Compile Include="Factories\BairroBuilder.cs" />
     <Compile Include="Factories\EnderecosBuilder.cs" />

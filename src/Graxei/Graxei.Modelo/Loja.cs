@@ -65,11 +65,18 @@ namespace Graxei.Modelo
             {
                 Usuarios = new List<Usuario>();
             }
-            Usuarios.Add(usuario);
+            if (!Usuarios.Contains(usuario))
+            {
+                Usuarios.Add(usuario);
+            }
         }
 
         public virtual void AdicionarUsuarios(IList<Usuario> usuarios)
         {
+            if (Usuarios == null)
+            {
+                Usuarios = new List<Usuario>();
+            }
             foreach (Usuario usuario in usuarios)
             {
                 AdicionarUsuario(usuario);

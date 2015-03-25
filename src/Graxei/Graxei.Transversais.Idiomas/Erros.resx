@@ -181,7 +181,7 @@
     <value>O valor deve ser maior que zero</value>
   </data>
   <data name="LojaNula" xml:space="preserve">
-    <value>A Loja não pode ser nula</value>
+    <value>A loja deve ser informada</value>
   </data>
   <data name="LojaInvalida" xml:space="preserve">
     <value>Loja inválida: atributos obrigatórios têm valor nulo</value>
@@ -238,7 +238,7 @@
     <value>A loja já possui este endereço</value>
   </data>
   <data name="LojasListaUsuariosVazia" xml:space="preserve">
-    <value>A lista de usuários não pode ser nula ou vazia</value>
+    <value>A loja deve ter ao menos um usuário associado</value>
   </data>
   <data name="UsuarioLogNulo" xml:space="preserve">
     <value>Usuário de Log não pode ser nulo </value>
@@ -260,5 +260,20 @@
   </data>
   <data name="ListaNaoAtualizada" xml:space="preserve">
     <value>Sua lista não pôde ser atualizada. Por favor contate o suporte.</value>
+  </data>
+  <data name="EnderecoAssociadoLoja" xml:space="preserve">
+    <value>O endereço deve estar associado a uma loja</value>
+  </data>
+  <data name="EnderecoDeveTerBairro" xml:space="preserve">
+    <value>O endereço deve ter um bairro</value>
+  </data>
+  <data name="EnderecoDeveTerLogradouro" xml:space="preserve">
+    <value>O endereço deve ter um logradouro</value>
+  </data>
+  <data name="EnderecoDeveTerNumero" xml:space="preserve">
+    <value>O endereço deve ter um número</value>
+  </data>
+  <data name="UsuarioSemAcessoLoja" xml:space="preserve">
+    <value>Usuário não tem acesso à loja</value>
   </data>
 </root>
