@@ -1,4 +1,5 @@
-﻿@model Graxei.Transversais.ContratosDeDados.PesquisaProdutoContrato
+﻿@model PesquisaProdutoContrato
+@Scripts.Render("~/bundles/jqueryvalajax")
 <h4>
     Produtos
 </h4>
@@ -21,8 +22,9 @@
                     <button id="botao-pesquisar" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                 </span>
             </div>
+            @Html.ValidationMessageFor(m => m.DescricaoProduto)
         }
-        }
+}
     </div>
     <div class="col-md-2 col-lg-2">
         <button id="salvar-precos" class="btn btn-success invisible pull-right" onclick="salvarPrecos();">@Rotulos.Salvar</button>
