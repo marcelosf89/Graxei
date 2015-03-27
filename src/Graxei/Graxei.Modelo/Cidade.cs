@@ -21,7 +21,7 @@ namespace Graxei.Modelo
                 return false;
             }
             Cidade cd = (Cidade)obj;
-            return (cd.Nome == this.Nome && cd.Estado == this.Estado);
+            return (cd.Nome == this.Nome && cd.Estado.Equals(this.Estado));
         }
 
         public override int GetHashCode()

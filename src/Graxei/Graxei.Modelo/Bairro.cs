@@ -13,7 +13,6 @@ namespace Graxei.Modelo
         public virtual string Nome { get; set; }
         public virtual Cidade Cidade { get; set; }
 
-        #region Métodos Sobrescritos
         public override bool Equals(object obj)
         {
             if (!(obj is Bairro))
@@ -21,7 +20,7 @@ namespace Graxei.Modelo
                 return false;
             }
             Bairro br = (Bairro)obj;
-            return (br.Nome == this.Nome && br.Cidade == this.Cidade);
+            return (br.Nome == this.Nome && br.Cidade.Equals(this.Cidade));
         }
 
         public override int GetHashCode()
@@ -37,16 +36,12 @@ namespace Graxei.Modelo
         {
             return Nome;
         }
-        #endregion
-
-        #region Overrides of Entidade
 
         public virtual bool Validar()
         {
             return (!String.IsNullOrEmpty(this.Nome) && this.Cidade != null && this.Cidade.Validar());
         }
 
-        #endregion
-    }
+     }
 
 }

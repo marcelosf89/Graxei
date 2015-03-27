@@ -8,16 +8,9 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 {
     public class ConsultaBairros : IConsultasBairros
     {
-        private readonly IServicoBairros _servicoBairros;
-        private readonly IServicoCidades _servicoCidades;
-        private readonly IServicoEstados _servicoEstados;
-        private readonly IBairrosBuilder _bairroBuilder;
-
-        public ConsultaBairros(IServicoBairros servicoBairros, IServicoCidades servicoCidades, IServicoEstados servicoEstados, IBairrosBuilder bairroBuilder)
+        public ConsultaBairros(IServicoBairros servicoBairros, IBairrosBuilder bairroBuilder)
         {
             _servicoBairros = servicoBairros;
-            _servicoCidades = servicoCidades;
-            _servicoEstados = servicoEstados;
             _bairroBuilder = bairroBuilder;
         }
 
@@ -38,5 +31,9 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         {
             return _servicoBairros.GetPorId(id);
         }
+
+        private readonly IServicoBairros _servicoBairros;
+        private readonly IBairrosBuilder _bairroBuilder;
+
     }
 }

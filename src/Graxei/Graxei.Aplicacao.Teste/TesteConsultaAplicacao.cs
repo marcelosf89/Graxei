@@ -83,7 +83,7 @@ namespace Graxei.Aplicacao.Teste
             _mockBairroBuilder.Setup(p => p.Build()).Returns(esperado);
 
             // Act
-            Bairro real = new ConsultaBairros(null, null, null, _mockBairroBuilder.Object).Get(NomeBairro, string.Empty, 1);
+            Bairro real = new ConsultaBairros(_mockServicoBairros.Object, _mockBairroBuilder.Object).Get(NomeBairro, string.Empty, 1);
 
             // Assert
             Assert.AreEqual(esperado.Nome, real.Nome);
@@ -97,7 +97,7 @@ namespace Graxei.Aplicacao.Teste
             _mockServicoBairros.Setup(p => p.GetPorId(1)).Returns(esperado);
 
             // Act
-            Bairro real = new ConsultaBairros(_mockServicoBairros.Object, null, null, null).Get(1);
+            Bairro real = new ConsultaBairros(_mockServicoBairros.Object, null).Get(1);
 
             // Assert
             Assert.AreEqual(esperado.Nome, real.Nome);
@@ -111,12 +111,34 @@ namespace Graxei.Aplicacao.Teste
             _mockServicoBairros.Setup(p => p.GetPorId(1)).Returns(esperado);
 
             // Act
-            Bairro real = new ConsultaBairros(_mockServicoBairros.Object, null, null, null).Get(1);
+            Bairro real = new ConsultaBairros(_mockServicoBairros.Object, null).Get(1);
 
             // Assert
             Assert.AreEqual(esperado.Nome, real.Nome);
         }
 
+        [TestMethod]
+        public void ConsultaBairro_RecuperarListaPorCidadeEstado()
+        {
+            string nomeCidade = "Cidade 1";
+            long idEstado = 1;
+            Bairro bairro1 = new Bairro { Nome = "Palitinho", Cidade = new Cidade { Nome = nomeCidade, Estado = new Estado { Sigla = "RJ" } } };
+            Bairro bairro2 = new Bairro { Nome = "Palmitinho", Cidade = new Cidade { Nome = nomeCidade, Estado = new Estado { Sigla = "MG" } } };
+            IList<Bairro> esperado = new List<Bairro>();
+            esperado.Add(bairro1);
+            esperado.Add(bairro2);
+            IList<Bairro> forMock = new List<Bairro>(esperado);
+
+            _mockServicoBairros.Setup(p => p.GetPorCidade(nomeCidade, idEstado)).Returns(forMock);
+
+            // Act
+            IList<Bairro> real = new ConsultaBairros(_mockServicoBairros.Object, null).GetPorCidade(nomeCidade, idEstado);
+            
+            // Assert
+            Assert.IsTrue(ListasIguais(real, esperado));
+
+        }
+        
         [TestMethod]
         public void ConsultaCidade_RecuperarListaPorEstado()
         {
@@ -308,6 +330,13 @@ namespace Graxei.Aplicacao.Teste
             estados.Add(estado);
             return estados;
         }
+        
+        private bool ListasIguais(IList<Bairro> bairros, IList<Bairro> bairrosComparar)
+        {
+            bool retorno = !bairros.Except(bairrosComparar).Any();
+            return retorno && !bairrosComparar.Except(bairros).Any();
+        }
+
         private const string NomeBairro = "Bairro 1";
         private const string NomeCidade = "Cidade 1";
         private const string NumeroEndereco = "2048";
