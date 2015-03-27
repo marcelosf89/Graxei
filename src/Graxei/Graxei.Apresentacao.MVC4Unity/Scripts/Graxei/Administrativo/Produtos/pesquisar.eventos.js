@@ -14,11 +14,11 @@
     paginar(paginaAtualLista);
 });
 
-////$("input[doc-type=check-meu-produto]").on("click", function () {
-////    var id = $(this).parents("tr").attr("id-prod");
-////    var tr = getTr(id);
-////    tr.toggleClass("success");
-////});
+$("input[doc-type=check-meu-produto]").on("click", function () {
+    var id = $(this).parents("tr").attr("id-prod");
+    var tr = getTr(id);
+    tr.toggleClass("success");
+});
 
 $("input[doc-type=valor-meu-produto]").on("keyup", function () {
     var divMensagem = $('#msg-produtos-atualizar')

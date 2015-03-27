@@ -138,6 +138,9 @@
   <data name="NumeroObrigatorio" xml:space="preserve">
     <value>Número é obrigatório</value>
   </data>
+  <data name="PesquisaMeuProdutoDescricao" xml:space="preserve">
+    <value>Digite o que quer pesquisar</value>
+  </data>
   <data name="SenhaObrigatoria" xml:space="preserve">
     <value>Por favor, informe a senha</value>
   </data>
