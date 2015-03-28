@@ -35,8 +35,9 @@
 </div>
 @if (Model.IdLoja > 0)
 {
+    @Scripts.Render("~/bundles/modal")
     <script>
-        $(document).ready(function () {
+        $(function () {
             $('#modalEnderecos').modal('show');
         });
     </script>
