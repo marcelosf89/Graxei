@@ -262,9 +262,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
     <Compile Include="Areas\Administrativo\Binders\LogoNovaLojaBinder.cs" />
+    <Compile Include="Areas\Administrativo\Controllers\EnderecosAutoCompleteController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\EnderecosController.cs" />
     <Compile Include="Areas\Administrativo\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrativo\HtmlHelpers\Mensagens.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\Cache\CacheEnderecosSessaoHttp.cs" />
+    <Compile Include="Areas\Administrativo\Infraestutura\Cache\ICacheElementosEndereco.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Extension\PaginacaoChain\AbstractPaginacao.cs" />

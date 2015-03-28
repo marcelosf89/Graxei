@@ -55,7 +55,7 @@
                         </td>
                         <td class="col-md-2 btn-group">
                             @{
-                                @Ajax.ActionLink(Rotulos.Editar, "EditarEndereco", "Enderecos", new { Controller = "Enderecos", idEndereco = enderecoListaModel.IdEndereco }, ajaxenderecos, new { @class = "btn btn-default" })
+                                @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new { Controller = "Enderecos", idEndereco = enderecoListaModel.IdEndereco }, ajaxenderecos, new { @class = "btn btn-default" })
                             }
                             <button class="btn btn-danger" onclick="excluirEndereco(@enderecoListaModel.IdEndereco, @Model.IdLoja);">@Rotulos.Excluir</button>
                         </td>

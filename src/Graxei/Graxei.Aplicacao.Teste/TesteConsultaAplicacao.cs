@@ -6,6 +6,7 @@ using Graxei.Persistencia.Implementacao.Teste;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
+using Graxei.Transversais.Utilidades;
 using Graxei.Transversais.Utilidades.Entidades;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -135,7 +136,7 @@ namespace Graxei.Aplicacao.Teste
             IList<Bairro> real = new ConsultaBairros(_mockServicoBairros.Object, null).GetPorCidade(nomeCidade, idEstado);
             
             // Assert
-            Assert.IsTrue(ListasIguais(real, esperado));
+            Assert.IsTrue(Listas.ListasIguais<Bairro>(real, esperado));
 
         }
         
@@ -331,12 +332,6 @@ namespace Graxei.Aplicacao.Teste
             return estados;
         }
         
-        private bool ListasIguais(IList<Bairro> bairros, IList<Bairro> bairrosComparar)
-        {
-            bool retorno = !bairros.Except(bairrosComparar).Any();
-            return retorno && !bairrosComparar.Except(bairros).Any();
-        }
-
         private const string NomeBairro = "Bairro 1";
         private const string NomeCidade = "Cidade 1";
         private const string NumeroEndereco = "2048";

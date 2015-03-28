@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaAdministrativo\ProdutoControllerTest.cs" />
+    <Compile Include="AreaAdministrativo\TesteCacheEnderecos.cs" />
     <Compile Include="PaginacaoTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +92,10 @@
     <ProjectReference Include="..\Graxei.Apresentacao.MVC4Unity\Graxei.Apresentacao.MVC4Unity.csproj">
       <Project>{dda2ffc0-d0d8-41a2-9ceb-0a14c393f6cd}</Project>
       <Name>Graxei.Apresentacao.MVC4Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
+      <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
+      <Name>Graxei.Modelo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Transversais.ContratosDeDados\Graxei.Transversais.ContratosDeDados.csproj">
       <Project>{2b3f16a3-f753-4431-ac97-3cca9070b3db}</Project>

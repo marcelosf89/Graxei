@@ -93,10 +93,6 @@
       <Project>{a8bfa7c6-4675-4997-81df-ae7fe058c1f5}</Project>
       <Name>Graxei.Negocio.Implementacao</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Persistencia.Contrato.Teste\Graxei.Persistencia.Contrato.Teste.csproj">
-      <Project>{8da82346-5da4-4a62-b117-51d3b85071e4}</Project>
-      <Name>Graxei.Persistencia.Contrato.Teste</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Persistencia.Contrato\Graxei.Persistencia.Contrato.csproj">
       <Project>{c69db223-a47a-4fe4-a2e3-d9ee660662b1}</Project>
       <Name>Graxei.Persistencia.Contrato</Name>

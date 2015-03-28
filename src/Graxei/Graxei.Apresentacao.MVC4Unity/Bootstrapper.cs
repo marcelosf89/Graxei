@@ -7,6 +7,7 @@ using Microsoft.Practices.Unity;
 using Unity.Mvc4;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using Graxei.Transversais.Utilidades.Data;
+using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Cache;
 
 namespace Graxei.Apresentacao.MVC4Unity
 {
@@ -27,7 +28,8 @@ namespace Graxei.Apresentacao.MVC4Unity
       container.AddNewExtension<Interception>();
       container.RegisterType<EnderecosViewModelEntidade>()
                .RegisterType<IGerenciadorAutenticacao, GerenciadorAutenticacaoSessaoHttp>()
-               .RegisterType<IDataSistema, DataSistemaPadrao>();
+               .RegisterType<IDataSistema, DataSistemaPadrao>()
+               .RegisterType<ICacheElementosEndereco, CacheEnderecosSessaoHttp>(new InjectionConstructor());
       RegisterTypes(container);
 
       return container;
