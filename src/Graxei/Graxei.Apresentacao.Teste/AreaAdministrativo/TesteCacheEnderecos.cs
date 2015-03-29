@@ -71,6 +71,53 @@ namespace Graxei.Apresentacao.Teste.AreaAdministrativo
             Assert.IsTrue(Listas.ListasIguais<Logradouro>(esperado, real));
         }
 
+        [TestMethod]
+        public void CacheSessaoHttp_DevePreencherAsCidadesNoCache()
+        {
+            // Arrange
+            IList<Cidade> esperado = GetCidades();
+            IList<Cidade> mockCidades = new List<Cidade>(esperado);
+            _mockSessionState.SetupSet(p => p[ChavesSessao.CidadesAtual] = esperado);
+
+            // Act
+            CacheEnderecosSessaoHttp cache = new CacheEnderecosSessaoHttp(_mockSessionState.Object);
+            cache.SetCidades(esperado);
+
+            // Assert
+            _mockSessionState.VerifySet(p => p[ChavesSessao.CidadesAtual] = esperado, Times.Once);
+        }
+
+        [TestMethod]
+        public void CacheSessaoHttp_DevePreencherOsBairrosNoCache()
+        {
+            // Arrange
+            IList<Bairro> esperado = GetBairros();
+            IList<Bairro> mockBairros = new List<Bairro>(esperado);
+            _mockSessionState.SetupSet(p => p[ChavesSessao.BairrosAtual] = esperado);
+
+            // Act
+            CacheEnderecosSessaoHttp cache = new CacheEnderecosSessaoHttp(_mockSessionState.Object);
+            cache.SetBairros(esperado);
+
+            // Assert
+            _mockSessionState.VerifySet(p => p[ChavesSessao.BairrosAtual] = esperado, Times.Once);
+        }
+
+        [TestMethod]
+        public void CacheSessaoHttp_DevePreencherOsLogradourosNoCache()
+        {
+            // Arrange
+            IList<Logradouro> esperado = GetLogradouros();
+            IList<Logradouro> mockLogradouros = new List<Logradouro>(esperado);
+            _mockSessionState.SetupSet(p => p[ChavesSessao.LogradourosAtual] = esperado);
+
+            // Act
+            CacheEnderecosSessaoHttp cache = new CacheEnderecosSessaoHttp(_mockSessionState.Object);
+            cache.SetLogradouros(esperado);
+
+            // Assert
+            _mockSessionState.VerifySet(p => p[ChavesSessao.LogradourosAtual] = esperado, Times.Once);
+        }
         private IList<Cidade> GetCidades()
         {
             IList<Cidade> cidades = new List<Cidade>();

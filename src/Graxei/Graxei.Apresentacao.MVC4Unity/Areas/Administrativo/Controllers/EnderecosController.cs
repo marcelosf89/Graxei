@@ -15,13 +15,17 @@ using Graxei.Transversais.Utilidades.Excecoes;
 using Graxei.Transversais.Idiomas;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Cache;
+using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Microsoft.Practices.Unity;
 
 namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
 {
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados, IConsultaCidades consultasCidades, IGerenciamentoEnderecos gerenciamentoEnderecos, IOperacaoEndereco operacaoEndereco, ICacheElementosEndereco cacheElementosEndereco)
+        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados, 
+                                   IConsultaCidades consultasCidades, IGerenciamentoEnderecos gerenciamentoEnderecos, IOperacaoEndereco operacaoEndereco, ICacheElementosEndereco cacheElementosEndereco,
+                                   ITransformacaoMutua<Endereco, EnderecoVistaContrato> transformacaoEndereco)
         {
             _consultaEnderecos = consultasEnderecos;
             _consultasLojas = consultasLojas;
@@ -30,21 +34,19 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             _gerenciamentoEnderecos = gerenciamentoEnderecos;
             _operacaoEndereco = operacaoEndereco;
             _cacheElementosEndereco = cacheElementosEndereco;
+            _transformacaoEndereco = transformacaoEndereco;
         }
 
         public ActionResult Editar(long idEndereco)
         {
             ModelState.Clear();
-            EnderecoVistaContrato item;
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
-            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_operacaoEndereco);
-            item = transformacao.Transformar(endereco);
+            EnderecoVistaContrato item = _transformacaoEndereco.Transformar(endereco);
 
             if (item.IdEstado > 0)
             {
                 _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(item.IdEstado));
-            }
-                
+            }  
 
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -172,6 +174,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         private readonly IGerenciamentoEnderecos _gerenciamentoEnderecos;
         private readonly IOperacaoEndereco _operacaoEndereco;
         private readonly ICacheElementosEndereco _cacheElementosEndereco;
-
+        private readonly ITransformacaoMutua<Endereco, EnderecoVistaContrato> _transformacaoEndereco;
     }
 }
