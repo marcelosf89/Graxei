@@ -38,7 +38,7 @@ namespace Graxei.Apresentacao.Teste.AreaAdministrativo
             // Arrange / Act
             string vistaEsperada = "ModalEndereco";
             EnderecoVistaContrato contratoEsperado = GetContrato(99);
-            PartialViewResult viewResult = ArrangeAndAct(contratoEsperado, 99);
+            PartialViewResult viewResult = ArrangeAndActEditar(contratoEsperado, 99);
             EnderecoVistaContrato enderecoVistaContrato = (EnderecoVistaContrato)viewResult.Model;
 
             // Assert
@@ -53,16 +53,38 @@ namespace Graxei.Apresentacao.Teste.AreaAdministrativo
             // Arrange / Act
             string vistaEsperada = "ModalEndereco";
             EnderecoVistaContrato contratoEsperado = GetContrato();
-            PartialViewResult viewResult = ArrangeAndAct(contratoEsperado);
+            PartialViewResult viewResult = ArrangeAndActEditar(contratoEsperado);
             EnderecoVistaContrato enderecoVistaContrato = (EnderecoVistaContrato)viewResult.Model;
 
             // Assert
             Assert.AreEqual(vistaEsperada, viewResult.ViewName);
             _mockCacheElementosEndereco.Verify(p => p.SetCidades(It.IsAny<IList<Cidade>>()), Times.Never);
-            Assert.AreEqual(contratoEsperado, enderecoVistaContrato);
+            Assert.IsTrue(AssertEnderecoVistaContrato(contratoEsperado, enderecoVistaContrato));
         }
 
-        private PartialViewResult ArrangeAndAct(EnderecoVistaContrato enderecoVistaContrato, long idEstado = 0)
+        [TestMethod]
+        public void DeveFazerTodosAsserts_QuandoNovoForChamado()
+        {
+            // Arrange
+            string vistaEsperada = "ModalEndereco";
+            long idLoja = 998;
+            EnderecoVistaContrato contratoEsperado = new EnderecoVistaContrato
+            {
+                IdLoja = idLoja
+            };
+            _mockConsultaEstados.Setup(p => p.GetEstados(EstadoOrdem.Sigla)).Returns(new List<Estado>());
+
+            // Act
+            EnderecosController enderecosController = new EnderecosController(null, null, _mockConsultaEstados.Object, null, null, null, null, null);
+            PartialViewResult viewResult = (PartialViewResult)enderecosController.Novo(idLoja);
+            EnderecoVistaContrato enderecoVistaContrato = (EnderecoVistaContrato)viewResult.Model;
+
+            // Assert
+            Assert.AreEqual(vistaEsperada, viewResult.ViewName);
+            Assert.IsTrue(AssertEnderecoVistaContrato(contratoEsperado, enderecoVistaContrato));
+        }
+
+        private PartialViewResult ArrangeAndActEditar(EnderecoVistaContrato enderecoVistaContrato, long idEstado = 0)
         {
             // Arrange
             Endereco endereco = Get(idEstado);

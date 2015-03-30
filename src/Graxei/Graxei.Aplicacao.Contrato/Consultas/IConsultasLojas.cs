@@ -8,8 +8,10 @@ namespace Graxei.Aplicacao.Contrato.Consultas
     {
         Loja Get(long id);
         Loja GetPorNome(string nome);
+        Loja GetComEnderecosPlanos(long id);
         LojaContrato GetComEnderecos(long id);
         Loja GetPorUrl(string lojaNome);
+        Plano GetPlano(long idLoja);
         long GetIdDoUnicoEndereco(long idLoja);
 
         byte[] GetLogo(int idLoja, string caminhoImagem);

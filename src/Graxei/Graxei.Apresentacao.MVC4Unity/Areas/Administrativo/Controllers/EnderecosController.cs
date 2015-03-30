@@ -53,7 +53,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
             return PartialView("ModalEndereco", item);
         }
 
-        public ActionResult NovoEndereco(long idLoja)
+        public ActionResult Novo(long idLoja)
         {
             ModelState.Clear();
             EnderecoVistaContrato item = new EnderecoVistaContrato();
@@ -76,21 +76,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers
         {
             try
             {
-                Loja loja = _consultasLojas.Get(idLoja);
-                if (loja == null)
+                Plano plano = _consultasLojas.GetPlano(idLoja);
+                if (plano == null)
                 {
-                    throw new OperacaoEntidadeException(string.Format("Loja com id {0} não pôde ser encontrada",
-                        idLoja));
+                    throw new OperacaoEntidadeException("Loja com não possui planos");
                 }
-                ListaEnderecoModel em = new ListaEnderecoModel();
-                List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(loja.Id);
-                em.IdLoja = loja.Id;
-                em.QuantidadeEndereco = loja.Plano.QuantidadeFilial;
-                em.Enderecos = new List<EnderecoListaContrato>();
-                foreach (Endereco end in enderecos)
-                {
-                    em.Enderecos.Add(new EnderecoListaContrato(end.Id, end.ToString(), end.Cnpj));
-                }
+                List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(idLoja);
+                ListaEnderecoModel em = new ListaEnderecoModel(idLoja, plano, enderecos);
                 return PartialView("ListaEnderecos", em);
             }
             catch (GraxeiException graxeiException)

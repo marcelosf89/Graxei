@@ -17,11 +17,10 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             _transformacao = transformacao;
         }
 
-        #region Implementação de IConsultasLojas
-
-        private IServicoLojas _servicoLojas;
-        private IServicoEnderecos _servicoEnderecos;
-        private ITransformacaoMutua<Loja, LojaContrato> _transformacao;
+        public Loja GetComEnderecosPlanos(long id)
+        {
+            return _servicoLojas.GetComEnderecosPlanos(id);
+        }
 
         public Loja Get(long id)
         {
@@ -32,6 +31,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         {
             Loja loja = _servicoLojas.GetComEnderecos(id);
             return _transformacao.Transformar(loja);
+        }
+
+        public Plano GetPlano(long idLoja)
+        {
+            return _servicoLojas.GetPlano(idLoja);
         }
 
         public Loja GetPorNome(string nome)
@@ -84,8 +88,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             }
             return null;
         }
-        
-        #endregion
+
+        private IServicoLojas _servicoLojas;
+        private IServicoEnderecos _servicoEnderecos;
+        private ITransformacaoMutua<Loja, LojaContrato> _transformacao;
+
         
     }
 }

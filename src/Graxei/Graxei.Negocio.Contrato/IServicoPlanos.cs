@@ -1,10 +1,10 @@
 ﻿using Graxei.Modelo;
+using System.Collections.Generic;
 
 namespace Graxei.Negocio.Contrato
 {
     public interface IServicoPlanos : IServicoEntidades<Plano>
     {
-
-        System.Collections.Generic.IList<Plano> GetPlanosAtivos();
+        IList<Plano> GetPlanosAtivos();
     }
 }

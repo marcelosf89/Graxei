@@ -14,11 +14,12 @@ namespace Graxei.Negocio.Implementacao
 {
     public class ServicoLojas : GravacaoTemplateMethod<Loja>, IServicoLojas
     {
-        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoPlanos servicoPlanos, IGerenciadorAutenticacao gerenciadorAutenticacao)
+        public ServicoLojas(IRepositorioLojas repositorioLojas, IServicoPlanos servicoPlanos, IGerenciadorAutenticacao gerenciadorAutenticacao, IRepositorioPlanos repositorioPlanos)
         {
             RepositorioEntidades = repositorioLojas;
             _servicoPlanos = servicoPlanos;
             _gerenciadorAutenticacao = gerenciadorAutenticacao;
+            _repositorioPlanos = repositorioPlanos;
         }
         
         public override Loja Salvar(Loja loja)
@@ -52,6 +53,11 @@ namespace Graxei.Negocio.Implementacao
         public Loja GetComEnderecos(long id)
         {
             return RepositorioLojas.GetComEnderecos(id);
+        }
+
+        public Loja GetComEnderecosPlanos(long id)
+        {
+            return RepositorioLojas.GetComEnderecosPlanos(id);
         }
 
         public Loja GetPorUrl(String nome)
@@ -89,6 +95,11 @@ namespace Graxei.Negocio.Implementacao
             return RepositorioLojas.GetPorId(id);
         }
 
+        public Plano GetPlano(long idLoja)
+        {
+            return _repositorioPlanos.GetPlano(idLoja);
+        }
+
         public IList<Loja> Todos()
         {
             throw new NotImplementedException();
@@ -99,6 +110,8 @@ namespace Graxei.Negocio.Implementacao
         private Usuario _usuario;
 
         private IServicoPlanos _servicoPlanos;
+
+        private IRepositorioPlanos _repositorioPlanos;
 
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 

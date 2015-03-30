@@ -2,13 +2,18 @@ using System.Linq;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using NHibernate.Linq;
+using System.Collections.Generic;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
-    public class PlanosNHibernatePostgre : PadraoNHibernatePostgre<Plano>, IRepositorioPlanos
+    public class PlanosRepositorio: PadraoNHibernatePostgre<Plano>, IRepositorioPlanos
     {
+        public Plano GetPlano(long idLoja)
+        {
+            return SessaoAtual.Query<Loja>().Where(p => p.Id == idLoja).Select(q => q.Plano).SingleOrDefault();
+        }
 
-        public System.Collections.Generic.IList<Plano> GetPlanosAtivos()
+        public IList<Plano> GetPlanosAtivos()
         {
             return SessaoAtual.Query<Plano>().Where(p => p.EstaAtivo).ToList<Plano>();
         }

@@ -1,9 +1,11 @@
 ﻿using Graxei.Modelo;
+using System.Collections.Generic;
 
 namespace Graxei.Persistencia.Contrato
 {
     public interface IRepositorioPlanos : IRepositorioEntidades<Plano>
     {
-        System.Collections.Generic.IList<Plano> GetPlanosAtivos();
+        IList<Plano> GetPlanosAtivos();
+        Plano GetPlano(long idLoja);
     }
 }

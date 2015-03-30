@@ -54,7 +54,7 @@ namespace Graxei.Negocio.Fabrica
                       .RegisterType<IServicoListaLojas, ServicoListaLojas>()
                       .RegisterType<IRepositorioListaProdutosLoja, ListaProdutosLojaRepositorio>()
                       .RegisterType<IServicoListaProdutosLoja, ServicoListaProdutosLojaUmEndereco>()
-                      .RegisterType<IRepositorioPlanos, PlanosNHibernatePostgre>()
+                      .RegisterType<IRepositorioPlanos, PlanosRepositorio>()
                       .RegisterType<IServicoPlanos, ServicoPlanos>()
                       .RegisterType<IListaProdutosLojaSqlResolverFactory, ListaProdutosLojaSqlResolverFactory>()
                       .RegisterType<IVisitorCriacaoFuncao, VisitorFuncoesComVetorDeTipos>()
