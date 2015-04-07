@@ -55,6 +55,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate.Postgre
             return SessaoAtual.QueryOver<Endereco>().Where(p => p.Loja.Id == idLoja).Select(p => p.Id).List<long>();
         }
 
+        public Endereco GetEnderecoComTelefones(long idEndereco)
+        {
+            return SessaoAtual.QueryOver<Endereco>().Where(p => p.Id == idEndereco).Fetch(p => p.Loja).Eager.Fetch(p => p.Telefones).Eager.SingleOrDefault();
+        }
+
         public new void Excluir(Loja loja)
         {
             loja.Excluida = true;

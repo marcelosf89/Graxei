@@ -26,9 +26,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult VerLoja(long IdTeste)
+        public ActionResult VerLoja(long idEndereco)
         {
-            Endereco endereco = _consultasEnderecos.Get(IdTeste);
+            Endereco endereco = _consultasLojas.GetEnderecoComTelefones(idEndereco);
             return View(endereco);
         }
 
@@ -59,7 +59,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 
             return null;
         }
-
 
         public FileContentResult GetLogo(int idLoja = 0)
         {

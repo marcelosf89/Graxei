@@ -317,7 +317,7 @@ span.field-validation-error, small.field-validation-error {
         text-decoration: none;
     }
 
-    .border-right {
+.border-right {
     border-right: 1px solid #C5C4C4;
     padding-right: 30px;
 }
@@ -444,4 +444,18 @@ span.field-validation-error, small.field-validation-error {
             padding-left: 45%;
             padding-bottom: 5px;
         }
+}
+
+.label-loja {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background-color: darkorange;
 }

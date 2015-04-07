@@ -26,7 +26,6 @@ namespace Graxei.Modelo
 
         public virtual String Cnpj { get; set; }
 
-        #region Métodos Sobrescritos
         public override bool Equals(object obj)
         {
             if (!(obj is Endereco))
@@ -118,19 +117,28 @@ namespace Graxei.Modelo
                 return "<Endereço Incompleto>";
             }
             string retorno=
-                string.Format(@"{0}, {1}|*COMP*| - {2} - {3} - {4}", this.Logradouro, this.Numero, this.Bairro,
+                string.Format(@" - {0} - {1} - {2}", this.Bairro,
                               this.Bairro.Cidade, this.Bairro.Cidade.Estado);
+            retorno = GetLogradouroMaisNumero() + retorno;
+
+            return retorno;
+        }
+
+        public virtual string GetLogradouroMaisNumero()
+        {
+            string retorno = string.Format(@"{0}, {1}|*COMP*|", this.Logradouro, this.Numero);
+
             if (!string.IsNullOrEmpty(this.Complemento))
             {
                 retorno = retorno.Replace("|*COMP*|", ", " + this.Complemento);
-            } else
+            }
+            else
             {
                 retorno = retorno.Remove(retorno.IndexOf("|*COMP*|", System.StringComparison.Ordinal), 8);
             }
+
             return retorno;
         }
-        #endregion
-
         public virtual bool Validar()
         {
             return (!String.IsNullOrEmpty(this.Logradouro) && !String.IsNullOrEmpty(this.Numero)

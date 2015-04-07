@@ -105,6 +105,11 @@ namespace Graxei.Negocio.Implementacao
             throw new NotImplementedException();
         }
 
+        public Endereco GetEnderecoComTelefones(long idEndereco)
+        {
+            return RepositorioLojas.GetEnderecoComTelefones(idEndereco);
+        }
+
         public IRepositorioEntidades<Loja> RepositorioEntidades { get; private set; }
 
         private Usuario _usuario;
