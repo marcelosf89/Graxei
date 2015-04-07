@@ -412,7 +412,7 @@ body {
 .m2 {
     font-weight: bold;
     font-size: x-large;
-    color: #F98C12;
+    color: #ff7f27;
 }
 
 .container-perquisar {
@@ -1014,5 +1014,5 @@ pre {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-  background-color: darkorange;
+  background-color: #ff7f27;
 }
