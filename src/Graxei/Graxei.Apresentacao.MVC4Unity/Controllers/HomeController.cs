@@ -44,11 +44,11 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             q = GetQuerySearch(q, lojaNome);
             DateTime dtIni = DateTime.Now;
             IList<PesquisaContrato> list;
-            IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];
-            if (ir == null)
+            IpRegiaoModel ipRegiaoModel = (IpRegiaoModel)Session["IpRegiaoModel"];
+            if (ipRegiaoModel == null)
                 list = _iConsultasProdutoVendedor.Get(q, "", "", 0);
             else
-                list = _iConsultasProdutoVendedor.Get(q, ir.Pais, ir.Cidade, 0);
+                list = _iConsultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
 
             PesquisarModel pm = new PesquisarModel();
             pm.Texto = q;

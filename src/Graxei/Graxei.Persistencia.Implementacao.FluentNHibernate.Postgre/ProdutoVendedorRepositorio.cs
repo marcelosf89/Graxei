@@ -20,10 +20,6 @@ using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
-
-    /// <summary>
-    /// Classe de implementação das funções relativas à entidade ProdutoVendedor
-    /// </summary>
     public class ProdutoVendedorRepositorio : PadraoNHibernatePostgre<ProdutoVendedor>, IRepositorioProdutoVendedor
     {
         public ProdutoVendedorRepositorio(IVisitorCriacaoFuncao visitorCriacaoFuncao, IMudancaProdutoVendedorFuncaoFactory mudancaFactory, IProdutoVendedorNativo produtoVendedorNativo)
@@ -32,8 +28,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             _mudancaFactory = mudancaFactory;
             _produtoVendedorNativo = produtoVendedorNativo;
         }
-
-        #region Implementação de IRepositorioProdutoVendedor
 
         public IList<ProdutoVendedor> GetPorDescricao(string descricao)
         {
@@ -59,14 +53,12 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             }
 
             String sql = @"
-                select pv.id_produto_vendedor as ""Id"", pv.Descricao ""Descricao"",  p.Codigo ""Codigo"",
-                    pv.Preco ""Preco"", pv.id_produto ""ProdutoId"", pv.id_endereco ""EnderecoId"",
-                    tl.numero ""Numero""
+                select pv.id_produto_vendedor as ""Id"", p.descricao ""DescricaoPadrao"", pv.Descricao ""MinhaDescricao"",  p.Codigo ""Codigo"",
+                    pv.Preco ""Preco"", pv.id_produto ""ProdutoId"", pv.id_endereco ""EnderecoId""
                 from produtos p 
                 join produtos_vendedores pv on p.id_produto = pv.id_produto
                 join enderecos en on en.id_endereco = pv.id_endereco
                 join lojas l on l.id_loja = en.id_loja
-                join telefones tl on en.id_endereco = tl.id_endereco
                 where similarity(p.descricao || ' ' || p.codigo,:descricao)  > :val {0}
                 order by similarity(p.descricao || ' ' || p.codigo,:descricao) desc
                 ";
@@ -132,16 +124,11 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
                        .SetParameter("p0", loja.Id).ExecuteUpdate();
         }
 
-        #endregion
-
-        #region Métodos de Sobrescrita
         public new void Excluir(ProdutoVendedor produtoVendedor)
         {
             produtoVendedor.Excluida = true;
             Salvar(produtoVendedor);
         }
-
-        #endregion
 
         public long GetMaxPorDescricaoPesquisa(string descricao, string pais, string cidade, int page)
         {
