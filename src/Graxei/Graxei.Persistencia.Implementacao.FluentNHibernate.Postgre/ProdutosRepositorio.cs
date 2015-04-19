@@ -7,13 +7,8 @@ using NHibernate.Linq;
 namespace Graxei.Persistencia.Implementacao.NHibernate
 {
 
-    /// <summary>
-    /// Classe de implementação das funções relativas à entidade Produto
-    /// </summary>
     public class ProdutosRepositorio : PadraoNHibernatePostgreLeitura<Produto>, IRepositorioProdutos
     {
-        #region Implementação de IRepositorioProdutos
-
         public Produto GetPorDescricao(string descricao)
         {
             if (string.IsNullOrEmpty(descricao))
@@ -23,9 +18,6 @@ namespace Graxei.Persistencia.Implementacao.NHibernate
             return SessaoAtual.Query<Produto>()
                               .SingleOrDefault<Produto>(p => p.Descricao.Trim().ToLower() == descricao);
         }
-
-        #endregion
-
 
         public System.Collections.Generic.IList<Produto> Get(string texto, long page)
         {

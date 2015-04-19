@@ -12,14 +12,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 {
     public class ConsultasProdutoVendedor : IConsultasProdutoVendedor
     {
-        #region Construtor
         public ConsultasProdutoVendedor(IServicoProdutoVendedor servicoProdutoVendedor)
         {
             ServicoProdutoVendedor = servicoProdutoVendedor;
         }
-        #endregion
-
-        #region Implementação de IConsultasUsuarios
+        
         public IServicoProdutoVendedor ServicoProdutoVendedor { get; private set; }
 
         public IList<PesquisaContrato> Get(string texto)
@@ -52,6 +49,5 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return ServicoProdutoVendedor.GetQuantidadeProduto(lojaId);
         }
 
-        #endregion
     }
 }

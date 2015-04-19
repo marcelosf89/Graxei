@@ -457,5 +457,5 @@ span.field-validation-error, small.field-validation-error {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-  background-color: darkorange;
+  background-color: #ff7f27;
 }

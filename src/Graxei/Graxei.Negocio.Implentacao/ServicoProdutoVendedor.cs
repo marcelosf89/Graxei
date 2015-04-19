@@ -14,7 +14,6 @@ namespace Graxei.Negocio.Implementacao
     {
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 
-        #region Construtor
         public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida, IGerenciadorAutenticacao gerenciadorAutenticacao)
         {
            RepositorioEntidades = repositorio;
@@ -24,7 +23,6 @@ namespace Graxei.Negocio.Implementacao
             _servicoUnidadeMedida = servicoUnidadeMedida;
             _gerenciadorAutenticacao = gerenciadorAutenticacao;
         }
-        #endregion
 
         public override void PreSalvar(ProdutoVendedor produtoVendedor)
         {
@@ -119,20 +117,14 @@ namespace Graxei.Negocio.Implementacao
             return Repositorio.AtualizarLista(produtoLojaPrecoContrato);
         }
 
-        #region Propriedades Privadas
         public IRepositorioProdutoVendedor Repositorio
         {
             get { return (IRepositorioProdutoVendedor) RepositorioEntidades; }
         }
-        #endregion
 
-        #region Atributos Privados
         private IRepositorioProdutos _repositorioProdutos;
         private readonly IServicoProdutos _servicoProdutos;
         private readonly IServicoAtributos _servicoAtributos;
         private readonly IServicoUnidadeMedida _servicoUnidadeMedida;
-
-        #endregion
-
     }
 }
