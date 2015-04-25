@@ -97,22 +97,6 @@ namespace Graxei.Apresentacao.Teste
             AssertOnzeParaListaENuloParaNumeroMaximoDePaginas(listaReal, pesquisarModel);
         }
 
-        [TestMethod]
-        public void DeveRetornarPartialDeErroQuandoUmaExcecaoInesperadaAcontecert()
-        {
-            // Arrange
-            _mockConsultasProdutoVendedor.Setup(p => p.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 0)).Throws(new Exception());
-            _mockCacheComum.SetupGet(p => p.IpRegiaoModel).Returns(_ipRegiaoModel);
-
-            // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
-            PartialViewResult result = (PartialViewResult)homeController.Pesquisar("q", "loja");
-
-            // Assert
-            _mockConsultasProdutoVendedor.Verify(p => p.Get(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 0), Times.Once);
-            Assert.AreEqual("AjaxError", result.ViewName);
-        }
-
         private void AssertOnzeParaListaENuloParaNumeroMaximoDePaginas(IList<PesquisaContrato> listaReal, PesquisarModel pesquisarModel)
         {
             Assert.AreEqual(11, listaReal.Count);

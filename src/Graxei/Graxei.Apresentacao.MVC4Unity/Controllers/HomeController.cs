@@ -2,6 +2,7 @@
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Aplicacao.Implementacao.Operacoes;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure.Cache;
+using Graxei.Apresentacao.MVC4Unity.Infrastructure.Filters;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
@@ -40,42 +41,36 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View("");
         }
 
+        [AjaxGenericException]
         [AllowAnonymous]
         public ActionResult Pesquisar(string q, string lojaNome)
         {
-            try
+            q = GetQuerySearch(q, lojaNome);
+            DateTime dtIni = DateTime.Now;
+            IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
+            IList<PesquisaContrato> list = _iConsultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
+
+            PesquisarModel pesquisarModel = new PesquisarModel
             {
-                q = GetQuerySearch(q, lojaNome);
-                DateTime dtIni = DateTime.Now;
-                IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
-                IList<PesquisaContrato> list = _iConsultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
+                Texto = q,
+                PaginaSelecionada = 0
+            };
 
-                PesquisarModel pesquisarModel = new PesquisarModel
-                {
-                    Texto = q,
-                    PaginaSelecionada = 0
-                };
-
-                if (list.Count < 10){
-                    pesquisarModel.NumeroMaximoPagina = 0;
-                }
-                else
-                {
-                    pesquisarModel.NumeroMaximoPagina = null;
-                }
-
-                TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;
-                pesquisarModel.PesquisaContrato = list;
-                TimeSpan tf = DateTime.Now - dtIni;
-                ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
-                ViewBag.newq = q;
-                return View(pesquisarModel);
+            if (list.Count < 10)
+            {
+                pesquisarModel.NumeroMaximoPagina = 0;
             }
-            catch
+            else
             {
-                return PartialView("AjaxError");
+                pesquisarModel.NumeroMaximoPagina = null;
             }
 
+            TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;
+            pesquisarModel.PesquisaContrato = list;
+            TimeSpan tf = DateTime.Now - dtIni;
+            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
+            ViewBag.newq = q;
+            return View(pesquisarModel);
         }
 
         private string GetQuerySearch(string q, string lojaNome)

@@ -304,6 +304,7 @@
     <Compile Include="Infrastructure\Cache\CacheComumHttpSession.cs" />
     <Compile Include="Infrastructure\Cache\ICacheComum.cs" />
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
+    <Compile Include="Infrastructure\Filters\AjaxGenericExceptionAttribute.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\ContatoModel.cs" />
     <Compile Include="Models\IpRegiaoModel.cs" />
