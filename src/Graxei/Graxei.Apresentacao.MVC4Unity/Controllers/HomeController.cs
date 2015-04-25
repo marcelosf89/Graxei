@@ -1,6 +1,7 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Aplicacao.Implementacao.Operacoes;
+using Graxei.Apresentacao.MVC4Unity.Infrastructure.Cache;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
@@ -19,12 +20,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas,IGerenciamentoMensageria gerenciamentoMensageria)
+        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas, IGerenciamentoMensageria gerenciamentoMensageria, ICacheComum cacheComum)
         {
             _iConsultasProdutoVendedor = consultaVendedor;
             _consultasPlanos = consultasPlanos;
             _consultasLojas = consultasLojas;
             _gerenciamentoMensageria = gerenciamentoMensageria;
+            _cacheComum = cacheComum;
         }
         //
         // GET: /Home/
@@ -41,30 +43,39 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         [AllowAnonymous]
         public ActionResult Pesquisar(string q, string lojaNome)
         {
-            q = GetQuerySearch(q, lojaNome);
-            DateTime dtIni = DateTime.Now;
-            IList<PesquisaContrato> list;
-            IpRegiaoModel ipRegiaoModel = (IpRegiaoModel)Session["IpRegiaoModel"];
-            if (ipRegiaoModel == null)
-                list = _iConsultasProdutoVendedor.Get(q, "", "", 0);
-            else
-                list = _iConsultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
+            try
+            {
+                q = GetQuerySearch(q, lojaNome);
+                DateTime dtIni = DateTime.Now;
+                IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
+                IList<PesquisaContrato> list = _iConsultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
 
-            PesquisarModel pm = new PesquisarModel();
-            pm.Texto = q;
-            pm.PaginaSelecionada = 0;
+                PesquisarModel pesquisarModel = new PesquisarModel
+                {
+                    Texto = q,
+                    PaginaSelecionada = 0
+                };
 
-            if (list.Count < 10)
-                pm.NumeroMaximoPagina = 0;
-            else
-                pm.NumeroMaximoPagina = null;
+                if (list.Count < 10){
+                    pesquisarModel.NumeroMaximoPagina = 0;
+                }
+                else
+                {
+                    pesquisarModel.NumeroMaximoPagina = null;
+                }
 
-            TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
+                TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;
+                pesquisarModel.PesquisaContrato = list;
+                TimeSpan tf = DateTime.Now - dtIni;
+                ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
+                ViewBag.newq = q;
+                return View(pesquisarModel);
+            }
+            catch
+            {
+                return PartialView("AjaxError");
+            }
 
-            TimeSpan tf = DateTime.Now - dtIni;
-            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
-            ViewBag.newq = q;
-            return View(list);
         }
 
         private string GetQuerySearch(string q, string lojaNome)
@@ -190,7 +201,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             {
                 Mensagem mensagem = new Mensagem(contatoModel.Assunto, contatoModel.Mensagem, contatoModel.Nome, contatoModel.Email);
                 ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contaservidormail"], ConfigurationManager.AppSettings["senhaservidormail"], ConfigurationManager.AppSettings["enderecoservidormail"], int.Parse(ConfigurationManager.AppSettings["portaservidormail"]), ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["contatoendereco"], bool.Parse(ConfigurationManager.AppSettings["habilitarSSL"]));
-                _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail); 
+                _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail);
             }
             catch (Exception)
             {
@@ -228,7 +239,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             {
                 Mensagem mensagem = new Mensagem(contatoModel.Assunto, contatoModel.Mensagem, contatoModel.Nome, contatoModel.Email);
                 ConfiguracaoMail configuracaoMail = new ConfiguracaoMail(ConfigurationManager.AppSettings["contaservidormail"], ConfigurationManager.AppSettings["senhaservidormail"], ConfigurationManager.AppSettings["enderecoservidormail"], int.Parse(ConfigurationManager.AppSettings["portaservidormail"]), ConfigurationManager.AppSettings["contatonome"], ConfigurationManager.AppSettings["contatoendereco"], bool.Parse(ConfigurationManager.AppSettings["habilitarSSL"]));
-                _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail); 
+                _gerenciamentoMensageria.Enviar(mensagem, configuracaoMail);
             }
             catch (Exception)
             {
@@ -265,9 +276,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             return View();
         }
 
-        IConsultasProdutoVendedor _iConsultasProdutoVendedor;
-        IConsultasPlanos _consultasPlanos;
-        IConsultasLojas _consultasLojas;
-        IGerenciamentoMensageria _gerenciamentoMensageria;
+        private IConsultasProdutoVendedor _iConsultasProdutoVendedor;
+        private IConsultasPlanos _consultasPlanos;
+        private IConsultasLojas _consultasLojas;
+        private IGerenciamentoMensageria _gerenciamentoMensageria;
+        private ICacheComum _cacheComum;
     }
 }

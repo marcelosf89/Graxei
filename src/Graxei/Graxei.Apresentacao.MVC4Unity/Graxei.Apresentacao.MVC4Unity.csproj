@@ -301,6 +301,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\MensagemHub.cs" />
+    <Compile Include="Infrastructure\Cache\CacheComumHttpSession.cs" />
+    <Compile Include="Infrastructure\Cache\ICacheComum.cs" />
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\ContatoModel.cs" />
@@ -510,7 +512,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\AjaxError.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Autenticacao.cshtml" />
@@ -525,6 +527,8 @@
     <Content Include="Views\Home\ContatoAnuncio.cshtml" />
     <Content Include="Views\Loja\IndexPaginaLoja.cshtml" />
     <Content Include="Views\Home\Error404.cshtml" />
+    <Content Include="Views\Home\SemResultado.cshtml" />
+    <Content Include="Views\Home\ComResultado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

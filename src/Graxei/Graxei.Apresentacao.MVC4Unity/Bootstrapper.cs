@@ -11,6 +11,7 @@ using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Cache;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
 using Graxei.Modelo;
 using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
+using Graxei.Apresentacao.MVC4Unity.Infrastructure.Cache;
 
 namespace Graxei.Apresentacao.MVC4Unity
 {
@@ -32,6 +33,7 @@ namespace Graxei.Apresentacao.MVC4Unity
       container.RegisterType<EnderecosViewModelEntidade>()
                .RegisterType<IGerenciadorAutenticacao, GerenciadorAutenticacaoSessaoHttp>()
                .RegisterType<IDataSistema, DataSistemaPadrao>()
+               .RegisterType<ICacheComum, CacheComumHttpSession>(new InjectionConstructor())
                .RegisterType<ICacheElementosEndereco, CacheEnderecosSessaoHttp>(new InjectionConstructor())
                .RegisterType<ITransformacaoMutua<Endereco, EnderecoVistaContrato>, EnderecosViewModelEntidade>();
       RegisterTypes(container);
