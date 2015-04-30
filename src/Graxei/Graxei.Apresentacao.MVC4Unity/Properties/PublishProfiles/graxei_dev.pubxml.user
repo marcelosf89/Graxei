@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\GraxeiNovaPublicacao</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Web\graxei_dev</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Administrativo/Views/Home/Dashboard.cshtml">
@@ -33,9 +33,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/Administrativo/Views/Lojas/Loja.cshtml">
       <publishTime>04/07/2015 17:04:39</publishTime>
     </File>
-    <File Include="Areas/Administrativo/Views/Lojas/Nova.cshtml">
-      <publishTime>01/07/2015 11:37:16</publishTime>
-    </File>
     <File Include="Areas/Administrativo/Views/Lojas/NovaLojaAjax.cshtml">
       <publishTime>04/07/2015 17:04:39</publishTime>
     </File>
@@ -54,14 +51,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/Administrativo/Views/Produtos/Novo.cshtml">
       <publishTime>04/07/2015 17:04:39</publishTime>
     </File>
-    <File Include="Areas/Administrativo/Views/Produtos/Pesquisar.cshtml">
-      <publishTime>01/07/2015 11:37:16</publishTime>
-    </File>
     <File Include="Areas/Administrativo/Views/Produtos/PesquisarDoEndereco.cshtml">
       <publishTime>04/07/2015 17:04:39</publishTime>
-    </File>
-    <File Include="Areas/Administrativo/Views/Produtos/ProdutosListar.cshtml">
-      <publishTime>11/28/2014 15:31:36</publishTime>
     </File>
     <File Include="Areas/Administrativo/Views/Shared/FormularioEndereco.cshtml">
       <publishTime>04/07/2015 17:04:39</publishTime>
@@ -102,9 +93,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>02/05/2015 14:56:42</publishTime>
     </File>
-    <File Include="bin/de/Npgsql.resources.dll">
-      <publishTime>11/13/2014 11:22:01</publishTime>
-    </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>04/30/2015 10:56:04</publishTime>
     </File>
@@ -126,29 +114,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
       <publishTime>02/05/2015 14:56:24</publishTime>
     </File>
-    <File Include="bin/EntityFramework.dll">
-      <publishTime>01/07/2015 11:37:24</publishTime>
-    </File>
-    <File Include="bin/es/Npgsql.resources.dll">
-      <publishTime>11/13/2014 11:22:02</publishTime>
-    </File>
-    <File Include="bin/FAST.dll">
-      <publishTime>01/07/2015 11:46:26</publishTime>
-    </File>
-    <File Include="bin/FAST.pdb">
-      <publishTime>01/07/2015 11:46:26</publishTime>
-    </File>
-    <File Include="bin/fi/Npgsql.resources.dll">
-      <publishTime>11/13/2014 11:22:02</publishTime>
-    </File>
     <File Include="bin/FluentNHibernate.dll">
       <publishTime>02/25/2015 10:21:43</publishTime>
     </File>
     <File Include="bin/FluentNHibernate.pdb">
       <publishTime>02/25/2015 10:21:43</publishTime>
-    </File>
-    <File Include="bin/fr/Npgsql.resources.dll">
-      <publishTime>11/13/2014 11:22:02</publishTime>
     </File>
     <File Include="bin/google36645a16adb9f897.html">
       <publishTime>01/07/2015 11:37:18</publishTime>
@@ -172,10 +142,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2015 09:31:41</publishTime>
     </File>
     <File Include="bin/Graxei.Apresentacao.MVC4Unity.dll">
-      <publishTime>04/30/2015 11:16:28</publishTime>
+      <publishTime>04/30/2015 17:51:37</publishTime>
     </File>
     <File Include="bin/Graxei.Apresentacao.MVC4Unity.pdb">
-      <publishTime>04/30/2015 11:16:28</publishTime>
+      <publishTime>04/30/2015 17:51:37</publishTime>
     </File>
     <File Include="bin/Graxei.FluentNHibernate.dll">
       <publishTime>04/30/2015 09:31:35</publishTime>
@@ -219,18 +189,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.pdb">
       <publishTime>04/30/2015 09:31:38</publishTime>
     </File>
-    <File Include="bin/Graxei.Persistencia.Implementacao.NHibernate.dll">
-      <publishTime>11/19/2014 10:53:05</publishTime>
-    </File>
-    <File Include="bin/Graxei.Persistencia.Implementacao.NHibernate.pdb">
-      <publishTime>11/19/2014 10:53:05</publishTime>
-    </File>
-    <File Include="bin/Graxei.Search.dll">
-      <publishTime>01/07/2015 11:46:25</publishTime>
-    </File>
-    <File Include="bin/Graxei.Search.pdb">
-      <publishTime>01/07/2015 11:46:25</publishTime>
-    </File>
     <File Include="bin/Graxei.Transversais.ContratosDeDados.dll">
       <publishTime>04/30/2015 09:31:32</publishTime>
     </File>
@@ -252,20 +210,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Iesi.Collections.dll">
       <publishTime>02/05/2015 14:55:52</publishTime>
     </File>
-    <File Include="bin/Iesi.Collections.pdb">
-      <publishTime>01/07/2015 11:37:24</publishTime>
-    </File>
-    <File Include="bin/ja/Npgsql.resources.dll">
-      <publishTime>11/13/2014 11:22:02</publishTime>
-    </File>
     <File Include="bin/log4net.dll">
       <publishTime>02/05/2015 14:56:35</publishTime>
-    </File>
-    <File Include="bin/Lucene.Net.dll">
-      <publishTime>01/07/2015 11:37:25</publishTime>
-    </File>
-    <File Include="bin/Lucene.Net.pdb">
-      <publishTime>01/07/2015 11:37:25</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
       <publishTime>03/30/2015 14:39:30</publishTime>
@@ -306,9 +252,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>02/05/2015 14:56:32</publishTime>
     </File>
-    <File Include="bin/Microsoft.Web.WebPages.OAuth.dll">
-      <publishTime>07/10/2012 11:03:34</publishTime>
-    </File>
     <File Include="bin/MiniProfiler.dll">
       <publishTime>02/25/2015 10:22:25</publishTime>
     </File>
@@ -329,9 +272,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/NHibernate.dll">
       <publishTime>02/25/2015 10:21:33</publishTime>
-    </File>
-    <File Include="bin/NLog.dll">
-      <publishTime>01/07/2015 11:37:27</publishTime>
     </File>
     <File Include="bin/Npgsql.dll">
       <publishTime>01/07/2015 11:37:11</publishTime>
@@ -450,9 +390,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>02/05/2015 14:56:42</publishTime>
     </File>
-    <File Include="bin/zh-CN/Npgsql.resources.dll">
-      <publishTime>11/13/2014 11:22:02</publishTime>
-    </File>
     <File Include="Content/bootstrap/bootstrap-theme.css">
       <publishTime>01/07/2015 11:37:16</publishTime>
     </File>
@@ -534,20 +471,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/imagens/graxei_logo.png">
       <publishTime>01/07/2015 11:37:17</publishTime>
     </File>
-    <File Include="Content/Site.css">
-      <publishTime>11/01/2014 18:29:43</publishTime>
-    </File>
     <File Include="Content/themes/base/bootstrap-responsive.css">
       <publishTime>01/07/2015 11:37:17</publishTime>
     </File>
     <File Include="Content/themes/base/bootstrap-responsive.min.css">
       <publishTime>01/07/2015 11:37:17</publishTime>
-    </File>
-    <File Include="Content/themes/base/bootstrap.css">
-      <publishTime>11/01/2014 18:29:43</publishTime>
-    </File>
-    <File Include="Content/themes/base/bootstrap.min.css">
-      <publishTime>11/01/2014 18:29:43</publishTime>
     </File>
     <File Include="Content/themes/base/images/logo.png">
       <publishTime>01/07/2015 11:37:17</publishTime>
@@ -816,24 +744,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/html5shiv.js">
       <publishTime>01/07/2015 11:37:18</publishTime>
     </File>
-    <File Include="Scripts/jquery-1.11.1.js">
-      <publishTime>01/07/2015 11:37:18</publishTime>
-    </File>
-    <File Include="Scripts/jquery-1.11.1.min.js">
-      <publishTime>01/07/2015 11:37:18</publishTime>
-    </File>
-    <File Include="Scripts/jquery-1.11.1.min.map">
-      <publishTime>01/07/2015 11:37:18</publishTime>
-    </File>
-    <File Include="Scripts/jquery-1.9.1.js">
-      <publishTime>10/30/2014 22:38:49</publishTime>
-    </File>
-    <File Include="Scripts/jquery-1.9.1.min.js">
-      <publishTime>10/30/2014 22:38:49</publishTime>
-    </File>
-    <File Include="Scripts/jquery-1.9.1.min.map">
-      <publishTime>10/30/2014 22:38:50</publishTime>
-    </File>
     <File Include="Scripts/jquery-2.1.3.js">
       <publishTime>02/05/2015 14:45:37</publishTime>
     </File>
@@ -990,9 +900,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/AjaxError.cshtml">
       <publishTime>04/29/2015 09:12:59</publishTime>
     </File>
-    <File Include="Views/Shared/Error.cshtml">
-      <publishTime>01/07/2015 11:37:18</publishTime>
-    </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>04/07/2015 17:04:40</publishTime>
     </File>
@@ -1003,7 +910,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2015 11:37:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/30/2015 09:31:50</publishTime>
+      <publishTime>04/30/2015 17:51:38</publishTime>
     </File>
   </ItemGroup>
 </Project>
