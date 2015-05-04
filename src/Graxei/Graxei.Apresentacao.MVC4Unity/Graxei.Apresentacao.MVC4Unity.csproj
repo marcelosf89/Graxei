@@ -309,6 +309,7 @@
     <Compile Include="Models\ContatoModel.cs" />
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
+    <Compile Include="Models\EnderecoModel.cs" />
     <Compile Include="Models\PesquisarModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -531,6 +532,8 @@
     <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Home\SemResultado.cshtml" />
     <Content Include="Views\Home\ComResultado.cshtml" />
+    <Content Include="Views\Loja\NaoCadastrada.cshtml" />
+    <Content Include="Views\Loja\Cadastrada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

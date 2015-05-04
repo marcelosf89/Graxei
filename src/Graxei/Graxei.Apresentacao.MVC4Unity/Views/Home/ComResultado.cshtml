@@ -11,7 +11,7 @@
             <div class="thumbnail thumbnail-search">
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
-                        @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 41, Height = 41 },
+                        @Ajax.ImageActionLink(new ImageTag() { Src = Url.Action("GetThumbnail", "Produtos", new { idProduto = pv.ProdutoId }), Width = 41, Height = 41 },
                          "", "VerLoja", "Loja", new { Controller = "Loja", IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
                         @Ajax.ActionLink("Detalhes da Loja", "VerLoja", "Loja", new { IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
                     </div>

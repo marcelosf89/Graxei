@@ -7,5 +7,7 @@ namespace Graxei.Aplicacao.Contrato.Consultas
     public interface IConsultaFabricantes
     {
         IList<string> TodosNomes();
+
+        byte[] GetThumbnail(int idProduto, string caminhoImagem);
     }
 }
