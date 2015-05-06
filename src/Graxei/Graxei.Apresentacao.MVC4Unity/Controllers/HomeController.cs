@@ -21,8 +21,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas, IGerenciamentoMensageria gerenciamentoMensageria, ICacheComum cacheComum)
+        public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas, IGerenciamentoMensageria gerenciamentoMensageria, ICacheComum cacheComum, IConsultaFabricantes appConsultasFabricantes)
         {
+            _appConsultasFabricantes = appConsultasFabricantes;
             _iConsultasProdutoVendedor = consultaVendedor;
             _consultasPlanos = consultasPlanos;
             _consultasLojas = consultasLojas;
@@ -266,11 +267,28 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [AllowAnonymous]
+        public FileResult GetThumbnail(int idProduto = 0)
+        {
+            if (idProduto != 0)
+            {
+                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
+                byte[] file = _appConsultasFabricantes.GetThumbnail(idProduto, caminhoImagem);
+                if (file != null)
+                {
+                    return File(file, "image/jpeg");
+                }
+            }
+
+            return null;
+        }
+
+        [AllowAnonymous]
         public ActionResult Error404()
         {
             return View();
         }
 
+        private IConsultaFabricantes _appConsultasFabricantes;
         private IConsultasProdutoVendedor _iConsultasProdutoVendedor;
         private IConsultasPlanos _consultasPlanos;
         private IConsultasLojas _consultasLojas;

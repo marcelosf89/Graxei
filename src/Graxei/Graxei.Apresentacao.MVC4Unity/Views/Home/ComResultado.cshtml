@@ -11,8 +11,8 @@
             <div class="thumbnail thumbnail-search">
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
-                        @Ajax.ImageActionLink(new ImageTag() { Src = Url.Action("GetThumbnail", "Produtos", new { idProduto = pv.ProdutoId }), Width = 41, Height = 41 },
-                         "", "VerLoja", "Loja", new { Controller = "Loja", IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
+                        @Ajax.ImageActionLink(new ImageTag() { Src = Url.Action("GetThumbnail", "Home", new { idProduto = pv.ProdutoId }), Width = 41, Height = 41 },
+"", "VerLoja", "Loja", new { Controller = "Loja", IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
                         @Ajax.ActionLink("Detalhes da Loja", "VerLoja", "Loja", new { IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
                     </div>
                     <div class="col-md-8 col-sm-8">

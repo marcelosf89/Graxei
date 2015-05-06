@@ -45,20 +45,7 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             return Json(nomes, JsonRequestBehavior.AllowGet);
         }
 
-        public FileResult GetThumbnail(int idProduto = 0)
-        {
-            if (idProduto != 0)
-            {
-                String caminhoImagem = ConfigurationManager.AppSettings["imagesPath"];
-                byte[] file = _appConsultasFabricantes.GetThumbnail(idProduto, caminhoImagem);
-                if (file != null)
-                {
-                    return File(file, "image/jpeg");
-                }
-            }
 
-            return File("PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", "image/svg+xml");
-        }
 
         private readonly IConsultaFabricantes _appConsultasFabricantes;
 
