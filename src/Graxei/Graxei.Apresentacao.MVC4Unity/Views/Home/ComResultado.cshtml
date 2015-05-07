@@ -6,31 +6,33 @@
 @{int idxRow = 0;}
 @foreach (Graxei.Transversais.ContratosDeDados.PesquisaContrato pv in Model.PesquisaContrato)
 {
+    string classLink = string.Format("link-{0}", idxRow % 2);
+    string navClass = string.Format("nav-{0}", idxRow % 2);
     <div class="row row@(idxRow % 2)">
         <div class="col-md-12">
             <div class="thumbnail thumbnail-search">
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
-                        @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 41, Height = 41 },
-                         "", "VerLoja", "Loja", new { Controller = "Loja", IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
-                        @Ajax.ActionLink("Detalhes da Loja", "VerLoja", "Loja", new { IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = "thumbnail thumbnail-search" })
+                        <ul class="@navClass nav nav-pills nav-stacked">
+                            <li role="presentation">
+                                @Ajax.ImageActionLink(new ImageTag() { Src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzEiIGhlaWdodD0iMTgwIj48cmVjdCB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijg1LjUiIHk9IjkwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTcxeDE4MDwvdGV4dD48L3N2Zz4=", Width = 51, Height = 51 }, "Detalhes da loja", "VerLoja", "Loja", new { Controller = "Loja", IdEndereco = pv.EnderecoId }, new AjaxOptions() { UpdateTargetId = "myModal" }, new { @class = string.Concat("text-center link-text ", classLink) })
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h4>@pv.Codigo</h4>
+                            <div class="col-md-12">
+                                <h4 class="text@(idxRow % 2)">@pv.Codigo</h4>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 text@(idxRow % 2)">
                                 @pv.DescricaoExibir
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2">
-                        <div class="bs-callout bs-callout-info">
-                            <h4>R$@pv.Preco</h4>
-                        </div>
+                        <h4 class="text@(idxRow % 2)">R$ @pv.Preco</h4>
                     </div>
                 </div>
             </div>

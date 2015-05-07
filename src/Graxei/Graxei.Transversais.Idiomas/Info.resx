@@ -123,4 +123,7 @@
   <data name="NenhumResultado" xml:space="preserve">
     <value>Nenhum resultado</value>
   </data>
+  <data name="SemResultadoPesquisa" xml:space="preserve">
+    <value>Não existem resultados para essa pesquisa</value>
+  </data>
 </root>
