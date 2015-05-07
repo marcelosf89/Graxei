@@ -1,0 +1,26 @@
+﻿@model Graxei.Apresentacao.MVC4Unity.Models.EnderecoModel
+<h3><span class="label-loja col-md-12"><strong>@Model.Endereco.Loja.Nome</strong></span></h3>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top-buffer-20">
+                <div class="col-md-12">
+                    @Model
+                </div>
+            </div>
+            <div class="row top-buffer">
+                <div class="col-md-12">
+                    <strong>Telefone(s)</strong>
+                    <ul class="list-group">
+                        @foreach (Graxei.Modelo.Telefone telefone in Model.Endereco.Telefones)
+                        {
+                            <li class="list-unstyled">
+                                @telefone.Numero
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

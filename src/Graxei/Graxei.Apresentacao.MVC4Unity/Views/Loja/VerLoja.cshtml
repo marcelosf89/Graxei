@@ -1,45 +1,8 @@
-﻿@model Graxei.Modelo.Endereco
+﻿@model Graxei.Apresentacao.MVC4Unity.Models.EnderecoModel
 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div id="dialogo" class="modal-dialog">
         <div class="modal-content">
-            @if (@Model == null)
-            {
-                <div class="modal-body">
-                    <div class="row alert alert-danger">
-                        <div class="col-md-12">
-                            A Loja não foi encontrada. Favor entre em contato.
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <h3><span class="label-loja col-md-12"><strong>@Model.Loja.Nome</strong></span></h3>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row top-buffer-20">
-                                <div class="col-md-12">
-                                    @Model
-                                </div>
-                            </div>
-                            <div class="row top-buffer">
-                                <div class="col-md-12">
-                                    <strong>Telefone(s)</strong>
-                                    <ul class="list-group">
-                                        @foreach (Graxei.Modelo.Telefone telefone in Model.Telefones)
-                                        {
-                                            <li class="list-unstyled">
-                                                @telefone.Numero
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
+             @{Html.RenderPartial(Model.PartialRender, Model);}
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">@Rotulos.Fechar</button>
             </div>

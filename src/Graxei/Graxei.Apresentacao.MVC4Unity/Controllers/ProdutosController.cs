@@ -7,6 +7,7 @@ using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Transversais.Utilidades;
+using System.Configuration;
 
 namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
 {
@@ -43,6 +44,8 @@ namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
             string[] nomes = ((IList<string>)Session[Constantes.Fabricantes]).ToArray();
             return Json(nomes, JsonRequestBehavior.AllowGet);
         }
+
+
 
         private readonly IConsultaFabricantes _appConsultasFabricantes;
 

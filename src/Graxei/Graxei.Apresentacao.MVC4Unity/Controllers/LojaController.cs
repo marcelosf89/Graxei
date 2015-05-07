@@ -1,4 +1,5 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult VerLoja(long idEndereco)
         {
             Endereco endereco = _consultasLojas.GetEnderecoComTelefones(idEndereco);
-            return View(endereco);
+            EnderecoModel em = new EnderecoModel();
+            em.Endereco = endereco;
+            return View(em);
         }
 
         [AllowAnonymous]
