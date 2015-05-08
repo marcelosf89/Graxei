@@ -22,6 +22,7 @@ namespace Graxei.Apresentacao.Teste
         {
             _mockCacheComum = new Mock<ICacheComum>();
             _mockConsultasProdutoVendedor = new Mock<IConsultasProdutoVendedor>();
+            _mockConsultaFabricantes = new Mock<IConsultaFabricantes>();
             _ipRegiaoModel = new IpRegiaoModel { Pais = _pais, Cidade = _cidade };
         }
 
@@ -33,7 +34,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComDoisElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
+            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object, _mockConsultaFabricantes.Object);
             ViewResult result = (ViewResult)homeController.Pesquisar(q, _loja);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -51,7 +52,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComOnzeElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
+            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object, _mockConsultaFabricantes.Object);
             ViewResult result = (ViewResult)homeController.Pesquisar(q, _loja);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -69,7 +70,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComDoisElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
+            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object, _mockConsultaFabricantes.Object);
             ViewResult result = (ViewResult)homeController.Pesquisar(q, string.Empty);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -87,7 +88,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComOnzeElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
+            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object, _mockConsultaFabricantes.Object);
             ViewResult result = (ViewResult)homeController.Pesquisar(q, string.Empty);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -147,6 +148,8 @@ namespace Graxei.Apresentacao.Teste
         private Mock<ICacheComum> _mockCacheComum;
 
         private Mock<IConsultasProdutoVendedor> _mockConsultasProdutoVendedor;
+
+        private Mock<IConsultaFabricantes> _mockConsultaFabricantes;
 
         string _loja = "loja";
         

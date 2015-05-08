@@ -12,13 +12,9 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {
-    /// <summary>
-    /// Classe para gerência da sessão do NHibernate
-    /// </summary>
     public sealed class NHibernateWebSessionFactory : INHibernateFactory
     {
 
-        #region Singleton
         private static NHibernateWebSessionFactory _instance;
         private string _user;
 
@@ -30,9 +26,7 @@ namespace Graxei.FluentNHibernate.Configuracao
         {
             _sessionFactory = sessionFactory;
         }
-        /// <summary>
-        /// Instância do objeto singleton
-        /// </summary>
+
         public static NHibernateWebSessionFactory GetInstancia()
         {
             return _instance ?? (_instance = new NHibernateWebSessionFactory());
@@ -48,9 +42,6 @@ namespace Graxei.FluentNHibernate.Configuracao
             return _instance;
         }
 
-        #endregion
-
-        #region Métodos Privados
         public ISessionFactory GetSessionFactory()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["graxei"].ToString();
@@ -83,9 +74,6 @@ namespace Graxei.FluentNHibernate.Configuracao
 
             return _sessionFactory;
         }
-        #endregion
-
-        #region Implementação de INHibernateFactory
 
         public ISession OpenSession()
         {
@@ -97,16 +85,7 @@ namespace Graxei.FluentNHibernate.Configuracao
             return _sessionFactory.GetCurrentSession();
         }
 
-        #endregion
-
-        #region Atributos Privados
         private ISessionFactory _sessionFactory;
         private string _type = ConfigurationManager.AppSettings["dbtype"];
-        private string _server = ConfigurationManager.AppSettings["dbserver"];
-        private string _database = ConfigurationManager.AppSettings["dbdatabase"];
-        private string _username = ConfigurationManager.AppSettings["dbusername"];
-        private string _password = ConfigurationManager.AppSettings["dbpassword"];
-        private int _port = int.Parse(ConfigurationManager.AppSettings["dbport"]);
-        #endregion
     }
 }

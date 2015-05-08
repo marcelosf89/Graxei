@@ -4,7 +4,6 @@ using Graxei.Apresentacao.MVC4Unity.Binders;
 using Graxei.Apresentacao.MVC4Unity.Models;
 using Graxei.Modelo;
 using Microsoft.Practices.Unity;
-using StackExchange.Profiling;
 using System;
 using System.Web;
 using System.Web.Http;
@@ -47,13 +46,11 @@ namespace Graxei.Apresentacao.MVC4Unity
         {
             if (Request.IsLocal)
             {
-                //// MiniProfiler.Start();
             }
         }
 
         protected void Application_EndRequest()
         {
-            ////MiniProfiler.Stop();
         }
     }
 }
