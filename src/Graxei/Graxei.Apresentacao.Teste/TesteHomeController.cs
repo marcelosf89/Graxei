@@ -2,6 +2,7 @@
 using Graxei.Apresentacao.MVC4Unity.Controllers;
 using Graxei.Apresentacao.MVC4Unity.Infrastructure.Cache;
 using Graxei.Apresentacao.MVC4Unity.Models;
+using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -22,6 +23,8 @@ namespace Graxei.Apresentacao.Teste
         {
             _mockCacheComum = new Mock<ICacheComum>();
             _mockConsultasProdutoVendedor = new Mock<IConsultasProdutoVendedor>();
+            _mockConsultasLojas = new Mock<IConsultasLojas>();
+            _homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, _mockConsultasLojas.Object, null, _mockCacheComum.Object, null);
             _ipRegiaoModel = new IpRegiaoModel { Pais = _pais, Cidade = _cidade };
         }
 
@@ -33,8 +36,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComDoisElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
-            ViewResult result = (ViewResult)homeController.Pesquisar(q, _loja);
+            ViewResult result = (ViewResult)_homeController.Pesquisar(q, _loja);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
 
@@ -51,8 +53,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComOnzeElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
-            ViewResult result = (ViewResult)homeController.Pesquisar(q, _loja);
+            ViewResult result = (ViewResult)_homeController.Pesquisar(q, _loja);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
 
@@ -69,8 +70,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComDoisElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
-            ViewResult result = (ViewResult)homeController.Pesquisar(q, string.Empty);
+            ViewResult result = (ViewResult)_homeController.Pesquisar(q, string.Empty);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
 
@@ -87,14 +87,59 @@ namespace Graxei.Apresentacao.Teste
             GetListaComOnzeElementos(q);
 
             // Act
-            HomeController homeController = new HomeController(_mockConsultasProdutoVendedor.Object, null, null, null, _mockCacheComum.Object);
-            ViewResult result = (ViewResult)homeController.Pesquisar(q, string.Empty);
+            ViewResult result = (ViewResult)_homeController.Pesquisar(q, string.Empty);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
 
             // Assert
             Assert.AreEqual(string.Empty, result.ViewName);
             AssertOnzeParaListaENuloParaNumeroMaximoDePaginas(listaReal, pesquisarModel);
+        }
+
+        [TestMethod]
+        public void DeveAtribuirOIpDaRegiaoAoCacheComum()
+        {
+            // Arrange
+            string pais = "Holanda";
+            string cidade = "Roterdã";
+            short regiao = 100;
+            string esperado = pais + cidade + regiao;
+            IpRegiaoModel ipRegiaoModel = new IpRegiaoModel { Pais = pais, Cidade = cidade, EstadoCodigo = regiao };
+            _mockCacheComum.SetupSet(p => p.IpRegiaoModel = ipRegiaoModel);
+
+            // Act
+            _homeController.SetRegionIP(pais, cidade, regiao.ToString());
+
+            // Assert
+            _mockCacheComum.VerifySet(p => p.IpRegiaoModel = ipRegiaoModel, Times.Once);
+        }
+
+        [TestMethod]
+        public void QuandoLojaNãoExistirDeveRetornar404()
+        {
+            // Arrange
+            string lojaInexistente = "lojaQueNaoExiste";
+            _mockConsultasLojas.Setup(p => p.GetPorUrl(lojaInexistente)).Returns(null as Loja);
+
+            // Act
+            ViewResult viewResult = (ViewResult)_homeController.IndexLoja(lojaInexistente, "q");
+
+            // Assert
+            Assert.AreEqual("Error404", viewResult.ViewName);
+        }
+
+        [TestMethod]
+        public void QuandoLojaExistirDeveRetornarIndex()
+        {
+            // Arrange
+            string lojaExistente = "lojaQueExiste";
+            _mockConsultasLojas.Setup(p => p.GetPorUrl(lojaExistente)).Returns(new Loja());
+
+            // Act
+            ViewResult viewResult = (ViewResult)_homeController.IndexLoja(lojaExistente, "q");
+
+            // Assert
+            Assert.AreEqual("Index", viewResult.ViewName);
         }
 
         private void AssertOnzeParaListaENuloParaNumeroMaximoDePaginas(IList<PesquisaContrato> listaReal, PesquisarModel pesquisarModel)
@@ -147,6 +192,10 @@ namespace Graxei.Apresentacao.Teste
         private Mock<ICacheComum> _mockCacheComum;
 
         private Mock<IConsultasProdutoVendedor> _mockConsultasProdutoVendedor;
+
+        private Mock<IConsultasLojas> _mockConsultasLojas;
+
+        private HomeController _homeController;
 
         string _loja = "loja";
         

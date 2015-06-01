@@ -24,7 +24,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas, IGerenciamentoMensageria gerenciamentoMensageria, ICacheComum cacheComum, IConsultaFabricantes appConsultasFabricantes)
         {
             _appConsultasFabricantes = appConsultasFabricantes;
-            _iConsultasProdutoVendedor = consultaVendedor;
+            _consultasProdutoVendedor = consultaVendedor;
             _consultasPlanos = consultasPlanos;
             _consultasLojas = consultasLojas;
             _gerenciamentoMensageria = gerenciamentoMensageria;
@@ -49,7 +49,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             q = GetQuerySearch(q, lojaNome);
             DateTime dtIni = DateTime.Now;
             IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
-            IList<PesquisaContrato> list = _iConsultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
+            IList<PesquisaContrato> list = _consultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
 
             PesquisarModel pesquisarModel = new PesquisarModel
             {
@@ -72,6 +72,38 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
             ViewBag.newq = q;
             return View(pesquisarModel);
+        }
+
+        [AllowAnonymous]
+        public ActionResult PesquisarPagina(string paginaSelecionada)
+        {
+            DateTime dtIni = DateTime.Now;
+
+            PesquisarModel pm = (PesquisarModel)TempData["txtSearch"];
+            pm.PaginaSelecionada = Convert.ToInt32(paginaSelecionada);
+
+            IList<PesquisaContrato> list;
+            try
+            {
+                IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
+                list = _consultasProdutoVendedor.Get(pm.Texto, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, Convert.ToInt32(pm.PaginaSelecionada));
+
+                if (list.Count < 10)
+                {
+                    pm.NumeroMaximoPagina = pm.PaginaSelecionada;
+                }
+            }
+            catch (ForaDoLimiteException ex)
+            {
+                list = ex.List;
+                pm.NumeroMaximoPagina = pm.PaginaSelecionada = ex.Max;
+            }
+
+            TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
+
+            TimeSpan tf = DateTime.Now - dtIni;
+            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
+            return View("Pesquisar", list);
         }
 
         private string GetQuerySearch(string q, string lojaNome)
@@ -99,40 +131,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult PesquisarPagina(string paginaSelecionada)
-        {
-            DateTime dtIni = DateTime.Now;
-
-            PesquisarModel pm = (PesquisarModel)TempData["txtSearch"];
-            pm.PaginaSelecionada = Convert.ToInt32(paginaSelecionada);
-
-            IList<PesquisaContrato> list;
-            try
-            {
-                IpRegiaoModel ir = (IpRegiaoModel)Session["IpRegiaoModel"];
-                if (ir == null)
-                    list = _iConsultasProdutoVendedor.Get(pm.Texto, "", "", Convert.ToInt32(pm.PaginaSelecionada));
-                else
-                    list = _iConsultasProdutoVendedor.Get(pm.Texto, ir.Pais, ir.Cidade, Convert.ToInt32(pm.PaginaSelecionada));
-
-                if (list.Count < 10)
-                    pm.NumeroMaximoPagina = pm.PaginaSelecionada;
-            }
-            catch (ForaDoLimiteException fl)
-            {
-                list = fl.List;
-                pm.NumeroMaximoPagina = pm.PaginaSelecionada = fl.Max;
-            }
-
-            TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
-
-
-            TimeSpan tf = DateTime.Now - dtIni;
-            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
-            return View("Pesquisar", list);
-        }
-
-        [AllowAnonymous]
         public ActionResult Planos()
         {
 
@@ -144,13 +142,13 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         [AllowAnonymous]
         public void SetRegionIP(string pais, string cidade, string regiao)
         {
-            IpRegiaoModel ir = new IpRegiaoModel()
+            IpRegiaoModel ipRegiaoModel = new IpRegiaoModel()
             {
                 Cidade = cidade,
                 Pais = pais,
                 EstadoCodigo = Convert.ToInt32(regiao)
             };
-            Session["IpRegiaoModel"] = ir;
+            _cacheComum.IpRegiaoModel = ipRegiaoModel;
             return;
         }
 
@@ -158,13 +156,6 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         public ActionResult VerLoja()
         {
             return RedirectToAction("VerLoja", "Loja", new { id = 0 });
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public void SetFiltro(string filtro, string valor)
-        {
-
         }
 
         [AllowAnonymous]
@@ -223,6 +214,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             cm.Assunto = "-- Anuncie Aqui ---";
             return View("ContatoAnuncio", cm);
         }
+
         [AllowAnonymous]
         public ActionResult EnviarContatoAnuncio(ContatoModel contatoModel)
         {
@@ -253,8 +245,10 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
             Loja loja = _consultasLojas.GetPorUrl(lojaNome);
 
             if (loja == null)
+            {
                 return View("Error404");
-
+            }
+                
             ViewBag.loja = loja;
 
             if (!String.IsNullOrEmpty(q))
@@ -289,7 +283,7 @@ namespace Graxei.Apresentacao.MVC4Unity.Controllers
         }
 
         private IConsultaFabricantes _appConsultasFabricantes;
-        private IConsultasProdutoVendedor _iConsultasProdutoVendedor;
+        private IConsultasProdutoVendedor _consultasProdutoVendedor;
         private IConsultasPlanos _consultasPlanos;
         private IConsultasLojas _consultasLojas;
         private IGerenciamentoMensageria _gerenciamentoMensageria;

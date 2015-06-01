@@ -10,6 +10,16 @@ namespace Graxei.Apresentacao.MVC4Unity.Models
         public string Pais { get; set; }
         public string Cidade { get; set; }
         public int EstadoCodigo { get; set; }
-    
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is IpRegiaoModel))
+            {
+                return false;
+            }
+
+            IpRegiaoModel that = (IpRegiaoModel)obj;
+            return this.Pais == that.Pais && this.Cidade == that.Cidade && this.EstadoCodigo == that.EstadoCodigo;
+        }
     }
 }
