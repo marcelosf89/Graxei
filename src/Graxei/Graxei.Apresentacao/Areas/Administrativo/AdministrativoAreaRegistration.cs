@@ -25,7 +25,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo
             context.MapRoute(
                     "ListarLojas",
                     "Administrativo/Lojas/Listar/{numeroPagina}/{tamanho}",
-                    new {controller = "Lojas", Action = "Listar", numeroPagina = UrlParameter.Optional, tamanho = UrlParameter.Optional});
+                    new { controller = "Lojas", Action = "Listar", numeroPagina = UrlParameter.Optional, tamanho = UrlParameter.Optional });
 
         }
 

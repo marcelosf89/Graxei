@@ -9,7 +9,7 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Transversais.Utilidades;
 using System.Configuration;
 
-namespace Graxei.Aplicacao.Implementacao.MVC4Unity.Controllers
+namespace Graxei.Aplicacao.Implementacao.Controllers
 {
     public class ProdutosController : Controller
     {
