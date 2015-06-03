@@ -1,5 +1,5 @@
-﻿using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain;
-using Graxei.Apresentacao.MVC4Unity.Extension.PaginacaoChain.LinkBuilderStrategy;
+﻿using Graxei.Apresentacao.Extension.PaginacaoChain;
+using Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

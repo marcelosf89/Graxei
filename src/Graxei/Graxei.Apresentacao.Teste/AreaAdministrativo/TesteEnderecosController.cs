@@ -1,10 +1,11 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Operacoes;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Cache;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
-using Graxei.Apresentacao.MVC4Unity.Infrastructure;
+using Graxei.Apresentacao.Areas.Administrativo.Controllers;
+using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
+using Graxei.Apresentacao.Areas.Administrativo.Models;
+using Graxei.Apresentacao.Infrastructure;
 using Graxei.Modelo;
+using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Utilidades.Entidades;
 using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

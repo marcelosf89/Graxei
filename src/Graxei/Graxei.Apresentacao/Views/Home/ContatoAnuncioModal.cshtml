@@ -1,0 +1,23 @@
+﻿@using Graxei.Apresentacao.Areas.Administrativo.HtmlHelpers
+<div id="modalContatoAnuncio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body" id="modalContatoAnuncio-body">
+                @using (Ajax.BeginForm("EnviarContatoAnuncio", "Home", new AjaxOptions() { UpdateTargetId = "modalContatoAnuncio-body", OnBegin = "openL('Enviando...');", OnComplete = "closeL();", HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
+                {
+                    Html.RenderPartial("ContatoAnuncio");
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#modalContatoAnuncio').modal('show');
+</script>
+
+
+

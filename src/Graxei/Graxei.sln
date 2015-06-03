@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Transversais.Idiomas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Transversais.Utilidades", "Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj", "{4257D309-B6EC-499F-970C-824959D6ADA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Apresentacao.MVC4Unity", "Graxei.Apresentacao.MVC4Unity\Graxei.Apresentacao.MVC4Unity.csproj", "{DDA2FFC0-D0D8-41A2-9CEB-0A14C393F6CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Apresentacao", "Graxei.Apresentacao\Graxei.Apresentacao.csproj", "{DDA2FFC0-D0D8-41A2-9CEB-0A14C393F6CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Aplicação", "2-Aplicação", "{C9728F4C-4827-462B-815E-58C8BE1A4E2D}"
 EndProject

@@ -1,8 +1,8 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Operacoes;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato.Factories;
+using Graxei.Transversais.ContratosDeDados;
 namespace Graxei.Aplicacao.Implementacao.Operacoes
 {
     public class OperacaoEndereco : IOperacaoEndereco

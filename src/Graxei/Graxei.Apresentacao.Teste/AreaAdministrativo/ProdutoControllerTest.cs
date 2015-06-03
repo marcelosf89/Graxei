@@ -1,5 +1,5 @@
 ﻿using Graxei.Aplicacao.Contrato.Transacionais;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Controllers;
+using Graxei.Apresentacao.Areas.Administrativo.Controllers;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Idiomas;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

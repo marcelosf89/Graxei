@@ -1,0 +1,56 @@
+﻿@using Graxei.Apresentacao.Areas.Administrativo.HtmlHelpers
+@model Graxei.Apresentacao.Models.ContatoModel
+<div class="container">
+    <h4>Contato</h4>
+    <div class="form-group has-error">
+        <div class="col-lg-offset-1 col-lg-11">
+            @Html.Erro()
+        </div>
+    </div>
+    <div class="form-group has-success">
+        <div class="col-lg-offset-1 col-lg-11">
+            @Html.Sucesso()
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 border-r-contact">
+            @using (Ajax.BeginForm("Enviar", "Home", new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL('Enviando...');", OnComplete = "closeL();", HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Nome</label>
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control " })
+                        @Html.ValidationMessageFor(m => m.Nome)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Assunto</label>
+                        @Html.TextBoxFor(m => m.Assunto, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>@Rotulos.Mensagem</label>
+                        @Html.TextAreaFor(m => m.Mensagem, 6, 0, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <button class="btn btn-primary">@Rotulos.Enviar</button>
+                    </div>
+                </div>
+   
+            }
+        </div>
+        <div class="col-md-4">
+           Preencha este formulário com suas duvidas que o Graxei entrara em contato o mais breve possível.
+        </div>
+    </div>
+</div>

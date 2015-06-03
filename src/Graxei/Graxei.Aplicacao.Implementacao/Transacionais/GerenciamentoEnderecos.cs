@@ -7,7 +7,6 @@ using Graxei.Negocio.Contrato.Factories;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Transversais.Utilidades.Excecoes;
 using System.Collections.Generic;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Graxei.Transversais.Idiomas;
 
-namespace Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models
+namespace Graxei.Transversais.ContratosDeDados
 {
     /// <summary>
     /// Contrato de dados para cadastro de Endereços

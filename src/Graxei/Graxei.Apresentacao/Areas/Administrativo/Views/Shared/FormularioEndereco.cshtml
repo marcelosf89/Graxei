@@ -1,0 +1,123 @@
+﻿@using Graxei.Apresentacao.Areas.Administrativo.HtmlHelpers
+@model EnderecoVistaContrato
+@{
+    @Html.HiddenFor(m => m.IdLoja, new { id = "idlojaendereco" })
+    @Html.HiddenFor(m => m.Id, new { id = "idHiddenEndereco" })
+    <div id="validationEndereco"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group has-error">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Erro()
+                </div>
+            </div>
+            <div class="form-group has-success">
+                <div class="col-lg-offset-1 col-lg-11">
+                    @Html.Sucesso()
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Cnpj)
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Cnpj, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Cnpj)
+                </div>
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.IdEstado)
+                </div>
+                <div class="col-md-2">
+                    @Html.DropDownListFor(m => m.IdEstado, (IEnumerable<SelectListItem>)ViewBag.Estados, new { id = "IdEstado", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.IdEstado)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Cidade)
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control typeahead", id = "IdCidade", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.Cidade)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Bairro)
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Bairro, new { @class = "form-control", id = "IdBairro" })
+                    @Html.ValidationMessageFor(m => m.Bairro)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Logradouro)
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Logradouro, new { @class = "form-control", id = "IdLogradouro" })
+                    @Html.ValidationMessageFor(m => m.Logradouro)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Numero)
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Numero, new { @class = "form-control", id = "IdNumero" })
+                    @Html.ValidationMessageFor(m => m.Numero)
+                </div>
+                <div class=" control-label col-md-2">
+                    @Html.LabelFor(m => m.Complemento)
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.Complemento, new { @class = "form-control", id = "IdComplemento" })
+                    @Html.ValidationMessageFor(m => m.Complemento)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(m => m.Telefones)
+                </div>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(m => m.Telefones, new { @class = "form-control", id = "IdTelefones" })
+                    @Html.ValidationMessageFor(m => m.Telefones)
+                </div>
+                <div class="col-md-5">
+                    <div class="label label-info"><i class="glyphicon glyphicon-info-sign"></i>@Textos.SepareTelefonesVirgula</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row rodape">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">@Rotulos.Salvar</button>
+            <button class="btn btn-danger" data-dismiss="modal">@Rotulos.Cancelar</button>
+        </div>
+    </div>
+}
+

@@ -1,7 +1,7 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
-using Graxei.Apresentacao.MVC4Unity.Controllers;
-using Graxei.Apresentacao.MVC4Unity.Infrastructure.Cache;
-using Graxei.Apresentacao.MVC4Unity.Models;
+using Graxei.Apresentacao.Controllers;
+using Graxei.Apresentacao.Infrastructure.Cache;
+using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

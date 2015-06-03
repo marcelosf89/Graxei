@@ -1,5 +1,5 @@
-﻿using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura;
-using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Infraestutura.Cache;
+﻿using Graxei.Apresentacao.Areas.Administrativo.Infraestutura;
+using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
 using Graxei.Modelo;
 using Graxei.Transversais.Utilidades;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

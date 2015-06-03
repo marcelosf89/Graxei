@@ -1,5 +1,5 @@
-﻿using Graxei.Apresentacao.MVC4Unity.Areas.Administrativo.Models;
-using Graxei.Modelo;
+﻿using Graxei.Modelo;
+using Graxei.Transversais.ContratosDeDados;
 
 namespace Graxei.Aplicacao.Contrato.Operacoes
 {
