@@ -74,6 +74,7 @@
     <Compile Include="ITransacional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transacionais\IGerenciamentoProdutos.cs" />
+    <Compile Include="Transacionais\IPesquisaProduto.cs" />
     <Compile Include="TransformacaoDados\LojasTransformacao.cs" />
   </ItemGroup>
   <ItemGroup>

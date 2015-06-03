@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\PesquisaProdutos\HistoricoPesquisa.cs" />
     <Compile Include="EnderecoModel.cs" />
     <Compile Include="Listas\ListaProdutosLoja.cs" />
     <Compile Include="Listas\ListaProdutosLojaContrato.cs" />
