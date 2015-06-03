@@ -5,7 +5,7 @@ using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Negocio.Contrato.Factories;
 using Graxei.Aplicacao.Contrato.Consultas;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using System.Collections.Generic;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais

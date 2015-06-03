@@ -3,7 +3,7 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +12,11 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 {
     public class ConsultasProdutos : IConsultasProdutos
     {
-        #region Construtor
         public ConsultasProdutos(IServicoProdutos servicoProdutos)
         {
             ServicoProdutos = servicoProdutos;
         }
-        #endregion
 
-        #region Implementação de IConsultasUsuarios
         public IServicoProdutos ServicoProdutos { get; private set; }
 
         public IList<Produto> Get(string texto, long page = 0)
@@ -34,15 +31,9 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
                 lp = ServicoProdutos.Get(texto, Convert.ToInt32(maxpage));
                 throw new ProdutoForaDoLimiteException(lp, maxpage);
             }
+
             return lp;
         }
-
-        #endregion
-
-
-
-
-
 
     }
 }

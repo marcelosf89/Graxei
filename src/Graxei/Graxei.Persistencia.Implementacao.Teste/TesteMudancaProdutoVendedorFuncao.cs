@@ -1,7 +1,7 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

@@ -1,5 +1,5 @@
 ﻿using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;

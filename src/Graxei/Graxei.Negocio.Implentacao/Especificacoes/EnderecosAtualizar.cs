@@ -2,7 +2,7 @@
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Especificacoes;
 using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Transversais.Comum.NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;

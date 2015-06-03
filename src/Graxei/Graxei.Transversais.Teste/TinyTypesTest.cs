@@ -1,6 +1,6 @@
 ﻿using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
-using Graxei.Transversais.Utilidades.Autenticacao;
+using Graxei.Transversais.Comum.Autenticacao;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

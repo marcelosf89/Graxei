@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {

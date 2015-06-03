@@ -3,7 +3,7 @@ using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using System;
 using System.Collections.Generic;
 

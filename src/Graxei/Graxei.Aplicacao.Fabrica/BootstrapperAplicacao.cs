@@ -9,8 +9,9 @@ using Graxei.Aplicacao.Implementacao.Transacionais;
 using Graxei.Modelo;
 using Graxei.Negocio.Fabrica;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using Microsoft.Practices.Unity;
+using System.Net.Http;
 
 namespace Graxei.Aplicacao.Fabrica
 {
@@ -41,7 +42,9 @@ namespace Graxei.Aplicacao.Fabrica
                 .RegisterType<IConsultasProdutos, ConsultasProdutos>()
                 .RegisterType<IConsultaListaProdutosLoja, ConsultaListaProdutosLoja>()
                 .RegisterType<IGerenciamentoMensageria, GerenciamentoMensageria>()
-                .RegisterType<IOperacaoEndereco, OperacaoEndereco>();
+                .RegisterType<IOperacaoEndereco, OperacaoEndereco>()
+                .RegisterType<IPesquisaProduto, PesquisaProduto>()
+                .RegisterType<HttpClient, HttpClient>(new InjectionConstructor());
         }
     }
 }

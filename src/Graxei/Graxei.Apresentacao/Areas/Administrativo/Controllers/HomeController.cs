@@ -1,7 +1,7 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

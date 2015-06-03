@@ -1,7 +1,7 @@
 ﻿using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Factories;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

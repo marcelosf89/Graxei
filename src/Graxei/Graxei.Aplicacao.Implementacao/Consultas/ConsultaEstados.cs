@@ -2,7 +2,7 @@
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.Utilidades.Entidades;
+using Graxei.Transversais.Comum.Entidades;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {

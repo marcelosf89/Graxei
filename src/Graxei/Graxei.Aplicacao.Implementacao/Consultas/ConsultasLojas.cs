@@ -2,7 +2,7 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using System.Collections.Generic;
 using System.IO;
 

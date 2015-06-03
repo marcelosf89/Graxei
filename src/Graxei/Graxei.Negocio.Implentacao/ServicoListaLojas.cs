@@ -3,7 +3,7 @@ using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 
 namespace Graxei.Negocio.Implementacao
 {

@@ -2,7 +2,7 @@
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
 using Graxei.Persistencia.Implementacao.Teste.Helper;
-using Graxei.Transversais.Utilidades.Data;
+using Graxei.Transversais.Comum.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

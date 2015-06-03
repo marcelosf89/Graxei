@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades;
+using Graxei.Transversais.Comum;
 
 namespace Graxei.Apresentacao.Binders
 {

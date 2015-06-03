@@ -3,7 +3,7 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Fabrica;
 using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Transversais.ContratosDeDados;
 

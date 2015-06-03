@@ -10,12 +10,12 @@ using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Apresentacao.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Entidades;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Entidades;
+using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Transversais.Idiomas;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
-using Graxei.Transversais.Utilidades.TransformacaoDados.Interface;
+using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using Microsoft.Practices.Unity;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Controllers

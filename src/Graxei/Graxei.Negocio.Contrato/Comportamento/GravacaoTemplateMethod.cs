@@ -1,6 +1,6 @@
 ﻿using Graxei.Modelo.Generico;
 using Graxei.Negocio.Contrato.Especificacoes;
-using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Transversais.Comum.NHibernate;
 
 namespace Graxei.Negocio.Contrato.Comportamento
 {

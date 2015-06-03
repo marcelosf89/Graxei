@@ -1,7 +1,7 @@
 ﻿using Graxei.Apresentacao.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades;
+using Graxei.Transversais.Comum;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

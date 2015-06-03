@@ -101,7 +101,7 @@
       <Project>{5015A01C-2E90-44CF-A45C-4B121696508C}</Project>
       <Name>Graxei.Transversais.Idiomas</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Transversais.Utilidades\Graxei.Transversais.Utilidades.csproj">
+    <ProjectReference Include="..\Graxei.Transversais.Comum\Graxei.Transversais.Comum.csproj">
       <Project>{4257d309-b6ec-499f-970c-824959d6ada8}</Project>
       <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>

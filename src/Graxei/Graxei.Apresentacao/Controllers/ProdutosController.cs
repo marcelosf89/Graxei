@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Graxei.Apresentacao.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Aplicacao.Contrato.Consultas;
-using Graxei.Transversais.Utilidades;
+using Graxei.Transversais.Comum;
 using System.Configuration;
 
 namespace Graxei.Aplicacao.Implementacao.Controllers

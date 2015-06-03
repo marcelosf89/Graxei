@@ -4,9 +4,9 @@ using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Comportamento;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
-using Graxei.Transversais.Utilidades.Excecoes;
-using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum.Excecoes;
+using Graxei.Transversais.Comum.NHibernate;
 using Graxei.Negocio.Implementacao.Especificacoes;
 using Graxei.Negocio.Contrato.Especificacoes;
 

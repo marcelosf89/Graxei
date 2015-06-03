@@ -3,18 +3,22 @@ using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
     public class ConsultasProdutoVendedor : IConsultasProdutoVendedor
     {
-        public ConsultasProdutoVendedor(IServicoProdutoVendedor servicoProdutoVendedor)
+        public ConsultasProdutoVendedor(IServicoProdutoVendedor servicoProdutoVendedor, IPesquisaProduto pesquisaProduto)
         {
             ServicoProdutoVendedor = servicoProdutoVendedor;
+            _pesquisaProduto = pesquisaProduto;
+
         }
         
         public IServicoProdutoVendedor ServicoProdutoVendedor { get; private set; }
@@ -36,6 +40,16 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
                 lp = ServicoProdutoVendedor.Get(texto, pais, cidade, Convert.ToInt32(maxpage));
                 throw new ForaDoLimiteException(lp, maxpage);
             }
+
+            HistoricoPesquisa historicoPesquisa = new HistoricoPesquisa
+            {
+                Criterio = texto,
+                InternetProtocol = "192.198.0.1",
+                DataPesquisa = DateTime.Now
+            };
+            _pesquisaProduto.RegistrarAsync(historicoPesquisa);
+
+
             return lp;
         }
 
@@ -49,5 +63,6 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             return ServicoProdutoVendedor.GetQuantidadeProduto(lojaId);
         }
 
+        private IPesquisaProduto _pesquisaProduto;
     }
 }

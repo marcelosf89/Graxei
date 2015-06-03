@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades;
+using Graxei.Transversais.Comum;
 
 namespace Graxei.Aplicacao.Implementacao.Operacoes
 {

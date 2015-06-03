@@ -5,9 +5,9 @@ using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Comportamento;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Negocio.Implementacao.Especificacoes;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Graxei.Negocio.Contrato.Especificacoes;
 
 namespace Graxei.Negocio.Implementacao

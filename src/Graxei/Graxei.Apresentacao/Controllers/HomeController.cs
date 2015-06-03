@@ -7,7 +7,7 @@ using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Web;
 using System.Web.Mvc;
+using Graxei.Transversais.Comum.SectionGroups;
 
 namespace Graxei.Apresentacao.Controllers
 {

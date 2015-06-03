@@ -1,7 +1,7 @@
 ﻿using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Implementacao.Factories;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

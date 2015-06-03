@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Modelo.Generico;
 
 namespace Graxei.Negocio.Implementacao

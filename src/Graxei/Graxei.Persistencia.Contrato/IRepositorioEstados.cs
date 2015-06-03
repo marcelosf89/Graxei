@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades.Entidades;
+using Graxei.Transversais.Comum.Entidades;
 
 namespace Graxei.Persistencia.Contrato
 {

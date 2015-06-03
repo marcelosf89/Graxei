@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Implementacao.Excecoes;
 using Graxei.Negocio.Contrato.Factories;

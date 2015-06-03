@@ -1,5 +1,5 @@
-﻿using Graxei.Transversais.Utilidades;
-using Graxei.Transversais.Utilidades.Data;
+﻿using Graxei.Transversais.Comum;
+using Graxei.Transversais.Comum.Data;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;

@@ -2,8 +2,8 @@
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.Areas.Teste.Models;
 using Graxei.Modelo;
-using Graxei.Transversais.Utilidades;
-using Graxei.Transversais.Utilidades.Autenticacao.Interfaces;
+using Graxei.Transversais.Comum;
+using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

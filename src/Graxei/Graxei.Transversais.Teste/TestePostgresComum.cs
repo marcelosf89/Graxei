@@ -1,4 +1,4 @@
-﻿using Graxei.Transversais.Utilidades;
+﻿using Graxei.Transversais.Comum;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

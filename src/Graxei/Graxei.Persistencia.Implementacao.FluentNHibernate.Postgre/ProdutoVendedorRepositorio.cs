@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Utilidades.Excecoes;
-using Graxei.Transversais.Utilidades.NHibernate;
+using Graxei.Transversais.Comum.Excecoes;
+using Graxei.Transversais.Comum.NHibernate;
 using NHibernate.Linq;
 using System.Linq;
 using Graxei.Transversais.ContratosDeDados;
@@ -15,7 +15,7 @@ using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProdut
 using NHibernate;
 using Graxei.FluentNHibernate.UnitOfWork;
 using System.Data;
-using Graxei.Transversais.Utilidades;
+using Graxei.Transversais.Comum;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate

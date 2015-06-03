@@ -1,6 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Utilidades.Excecoes;
+using Graxei.Transversais.Comum.Excecoes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
