@@ -61,6 +61,7 @@
     <Compile Include="PesquisaProdutoContrato.cs" />
     <Compile Include="ProdutoLojaPrecoContrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializacao\DataRFC3339Converter.cs" />
     <Compile Include="TinyTypes\PaginaAtualLista.cs" />
     <Compile Include="TinyTypes\TotalElementosLista.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Graxei.Transversais.ContratosDeDados.Serializacao;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos
         [JsonProperty(PropertyName = "internetProtocol")]
         public string InternetProtocol { get; set; }
 
-        [JsonProperty(PropertyName = "dataPesquisa", ItemConverterType = typeof(IsoDateTimeConverter))]
+        [JsonProperty(PropertyName = "dataPesquisa", ItemConverterType = typeof(DataRFC3339Converter))]
         public DateTime DataPesquisa { get; set; }
 
     }

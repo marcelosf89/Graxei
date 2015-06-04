@@ -1,6 +1,8 @@
 ﻿using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.Comum.SectionGroups;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -30,7 +32,9 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
             {
                 _httpClient.BaseAddress = new Uri(api.Servidor);
 
-                var message = await _httpClient.PostAsJsonAsync<HistoricoPesquisa>(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), historicoPesquisa);
+                string json = JsonConvert.SerializeObject(historicoPesquisa, Formatting.None, new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.FFF'Z'" });
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage message = await _httpClient.PostAsync(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), content);
             }
         }
 

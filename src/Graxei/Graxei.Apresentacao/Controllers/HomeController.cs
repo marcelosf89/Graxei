@@ -17,6 +17,11 @@ using System.Net.Sockets;
 using System.Web;
 using System.Web.Mvc;
 using Graxei.Transversais.Comum.SectionGroups;
+using Newtonsoft.Json;
+using System.Net.Http;
+using Newtonsoft.Json.Converters;
+using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
+using System.Text;
 
 namespace Graxei.Apresentacao.Controllers
 {
