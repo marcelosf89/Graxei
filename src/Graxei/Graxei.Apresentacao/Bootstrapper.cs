@@ -13,6 +13,8 @@ using Graxei.Modelo;
 using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Apresentacao.Infrastructure.Cache;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.Comum.LogAplicacao;
+using Graxei.Transversais.Comum.LogAplicacao.Log4Net;
 
 namespace Graxei.Apresentacao
 {
@@ -34,6 +36,7 @@ namespace Graxei.Apresentacao
       container.RegisterType<EnderecosViewModelEntidade>()
                .RegisterType<IGerenciadorAutenticacao, GerenciadorAutenticacaoSessaoHttp>()
                .RegisterType<IDataSistema, DataSistemaPadrao>()
+               .RegisterInstance<ILogAplicacao>(new Log4NetImpl())
                .RegisterType<ICacheComum, CacheComumHttpSession>(new InjectionConstructor())
                .RegisterType<ICacheElementosEndereco, CacheEnderecosSessaoHttp>(new InjectionConstructor())
                .RegisterType<ITransformacaoMutua<Endereco, EnderecoVistaContrato>, EnderecosViewModelEntidade>();

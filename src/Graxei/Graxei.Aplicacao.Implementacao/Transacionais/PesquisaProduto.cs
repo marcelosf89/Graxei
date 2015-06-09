@@ -1,4 +1,6 @@
 ﻿using Graxei.Aplicacao.Contrato.Transacionais;
+using Graxei.Transversais.Comum.LogAplicacao;
+using Graxei.Transversais.Comum.Api;
 using Graxei.Transversais.Comum.SectionGroups;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
 using Newtonsoft.Json;
@@ -19,24 +21,59 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
 {
     public class PesquisaProduto : IPesquisaProduto
     {
-        public PesquisaProduto(HttpClient httpClient)
+        public PesquisaProduto(HttpClient httpClient, ILogAplicacao log)
         {
             _httpClient = httpClient;
+            _log = log;
         }
 
         public async Task RegistrarAsync(HistoricoPesquisa historicoPesquisa)
         {
-            ApiSectionGroup api = (ApiSectionGroup)ConfigurationManager.GetSection("api");
+            string json = ApiHttpContent.CriarJson<HistoricoPesquisa>(historicoPesquisa);
 
-            using (_httpClient)
+            try
             {
-                _httpClient.BaseAddress = new Uri(api.Servidor);
-
-                string json = JsonConvert.SerializeObject(historicoPesquisa, Formatting.None, new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.FFF'Z'" });
-                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage message = await _httpClient.PostAsync(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), content);
+                ApiSectionGroup api = (ApiSectionGroup)ConfigurationManager.GetSection("api");
+                HttpContent content = ApiHttpContent.Criar(json);
+                using (_httpClient)
+                {
+                    _httpClient.BaseAddress = new Uri(api.Servidor);
+                    _httpClient.Timeout = TimeSpan.FromSeconds(2);
+                    HttpResponseMessage message = await _httpClient.PostAsync(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), content);
+                }
             }
+            catch (Exception)
+            {
+                _log.Registrar(json);
+                _log.Registrar("httpcall", json);
+            }
+
         }
+
+        //public void RegistrarAsync(HistoricoPesquisa historicoPesquisa)
+        //{
+        //    string json = ApiHttpContent.CriarJson<HistoricoPesquisa>(historicoPesquisa);
+
+        //    try
+        //    {
+        //        ApiSectionGroup api = (ApiSectionGroup)ConfigurationManager.GetSection("api");
+        //        HttpContent content = ApiHttpContent.Criar(json);
+        //        using (_httpClient)
+        //        {
+        //            _httpClient.BaseAddress = new Uri(api.Servidor);
+        //            _httpClient.Timeout = new TimeSpan(0, 0, 0, 1);
+        //            HttpResponseMessage message = _httpClient.PostAsync(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), content).Result;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _log.Registrar(json);
+        //        _log.Registrar("httpcall", json);
+        //    }
+
+        //}
+
+        private ILogAplicacao _log;
 
         private HttpClient _httpClient;
     }

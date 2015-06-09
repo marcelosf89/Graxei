@@ -10,5 +10,6 @@ namespace Graxei.Aplicacao.Contrato.Transacionais
     public interface IPesquisaProduto
     {
         Task RegistrarAsync(HistoricoPesquisa historicoPesquisa);
+        //void RegistrarAsync(HistoricoPesquisa historicoPesquisa);
     }
 }
