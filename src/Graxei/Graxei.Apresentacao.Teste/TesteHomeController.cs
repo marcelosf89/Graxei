@@ -4,6 +4,8 @@ using Graxei.Apresentacao.Infrastructure.Cache;
 using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.ContratosDeDados.Listas;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -161,7 +163,8 @@ namespace Graxei.Apresentacao.Teste
                 new PesquisaContrato{Id =  1, Codigo = "BBB"}
             };
 
-            SetupMocks(q, lista);
+            ListaPesquisaContrato listaPesquisaContrato = new ListaPesquisaContrato(lista, new TotalElementosLista(0), new PaginaAtualLista(0));
+            SetupMocks(q, listaPesquisaContrato);
         }
 
         private void GetListaComOnzeElementos(string q)
@@ -180,12 +183,13 @@ namespace Graxei.Apresentacao.Teste
                 new PesquisaContrato{Id =  10, Codigo = "KKK"},
             };
 
-            SetupMocks(q, lista);
+            ListaPesquisaContrato listaPesquisaContrato = new ListaPesquisaContrato(lista, new TotalElementosLista(0), new PaginaAtualLista(0));
+            SetupMocks(q, listaPesquisaContrato);
         }
 
-        private void SetupMocks(string q, IList<PesquisaContrato> retorno)
+        private void SetupMocks(string q, ListaPesquisaContrato retorno)
         {
-            _mockConsultasProdutoVendedor.Setup(p => p.Get(q, _pais, _cidade, 0)).Returns(retorno);
+            _mockConsultasProdutoVendedor.Setup(p => p.Get(q, _pais, _cidade, 0, "0.0.0.1")).Returns(retorno);
             _mockCacheComum.SetupGet(p => p.IpRegiaoModel).Returns(_ipRegiaoModel);
         }
 

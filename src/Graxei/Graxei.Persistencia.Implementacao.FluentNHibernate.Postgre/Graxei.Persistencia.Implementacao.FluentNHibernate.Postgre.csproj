@@ -103,6 +103,7 @@
     <Compile Include="Constantes\ListaProdutosSqlResolverConstantes.cs" />
     <Compile Include="ConsultasSQL.cs" />
     <Compile Include="ListaProdutosLojaRepositorio.cs" />
+    <Compile Include="PesquisaProdutoRepositorio.cs" />
     <Compile Include="PlanosNHibernatePostgre.cs" />
     <Compile Include="EnderecosRepositorio.cs" />
     <Compile Include="EstadosNHibernatePostgre.cs" />

@@ -11,7 +11,7 @@ namespace Graxei.Transversais.Comum.LogAplicacao.Log4Net
     {
         public void Registrar(string mensagem)
         {
-            Registrar("graxei");
+            Registrar("graxei", mensagem);
         }
 
         

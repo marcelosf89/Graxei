@@ -1,18 +1,19 @@
 ﻿using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.ContratosDeDados.Listas;
 using System.Collections.Generic;
 
 namespace Graxei.Negocio.Contrato
 {
     public interface IServicoProdutoVendedor : IEntidadesIrrestrito<ProdutoVendedor>
     {
-        IList<PesquisaContrato> Get(string texto);
+        ListaPesquisaContrato Get(string texto);
 
-        IList<PesquisaContrato> Get(string texto, string pais, string cidade, int page);
+        ListaPesquisaContrato Get(string texto, string pais, string cidade, int page);
 
         IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
 
-        long GetMax(string texto, string pais, string cidade, int page);
+        ListaPesquisaContrato GetUltimaPagina(string texto, string pais, string cidade);
 
         long GetQuantidadeProduto();
 

@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
+using System.Threading.Tasks;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
@@ -16,53 +18,49 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
     {
         public ConsultasProdutoVendedor(IServicoProdutoVendedor servicoProdutoVendedor, IPesquisaProduto pesquisaProduto)
         {
-            ServicoProdutoVendedor = servicoProdutoVendedor;
+            _servicoProdutoVendedor = servicoProdutoVendedor;
             _pesquisaProduto = pesquisaProduto;
 
         }
         
-        public IServicoProdutoVendedor ServicoProdutoVendedor { get; private set; }
-
-        public IList<PesquisaContrato> Get(string texto)
+        public ListaPesquisaContrato Get(string texto)
         {
-            return ServicoProdutoVendedor.Get(texto);
+            return _servicoProdutoVendedor.Get(texto);
         }
 
-        public IList<PesquisaContrato> Get(string texto, string pais, string cidade, int page)
+        public ListaPesquisaContrato Get(string texto, string pais, string cidade, int pagina, string ip)
         {
-            IList<PesquisaContrato> lp = ServicoProdutoVendedor.Get(texto, pais, cidade, page);
-            if (!lp.Any())
-            {
-                long max = ServicoProdutoVendedor.GetMax(texto, pais, cidade, page);
-                if (max == 0) return new List<PesquisaContrato>();
-
-                long maxpage = max / 10;
-                lp = ServicoProdutoVendedor.Get(texto, pais, cidade, Convert.ToInt32(maxpage));
-                throw new ForaDoLimiteException(lp, maxpage);
-            }
-
             HistoricoPesquisa historicoPesquisa = new HistoricoPesquisa
             {
                 Criterio = texto,
-                InternetProtocol = "192.198.0.1",
-                DataPesquisa = DateTime.Now
+                InternetProtocol = ip,
+                DataPesquisa = DateTime.UtcNow
             };
-            _pesquisaProduto.RegistrarAsync(historicoPesquisa);
 
+            Task.Run(() => _pesquisaProduto.RegistrarAsync(historicoPesquisa));
 
-            return lp;
+            ListaPesquisaContrato retorno = _servicoProdutoVendedor.Get(texto, pais, cidade, pagina);
+            if (!retorno.Lista.Any())
+            {
+                retorno = _servicoProdutoVendedor.GetUltimaPagina(texto, pais, cidade);
+            }
+
+            return retorno;
         }
 
         public long GetQuantidadeProduto()
         {
-            return ServicoProdutoVendedor.GetQuantidadeProduto();
+            return _servicoProdutoVendedor.GetQuantidadeProduto();
         }
 
         public long GetQuantidadeProduto(long lojaId)
         {
-            return ServicoProdutoVendedor.GetQuantidadeProduto(lojaId);
+            return _servicoProdutoVendedor.GetQuantidadeProduto(lojaId);
         }
 
         private IPesquisaProduto _pesquisaProduto;
+
+        private IServicoProdutoVendedor _servicoProdutoVendedor { get; set; }
+
     }
 }

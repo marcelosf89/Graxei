@@ -50,29 +50,6 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
 
         }
 
-        //public void RegistrarAsync(HistoricoPesquisa historicoPesquisa)
-        //{
-        //    string json = ApiHttpContent.CriarJson<HistoricoPesquisa>(historicoPesquisa);
-
-        //    try
-        //    {
-        //        ApiSectionGroup api = (ApiSectionGroup)ConfigurationManager.GetSection("api");
-        //        HttpContent content = ApiHttpContent.Criar(json);
-        //        using (_httpClient)
-        //        {
-        //            _httpClient.BaseAddress = new Uri(api.Servidor);
-        //            _httpClient.Timeout = new TimeSpan(0, 0, 0, 1);
-        //            HttpResponseMessage message = _httpClient.PostAsync(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), content).Result;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _log.Registrar(json);
-        //        _log.Registrar("httpcall", json);
-        //    }
-
-        //}
-
         private ILogAplicacao _log;
 
         private HttpClient _httpClient;

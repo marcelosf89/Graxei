@@ -12,7 +12,7 @@ namespace Graxei.Transversais.Comum.Data
         {
             get
             {
-                return DateTime.Now;
+                return DateTime.UtcNow;
             }
         }
     }

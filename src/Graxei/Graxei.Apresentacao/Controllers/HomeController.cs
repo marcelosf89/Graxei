@@ -22,6 +22,8 @@ using System.Net.Http;
 using Newtonsoft.Json.Converters;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
 using System.Text;
+using System.Diagnostics;
+using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Apresentacao.Controllers
 {
@@ -52,10 +54,10 @@ namespace Graxei.Apresentacao.Controllers
         [AllowAnonymous]
         public ActionResult Pesquisar(string q, string lojaNome)
         {
-            q = GetQuerySearch(q, lojaNome);
-            DateTime dtIni = DateTime.Now;
+            Stopwatch stopWatch = Stopwatch.StartNew();
+
             IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
-            IList<PesquisaContrato> list = _consultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0);
+            ListaPesquisaContrato listaPesquisaContrato = _consultasProdutoVendedor.Get(q, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, 0, ControllerContext.HttpContext.Request.UserHostAddress);
 
             PesquisarModel pesquisarModel = new PesquisarModel
             {
@@ -63,7 +65,7 @@ namespace Graxei.Apresentacao.Controllers
                 PaginaSelecionada = 0
             };
 
-            if (list.Count < 10)
+            if (listaPesquisaContrato.Lista.Count < 10)
             {
                 pesquisarModel.NumeroMaximoPagina = 0;
             }
@@ -73,9 +75,10 @@ namespace Graxei.Apresentacao.Controllers
             }
 
             TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;
-            pesquisarModel.PesquisaContrato = list;
-            TimeSpan tf = DateTime.Now - dtIni;
-            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
+            pesquisarModel.PesquisaContrato = listaPesquisaContrato.Lista;
+
+            stopWatch.Stop();
+            ViewBag.TempoBusca = string.Format("{0} segundos", stopWatch.Elapsed.ToString(@"ss\,fff"));
             ViewBag.newq = q;
             return View(pesquisarModel);
         }
@@ -83,33 +86,26 @@ namespace Graxei.Apresentacao.Controllers
         [AllowAnonymous]
         public ActionResult PesquisarPagina(string paginaSelecionada)
         {
-            DateTime dtIni = DateTime.Now;
+            Stopwatch stopWatch = Stopwatch.StartNew();
 
-            PesquisarModel pm = (PesquisarModel)TempData["txtSearch"];
-            pm.PaginaSelecionada = Convert.ToInt32(paginaSelecionada);
+            PesquisarModel pesquisarModel = (PesquisarModel)TempData["txtSearch"];
+            pesquisarModel.PaginaSelecionada = Convert.ToInt32(paginaSelecionada);
 
-            IList<PesquisaContrato> list;
-            try
+            IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
+            ListaPesquisaContrato listaPesquisaContrato = _consultasProdutoVendedor.Get(pesquisarModel.Texto, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, Convert.ToInt32(pesquisarModel.PaginaSelecionada), ControllerContext.HttpContext.Request.UserHostAddress);
+
+            if (listaPesquisaContrato.Lista.Count < 10)
             {
-                IpRegiaoModel ipRegiaoModel = _cacheComum.IpRegiaoModel;
-                list = _consultasProdutoVendedor.Get(pm.Texto, ipRegiaoModel.Pais, ipRegiaoModel.Cidade, Convert.ToInt32(pm.PaginaSelecionada));
-
-                if (list.Count < 10)
-                {
-                    pm.NumeroMaximoPagina = pm.PaginaSelecionada;
-                }
-            }
-            catch (ForaDoLimiteException ex)
+                pesquisarModel.NumeroMaximoPagina = pesquisarModel.PaginaSelecionada;
+            } else if (listaPesquisaContrato.Total.Total > 0)
             {
-                list = ex.List;
-                pm.NumeroMaximoPagina = pm.PaginaSelecionada = ex.Max;
+                pesquisarModel.NumeroMaximoPagina = pesquisarModel.PaginaSelecionada = listaPesquisaContrato.Total.Total;
             }
 
-            TempData["txtSearch"] = ViewBag.PesquisarModel = pm;
-
-            TimeSpan tf = DateTime.Now - dtIni;
-            ViewBag.TempoBusca = tf.Seconds + "," + tf.Milliseconds;
-            return View("Pesquisar", list);
+            TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;
+            stopWatch.Stop();
+            ViewBag.TempoBusca = string.Format("{0} segundos", stopWatch.Elapsed.ToString(@"ss\,fff"));
+            return View("Pesquisar", listaPesquisaContrato.Lista);
         }
 
         private string GetQuerySearch(string q, string lojaNome)
@@ -254,7 +250,7 @@ namespace Graxei.Apresentacao.Controllers
             {
                 return View("Error404");
             }
-                
+
             ViewBag.loja = loja;
 
             if (!String.IsNullOrEmpty(q))
@@ -294,5 +290,7 @@ namespace Graxei.Apresentacao.Controllers
         private IConsultasLojas _consultasLojas;
         private IGerenciamentoMensageria _gerenciamentoMensageria;
         private ICacheComum _cacheComum;
+
+        public PesquisarModel pesquisaModel { get; set; }
     }
 }

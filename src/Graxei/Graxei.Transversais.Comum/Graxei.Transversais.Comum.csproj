@@ -87,7 +87,7 @@
     <Compile Include="Excecoes\ValidacaoEntidadeException.cs" />
     <Compile Include="Listas.cs" />
     <Compile Include="LogAplicacao\ILogAplicacao.cs" />
-    <Compile Include="LogAplicacao\Log4Net\Log4netImpl.cs" />
+    <Compile Include="LogAplicacao\Log4Net\Log4NetImpl.cs" />
     <Compile Include="LogAplicacao\Log4Net\WebAppAdoNetAppender .cs" />
     <Compile Include="NHibernate\ConsultasHql.cs" />
     <Compile Include="NHibernate\Queries.cs" />

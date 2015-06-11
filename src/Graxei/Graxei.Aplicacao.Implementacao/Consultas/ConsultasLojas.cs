@@ -95,9 +95,10 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         }
 
         private IServicoLojas _servicoLojas;
+
         private IServicoEnderecos _servicoEnderecos;
+
         private ITransformacaoMutua<Loja, LojaContrato> _transformacao;
 
-        
     }
 }

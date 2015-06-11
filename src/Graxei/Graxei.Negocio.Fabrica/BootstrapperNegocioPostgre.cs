@@ -60,7 +60,8 @@ namespace Graxei.Negocio.Fabrica
                       .RegisterType<IVisitorCriacaoFuncao, VisitorFuncoesComVetorDeTipos>()
                       .RegisterType<IMudancaProdutoVendedorFuncaoFactory, MudancaoProdutoVendedorFuncaoFactory>()
                       .RegisterType<IBairrosBuilder, BairrosBuilder>()
-                      .RegisterType<IEnderecosBuilder, EnderecosBuilder>();
+                      .RegisterType<IEnderecosBuilder, EnderecosBuilder>()
+                      .RegisterType<IRepositorioPesquisaProduto, PesquisaProdutoRepositorio>();
         }
     }
 }

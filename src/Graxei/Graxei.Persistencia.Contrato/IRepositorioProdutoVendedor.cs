@@ -8,8 +8,6 @@ namespace Graxei.Persistencia.Contrato
     {
         IList<ProdutoVendedor> GetPorDescricao(string descricao);
         
-        IList<PesquisaContrato> GetPorDescricaoPesquisa(string descricao, string pais, string cidade, int page);        
-        
         ProdutoVendedor GetPorDescricaoAndLoja(string descricao, string nomeLoja);
         
         ProdutoVendedor GetPorDescricaoAndLoja(string descricao, Loja loja);
@@ -17,8 +15,6 @@ namespace Graxei.Persistencia.Contrato
         IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContratos);
 
         void ExcluirDe(Loja loja);
-
-        long GetMaxPorDescricaoPesquisa(string texto, string pais, string cidade, int page);
 
         long GetQuantidadeProduto(Usuario usuario);
 

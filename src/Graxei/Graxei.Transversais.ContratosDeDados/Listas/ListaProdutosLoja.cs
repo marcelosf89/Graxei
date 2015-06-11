@@ -9,63 +9,20 @@ using System.Threading.Tasks;
 
 namespace Graxei.Transversais.ContratosDeDados.Listas
 {
-    public sealed class ListaProdutosLoja : ILista<ListaProdutosLojaContrato>
+    public sealed class ListaProdutosLoja : AbstractItemLista<ListaProdutosLojaContrato>
     {
-        private IList<ListaProdutosLojaContrato> _lista;
-
-        private TotalElementosLista _total;
-
-        private PaginaAtualLista _atual;
-
         public ListaProdutosLoja(IList<ListaProdutosLojaContrato> lista, TotalElementosLista total, PaginaAtualLista atual)
+            : base(lista, total, atual)
         {
-            if (atual == null)
-            {
-                atual = new PaginaAtualLista(0);
-            }
-            if (total == null)
-            {
-                total = new TotalElementosLista(0);
-            }
-
-            if (atual.Atual > total.Total)
-            {
-                throw new ArgumentOutOfRangeException(ErrosInternos.TotalMenorQueAtual);
-            }
-            
-            if (lista == null)
-            {
-                lista = new List<ListaProdutosLojaContrato>();
-            }
-
-            _lista = lista;
-            _total = total;
-            _atual = atual;
         }
 
-        public IList<ListaProdutosLojaContrato> Lista
+        public override IList<ListaProdutosLojaContrato> Lista
         {
             get
             {
                 List<ListaProdutosLojaContrato> retorno = new List<ListaProdutosLojaContrato>();
                 retorno.AddRange(_lista);
                 return retorno;
-            }
-        }
-
-        public TotalElementosLista Total
-        {
-            get
-            {
-                return _total;
-            }
-        }
-
-        public PaginaAtualLista Atual
-        {
-            get
-            {
-                return _atual;
             }
         }
 

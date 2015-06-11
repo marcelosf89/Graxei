@@ -7,6 +7,8 @@ using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Transversais.Comum.NHibernate;
 using System.Collections.Generic;
+using Graxei.Transversais.ContratosDeDados.Listas;
+using Graxei.Transversais.ContratosDeDados.TinyTypes;
 
 namespace Graxei.Negocio.Implementacao
 {
@@ -14,7 +16,7 @@ namespace Graxei.Negocio.Implementacao
     {
         private IGerenciadorAutenticacao _gerenciadorAutenticacao;
 
-        public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida, IGerenciadorAutenticacao gerenciadorAutenticacao)
+        public ServicoProdutoVendedor(IRepositorioProdutoVendedor repositorio, IRepositorioProdutos repositorioProdutos, IServicoProdutos servicoProdutos, IServicoAtributos servicoAtributos, IServicoUnidadeMedida servicoUnidadeMedida, IGerenciadorAutenticacao gerenciadorAutenticacao, IRepositorioPesquisaProduto repositorioPesquisaProduto)
         {
            RepositorioEntidades = repositorio;
             _repositorioProdutos = repositorioProdutos;
@@ -22,6 +24,7 @@ namespace Graxei.Negocio.Implementacao
             _servicoAtributos = servicoAtributos;
             _servicoUnidadeMedida = servicoUnidadeMedida;
             _gerenciadorAutenticacao = gerenciadorAutenticacao;
+            _repositorioPesquisaProduto = repositorioPesquisaProduto;
         }
 
         public override void PreSalvar(ProdutoVendedor produtoVendedor)
@@ -84,22 +87,22 @@ namespace Graxei.Negocio.Implementacao
             }
         }
 
-        public System.Collections.Generic.IList<PesquisaContrato> Get(string texto)
+        public ListaPesquisaContrato Get(string texto)
         {
-            return Repositorio.GetPorDescricaoPesquisa(texto, "", "", 0);
+            IList<PesquisaContrato> resultadoPesquisa = _repositorioPesquisaProduto.GetPorDescricaoPesquisa(texto, "", "", 0);
+            return new ListaPesquisaContrato(resultadoPesquisa, new TotalElementosLista(0), new PaginaAtualLista(0));
         }
 
-        public System.Collections.Generic.IList<PesquisaContrato> Get(string texto, string pais, string cidade, int page)
+        public ListaPesquisaContrato Get(string texto, string pais, string cidade, int page)
         {
-            return Repositorio.GetPorDescricaoPesquisa(texto, pais, cidade, page);
+            IList<PesquisaContrato> resultadoPesquisa = _repositorioPesquisaProduto.GetPorDescricaoPesquisa(texto, "", "", 0);
+            return new ListaPesquisaContrato(resultadoPesquisa, new TotalElementosLista(0), new PaginaAtualLista(page));
         }
 
-
-        public long GetMax(string texto, string pais, string cidade, int page)
+        public ListaPesquisaContrato GetUltimaPagina(string texto, string pais, string cidade)
         {
-            return Repositorio.GetMaxPorDescricaoPesquisa(texto, pais, cidade, page);
+            return _repositorioPesquisaProduto.GetUltimaPagina(10, texto, pais, cidade);
         }
-
 
         public long GetQuantidadeProduto()
         {
@@ -126,5 +129,6 @@ namespace Graxei.Negocio.Implementacao
         private readonly IServicoProdutos _servicoProdutos;
         private readonly IServicoAtributos _servicoAtributos;
         private readonly IServicoUnidadeMedida _servicoUnidadeMedida;
+        IRepositorioPesquisaProduto _repositorioPesquisaProduto;
     }
 }
