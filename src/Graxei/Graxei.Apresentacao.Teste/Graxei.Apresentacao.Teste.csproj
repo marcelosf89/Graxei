@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApresentacaoTesteComum.cs" />
     <Compile Include="AreaAdministrativo\ProdutoControllerTest.cs" />
     <Compile Include="AreaAdministrativo\TesteCacheEnderecos.cs" />
     <Compile Include="AreaAdministrativo\TesteEnderecosController.cs" />

@@ -38,7 +38,7 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy
             _links.RemoveAt((int)elemento);
             TagBuilder tagBuilder = new TagBuilder("button");
             tagBuilder.AddCssClass("btn btn-warning");
-            tagBuilder.InnerHtml = _paginaAtualLista.Atual.ToString();
+            tagBuilder.InnerHtml = _paginaAtualLista.Valor.ToString();
             tagBuilder.Attributes.Add("disabled", "disabled");
             _links.Insert((int)elemento, MvcHtmlString.Create(tagBuilder.ToString()).ToString());
             return new List<string>(_links);

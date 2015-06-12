@@ -8,16 +8,16 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 {
     public class PaginaAtualLista
     {
-        public PaginaAtualLista(int atual)
+        public PaginaAtualLista(int valor)
         {
-            _atual = atual;
+            _valor = valor;
         }
 
-        private int _atual;
+        private int _valor;
 
-        public int Atual
+        public int Valor
         {
-            get { return _atual; }
+            get { return _valor; }
         }
 
         public override bool Equals(object obj)
@@ -28,12 +28,12 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
             }
 
             PaginaAtualLista that = (PaginaAtualLista)obj;
-            return that.Atual == this.Atual;
+            return that.Valor == this.Valor;
         }
 
         public override int GetHashCode()
         {
-            return this.Atual.GetHashCode() ^ 3;
+            return this.Valor.GetHashCode() ^ 3;
         }
     }
 }

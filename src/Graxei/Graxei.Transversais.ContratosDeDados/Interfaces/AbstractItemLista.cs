@@ -21,7 +21,7 @@ namespace Graxei.Transversais.ContratosDeDados.Interfaces
                 total = new TotalElementosLista(0);
             }
 
-            if (atual.Atual > total.Total)
+            if (atual.Valor > total.Valor)
             {
                 throw new ArgumentOutOfRangeException(ErrosInternos.TotalMenorQueAtual);
             }

@@ -19,9 +19,9 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain
             _elementoAtualLista = elementoAtualLista;
             _quantidadeMaximaLinksPaginacaoPorVez = quantidadeMaximaLinksPaginacaoPorVez;
             _totalPaginas = 1;
-            if (_totalElementosLista.Total / _quantidadeMaximaLinksPaginacaoPorVez > 1)
+            if (_totalElementosLista.Valor / _quantidadeMaximaLinksPaginacaoPorVez > 1)
             {
-                _totalPaginas = _totalElementosLista.Total / 10;
+                _totalPaginas = _totalElementosLista.Valor / 10;
             }
             _linkBuilderStrategy = linkBuilderStrategy;
         }

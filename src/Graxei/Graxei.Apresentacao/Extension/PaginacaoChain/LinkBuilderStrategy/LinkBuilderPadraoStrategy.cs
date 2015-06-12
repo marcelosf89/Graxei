@@ -42,7 +42,7 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy
             _links.RemoveAt((int)elemento);
             string atual =
                 _ajaxHelper.IconActionLink(string.Empty,
-                    _paginaAtualLista.Atual.ToString(CultureInfo.InvariantCulture), _action, _controller,
+                    _paginaAtualLista.Valor.ToString(CultureInfo.InvariantCulture), _action, _controller,
                     null, _ajaxOptions,
                     new Dictionary<string, object> { { "class", "btn btn-warning" }, { "disabled", "disabled" } })
                     .ToHtmlString();

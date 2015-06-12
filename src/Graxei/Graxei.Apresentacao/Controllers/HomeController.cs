@@ -97,9 +97,9 @@ namespace Graxei.Apresentacao.Controllers
             if (listaPesquisaContrato.Lista.Count < 10)
             {
                 pesquisarModel.NumeroMaximoPagina = pesquisarModel.PaginaSelecionada;
-            } else if (listaPesquisaContrato.Total.Total > 0)
+            } else if (listaPesquisaContrato.Total.Valor > 0)
             {
-                pesquisarModel.NumeroMaximoPagina = pesquisarModel.PaginaSelecionada = listaPesquisaContrato.Total.Total;
+                pesquisarModel.NumeroMaximoPagina = pesquisarModel.PaginaSelecionada = listaPesquisaContrato.Total.Valor;
             }
 
             TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;

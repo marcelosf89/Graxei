@@ -8,16 +8,16 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
 {
     public class TotalElementosLista
     {
-        public TotalElementosLista(long total)
+        public TotalElementosLista(long valor)
         {
-            _total = total;
+            _valor = valor;
         }
 
-        private long _total;
+        private long _valor;
 
-        public long Total
+        public long Valor
         {
-            get { return _total; }
+            get { return _valor; }
         }
 
         public override bool Equals(object obj)
@@ -28,12 +28,12 @@ namespace Graxei.Transversais.ContratosDeDados.TinyTypes
             }
 
             TotalElementosLista that = (TotalElementosLista)obj;
-            return that.Total == this.Total;
+            return that._valor == this._valor;
         }
 
         public override int GetHashCode()
         {
-            return this.Total.GetHashCode() ^ 3;
+            return this._valor.GetHashCode() ^ 3;
         }
     }
 }

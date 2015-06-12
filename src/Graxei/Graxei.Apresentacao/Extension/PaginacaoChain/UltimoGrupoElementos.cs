@@ -21,7 +21,7 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain
         {
             int meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2;
             long inicioUltimoGrupo = (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez) + 1;
-            return _elementoAtualLista.Atual > (inicioUltimoGrupo + meioLista);
+            return _elementoAtualLista.Valor > (inicioUltimoGrupo + meioLista);
         }
 
         public override long GetPrimeiraPaginaGrupoAtual()
@@ -36,7 +36,7 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain
 
         public override long GetElementoParaSubstituir()
         {
-            return _elementoAtualLista.Atual - (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez);
+            return _elementoAtualLista.Valor - (_totalPaginas - _quantidadeMaximaLinksPaginacaoPorVez);
         }
     }
 }

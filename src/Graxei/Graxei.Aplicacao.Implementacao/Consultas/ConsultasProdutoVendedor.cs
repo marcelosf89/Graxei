@@ -11,18 +11,19 @@ using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
 using System.Threading.Tasks;
 using Graxei.Transversais.ContratosDeDados.Listas;
+using Graxei.Transversais.Comum.Data;
 
 namespace Graxei.Aplicacao.Implementacao.Consultas
 {
     public class ConsultasProdutoVendedor : IConsultasProdutoVendedor
     {
-        public ConsultasProdutoVendedor(IServicoProdutoVendedor servicoProdutoVendedor, IPesquisaProduto pesquisaProduto)
+        public ConsultasProdutoVendedor(IServicoProdutoVendedor servicoProdutoVendedor, IPesquisaProduto pesquisaProduto, IDataSistema dataSistema)
         {
             _servicoProdutoVendedor = servicoProdutoVendedor;
             _pesquisaProduto = pesquisaProduto;
-
+            _dataSistema = dataSistema;
         }
-        
+
         public ListaPesquisaContrato Get(string texto)
         {
             return _servicoProdutoVendedor.Get(texto);
@@ -34,7 +35,7 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
             {
                 Criterio = texto,
                 InternetProtocol = ip,
-                DataPesquisa = DateTime.UtcNow
+                DataPesquisa = _dataSistema.Agora
             };
 
             Task.Run(() => _pesquisaProduto.RegistrarAsync(historicoPesquisa));
@@ -61,6 +62,8 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
         private IPesquisaProduto _pesquisaProduto;
 
         private IServicoProdutoVendedor _servicoProdutoVendedor { get; set; }
+
+        private IDataSistema _dataSistema;
 
     }
 }

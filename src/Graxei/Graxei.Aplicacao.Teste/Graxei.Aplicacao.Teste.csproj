@@ -72,7 +72,8 @@
     <Compile Include="Factories\BuildersTeste.cs" />
     <Compile Include="TesteConsultaAplicacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TesteConsultaProdutoVendedor.cs" />
+    <Compile Include="TesteConsultaProdutoVendedorOutros.cs" />
+    <Compile Include="TesteConsultaProdutoVendedorGet.cs" />
     <Compile Include="Transformacao\TesteTransformacaoLoja.cs" />
   </ItemGroup>
   <ItemGroup>

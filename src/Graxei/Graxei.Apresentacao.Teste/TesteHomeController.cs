@@ -13,7 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Graxei.Apresentacao.Teste
 {
@@ -38,6 +40,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComDoisElementos(q);
 
             // Act
+            _homeController.ControllerContext = ApresentacaoTesteComum.SetupContext(_ip, _homeController);
             ViewResult result = (ViewResult)_homeController.Pesquisar(q, _loja);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -55,6 +58,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComOnzeElementos(q);
 
             // Act
+            _homeController.ControllerContext = ApresentacaoTesteComum.SetupContext(_ip, _homeController);
             ViewResult result = (ViewResult)_homeController.Pesquisar(q, _loja);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -72,6 +76,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComDoisElementos(q);
 
             // Act
+            _homeController.ControllerContext = ApresentacaoTesteComum.SetupContext(_ip, _homeController);
             ViewResult result = (ViewResult)_homeController.Pesquisar(q, string.Empty);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -89,6 +94,7 @@ namespace Graxei.Apresentacao.Teste
             GetListaComOnzeElementos(q);
 
             // Act
+            _homeController.ControllerContext = ApresentacaoTesteComum.SetupContext(_ip, _homeController);
             ViewResult result = (ViewResult)_homeController.Pesquisar(q, string.Empty);
             PesquisarModel pesquisarModel = (PesquisarModel)result.Model;
             IList<PesquisaContrato> listaReal = pesquisarModel.PesquisaContrato;
@@ -189,7 +195,7 @@ namespace Graxei.Apresentacao.Teste
 
         private void SetupMocks(string q, ListaPesquisaContrato retorno)
         {
-            _mockConsultasProdutoVendedor.Setup(p => p.Get(q, _pais, _cidade, 0, "0.0.0.1")).Returns(retorno);
+            _mockConsultasProdutoVendedor.Setup(p => p.Get(q, _pais, _cidade, 0, _ip)).Returns(retorno);
             _mockCacheComum.SetupGet(p => p.IpRegiaoModel).Returns(_ipRegiaoModel);
         }
 
@@ -207,7 +213,11 @@ namespace Graxei.Apresentacao.Teste
         
         string _cidade = "Jacarta";
 
+        string _ip = "127.0.0.1";
+
         IpRegiaoModel _ipRegiaoModel;
+
+      
 
     }
 }

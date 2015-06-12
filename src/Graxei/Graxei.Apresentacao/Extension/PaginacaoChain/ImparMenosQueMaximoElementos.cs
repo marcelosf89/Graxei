@@ -15,7 +15,7 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain
         {
             bool impar = (_quantidadeMaximaLinksPaginacaoPorVez % 2 != 0);
             int meioLista = _quantidadeMaximaLinksPaginacaoPorVez / 2 + 1;
-            bool menosQueMaximoElementos = _elementoAtualLista.Atual < _quantidadeMaximaLinksPaginacaoPorVez && _elementoAtualLista.Atual <= meioLista;
+            bool menosQueMaximoElementos = _elementoAtualLista.Valor < _quantidadeMaximaLinksPaginacaoPorVez && _elementoAtualLista.Valor <= meioLista;
             return impar && menosQueMaximoElementos;
         }
 
@@ -33,7 +33,7 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain
 
         public override long GetElementoParaSubstituir()
         {
-            return _elementoAtualLista.Atual;
+            return _elementoAtualLista.Valor;
         }
 
     }

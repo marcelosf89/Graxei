@@ -72,7 +72,7 @@ namespace Graxei.Apresentacao.Extension
 
         public static MvcHtmlString LinkPaginacao(this AjaxHelper ajaxHelper, string controller, string action, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao, string mensagemNenhumResultado)
         {
-            if (listaTotalElementos.Total <= 0)
+            if (listaTotalElementos.Valor <= 0)
             {
                 return MvcHtmlString.Create(string.Format("<div>{0}</div>", mensagemNenhumResultado));
             }
@@ -89,7 +89,7 @@ namespace Graxei.Apresentacao.Extension
 
         public static MvcHtmlString LinkPaginacaoPesquisaProdutos(this AjaxHelper ajaxHelper, PaginaAtualLista paginaAtualLista, TotalElementosLista listaTotalElementos, int maximoElementosPaginacao)
         {
-            if (listaTotalElementos.Total <= 0)
+            if (listaTotalElementos.Valor <= 0)
             {
                 return MvcHtmlString.Create("<div>Nenhum resultado</div>");
             }

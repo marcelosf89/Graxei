@@ -21,18 +21,18 @@ namespace Graxei.Apresentacao.Extension.PaginacaoChain
         public override bool RegraAtende()
         {
             bool impar = (_quantidadeMaximaLinksPaginacaoPorVez%2 != 0);
-            bool ficarNoCentro = _elementoAtualLista.Atual <= (_totalPaginas - _meioLista) && _elementoAtualLista.Atual > _meioLista;
+            bool ficarNoCentro = _elementoAtualLista.Valor <= (_totalPaginas - _meioLista) && _elementoAtualLista.Valor > _meioLista;
             return (impar && ficarNoCentro);
         }
 
         public override long GetPrimeiraPaginaGrupoAtual()
         {
-            return _elementoAtualLista.Atual - _meioLista;
+            return _elementoAtualLista.Valor - _meioLista;
         }
 
         public override long GetUltimaPaginaGrupoAtual()
         {
-            return _elementoAtualLista.Atual + _meioLista;
+            return _elementoAtualLista.Valor + _meioLista;
         }
 
         public override long GetElementoParaSubstituir()
