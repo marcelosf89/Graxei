@@ -78,7 +78,7 @@ namespace Graxei.Apresentacao.Controllers
             pesquisarModel.PesquisaContrato = listaPesquisaContrato.Lista;
 
             stopWatch.Stop();
-            ViewBag.TempoBusca = string.Format("{0} segundos", stopWatch.Elapsed.ToString(@"ss\,fff"));
+            ViewBag.TempoBusca = string.Format("{0} segundos", stopWatch.Elapsed.ToString(@"s\,fff"));
             ViewBag.newq = q;
             return View(pesquisarModel);
         }
@@ -104,7 +104,7 @@ namespace Graxei.Apresentacao.Controllers
 
             TempData["txtSearch"] = ViewBag.PesquisarModel = pesquisarModel;
             stopWatch.Stop();
-            ViewBag.TempoBusca = string.Format("{0} segundos", stopWatch.Elapsed.ToString(@"ss\,fff"));
+            ViewBag.TempoBusca = string.Format("{0} segundos", stopWatch.Elapsed.ToString(@"s\,fff"));
             return View("Pesquisar", listaPesquisaContrato.Lista);
         }
 
