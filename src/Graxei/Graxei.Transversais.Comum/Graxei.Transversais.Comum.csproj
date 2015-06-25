@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiHttpContent.cs" />
+    <Compile Include="Api\ResponseContrato.cs" />
     <Compile Include="Autenticacao\GerenciadorAutenticacao.cs" />
     <Compile Include="Autenticacao\Interfaces\IGerenciadorAutenticacao.cs" />
     <Compile Include="Constantes.cs" />

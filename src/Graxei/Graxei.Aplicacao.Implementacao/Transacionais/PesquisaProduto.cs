@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Net;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {
@@ -40,6 +41,11 @@ namespace Graxei.Aplicacao.Implementacao.Transacionais
                     _httpClient.BaseAddress = new Uri(api.Servidor);
                     _httpClient.Timeout = TimeSpan.FromSeconds(2);
                     HttpResponseMessage message = await _httpClient.PostAsync(api.GetRotaTratandoBarraNoInicio("pesquisa-produto"), content);
+                    if (!ApiHttpContent.ResponseOk(message))
+                    {
+                        _log.Registrar(json);
+                        _log.Registrar("httpcall", json);
+                    }
                 }
             }
             catch (Exception)
