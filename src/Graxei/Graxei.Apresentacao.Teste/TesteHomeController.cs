@@ -122,34 +122,6 @@ namespace Graxei.Apresentacao.Teste
             _mockCacheComum.VerifySet(p => p.IpRegiaoModel = ipRegiaoModel, Times.Once);
         }
 
-        [TestMethod]
-        public void QuandoLojaNãoExistirDeveRetornar404()
-        {
-            // Arrange
-            string lojaInexistente = "lojaQueNaoExiste";
-            _mockConsultasLojas.Setup(p => p.GetPorUrl(lojaInexistente)).Returns(null as Loja);
-
-            // Act
-            ViewResult viewResult = (ViewResult)_homeController.IndexLoja(lojaInexistente, "q");
-
-            // Assert
-            Assert.AreEqual("Error404", viewResult.ViewName);
-        }
-
-        [TestMethod]
-        public void QuandoLojaExistirDeveRetornarIndex()
-        {
-            // Arrange
-            string lojaExistente = "lojaQueExiste";
-            _mockConsultasLojas.Setup(p => p.GetPorUrl(lojaExistente)).Returns(new Loja());
-
-            // Act
-            ViewResult viewResult = (ViewResult)_homeController.IndexLoja(lojaExistente, "q");
-
-            // Assert
-            Assert.AreEqual("Index", viewResult.ViewName);
-        }
-
         private void AssertOnzeParaListaENuloParaNumeroMaximoDePaginas(IList<PesquisaContrato> listaReal, PesquisarModel pesquisarModel)
         {
             Assert.AreEqual(11, listaReal.Count);

@@ -54,8 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestePesquisaProdutoFactory.cs" />
     <Compile Include="Helper\PostgresVisitorHelper.cs" />
     <Compile Include="PersistenciaAtributos.cs" />
+    <Compile Include="TestePesquisaProduto.cs" />
     <Compile Include="TesteProdutoVendedorNativo.cs" />
     <Compile Include="TestePersistenciaListaProdutosLoja.cs" />
     <Compile Include="PersistenciaLojas.cs" />
@@ -70,6 +72,10 @@
     <ProjectReference Include="..\FluentNHibernate.Configuracao\Graxei.Persistencia.Implementacao.FluentNHibernate.csproj">
       <Project>{c1df8aa8-c6f2-4518-94a8-d80658d2091d}</Project>
       <Name>Graxei.Persistencia.Implementacao.FluentNHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graxei.Comum.Teste\Graxei.Comum.Teste.csproj">
+      <Project>{928b3b7f-b33b-4aa6-8e49-f6757913ad67}</Project>
+      <Name>Graxei.Comum.Teste</Name>
     </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>

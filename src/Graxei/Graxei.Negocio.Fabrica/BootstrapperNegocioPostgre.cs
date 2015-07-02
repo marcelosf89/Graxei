@@ -3,9 +3,11 @@ using Graxei.Negocio.Contrato.Factories;
 using Graxei.Negocio.Implementacao;
 using Graxei.Negocio.Implementacao.Factories;
 using Graxei.Persistencia.Contrato;
+using Graxei.Persistencia.Contrato.PesquisaProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
+using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.PesquisaProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.NHibernate;
@@ -61,7 +63,7 @@ namespace Graxei.Negocio.Fabrica
                       .RegisterType<IMudancaProdutoVendedorFuncaoFactory, MudancaoProdutoVendedorFuncaoFactory>()
                       .RegisterType<IBairrosBuilder, BairrosBuilder>()
                       .RegisterType<IEnderecosBuilder, EnderecosBuilder>()
-                      .RegisterType<IRepositorioPesquisaProduto, PesquisaProdutoRepositorio>();
+                      .RegisterType<IPesquisaProdutoFactory, PesquisaProdutoFactory>();
         }
     }
 }

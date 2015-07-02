@@ -1,6 +1,5 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Operacoes;
-using Graxei.Aplicacao.Implementacao.Operacoes;
 using Graxei.Apresentacao.Infrastructure.Cache;
 using Graxei.Apresentacao.Infrastructure.Filters;
 using Graxei.Apresentacao.Models;
@@ -108,34 +107,9 @@ namespace Graxei.Apresentacao.Controllers
             return View("Pesquisar", listaPesquisaContrato.Lista);
         }
 
-        private string GetQuerySearch(string q, string lojaNome)
-        {
-            if (!String.IsNullOrEmpty(lojaNome) && !q.ToLower().Contains("loja:" + lojaNome))
-            {
-                int idxOfLoja = q.ToLower().IndexOf("loja:");
-                if (idxOfLoja >= 0)
-                {
-                    int nIdxOf = q.Substring(idxOfLoja).IndexOf(' ');
-
-                    string loja = q.Substring(idxOfLoja + 5);
-                    if (nIdxOf > 0)
-                        loja = q.Substring(idxOfLoja + 5, nIdxOf - 5);
-
-                    q = q.Replace("loja:" + lojaNome, " loja:" + loja);
-                    lojaNome = loja;
-                }
-                else
-                {
-                    q = q + " loja:" + lojaNome;
-                }
-            }
-            return q;
-        }
-
         [AllowAnonymous]
         public ActionResult Planos()
         {
-
             IList<Plano> lp = _consultasPlanos.GetPlanosAtivos();
             return View(lp);
         }
@@ -239,27 +213,6 @@ namespace Graxei.Apresentacao.Controllers
             ModelState.Clear();
             ViewBag.OperacaoSucesso = Sucesso.EmailEnviado;
             return PartialView("ContatoAnuncio", new ContatoModel());
-        }
-
-        [AllowAnonymous]
-        public ActionResult IndexLoja(String lojaNome, String q)
-        {
-            Loja loja = _consultasLojas.GetPorUrl(lojaNome);
-
-            if (loja == null)
-            {
-                return View("Error404");
-            }
-
-            ViewBag.loja = loja;
-
-            if (!String.IsNullOrEmpty(q))
-            {
-                q = GetQuerySearch(q, lojaNome);
-                ViewBag.q = q;
-            }
-            return View("Index");
-
         }
 
         [AllowAnonymous]

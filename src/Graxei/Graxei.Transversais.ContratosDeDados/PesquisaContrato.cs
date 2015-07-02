@@ -36,5 +36,6 @@ namespace Graxei.Transversais.ContratosDeDados
                 return MinhaDescricao;
             }
         }
+
     }
 }

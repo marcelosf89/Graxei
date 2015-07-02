@@ -40,10 +40,10 @@ namespace Graxei.Aplicacao.Implementacao.Consultas
 
             Task.Run(() => _pesquisaProduto.RegistrarAsync(historicoPesquisa));
 
-            ListaPesquisaContrato retorno = _servicoProdutoVendedor.Get(texto, pais, cidade, pagina);
+            ListaPesquisaContrato retorno = _servicoProdutoVendedor.Get(texto, pagina);
             if (!retorno.Lista.Any())
             {
-                retorno = _servicoProdutoVendedor.GetUltimaPagina(texto, pais, cidade);
+                retorno = _servicoProdutoVendedor.GetUltimaPagina(texto);
             }
 
             return retorno;

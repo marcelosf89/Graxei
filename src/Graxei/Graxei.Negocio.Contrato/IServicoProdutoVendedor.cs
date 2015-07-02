@@ -9,11 +9,11 @@ namespace Graxei.Negocio.Contrato
     {
         ListaPesquisaContrato Get(string texto);
 
-        ListaPesquisaContrato Get(string texto, string pais, string cidade, int page);
+        ListaPesquisaContrato Get(string texto, int pagina);
 
         IList<ProdutoLojaPrecoContrato> AtualizarLista(IList<ProdutoLojaPrecoContrato> produtoLojaPrecoContrato);
 
-        ListaPesquisaContrato GetUltimaPagina(string texto, string pais, string cidade);
+        ListaPesquisaContrato GetUltimaPagina(string criterio);
 
         long GetQuantidadeProduto();
 

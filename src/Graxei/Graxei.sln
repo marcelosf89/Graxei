@@ -88,6 +88,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1AE10A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Aplicacao.Teste", "Graxei.Aplicacao.Teste\Graxei.Aplicacao.Teste.csproj", "{EB5D9E89-820E-4051-816D-5093DF9AAACB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graxei.Comum.Teste", "Graxei.Comum.Teste\Graxei.Comum.Teste.csproj", "{928B3B7F-B33B-4AA6-8E49-F6757913AD67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -170,6 +172,10 @@ Global
 		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB5D9E89-820E-4051-816D-5093DF9AAACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{928B3B7F-B33B-4AA6-8E49-F6757913AD67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928B3B7F-B33B-4AA6-8E49-F6757913AD67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928B3B7F-B33B-4AA6-8E49-F6757913AD67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928B3B7F-B33B-4AA6-8E49-F6757913AD67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,6 +210,7 @@ Global
 		{52009047-2402-49DC-AECA-97F3AD52B601} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 		{FBB5E754-8DC3-467A-B5CA-7F1FEBA413D9} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 		{EB5D9E89-820E-4051-816D-5093DF9AAACB} = {24C44558-CBEE-423D-B14C-138A3D15549B}
+		{928B3B7F-B33B-4AA6-8E49-F6757913AD67} = {24C44558-CBEE-423D-B14C-138A3D15549B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35

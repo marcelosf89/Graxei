@@ -36,7 +36,7 @@ namespace Graxei.Aplicacao.Teste
             ListaPesquisaContrato real = GetRealDeListaNaoVazia(esperado);
 
             // Assert
-            _mockServicoProdutoVendedor.Verify(p => p.GetUltimaPagina(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _mockServicoProdutoVendedor.Verify(p => p.GetUltimaPagina(It.IsAny<string>()), Times.Never);
             Assert.IsTrue(AssertListas(esperado, real));
 
         }
@@ -68,7 +68,7 @@ namespace Graxei.Aplicacao.Teste
             ListaPesquisaContrato real = GetRealDeListaVazia(esperado);
 
             // Assert
-            _mockServicoProdutoVendedor.Verify(p => p.GetUltimaPagina(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            _mockServicoProdutoVendedor.Verify(p => p.GetUltimaPagina(It.IsAny<string>()), Times.Once);
             Assert.IsTrue(AssertListas(esperado, real));
 
         }
@@ -98,7 +98,7 @@ namespace Graxei.Aplicacao.Teste
             {
                 esperado = GetComum();
             }
-            _mockServicoProdutoVendedor.Setup(p => p.Get(_texto, _pais, _cidade, _pagina)).Returns(esperado);
+            _mockServicoProdutoVendedor.Setup(p => p.Get(_texto, _pagina)).Returns(esperado);
 
             return _consultasProdutoVendedor.Get(_texto, _pais, _cidade, _pagina, ip);
         }
@@ -111,8 +111,8 @@ namespace Graxei.Aplicacao.Teste
             }
             ListaPesquisaContrato vazio = new ListaPesquisaContrato(new List<PesquisaContrato>(), new TotalElementosLista(0), new PaginaAtualLista(0));
 
-            _mockServicoProdutoVendedor.Setup(p => p.Get(_texto, _pais, _cidade, _pagina)).Returns(vazio);
-            _mockServicoProdutoVendedor.Setup(p => p.GetUltimaPagina(_texto, _pais, _cidade)).Returns(esperado);
+            _mockServicoProdutoVendedor.Setup(p => p.Get(_texto, _pagina)).Returns(vazio);
+            _mockServicoProdutoVendedor.Setup(p => p.GetUltimaPagina(_texto)).Returns(esperado);
 
             return _consultasProdutoVendedor.Get(_texto, _pais, _cidade, _pagina, ip);
         }

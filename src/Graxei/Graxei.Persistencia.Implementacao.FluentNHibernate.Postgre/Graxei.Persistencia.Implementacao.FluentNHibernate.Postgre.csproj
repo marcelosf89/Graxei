@@ -103,7 +103,10 @@
     <Compile Include="Constantes\ListaProdutosSqlResolverConstantes.cs" />
     <Compile Include="ConsultasSQL.cs" />
     <Compile Include="ListaProdutosLojaRepositorio.cs" />
-    <Compile Include="PesquisaProdutoRepositorio.cs" />
+    <Compile Include="PesquisaProduto\AbstractPesquisaProduto.cs" />
+    <Compile Include="PesquisaProduto\PesquisaProdutoFactory.cs" />
+    <Compile Include="PesquisaProduto\PesquisaProdutoLoja.cs" />
+    <Compile Include="PesquisaProduto\PesquisaProdutoSimples.cs" />
     <Compile Include="PlanosNHibernatePostgre.cs" />
     <Compile Include="EnderecosRepositorio.cs" />
     <Compile Include="EstadosNHibernatePostgre.cs" />
@@ -158,6 +161,7 @@
       <Name>Graxei.Transversais.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -578,10 +578,6 @@
       <Project>{08975121-a680-4ac3-a0da-984d4af28156}</Project>
       <Name>Graxei.Aplicacao.Fabrica</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Graxei.Aplicacao.Implementacao\Graxei.Aplicacao.Implementacao.csproj">
-      <Project>{0788d099-d0c1-43d7-b33a-96800274e201}</Project>
-      <Name>Graxei.Aplicacao.Implementacao</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Graxei.Modelo\Graxei.Modelo.csproj">
       <Project>{fe888923-d56d-403a-b51f-0549c4e12919}</Project>
       <Name>Graxei.Modelo</Name>
