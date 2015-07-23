@@ -23,7 +23,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
     public class EnderecosController : Controller
     {
 
-        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados, 
+        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados,
                                    IConsultaCidades consultasCidades, IGerenciamentoEnderecos gerenciamentoEnderecos, IOperacaoEndereco operacaoEndereco, ICacheElementosEndereco cacheElementosEndereco,
                                    ITransformacaoMutua<Endereco, EnderecoVistaContrato> transformacaoEndereco)
         {
@@ -46,7 +46,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             if (item.IdEstado > 0)
             {
                 _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(item.IdEstado));
-            }  
+            }
 
             IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
             ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
@@ -56,12 +56,13 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         public ActionResult Novo(long idLoja)
         {
             ModelState.Clear();
-            EnderecoVistaContrato item = new EnderecoVistaContrato();
-            item.IdLoja = idLoja;
+            //EnderecoVistaContrato item = new EnderecoVistaContrato();
+            //item.IdLoja = idLoja;
 
-            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView("ModalEndereco", item);
+            //IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
+            //ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
+            //return PartialView("ModalEndereco", item);
+            return PartialView("ModalEnderecoAngular");
         }
 
         [HttpPost]
@@ -108,30 +109,33 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Salvar(EnderecoVistaContrato enderecoModel)
+        public JsonResult Salvar(EnderecoVistaContrato enderecoModel)
         {
+            StatusOperacao statusOperacao = new StatusOperacao();
             if (!ModelState.IsValid)
             {
-                return PartialFormularioEndereco(enderecoModel);
+                statusOperacao.Mensagem = "Modelstate inválido";
             }
-            try
+            else
             {
-                _gerenciamentoEnderecos.Salvar(enderecoModel);
+                try
+                {
+                    _gerenciamentoEnderecos.Salvar(enderecoModel);
+                    statusOperacao.Ok = true;
+                    statusOperacao.Mensagem = "Endereço salvo";
+                }
+                catch (GraxeiException graxeiException)
+                {
+                    statusOperacao.Mensagem = graxeiException.Message;
+                }
+                catch (Exception)
+                {
+                    statusOperacao.Mensagem = "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos";
+                }
             }
-            catch (GraxeiException graxeiException)
-            {
-                ModelState.AddModelError(string.Empty, graxeiException.Message);
-                return PartialFormularioEndereco(enderecoModel);
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError(string.Empty, "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos");
-                return PartialFormularioEndereco(enderecoModel);
-            }
-            ModelState.Clear();
-            ViewBag.OperacaoSucesso = Sucesso.EnderecoSalvo;
-            return PartialFormularioEndereco(enderecoModel);
 
+            ModelState.Clear();
+            return Json(statusOperacao);
         }
 
         [HttpPost]

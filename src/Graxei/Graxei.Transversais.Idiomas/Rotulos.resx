@@ -270,4 +270,7 @@
   <data name="Acao" xml:space="preserve">
     <value>Ação</value>
   </data>
+  <data name="CNPJ" xml:space="preserve">
+    <value>CNPJ</value>
+  </data>
 </root>

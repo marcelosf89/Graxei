@@ -2,22 +2,20 @@
 @{
 
     Scripts.Render("~/bundles/typeahead");
-    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-
-    <div class="row" id="content-nova">
-        <div class="col-md-12">
-            @{
-                AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "content-nova", HttpMethod = "POST", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
-                if (Model.LojaContrato == null || this.Model.LojaContrato.Id == 0)
-                {
-                    ajax.UpdateTargetId = "myContent"; 
-                }
-                using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { @class = "form-horizontal" }))
-                {
-                    Html.RenderPartial("Formulario", Model);
-                }
-            }
-        </div>
-    </div>
+    Scripts.Render("~/bundles/jqueryvalajax");
 }
+<div class="row" id="content-nova">
+    <div class="col-md-12">
+        @{
+            AjaxOptions ajax = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "content-nova", HttpMethod = "POST", OnBegin = "openL('Salvando...');", OnComplete = "closeL();" };
+            if (Model.LojaContrato == null || this.Model.LojaContrato.Id == 0)
+            {
+                ajax.UpdateTargetId = "myContent";
+            }
+            using (Ajax.BeginForm("Salvar", "Lojas", null, ajax, new { @class = "form-horizontal" }))
+            {
+                Html.RenderPartial("Formulario", Model);
+            }
+        }
+    </div>
+</div>

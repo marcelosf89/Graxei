@@ -142,6 +142,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CNPJ.
+        /// </summary>
+        public static string CNPJ {
+            get {
+                return ResourceManager.GetString("CNPJ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Código.
         /// </summary>
         public static string Codigo {
