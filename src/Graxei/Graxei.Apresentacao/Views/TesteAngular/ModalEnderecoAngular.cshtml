@@ -1,0 +1,122 @@
+﻿@{Layout = "";}
+@model string
+<html>
+<head>
+    <title>Angular</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js"></script>
+    @Styles.Render("~/Content/bootstrap/base")
+    @Styles.Render("~/css/themes")
+</head>
+<body>
+    <div ng-app="endereco">
+        <div>
+            @*<input type="hidden" id="endLista" value="@Url.Action("ListaEnderecos", "Enderecos")"/>
+                <input type="hidden" id="estadoSelec" value="@Url.Action("EstadoSelecionado", "Enderecos")"/>
+                <input type="hidden" id="cidadeSelec" value="@Url.Action("CidadeSelecionada", "Enderecos")"/>
+                <input type="hidden" id="bairroSelec" value="@Url.Action("BairroSelecionado", "Enderecos")"/>
+                <input type="hidden" id="autoCidade" value="@Url.Action("AutoCompleteCidade", "Enderecos")"/>
+                <input type="hidden" id="autoBairro" value="@Url.Action("AutoCompleteBairro", "Enderecos")"/>
+                <input type="hidden" id="autoLogradouro" value="@Url.Action("autocompletelogradouro", "Enderecos")">*@
+            <div ng-show="enderecoCtrl.operacao.ok" class="form-group has-success">
+                <div class="col-lg-offset-1 col-lg-11">
+                    {{enderecoCtrl.operacao.mensagem}}
+                </div>
+            </div>
+            <form ng-controller="EnderecoController as enderecoCtrl" name="enderecoForm" class="form-horizontal" ng-submit="enderecoCtrl.salvar(this.endereco)" ng-init="enderecoCtrl.estados = @Model" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label col-md-2">
+                                <label>@Rotulos.CNPJ</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" data-val="true" ng-model="endereco.cnpj" required />
+                            </div>
+                            <div class="control-label col-md-2">
+                                <label>@Rotulos.Estado</label>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control valid" ng-options="item.Id as item.Sigla for item in enderecoCtrl.estados" data-val="true" data-val-number="The field Estado must be a number." data-val-required="Estado é obrigatório" id="IdEstado" name="IdEstado" aria-required="true" aria-invalid="false" aria-describedby="IdEstado-error" ng-model="endereco.idEstado"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{enderecoCtrl.endereco.idEstado}}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label col-md-2">
+                                <label>@Rotulos.Cidade</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input class="form-control tt-input" data-val="true" data-val-required="Cidade é obrigatória" id="IdCidade" name="Cidade" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.cidade" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label col-md-2">
+                                <label>@Rotulos.Bairro</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input autocomplete="off" class="form-control typeahead tt-input" data-val="true" data-val-required="Cidade é obrigatória" id="IdCidade" name="Cidade" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="enderecoCtrl.endereco.bairro" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label col-md-2">
+                                <label>@Rotulos.Logradouro</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input class="form-control tt-input" data-val="true" data-val-length="O número máximo de caracteres é de 250" data-val-length-max="250" data-val-required="Logradouro é obrigatório" id="IdLogradouro" name="Logradouro" type="text" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="enderecoCtrl.endereco.logradouro" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label col-md-2">
+                                <label>@Rotulos.Numero</label>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" data-val="true" data-val-length="O número máximo de caracteres é de 250" data-val-length-max="150" data-val-required="Número é obrigatório" id="IdNumero" name="Numero" type="text" value="" ng-model="enderecoCtrl.endereco.numero" required>
+                            </div>
+                            <div class=" control-label col-md-2">
+                                <label>@Rotulos.Complemento</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" data-val="true" data-val-length="O número máximo de caracteres é de 150" data-val-length-max="250" id="IdComplemento" name="Complemento" type="text" value="" ng-model="enderecoCtrl.endereco.complemento">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="control-label col-md-2">
+
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rodape">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="@Rotulos.Salvar" />
+                        <button class="btn btn-danger" data-dismiss="modal">@Rotulos.Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

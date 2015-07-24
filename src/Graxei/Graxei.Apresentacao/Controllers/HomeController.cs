@@ -26,6 +26,7 @@ using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Apresentacao.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public HomeController(IConsultasProdutoVendedor consultaVendedor, IConsultasPlanos consultasPlanos, IConsultasLojas consultasLojas, IGerenciamentoMensageria gerenciamentoMensageria, ICacheComum cacheComum, IConsultaFabricantes appConsultasFabricantes)
@@ -37,9 +38,9 @@ namespace Graxei.Apresentacao.Controllers
             _gerenciamentoMensageria = gerenciamentoMensageria;
             _cacheComum = cacheComum;
         }
+
         //
         // GET: /Home/
-        [AllowAnonymous]
         public ActionResult Index(string q)
         {
             if (q != null)
@@ -50,7 +51,6 @@ namespace Graxei.Apresentacao.Controllers
         }
 
         [AjaxGenericException]
-        [AllowAnonymous]
         public ActionResult Pesquisar(string q, string lojaNome)
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
@@ -82,7 +82,6 @@ namespace Graxei.Apresentacao.Controllers
             return View(pesquisarModel);
         }
 
-        [AllowAnonymous]
         public ActionResult PesquisarPagina(string paginaSelecionada)
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
@@ -107,7 +106,6 @@ namespace Graxei.Apresentacao.Controllers
             return View("Pesquisar", listaPesquisaContrato.Lista);
         }
 
-        [AllowAnonymous]
         public ActionResult Planos()
         {
             IList<Plano> lp = _consultasPlanos.GetPlanosAtivos();
@@ -115,7 +113,6 @@ namespace Graxei.Apresentacao.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public void SetRegionIP(string pais, string cidade, string regiao)
         {
             IpRegiaoModel ipRegiaoModel = new IpRegiaoModel()
@@ -128,31 +125,26 @@ namespace Graxei.Apresentacao.Controllers
             return;
         }
 
-        [AllowAnonymous]
         public ActionResult VerLoja()
         {
             return RedirectToAction("VerLoja", "Loja", new { id = 0 });
         }
 
-        [AllowAnonymous]
         public ActionResult _Index()
         {
             return PartialView("_Index");
         }
 
-        [AllowAnonymous]
         public ActionResult _Sobre()
         {
             return PartialView("_Sobre");
         }
 
-        [AllowAnonymous]
         public ActionResult Contato()
         {
             return View("Contato", new ContatoModel());
         }
 
-        [AllowAnonymous]
         public ActionResult Enviar(ContatoModel contatoModel)
         {
             if (!ModelState.IsValid)
@@ -176,14 +168,11 @@ namespace Graxei.Apresentacao.Controllers
             return PartialView("Contato", new ContatoModel());
         }
 
-
-        [AllowAnonymous]
         public ActionResult ContatoAnuncioModal()
         {
             return View("ContatoAnuncioModal");
         }
 
-        [AllowAnonymous]
         public ActionResult ContatoAnuncio()
         {
             ContatoModel cm = new ContatoModel();
@@ -191,7 +180,6 @@ namespace Graxei.Apresentacao.Controllers
             return View("ContatoAnuncio", cm);
         }
 
-        [AllowAnonymous]
         public ActionResult EnviarContatoAnuncio(ContatoModel contatoModel)
         {
             if (!ModelState.IsValid)
@@ -215,7 +203,6 @@ namespace Graxei.Apresentacao.Controllers
             return PartialView("ContatoAnuncio", new ContatoModel());
         }
 
-        [AllowAnonymous]
         public FileResult GetThumbnail(int idProduto = 0)
         {
             if (idProduto != 0)
@@ -231,8 +218,12 @@ namespace Graxei.Apresentacao.Controllers
             return null;
         }
 
-        [AllowAnonymous]
         public ActionResult Error404()
+        {
+            return View();
+        }
+
+        public ActionResult ModalEnderecoAngular()
         {
             return View();
         }

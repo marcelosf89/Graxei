@@ -1,17 +1,19 @@
 ﻿(function () {
     var app = angular.module('endereco', []);
 
-    app.controller('EnderecoController', ['$http', function ($http) {
+    app.controller('EnderecoController',  ['$http', function ($http) {
+
+        this.estados = {};
 
         this.endereco = {};
 
         this.operacao = { ok: false };
 
-        function salvar(endereco) {
-            $http.post('/Administrativo/Endereco/Salvar', { enderecoModel: endereco}).
-                success(function(statusOperacao){
+        this.salvar = function (argumento) {
+            $http.post('/Administrativo/Enderecos/Salvar', { enderecoModel: argumento }).
+                success(function (statusOperacao) {
                     this.operacao = statusOperacao;
                 });
         }
     }]);
-});
+})();
