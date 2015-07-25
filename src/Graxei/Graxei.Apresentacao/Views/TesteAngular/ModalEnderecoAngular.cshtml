@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-repeat="tel in enderecoCtrl.endereco.telefones">
+                <div class="row" ng-repeat="tel in enderecoCtrl.endereco.novaLogicaTelefone track by $index">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="control-label col-md-2" ng-show="$index == 0">
@@ -117,7 +117,7 @@
                             </div>
                             <div>
                                 <div class="col-md-2" ng-class="{'col-md-offset-2': $index > 0}">
-                                    <input class="form-control" id="IdNumero" name="telefone" type="text" value="" ng-model="endereco.telefones" required>
+                                    <input class="form-control" id="IdNumero" name="telefone" type="text" value="" ng-model="tel.numero" required>
                                 </div>
                                 <div class="col-md-2" ng-show="!$last">
                                     <button ng-click="enderecoCtrl.removerTelefone($index)" type="button">Remover</button>

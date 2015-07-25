@@ -5,7 +5,7 @@
 
         this.estados = {};
 
-        this.endereco = { telefones: [""] };
+        this.endereco = { novaLogicaTelefone: [{ numero: "" }] };
 
         this.operacao = { ok: false };
 
@@ -16,20 +16,21 @@
             this.idLoja = loja;
         }
 
-        this.salvar = function (argumento) {
-            argumento.idLoja = this.idLoja;
-            $http.post('/Administrativo/Enderecos/Salvar', { enderecoModel: argumento }).
+        this.salvar = function (modelo) {
+            modelo.idLoja = this.idLoja;
+            modelo.novaLogicaTelefone = this.endereco.novaLogicaTelefone;
+            $http.post('/Administrativo/Enderecos/Salvar', { enderecoModel: modelo }).
                 success(function (statusOperacao) {
                     this.operacao = statusOperacao;
                 });
         }
 
         this.adicionarTelefone = function () {
-            this.endereco.telefones.push([""]);
+            this.endereco.novaLogicaTelefone.push({ numero: "" });
         }
 
         this.removerTelefone = function (index) {
-            this.endereco.telefones.splice(index, 1);
+            this.endereco.novaLogicaTelefone.splice(index, 1);
         }
 
     }]);
