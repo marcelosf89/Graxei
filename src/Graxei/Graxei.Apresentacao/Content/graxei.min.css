@@ -215,7 +215,7 @@ a.thumbnail-plano {
         overflow-y: auto;
     }
 
-span.field-validation-error, small.field-validation-error {
+span.field-validation-error, small.field-validation-error, span.ng-active {
     display: block;
     padding: 0.375rem;
     margin-top: -1px;

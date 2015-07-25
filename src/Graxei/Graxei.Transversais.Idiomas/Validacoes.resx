@@ -123,6 +123,9 @@
   <data name="CidadeObrigatoria" xml:space="preserve">
     <value>Cidade é obrigatória</value>
   </data>
+  <data name="CnpjObrigatorio" xml:space="preserve">
+    <value>CNPJ é obrigatório</value>
+  </data>
   <data name="EstadoObrigatorio" xml:space="preserve">
     <value>Estado é obrigatório</value>
   </data>

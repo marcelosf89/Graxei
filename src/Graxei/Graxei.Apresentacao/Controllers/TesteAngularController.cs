@@ -1,4 +1,5 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
+using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Comum.Entidades;
 using Newtonsoft.Json;
@@ -23,7 +24,8 @@ namespace Graxei.Apresentacao.Controllers
         {
             IList<Estado> listaEstados = _consultaEstados.GetEstados(EstadoOrdem.Sigla);
             string json = JsonConvert.SerializeObject(listaEstados);
-            return View(viewName: "ModalEnderecoAngular", model: json);
+            NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = 1, JsonEstados = json };
+            return View(viewName: "ModalEnderecoAngular", model: novoEnderecoModel);
         }
 
         private IConsultaEstados _consultaEstados;

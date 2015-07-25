@@ -52,5 +52,7 @@ namespace Graxei.Transversais.ContratosDeDados
         [StringLength(50, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximoTelefones")]
         public string Cnpj { get; set; }
 
+        public IList<string> NovaLogicaTelefone { get; set; }
+
     }
 }
