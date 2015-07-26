@@ -38,9 +38,8 @@ namespace Graxei.Apresentacao.Infrastructure
             {
                 foreach (Telefone telefone in entidade.Telefones)
                 {
-                    enderecoModel.Telefones += telefone.Numero + ", ";
+                    enderecoModel.Telefones.Add(new TelefoneContrato { Numero = telefone.Numero });
                 }
-                enderecoModel.Telefones = enderecoModel.Telefones.Substring(0, enderecoModel.Telefones.Length - 2);
             }
             return enderecoModel;
         }

@@ -4,6 +4,7 @@ using Graxei.Apresentacao.Binders;
 using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using Microsoft.Practices.Unity;
+using Newtonsoft.Json.Serialization;
 using StackExchange.Profiling;
 using System;
 using System.Web;

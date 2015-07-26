@@ -21,12 +21,12 @@ using Graxei.Apresentacao.Infrastructure.ActionResults;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
+namespace Graxei.Apresentacao.Controllers
 {
-    public class EnderecosController : Controller
+    public class NovoEnderecosController : Controller
     {
 
-        public EnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados,
+        public NovoEnderecosController(IConsultaEnderecos consultasEnderecos, IConsultasLojas consultasLojas, IConsultaEstados consultasEstados,
                                    IConsultaCidades consultasCidades, IGerenciamentoEnderecos gerenciamentoEnderecos, IOperacaoEndereco operacaoEndereco, ICacheElementosEndereco cacheElementosEndereco,
                                    ITransformacaoMutua<Endereco, EnderecoVistaContrato> transformacaoEndereco)
         {

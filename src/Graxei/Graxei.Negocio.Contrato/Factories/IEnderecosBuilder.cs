@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Graxei.Transversais.ContratosDeDados;
+using System;
+using System.Collections.Generic;
 namespace Graxei.Negocio.Contrato.Factories
 {
     public interface IEnderecosBuilder
@@ -19,6 +21,6 @@ namespace Graxei.Negocio.Contrato.Factories
 
         IEnderecosBuilder SetNumero(string numero);
 
-        IEnderecosBuilder SetTelefones(string telefones);
+        IEnderecosBuilder SetTelefones(IList<TelefoneContrato> telefones);
     }
 }

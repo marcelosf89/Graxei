@@ -6,6 +6,8 @@ using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Implementacao.Excecoes;
 using Graxei.Negocio.Contrato.Factories;
+using Graxei.Transversais.ContratosDeDados;
+using Graxei.Transversais.Comum;
 
 namespace Graxei.Negocio.Implementacao.Factories
 {
@@ -23,7 +25,7 @@ namespace Graxei.Negocio.Implementacao.Factories
 
         private Bairro _bairro;
 
-        private string _telefones;
+        private IList<TelefoneContrato> _telefones;
 
         private string _cnpj;
         
@@ -78,7 +80,7 @@ namespace Graxei.Negocio.Implementacao.Factories
             return this;
         }
 
-        public IEnderecosBuilder SetTelefones(string telefones)
+        public IEnderecosBuilder SetTelefones(IList<TelefoneContrato> telefones)
         {
             _telefones = telefones;
             return this;
@@ -152,10 +154,10 @@ namespace Graxei.Negocio.Implementacao.Factories
             }
         }
 
-        private List<Telefone> GetTelefones(string telefones)
+        private List<Telefone> GetTelefones(IList<TelefoneContrato> telefones)
         {
             List<Telefone> retorno = new List<Telefone>();
-            if (string.IsNullOrEmpty(telefones))
+            if (Listas.NulaOuVazia<TelefoneContrato>(telefones))
             {
                 return retorno; 
             }
@@ -165,7 +167,7 @@ namespace Graxei.Negocio.Implementacao.Factories
             {
                 throw new ObjetoNaoEncontradoException("O tipo de telefone 'Comercial' não está cadastrado");
             }
-            string[] listaTelefones = telefones.Split(',');
+            string[] listaTelefones = telefones.Select(p => p.Numero).ToArray();
             for (int i = 0; i < listaTelefones.Length; i++)
             {
                 Telefone telefone = new Telefone();

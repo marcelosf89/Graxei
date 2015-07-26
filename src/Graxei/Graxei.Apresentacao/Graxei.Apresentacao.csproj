@@ -306,6 +306,7 @@
     <Compile Include="Areas\Administrativo\Infraestutura\LimpezaSessaoNovaLojaFilter.cs" />
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Models\StatusOperacao.cs" />
+    <Compile Include="Controllers\NovoEnderecosController.cs" />
     <Compile Include="Controllers\TesteAngularController.cs" />
     <Compile Include="Extension\PaginacaoChain\AbstractPaginacao.cs" />
     <Compile Include="Extension\PaginacaoChain\ImparMenosQueMaximoElementos.cs" />
@@ -338,6 +339,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\MensagemHub.cs" />
+    <Compile Include="Infrastructure\ActionResults\JsonNetResult.cs" />
     <Compile Include="Infrastructure\Cache\CacheComumHttpSession.cs" />
     <Compile Include="Infrastructure\Cache\ICacheComum.cs" />
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />

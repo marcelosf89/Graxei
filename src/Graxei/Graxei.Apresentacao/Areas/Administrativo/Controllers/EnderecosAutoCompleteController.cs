@@ -23,6 +23,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 
         public ActionResult EstadoSelecionado(string idEstado)
         {
+            idEstado = idEstado.Replace("number:", string.Empty);
             int id = int.Parse(idEstado);
             _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(id));
             return null;
@@ -30,6 +31,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 
         public ActionResult CidadeSelecionada(string idEstado, string cidade)
         {
+            idEstado = idEstado.Replace("number:", string.Empty);
             int id = int.Parse(idEstado);
             _cacheElementosEndereco.SetBairros(_consultasBairros.GetPorCidade(cidade, id));
             return null;

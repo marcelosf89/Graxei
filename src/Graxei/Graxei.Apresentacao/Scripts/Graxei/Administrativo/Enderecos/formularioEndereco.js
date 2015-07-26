@@ -1,23 +1,4 @@
-﻿function SuccessEndereco(result) {
-    var msg = $('#msgSucesso').val();
-    var idLoja = $('#luk').val();
-    if (msg != '') {
-        $("#modalEnderecos").modal('hide');
-
-        openL();
-        $.ajax({
-            url: $('#endLista').val(),
-            type: 'GET',
-            data: { idLoja: idLoja },
-            success: function (result) {
-                $('#fm-content').html(result);
-            },
-            complete: function () { closeL(); }
-        });
-    }
-}
-
-$("#IdEstado").on("change", (function () {
+﻿$("#IdEstado").on("change", (function () {
     var estado = $("#IdEstado").val();
     if (estado != 0) {
         var url = $("#estadoSelec").val();
@@ -31,7 +12,7 @@ $("#IdEstado").on("change", (function () {
 $("#IdCidade").on("blur", function () {
     var estado = $("#IdEstado").val();
     var nomeCidade = $("#IdCidade").val();
-    if (estado > 0 && nomeCidade.length > 0) {
+    if (estado != "" && nomeCidade.length > 0) {
         var url = $("#cidadeSelec").val();
         $.post(url, { idEstado: estado, cidade: nomeCidade },
             function () {
@@ -44,7 +25,7 @@ $("#IdBairro").on("blur", function () {
     var idEstado = $("#IdEstado").val();
     var nomeCidade = $("#IdCidade").val();
     var nomeBairro = $("#IdBairro").val();
-    if (idEstado > 0 && nomeCidade.length > 0 && nomeBairro.length > 0) {
+    if (idEstado != ""  && nomeCidade.length > 0 && nomeBairro.length > 0) {
         var url = '@Url.Action("BairroSelecionado", "Enderecos")';
         $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
             function () {
