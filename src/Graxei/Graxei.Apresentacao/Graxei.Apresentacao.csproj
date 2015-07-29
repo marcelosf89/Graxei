@@ -371,6 +371,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\graxei.css" />
+    <Content Include="Content\imagens\add.png" />
     <Content Include="Content\imagens\b1.png" />
     <Content Include="Content\imagens\b2.png" />
     <Content Include="Content\imagens\edit-icon.png" />
@@ -379,6 +380,7 @@
     <Content Include="Content\imagens\f2.png" />
     <Content Include="Content\imagens\favicon.ico" />
     <Content Include="Content\imagens\graxei_logo.png" />
+    <Content Include="Content\imagens\remove.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -429,7 +431,6 @@
     <Content Include="google36645a16adb9f897.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Icon.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -510,13 +511,13 @@
     <Content Include="Areas\Administrativo\Views\Produtos\PesquisarDoEndereco.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarLogo.cshtml" />
     <Content Include="Areas\Administrativo\Views\Lojas\AdicionarUrl.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\ModalEnderecoAngular.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Areas\Administrativo\Views\Shared\ModalEnderecoAngular.cshtml" />
     <None Include="Properties\PublishProfiles\graxei_dev.pubxml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -1297,7 +1298,6 @@
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\popover.js" />
     <Content Include="Scripts\Graxei\login.js" />
     <Content Include="Scripts\scrollspy.js" />

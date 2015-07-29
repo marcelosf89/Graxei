@@ -22,9 +22,8 @@ namespace Graxei.Apresentacao.Controllers
         // GET: Teste
         public ActionResult ModalEnderecoAngular()
         {
-            IList<Estado> listaEstados = _consultaEstados.GetEstados(EstadoOrdem.Sigla);
-            string json = JsonConvert.SerializeObject(listaEstados);
-            NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = 1, JsonEstados = json };
+            IList<SelectListItem> listaEstados = _consultaEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem{Text= p.Sigla, Value = p.Id.ToString()}).ToList();
+            NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = 1, Estados = listaEstados };
             return View(viewName: "ModalEnderecoAngular", model: novoEnderecoModel);
         }
 

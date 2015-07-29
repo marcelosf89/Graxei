@@ -5,6 +5,7 @@
 @Styles.Render("~/css/themes/base/css")
 @Scripts.Render("~/bundles/jqueryui")
 
+
 <div id="novaloja">
     <div class="row">
         <div class="col-md-2">
@@ -37,7 +38,6 @@
                 @Ajax.ActionLink(Rotulos.Enderecos, "ListaEnderecos", "Enderecos", new { Controller = "Enderecos", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
                                 }
                             </li>
-
                         </ul>
                     </div>
                 </div>

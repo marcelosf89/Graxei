@@ -27,9 +27,11 @@ namespace Graxei.Transversais.ContratosDeDados
         public long IdEstado { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "CidadeObrigatoria")]
+        [StringLength(250, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo250")]
         public string Cidade { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "BairroObrigatorio")]
+        [StringLength(250, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo250")]
         public string Bairro { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "LogradouroObrigatorio")]
@@ -37,7 +39,7 @@ namespace Graxei.Transversais.ContratosDeDados
         public string Logradouro { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NumeroObrigatorio")]
-        [StringLength(150, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo250")]
+        [StringLength(150, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo150")]
         public string Numero { get; set; }
 
         [StringLength(250, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo150")]
@@ -45,8 +47,8 @@ namespace Graxei.Transversais.ContratosDeDados
 
         public long IdLoja { get; set; }
         
-        [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "LogradouroObrigatorio")]
-        [StringLength(50, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximoTelefones")]
+            [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "LogradouroObrigatorio")]
+            [StringLength(50, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo50")]
         public string Cnpj { get; set; }
 
         public IList<TelefoneContrato> Telefones { get; set; }

@@ -3,8 +3,6 @@
 
     app.controller('EnderecoController',  ['$http', function ($http) {
 
-        this.estados = {};
-
         this.endereco = { telefones: [{ numero: "" }] };
 
         this.operacao = { ok: false };
@@ -13,14 +11,13 @@
 
         var controller = this;
 
-        this.init = function(estadosServer, loja){
-            this.estados = estadosServer;
+        this.init = function(loja){
             this.idLoja = loja;
         }
 
         this.salvar = function (modelo) {
             modelo.idLoja = this.idLoja;
-            modelo.novaLogicaTelefone = this.endereco.telefones;
+            modelo.telefones = this.endereco.telefones;
             $http.post('/Administrativo/Enderecos/Salvar', { enderecoModel: modelo }).
                 success(function (statusOperacao) {
                     controller.operacao = statusOperacao;

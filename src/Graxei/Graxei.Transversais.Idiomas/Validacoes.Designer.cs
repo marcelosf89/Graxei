@@ -88,6 +88,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Por favor, corrija os seguintes problemas:.
+        /// </summary>
+        public static string CorrijaValores {
+            get {
+                return ResourceManager.GetString("CorrijaValores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado é obrigatório.
         /// </summary>
         public static string EstadoObrigatorio {
@@ -183,6 +192,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string TamanhoMaximo50 {
             get {
                 return ResourceManager.GetString("TamanhoMaximo50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O número do telefone deve ter no máximo 50 caracteres.
+        /// </summary>
+        public static string TamanhoMaximoNumeroTelefone {
+            get {
+                return ResourceManager.GetString("TamanhoMaximoNumeroTelefone", resourceCulture);
             }
         }
         

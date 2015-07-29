@@ -18,8 +18,7 @@
     <div class="row row-btn-margin">
         <div class="con-md-12">
             @{
-                AjaxOptions ajaxenderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
-                AjaxOptions ajaxNovoEnderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
+                AjaxOptions ajaxEnderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();registrarAngular();" };
 
                 if (Model.Enderecos.Count >= Model.QuantidadeEndereco)
                 {
@@ -28,7 +27,7 @@
                 }
                 else
                 {
-                    @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovoEndereco, "Novo", "Enderecos", new { Controller = "Enderecos", idloja = Model.IdLoja }, ajaxNovoEnderecos, new { @class = "btn btn-default" })
+                    @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovoEndereco, "Novo", "Enderecos", new { Controller = "Enderecos", idloja = Model.IdLoja }, ajaxEnderecos, new { @class = "btn btn-default" })
                 }
             }
         </div>
@@ -55,7 +54,7 @@
                         </td>
                         <td class="col-md-2 btn-group">
                             @{
-                                @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new { Controller = "Enderecos", idEndereco = enderecoListaModel.IdEndereco }, ajaxenderecos, new { @class = "btn btn-default" })
+                                @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new { Controller = "Enderecos", idEndereco = enderecoListaModel.IdEndereco }, ajaxEnderecos, new { @class = "btn btn-default" })
                             }
                             <button class="btn btn-danger" onclick="excluirEndereco(@enderecoListaModel.IdEndereco, @Model.IdLoja);">@Rotulos.Excluir</button>
                         </td>
@@ -68,6 +67,10 @@
 </div>
 <div id="enderecoAtualizar">
 </div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/angular-messages.min.js"></script>
+<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js"></script>
 <script>
     function excluirEndereco(id, idLoja) {
         var value = confirm('Deseja realmente apagar o endereço?');
@@ -85,4 +88,9 @@
             complete: function () { closeL(); }
         });
     }
+
+    function registrarAngular() {
+        angular.bootstrap(document.getElementById('appEnderecos'), ['endereco']);
+    }
+
 </script>

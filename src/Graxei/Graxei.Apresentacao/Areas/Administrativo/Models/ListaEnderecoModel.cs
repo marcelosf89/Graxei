@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Modelo;
+using Graxei.Apresentacao.Models;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Models
 {
@@ -35,5 +36,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Models
         public long IdLoja { get; set; }
 
         public long QuantidadeEndereco { get; set; }
+
+        public NovoEnderecoModel NovoEnderecoModel { get; set; }
     }
 }

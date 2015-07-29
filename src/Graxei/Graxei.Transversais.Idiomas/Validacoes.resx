@@ -126,6 +126,9 @@
   <data name="CnpjObrigatorio" xml:space="preserve">
     <value>CNPJ é obrigatório</value>
   </data>
+  <data name="CorrijaValores" xml:space="preserve">
+    <value>Por favor, corrija os seguintes problemas:</value>
+  </data>
   <data name="EstadoObrigatorio" xml:space="preserve">
     <value>Estado é obrigatório</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="TamanhoMaximo50" xml:space="preserve">
     <value>Tamanho máximo permitido é de 50 caracteres </value>
+  </data>
+  <data name="TamanhoMaximoNumeroTelefone" xml:space="preserve">
+    <value>O número do telefone deve ter no máximo 50 caracteres</value>
   </data>
   <data name="TamanhoMaximoTelefones" xml:space="preserve">
     <value>O número máximo de telefones para esta loja foi atingido</value>

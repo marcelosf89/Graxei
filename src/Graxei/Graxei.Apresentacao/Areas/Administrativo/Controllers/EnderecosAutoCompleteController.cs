@@ -23,7 +23,6 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 
         public ActionResult EstadoSelecionado(string idEstado)
         {
-            idEstado = idEstado.Replace("number:", string.Empty);
             int id = int.Parse(idEstado);
             _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(id));
             return null;
@@ -31,7 +30,6 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 
         public ActionResult CidadeSelecionada(string idEstado, string cidade)
         {
-            idEstado = idEstado.Replace("number:", string.Empty);
             int id = int.Parse(idEstado);
             _cacheElementosEndereco.SetBairros(_consultasBairros.GetPorCidade(cidade, id));
             return null;
@@ -58,6 +56,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             IEnumerable<String> itensFiltrados = itens.Where(
                 item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
                 );
+            _cacheElementosEndereco.SetLogradouros(new List<Logradouro>());
             return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
         }
 

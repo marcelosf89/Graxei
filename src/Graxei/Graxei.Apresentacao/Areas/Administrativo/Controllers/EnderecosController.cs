@@ -20,6 +20,7 @@ using Microsoft.Practices.Unity;
 using Graxei.Apresentacao.Infrastructure.ActionResults;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using Graxei.Apresentacao.Models;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 {
@@ -59,13 +60,9 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         public ActionResult Novo(long idLoja)
         {
             ModelState.Clear();
-            //EnderecoVistaContrato item = new EnderecoVistaContrato();
-            //item.IdLoja = idLoja;
-
-            //IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
-            //ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            //return PartialView("ModalEndereco", item);
-            return PartialView("ModalEnderecoAngular");
+            IList<SelectListItem> listaEstados = _consultasEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem { Text = p.Sigla, Value = p.Id.ToString() }).ToList();
+            NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = idLoja, Estados = listaEstados };
+            return View(viewName: "ModalEnderecoAngular", model: novoEnderecoModel);
         }
 
         [HttpPost]
@@ -87,6 +84,9 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 }
                 List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(idLoja);
                 ListaEnderecoModel em = new ListaEnderecoModel(idLoja, plano, enderecos);
+                IList<SelectListItem> listaEstados = _consultasEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem { Text = p.Sigla, Value = p.Id.ToString() }).ToList();
+                NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = 1, Estados = listaEstados };
+                em.NovoEnderecoModel = novoEnderecoModel;
                 return PartialView("ListaEnderecos", em);
             }
             catch (GraxeiException graxeiException)
@@ -116,10 +116,20 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         {
             StatusOperacao statusOperacao = new StatusOperacao();
             statusOperacao.Ok = false;
-            statusOperacao.Mensagem = "Endereço salvo";
-            /*
+            
             if (!ModelState.IsValid)
             {
+                IList<string> erros = (from modelState in ModelState.Values
+                                          where modelState.Errors != null && modelState.Errors.Count > 0
+                                          select modelState.Errors)
+                                                        .SelectMany(item => item)
+                                                        .Select(modelError => modelError.ErrorMessage)
+                                                        .ToList();
+                statusOperacao.ErrosValidacao = new string[erros.Count];
+                for (int i = 0; i < erros.Count; i++)
+                {
+                    statusOperacao.ErrosValidacao[i] = erros[i];
+                }
                 statusOperacao.Mensagem = "Modelstate inválido";
             }
             else
@@ -140,7 +150,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 }
             }
 
-            ModelState.Clear();*/
+            ModelState.Clear();
             return new JsonNetResult(statusOperacao, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
         }
 

@@ -74,7 +74,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         public ActionResult Listar(int numeroPagina = 1, int tamanho = 10)
         {
             ListaLojas listaLojas = _consultasListaLojas.Get(numeroPagina, tamanho);
-            return View("Listar", listaLojas);
+            return PartialView("Listar", listaLojas);
         }
 
         [HttpPost]

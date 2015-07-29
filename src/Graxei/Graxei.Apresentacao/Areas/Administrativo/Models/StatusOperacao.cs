@@ -14,5 +14,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Models
         [JsonProperty("mensagem")]
         public string Mensagem { get; set; }
 
+        [JsonProperty("errosValidacao")]
+        public string[] ErrosValidacao { get; set; }
     }
 }

@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">0</div>
-                        <div>Comentarios</div>
+                        <div>Comentários</div>
                     </div>
                 </div>
             </div>
@@ -93,19 +93,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
 
-        $.ajax({
-            async: true,
-            url: "@Url.Action("GetQuantidadeProdutos", "Home")",
-            type: "POST",
-            dataType: "json",            
-            success: function (data) {
-                $("#qtdPr").html(data);
-            }
-        });
-    });
-
-
-</script>

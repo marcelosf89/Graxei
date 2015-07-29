@@ -26,7 +26,7 @@ $("#IdBairro").on("blur", function () {
     var nomeCidade = $("#IdCidade").val();
     var nomeBairro = $("#IdBairro").val();
     if (idEstado != ""  && nomeCidade.length > 0 && nomeBairro.length > 0) {
-        var url = '@Url.Action("BairroSelecionado", "Enderecos")';
+        var url = $("#bairroSelec").val();
         $.post(url, { estado: idEstado, cidade: nomeCidade, bairro: nomeBairro },
             function () {
             });
