@@ -69,7 +69,10 @@
                                             <label>@Rotulos.Cidade</label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input class="form-control tt-input" id="IdCidade" name="cidade" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.cidade" ng-maxlength="250" required>
+
+
+                                            <input class="form-control typeahead tt-input" id="IdCidade" name="cidade" type="text" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;" required>
+
                                             <span ng-messages="enderecoForm.cidade.$error" ng-show="enderecoForm.cidade.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="required">@Validacoes.CidadeObrigatoria</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
@@ -85,7 +88,7 @@
                                             <label>@Rotulos.Bairro</label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input class="form-control tt-input" id="IdBairro" name="bairro" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.bairro" required>
+                                            <input class="form-control typeahead" id="IdBairro" name="bairro" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.bairro" required>
                                             <span ng-messages="enderecoForm.bairro.$error" ng-show="enderecoForm.bairro.$dirty || enderecoForm.$submitted" ng-maxlength="250">
                                                 <span ng-message="required">@Validacoes.BairroObrigatorio</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>

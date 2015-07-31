@@ -1310,6 +1310,7 @@
     <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\typeahead.js" />
     <Content Include="Scripts\typeahead.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.13.1.min.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.min.js" />
     <Content Include="Scripts\_references.js" />
