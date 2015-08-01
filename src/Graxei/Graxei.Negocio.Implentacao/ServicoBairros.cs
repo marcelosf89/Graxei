@@ -10,15 +10,11 @@ namespace Graxei.Negocio.Implementacao
 {
     public class ServicoBairros : ServicoPadraoEntidades<Bairro>, IServicoBairros
     {
-
-        #region Construtor
         public ServicoBairros(IRepositorioBairros repositorio)
         {
            RepositorioEntidades = repositorio;
         }
 
-        #endregion
-        #region Métodos Privados
         private void ValidarEntidade(Bairro bairro)
         {
             if (bairro == null)
@@ -35,9 +31,7 @@ namespace Graxei.Negocio.Implementacao
                 throw new EntidadeInvalidaException(ErrosInternos.BairroInvalido);
             }
         }
-        #endregion
         
-        #region Métodos Sobrescritos
         public override void PreSalvar(Bairro bairro)
         {
             ValidarEntidade(bairro);
@@ -57,9 +51,6 @@ namespace Graxei.Negocio.Implementacao
                throw new ObjetoJaExisteException(Erros.BairroJaExiste);
            }
         }
-        #endregion
-
-        #region Implementação de IServicoBairros
 
         public Bairro Get(string nome)
         {
@@ -78,32 +69,48 @@ namespace Graxei.Negocio.Implementacao
 
         public IList<Bairro> GetPorCidade(string nomeCidade, long idEstado)
         {
+            if (nomeCidade == null)
+            {
+                return new List<Bairro>();
+            }
             return Repositorio.GetPorCidade(nomeCidade, idEstado);
         }
 
         public Bairro Get(string nomeBairro, string nomeCidade, long idEstado)
         {
+            if (nomeBairro == null || nomeCidade == null)
+            {
+                return null;
+            }
             return Repositorio.Get(nomeBairro, nomeCidade, idEstado);
         }
 
         public Bairro Get(string nomeBairro, string nomeCidade, Estado estado)
         {
+            if (nomeBairro == null || nomeCidade == null)
+            {
+                return null;
+            }
             return Repositorio.Get(nomeBairro, nomeCidade, estado);
         }
 
         public Bairro Get(string nomeBairro, long idCidade)
         {
+            if (nomeBairro == null)
+            {
+                return null;
+            }
             return Repositorio.Get(nomeBairro, idCidade);
         }
 
         public Bairro Get(string nomeBairro, Cidade cidade)
         {
+            if (nomeBairro == null || cidade == null)
+            {
+                return null;
+            }
             return Repositorio.Get(nomeBairro, cidade);
         }
-
-        #endregion
-
-        #region Propriedades Privadas
 
         private IRepositorioBairros Repositorio
         {
@@ -112,8 +119,5 @@ namespace Graxei.Negocio.Implementacao
                 return (IRepositorioBairros)RepositorioEntidades;
             }
         }
-
-        #endregion
-
     }
 }

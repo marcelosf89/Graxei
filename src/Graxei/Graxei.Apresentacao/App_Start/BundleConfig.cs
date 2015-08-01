@@ -30,6 +30,13 @@ namespace Graxei.Apresentacao
                     "~/Scripts/jquery.validate.min.js",
                     "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                    "~/Script/angular.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularmessages").Include(
+                    "~/Script/angular.min.js",
+                    "~/Script/angular-messages.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquerymaskmoney").Include(
                 "~/Scripts/jquery.maskMoney.js"));
 

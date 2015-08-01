@@ -345,6 +345,7 @@
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Infrastructure\Filters\AjaxGenericExceptionAttribute.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
+    <Compile Include="Models\IdNomeModel.cs" />
     <Compile Include="Models\ContatoModel.cs" />
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
@@ -458,6 +459,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Graxei\Administrativo\Enderecos\enderecoLista.js" />
     <Content Include="Scripts\Graxei\Administrativo\Enderecos\enderecoAngular.js" />
     <Content Include="Scripts\Graxei\Administrativo\Enderecos\formularioEndereco.js" />
     <Content Include="Scripts\Graxei\Administrativo\Produtos\pesquisar.eventos.js" />

@@ -1,7 +1,10 @@
 ﻿using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
+using Graxei.Apresentacao.Infrastructure.ActionResults;
 using Graxei.Modelo;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +28,8 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         {
             int id = int.Parse(idEstado);
             _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(id));
+            _cacheElementosEndereco.SetBairros(new List<Bairro>());
+            _cacheElementosEndereco.SetLogradouros(new List<Logradouro>());
             return null;
         }
 
@@ -32,6 +37,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         {
             int id = int.Parse(idEstado);
             _cacheElementosEndereco.SetBairros(_consultasBairros.GetPorCidade(cidade, id));
+            _cacheElementosEndereco.SetLogradouros(new List<Logradouro>());
             return null;
         }
 
@@ -43,11 +49,11 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 
         public ActionResult AutoCompleteCidade(string term)
         {
-            string[] itens = _cacheElementosEndereco.GetCidades().Select(p => p.Nome).ToArray();
-            IEnumerable<String> itensFiltrados = itens.Where(
-                item => item.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
-                );
-            return Json(itensFiltrados, JsonRequestBehavior.AllowGet);
+            string[] json = _cacheElementosEndereco.GetCidades()
+                                                   .Where(
+                                                          item => item.Nome.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                                                    .Select(p => p.Nome).ToArray();
+            return new JsonNetResult(json, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() }); 
         }
 
         public ActionResult AutoCompleteBairro(string term)

@@ -10,7 +10,7 @@ namespace Graxei.Transversais.ContratosDeDados
 {
     public class TelefoneContrato
     {
-        [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NumeroObrigatorio")]
+        [Required(ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "NumeroTelefoneObrigatorio")]
         [StringLength(25, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximoNumeroTelefone")]
         public string Numero { get; set; }
     }

@@ -70,27 +70,6 @@
 
 <script src="~/Scripts/angular.min.js"></script>
 <script src="~/Scripts/angular-messages.min.js"></script>
+<script src="~/Scripts/ui-bootstrap-tpls-0.13.1.min.js"></script>
 <script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js"></script>
-<script>
-    function excluirEndereco(id, idLoja) {
-        var value = confirm('Deseja realmente apagar o endereço?');
-        if (!value) {
-            return false;
-        }
-        openL();
-        $.ajax({
-            url: '@Url.Action("ExcluirEndereco", "Enderecos")',
-            type: 'POST',
-            data: { idEndereco: id, idLoja: idLoja },
-            success: function (result) {
-                $('#fm-content').html(result);
-            },
-            complete: function () { closeL(); }
-        });
-    }
-
-    function registrarAngular() {
-        angular.bootstrap(document.getElementById('appEnderecos'), ['endereco']);
-    }
-
-</script>
+<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoLista.js"></script>

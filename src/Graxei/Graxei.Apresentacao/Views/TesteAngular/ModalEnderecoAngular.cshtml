@@ -4,63 +4,13 @@
 <head>
     <title>Angular</title>
     @Scripts.Render("~/bundles/jqueryvalajax")
-    @Scripts.Render("~/bundles/typeahead")
     @Styles.Render("~/Content/bootstrap/base")
     @Styles.Render("~/css/themes")
 </head>
-<body ng-app="endereco">
-    <div ng-controller="EnderecoController as enderecoCtrl" ng-init="enderecoCtrl.init(@Model.IdLoja)">
-        <div>
-            <input type="hidden" id="endLista" value="@Url.Action("ListaEnderecos", "EnderecosAutoComplete")" />
-            <input type="hidden" id="estadoSelec" value="@Url.Action("EstadoSelecionado", "EnderecosAutoComplete")" />
-            <input type="hidden" id="cidadeSelec" value="@Url.Action("CidadeSelecionada", "EnderecosAutoComplete")" />
-            <input type="hidden" id="bairroSelec" value="@Url.Action("BairroSelecionado", "EnderecosAutoComplete")" />
-            <input type="hidden" id="autoCidade" value="@Url.Action("AutoCompleteCidade", "EnderecosAutoComplete")" />
-            <input type="hidden" id="autoBairro" value="@Url.Action("AutoCompleteBairro", "EnderecosAutoComplete")" />
-            <input type="hidden" id="autoLogradouro" value="@Url.Action("autocompletelogradouro", "EnderecosAutoComplete")">
-            <div ng-show="enderecoCtrl.operacao.renderizar" class="col-lg-offset-1 col-lg-11">
-                <div ng-class="{'alert-danger': !enderecoCtrl.operacao.ok, 'alert-success': enderecoCtrl.operacao.ok}" class="alert row" role="alert">
-                    <div class="col-md-1">
-                        <i class="glyphicon" ng-class="{'glyphicon-ok': enderecoCtrl.operacao.ok, 'glyphicon-alert': !enderecoCtrl.operacao.ok}"></i>
-                    </div>
-                    <div class="col-md-10" ng-show="enderecoCtrl.operacao.errosValidacao == undefined">
-                        {{enderecoCtrl.operacao.mensagem}}
-                    </div>
-                    <div class="col-md-10" ng-show="enderecoCtrl.operacao.errosValidacao.length > 0">
-                        <div class="row">@Validacoes.CorrijaValores</div>
-                        <ul ng-repeat="errosValidacao in enderecoCtrl.operacao.errosValidacao">
-                            <li>{{errosValidacao}}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <form name="enderecoForm" class="form-horizontal" ng-submit="enderecoForm.$valid && enderecoCtrl.salvar(this.endereco)" novalidate>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="control-label col-md-2">
-                                <label>@Rotulos.CNPJ</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input class="form-control" name="cnpj" data-val="true" ng-model="endereco.cnpj" ng-maxlength="50" required />
-                                <span ng-messages="enderecoForm.cnpj.$error" ng-show="enderecoForm.cnpj.$dirty || enderecoForm.$submitted">
-                                    <span ng-message="required">@Validacoes.CnpjObrigatorio</span>
-                                    <span ng-message="maxLength">@Validacoes.TamanhoMaximo50</span>
-                                </span>
-                            </div>
-                            <div class="control-label col-md-2">
-                                <label>@Rotulos.Estado</label>
-                            </div>
-                            <div class="col-md-2">
-                                @Html.DropDownList("estado", Model.Estados, htmlAttributes: new { id = "IdEstado", @class="form-control", ng_Model = "endereco.idEstado", required=""})
-                                <span ng-messages="enderecoForm.estado.$error" ng-show="enderecoForm.estado.$dirty || enderecoForm.$submitted">
-                                    <span ng-message="required">@Validacoes.EstadoObrigatorio</span>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<body>
+    <div ng-app="endereco">
+        <div ng-controller="EnderecoController as enderecoCtrl">
+            {{enderecoCtrl.operacao.ok}}
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -68,7 +18,8 @@
                                 <label>@Rotulos.Cidade</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control tt-input" id="IdCidade" name="cidade" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.cidade" ng-maxlength="250" required>
+                                <input type="text" class="form-control" ng-model="endereco.cidade" typeahead="nome as cidade.nome for cidade in enderecoCtrl.cidades" required>
+                                @*<input type="text" class="form-control" ng-model="endereco.cidade" typeahead="cidade for cidade fsfsdfsdfsdfxzin enderecoCtrl.getCidades($viewValue) | limitTo:8" required>*@
                                 <span ng-messages="enderecoForm.cidade.$error" ng-show="enderecoForm.cidade.$dirty || enderecoForm.$submitted">
                                     <span ng-message="required">@Validacoes.CidadeObrigatoria</span>
                                     <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
@@ -77,103 +28,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="control-label col-md-2">
-                                <label>@Rotulos.Bairro</label>
-                            </div>
-                            <div class="col-md-10">
-                                <input class="form-control tt-input" id="IdBairro" name="bairro" type="text" value="" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.bairro" required>
-                                <span ng-messages="enderecoForm.bairro.$error" ng-show="enderecoForm.bairro.$dirty || enderecoForm.$submitted" ng-maxlength="250">
-                                    <span ng-message="required">@Validacoes.BairroObrigatorio</span>
-                                    <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="control-label col-md-2">
-                                <label>@Rotulos.Logradouro</label>
-                            </div>
-                            <div class="col-md-10">
-                                <input class="form-control tt-input" data-val="true" id="IdLogradouro" name="logradouro" type="text" value="" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;" ng-model="endereco.logradouro" required ng-maxlength="250">
-                                <span ng-messages="enderecoForm.logradouro.$error" ng-show="enderecoForm.logradouro.$dirty || enderecoForm.$submitted">
-                                    <span ng-message="required">@Validacoes.LogradouroObrigatorio</span>
-                                    <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="control-label col-md-2">
-                                <label>@Rotulos.Numero</label>
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" data-val="true" data-val-length="O número máximo de caracteres é de 250" data-val-length-max="150" data-val-required="Número é obrigatório" id="IdNumero" name="numero" type="text" value="" ng-model="endereco.numero" required ng-maxlength="150">
-                                <span ng-messages="enderecoForm.numero.$error" ng-show="enderecoForm.numero.$dirty || enderecoForm.$submitted">
-                                    <span ng-message="required">@Validacoes.NumeroObrigatorio</span>
-                                    <span ng-message="maxLength">@Validacoes.TamanhoMaximo150</span>
-                                </span>
-                            </div>
-                            <div class=" control-label col-md-1">
-                                <label>@Rotulos.Complemento</label>
-                            </div>
-                            <div class="col-md-7">
-                                <input class="form-control" data-val="true" name="Complemento" type="text" value="" ng-model="endereco.complemento" ng-maxlength="150">
-                                <span ng-messages="enderecoForm.numero.$error" ng-show="enderecoForm.numero.$dirty || enderecoForm.$submitted">
-                                    <span ng-message="maxLength">@Validacoes.TamanhoMaximo150</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group" ng-repeat="tel in enderecoCtrl.endereco.telefones track by $index">
-                            <div class="control-label col-md-2" ng-show="$index == 0">
-                                <label>@Rotulos.Telefones</label>
-                            </div>
-                            <div>
-                                <div class="col-md-2" ng-class="{'col-md-offset-2': $index > 0}">
-                                    <input class="form-control" id="IdNumero" name="telefone" type="text" value="" ng-model="tel.numero" required>
-                                    <span ng-messages="enderecoForm.telefone.$error" ng-show="enderecoForm.telefone.$dirty || enderecoForm.$submitted" ng-maxlength="25">
-                                        <span ng-message="required">@Validacoes.TelefoneObrigatorio</span>
-                                        <span ng-message="maxLength">@Validacoes.TamanhoMaximoNumeroTelefone</span>
-                                    </span>
-                                </div>
-                                <div class="col-md-2" ng-hide="$first">
-                                    <button ng-click="enderecoCtrl.removerTelefone($index)" type="button"><img src="~/Content/imagens/remove.png" /></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="col-md-12 col-md-offset-2">
-                                <button type="button" ng-click="enderecoCtrl.adicionarTelefone($index)"><img src="~/Content/imagens/add.png" /></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-2">
-                        <input type="submit" class="btn btn-primary" value="@Rotulos.Salvar" />
-                        <button class="btn btn-danger" data-dismiss="modal">@Rotulos.Cancelar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <script src="~/Scripts/Graxei/Administrativo/Enderecos/formularioEndereco.js"></script>
 
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-messages.min.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.1.min.js"></script>
+    <script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js"></script>
+    @*<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoLista.js"></script>*@
+    
+    <script type="text/javascript">
+        
+
+        function atualizarListaEnderecos() {
+            debugger;
+            $.ajax({
+                url: '/Administrativo/Enderecos/ListaEnderecos?idLoja=@Model.IdLoja',
+                type: 'GET',
+                success: function (result) {
+                    $('#fm-content').html(result);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

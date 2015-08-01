@@ -142,6 +142,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O número do telefone é obrigatório.
+        /// </summary>
+        public static string NumeroTelefoneObrigatorio {
+            get {
+                return ResourceManager.GetString("NumeroTelefoneObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digite o que quer pesquisar.
         /// </summary>
         public static string PesquisaMeuProdutoDescricao {
