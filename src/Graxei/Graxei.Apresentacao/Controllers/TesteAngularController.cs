@@ -23,7 +23,7 @@ namespace Graxei.Apresentacao.Controllers
         public ActionResult ModalEnderecoAngular()
         {
             IList<SelectListItem> listaEstados = _consultaEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem{Text= p.Sigla, Value = p.Id.ToString()}).ToList();
-            NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = 1, Estados = listaEstados };
+            EnderecoVistaModel novoEnderecoModel = new EnderecoVistaModel { IdLoja = 1, Estados = listaEstados };
             return View(viewName: "ModalEnderecoAngular", model: novoEnderecoModel);
         }
 

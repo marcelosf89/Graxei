@@ -7,8 +7,10 @@ using System.Web.Mvc;
 
 namespace Graxei.Apresentacao.Models
 {
-    public class NovoEnderecoModel
+    public class EnderecoVistaModel
     {
+        public long IdEndereco { get; set; }
+
         public long IdLoja { get; set; }
 
         public IList<SelectListItem> Estados { get; set; }

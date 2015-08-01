@@ -1,4 +1,4 @@
-﻿@model Graxei.Apresentacao.Models.NovoEnderecoModel
+﻿@model Graxei.Apresentacao.Models.EnderecoVistaModel
 <div id="appEnderecos">
     <div ng-controller="EnderecoController as enderecoCtrl">
         <div id="modalEnderecos" class="modal fade" tabindex="-1" role="dialog">
@@ -7,7 +7,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     </div>
-                    <div class="modal-body" ng-init="enderecoCtrl.init(@Model.IdLoja)">
+                    <div class="modal-body" ng-init="enderecoCtrl.init(@Model.IdLoja, @Model.IdEndereco)">
                         <div ng-show="enderecoCtrl.operacao.renderizar" class="col-lg-offset-1 col-lg-11">
                             <div ng-class="{'alert-danger': !enderecoCtrl.operacao.ok, 'alert-success': enderecoCtrl.operacao.ok}" class="alert row" role="alert">
                                 <div class="col-md-1">

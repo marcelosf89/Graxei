@@ -4,11 +4,13 @@ using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Transversais.ContratosDeDados
 {
-    /// <summary>
-    /// Contrato de dados para cadastro de Endereços
-    /// </summary>
     public class EnderecoVistaContrato
     {
+        public EnderecoVistaContrato()
+        {
+            Telefones = new List<TelefoneContrato>();
+        }
+
         private long _id;
 
         public string HashId { get; set; }
@@ -51,7 +53,23 @@ namespace Graxei.Transversais.ContratosDeDados
             [StringLength(50, ErrorMessageResourceType = typeof(Validacoes), ErrorMessageResourceName = "TamanhoMaximo50")]
         public string Cnpj { get; set; }
 
-        public IList<TelefoneContrato> Telefones { get; set; }
+        public IList<TelefoneContrato> Telefones { 
+            get{ 
+                if (_telefones == null){
+                    _telefones = new List<TelefoneContrato>();
+                }
+                return _telefones;
+            }
+            set{
+                if (value == null){
+                    _telefones = new List<TelefoneContrato>();
+                } else {
+                    _telefones = value;
+                }
+            }
+        }
+
+        private IList<TelefoneContrato> _telefones;
 
     }
 }

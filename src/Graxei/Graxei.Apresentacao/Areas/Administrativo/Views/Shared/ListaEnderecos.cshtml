@@ -18,7 +18,7 @@
     <div class="row row-btn-margin">
         <div class="con-md-12">
             @{
-                AjaxOptions ajaxEnderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();registrarAngular();" };
+                AjaxOptions ajaxEnderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar",  OnBegin = "openL();", OnComplete = "closeL();registrarAngular();" };
 
                 if (Model.Enderecos.Count >= Model.QuantidadeEndereco)
                 {
@@ -54,8 +54,8 @@
                         </td>
                         <td class="col-md-2 btn-group">
                             @{
-                                @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new { Controller = "Enderecos", idEndereco = enderecoListaModel.IdEndereco }, ajaxEnderecos, new { @class = "btn btn-default" })
-                            }
+                                @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new {idLoja = Model.IdLoja, idEndereco = enderecoListaModel.IdEndereco }, ajaxEnderecos, new { @class = "btn btn-default" })
+}
                             <button class="btn btn-danger" onclick="excluirEndereco(@enderecoListaModel.IdEndereco, @Model.IdLoja);">@Rotulos.Excluir</button>
                         </td>
                     </tr>

@@ -11,8 +11,16 @@
 
         this.idLoja = 0;
 
-        this.init = function (loja) {
-            this.idLoja = loja;
+        this.init = function (loja, endereco) {
+            controller.idLoja = loja;
+            debugger;
+            if (endereco !== undefined) {
+                var x =  $http.get("/Administrativo/Enderecos/Get",
+                                          { params: { idLoja: loja, idEndereco: endereco } }).success(function (response) {
+                                              return response.data;
+                                          });
+                controller.endereco = x;
+            }
         }
 
         this.salvar = function (modelo) {

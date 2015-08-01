@@ -350,7 +350,7 @@
     <Compile Include="Models\IpRegiaoModel.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\EnderecoModel.cs" />
-    <Compile Include="Models\NovoEnderecoModel.cs" />
+    <Compile Include="Models\EnderecoVistaModel.cs" />
     <Compile Include="Models\PesquisarModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

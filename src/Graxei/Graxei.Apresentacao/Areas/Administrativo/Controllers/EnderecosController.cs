@@ -41,7 +41,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             _transformacaoEndereco = transformacaoEndereco;
         }
 
-        public ActionResult Editar(long idEndereco)
+        public JsonNetResult Get(long idEndereco)
         {
             ModelState.Clear();
             Endereco endereco = _consultaEnderecos.Get(idEndereco);
@@ -52,17 +52,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(item.IdEstado));
             }
 
-            IList<Estado> estados = _consultasEstados.GetEstados(EstadoOrdem.Sigla);
-            ViewBag.Estados = new SelectList(estados, "Id", "Sigla");
-            return PartialView("ModalEndereco", item);
-        }
-
-        public ActionResult Novo(long idLoja)
-        {
-            ModelState.Clear();
-            IList<SelectListItem> listaEstados = _consultasEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem { Text = p.Sigla, Value = p.Id.ToString() }).ToList();
-            NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = idLoja, Estados = listaEstados };
-            return View(viewName: "ModalEnderecoAngular", model: novoEnderecoModel);
+            return new JsonNetResult(item, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
         }
 
         [HttpPost]
@@ -85,7 +75,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 List<Endereco> enderecos = _consultaEnderecos.GetPorLoja(idLoja);
                 ListaEnderecoModel em = new ListaEnderecoModel(idLoja, plano, enderecos);
                 IList<SelectListItem> listaEstados = _consultasEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem { Text = p.Sigla, Value = p.Id.ToString() }).ToList();
-                NovoEnderecoModel novoEnderecoModel = new NovoEnderecoModel { IdLoja = 1, Estados = listaEstados };
+                EnderecoVistaModel novoEnderecoModel = new EnderecoVistaModel { IdLoja = 1, Estados = listaEstados };
                 em.NovoEnderecoModel = novoEnderecoModel;
                 return PartialView("ListaEnderecos", em);
             }
@@ -96,13 +86,30 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         }
 
         [HttpGet]
-        public ActionResult Get(long idEndereco)
+        public ActionResult Novo(long idLoja)
         {
-            Endereco endereco = _consultaEnderecos.Get(idEndereco);
-            EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_operacaoEndereco);
-            EnderecoVistaContrato item = transformacao.Transformar(endereco);
-            return PartialFormularioEndereco(item);
+            ModelState.Clear();
+            IList<SelectListItem> listaEstados = _consultasEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem { Text = p.Sigla, Value = p.Id.ToString() }).ToList();
+            EnderecoVistaModel enderecoVistaModel = new EnderecoVistaModel { IdLoja = idLoja, Estados = listaEstados };
+            return View(viewName: "ModalEnderecoAngular", model: enderecoVistaModel);
         }
+
+        [HttpGet]
+        public ActionResult Editar(string idLoja, string idEndereco)
+        {
+            IList<SelectListItem> listaEstados = _consultasEstados.GetEstados(EstadoOrdem.Sigla).Select(p => new SelectListItem { Text = p.Sigla, Value = p.Id.ToString() }).ToList();
+            EnderecoVistaModel enderecoVistaModel = new EnderecoVistaModel{ IdLoja = Int32.Parse(idLoja), IdEndereco = Int32.Parse(idEndereco), Estados = listaEstados };
+            return View(viewName: "ModalEnderecoAngular", model: enderecoVistaModel);
+        }
+        
+        //[HttpGet]
+        //public ActionResult Get(long idEndereco)
+        //{
+        //    Endereco endereco = _consultaEnderecos.Get(idEndereco);
+        //    EnderecosViewModelEntidade transformacao = new EnderecosViewModelEntidade(_operacaoEndereco);
+        //    EnderecoVistaContrato item = transformacao.Transformar(endereco);
+        //    return PartialFormularioEndereco(item);
+        //}
 
         private ActionResult PartialFormularioEndereco(EnderecoVistaContrato item)
         {

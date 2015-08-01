@@ -37,6 +37,6 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Models
 
         public long QuantidadeEndereco { get; set; }
 
-        public NovoEnderecoModel NovoEnderecoModel { get; set; }
+        public EnderecoVistaModel NovoEnderecoModel { get; set; }
     }
 }
