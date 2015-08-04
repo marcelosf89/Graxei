@@ -5,7 +5,7 @@
     }
     openL();
     $.ajax({
-        url: '@Url.Action("ExcluirEndereco", "Enderecos")',
+        url: '@Url.Action("Excluir", "Enderecos")',
         type: 'POST',
         data: { idEndereco: id, idLoja: idLoja },
         success: function (result) {

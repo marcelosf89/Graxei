@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('endereco', ['ngMessages', 'ui.bootstrap']);
 
-    app.controller('EnderecoController', ['$http', function ($http) {
+    app.controller('EnderecoController', ['$http', '$timeout', function ($http, $timeout) {
 
         var controller = this;
 
@@ -11,32 +11,34 @@
 
         this.idLoja = 0;
 
-        this.init = function (loja, endereco) {
+        this.getData = function (loja, endereco) {
+            controller.init(loja, endereco, function (response) {
+                controller.endereco = response;
+            });
+        }
+
+        this.init = function (loja, endereco, funcaoCallback) {
             controller.idLoja = loja;
-            debugger;
-            if (endereco !== undefined) {
-                var x =  $http.get("/Administrativo/Enderecos/Get",
-                                          { params: { idLoja: loja, idEndereco: endereco } }).success(function (response) {
-                                              return response.data;
-                                          });
-                controller.endereco = x;
+            if (endereco !== undefined && endereco !== 0) {
+                $http.get("/Administrativo/Enderecos/Get", { params: { idLoja: loja, idEndereco: endereco } })
+                     .then(function (response) {
+                    funcaoCallback(response.data)
+                });
             }
         }
 
-        this.salvar = function (modelo) {
-            modelo.idLoja = this.idLoja;
-            modelo.telefones = this.endereco.telefones;
-            debugger;
+        this.salvar = function () {
+            var modelo = controller.endereco;
             $http.post('/Administrativo/Enderecos/Salvar', { enderecoModel: modelo }).
-                success(function (statusOperacao) {
-                    controller.operacao = statusOperacao;
+                then(function (statusOperacao) {
+                    controller.operacao = statusOperacao.data;
                     controller.operacao.renderizar = true;
                 });
         }
 
         this.alterarEstado = function (estadoSelecionado) {
             $http.get("/Administrativo/EnderecosAutoComplete/EstadoSelecionado",
-                      { params: { idEstado: estadoSelecionado } }).success(function () {
+                      { params: { idEstado: estadoSelecionado } }).then(function () {
                       });
         }
 
@@ -49,7 +51,7 @@
             }
 
             $http.get("/Administrativo/EnderecosAutoComplete/CidadeSelecionada",
-                      { params: { idEstado: estado, cidade: cidadeSelecionada } }).success(function () {
+                      { params: { idEstado: estado, cidade: cidadeSelecionada } }).then(function () {
                       });
         }
 
@@ -63,7 +65,7 @@
             }
 
             $http.get("/Administrativo/EnderecosAutoComplete/BairroSelecionado",
-                      { params: { estado: estado, cidade: cidadeSelecionada, bairro: bairroSelecionado } }).success(function () {
+                      { params: { estado: estado, cidade: cidadeSelecionada, bairro: bairroSelecionado } }).then(function () {
                       });
         }
 

@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name=" viewport" content="width=device-width" />
+    <title>TesteJson</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script>
+        myApp = angular.module('myApp', []);
+        myApp.controller('myController', function ($scope, $http) {
+            var controller = this;
+
+            //$http.get("GetJson").then(function (response) {
+            //    controller.myData = response.data;
+            //});
+
+            this.outra = function () {
+                controller.myData.cidade = "Cidaaaaaaaaaade";
+            }
+
+            this.getData = function () {
+                controller.init(function (response) {
+                    controller.myData = response;
+                });
+            }
+
+            this.init = function (callbackFunction) {
+                //debugger;
+                //$http.get("/Administrativo/Enderecos/Get",
+                //                          { params: { idLoja: 58190, idEndereco: 58220 } }).then(function (response) {
+                var elemento = $http.get("GetJson").then(function (response) {
+                    callbackFunction(response.data);
+                });
+            }
+            
+        });
+    </script>
+</head>
+<body ng-controller="myController as ctrl">
+    <button type="button" ng-click="ctrl.getData()">Init</button>
+    {{ctrl.myData.cidade}}
+</body>
+</html>

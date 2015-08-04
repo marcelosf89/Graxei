@@ -344,6 +344,7 @@
     <Compile Include="Infrastructure\Cache\ICacheComum.cs" />
     <Compile Include="Infrastructure\EnderecosViewModelEntidade.cs" />
     <Compile Include="Infrastructure\Filters\AjaxGenericExceptionAttribute.cs" />
+    <Compile Include="Infrastructure\ModelStateErros.cs" />
     <Compile Include="Models\AutenticacaoModel.cs" />
     <Compile Include="Models\IdNomeModel.cs" />
     <Compile Include="Models\ContatoModel.cs" />
@@ -1352,6 +1353,7 @@
     <Content Include="Views\Loja\Cadastrada.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\TesteAngular\ModalEnderecoAngular.cshtml" />
+    <Content Include="Views\TesteAngular\TesteJson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

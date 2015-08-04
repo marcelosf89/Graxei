@@ -35,7 +35,7 @@
                             <li>
                                 @{
                 AjaxOptions ajaxenderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "fm-content", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" };
-                @Ajax.ActionLink(Rotulos.Enderecos, "ListaEnderecos", "Enderecos", new { Controller = "Enderecos", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
+                @Ajax.ActionLink(Rotulos.Enderecos, "Lista", "Enderecos", new { Controller = "Enderecos", idLoja = Model.LojaContrato.Id }, ajaxHabilitarUrl)
                                 }
                             </li>
                         </ul>

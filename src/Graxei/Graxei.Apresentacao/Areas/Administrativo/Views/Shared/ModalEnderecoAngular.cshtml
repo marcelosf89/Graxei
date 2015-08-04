@@ -7,7 +7,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     </div>
-                    <div class="modal-body" ng-init="enderecoCtrl.init(@Model.IdLoja, @Model.IdEndereco)">
+                    <div class="modal-body" ng-init="enderecoCtrl.getData(@Model.IdLoja, @Model.IdEndereco)">
                         <div ng-show="enderecoCtrl.operacao.renderizar" class="col-lg-offset-1 col-lg-11">
                             <div ng-class="{'alert-danger': !enderecoCtrl.operacao.ok, 'alert-success': enderecoCtrl.operacao.ok}" class="alert row" role="alert">
                                 <div class="col-md-1">
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form name="enderecoForm" class="form-horizontal" ng-submit="enderecoForm.$valid && enderecoCtrl.salvar(this.endereco)" novalidate>
+                        <form name="enderecoForm" class="form-horizontal" ng-submit="enderecoForm.$valid && enderecoCtrl.salvar()" novalidate>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -32,7 +32,7 @@
                                             <label>@Rotulos.CNPJ</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <input class="form-control" name="cnpj" data-val="true" ng-model="endereco.cnpj" focus ng-maxlength="50" required />
+                                            <input class="form-control" name="cnpj" data-val="true" ng-model="enderecoCtrl.endereco.cnpj" focus ng-maxlength="50" />
                                             <span ng-messages="enderecoForm.cnpj.$error" ng-show="enderecoForm.cnpj.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="required">@Validacoes.CnpjObrigatorio</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo50</span>
@@ -42,7 +42,7 @@
                                             <label>@Rotulos.Estado</label>
                                         </div>
                                         <div class="col-md-2">
-                                            @Html.DropDownList("estado", Model.Estados, htmlAttributes: new { @class = "form-control", ng_Model = "endereco.idEstado", required = "", ng_change = "enderecoCtrl.alterarEstado(enderecoForm.estado.$viewValue)" })
+                                            @Html.DropDownList("estado", Model.Estados, htmlAttributes: new { @class = "form-control", ng_Model = "enderecoCtrl.endereco.idEstado", required = "", ng_change = "enderecoCtrl.alterarEstado(enderecoForm.estado.$viewValue)" })
                                             <span ng-messages="enderecoForm.estado.$error" ng-show="enderecoForm.estado.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="required">@Validacoes.EstadoObrigatorio</span>
                                             </span>
@@ -57,7 +57,7 @@
                                             <label>@Rotulos.Cidade</label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input type="text" name="cidade" class="form-control" ng-model="endereco.cidade" typeahead="response for response in enderecoCtrl.getCidades($viewValue)" ng-blur="enderecoCtrl.alterarCidade(enderecoForm)" required>
+                                            <input type="text" name="cidade" class="form-control" ng-model="enderecoCtrl.endereco.cidade" typeahead="response for response in enderecoCtrl.getCidades($viewValue)" ng-blur="enderecoCtrl.alterarCidade(enderecoForm)">
                                             <span ng-messages="enderecoForm.cidade.$error" ng-show="enderecoForm.cidade.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="required">@Validacoes.CidadeObrigatoria</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
@@ -73,7 +73,7 @@
                                             <label>@Rotulos.Bairro</label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input type="text" name="bairro" class="form-control" ng-model="endereco.bairro" typeahead="response for response in enderecoCtrl.getBairros($viewValue)" ng-blur="enderecoCtrl.alterarBairro(enderecoForm)" required>
+                                            <input type="text" name="bairro" class="form-control" ng-model="enderecoCtrl.endereco.bairro" typeahead="response for response in enderecoCtrl.getBairros($viewValue)" ng-blur="enderecoCtrl.alterarBairro(enderecoForm)" required>
                                             <span ng-messages="enderecoForm.bairro.$error" ng-show="enderecoForm.bairro.$dirty || enderecoForm.$submitted" ng-maxlength="250">
                                                 <span ng-message="required">@Validacoes.BairroObrigatorio</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
@@ -89,7 +89,7 @@
                                             <label>@Rotulos.Logradouro</label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input type="text" name="logradouro" class="form-control" ng-model="endereco.logradouro" typeahead="response for response in enderecoCtrl.getLogradouros($viewValue)" required>
+                                            <input type="text" name="logradouro" class="form-control" ng-model="enderecoCtrl.endereco.logradouro" typeahead="response for response in enderecoCtrl.getLogradouros($viewValue)" required>
                                             <span ng-messages="enderecoForm.logradouro.$error" ng-show="enderecoForm.logradouro.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="required">@Validacoes.LogradouroObrigatorio</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo250</span>
@@ -105,7 +105,7 @@
                                             <label>@Rotulos.Numero</label>
                                         </div>
                                         <div class="col-md-2">
-                                            <input class="form-control" name="numero" type="text" value="" ng-model="endereco.numero" required ng-maxlength="150">
+                                            <input class="form-control" name="numero" type="text" value="" ng-model="enderecoCtrl.endereco.numero" required ng-maxlength="150">
                                             <span ng-messages="enderecoForm.numero.$error" ng-show="enderecoForm.numero.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="required">@Validacoes.NumeroObrigatorio</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo150</span>
@@ -115,7 +115,7 @@
                                             <label>@Rotulos.Complemento</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input class="form-control" data-val="true" name="Complemento" type="text" value="" ng-model="endereco.complemento" ng-maxlength="150">
+                                            <input class="form-control" data-val="true" name="Complemento" type="text" value="" ng-model="enderecoCtrl.endereco.complemento" ng-maxlength="150">
                                             <span ng-messages="enderecoForm.numero.$error" ng-show="enderecoForm.numero.$dirty || enderecoForm.$submitted">
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximo150</span>
                                             </span>
@@ -185,7 +185,7 @@
 
     function atualizarListaEnderecos() {
         $.ajax({
-            url: '/Administrativo/Enderecos/ListaEnderecos?idLoja=@Model.IdLoja',
+            url: '/Administrativo/Enderecos/Lista?idLoja=@Model.IdLoja',
             type: 'GET',
             success: function (result) {
                 $('#fm-content').html(result);
