@@ -1,7 +1,7 @@
 ﻿(function () {
-    var app = angular.module('endereco', ['ngMessages', 'ui.bootstrap']);
+    var app = angular.module('endereco', ['ngMessages', 'ui.bootstrap', 'enderecoServico', 'cacheEndereco']);
 
-    app.controller('EnderecoController', ['$http', '$timeout', function ($http, $timeout) {
+    app.controller('EnderecoController', function ($http, enderecos, cache) {
 
         var controller = this;
 
@@ -13,81 +13,55 @@
 
         this.getData = function (loja, endereco) {
             controller.init(loja, endereco, function (response) {
-                controller.endereco = response;
+                controller.endereco = enderecos.transformarParaObjetoView(response);
             });
         }
 
         this.init = function (loja, endereco, funcaoCallback) {
-            controller.idLoja = loja;
+            controller.endereco.idLoja = loja;
             if (endereco !== undefined && endereco !== 0) {
-                $http.get("/Administrativo/Enderecos/Get", { params: { idLoja: loja, idEndereco: endereco } })
-                     .then(function (response) {
-                    funcaoCallback(response.data)
-                });
+                enderecos.get(loja, endereco, funcaoCallback);
             }
         }
 
         this.salvar = function () {
             var modelo = controller.endereco;
-            $http.post('/Administrativo/Enderecos/Salvar', { enderecoModel: modelo }).
-                then(function (statusOperacao) {
-                    controller.operacao = statusOperacao.data;
-                    controller.operacao.renderizar = true;
-                });
+            enderecos.salvar(modelo, function (response) {
+                controller.operacao = response;
+                controller.operacao.renderizar = true;
+            });
         }
 
         this.alterarEstado = function (estadoSelecionado) {
-            $http.get("/Administrativo/EnderecosAutoComplete/EstadoSelecionado",
-                      { params: { idEstado: estadoSelecionado } }).then(function () {
-                      });
+            cache.alterarEstado(estadoSelecionado);
         }
 
         this.alterarCidade = function (enderecoForm) {
-            var estado = enderecoForm.estado.$viewValue;
-            var cidadeSelecionada = enderecoForm.cidade.$viewValue;
+            var estado = controller.endereco.idEstado;
+            var cidadeSelecionada = controller.endereco.cidade;
 
-            if (estado === undefined || cidadeSelecionada === undefined) {
-                return;
-            }
-
-            $http.get("/Administrativo/EnderecosAutoComplete/CidadeSelecionada",
-                      { params: { idEstado: estado, cidade: cidadeSelecionada } }).then(function () {
-                      });
+            cache.alterarCidade(estado, cidadeSelecionada);
         }
 
         this.alterarBairro = function (enderecoForm) {
-            var estado = enderecoForm.estado.$viewValue;
-            var cidadeSelecionada = enderecoForm.cidade.$viewValue;
-            var bairroSelecionado = enderecoForm.bairro.$viewValue;
+            var endereco = controller.endereco;
+            var estado = endereco.idEstado;
+            var cidadeSelecionada = endereco.cidade;
+            var bairroSelecionado = endereco.bairro;
 
-            if (estado === undefined || cidadeSelecionada === undefined || bairroSelecionado === undefined) {
-                return;
-            }
-
-            $http.get("/Administrativo/EnderecosAutoComplete/BairroSelecionado",
-                      { params: { estado: estado, cidade: cidadeSelecionada, bairro: bairroSelecionado } }).then(function () {
-                      });
+            cache.alterarBairro(estado, cidadeSelecionada, bairroSelecionado);
         }
 
         this.getCidades = function (valor) {
-            return $http.get("/Administrativo/EnderecosAutoComplete/AutoCompleteCidade", { params: { term: valor } })
-                        .then(function (response) {
-                            return response.data;
-                        });
+            return cache.getCidades(valor);
         }
 
         this.getBairros = function (valor) {
-            return $http.get("/Administrativo/EnderecosAutoComplete/AutoCompleteBairro", { params: { term: valor } })
-                        .then(function (response) {
-                            return response.data;
-                        });
+            return cache.getBairros(valor);
         }
 
         this.getLogradouros = function (valor) {
-            return $http.get("/Administrativo/EnderecosAutoComplete/AutoCompleteLogradouro", { params: { term: valor } })
-                        .then(function (response) {
-                            return response.data;
-                        });
+            return cache.getLogradouros(valor);
         }
 
         this.adicionarTelefone = function () {
@@ -98,7 +72,7 @@
             this.endereco.telefones.splice(index, 1);
         }
 
-    }]);
+    });
 
     app.directive('focus', function ($timeout) {
         return {
