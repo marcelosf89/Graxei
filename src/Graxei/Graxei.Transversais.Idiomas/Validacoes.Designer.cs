@@ -79,6 +79,15 @@ namespace Graxei.Transversais.Idiomas {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CNPJ inválido.
+        /// </summary>
+        public static string CnpjInvalido {
+            get {
+                return ResourceManager.GetString("CnpjInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CNPJ é obrigatório.
         /// </summary>
         public static string CnpjObrigatorio {
@@ -219,6 +228,15 @@ namespace Graxei.Transversais.Idiomas {
         public static string TamanhoMaximoTelefones {
             get {
                 return ResourceManager.GetString("TamanhoMaximoTelefones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telefone inválido.
+        /// </summary>
+        public static string TelefoneInvalido {
+            get {
+                return ResourceManager.GetString("TelefoneInvalido", resourceCulture);
             }
         }
         

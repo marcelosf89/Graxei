@@ -123,6 +123,9 @@
   <data name="CidadeObrigatoria" xml:space="preserve">
     <value>Cidade é obrigatória</value>
   </data>
+  <data name="CnpjInvalido" xml:space="preserve">
+    <value>CNPJ inválido</value>
+  </data>
   <data name="CnpjObrigatorio" xml:space="preserve">
     <value>CNPJ é obrigatório</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="TamanhoMaximoTelefones" xml:space="preserve">
     <value>O número máximo de telefones para esta loja foi atingido</value>
+  </data>
+  <data name="TelefoneInvalido" xml:space="preserve">
+    <value>Telefone inválido</value>
   </data>
   <data name="TelefoneObrigatorio" xml:space="preserve">
     <value>O telefone é obrigatório</value>

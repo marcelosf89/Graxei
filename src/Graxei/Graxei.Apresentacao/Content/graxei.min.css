@@ -1122,3 +1122,24 @@ ul.wysihtml5-toolbar div[data-wysihtml5-command-value="orange"] {
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+  cursor: default;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  cursor: default;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }

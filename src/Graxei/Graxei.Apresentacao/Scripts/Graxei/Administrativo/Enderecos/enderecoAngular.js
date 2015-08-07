@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('endereco', ['ngMessages', 'ui.bootstrap', 'enderecoServico', 'cacheEndereco']);
+    var app = angular.module('endereco', ['ngMessages', 'ui.bootstrap', 'enderecoServico', 'cacheEndereco', 'ui.utils.masks']);
 
     app.controller('EnderecoController', function ($http, enderecos, cache) {
 
@@ -22,6 +22,10 @@
             if (endereco !== undefined && endereco !== 0) {
                 enderecos.get(loja, endereco, funcaoCallback);
             }
+        }
+
+        this.exibirErroCnpj = function (form) {
+            return form.$submitted || (form.cnpj.$dirty && form.cnpj.$viewValue.length == 18);
         }
 
         this.salvar = function () {
