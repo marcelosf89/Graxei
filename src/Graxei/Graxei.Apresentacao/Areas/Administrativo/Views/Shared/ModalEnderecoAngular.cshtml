@@ -30,8 +30,8 @@
                                     <label class="control-label col-md-2">@Rotulos.CNPJ</label>
                                     <div class="col-md-4">
                                         <div class="inner-addon right-addon">
-                                            <input class="form-control input-group" name="cnpj" data-val="true" ng-model="enderecoCtrl.endereco.cnpj" focus ng-maxlength="50" ui-br-cnpj-mask alt="cpnj inválido"/>
-                                            <span class="glyphicon" ng-show="enderecoForm.cnpj.$viewValue.length > 0 && enderecoForm.cnpj.$viewValue.length < 18"><img src="~/Content/imagens/alerta.png" title="@Validacoes.CnpjInvalido"  /></span>
+                                            <input class="form-control input-group" name="cnpj" data-val="true" ng-model="enderecoCtrl.endereco.cnpj" focus ng-maxlength="50" ui-br-cnpj-mask alt="cpnj inválido" />
+                                            <span class="glyphicon" ng-show="enderecoForm.cnpj.$viewValue.length > 0 && enderecoForm.cnpj.$viewValue.length < 18"><img src="~/Content/imagens/alerta.png" title="@Validacoes.CnpjInvalido" /></span>
                                         </div>
                                         <span ng-messages="enderecoForm.cnpj.$error" ng-show="enderecoCtrl.exibirErroCnpj(enderecoForm)">
                                             <span ng-message="required">@Validacoes.CnpjObrigatorio</span>
@@ -105,19 +105,19 @@
                             </div>
                             <div class="row">
                                 <div class="form-group" ng-repeat="tel in enderecoCtrl.endereco.telefones track by $index">
-                                    <label class="control-label col-md-2" ng-show="$index == 0">@Rotulos.Telefones</label>
-                                    <div>
+                                    <ng-form name="telefoneForm">
+                                        <label class="control-label col-md-2" ng-show="$index == 0">@Rotulos.Telefones</label>
                                         <div class="col-md-2" ng-class="{'col-md-offset-2': $index > 0}">
-                                            <input class="form-control" id="IdNumero" name="telefone" type="text" value="" ng-model="tel.numero" ng-maxlength="25" required ui-br-phone-number>
-                                            <span ng-messages="enderecoForm.telefone.$error" ng-show="enderecoForm.telefone.$dirty && enderecoForm.$submitted">
+                                            <input class="form-control" name="telefone" type="text" value="" ng-model="tel.numero" ng-maxlength="25" required ui-br-phone-number>
+                                            <span ng-messages="telefoneForm.telefone.$error" ng-show="enderecoForm.$submitted || telefoneForm.telefone.$dirty">
                                                 <span ng-message="required">@Validacoes.NumeroTelefoneObrigatorio</span>
                                                 <span ng-message="maxLength">@Validacoes.TamanhoMaximoNumeroTelefone</span>
                                                 <span ng-message="brPhoneNumber">@Validacoes.TelefoneInvalido</span>
                                             </span>
                                         </div>
-                                        <div class="col-md-2" ng-hide="$first">
-                                            <button ng-click="enderecoCtrl.removerTelefone($index)" type="button"><img src="~/Content/imagens/remove.png" /></button>
-                                        </div>
+                                    </ng-form>
+                                    <div class="col-md-2" ng-hide="$first">
+                                        <button ng-click="enderecoCtrl.removerTelefone($index)" type="button"><img src="~/Content/imagens/remove.png" /></button>
                                     </div>
                                 </div>
                             </div>
@@ -129,9 +129,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 col-md-offset-2">
-                                    <input type="submit" class="btn btn-primary" value="@Rotulos.Salvar" />
-                                    <button class="btn btn-danger" data-dismiss="modal" onclick="atualizarListaEnderecos();">@Rotulos.Cancelar</button>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-md-offset-2">
+                                        <input type="submit" class="btn btn-primary" value="@Rotulos.Salvar" />
+                                        <button class="btn btn-danger" data-dismiss="modal">@Rotulos.Fechar</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -151,20 +153,16 @@
 <input type="hidden" id="autoBairro" value="@Url.Action("AutoCompleteBairro", "EnderecosAutoComplete")" />
 <input type="hidden" id="autoLogradouro" value="@Url.Action("autocompletelogradouro", "EnderecosAutoComplete")">
 
-@*<script src="~/Scripts/Graxei/Administrativo/Enderecos/formularioEndereco.js"></script>*@
 @Scripts.Render("~/bundles/modal")
-<script src="~/Scripts/angular.min.js"></script>
-<script src="~/Scripts/angular-messages.min.js"></script>
-<script src="~/Scripts/ui-bootstrap-tpls-0.13.1.min.js"></script>
-<script src="~/Scripts/angular-input-masks-standalone.min.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoLista.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoServicoAngular.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/cacheElementosEndereco.js"></script>
 <script type="text/javascript">
+
     $(function () {
         $('#modalEnderecos').modal('show');
     });
+
+    $('#modalEnderecos').on('hidden.bs.modal', function () {
+        atualizarListaEnderecos();
+    })
 
     function atualizarListaEnderecos() {
         $.ajax({
