@@ -307,7 +307,6 @@
     <Compile Include="Areas\Administrativo\Infraestutura\ItensSessao.cs" />
     <Compile Include="Areas\Administrativo\Models\StatusOperacao.cs" />
     <Compile Include="Controllers\NovoEnderecosController.cs" />
-    <Compile Include="Controllers\TesteAngularController.cs" />
     <Compile Include="Extension\PaginacaoChain\AbstractPaginacao.cs" />
     <Compile Include="Extension\PaginacaoChain\ImparMenosQueMaximoElementos.cs" />
     <Compile Include="Extension\PaginacaoChain\LinkBuilderStrategy\LinkBuilderPequisaProdutosStrategy.cs" />
@@ -1356,8 +1355,6 @@
     <Content Include="Views\Loja\NaoCadastrada.cshtml" />
     <Content Include="Views\Loja\Cadastrada.cshtml" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\TesteAngular\ModalEnderecoAngular.cshtml" />
-    <Content Include="Views\TesteAngular\TesteJson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,7 +14,7 @@
                     </button>
                     @Ajax.ActionLink(" raxei", "Dashboard", "Home", new { controller = "Home" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();foco();" }, new { @class = "navbar-brand logo" })
                 </div>
-                <div class="navbar-collapse collapse">                    
+                <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>@Ajax.ActionLink("Contato", "Contato", "Home", new { controller = "Home", Area = "" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { })</li>
                         <li>
@@ -28,16 +28,16 @@
                                             <span class="sr-only"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li class="menu-a-login">@Html.ActionLink("Graxei", "Index", "Home", new { controller = "Home", area = "" }, new AjaxOptions())
+                                            <li class="menu-a-login">
+                                                @Html.ActionLink("Graxei", "Index", "Home", new { controller = "Home", area = "" }, new AjaxOptions())
                                             </li>
                                             <li class="divider"></li>
                                             <li class="menu-a-login">@Html.ActionLink("log off", "Sair", "Login", new { controller = "Login", area = "" }, new AjaxOptions())</li>
                                         </ul>
                                     </div>
-                                </form> 
+                                </form>
                             }
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@
     <div id="openMenu" class="menu-button-open" estaaberto="false">
         <i class="glyphicon glyphicon-th-large"></i> <span>Menu</span>
     </div>
-    <div id="menuAdmin" class="menu-body" >
+    <div id="menuAdmin" class="menu-body">
         <ul>
             <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Lojas", "Listar", "Lojas", new { controller = "Lojas" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "" })</li>
             <li>@Ajax.IconActionLink("glyphicon glyphicon-tower", "Produtos", "ListarLojas", "Produtos", new { controller = "Produtos" }, new AjaxOptions() { UpdateTargetId = "myContent", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "" })</li>
@@ -93,15 +93,9 @@
 @Scripts.Render("~/bundles/sc")
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/modal")
-@Scripts.Render("~/bundles/typeahead")
-<script src="~/Scripts/angular.min.js"></script>
-<script src="~/Scripts/angular-messages.min.js"></script>
-<script src="~/Scripts/ui-bootstrap-tpls-0.13.1.min.js"></script>
-<script src="~/Scripts/angular-input-masks-standalone.min.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoLista.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/enderecoServicoAngular.js"></script>
-<script src="~/Scripts/Graxei/Administrativo/Enderecos/cacheElementosEndereco.js"></script>
+@Scripts.Render("~/bundles/angularjs")
+@Scripts.Render("~/bundles/angularjsplugins-full")
+@Scripts.Render("~/Administrativo/Endereco/js")
 
 <script>
     $(document).ready(function () {

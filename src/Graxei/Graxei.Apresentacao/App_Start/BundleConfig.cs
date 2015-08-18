@@ -33,10 +33,6 @@ namespace Graxei.Apresentacao
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                     "~/Script/angular.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angularmessages").Include(
-                    "~/Script/angular.min.js",
-                    "~/Script/angular-messages.min.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/jquerymaskmoney").Include(
                 "~/Scripts/jquery.maskMoney.js"));
 
@@ -50,12 +46,27 @@ namespace Graxei.Apresentacao
            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+           bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
+                        "~/Scripts/angular.min.js"));
+           
+           bundles.Add(new ScriptBundle("~/bundles/angularjsplugins-full")
+                        .Include("~/Scripts/angular-messages.min.js")
+                        .Include("~/Scripts/ui-bootstrap-tpls-0.13.1.min.js")
+                        .Include("~/Scripts/angular-input-masks-standalone.min.js"));
+
            bundles.Add(new ScriptBundle("~/Administrativo/Enderecos/Formulario/js")
                   .Include("~/Scripts/Graxei/Administrativo/Enderecos/formularioEndereco.js"));
 
            bundles.Add(new ScriptBundle("~/Administrativo/Produtos/Pesquisar/js")
                    .Include("~/Scripts/Graxei/Administrativo/Produtos/pesquisar.js")
                    .Include("~/Scripts/Graxei/Administrativo/Produtos/pesquisar.eventos.js"));
+
+            bundles.Add(new ScriptBundle("~/Administrativo/Endereco/js")
+                    .Include("~/Scripts/angular-input-masks-standalone.min.js")
+                    .Include("~/Scripts/Graxei/Administrativo/Enderecos/enderecoAngular.js")
+                    .Include("~/Scripts/Graxei/Administrativo/Enderecos/enderecoLista.js")
+                    .Include("~/Scripts/Graxei/Administrativo/Enderecos/enderecoServicoAngular.js")
+                    .Include("~/Scripts/Graxei/Administrativo/Enderecos/cacheElementosEndereco.js"));
 
             bundles.Add(new StyleBundle("~/css/themes").Include(
                 "~/Content/graxei.min.css",
