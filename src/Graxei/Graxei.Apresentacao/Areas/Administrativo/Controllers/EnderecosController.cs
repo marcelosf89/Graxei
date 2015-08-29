@@ -98,7 +98,6 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         public JsonNetResult Salvar(EnderecoVistaContrato enderecoModel)
         {
             StatusOperacao statusOperacao = new StatusOperacao();
-            statusOperacao.Ok = false;
             
             if (!ModelState.IsValid)
             {
@@ -126,27 +125,25 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             return new JsonNetResult(statusOperacao, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
         }
 
-        [HttpPost]
-        public ActionResult Excluir(long idEndereco, long idLoja)
+        public ActionResult Excluir(long idEndereco)
         {
+            StatusOperacao statusOperacao = new StatusOperacao();
             try
             {
                 Endereco endereco = _consultaEnderecos.Get(idEndereco);
                 _gerenciamentoEnderecos.Remover(endereco);
-                ViewBag.OperacaoSucesso = Sucesso.EnderecoExcluido;
+                statusOperacao.SetOkTrue(Sucesso.EnderecoExcluido);
             }
             catch (GraxeiException graxeiException)
             {
-                ModelState.AddModelError(string.Empty, graxeiException.Message);
+                statusOperacao.Mensagem = graxeiException.Message;
             }
             catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "Ocorreu um erro ao salvar o endereço. Por favor, contate-nos");
+                statusOperacao.Mensagem = Erros.MensagemGenerica;
             }
 
-            ModelState.Clear();
-            
-            return Lista(idLoja);
+            return new JsonNetResult(statusOperacao, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
         }
 
         private readonly IConsultaEnderecos _consultaEnderecos;

@@ -465,7 +465,6 @@
     <Content Include="Scripts\Graxei\Administrativo\Enderecos\enderecoLista.js" />
     <Content Include="Scripts\Graxei\Administrativo\Enderecos\enderecoAngular.js" />
     <Content Include="Scripts\Graxei\Administrativo\Enderecos\enderecoServicoAngular.js" />
-    <Content Include="Scripts\Graxei\Administrativo\Enderecos\formularioEndereco.js" />
     <Content Include="Scripts\Graxei\Administrativo\Produtos\pesquisar.eventos.js" />
     <Content Include="Scripts\Graxei\Administrativo\Produtos\pesquisar.js" />
     <Content Include="Scripts\affix.js" />

@@ -8,6 +8,11 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Models
 {
     public class StatusOperacao
     {
+        public StatusOperacao()
+        {
+            Ok = false;
+        }
+
         [JsonProperty("ok")]
         public bool Ok { get; set; }
 
@@ -16,5 +21,11 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Models
 
         [JsonProperty("errosValidacao")]
         public string[] ErrosValidacao { get; set; }
+
+        public void SetOkTrue(string mensagem)
+        {
+            Ok = true;
+            Mensagem = mensagem;
+        }
     }
 }

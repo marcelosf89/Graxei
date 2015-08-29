@@ -4,66 +4,59 @@
 @{
     ViewBag.Title = "Lista";
 }
-<div class="con-md-12">
-    <div class="form-group has-error">
-        <div class="col-lg-offset-1 col-lg-11">
-            @Html.Erro()
-        </div>
-    </div>
-    <div class="form-group has-success">
-        <div class="col-lg-offset-1 col-lg-11">
-            @Html.Sucesso()
-        </div>
-    </div>
-    <div class="row row-btn-margin">
-        <div class="con-md-12">
-            @{
-                AjaxOptions ajaxEnderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar",  OnBegin = "openL();", OnComplete = "closeL();registrarAngular();" };
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Administrativo/Endereco/js")
 
-                if (Model.Enderecos.Count >= Model.QuantidadeEndereco)
-                {
-                    <button class="btn btn-default disabled" data-toggle="tooltip" data-placement="bottom" title="O seu plano não permite a criação de mais um endereço. Contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-plus"></i>@Rotulos.NovoEndereco</button>
-                    <div class="label label-warning" title="O seu plano não permite a criação de mais um endereço. Contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-exclamation-sign"></i></div>
-                }
-                else
-                {
-                    @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovoEndereco, "Novo", "Enderecos", new { Controller = "Enderecos", idloja = Model.IdLoja }, ajaxEnderecos, new { @class = "btn btn-default" })
-                }
+<div class="col-md-12 mensagem-endereco">
+</div>
+<div class="row row-btn-margin">
+    <div class="con-md-12">
+        @{
+            AjaxOptions ajaxEnderecos = new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "enderecoAtualizar", OnBegin = "openL();", OnComplete = "closeL();registrarAngular();" };
+
+            if (Model.Enderecos.Count >= Model.QuantidadeEndereco)
+            {
+                <button class="btn btn-default disabled" data-toggle="tooltip" data-placement="bottom" title="O seu plano não permite a criação de mais um endereço. Contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-plus"></i>@Rotulos.NovoEndereco</button>
+                <div class="label label-warning" title="O seu plano não permite a criação de mais um endereço. Contrate um plano mais adequado para a sua loja"><i class="glyphicon glyphicon-exclamation-sign"></i></div>
             }
-        </div>
+            else
+            {
+                @Ajax.IconActionLink("glyphicon glyphicon-plus", Rotulos.NovoEndereco, "Novo", "Enderecos", new { Controller = "Enderecos", idloja = Model.IdLoja }, ajaxEnderecos, new { @class = "btn btn-default" })
+            }
+        }
     </div>
-    <div class="row">
-        <table class="table table-striped table-bordered">
-            <thead>
+</div>
+<div class="row">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="col-md-3">CNPJ</th>
+                <th class="col-md-7">@Rotulos.Enderecos</th>
+                <th class="col-md-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (EnderecoListaContrato enderecoListaModel in Model.Enderecos)
+            {
                 <tr>
-                    <th class="col-md-3">CNPJ</th>
-                    <th class="col-md-7">@Rotulos.Enderecos</th>
-                    <th class="col-md-2"></th>
+                    <td class="col-md-3">
+                        @enderecoListaModel.Cnpj
+                    </td>
+                    <td class="col-md-7">
+                        @enderecoListaModel.DescricaoEndereco
+                    </td>
+                    <td class="col-md-2 btn-group" data-id-endereco="@enderecoListaModel.IdEndereco">
+                        @{
+                            @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new { idLoja = Model.IdLoja, idEndereco = enderecoListaModel.IdEndereco }, ajaxEnderecos, new { @class = "btn btn-default" })
+                        }
+                        <button class="btn btn-danger excluir-endereco" type="button">@Rotulos.Excluir</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
+            }
 
-                @foreach (EnderecoListaContrato enderecoListaModel in Model.Enderecos)
-                {
-                    <tr>
-                        <td class="col-md-3">
-                            @enderecoListaModel.Cnpj
-                        </td>
-                        <td class="col-md-7">
-                            @enderecoListaModel.DescricaoEndereco
-                        </td>
-                        <td class="col-md-2 btn-group">
-                            @{
-                                @Ajax.ActionLink(Rotulos.Editar, "Editar", "Enderecos", new {idLoja = Model.IdLoja, idEndereco = enderecoListaModel.IdEndereco }, ajaxEnderecos, new { @class = "btn btn-default" })
-}
-                            <button class="btn btn-danger" onclick="excluirEndereco(@enderecoListaModel.IdEndereco, @Model.IdLoja);">@Rotulos.Excluir</button>
-                        </td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
 <div id="enderecoAtualizar">
 </div>
