@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web.Mvc;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
-using Graxei.Aplicacao.Fabrica;
-using Graxei.Apresentacao.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Apresentacao.Infrastructure;
 using Graxei.Modelo;
@@ -16,10 +14,7 @@ using Graxei.Transversais.Idiomas;
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
 using Graxei.Transversais.Comum.TransformacaoDados.Interface;
-using Microsoft.Practices.Unity;
 using Graxei.Apresentacao.Infrastructure.ActionResults;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
 using Graxei.Apresentacao.Models;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
@@ -52,7 +47,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             {
                 _cacheElementosEndereco.SetCidades(_consultasCidades.GetPorEstado(item.IdEstado));
             }
-            return new JsonNetResult(item, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            return JsonNetResult.GetWithDefaultFormatting(item);
         }
 
         public ActionResult Lista(long idLoja)
@@ -123,7 +118,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 }
             }
 
-            return new JsonNetResult(statusOperacao, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            return JsonNetResult.GetWithDefaultFormatting(statusOperacao);
         }
 
         [HttpPost]

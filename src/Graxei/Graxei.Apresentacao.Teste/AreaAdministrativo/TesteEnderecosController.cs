@@ -98,7 +98,7 @@ namespace Graxei.Apresentacao.Teste.AreaAdministrativo
 
             // Act
             EnderecosController enderecosController = new EnderecosController(_mockConsultaEnderecos.Object, null, _mockConsultaEstados.Object, _mockConsultasCidades.Object, null, _mockOperacaoEnderecos.Object, _mockCacheElementosEndereco.Object, _mockTransformacaoEndereco.Object);
-            return (PartialViewResult)enderecosController.Editar(99);
+            return (PartialViewResult)enderecosController.Editar("1", "99");
         }
 
         private EnderecoVistaContrato GetContrato(long idEstado = 0)

@@ -3,8 +3,8 @@
 @Scripts.Render("~/bundles/jquerymaskmoney")
 @Scripts.Render("~/Administrativo/Produtos/Pesquisar/js")
 <div id="msg-produtos-atualizar"></div>
-@Html.HiddenFor(m => m.Total.Total, new { id = "total-elementos" })
-@Html.HiddenFor(m => m.Atual.Atual, new { id = "elemento-atual" })
+@Html.HiddenFor(m => m.Total.Valor, new { id = "total-elementos" })
+@Html.HiddenFor(m => m.Atual.Valor, new { id = "elemento-atual" })
 <input type="hidden" id="salvar-produtos-url" value="@Url.Action("Salvar", "Produtos")" />
 <input type="hidden" id="pesquisar-produtos-url" value="@Url.Action("PesquisarDoEndereco", "Produtos")" />
 <form name="form-produtos-vendedor">

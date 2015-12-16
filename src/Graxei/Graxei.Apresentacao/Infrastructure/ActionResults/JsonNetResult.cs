@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,6 +33,11 @@ namespace Graxei.Apresentacao.Infrastructure.ActionResults
         public string ContentType { get; set; }
 
         public object ResponseBody { get; set; }
+
+        public static JsonNetResult GetWithDefaultFormatting(object responseBody)
+        {
+            return new JsonNetResult(responseBody, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+        }
 
         private Formatting Formatting
         {

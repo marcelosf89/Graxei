@@ -12,6 +12,7 @@ using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Apresentacao.Areas.Teste.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.Idiomas;
+using Graxei.Apresentacao.Infrastructure.ActionResults;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 {
@@ -61,6 +62,25 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             {
                 IList<Produto> produtos = e.List;
                 return View(produtos);
+            }
+        }
+
+        [HttpPost]
+        public JsonNetResult Pesquisar(PesquisaProdutoContrato model)
+        {
+            try
+            {
+                if (model.PaginaAtualLista == 0)
+                {
+                    model.PaginaAtualLista = 1;
+                }
+                ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model, 10);
+                return JsonNetResult.GetWithDefaultFormatting(produtos);
+            }
+            catch (ProdutoForaDoLimiteException e)
+            {
+                IList<Produto> produtos = e.List;
+                return JsonNetResult.GetWithDefaultFormatting(produtos);
             }
         }
 
