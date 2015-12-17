@@ -1,6 +1,4 @@
-﻿
-
-function habilitarBotaoSalvar() {
+﻿function habilitarBotaoSalvar() {
     var button = $('#salvar-precos');
     button.addClass("invisible");
     $(".valor-produto").each(function () {
@@ -181,4 +179,3 @@ function paginar(numeroPagina) {
 }
 
 $("input[name=preco-produto").maskMoney();
-//filter(function() { return $(this).val() == "0,00"; }).

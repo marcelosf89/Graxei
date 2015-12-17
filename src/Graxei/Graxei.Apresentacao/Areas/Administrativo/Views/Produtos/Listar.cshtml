@@ -8,7 +8,7 @@
             @Ajax.ActionLink("Todas as Filiais", "", "Produtos", new { Controller = "Produtos" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "myModal" }, new { @class = "btn btn-default btn-filial" })
         </div>*@
     <div class="col-md-10 col-lg-10">
-        @{using (Ajax.BeginForm("PesquisarDoEndereco", "Produtos", null, new AjaxOptions() { UpdateTargetId = "myContentProd", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form" }))
+        @{using (Ajax.BeginForm("Pesquisar", "Produtos", null, new AjaxOptions() { UpdateTargetId = "myContentProd", HttpMethod = "POST", OnBegin = "openL();", OnComplete = "closeL();" }, new { @class = "navbar-form" }))
             {
                 <div class="input-group">
                     <span class="input-group-addon">

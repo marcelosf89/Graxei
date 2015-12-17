@@ -1,15 +1,12 @@
 ﻿using Graxei.Modelo;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using Graxei.Apresentacao.Models;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using System;
 using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Transversais.ContratosDeDados.Listas;
-using Graxei.Apresentacao.Areas.Teste.Models;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.Idiomas;
 using Graxei.Apresentacao.Infrastructure.ActionResults;
