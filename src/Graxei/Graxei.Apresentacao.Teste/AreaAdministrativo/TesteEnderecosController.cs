@@ -2,19 +2,13 @@
 using Graxei.Aplicacao.Contrato.Operacoes;
 using Graxei.Apresentacao.Areas.Administrativo.Controllers;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
-using Graxei.Apresentacao.Areas.Administrativo.Models;
-using Graxei.Apresentacao.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Comum.Entidades;
 using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Graxei.Apresentacao.Teste.AreaAdministrativo

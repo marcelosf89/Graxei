@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Graxei.Modelo.Generico;
+﻿using Graxei.Modelo.Generico;
 using System;
 using System.Collections.Generic;
 

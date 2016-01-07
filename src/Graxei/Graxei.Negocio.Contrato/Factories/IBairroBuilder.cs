@@ -1,5 +1,4 @@
 ﻿using Graxei.Modelo;
-using System;
 namespace Graxei.Negocio.Contrato.Factories
 {
     public interface IBairrosBuilder

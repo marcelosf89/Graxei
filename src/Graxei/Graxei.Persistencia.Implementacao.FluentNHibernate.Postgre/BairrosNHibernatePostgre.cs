@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Comum.NHibernate;
 using NHibernate.Linq;
 
 namespace Graxei.Persistencia.Implementacao.NHibernate

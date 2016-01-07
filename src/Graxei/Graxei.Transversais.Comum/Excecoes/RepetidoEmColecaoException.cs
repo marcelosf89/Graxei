@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Graxei.Transversais.Comum.Excecoes
+﻿namespace Graxei.Transversais.Comum.Excecoes
 {
     public class RepetidoEmColecaoException : OperacaoEntidadeException
     {

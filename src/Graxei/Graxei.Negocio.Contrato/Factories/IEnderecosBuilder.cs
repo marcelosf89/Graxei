@@ -1,5 +1,4 @@
 ﻿using Graxei.Transversais.ContratosDeDados;
-using System;
 using System.Collections.Generic;
 namespace Graxei.Negocio.Contrato.Factories
 {

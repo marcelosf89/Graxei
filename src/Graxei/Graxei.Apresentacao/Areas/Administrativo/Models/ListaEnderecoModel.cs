@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Modelo;
 using Graxei.Apresentacao.Models;

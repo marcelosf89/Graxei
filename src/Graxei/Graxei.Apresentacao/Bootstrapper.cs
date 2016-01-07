@@ -10,7 +10,6 @@ using Graxei.Transversais.Comum.Data;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura.Cache;
 using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using Graxei.Modelo;
-using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Apresentacao.Infrastructure.Cache;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Comum.LogAplicacao;
@@ -18,7 +17,7 @@ using Graxei.Transversais.Comum.LogAplicacao.Log4Net;
 
 namespace Graxei.Apresentacao
 {
-  public static class Bootstrapper
+    public static class Bootstrapper
   {
     public static IUnityContainer Initialise()
     {

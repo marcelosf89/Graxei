@@ -1,4 +1,3 @@
-using Graxei.Aplicacao.Contrato;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;

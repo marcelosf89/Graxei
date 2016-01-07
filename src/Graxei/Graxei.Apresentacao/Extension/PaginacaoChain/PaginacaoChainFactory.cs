@@ -1,6 +1,4 @@
 ﻿using System.Web.Mvc;
-using System.Web.Routing;
-using Graxei.Transversais.ContratosDeDados.Interfaces;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy;
 

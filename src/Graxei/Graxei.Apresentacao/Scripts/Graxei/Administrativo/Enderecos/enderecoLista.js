@@ -16,5 +16,5 @@
 }
 
 function registrarAngular() {
-    angular.bootstrap(document.getElementById('appEnderecos'), ['endereco']);
+    angular.bootstrap(document.getElementById('appEnderecos'), ['endereco']);    
 }

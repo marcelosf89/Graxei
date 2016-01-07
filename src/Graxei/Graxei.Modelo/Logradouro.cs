@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Graxei.Modelo.Generico;
 using System;
-using Graxei.Transversais.Idiomas;
 
 namespace Graxei.Modelo
 {

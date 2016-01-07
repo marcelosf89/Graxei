@@ -1,11 +1,6 @@
 ﻿using Graxei.Persistencia.Contrato.PesquisaProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.PesquisaProduto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.Teste
 {

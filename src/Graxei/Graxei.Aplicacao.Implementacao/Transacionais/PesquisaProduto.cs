@@ -3,20 +3,10 @@ using Graxei.Transversais.Comum.LogAplicacao;
 using Graxei.Transversais.Comum.Api;
 using Graxei.Transversais.Comum.SectionGroups;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
-using System.Net;
 
 namespace Graxei.Aplicacao.Implementacao.Transacionais
 {

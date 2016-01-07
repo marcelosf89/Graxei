@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Graxei.Transversais.Idiomas;
-using System.Text;
 
 namespace Graxei.Modelo
 {

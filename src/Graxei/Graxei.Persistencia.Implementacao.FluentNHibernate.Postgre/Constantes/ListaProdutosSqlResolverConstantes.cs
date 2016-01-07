@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.Constantes
+﻿namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.Constantes
 {
     public class ListaProdutosSqlResolverConstantes
     {

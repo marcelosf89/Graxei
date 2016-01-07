@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Graxei.Transversais.ContratosDeDados
+﻿namespace Graxei.Transversais.ContratosDeDados
 {
     public class ProdutoLojaPrecoContrato
     {

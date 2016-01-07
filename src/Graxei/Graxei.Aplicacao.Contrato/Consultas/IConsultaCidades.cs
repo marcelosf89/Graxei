@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Dynamic;
 using Graxei.Modelo;
 
 namespace Graxei.Aplicacao.Contrato.Consultas

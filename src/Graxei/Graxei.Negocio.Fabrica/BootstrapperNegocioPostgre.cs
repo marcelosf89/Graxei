@@ -13,11 +13,6 @@ using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Fac
 using Graxei.Persistencia.Implementacao.NHibernate;
 using Graxei.Persistencia.Implementacao.NHibernate.Postgre;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Negocio.Fabrica
 {

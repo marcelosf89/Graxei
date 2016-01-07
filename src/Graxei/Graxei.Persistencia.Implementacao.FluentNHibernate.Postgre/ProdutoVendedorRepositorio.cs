@@ -8,8 +8,6 @@ using Graxei.Transversais.Comum.NHibernate;
 using NHibernate.Linq;
 using System.Linq;
 using Graxei.Transversais.ContratosDeDados;
-using NHibernate.Criterion;
-using NHibernate.Transform;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using NHibernate;

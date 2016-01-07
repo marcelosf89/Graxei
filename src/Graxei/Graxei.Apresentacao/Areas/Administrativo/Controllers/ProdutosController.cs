@@ -10,6 +10,8 @@ using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.Idiomas;
 using Graxei.Apresentacao.Infrastructure.ActionResults;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 {
@@ -63,7 +65,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public JsonNetResult Pesquisar(PesquisaProdutoContrato model)
+        public JsonNetResult PesquisarJson(PesquisaProdutoContrato model)
         {
             try
             {
@@ -79,6 +81,28 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
                 IList<Produto> produtos = e.List;
                 return JsonNetResult.GetWithDefaultFormatting(produtos);
             }
+        }
+
+        [HttpPost]
+        public ActionResult Pesquisar(PesquisaProdutoContrato model)
+        {
+            string json = JsonConvert.SerializeObject(model, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+
+            return PartialView("Pesquisar", json);
+            //try
+            //{
+            //    if (model.PaginaAtualLista == 0)
+            //    {
+            //        model.PaginaAtualLista = 1;
+            //    }
+            //    ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model, 10);
+            //    return JsonNetResult.GetWithDefaultFormatting(produtos);
+            //}
+            //catch (ProdutoForaDoLimiteException e)
+            //{
+            //    IList<Produto> produtos = e.List;
+            //    return JsonNetResult.GetWithDefaultFormatting(produtos);
+            //}
         }
 
         [HttpPost]

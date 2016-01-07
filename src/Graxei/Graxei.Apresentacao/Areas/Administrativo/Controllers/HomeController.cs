@@ -2,10 +2,6 @@
 using Graxei.Modelo;
 using Graxei.Transversais.Comum;
 using Graxei.Transversais.Comum.Autenticacao.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Graxei.Apresentacao.Areas.Administrativo.Controllers

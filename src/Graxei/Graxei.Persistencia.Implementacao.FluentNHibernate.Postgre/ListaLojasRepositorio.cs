@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using FluentNHibernate.Utils;
 using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.ContratosDeDados;
 using NHibernate;
 using NHibernate.Linq;
 using System.Linq;
-using NHibernate.Criterion;
-using NHibernate.Transform;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Transversais.ContratosDeDados.Listas;
 

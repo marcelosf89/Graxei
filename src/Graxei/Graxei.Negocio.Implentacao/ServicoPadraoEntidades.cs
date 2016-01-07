@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
 using Graxei.Transversais.Comum.Excecoes;

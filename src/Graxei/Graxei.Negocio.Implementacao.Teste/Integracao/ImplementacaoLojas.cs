@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using System.Data;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Graxei.FluentNHibernate.Convencoes;
@@ -7,12 +6,7 @@ using Graxei.FluentNHibernate.Mapeamento;
 using Graxei.FluentNHibernate.UnitOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Context;
-using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
-using Graxei.Persistencia.Contrato;
-using System.Collections.Generic;
 
 namespace Graxei.Negocio.Implementacao.Teste.Integracao
 {

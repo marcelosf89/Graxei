@@ -1,8 +1,5 @@
 ﻿using Graxei.Apresentacao.Areas.Administrativo.Infraestutura;
 using Graxei.Apresentacao.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace Graxei.Apresentacao.Infrastructure.Cache

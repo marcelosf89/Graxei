@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using DotNetOpenAuth.Messaging;
+﻿using System.Web.Mvc;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Apresentacao.Areas.Administrativo.Infraestutura;
@@ -8,7 +6,6 @@ using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Apresentacao.Infrastructure;
 using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Transversais.Comum.TransformacaoDados.Interface;

@@ -1,11 +1,6 @@
 ﻿using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Comum.Autenticacao.Interfaces;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto
 {

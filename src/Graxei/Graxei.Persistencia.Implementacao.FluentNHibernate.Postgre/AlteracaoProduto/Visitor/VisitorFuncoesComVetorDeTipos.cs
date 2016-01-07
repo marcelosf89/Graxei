@@ -1,12 +1,8 @@
 ﻿using Graxei.Transversais.Comum;
 using Graxei.Transversais.Comum.Data;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor
 {

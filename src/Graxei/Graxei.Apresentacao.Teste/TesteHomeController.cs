@@ -2,20 +2,13 @@
 using Graxei.Apresentacao.Controllers;
 using Graxei.Apresentacao.Infrastructure.Cache;
 using Graxei.Apresentacao.Models;
-using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace Graxei.Apresentacao.Teste
 {

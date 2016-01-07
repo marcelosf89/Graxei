@@ -5,11 +5,9 @@ using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.Idiomas;
 using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Graxei.Transversais.Comum.Excecoes;
-using Graxei.Transversais.Comum.NHibernate;
 using System.Collections.Generic;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
-using Graxei.Transversais.Comum;
 using Graxei.Persistencia.Contrato.PesquisaProduto;
 
 namespace Graxei.Negocio.Implementacao

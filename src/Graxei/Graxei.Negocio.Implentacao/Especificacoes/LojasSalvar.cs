@@ -2,14 +2,8 @@
 using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Contrato.Especificacoes;
 using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Graxei.Transversais.Comum.Excecoes;
 using Graxei.Transversais.Comum.NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Negocio.Implementacao.Especificacoes
 {

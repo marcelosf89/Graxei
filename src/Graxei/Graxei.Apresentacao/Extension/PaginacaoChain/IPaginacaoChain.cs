@@ -1,6 +1,5 @@
 ﻿using Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 
 namespace Graxei.Apresentacao.Extension.PaginacaoChain
 {

@@ -1,9 +1,4 @@
 ﻿using Graxei.Negocio.Contrato.Especificacoes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Negocio.Implementacao.Teste.Especificacoes
 {

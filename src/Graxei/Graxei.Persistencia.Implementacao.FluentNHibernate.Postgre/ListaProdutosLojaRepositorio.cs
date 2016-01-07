@@ -1,7 +1,5 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
-using Graxei.Modelo;
 using Graxei.Persistencia.Contrato;
-using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Factory;
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver.Interface;
@@ -9,13 +7,8 @@ using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using NHibernate;
-using NHibernate.Criterion;
-using NHibernate.Transform;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre
 {

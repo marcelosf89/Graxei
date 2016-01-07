@@ -1,5 +1,4 @@
 ﻿using Graxei.Modelo;
-using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Persistencia.Contrato

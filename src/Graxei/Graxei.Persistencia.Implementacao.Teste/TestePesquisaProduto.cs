@@ -6,12 +6,7 @@ using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using NHibernate;
-using NHibernate.Transform;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.Teste
 {

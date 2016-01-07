@@ -3,10 +3,6 @@ using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProdut
 using Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoProduto.Visitor;
 using Graxei.Transversais.Comum.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.Teste.Helper
 {

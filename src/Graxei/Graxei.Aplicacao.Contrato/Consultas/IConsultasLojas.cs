@@ -1,6 +1,5 @@
 ﻿using Graxei.Modelo;
 using Graxei.Transversais.ContratosDeDados;
-using System.Collections.Generic;
 
 namespace Graxei.Aplicacao.Contrato.Consultas
 {

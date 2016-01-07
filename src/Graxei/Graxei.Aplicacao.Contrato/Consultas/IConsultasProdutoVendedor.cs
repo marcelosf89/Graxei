@@ -1,8 +1,4 @@
-﻿using Graxei.Modelo;
-using Graxei.Negocio.Contrato;
-using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.ContratosDeDados.Listas;
-using System.Collections.Generic;
+﻿using Graxei.Transversais.ContratosDeDados.Listas;
 
 namespace Graxei.Aplicacao.Contrato.Consultas
 {

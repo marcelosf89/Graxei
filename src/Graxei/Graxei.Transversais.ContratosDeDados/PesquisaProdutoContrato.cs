@@ -1,10 +1,5 @@
-﻿using Graxei.Transversais.ContratosDeDados.TinyTypes;
-using Graxei.Transversais.Idiomas;
-using System;
-using System.Collections.Generic;
+﻿using Graxei.Transversais.Idiomas;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Graxei.Transversais.ContratosDeDados
 {

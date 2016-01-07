@@ -1,13 +1,6 @@
-﻿using Graxei.Modelo;
-using Graxei.Negocio.Implementacao;
-using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Comum.Excecoes;
-using Graxei.Transversais.Comum.NHibernate;
+﻿using Graxei.Persistencia.Contrato;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
 
 namespace Graxei.Negocio.Contrato.Teste
 {

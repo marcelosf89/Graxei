@@ -1,5 +1,4 @@
 using Graxei.Aplicacao.Contrato.Transacionais;
-using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Transversais.ContratosDeDados;

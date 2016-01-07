@@ -1,5 +1,4 @@
-﻿using System;
-using Graxei.Aplicacao.Contrato;
+﻿using Graxei.Aplicacao.Contrato;
 using Graxei.FluentNHibernate.UnitOfWork;
 
 namespace Graxei.Aplicacao.Implementacao

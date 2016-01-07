@@ -2,14 +2,8 @@
 using Graxei.Persistencia.Implementacao.Teste;
 using Graxei.Transversais.ContratosDeDados;
 using Graxei.Transversais.ContratosDeDados.Listas;
-using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Negocio.Implementacao.Teste
 {

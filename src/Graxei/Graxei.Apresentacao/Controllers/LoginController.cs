@@ -1,12 +1,10 @@
 ﻿using System.Web.Mvc;
-using System.Web.Routing;
 using Graxei.Aplicacao.Contrato.Consultas;
 using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Comum.Autenticacao.Interfaces;
 using Graxei.Transversais.Comum.Excecoes;
 //using Microsoft.Web.WebPages.OAuth;
-using DotNetOpenAuth.AspNet;
 using System.Web.Security;
 using DotNetOpenAuth.GoogleOAuth2;
 

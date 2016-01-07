@@ -7,8 +7,6 @@ using Graxei.FluentNHibernate.Mapeamento;
 using Graxei.Transversais.Idiomas;
 using NHibernate;
 using NHibernate.Context;
-using Configuration = NHibernate.Cfg.Configuration;
-using NHibernate.Tool.hbm2ddl;
 
 namespace Graxei.FluentNHibernate.Configuracao
 {

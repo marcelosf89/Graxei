@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Graxei.Modelo.Generico;
+﻿using Graxei.Modelo.Generico;
 
 namespace Graxei.Modelo
 {

@@ -1,9 +1,6 @@
 ﻿using DotNetOpenAuth.GoogleOAuth2;
 //using Microsoft.Web.WebPages.OAuth;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Graxei.Apresentacao
 {

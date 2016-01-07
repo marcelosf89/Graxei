@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Graxei.FluentNHibernate.UnitOfWork;
-using Graxei.Persistencia.Contrato;
 using Graxei.Persistencia.Implementacao.NHibernate.Interfaces;
 using NHibernate;
 using Graxei.Modelo.Generico;

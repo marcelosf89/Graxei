@@ -4,11 +4,6 @@ using Graxei.Negocio.Implementacao.Factories;
 using Graxei.Transversais.Comum.Excecoes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Negocio.Implementacao.Teste.Factories
 {

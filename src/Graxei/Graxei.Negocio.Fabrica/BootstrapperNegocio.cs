@@ -1,7 +1,5 @@
 ﻿using Graxei.Negocio.Contrato;
 using Graxei.Negocio.Implementacao;
-using Graxei.Persistencia.Contrato;
-using Graxei.Persistencia.Implementacao.NHibernate;
 using Microsoft.Practices.Unity;
 using System.Configuration;
 

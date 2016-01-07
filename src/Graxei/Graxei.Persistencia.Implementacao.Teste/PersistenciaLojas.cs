@@ -1,7 +1,4 @@
-﻿using Graxei.Persistencia.Contrato;
-using Graxei.Persistencia.Implementacao.NHibernate;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Graxei.Persistencia.Implementacao.Teste
 {

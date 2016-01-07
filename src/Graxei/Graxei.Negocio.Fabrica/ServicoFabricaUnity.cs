@@ -1,5 +1,4 @@
 ﻿using Graxei.Negocio.Contrato;
-using Graxei.Negocio.Implementacao;
 using Microsoft.Practices.Unity;
 namespace Graxei.Negocio.Fabrica
 {

@@ -1,12 +1,8 @@
 ﻿using Graxei.FluentNHibernate.UnitOfWork;
 using Graxei.Transversais.ContratosDeDados;
 using NHibernate;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo
 {

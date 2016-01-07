@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Modelo;
 using Graxei.Negocio.Contrato;

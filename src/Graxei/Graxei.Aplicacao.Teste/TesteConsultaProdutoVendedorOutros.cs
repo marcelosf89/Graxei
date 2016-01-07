@@ -1,18 +1,8 @@
-﻿using Graxei.Aplicacao.Contrato.Transacionais;
-using Graxei.Aplicacao.Implementacao.Consultas;
+﻿using Graxei.Aplicacao.Implementacao.Consultas;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.Comum.Data;
-using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;
 using Graxei.Transversais.ContratosDeDados.Listas;
-using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Aplicacao.Teste
 {

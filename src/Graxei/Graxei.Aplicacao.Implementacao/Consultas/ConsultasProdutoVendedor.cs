@@ -1,11 +1,5 @@
-using Graxei.Aplicacao.Contrato;
 using Graxei.Aplicacao.Contrato.Consultas;
-using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
-using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.Comum.Excecoes;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Graxei.Aplicacao.Contrato.Transacionais;
 using Graxei.Transversais.ContratosDeDados.Api.PesquisaProdutos;

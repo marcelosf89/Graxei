@@ -1,8 +1,6 @@
 ﻿using Graxei.Modelo;
 using Graxei.Negocio.Contrato;
 using Graxei.Persistencia.Contrato;
-using Graxei.Transversais.Idiomas;
-using Graxei.Transversais.Comum.Excecoes;
 
 namespace Graxei.Negocio.Implementacao
 {

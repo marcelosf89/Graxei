@@ -4,12 +4,7 @@ using Graxei.Apresentacao.Areas.Teste.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Comum;
 using Graxei.Transversais.Comum.Autenticacao.Interfaces;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 

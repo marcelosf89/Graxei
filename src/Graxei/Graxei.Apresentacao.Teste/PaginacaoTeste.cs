@@ -1,14 +1,9 @@
 ﻿using Graxei.Apresentacao.Extension.PaginacaoChain;
-using Graxei.Apresentacao.Extension.PaginacaoChain;
 using Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy;
 using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Graxei.Apresentacao.Teste

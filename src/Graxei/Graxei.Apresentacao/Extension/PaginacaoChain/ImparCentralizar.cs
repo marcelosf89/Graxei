@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Routing;
-using Graxei.Apresentacao.Extension;
-using Graxei.Transversais.ContratosDeDados.TinyTypes;
+﻿using Graxei.Transversais.ContratosDeDados.TinyTypes;
 using Graxei.Apresentacao.Extension.PaginacaoChain.LinkBuilderStrategy;
 
 namespace Graxei.Apresentacao.Extension.PaginacaoChain

@@ -1,7 +1,4 @@
 ﻿using System.Linq;
-using Graxei.Aplicacao.Contrato.Consultas;
-using Graxei.Aplicacao.Fabrica;
-using Graxei.Apresentacao.Areas.Administrativo.Models;
 using Graxei.Modelo;
 using Graxei.Transversais.Comum.TransformacaoDados.Interface;
 using Graxei.Aplicacao.Contrato.Operacoes;

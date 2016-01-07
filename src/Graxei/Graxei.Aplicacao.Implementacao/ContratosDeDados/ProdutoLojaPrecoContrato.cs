@@ -1,10 +1,4 @@
-﻿using Graxei.Modelo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Graxei.Aplicacao.Implementacao.ContratosDeDados
+﻿namespace Graxei.Aplicacao.Implementacao.ContratosDeDados
 {
     public class ProdutoLojaPrecoContrato
     {

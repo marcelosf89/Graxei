@@ -1,12 +1,7 @@
-﻿using Graxei.Persistencia.Contrato.PesquisaProduto;
-using Graxei.Transversais.ContratosDeDados;
-using Graxei.Transversais.ContratosDeDados.Listas;
+﻿using Graxei.Transversais.ContratosDeDados;
 using NHibernate.Transform;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.PesquisaProduto
 {

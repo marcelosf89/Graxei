@@ -2,10 +2,7 @@
 using Graxei.Apresentacao.Models;
 using Graxei.Modelo;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Graxei.Apresentacao.Controllers

@@ -1,9 +1,4 @@
 ﻿using Graxei.Modelo;
-using Graxei.Transversais.ContratosDeDados;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Graxei.Apresentacao.Models
 {
