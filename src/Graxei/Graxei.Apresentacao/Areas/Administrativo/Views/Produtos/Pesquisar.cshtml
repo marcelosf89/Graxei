@@ -1,10 +1,12 @@
 ﻿@model string 
-
 <script>
     angular.bootstrap(document.getElementById('appPesquisa'), ['pesquisa-produtos']);
 </script>
 <div id="appPesquisa">
     <div ng-controller="PesquisarController as pesquisarCtrl" ng-init="pesquisarCtrl.init(@Model)">
+        <div>
+            <button class="btn btn-success invisible pull-right" ng-click="pesquisarCtrl.salvar()" ng-show="pesquisarCtrl.exibirBotoes">@Rotulos.Salvar</button>
+        </div>
         <form name="form-produtos-vendedor">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
@@ -25,10 +27,9 @@
                                 <label ng-click="pesquisarCtrl.habilitarEdicao(prod)" class="descricao-produto">{{prod.descricaoOriginal}}</label>
                             </div>
                             <div ng-show="prod.exibir">
-                                <textarea class="form-control">{{prod.minhaDescricao}}</textarea>
-                                <span class="field-validation-valid" data-valmsg-replace="true"></span>
-                                <button type="button" class="btn btn-default" onclick="tratarCliqueEdicao(this);">OK</button>
-                                <button type="button" class="btn btn-default cancel" onclick="tratarCliqueEdicao(this);">Cancelar</button>
+                                <textarea class="form-control" ng-model="prod.minhaDescricao"></textarea>
+                                <button type="button" class="btn btn-default" ng-click="pesquisarCtrl.confirmarEdicao(prod)">OK</button>
+                                <button type="button" class="btn btn-default cancel" ng-click="pesquisarCtrl.cancelarEdicao(prod)">Cancelar</button>
                                 <button type="button" class="btn btn-default cancel" ng-click="pesquisarCtrl.desfazerEdicao(prod)">Desfazer</button>
                             </div>
                         </td>
