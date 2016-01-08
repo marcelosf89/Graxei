@@ -28,7 +28,7 @@
         this.init = function (pesquisaModel) {
             controller.postData(pesquisaModel, function (response) {
                 controller.produtos = response;
-                controller.listaOriginal = controller.produtos;
+                controller.listaOriginal = JSON.parse(JSON.stringify(controller.produtos));
             });
         }
 
@@ -61,17 +61,16 @@
 
             itemLista.exibir = false;
 
-            controller.habilitarSalvar();
+            controller.habilitarSalvar(itemLista);
         }
 
         this.confirmarEdicao = function (itemLista) {
 
-            debugger;
             itemLista.descricaoOriginal = itemLista.minhaDescricao;
 
             itemLista.exibir = false;
 
-            controller.habilitarSalvar();
+            controller.habilitarSalvar(itemLista);
         }
 
         this.cancelarEdicao = function (itemLista) {
@@ -80,21 +79,17 @@
 
             itemLista.exibir = false;
 
-            controller.habilitarSalvar();
+            controller.habilitarSalvar(itemLista);
         }
 
-        this.habilitarSalvar = function(){
+        this.habilitarSalvar = function (itemLista) {
             var listaParaEdicao = controller.produtos.lista;
-            var listaOriginal = controller.listaOriginal.lista;
-
-            controller.exibirBotoes = false;
-            debugger;
-
+            
             for (i = 0; i < listaParaEdicao.length; i++){
                 var edicao = listaParaEdicao[i];
-                for (j = 0; j < listaOriginal.length; j++) {
+                for (i = 0; i < listaOriginal.length; j++) {
                     var original = listaOriginal[j];
-                    if (edicao['id'] === original['id'] && (edicao['preco'] != original['preco'] || edicao['minhaDescricao'] || original['minhaDescricao'])){
+                    if (edicao.id === original.id && (edicao.preco != original.preco || edicao.minhaDescricao != original.minhaDescricao ||  (original.minhaDescricao === null && edicao.minhaDescricao === edicao.descricaoOriginal))){
                         controller.exibirBotoes = true;
                         return;
                     }
