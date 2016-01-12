@@ -53,7 +53,7 @@
             var listaOriginal = controller.listaOriginal.lista;
             var id = itemLista.id;
             for (var i = 0; i < listaOriginal.length; i++) {
-                if (listaOriginal[i]['id'] == id){
+                if (listaOriginal[i].id == id) {
                     itemLista.minhaDescricao = listaOriginal[i].descricaoOriginal;
                     break;
                 }
@@ -61,7 +61,7 @@
 
             itemLista.exibir = false;
 
-            controller.habilitarSalvar(itemLista);
+            controller.habilitarSalvar();
         }
 
         this.confirmarEdicao = function (itemLista) {
@@ -70,32 +70,57 @@
 
             itemLista.exibir = false;
 
-            controller.habilitarSalvar(itemLista);
+            controller.habilitarSalvar();
         }
 
         this.cancelarEdicao = function (itemLista) {
-            
+
             itemLista.minhaDescricao = itemLista.descricaoOriginal;
 
             itemLista.exibir = false;
 
-            controller.habilitarSalvar(itemLista);
+            controller.habilitarSalvar();
         }
 
-        this.habilitarSalvar = function (itemLista) {
-            var listaParaEdicao = controller.produtos.lista;
-            
-            for (i = 0; i < listaParaEdicao.length; i++){
-                var edicao = listaParaEdicao[i];
-                for (i = 0; i < listaOriginal.length; j++) {
-                    var original = listaOriginal[j];
-                    if (edicao.id === original.id && (edicao.preco != original.preco || edicao.minhaDescricao != original.minhaDescricao ||  (original.minhaDescricao === null && edicao.minhaDescricao === edicao.descricaoOriginal))){
+        this.salvar = function () {
+            controller.salvarLista(function () {
+                
+            });
+        }
+
+        this.salvarLista = function (funcaoCallback) {
+
+            var lista = controller.produtos.lista;
+            $http.post("/Administrativo/Produtos/Salvar", { itens: lista })
+                  .then(function (response) {
+                      funcaoCallback(response.data);
+                  });
+        }
+
+        this.habilitarSalvar = function () {
+            var listaOriginal = controller.listaOriginal.lista;
+            var listaEdicao = controller.produtos.lista;
+
+            for (i = 0; i < listaOriginal.length; i++) {
+                var original = listaOriginal[i];
+                for (j = 0; j < listaEdicao.length; j++) {
+                    var edicao = listaEdicao[j];
+                    if (edicao.id === original.id && modificou(original, edicao)) {
                         controller.exibirBotoes = true;
                         return;
                     }
                 }
             }
+
+            controller.exibirBotoes = false;
+
         }
+
     });
 
 })();
+
+function modificou(original, edicao) {
+    return edicao.preco != original.preco
+        || (edicao.minhaDescricao != original.minhaDescricao && edicao.minhaDescricao != original.descricaoOriginal);
+}

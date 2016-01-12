@@ -41,8 +41,7 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
 
         public ActionResult Listar(long idLoja)
         {
-            long endereco = this._consultasLojas.GetIdDoUnicoEndereco(idLoja);
-            return View(new PesquisaProdutoContrato { IdLoja = idLoja, IdUnicoEndereco = endereco });
+            return View(new PesquisaProdutoContrato { IdLoja = idLoja });
         }
 
         [HttpPost]
@@ -89,20 +88,6 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
             string json = JsonConvert.SerializeObject(model, new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() });
 
             return PartialView("Pesquisar", json);
-            //try
-            //{
-            //    if (model.PaginaAtualLista == 0)
-            //    {
-            //        model.PaginaAtualLista = 1;
-            //    }
-            //    ListaProdutosLoja produtos = _consultaListaProdutosLoja.Get(model, 10);
-            //    return JsonNetResult.GetWithDefaultFormatting(produtos);
-            //}
-            //catch (ProdutoForaDoLimiteException e)
-            //{
-            //    IList<Produto> produtos = e.List;
-            //    return JsonNetResult.GetWithDefaultFormatting(produtos);
-            //}
         }
 
         [HttpPost]
@@ -122,9 +107,13 @@ namespace Graxei.Apresentacao.Areas.Administrativo.Controllers
         }
 
         private readonly IConsultasLojas _consultasLojas;
+
         private readonly IConsultasListaLojas _consultasListaLojas;
+
         private readonly IConsultasProdutos _consultasProdutos;
+
         private readonly IGerenciamentoProdutos _gerenciamentoProdutos;
+
         private IConsultaListaProdutosLoja _consultaListaProdutosLoja;
     }
 }

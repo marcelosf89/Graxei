@@ -38,7 +38,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.AlteracaoPr
             switch (produtoLojaPrecoContrato.OperacaoNoContrato)
             {
                 case OperacaoProdutoLoja.Incluir:
-                    return new CriarProdutoVendedor(produtoLojaPrecoContrato.IdProduto,
+                    return new CriarProdutoVendedor(produtoLojaPrecoContrato.Id,
                                                     produtoLojaPrecoContrato.MinhaDescricao,
                                                     produtoLojaPrecoContrato.Preco,
                                                     produtoLojaPrecoContrato.IdEndereco,

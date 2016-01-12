@@ -18,7 +18,9 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlResolver
                          null id_meu_produto, null id_endereco, null preco, false excluido
                     FROM produtos p 
                    WHERE p.excluida = false AND lower(p.descricao) LIKE :descricao 
-                     AND NOT EXISTS (SELECT 1 FROM produtos_vendedores pv WHERE pv.id_produto = p.id_produto)
+                     AND NOT EXISTS (SELECT 1 FROM produtos_vendedores pv 
+                                              JOIN enderecos e ON pv.id_endereco = e.id_endereco 
+                                             WHERE pv.id_produto = p.id_produto AND e.id_loja = :id)
                    UNION
                   SELECT p.id_produto, p.codigo, pv.descricao minha_descricao, p.descricao descricao_original, 
                          pv.id_produto_vendedor id_meu_produto, pv.id_endereco, pv.preco, pv.excluida

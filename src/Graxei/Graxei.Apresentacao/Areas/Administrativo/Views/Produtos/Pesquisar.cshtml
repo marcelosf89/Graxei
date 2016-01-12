@@ -36,7 +36,7 @@
                         <td class="col-md-2 col-md-2">
                             <div class="input-group">
                                 <span class="input-group-addon">R$</span>
-                                <input style="text-align:right;" onkeyup="habilitarBotaoSalvar()" onchange='return validate(event);' data-thousands="." data-decimal="," value="{{prod.preco}}" class="form-control valor-produto"/>
+                                <input style="text-align:right;" ng-keyup="pesquisaCtrl.habilitarSalvar()" onchange='return validate(event);' data-thousands="." data-decimal="," ng-model="prod.preco" class="form-control valor-produto"/>
                             </div>
                         </td>
                     </tr>

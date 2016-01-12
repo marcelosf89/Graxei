@@ -31,7 +31,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
             long id = 1; long idProduto = 20;
             double esperado = (id * 4) + (idProduto / 2);
             ProdutoLojaPrecoContrato produtoLoja =
-                new ProdutoLojaPrecoContrato { IdMeuProduto = id, IdProduto = idProduto};
+                new ProdutoLojaPrecoContrato { IdMeuProduto = id, Id = idProduto};
             IDataReader dataReader = GetDataReader(id, idProduto);
             _mockDbCommand = new Mock<IDbCommand>();
             _mockDbCommand.Setup(p => p.ExecuteReader()).Returns(dataReader);
@@ -41,7 +41,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
             produtoVendedorNativo.SetSessaoAtual(SetupMocks().Object);
             IList<ProdutoLojaPrecoContrato> listaReal = produtoVendedorNativo.Get("sql");
             ProdutoLojaPrecoContrato produtoLojaReal = listaReal[0];
-            double real = (produtoLojaReal.IdMeuProduto * 4) + (produtoLojaReal.IdProduto / 2);
+            double real = (produtoLojaReal.IdMeuProduto * 4) + (produtoLojaReal.Id / 2);
 
             // Assert
             Assert.AreEqual(esperado, real);

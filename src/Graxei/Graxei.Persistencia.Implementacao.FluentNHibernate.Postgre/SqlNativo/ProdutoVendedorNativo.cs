@@ -24,7 +24,7 @@ namespace Graxei.Persistencia.Implementacao.FluentNHibernate.Postgre.SqlNativo
                 {
                     ProdutoLojaPrecoContrato produto = new ProdutoLojaPrecoContrato();
                     produto.IdMeuProduto = (long)reader["id_produto_vendedor"];
-                    produto.IdProduto = (long)reader["id_produto"];
+                    produto.Id = (long)reader["id_produto"];
                     resultado.Add(produto);
                 }
             };

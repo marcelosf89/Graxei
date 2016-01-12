@@ -25,7 +25,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoProdutoPrecoContratoForIncluirDeveRetornarCriarProdutoVendedor()
         {
             // Arrange
-            ProdutoLojaPrecoContrato produtoLoja = new ProdutoLojaPrecoContrato{ IdProduto = 10, MinhaDescricao = "Teste de Produto", IdEndereco = 100, Preco = 190 };
+            ProdutoLojaPrecoContrato produtoLoja = new ProdutoLojaPrecoContrato{ Id = 10, MinhaDescricao = "Teste de Produto", IdEndereco = 100, Preco = 190 };
             
             // Act
             CriarProdutoVendedor criarProdutoVendedor = (CriarProdutoVendedor)new MudancaoProdutoVendedorFuncaoFactory(_gerenciadorAutenticacao.Object).GetComBaseEm(produtoLoja);
@@ -88,7 +88,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
         public void QuandoPegarListaComTresProdutoSendoUmInvalidoDeveRetornarListaComDoisProdutos()
         {
             // Arrange
-            ProdutoLojaPrecoContrato pl = new ProdutoLojaPrecoContrato { IdProduto = 1, Preco = 10 };
+            ProdutoLojaPrecoContrato pl = new ProdutoLojaPrecoContrato { Id = 1, Preco = 10 };
             List<ProdutoLojaPrecoContrato> lista = new List<ProdutoLojaPrecoContrato>();
             lista.Add(pl);
             pl = new ProdutoLojaPrecoContrato { IdMeuProduto = 15, Preco = 33 };
@@ -127,7 +127,7 @@ namespace Graxei.Persistencia.Implementacao.Teste
         private bool Igual(CriarProdutoVendedor criarProdutoVendedor, ProdutoLojaPrecoContrato produtoLojaPrecoContrato)
         {
             bool resultado = true;
-            resultado &= criarProdutoVendedor.IdProduto == produtoLojaPrecoContrato.IdProduto;
+            resultado &= criarProdutoVendedor.IdProduto == produtoLojaPrecoContrato.Id;
             resultado &= criarProdutoVendedor.DescricaoProdutoVendedor == produtoLojaPrecoContrato.MinhaDescricao;
             resultado &= criarProdutoVendedor.IdEndereco == produtoLojaPrecoContrato.IdEndereco;
             resultado &= criarProdutoVendedor.Preco == produtoLojaPrecoContrato.Preco;

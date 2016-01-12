@@ -11,7 +11,7 @@ namespace Graxei.Transversais.Teste
         {
             // Arrange
             OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Incluir;
-            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { IdProduto = 1, IdEndereco = 10, IdMeuProduto = 0 , Preco = 10 };
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Id = 1, IdEndereco = 10, IdMeuProduto = 0 , Preco = 10 };
 
             // Act
             OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;
@@ -81,7 +81,7 @@ namespace Graxei.Transversais.Teste
         {
             // Arrange
             OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Invalido;
-            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 1, IdMeuProduto = 0, IdProduto = 0 };
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 1, IdMeuProduto = 0, Id = 0 };
 
             // Act
             OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;
@@ -95,7 +95,7 @@ namespace Graxei.Transversais.Teste
         {
             // Arrange
             OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Invalido;
-            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 1, IdMeuProduto = 0, IdProduto = 0, IdEndereco = 15 };
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 1, IdMeuProduto = 0, Id = 0, IdEndereco = 15 };
 
             // Act
             OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;
@@ -109,7 +109,7 @@ namespace Graxei.Transversais.Teste
         {
             // Arrange
             OperacaoProdutoLoja esperado = OperacaoProdutoLoja.Invalido;
-            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 1, IdMeuProduto = 0, IdProduto = 16, IdEndereco = 0 };
+            ProdutoLojaPrecoContrato produtoLojaPrecoContrato = new ProdutoLojaPrecoContrato { Preco = 1, IdMeuProduto = 0, Id = 16, IdEndereco = 0 };
 
             // Act
             OperacaoProdutoLoja real = produtoLojaPrecoContrato.OperacaoNoContrato;
